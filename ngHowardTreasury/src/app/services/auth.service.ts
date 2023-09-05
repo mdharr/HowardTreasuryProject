@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, throwError, tap } from 'rxjs';
+import { Buffer } from "buffer";
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 
