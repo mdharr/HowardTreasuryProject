@@ -1,0 +1,3 @@
+rootProject.name = 'HowardTreasury'
+
+includeFlat 'JPAHowardTreasury'
