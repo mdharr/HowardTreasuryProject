@@ -447,8 +447,8 @@ DROP TABLE IF EXISTS `user_has_chat_room` ;
 CREATE TABLE IF NOT EXISTS `user_has_chat_room` (
   `user_id` INT NOT NULL,
   `chat_room_id` INT NOT NULL,
-  `join_timestamp` TIMESTAMP NULL,
-  `last_activity_timestamp` TIMESTAMP NULL,
+  `joined_at` TIMESTAMP NULL,
+  `last_activity` TIMESTAMP NULL,
   `notification_preferences` VARCHAR(255) NULL,
   `unread_message_count` INT NULL,
   `user_status` VARCHAR(10) NULL,
@@ -745,6 +745,16 @@ USE `howardtreasurydb`;
 INSERT INTO `poem_has_person` (`poem_id`, `person_id`) VALUES (1, 1);
 INSERT INTO `poem_has_person` (`poem_id`, `person_id`) VALUES (2, 1);
 INSERT INTO `poem_has_person` (`poem_id`, `person_id`) VALUES (3, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_has_chat_room`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `user_has_chat_room` (`user_id`, `chat_room_id`, `joined_at`, `last_activity`, `notification_preferences`, `unread_message_count`, `user_status`, `role`) VALUES (1, 1, '2023-03-03T12:35:22', '2023-03-03T12:35:22', NULL, NULL, NULL, NULL);
 
 COMMIT;
 

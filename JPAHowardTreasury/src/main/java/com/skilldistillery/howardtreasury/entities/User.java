@@ -31,7 +31,7 @@ public class User {
     @OneToMany(mappedBy = "owner")
     private List<ChatRoom> ownedChatRooms;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany
     private List<ChatRoom> chatRooms;
 
 	public User() {

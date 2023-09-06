@@ -29,7 +29,7 @@ public class ChatRoom {
     @JoinColumn(name = "user_id")
     private User owner;
     
-    @OneToMany(mappedBy = "chatRoom")
+    @OneToMany(mappedBy = "chatRooms")
     private List<User> users;
 	
 	@OneToMany(mappedBy = "chatRoom")
