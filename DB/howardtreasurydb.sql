@@ -345,30 +345,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `person_has_poem`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `person_has_poem` ;
-
-CREATE TABLE IF NOT EXISTS `person_has_poem` (
-  `person_id` INT NOT NULL,
-  `poem_id` INT NOT NULL,
-  PRIMARY KEY (`person_id`, `poem_id`),
-  INDEX `fk_person_has_poem_poem1_idx` (`poem_id` ASC),
-  INDEX `fk_person_has_poem_person1_idx` (`person_id` ASC),
-  CONSTRAINT `fk_person_has_poem_person1`
-    FOREIGN KEY (`person_id`)
-    REFERENCES `person` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_person_has_poem_poem1`
-    FOREIGN KEY (`poem_id`)
-    REFERENCES `poem` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `story_has_person`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `story_has_person` ;
@@ -426,6 +402,30 @@ CREATE TABLE IF NOT EXISTS `chat_message` (
   CONSTRAINT `fk_chat_message_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `poem_has_person`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `poem_has_person` ;
+
+CREATE TABLE IF NOT EXISTS `poem_has_person` (
+  `poem_id` INT NOT NULL,
+  `person_id` INT NOT NULL,
+  PRIMARY KEY (`poem_id`, `person_id`),
+  INDEX `fk_poem_has_person_person1_idx` (`person_id` ASC),
+  INDEX `fk_poem_has_person_poem1_idx` (`poem_id` ASC),
+  CONSTRAINT `fk_poem_has_person_poem1`
+    FOREIGN KEY (`poem_id`)
+    REFERENCES `poem` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_poem_has_person_person1`
+    FOREIGN KEY (`person_id`)
+    REFERENCES `person` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -659,18 +659,6 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `person_has_poem`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `howardtreasurydb`;
-INSERT INTO `person_has_poem` (`person_id`, `poem_id`) VALUES (1, 1);
-INSERT INTO `person_has_poem` (`person_id`, `poem_id`) VALUES (1, 2);
-INSERT INTO `person_has_poem` (`person_id`, `poem_id`) VALUES (1, 3);
-
-COMMIT;
-
-
--- -----------------------------------------------------
 -- Data for table `story_has_person`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -707,6 +695,18 @@ START TRANSACTION;
 USE `howardtreasurydb`;
 INSERT INTO `chat_message` (`id`, `message_content`, `created_at`, `chat_room_id`, `user_id`) VALUES (1, 'Welcome to the Robert E. Howard Treasury chat room!', NULL, 1, 1);
 INSERT INTO `chat_message` (`id`, `message_content`, `created_at`, `chat_room_id`, `user_id`) VALUES (2, 'Always excited to discuss Robert E. Howard.', NULL, 1, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `poem_has_person`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `poem_has_person` (`poem_id`, `person_id`) VALUES (1, 1);
+INSERT INTO `poem_has_person` (`poem_id`, `person_id`) VALUES (2, 1);
+INSERT INTO `poem_has_person` (`poem_id`, `person_id`) VALUES (3, 1);
 
 COMMIT;
 
