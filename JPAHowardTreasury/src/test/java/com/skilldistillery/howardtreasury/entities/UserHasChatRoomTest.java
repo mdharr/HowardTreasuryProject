@@ -46,10 +46,10 @@ class UserHasChatRoomTest {
 		assertEquals("Public Chat Room", userHasChatRoom.getChatRoom().getName());
 	}
 	
-//	@Test
-//	void test_UserHasChatRoom_ChatRoom_one_to_many_mapping() {
-//		assertNotNull(userHasChatRoom);
-//		assertEquals("Welcome to the Robert E. Howard Treasury chat room!", userHasChatRoom.getChatRoom().getChatMessages().get(0).getMessageContent());
-//	}
+	@Test
+	void test_UserHasChatRoom_ChatRoom_one_to_many_mapping() {
+		assertNotNull(userHasChatRoom);
+		assertEquals("Welcome to the Robert E. Howard Treasury chat room!", userHasChatRoom.getChatRoom().getChatMessages().get(0).getMessageContent());
+	}
 
 }

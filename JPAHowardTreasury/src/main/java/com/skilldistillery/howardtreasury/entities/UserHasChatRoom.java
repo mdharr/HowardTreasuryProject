@@ -43,7 +43,7 @@ public class UserHasChatRoom {
 	private String notificationPreferences;
 	
 	@Column(name = "unread_message_count")
-	private int unreadMessageCount;
+	private Integer unreadMessageCount;
 	
 	@Column(name = "user_status")
 	private String userStatus;
@@ -56,7 +56,7 @@ public class UserHasChatRoom {
 	}
 
 	public UserHasChatRoom(UserHasChatRoomId id, User user, ChatRoom chatRoom, LocalDateTime joinedAt,
-			LocalDateTime lastActivity, String notificationPreferences, int unreadMessageCount, String userStatus,
+			LocalDateTime lastActivity, String notificationPreferences, Integer unreadMessageCount, String userStatus,
 			String role) {
 		super();
 		this.id = new UserHasChatRoomId(user.getId(), chatRoom.getId());
@@ -118,11 +118,11 @@ public class UserHasChatRoom {
 		this.notificationPreferences = notificationPreferences;
 	}
 
-	public int getUnreadMessageCount() {
+	public Integer getUnreadMessageCount() {
 		return unreadMessageCount;
 	}
 
-	public void setUnreadMessageCount(int unreadMessageCount) {
+	public void setUnreadMessageCount(Integer unreadMessageCount) {
 		this.unreadMessageCount = unreadMessageCount;
 	}
 
