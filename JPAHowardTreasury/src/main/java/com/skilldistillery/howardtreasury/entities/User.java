@@ -1,11 +1,13 @@
 package com.skilldistillery.howardtreasury.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -21,18 +23,23 @@ public class User {
 	private Boolean enabled;
 	
 	private String role;
+	
+	@OneToMany
+	private List<ChatMessage> chatMessages;
 
 	public User() {
 		super();
 	}
-
-	public User(int id, String username, String password, Boolean enabled, String role) {
+	
+	public User(int id, String username, String password, Boolean enabled, String role,
+			List<ChatMessage> chatMessages) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
 		this.role = role;
+		this.chatMessages = chatMessages;
 	}
 
 	public int getId() {
@@ -73,6 +80,14 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public List<ChatMessage> getChatMessages() {
+		return chatMessages;
+	}
+
+	public void setChatMessages(List<ChatMessage> chatMessages) {
+		this.chatMessages = chatMessages;
 	}
 
 	@Override
