@@ -10,6 +10,8 @@
 		<class>com.skilldistillery.howardtreasury.entities.User</class>
 		<class>com.skilldistillery.howardtreasury.entities.ChatRoom</class>
 		<class>com.skilldistillery.howardtreasury.entities.ChatMessage</class>
+		<class>com.skilldistillery.howardtreasury.entities.UserHasChatRoom</class>
+		<class>com.skilldistillery.howardtreasury.entities.UserHasChatRoomId</class>
 
 		<!-- end entities -->
 
