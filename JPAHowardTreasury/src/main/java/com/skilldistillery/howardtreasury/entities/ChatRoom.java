@@ -20,7 +20,7 @@ public class ChatRoom {
 	
 	private String name;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "chatRoom")
 	private List<ChatMessage> chatMessages;
 
 	public ChatRoom() {
