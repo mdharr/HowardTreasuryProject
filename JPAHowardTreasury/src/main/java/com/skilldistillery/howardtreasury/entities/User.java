@@ -24,7 +24,7 @@ public class User {
 	
 	private String role;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "user")
 	private List<ChatMessage> chatMessages;
 
 	public User() {

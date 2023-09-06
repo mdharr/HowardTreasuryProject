@@ -46,5 +46,11 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals("admin", user.getUsername());
 	}
+	
+	@Test
+	void test_User_ChatMessage_one_to_many_mapping() {
+		assertNotNull(user);
+		assertEquals("Welcome to the Robert E. Howard Treasury chat room!", user.getChatMessages().get(0).getMessageContent());
+	}
 
 }
