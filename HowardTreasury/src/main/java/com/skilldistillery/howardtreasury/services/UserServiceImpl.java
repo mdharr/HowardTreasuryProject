@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.howardtreasury.repositories.UserRepository;
 
 @Service
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepo;

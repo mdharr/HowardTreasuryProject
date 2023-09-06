@@ -10,7 +10,6 @@ import com.skilldistillery.howardtreasury.repositories.UserRepository;
 @Service
 public class AuthServiceImpl implements AuthService {
 	
-	
 	@Autowired
 	private PasswordEncoder encoder;
 	

@@ -13,7 +13,7 @@ import com.skilldistillery.howardtreasury.repositories.ChatRoomRepository;
 import com.skilldistillery.howardtreasury.repositories.UserRepository;
 
 @Service
-public class ChatMessageServiceImpl {
+public class ChatMessageServiceImpl implements ChatMessageService {
 
 	@Autowired
     private ChatMessageRepository chatMessageRepo;

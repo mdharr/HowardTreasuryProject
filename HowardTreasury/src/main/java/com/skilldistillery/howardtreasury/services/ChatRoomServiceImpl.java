@@ -11,7 +11,7 @@ import com.skilldistillery.howardtreasury.repositories.ChatRoomRepository;
 import com.skilldistillery.howardtreasury.repositories.UserRepository;
 
 @Service
-public class ChatRoomServiceImpl {
+public class ChatRoomServiceImpl implements ChatRoomService {
 	
 	@Autowired
 	private UserRepository userRepo;
