@@ -41,9 +41,15 @@ class ChatMessageTest {
 	}
 
 	@Test
-	void test_User_entity_mapping() {
+	void test_ChatMessage_entity_mapping() {
 		assertNotNull(chatMessage);
 		assertEquals("Welcome to the Robert E. Howard Treasury chat room!", chatMessage.getMessageContent());
+	}
+	
+	@Test
+	void test_ChatMessage_ChatRoom_many_to_one_mapping() {
+		assertNotNull(chatMessage);
+		assertEquals("Public Chat Room", chatMessage.getChatRoom().getName());
 	}
 
 }
