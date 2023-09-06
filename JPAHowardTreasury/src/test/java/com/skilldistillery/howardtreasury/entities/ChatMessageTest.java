@@ -51,5 +51,11 @@ class ChatMessageTest {
 		assertNotNull(chatMessage);
 		assertEquals("Public Chat Room", chatMessage.getChatRoom().getName());
 	}
+	
+	@Test
+	void test_ChatMessage_User_many_to_one_mapping() {
+		assertNotNull(chatMessage);
+		assertEquals("admin", chatMessage.getUser().getUsername());
+	}
 
 }
