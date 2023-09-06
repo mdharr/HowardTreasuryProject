@@ -1,5 +1,6 @@
 package com.skilldistillery.howardtreasury.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -7,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,6 +23,15 @@ public class ChatRoom {
 	
 	private String name;
 	
+	private String description;
+	
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User owner;
+    
+    @OneToMany(mappedBy = "chatRoom")
+    private List<User> users;
+	
 	@OneToMany(mappedBy = "chatRoom")
 	private List<ChatMessage> chatMessages;
 
@@ -28,10 +40,13 @@ public class ChatRoom {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ChatRoom(int id, String name, List<ChatMessage> chatMessages) {
+	public ChatRoom(int id, String name, String description, User owner, List<User> users, List<ChatMessage> chatMessages) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.description = description;
+		this.owner = owner;
+		this.users = users;
 		this.chatMessages = chatMessages;
 	}
 
@@ -51,6 +66,30 @@ public class ChatRoom {
 		this.name = name;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+	
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+	
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
 	public List<ChatMessage> getChatMessages() {
 		return chatMessages;
 	}
@@ -58,6 +97,23 @@ public class ChatRoom {
 	public void setChatMessages(List<ChatMessage> chatMessages) {
 		this.chatMessages = chatMessages;
 	}
+	
+    // Add a user to the chat room
+    public void addUser(User user) {
+        if (users == null) {
+            users = new ArrayList<>();
+        }
+        users.add(user);
+        user.getChatRooms().add(this); // Bidirectional relationship
+    }
+
+    // Remove a user from the chat room
+    public void removeUser(User user) {
+        if (users != null) {
+            users.remove(user);
+            user.getChatRooms().remove(this); // Bidirectional relationship
+        }
+    }
 
 	@Override
 	public int hashCode() {
@@ -78,7 +134,8 @@ public class ChatRoom {
 
 	@Override
 	public String toString() {
-		return "ChatRoom [id=" + id + ", name=" + name + ", chatMessages=" + chatMessages + "]";
+		return "ChatRoom [id=" + id + ", name=" + name + ", description=" + description + ", owner=" + owner
+				+ ", users=" + users + ", chatMessages=" + chatMessages + "]";
 	}
 
 }

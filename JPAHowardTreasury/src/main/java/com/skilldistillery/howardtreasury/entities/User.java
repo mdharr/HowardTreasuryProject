@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -26,13 +27,19 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private List<ChatMessage> chatMessages;
+	
+    @OneToMany(mappedBy = "owner")
+    private List<ChatRoom> ownedChatRooms;
+
+    @ManyToMany(mappedBy = "users")
+    private List<ChatRoom> chatRooms;
 
 	public User() {
 		super();
 	}
 	
 	public User(int id, String username, String password, Boolean enabled, String role,
-			List<ChatMessage> chatMessages) {
+			List<ChatMessage> chatMessages, List<ChatRoom> ownedChatRooms, List<ChatRoom> chatRooms) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -40,6 +47,8 @@ public class User {
 		this.enabled = enabled;
 		this.role = role;
 		this.chatMessages = chatMessages;
+		this.ownedChatRooms = ownedChatRooms;
+		this.chatRooms = chatRooms;
 	}
 
 	public int getId() {
@@ -90,6 +99,22 @@ public class User {
 		this.chatMessages = chatMessages;
 	}
 
+	public List<ChatRoom> getOwnedChatRooms() {
+		return ownedChatRooms;
+	}
+
+	public void setOwnedChatRooms(List<ChatRoom> ownedChatRooms) {
+		this.ownedChatRooms = ownedChatRooms;
+	}
+
+	public List<ChatRoom> getChatRooms() {
+		return chatRooms;
+	}
+
+	public void setChatRooms(List<ChatRoom> chatRooms) {
+		this.chatRooms = chatRooms;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -110,7 +135,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
-				+ ", role=" + role + "]";
+				+ ", role=" + role + ", chatMessages=" + chatMessages + ", ownedChatRooms=" + ownedChatRooms
+				+ ", chatRooms=" + chatRooms + "]";
 	}
 	
 }

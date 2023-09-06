@@ -376,7 +376,15 @@ DROP TABLE IF EXISTS `chat_room` ;
 CREATE TABLE IF NOT EXISTS `chat_room` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
-  PRIMARY KEY (`id`))
+  `description` VARCHAR(255) NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_chat_room_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_chat_room_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -426,6 +434,36 @@ CREATE TABLE IF NOT EXISTS `poem_has_person` (
   CONSTRAINT `fk_poem_has_person_person1`
     FOREIGN KEY (`person_id`)
     REFERENCES `person` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `user_has_chat_room`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user_has_chat_room` ;
+
+CREATE TABLE IF NOT EXISTS `user_has_chat_room` (
+  `user_id` INT NOT NULL,
+  `chat_room_id` INT NOT NULL,
+  `join_timestamp` TIMESTAMP NULL,
+  `last_activity_timestamp` TIMESTAMP NULL,
+  `notification_preferences` VARCHAR(255) NULL,
+  `unread_message_count` INT NULL,
+  `user_status` VARCHAR(10) NULL,
+  `role` VARCHAR(255) NULL,
+  PRIMARY KEY (`user_id`, `chat_room_id`),
+  INDEX `fk_user_has_chat_room_chat_room1_idx` (`chat_room_id` ASC),
+  INDEX `fk_user_has_chat_room_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_user_has_chat_room_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_has_chat_room_chat_room1`
+    FOREIGN KEY (`chat_room_id`)
+    REFERENCES `chat_room` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -683,7 +721,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `chat_room` (`id`, `name`) VALUES (1, 'Public Chat Room');
+INSERT INTO `chat_room` (`id`, `name`, `description`, `user_id`) VALUES (1, 'Public Chat Room', 'A place for all to partake in public discourse.', 1);
 
 COMMIT;
 
