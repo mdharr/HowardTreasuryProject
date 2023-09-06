@@ -3,12 +3,14 @@ package com.skilldistillery.howardtreasury.services;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.howardtreasury.entities.ChatRoom;
 import com.skilldistillery.howardtreasury.entities.User;
 import com.skilldistillery.howardtreasury.entities.UserHasChatRoom;
 import com.skilldistillery.howardtreasury.repositories.UserHasChatRoomRepository;
 
+@Service
 public class UserHasChatRoomServiceImpl implements UserHasChatRoomService {
 
     @Autowired
