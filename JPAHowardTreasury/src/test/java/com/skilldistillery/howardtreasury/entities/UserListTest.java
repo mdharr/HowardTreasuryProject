@@ -1,6 +1,10 @@
 package com.skilldistillery.howardtreasury.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,6 +21,7 @@ class UserListTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	private UserList userList;
+	private UserList userList2;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,12 +37,14 @@ class UserListTest {
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		userList = em.find(UserList.class, 1);
+		userList2 = em.find(UserList.class, 2);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
 		userList = null;
+		userList2 = null;
 	}
 
 	@Test
@@ -56,6 +63,17 @@ class UserListTest {
 	void test_UserList_User_many_to_one_mapping() {
 		assertNotNull(userList);
 		assertEquals("Kull", userList.getUser().getUsername());
+	}
+	
+	@Test
+	void test_UserList_ListContent_one_to_many_mapping2() {
+		assertNotNull(userList2);
+		assertTrue(userList2.getListContents().size() > 0);
+		List<ListContent> listContents = userList2.getListContents();
+		for (ListContent listContent : listContents) {
+			System.out.println(listContent);
+		}
+		System.out.println(userList2);
 	}
 
 }

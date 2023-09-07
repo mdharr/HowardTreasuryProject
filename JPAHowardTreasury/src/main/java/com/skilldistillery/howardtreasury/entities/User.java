@@ -36,9 +36,11 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<ChatMessage> chatMessages;
 	
+	@JsonIgnore
     @OneToMany(mappedBy = "owner")
     private List<ChatRoom> ownedChatRooms;
 
+	@JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "user_has_chat_room",
@@ -157,8 +159,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
-				+ ", role=" + role + ", chatMessages=" + chatMessages + ", ownedChatRooms=" + ownedChatRooms
-				+ ", chatRooms=" + chatRooms + "]";
+				+ ", role=" + role + "]";
 	}
 	
 }
