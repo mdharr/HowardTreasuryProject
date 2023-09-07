@@ -17,6 +17,7 @@ import com.skilldistillery.howardtreasury.services.AuthService;
 @RestController
 @CrossOrigin({"*", "http://localhost"})
 public class AuthController {
+	
   @Autowired
   private AuthService authService;
   
