@@ -18,6 +18,7 @@ class UserTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	private User user;
+	private User user2;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,18 +34,26 @@ class UserTest {
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		user = em.find(User.class, 1);
+		user2 = em.find(User.class, 2);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
 		user = null;
+		user2 = null;
 	}
 
 	@Test
 	void test_User_entity_mapping() {
 		assertNotNull(user);
 		assertEquals("admin", user.getUsername());
+	}
+	
+	@Test
+	void test_User_UserList_one_to_many_mapping() {
+		assertNotNull(user2);
+		assertEquals("King Kull Poems", user2.getUserLists().get(0).getName());
 	}
 	
 	@Test
