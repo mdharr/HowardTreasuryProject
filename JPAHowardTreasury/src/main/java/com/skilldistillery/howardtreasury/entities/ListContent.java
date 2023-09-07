@@ -26,6 +26,15 @@ public class ListContent {
 	
     @ManyToMany(mappedBy = "listContents")
     private List<Story> stories;
+    
+    @ManyToMany(mappedBy = "listContents")
+    private List<Poem> poems;
+    
+    @ManyToMany(mappedBy = "listContents")
+    private List<Person> persons;
+    
+    @ManyToMany(mappedBy = "listContents")
+    private List<Miscellanea> miscellaneas;
 
 	public ListContent() {
 		super();

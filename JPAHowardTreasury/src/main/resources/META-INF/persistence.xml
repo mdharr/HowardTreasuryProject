@@ -13,6 +13,15 @@
 		<class>com.skilldistillery.howardtreasury.entities.Story</class>
 		<class>com.skilldistillery.howardtreasury.entities.StoryHasListContent</class>
 		<class>com.skilldistillery.howardtreasury.entities.StoryHasListContentId</class>
+		<class>com.skilldistillery.howardtreasury.entities.Poem</class>
+		<class>com.skilldistillery.howardtreasury.entities.PoemHasListContent</class>
+		<class>com.skilldistillery.howardtreasury.entities.PoemHasListContentId</class>
+		<class>com.skilldistillery.howardtreasury.entities.Person</class>
+		<class>com.skilldistillery.howardtreasury.entities.PersonHasListContent</class>
+		<class>com.skilldistillery.howardtreasury.entities.PersonHasListContentId</class>
+		<class>com.skilldistillery.howardtreasury.entities.Miscellanea</class>
+		<class>com.skilldistillery.howardtreasury.entities.MiscellaneaHasListContent</class>
+		<class>com.skilldistillery.howardtreasury.entities.MiscellaneaHasListContentId</class>
 		<class>com.skilldistillery.howardtreasury.entities.ChatRoom</class>
 		<class>com.skilldistillery.howardtreasury.entities.ChatMessage</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserHasChatRoom</class>
