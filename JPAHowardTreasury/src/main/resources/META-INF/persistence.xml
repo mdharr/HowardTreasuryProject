@@ -10,6 +10,9 @@
 		<class>com.skilldistillery.howardtreasury.entities.User</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserList</class>
 		<class>com.skilldistillery.howardtreasury.entities.ListContent</class>
+		<class>com.skilldistillery.howardtreasury.entities.Story</class>
+		<class>com.skilldistillery.howardtreasury.entities.StoryHasListContent</class>
+		<class>com.skilldistillery.howardtreasury.entities.StoryHasListContentId</class>
 		<class>com.skilldistillery.howardtreasury.entities.ChatRoom</class>
 		<class>com.skilldistillery.howardtreasury.entities.ChatMessage</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserHasChatRoom</class>
