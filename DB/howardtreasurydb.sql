@@ -564,6 +564,7 @@ USE `howardtreasurydb`;
 INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (1, 'King Kull Poems', 2);
 INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (2, 'King Kull Stories', 2);
 INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (3, 'King Kull Miscellanea', 2);
+INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (4, 'King Kull Favorites', 2);
 
 COMMIT;
 
@@ -576,6 +577,7 @@ USE `howardtreasurydb`;
 INSERT INTO `list_content` (`id`, `user_list_id`) VALUES (1, 1);
 INSERT INTO `list_content` (`id`, `user_list_id`) VALUES (2, 2);
 INSERT INTO `list_content` (`id`, `user_list_id`) VALUES (3, 3);
+INSERT INTO `list_content` (`id`, `user_list_id`) VALUES (4, 4);
 
 COMMIT;
 
@@ -596,6 +598,7 @@ INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (8, 
 INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (9, 2);
 INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (10, 2);
 INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (11, 2);
+INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (1, 4);
 
 COMMIT;
 
@@ -608,6 +611,7 @@ USE `howardtreasurydb`;
 INSERT INTO `poem_has_list_content` (`poem_id`, `list_content_id`) VALUES (1, 1);
 INSERT INTO `poem_has_list_content` (`poem_id`, `list_content_id`) VALUES (2, 1);
 INSERT INTO `poem_has_list_content` (`poem_id`, `list_content_id`) VALUES (3, 1);
+INSERT INTO `poem_has_list_content` (`poem_id`, `list_content_id`) VALUES (1, 4);
 
 COMMIT;
 
@@ -622,6 +626,17 @@ INSERT INTO `miscellanea_has_list_content` (`miscellanea_id`, `list_content_id`)
 INSERT INTO `miscellanea_has_list_content` (`miscellanea_id`, `list_content_id`) VALUES (3, 3);
 INSERT INTO `miscellanea_has_list_content` (`miscellanea_id`, `list_content_id`) VALUES (4, 3);
 INSERT INTO `miscellanea_has_list_content` (`miscellanea_id`, `list_content_id`) VALUES (5, 3);
+INSERT INTO `miscellanea_has_list_content` (`miscellanea_id`, `list_content_id`) VALUES (1, 4);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `person_has_list_content`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `person_has_list_content` (`person_id`, `list_content_id`) VALUES (1, 4);
 
 COMMIT;
 

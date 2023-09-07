@@ -72,6 +72,30 @@ public class ListContent {
 		this.stories = stories;
 	}
 
+	public List<Poem> getPoems() {
+		return poems;
+	}
+
+	public void setPoems(List<Poem> poems) {
+		this.poems = poems;
+	}
+
+	public List<Person> getPersons() {
+		return persons;
+	}
+
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
+	}
+
+	public List<Miscellanea> getMiscellaneas() {
+		return miscellaneas;
+	}
+
+	public void setMiscellaneas(List<Miscellanea> miscellaneas) {
+		this.miscellaneas = miscellaneas;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

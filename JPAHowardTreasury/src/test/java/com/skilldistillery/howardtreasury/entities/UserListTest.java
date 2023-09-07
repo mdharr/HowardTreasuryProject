@@ -37,7 +37,7 @@ class UserListTest {
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		userList = em.find(UserList.class, 1);
-		userList2 = em.find(UserList.class, 2);
+		userList2 = em.find(UserList.class, 4);
 	}
 
 	@AfterEach
@@ -69,11 +69,39 @@ class UserListTest {
 	void test_UserList_ListContent_one_to_many_mapping2() {
 		assertNotNull(userList2);
 		assertTrue(userList2.getListContents().size() > 0);
-		List<ListContent> listContents = userList2.getListContents();
-		for (ListContent listContent : listContents) {
-			System.out.println(listContent);
-		}
-		System.out.println(userList2);
+	    List<ListContent> listContents = userList2.getListContents();
+
+	    // Iterate through each ListContent
+	    for (ListContent listContent : listContents) {
+	        // Get the associated stories
+	        List<Story> stories = listContent.getStories();
+	        // Get the associated poems
+	        List<Poem> poems = listContent.getPoems();
+	        // Get the associated people
+	        List<Person> persons = listContent.getPersons();
+	        // Get the associated miscellanea
+	        List<Miscellanea> miscellaneas = listContent.getMiscellaneas();
+
+	        // Now you can work with the retrieved entities as needed
+	        // For example, print the titles of stories
+	        for (Story story : stories) {
+	            System.out.println("Story Title: " + story.getTitle());
+	        }
+
+	        for (Poem poem : poems) {
+	        	System.out.println("Poem Title: " + poem.getTitle());
+	        }
+
+	        for (Person person : persons) {
+	        	System.out.println("Person Name: " + person.getName());
+	        }
+
+	        for (Miscellanea miscellanea : miscellaneas) {
+	        	System.out.println("Miscellanea Title: " + miscellanea.getTitle());
+	        }
+	        
+	        // Repeat the same for poems, people, and miscellanea
+	    }
 	}
 
 }
