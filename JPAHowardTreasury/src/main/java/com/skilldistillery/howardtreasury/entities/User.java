@@ -29,6 +29,9 @@ public class User {
 	
 	private String role;
 	
+	@OneToMany(mappedBy = "user")
+	private List<UserList> userLists;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<ChatMessage> chatMessages;
@@ -48,7 +51,7 @@ public class User {
 		super();
 	}
 	
-	public User(int id, String username, String password, Boolean enabled, String role,
+	public User(int id, String username, String password, Boolean enabled, String role, List<UserList> userLists,
 			List<ChatMessage> chatMessages, List<ChatRoom> ownedChatRooms, List<ChatRoom> chatRooms) {
 		super();
 		this.id = id;
@@ -56,6 +59,7 @@ public class User {
 		this.password = password;
 		this.enabled = enabled;
 		this.role = role;
+		this.userLists = userLists;
 		this.chatMessages = chatMessages;
 		this.ownedChatRooms = ownedChatRooms;
 		this.chatRooms = chatRooms;
@@ -99,6 +103,14 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public List<UserList> getUserLists() {
+		return userLists;
+	}
+
+	public void setUserLists(List<UserList> userLists) {
+		this.userLists = userLists;
 	}
 
 	public List<ChatMessage> getChatMessages() {
