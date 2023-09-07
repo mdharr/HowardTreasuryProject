@@ -18,7 +18,7 @@ public class Person {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String title;
+	private String name;
 	
     @ManyToMany
     @JoinTable(
@@ -33,10 +33,10 @@ public class Person {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Person(int id, String title, List<ListContent> listContents) {
+	public Person(int id, String name, List<ListContent> listContents) {
 		super();
 		this.id = id;
-		this.title = title;
+		this.name = name;
 		this.listContents = listContents;
 	}
 
@@ -48,12 +48,12 @@ public class Person {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public List<ListContent> getListContents() {
@@ -83,7 +83,7 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", title=" + title + ", listContents=" + listContents + "]";
+		return "Person [id=" + id + ", name=" + name + ", listContents=" + listContents + "]";
 	}
 
 }
