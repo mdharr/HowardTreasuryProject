@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "chat_room")
 public class ChatRoom {
@@ -26,13 +28,16 @@ public class ChatRoom {
 	
 	private String description;
 	
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User owner;
     
+    @JsonIgnore
     @ManyToMany(mappedBy = "chatRooms")
     private List<User> users;
 	
+    @JsonIgnore
 	@OneToMany(mappedBy = "chatRoom")
 	private List<ChatMessage> chatMessages;
 

@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "chat_message")
 public class ChatMessage {
@@ -29,6 +31,7 @@ public class ChatMessage {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "chat_room_id")
 	private ChatRoom chatRoom;
