@@ -1,5 +1,6 @@
 package com.skilldistillery.howardtreasury.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,17 +25,21 @@ public class UserList {
 	@ManyToOne
     @JoinColumn(name = "user_id")
 	private User user;
+	
+	@OneToMany(mappedBy = "userList")
+	private List<ListContent> listContents;
 
 	public UserList() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserList(int id, String name, User user) {
+	public UserList(int id, String name, User user, List<ListContent> listContents) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.user = user;
+		this.listContents = listContents;
 	}
 
 	public int getId() {
@@ -58,6 +64,14 @@ public class UserList {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public List<ListContent> getListContents() {
+		return listContents;
+	}
+
+	public void setListContents(List<ListContent> listContents) {
+		this.listContents = listContents;
 	}
 
 	@Override

@@ -41,13 +41,19 @@ class UserListTest {
 	}
 
 	@Test
-	void test_User_entity_mapping() {
+	void test_UserList_entity_mapping() {
 		assertNotNull(userList);
 		assertEquals("King Kull Poems", userList.getName());
 	}
 	
 	@Test
-	void test_User_ChatMessage_one_to_many_mapping() {
+	void test_UserList_ListContent_one_to_many_mapping() {
+		assertNotNull(userList);
+		assertEquals(1, userList.getListContents().get(0).getId());
+	}
+	
+	@Test
+	void test_UserList_User_many_to_one_mapping() {
 		assertNotNull(userList);
 		assertEquals("Kull", userList.getUser().getUsername());
 	}
