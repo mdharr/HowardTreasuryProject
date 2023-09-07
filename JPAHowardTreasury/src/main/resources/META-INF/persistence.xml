@@ -9,6 +9,7 @@
 		<!-- begin entities -->
 		<class>com.skilldistillery.howardtreasury.entities.User</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserList</class>
+		<class>com.skilldistillery.howardtreasury.entities.ListContent</class>
 		<class>com.skilldistillery.howardtreasury.entities.ChatRoom</class>
 		<class>com.skilldistillery.howardtreasury.entities.ChatMessage</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserHasChatRoom</class>
