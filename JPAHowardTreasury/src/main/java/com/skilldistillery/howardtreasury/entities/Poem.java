@@ -27,17 +27,26 @@ public class Poem {
         inverseJoinColumns = @JoinColumn(name = "list_content_id")
     )
     private List<ListContent> listContents;
+    
+    @ManyToMany
+    @JoinTable(
+    		name = "collection_has_poem",
+    		joinColumns = @JoinColumn(name = "poem_id"),
+    		inverseJoinColumns = @JoinColumn(name = "collection_id")
+    		)
+    private List<Collection> collections;
 
 	public Poem() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Poem(int id, String title, List<ListContent> listContents) {
+	public Poem(int id, String title, List<ListContent> listContents, List<Collection> collections) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.listContents = listContents;
+		this.collections = collections;
 	}
 
 	public int getId() {
@@ -62,6 +71,14 @@ public class Poem {
 
 	public void setListContents(List<ListContent> listContents) {
 		this.listContents = listContents;
+	}
+
+	public List<Collection> getCollections() {
+		return collections;
+	}
+
+	public void setCollections(List<Collection> collections) {
+		this.collections = collections;
 	}
 
 	@Override
