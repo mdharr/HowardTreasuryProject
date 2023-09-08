@@ -1,5 +1,7 @@
 package com.skilldistillery.howardtreasury.entities;
 
+import java.util.Objects;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -23,4 +25,64 @@ public class CollectionHasMiscellanea {
     @JoinColumn(name = "miscellanea_id")
     @MapsId("miscellaneaId")
     private Miscellanea miscellanea;
+
+	public CollectionHasMiscellanea() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public CollectionHasMiscellanea(CollectionHasMiscellaneaId id, Collection collection, Miscellanea miscellanea) {
+		super();
+		this.id = new CollectionHasMiscellaneaId(collection.getId(), miscellanea.getId());
+		this.collection = collection;
+		this.miscellanea = miscellanea;
+	}
+
+	public CollectionHasMiscellaneaId getId() {
+		return id;
+	}
+
+	public void setId(CollectionHasMiscellaneaId id) {
+		this.id = id;
+	}
+
+	public Collection getCollection() {
+		return collection;
+	}
+
+	public void setCollection(Collection collection) {
+		this.collection = collection;
+	}
+
+	public Miscellanea getMiscellanea() {
+		return miscellanea;
+	}
+
+	public void setMiscellanea(Miscellanea miscellanea) {
+		this.miscellanea = miscellanea;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CollectionHasMiscellanea other = (CollectionHasMiscellanea) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		return "CollectionHasMiscellanea [id=" + id + ", collection=" + collection + ", miscellanea=" + miscellanea
+				+ "]";
+	}
+    
 }
