@@ -33,7 +33,7 @@ public class CollectionHasPerson {
 
 	public CollectionHasPerson(CollectionHasPersonId id, Collection collection, Person person) {
 		super();
-		this.id = id;
+		this.id = new CollectionHasPersonId(collection.getId(), person.getId());
 		this.collection = collection;
 		this.person = person;
 	}
