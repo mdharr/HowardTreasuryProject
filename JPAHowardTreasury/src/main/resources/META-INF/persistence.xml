@@ -24,6 +24,8 @@
 		<class>com.skilldistillery.howardtreasury.entities.MiscellaneaHasListContentId</class>
 		<class>com.skilldistillery.howardtreasury.entities.Series</class>
 		<class>com.skilldistillery.howardtreasury.entities.Collection</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasStory</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasStoryId</class>
 		<class>com.skilldistillery.howardtreasury.entities.ChatRoom</class>
 		<class>com.skilldistillery.howardtreasury.entities.ChatMessage</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserHasChatRoom</class>
