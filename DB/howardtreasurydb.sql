@@ -565,17 +565,17 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (1, 'The Coming of Conan the Cimmerian', 1, NULL);
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (2, 'The Savage Tales of Solomon Kane', 2, NULL);
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (3, 'The Bloody Crown of Conan', 1, NULL);
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (4, 'Bran Mak Morn: The Last King', 2, NULL);
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (5, 'The Conquering Sword of Conan', 1, NULL);
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (6, 'Kull: Exile of Atlantis', 2, NULL);
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (7, 'The Best of Robert E. Howard Volume 1: Crimson Shadows', 3, NULL);
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (8, 'The Best of Robert E. Howard Volume 2: Grim Lands', 3, NULL);
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (9, 'The Horror Stories of Robert E. Howard', 3, NULL);
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (10, 'El Borak and Other Desert Adventures', 2, NULL);
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (11, 'Sword Woman and Other Historical Adventures', 2, NULL);
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (1, 'The Coming of Conan the Cimmerian', 1, '2023-03-03T12:35:22');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (2, 'The Savage Tales of Solomon Kane', 2, '2023-03-03T12:35:22');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (3, 'The Bloody Crown of Conan', 1, '2023-03-03T12:35:22');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (4, 'Bran Mak Morn: The Last King', 2, '2023-03-03T12:35:22');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (5, 'The Conquering Sword of Conan', 1, '2023-03-03T12:35:22');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (6, 'Kull: Exile of Atlantis', 2, '2023-03-03T12:35:22');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (7, 'The Best of Robert E. Howard Volume 1: Crimson Shadows', 3, '2023-03-03T12:35:22');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (8, 'The Best of Robert E. Howard Volume 2: Grim Lands', 3, '2023-03-03T12:35:22');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (9, 'The Horror Stories of Robert E. Howard', 3, '2023-03-03T12:35:22');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (10, 'El Borak and Other Desert Adventures', 2, '2023-03-03T12:35:22');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (11, 'Sword Woman and Other Historical Adventures', 2, '2023-03-03T12:35:22');
 
 COMMIT;
 
