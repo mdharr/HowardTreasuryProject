@@ -27,17 +27,26 @@ public class Person {
         inverseJoinColumns = @JoinColumn(name = "list_content_id")
     )
     private List<ListContent> listContents;
+    
+    @ManyToMany
+    @JoinTable(
+    		name = "collection_has_person",
+    		joinColumns = @JoinColumn(name = "person_id"),
+    		inverseJoinColumns = @JoinColumn(name = "collection_id")
+    		)
+    private List<Collection> collections;
 
 	public Person() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Person(int id, String name, List<ListContent> listContents) {
+	public Person(int id, String name, List<ListContent> listContents, List<Collection> collections) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.listContents = listContents;
+		this.collections = collections;
 	}
 
 	public int getId() {
@@ -62,6 +71,14 @@ public class Person {
 
 	public void setListContents(List<ListContent> listContents) {
 		this.listContents = listContents;
+	}
+
+	public List<Collection> getCollections() {
+		return collections;
+	}
+
+	public void setCollections(List<Collection> collections) {
+		this.collections = collections;
 	}
 
 	@Override
