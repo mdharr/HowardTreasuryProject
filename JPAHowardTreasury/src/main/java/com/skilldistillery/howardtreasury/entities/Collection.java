@@ -40,6 +40,9 @@ public class Collection {
     
     @ManyToMany(mappedBy = "collections")
     private List<Miscellanea> miscellaneas;
+    
+    @ManyToMany(mappedBy = "collections")
+    private List<CollectionImage> collectionImages;
 
 	public Collection() {
 		super();
@@ -47,7 +50,8 @@ public class Collection {
 	}
 
 	public Collection(int id, String title, LocalDateTime publishedAt, Series series, List<Story> stories,
-			List<Poem> poems, List<Person> persons, List<Miscellanea> miscellaneas) {
+			List<Poem> poems, List<Person> persons, List<Miscellanea> miscellaneas,
+			List<CollectionImage> collectionImages) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -57,6 +61,7 @@ public class Collection {
 		this.poems = poems;
 		this.persons = persons;
 		this.miscellaneas = miscellaneas;
+		this.collectionImages = collectionImages;
 	}
 
 	public int getId() {
@@ -121,6 +126,14 @@ public class Collection {
 
 	public void setMiscellaneas(List<Miscellanea> miscellaneas) {
 		this.miscellaneas = miscellaneas;
+	}
+
+	public List<CollectionImage> getCollectionImages() {
+		return collectionImages;
+	}
+
+	public void setCollectionImages(List<CollectionImage> collectionImages) {
+		this.collectionImages = collectionImages;
 	}
 
 	@Override
