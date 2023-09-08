@@ -26,6 +26,8 @@
 		<class>com.skilldistillery.howardtreasury.entities.Collection</class>
 		<class>com.skilldistillery.howardtreasury.entities.CollectionHasStory</class>
 		<class>com.skilldistillery.howardtreasury.entities.CollectionHasStoryId</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasPoem</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasPoemId</class>
 		<class>com.skilldistillery.howardtreasury.entities.CollectionHasMiscellanea</class>
 		<class>com.skilldistillery.howardtreasury.entities.CollectionHasMiscellaneaId</class>
 		<class>com.skilldistillery.howardtreasury.entities.ChatRoom</class>
