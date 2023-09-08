@@ -28,6 +28,8 @@
 		<class>com.skilldistillery.howardtreasury.entities.CollectionHasStoryId</class>
 		<class>com.skilldistillery.howardtreasury.entities.CollectionHasPoem</class>
 		<class>com.skilldistillery.howardtreasury.entities.CollectionHasPoemId</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasPerson</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasPersonId</class>
 		<class>com.skilldistillery.howardtreasury.entities.CollectionHasMiscellanea</class>
 		<class>com.skilldistillery.howardtreasury.entities.CollectionHasMiscellaneaId</class>
 		<class>com.skilldistillery.howardtreasury.entities.ChatRoom</class>
