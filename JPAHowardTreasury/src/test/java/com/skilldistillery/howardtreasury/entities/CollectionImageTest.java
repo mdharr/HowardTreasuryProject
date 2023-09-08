@@ -45,5 +45,11 @@ class CollectionImageTest {
 		assertNotNull(collectionImage);
 		assertEquals("https://howardtreasury.s3.amazonaws.com/assets/collections/images/the-coming-of-conan-the-cimmerian.png", collectionImage.getImageUrl());
 	}
+	
+	@Test
+	void test_CollectionImage_Collection_many_to_many_mapping() {
+		assertNotNull(collectionImage);
+		assertEquals("The Coming of Conan the Cimmerian", collectionImage.getCollections().get(0).getTitle());
+	}
 
 }
