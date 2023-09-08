@@ -43,6 +43,6 @@ class PersonTest {
 	@Test
 	void test_Person_entity_mapping() {
 		assertNotNull(person);
-		assertEquals("Kull", person.getName());
+		assertEquals("Ace Jessel", person.getName());
 	}
 }
