@@ -53,6 +53,8 @@ CREATE TABLE IF NOT EXISTS `collection` (
   `title` VARCHAR(255) NULL,
   `series_id` INT NOT NULL,
   `published_at` DATETIME NULL,
+  `page_count` INT NULL,
+  `description` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_collection_series1_idx` (`series_id` ASC),
   CONSTRAINT `fk_collection_series1`
@@ -526,6 +528,42 @@ CREATE TABLE IF NOT EXISTS `collection_has_collection_image` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `illustrator`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `illustrator` ;
+
+CREATE TABLE IF NOT EXISTS `illustrator` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `collection_has_illustrator`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `collection_has_illustrator` ;
+
+CREATE TABLE IF NOT EXISTS `collection_has_illustrator` (
+  `collection_id` INT NOT NULL,
+  `illustrator_id` INT NOT NULL,
+  PRIMARY KEY (`collection_id`, `illustrator_id`),
+  INDEX `fk_collection_has_illustrator_illustrator1_idx` (`illustrator_id` ASC),
+  INDEX `fk_collection_has_illustrator_collection1_idx` (`collection_id` ASC),
+  CONSTRAINT `fk_collection_has_illustrator_collection1`
+    FOREIGN KEY (`collection_id`)
+    REFERENCES `collection` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_collection_has_illustrator_illustrator1`
+    FOREIGN KEY (`illustrator_id`)
+    REFERENCES `illustrator` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS howardtreasury@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -565,17 +603,17 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (1, 'The Coming of Conan the Cimmerian', 1, '2003-12-02T12:00:00');
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (2, 'The Savage Tales of Solomon Kane', 2, '2004-06-29T12:00:00');
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (3, 'The Bloody Crown of Conan', 1, '2004-11-23T12:00:00');
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (4, 'Bran Mak Morn: The Last King', 2, '2005-05-31T12:00:00');
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (5, 'The Conquering Sword of Conan', 1, '2005-11-29T12:00:00');
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (6, 'Kull: Exile of Atlantis', 2, '2006-10-31T12:00:00');
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (7, 'The Best of Robert E. Howard Volume 1: Crimson Shadows', 3, '2007-08-14T12:00:00');
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (8, 'The Best of Robert E. Howard Volume 2: Grim Lands', 3, '2007-11-27T12:00:00');
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (9, 'The Horror Stories of Robert E. Howard', 3, '2008-10-28T12:00:00');
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (10, 'El Borak and Other Desert Adventures', 2, '2010-02-09T12:00:00');
-INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`) VALUES (11, 'Sword Woman and Other Historical Adventures', 2, '2011-01-25T12:00:00');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`, `page_count`, `description`) VALUES (1, 'The Coming of Conan the Cimmerian', 1, '2003-12-02T12:00:00', 463, 'Conan is one of the greatest fictional heroes ever created– a swordsman who cuts a swath across the lands of the Hyborian Age, facing powerful sorcerers, deadly creatures, and ruthless armies of thieves and reavers.\n\n“Between the years when the oceans drank Atlantis and the gleaming cities . . . there was an Age undreamed of, when shining kingdoms lay spread across the world like blue mantles beneath the stars. . . . Hither came Conan, the Cimmerian, black-haired, sullen-eyed, sword in hand . . . to tread\nthe jeweled thrones of the Earth under his sandalled feet.”\n\nIn a meteoric career that spanned a mere twelve years before his tragic suicide, Robert E. Howard single-handedly invented the genre that came to be called sword and sorcery. Collected in this volume, profusely illustrated by artist Mark Schultz, are Howard’s first thirteen Conan stories, appearing in their original versions–in some cases for the first time in more than seventy years–and in the order Howard wrote them. Along with classics of dark fantasy like “The Tower of the Elephant” and swashbuckling adventure like “Queen of the Black Coast,” The Coming of Conan the Cimmerian contains a wealth of material never before published in the United States, including the first submitted draft of Conan’s debut, “Phoenix on the Sword,” Howard’s synopses for “The Scarlet Citadel” and “Black Colossus,” and a map of Conan’s world drawn by the author himself.\n\nHere are timeless tales featuring Conan the raw and dangerous youth, Conan the daring thief, Conan the swashbuckling pirate, and Conan the commander of armies. Here, too, is an unparalleled glimpse into the mind of a genius whose bold storytelling style has been imitated by many, yet equaled by none.');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`, `page_count`, `description`) VALUES (2, 'The Savage Tales of Solomon Kane', 2, '2004-06-29T12:00:00', 432, 'With Conan the Cimmerian, Robert E. Howard created more than the greatest action hero of the twentieth century—he also launched a genre that came to be known as sword and sorcery. But Conan wasn’t the first archetypal adventurer to spring from Howard’s fertile imagination.\n\n“He was . . . a strange blending of Puritan and Cavalier, with a touch of the ancient philosopher, and more than a touch of the pagan. . . . A hunger in his soul drove him on and on, an urge to right all wrongs, protect all weaker things. . . . Wayward and restless as the wind, he was consistent in only one respect—he was true to his ideals of justice and right. Such was Solomon Kane.”\n\nCollected in this volume, lavishly illustrated by award-winning artist Gary Gianni, are all of the stories and poems that make up the thrilling saga of the dour and deadly Puritan, Solomon Kane. Together they constitute a sprawling epic of weird fantasy adventure that stretches from sixteenth-century England to remote African jungles where no white man has set foot. Here are shudder-inducing tales of vengeful ghosts and bloodthirsty demons, of dark sorceries wielded by evil men and women, all opposed by a grim avenger armed with a fanatic’s faith and a warrior’s savage heart.');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`, `page_count`, `description`) VALUES (3, 'The Bloody Crown of Conan', 1, '2004-11-23T12:00:00', 384, 'In his hugely influential and tempestuous career, Robert E. Howard created the genre that came to be known as sword and sorcery—and brought to life one of fantasy’s boldest and most enduring figures: Conan the Cimmerian—reaver, slayer, barbarian, king.\n\nThis lavishly illustrated volume gathers together three of Howard’s longest and most famous Conan stories–two of them printed for the first time directly from Howard’ s typescript–along with a collection of the author’s previously unpublished and rarely seen outlines, notes, and drafts. Longtime fans and new readers alike will agree that The Bloody Crown of Conan merits a place of honor on every fantasy lover’s bookshelf.\n\nTHE PEOPLE OF THE BLACK CIRCLE\nAmid the towering crags of Vendhya, in the shadowy citadel of the Black Circle, Yasmina of the golden throne seeks vengeance against the Black Seers. Her only ally is also her most formidable enemy–Conan, the outlaw chief.\n\nTHE HOUR OF THE DRAGON\nToppled from the throne of Aquilonia by the evil machinations of an undead wizard, Conan must find the fabled jewel known as the Heart of Ahriman to reclaim his crown . . . and save his life.\n\nA WITCH SHALL BE BORN\nA malevolent witch of evil beauty. An enslaved queen. A kingdom in the iron grip of ruthless mercenaries. And Conan, who plots deadly vengeance against the human wolf who left him in the desert to die.');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`, `page_count`, `description`) VALUES (4, 'Bran Mak Morn: The Last King', 2, '2005-05-31T12:00:00', 400, 'From Robert E. Howard’s fertile imagination sprang some of fiction’s greatest heroes, including Conan the Cimmerian, King Kull, and Solomon Kane. But of all Howard’s characters, none embodied his creator’s brooding temperament more than Bran Mak Morn, the last king of a doomed race.\n\nIn ages past, the Picts ruled all of Europe. But the descendants of those proud conquerors have sunk into barbarism . . . all save one, Bran Mak Morn, whose bloodline remains unbroken. Threatened by the Celts and the Romans, the Pictish tribes rally under his banner to fight for their very survival, while Bran fights to restore the glory of his race.\n\nLavishly illustrated by award-winning artist Gary Gianni, this collection gathers together all of Howard’s published stories and poems featuring Bran Mak Morn–including the eerie masterpiece “Worms of the Earth” and “Kings of the Night,” in which sorcery summons Kull the conqueror from out of the depths of time to stand with Bran against the Roman invaders.\n\nAlso included are previously unpublished stories and fragments, reproductions of manuscripts bearing Howard’s handwritten revisions, and much, much more.\n\nSpecial Bonus: a newly discovered adventure by Howard, presented here for the very first time.');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`, `page_count`, `description`) VALUES (5, 'The Conquering Sword of Conan', 1, '2005-11-29T12:00:00', 416, 'In a meteoric career that covered only a dozen years, Robert E. Howard defined the sword-and-sorcery genre. In doing so, he brought to life the archetypal adventurer known to millions around the world as Conan the barbarian.\n\nWitness, then, Howard at his finest, and Conan at his most savage, in the latest volume featuring the collected works of Robert E. Howard, lavishly illustrated by award-winning artist Greg Manchess. Prepared directly from the earliest known versions—often Howard’s own manuscripts—are such sword-and-sorcery classics as “The Servants of Bit-Yakin” (formerly published as “Jewels of Gwahlur”), “Beyond the Black River,” “The Black Stranger,” “Man-Eaters of Zamboula” (formerly published as “Shadows in Zamboula”), and, perhaps his most famous adventure of all, “Red Nails.”\n\nThe Conquering Sword of Conan includes never-before-published outlines, notes, and story drafts, plus a new introduction, personal correspondence, and the revealing essay “Hyborian Genesis”—which chronicles the history of the creation of the Conan series. Truly, this is heroic fantasy at its finest.');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`, `page_count`, `description`) VALUES (6, 'Kull: Exile of Atlantis', 2, '2006-10-31T12:00:00', 352, 'In a meteoric career that spanned a mere twelve years, Robert E. Howard single-handedly invented the genre that came to be called sword and sorcery. From his fertile imagination sprang some of fiction’s most enduring heroes. Yet while Conan is indisputably Howard’s greatest creation, it was in his earlier sequence of tales featuring Kull, a fearless warrior with the brooding intellect of a philosopher, that Howard began to develop the distinctive themes, and the richly evocative blend of history and mythology, that would distinguish his later tales of the Hyborian Age.\n\nMuch more than simply the prototype for Conan, Kull is a fascinating character in his own right: an exile from fabled Atlantis who wins the crown of Valusia, only to find it as much a burden as a prize.\n\nThis groundbreaking collection, lavishly illustrated by award-winning artist Justin Sweet, gathers together all Howard’s stories featuring Kull, from Kull’ s first published appearance, in “The Shadow Kingdom,” to “Kings of the Night,” Howard’ s last tale featuring the cerebral swordsman. The stories are presented just as Howard wrote them, with all subsequent editorial emendations removed. Also included are previously unpublished stories, drafts, and fragments, plus extensive notes on the texts, an introduction by Howard authority Steve Tompkins, and an essay by noted editor Patrice Louinet.');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`, `page_count`, `description`) VALUES (7, 'The Best of Robert E. Howard Volume 1: Crimson Shadows', 3, '2007-08-14T12:00:00', 528, 'Robert E. Howard is one of the most famous and influential pulp authors of the twentieth century. Though largely known as the man who invented the sword-and-sorcery genre–and for his iconic hero Conan the Cimmerian–Howard also wrote horror tales, desert adventures, detective yarns, epic poetry, and more. This spectacular volume, gorgeously illustrated by Jim and Ruth Keegan, includes some of his best and most popular works.\n\nInside, readers will discover (or rediscover) such gems as “The Shadow Kingdom,” featuring Kull of Atlantis and considered by many to be the first sword-and-sorcery story; “The Fightin’est Pair,” part of one of Howard’s most successful series, chronicling the travails of Steve Costigan, a merchant seaman with fists of steel and a head of wood; “The Grey God Passes,” a haunting tale about the passing of an age, told against the backdrop of Irish history and legend; “Worms of the Earth,” a brooding narrative featuring Bran Mak Morn, about which H. P. Lovecraft said, “Few readers will ever forget the hideous and compelling power of [this] macabre masterpiece”; a historical poem relating a momentous battle between Cimbri and the legions of Rome; and “Sharp’s Gun Serenade,” one of the last and funniest of the Breckinridge Elkins tales.\n\nThese thrilling, eerie, compelling, swashbuckling stories and poems have been restored to their original form, presented just as the author intended. There is little doubt that after more than seven decades the voice of Robert E. Howard continues to resonate with readers around the world.');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`, `page_count`, `description`) VALUES (8, 'The Best of Robert E. Howard Volume 2: Grim Lands', 3, '2007-11-27T12:00:00', 544, 'The classic pulp magazines of the early twentieth century are long gone, but their action-packed tales live on through the work of legendary storyteller Robert E. Howard. From his fecund imagination sprang an army of larger-than-life heroes–including the iconic Conan the Cimmerian, King Kull of Atlantis, Solomon Kane, and Bran Mak Morn–as well as adventures that would define a genre for generations. Now comes the second volume of this author’s breathtaking short fiction, which runs the gamut from sword and sorcery, historical epic, and seafaring pirate adventure to two-fisted crime and intrigue, ghoulish horror, and rip-roaring western.\n\nKull reigns supreme in “By This Axe I Rule!” and “The Mirrors of Tuzan Thune”; Conan conquers in one of his most popular exploits, “The Tower of the Elephant”; Solomon Kane battles demons deep in Africa in “Wings in the Night”; and itinerant boxer Steve Costigan puts up his dukes of steel inside and outside the ring in “The Bulldog Breed.” In between, warrior kings, daring knights, sinister masterminds, grizzled frontiersmen–even Howard’s stunning heroine, Red Sonya–tear up the pages in stories built to thrill by their masterly creator.\n\nAnd in such epic poems as “Echoes from an Anvil,” “Black Harps in the Hills,” and “The Grim Land,” the author blends his classic characters and visceral imagery with a lyricism as haunting as traditional folk balladry. Lavishly illustrated by Jim and Ruth Keegan, here is a Robert E. Howard collection as indispensable as it is unforgettable.');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`, `page_count`, `description`) VALUES (9, 'The Horror Stories of Robert E. Howard', 3, '2008-10-28T12:00:00', 560, 'Here are Robert E. Howard’s greatest horror tales, all in their original, definitive versions.\n\nSome of Howard’s best-known characters—Solomon Kane, Bran Mak Morn, and sailor Steve Costigan among them—roam the forbidding locales of the author’s fevered imagination, from the swamps and bayous of the Deep South to the fiend-haunted woods outside Paris to remote jungles in Africa.\n\nThe collection includes Howard’s masterpiece “Pigeons from Hell,”which Stephen King calls “one of the finest horror stories of [the twentieth] century,” a tale of two travelers who stumble upon the ruins of a Southern plantation–and into the maw of its fatal secret. In “Black Canaan” even the best warrior has little chance of taking down the evil voodoo man with unholy powers–and none at all against his wily mistress, the diabolical High Priestess of Damballah. In these and other lavishly illustrated classics, such as the revenge nightmare “Worms of the Earth” and“The Cairn on the Headland,”Howard spins tales of unrelenting terror, the legacy of one of the world’s great masters of the macabre.');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`, `page_count`, `description`) VALUES (10, 'El Borak and Other Desert Adventures', 2, '2010-02-09T12:00:00', 592, 'Robert E. Howard is famous for creating such immortal heroes as Conan the Cimmerian, Solomon Kane, and Bran Mak Morn. Less well-known but equally extraordinary are his non-fantasy adventure stories set in the Middle East and featuring such two-fisted heroes as Francis Xavier Gordon—known as “El Borak”—Kirby O’Donnell, and Steve Clarney. This trio of hard-fighting Americans, civilized men with more than a touch of the primordial in their veins, marked a new direction for Howard’s writing, and new territory for his genius to conquer.\n\nThe wily Texan El Borak, a hardened fighter who stalks the sandscapes of Afghanistan like a vengeful wolf, is rivaled among Howard’s creations only by Conan himself. In such classic tales as “The Daughter of Erlik Khan,” “Three-Bladed Doom,” and “Sons of the Hawk,” Howard proves himself once again a master of action, and with plenty of eerie atmosphere his plotting becomes tighter and twistier than ever, resulting in stories worthy of comparison to Jack London and Rudyard Kipling. Every fan of Robert E. Howard and aficionados of great adventure writing will want to own this collection of the best of Howard’s desert tales, lavishly illustrated by award-winning artists Tim Bradstreet and Jim & Ruth Keegan.');
+INSERT INTO `collection` (`id`, `title`, `series_id`, `published_at`, `page_count`, `description`) VALUES (11, 'Sword Woman and Other Historical Adventures', 2, '2011-01-25T12:00:00', 576, 'The immortal legacy of Robert E. Howard, creator of Conan the Cimmerian, continues with this latest compendium of Howard’s fiction and poetry. These adventures, set in medieval-era Europe and the Near East, are among the most gripping Howard ever wrote, full of pageantry, romance, and battle scenes worthy of Tolstoy himself. Most of all, they feature some of Howard’s most unusual and memorable characters, including Cormac FitzGeoffrey, a half-Irish, half-Norman man of war who follows Richard the Lion-hearted to twelfth-century Palestine—or, as it was known to the Crusaders, Outremer; Diego de Guzman, a Spaniard who visits Cairo in the guise of a Muslim on a mission of revenge; and the legendary sword woman Dark Agnès, who, faced with an arranged marriage to a brutal husband in sixteenth-century France, cuts the ceremony short with a dagger thrust and flees to forge a new identity on the battlefield.\n\nLavishly illustrated by award-winning artist John Watkiss and featuring miscellanea, informative essays, and a fascinating introduction by acclaimed historical author Scott Oden, Sword Woman and Other Historical Adventures is a must-have for every fan of Robert E. Howard, who, in a career spanning just twelve years, won a place in the pantheon of great American writers.');
 
 COMMIT;
 
@@ -1422,6 +1460,48 @@ INSERT INTO `collection_has_collection_image` (`collection_id`, `collection_imag
 INSERT INTO `collection_has_collection_image` (`collection_id`, `collection_image_id`) VALUES (9, 9);
 INSERT INTO `collection_has_collection_image` (`collection_id`, `collection_image_id`) VALUES (10, 10);
 INSERT INTO `collection_has_collection_image` (`collection_id`, `collection_image_id`) VALUES (11, 11);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `illustrator`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `illustrator` (`id`, `name`) VALUES (1, 'Mark Schultz');
+INSERT INTO `illustrator` (`id`, `name`) VALUES (2, 'Gary Gianni');
+INSERT INTO `illustrator` (`id`, `name`) VALUES (3, 'Justin Sweet');
+INSERT INTO `illustrator` (`id`, `name`) VALUES (4, 'Jim Keegan');
+INSERT INTO `illustrator` (`id`, `name`) VALUES (5, 'Ruth Keegan');
+INSERT INTO `illustrator` (`id`, `name`) VALUES (6, 'Gregory Manchess');
+INSERT INTO `illustrator` (`id`, `name`) VALUES (7, 'Greg Staples');
+INSERT INTO `illustrator` (`id`, `name`) VALUES (8, 'Tim Bradstreet');
+INSERT INTO `illustrator` (`id`, `name`) VALUES (9, 'John Watkiss');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `collection_has_illustrator`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (1, 1);
+INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (2, 2);
+INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (3, 2);
+INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (4, 2);
+INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (5, 6);
+INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (6, 3);
+INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (7, 4);
+INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (7, 5);
+INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (8, 4);
+INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (8, 5);
+INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (9, 7);
+INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (10, 4);
+INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (10, 5);
+INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (10, 8);
+INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (11, 9);
 
 COMMIT;
 
