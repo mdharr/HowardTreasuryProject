@@ -43,6 +43,9 @@ public class Collection {
     
     @ManyToMany(mappedBy = "collections")
     private List<CollectionImage> collectionImages;
+    
+    @ManyToMany(mappedBy = "collections")
+    private List<Illustrator> illustrators;
 
 	public Collection() {
 		super();
@@ -51,7 +54,7 @@ public class Collection {
 
 	public Collection(int id, String title, LocalDateTime publishedAt, Series series, List<Story> stories,
 			List<Poem> poems, List<Person> persons, List<Miscellanea> miscellaneas,
-			List<CollectionImage> collectionImages) {
+			List<CollectionImage> collectionImages, List<Illustrator> illustrators) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -62,6 +65,7 @@ public class Collection {
 		this.persons = persons;
 		this.miscellaneas = miscellaneas;
 		this.collectionImages = collectionImages;
+		this.illustrators = illustrators;
 	}
 
 	public int getId() {
@@ -134,6 +138,14 @@ public class Collection {
 
 	public void setCollectionImages(List<CollectionImage> collectionImages) {
 		this.collectionImages = collectionImages;
+	}
+
+	public List<Illustrator> getIllustrators() {
+		return illustrators;
+	}
+
+	public void setIllustrators(List<Illustrator> illustrators) {
+		this.illustrators = illustrators;
 	}
 
 	@Override
