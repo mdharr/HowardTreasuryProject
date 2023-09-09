@@ -24,6 +24,7 @@
 		<class>com.skilldistillery.howardtreasury.entities.MiscellaneaHasListContentId</class>
 		<class>com.skilldistillery.howardtreasury.entities.Series</class>
 		<class>com.skilldistillery.howardtreasury.entities.Illustrator</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasIllustrator</class>
 		<class>com.skilldistillery.howardtreasury.entities.CollectionHasIllustratorId</class>
 		<class>com.skilldistillery.howardtreasury.entities.Collection</class>
 		<class>com.skilldistillery.howardtreasury.entities.CollectionImage</class>
