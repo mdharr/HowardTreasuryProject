@@ -69,6 +69,12 @@ class CollectionTest {
 		assertNotNull(collection);
 		assertEquals("The Hyborian Age (essay)", collection.getMiscellaneas().get(0).getTitle());
 	}
+	
+	@Test
+	void test_Collection_Illustrator_many_to_many_mapping() {
+		assertNotNull(collection);
+		assertEquals("Mark Schultz", collection.getIllustrators().get(0).getName());
+	}
 
 
 }
