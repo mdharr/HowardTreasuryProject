@@ -23,6 +23,7 @@
 		<class>com.skilldistillery.howardtreasury.entities.MiscellaneaHasListContent</class>
 		<class>com.skilldistillery.howardtreasury.entities.MiscellaneaHasListContentId</class>
 		<class>com.skilldistillery.howardtreasury.entities.Series</class>
+		<class>com.skilldistillery.howardtreasury.entities.Illustrator</class>
 		<class>com.skilldistillery.howardtreasury.entities.Collection</class>
 		<class>com.skilldistillery.howardtreasury.entities.CollectionImage</class>
 		<class>com.skilldistillery.howardtreasury.entities.CollectionHasCollectionImage</class>
