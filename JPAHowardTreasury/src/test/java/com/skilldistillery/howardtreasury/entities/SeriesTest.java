@@ -54,4 +54,10 @@ class SeriesTest {
 		assertEquals("The Coming of Conan the Cimmerian", series.getCollections().get(0).getTitle());
 	}
 	
+	@Test
+	void test_Series_Illustrator_mapping() {
+		assertNotNull(series);
+		assertEquals("Mark Schultz", series.getCollections().get(0).getIllustrators().get(0).getName());
+	}
+	
 }
