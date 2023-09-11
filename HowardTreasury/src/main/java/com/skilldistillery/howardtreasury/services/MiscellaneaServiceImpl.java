@@ -1,5 +1,13 @@
 package com.skilldistillery.howardtreasury.services;
 
-public class MiscellaneaServiceImpl {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.skilldistillery.howardtreasury.repositories.MiscellaneaRepository;
+
+@Service
+public class MiscellaneaServiceImpl implements MiscellaneaService {
+
+	@Autowired
+	private MiscellaneaRepository miscellaneaRepo;
 }
