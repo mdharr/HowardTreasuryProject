@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.howardtreasury.repositories.CollectionImageRepository;
 
 @Service
-public class CollectionImageServiceImpl implements CollectionService {
+public class CollectionImageServiceImpl implements CollectionImageService {
 
 	@Autowired
 	private CollectionImageRepository collectionImageRepo;
