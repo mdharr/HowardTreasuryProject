@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "user_list")
 public class UserList {
@@ -22,10 +25,12 @@ public class UserList {
 	
 	private String name;
 	
+	@JsonBackReference
 	@ManyToOne
     @JoinColumn(name = "user_id")
 	private User user;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "userList")
 	private List<ListContent> listContents;
 

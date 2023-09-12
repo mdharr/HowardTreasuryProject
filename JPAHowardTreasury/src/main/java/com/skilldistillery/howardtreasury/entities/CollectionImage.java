@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "collection_image")
 public class CollectionImage {
@@ -24,6 +26,7 @@ public class CollectionImage {
 	@Column(name = "image_url")
 	private String imageUrl;
 	
+	@JsonBackReference
     @ManyToMany
     @JoinTable(
     		name = "collection_has_collection_image",

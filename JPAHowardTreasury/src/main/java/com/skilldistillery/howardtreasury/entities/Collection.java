@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Collection {
 	
@@ -30,25 +33,32 @@ public class Collection {
 	
 	private String description;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "series_id")
 	private Series series;
 	
+	@JsonManagedReference
     @ManyToMany(mappedBy = "collections")
     private List<Story> stories;
     
+	@JsonManagedReference
     @ManyToMany(mappedBy = "collections")
     private List<Poem> poems;
     
+	@JsonManagedReference
     @ManyToMany(mappedBy = "collections")
     private List<Person> persons;
     
+	@JsonManagedReference
     @ManyToMany(mappedBy = "collections")
     private List<Miscellanea> miscellaneas;
     
+	@JsonManagedReference
     @ManyToMany(mappedBy = "collections")
     private List<CollectionImage> collectionImages;
     
+	@JsonManagedReference
     @ManyToMany(mappedBy = "collections")
     private List<Illustrator> illustrators;
 

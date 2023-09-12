@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Story {
 	
@@ -20,6 +22,7 @@ public class Story {
 	
 	private String title;
 	
+	@JsonBackReference
     @ManyToMany
     @JoinTable(
         name = "story_has_list_content",
@@ -28,6 +31,7 @@ public class Story {
     )
     private List<ListContent> listContents;
     
+    @JsonBackReference
     @ManyToMany
     @JoinTable(
     		name = "collection_has_story",
