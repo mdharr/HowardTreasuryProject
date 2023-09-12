@@ -25,6 +25,11 @@ public class Collection {
 	@Column(name = "published_at")
 	private LocalDateTime publishedAt;
 	
+	@Column(name = "page_count")
+	private int pageCount;
+	
+	private String description;
+	
 	@ManyToOne
 	@JoinColumn(name = "series_id")
 	private Series series;
@@ -52,13 +57,16 @@ public class Collection {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Collection(int id, String title, LocalDateTime publishedAt, Series series, List<Story> stories,
+	public Collection(int id, String title, LocalDateTime publishedAt, int pageCount,
+			String description, Series series, List<Story> stories,
 			List<Poem> poems, List<Person> persons, List<Miscellanea> miscellaneas,
 			List<CollectionImage> collectionImages, List<Illustrator> illustrators) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.publishedAt = publishedAt;
+		this.pageCount = pageCount;
+		this.description = description;
 		this.series = series;
 		this.stories = stories;
 		this.poems = poems;
@@ -90,6 +98,22 @@ public class Collection {
 
 	public void setPublishedAt(LocalDateTime publishedAt) {
 		this.publishedAt = publishedAt;
+	}
+
+	public int getPageCount() {
+		return pageCount;
+	}
+
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Series getSeries() {
