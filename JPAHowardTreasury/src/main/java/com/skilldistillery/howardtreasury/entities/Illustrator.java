@@ -11,7 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Illustrator {
@@ -22,7 +23,7 @@ public class Illustrator {
 	
 	private String name;
 	
-	@JsonBackReference
+	@JsonIgnore
     @ManyToMany
     @JoinTable(
     		name = "collection_has_illustrator",

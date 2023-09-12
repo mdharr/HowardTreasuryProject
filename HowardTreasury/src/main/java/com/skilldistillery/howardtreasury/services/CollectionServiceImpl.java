@@ -1,5 +1,6 @@
 package com.skilldistillery.howardtreasury.services;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -52,30 +53,104 @@ public class CollectionServiceImpl implements CollectionService {
 		return collectionRepo.save(newCollection);
 	}
 
+//	@Override
+//	public Collection update(int collectionId, Collection collection) {
+//		
+//		Optional<Collection> existingCollectionOpt = collectionRepo.findById(collectionId);
+//		
+//		if(existingCollectionOpt.isPresent()) {
+//			Collection existingCollection = existingCollectionOpt.get();
+//			
+//	        if (collection.getTitle() != null) {
+//	            existingCollection.setTitle(collection.getTitle());
+//	        }
+//	        
+//	        if (collection.getPublishedAt() != null) {
+//	        	existingCollection.setPublishedAt(collection.getPublishedAt());
+//	        }
+//	        
+//	        if (collection.getPageCount() != 0) {
+//	        	existingCollection.setPageCount(collection.getPageCount());
+//	        }
+//	        
+//	        if (collection.getDescription() != null) {
+//	        	existingCollection.setDescription(collection.getDescription());
+//	        }
+//	        
+//	        if (collection.getSeries() != null) {
+//	        	existingCollection.setSeries(collection.getSeries());
+//	        }
+//	        
+//	        if (collection.getIllustrators() != null) {
+//	        	existingCollection.setIllustrators(collection.getIllustrators());
+//	        }
+//	        
+//	        if (collection.getStories() != null) {
+//	        	existingCollection.setStories(collection.getStories());
+//	        }
+//	        
+//	        if (collection.getPoems() != null) {
+//	        	existingCollection.setPoems(collection.getPoems());
+//	        }
+//	        
+//	        if (collection.getPersons() != null) {
+//	        	existingCollection.setPersons(collection.getPersons());
+//	        }
+//	        
+//	        if (collection.getMiscellaneas() != null) {
+//	        	existingCollection.setMiscellaneas(collection.getMiscellaneas());
+//	        }
+//	        
+//	        if (collection.getCollectionImages() != null) {
+//	        	existingCollection.setCollectionImages(collection.getCollectionImages());
+//	        }
+//			
+//			return collectionRepo.save(existingCollection);
+//		}
+//		
+//		return null;
+//	}
+	
+	// less verbose way of updating collection object
 	@Override
-	public Collection update(Collection collection) {
-		
-		Optional<Collection> existingCollectionOpt = collectionRepo.findById(collection.getId());
-		
-		if(existingCollectionOpt.isPresent()) {
-			Collection existingCollection = existingCollectionOpt.get();
-			
-			existingCollection.setTitle(collection.getTitle());
-			existingCollection.setPublishedAt(collection.getPublishedAt());
-			existingCollection.setPageCount(collection.getPageCount());
-			existingCollection.setDescription(collection.getDescription());
-			existingCollection.setSeries(collection.getSeries());
-			existingCollection.setIllustrators(collection.getIllustrators());
-			existingCollection.setStories(collection.getStories());
-			existingCollection.setPoems(collection.getPoems());
-			existingCollection.setPersons(collection.getPersons());
-			existingCollection.setMiscellaneas(collection.getMiscellaneas());
-			existingCollection.setCollectionImages(collection.getCollectionImages());
-			
-			return collectionRepo.save(existingCollection);
-		}
-		
-		return null;
+	public Collection update(int collectionId, Collection collection) {
+	    Optional<Collection> existingCollectionOpt = collectionRepo.findById(collectionId);
+
+	    if (existingCollectionOpt.isPresent()) {
+	        Collection existingCollection = existingCollectionOpt.get();
+
+	        // Use reflection to loop through the properties of the Collection class
+	        for (Field field : Collection.class.getDeclaredFields()) {
+	            try {
+	            	// skip id property
+	                if (field.getName().equals("id")) {
+	                    continue;
+	                }
+	                
+	                // Set the field to accessible (to access private fields)
+	                field.setAccessible(true);
+
+	                // Get the value of the corresponding field in the incoming collection
+	                Object value = field.get(collection);
+	                
+	                // Update the field in the existing collection if the value is not null
+	                if (value != null) {
+	                    field.set(existingCollection, value);
+	                }
+	            } catch (IllegalAccessException e) {
+	                // Handle any exceptions that may occur during reflection
+	                e.printStackTrace();
+	            } finally {
+	                // Always set the accessibility back to false when done
+	                field.setAccessible(false);
+	            }
+	        }
+
+	        // Save the updated entity back to the database
+	        return collectionRepo.save(existingCollection);
+	    }
+
+	    return null;
 	}
 
 	@Override

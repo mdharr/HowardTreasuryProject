@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Miscellanea {
@@ -22,7 +24,7 @@ public class Miscellanea {
 	
 	private String title;
 	
-	@JsonBackReference
+	@JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "miscellanea_has_list_content",
@@ -31,7 +33,7 @@ public class Miscellanea {
     )
     private List<ListContent> listContents;
     
-    @JsonBackReference
+	@JsonIgnore
     @ManyToMany
     @JoinTable(
     		name = "collection_has_miscellanea",

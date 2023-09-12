@@ -51,7 +51,7 @@ DROP TABLE IF EXISTS `collection` ;
 CREATE TABLE IF NOT EXISTS `collection` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NULL,
-  `series_id` INT NOT NULL,
+  `series_id` INT NULL,
   `published_at` DATETIME NULL,
   `page_count` INT NULL,
   `description` TEXT NULL,

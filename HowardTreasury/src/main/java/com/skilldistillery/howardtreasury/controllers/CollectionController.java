@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,6 +57,37 @@ public class CollectionController {
 	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	    }
 	}
+	
+	@PutMapping("collections/{cid}")
+	public ResponseEntity<Collection> updateCollection(@RequestBody Collection collection, @PathVariable("cid") int collectionId) {
+		
+	    try {
+	        Collection updatedCollection = collectionService.update(collectionId, collection);
+	        return ResponseEntity.ok(updatedCollection);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+	    }
+	    
+	}
+	
+//	@PostMapping("collections")
+//	public Collection createCollection(HttpServletRequest req, HttpServletResponse res, @RequestBody Collection collection) {
+//		
+//		try {
+//			collectionService.create(collection);
+//			res.setStatus(201);
+//			StringBuffer url = req.getRequestURL();
+//			url.append("/").append(collection.getId());
+//			res.setHeader("Location", url.toString());		
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			res.setStatus(400);
+//			collection = null;
+//		}
+//		
+//		return collection;
+//	}
 	
 	@DeleteMapping("collections/{cid}")
 	public ResponseEntity<String> deleteCollection(@PathVariable("cid") int collectionId) {

@@ -12,7 +12,7 @@ public interface CollectionService {
 	
 	public Collection create(Collection collection);
 	
-	public Collection update(Collection collection);
+	public Collection update(int collectionId, Collection collection);
 	
 	public void delete(int collectionId);
 	

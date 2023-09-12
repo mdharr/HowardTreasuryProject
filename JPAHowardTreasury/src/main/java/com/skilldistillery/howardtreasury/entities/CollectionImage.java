@@ -13,7 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "collection_image")
@@ -26,7 +26,7 @@ public class CollectionImage {
 	@Column(name = "image_url")
 	private String imageUrl;
 	
-	@JsonBackReference
+	@JsonIgnore
     @ManyToMany
     @JoinTable(
     		name = "collection_has_collection_image",

@@ -29,36 +29,29 @@ public class Collection {
 	private LocalDateTime publishedAt;
 	
 	@Column(name = "page_count")
-	private int pageCount;
+	private Integer pageCount;
 	
 	private String description;
 	
-	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "series_id")
 	private Series series;
 	
-	@JsonManagedReference
     @ManyToMany(mappedBy = "collections")
     private List<Story> stories;
     
-	@JsonManagedReference
     @ManyToMany(mappedBy = "collections")
     private List<Poem> poems;
     
-	@JsonManagedReference
     @ManyToMany(mappedBy = "collections")
     private List<Person> persons;
     
-	@JsonManagedReference
     @ManyToMany(mappedBy = "collections")
     private List<Miscellanea> miscellaneas;
     
-	@JsonManagedReference
     @ManyToMany(mappedBy = "collections")
     private List<CollectionImage> collectionImages;
     
-	@JsonManagedReference
     @ManyToMany(mappedBy = "collections")
     private List<Illustrator> illustrators;
 
@@ -67,7 +60,7 @@ public class Collection {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Collection(int id, String title, LocalDateTime publishedAt, int pageCount,
+	public Collection(int id, String title, LocalDateTime publishedAt, Integer pageCount,
 			String description, Series series, List<Story> stories,
 			List<Poem> poems, List<Person> persons, List<Miscellanea> miscellaneas,
 			List<CollectionImage> collectionImages, List<Illustrator> illustrators) {
@@ -110,11 +103,11 @@ public class Collection {
 		this.publishedAt = publishedAt;
 	}
 
-	public int getPageCount() {
+	public Integer getPageCount() {
 		return pageCount;
 	}
 
-	public void setPageCount(int pageCount) {
+	public void setPageCount(Integer pageCount) {
 		this.pageCount = pageCount;
 	}
 

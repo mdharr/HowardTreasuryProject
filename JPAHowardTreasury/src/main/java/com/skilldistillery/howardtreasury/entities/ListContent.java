@@ -28,19 +28,15 @@ public class ListContent {
 	@JoinColumn(name = "user_list_id")
 	private UserList userList;
 	
-	@JsonManagedReference
     @ManyToMany(mappedBy = "listContents")
     private List<Story> stories;
     
-	@JsonManagedReference
     @ManyToMany(mappedBy = "listContents")
     private List<Poem> poems;
     
-	@JsonManagedReference
     @ManyToMany(mappedBy = "listContents")
     private List<Person> persons;
     
-	@JsonManagedReference
     @ManyToMany(mappedBy = "listContents")
     private List<Miscellanea> miscellaneas;
 
