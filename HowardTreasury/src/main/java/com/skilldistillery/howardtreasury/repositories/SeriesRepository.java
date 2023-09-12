@@ -6,4 +6,6 @@ import com.skilldistillery.howardtreasury.entities.Series;
 
 public interface SeriesRepository extends JpaRepository<Series, Integer> {
 
+	Series findByTitle(String seriesTitle);
+	
 }
