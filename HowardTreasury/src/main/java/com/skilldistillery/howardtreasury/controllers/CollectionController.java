@@ -35,6 +35,7 @@ public class CollectionController {
 		return collectionService.findAll();
 	}
 	
+	// collection by id
 	@GetMapping("collections/{cid}")
 	public Collection getCollectionById(@PathVariable("cid") int collectionId) {
 		return collectionService.find(collectionId);
@@ -66,5 +67,15 @@ public class CollectionController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Collection not found");
 		}
 	}
+	
+	// collection by title
+//	@GetMapping("collections/{ct}")
+//	public Collection getCollectionByTitle(@PathVariable("ct") String collectionTitle, HttpServletResponse res) {
+//		String originalTitle = collectionTitle.replace("-", " ");
+//		if(collectionService.getByTitle(collectionTitle) == null) {
+//			res.setStatus(404);
+//		}
+//		return collectionService.getByTitle(originalTitle);
+//	}
 	
 }
