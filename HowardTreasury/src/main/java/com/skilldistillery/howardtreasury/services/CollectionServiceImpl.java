@@ -98,4 +98,9 @@ public class CollectionServiceImpl implements CollectionService {
 		}
 	}
 	
+	@Override
+	public Collection getByTitle(String collectionTitle) {
+		return collectionRepo.findByTitle(collectionTitle);
+	}
+	
 }

@@ -15,4 +15,6 @@ public interface CollectionService {
 	public Collection update(Collection collection);
 	
 	public void delete(int collectionId);
+	
+	public Collection getByTitle(String collectionTitle);
 }
