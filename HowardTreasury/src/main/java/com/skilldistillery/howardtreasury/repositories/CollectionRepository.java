@@ -6,4 +6,5 @@ import com.skilldistillery.howardtreasury.entities.Collection;
 
 public interface CollectionRepository extends JpaRepository<Collection, Integer> {
 
+	Collection findByTitle(String collectionTitle);
 }
