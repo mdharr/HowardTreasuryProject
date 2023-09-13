@@ -66,11 +66,16 @@ public class ListContent {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ListContent(int id, UserList userList, List<Story> stories) {
+	public ListContent(int id, UserList userList, List<Story> stories,
+					   List<Poem> poems, List<Person> persons,
+					   List<Miscellanea> miscellaneas) {
 		super();
 		this.id = id;
 		this.userList = userList;
 		this.stories = stories;
+		this.poems = poems;
+		this.persons = persons;
+		this.miscellaneas = miscellaneas;
 	}
 
 	public int getId() {
