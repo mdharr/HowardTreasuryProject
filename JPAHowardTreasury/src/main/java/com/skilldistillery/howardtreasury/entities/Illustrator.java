@@ -3,16 +3,14 @@ package com.skilldistillery.howardtreasury.entities;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Illustrator {
@@ -24,13 +22,9 @@ public class Illustrator {
 	private String name;
 	
 	@JsonIgnore
-    @ManyToMany
-    @JoinTable(
-    		name = "collection_has_illustrator",
-    		joinColumns = @JoinColumn(name = "illustrator_id"),
-    		inverseJoinColumns = @JoinColumn(name = "collection_id")
-    		)
-    private List<Collection> collections;
+	@ManyToMany(mappedBy = "illustrators", cascade = CascadeType.MERGE)
+	private List<Collection> collections;
+
 
 	public Illustrator() {
 		super();

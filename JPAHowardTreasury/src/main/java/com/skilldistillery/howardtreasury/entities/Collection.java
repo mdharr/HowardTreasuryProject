@@ -10,11 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Collection {
@@ -37,22 +35,52 @@ public class Collection {
 	@JoinColumn(name = "series_id")
 	private Series series;
 	
-    @ManyToMany(mappedBy = "collections")
-    private List<Story> stories;
+	@ManyToMany
+	@JoinTable(
+			name = "collection_has_story",
+			joinColumns = @JoinColumn(name = "collection_id"),
+			inverseJoinColumns = @JoinColumn(name = "story_id")
+			)
+	private List<Story> stories;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "collection_has_poem",
+			joinColumns = @JoinColumn(name = "collection_id"),
+			inverseJoinColumns = @JoinColumn(name = "poem_id")
+			)
+	private List<Poem> poems;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "collection_has_person",
+			joinColumns = @JoinColumn(name = "collection_id"),
+			inverseJoinColumns = @JoinColumn(name = "person_id")
+			)
+	private List<Person> persons;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "collection_has_miscellanea",
+			joinColumns = @JoinColumn(name = "collection_id"),
+			inverseJoinColumns = @JoinColumn(name = "miscellanea_id")
+			)
+	private List<Miscellanea> miscellaneas;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "collection_has_collection_image",
+			joinColumns = @JoinColumn(name = "collection_id"),
+			inverseJoinColumns = @JoinColumn(name = "collection_image_id")
+			)
+	private List<CollectionImage> collectionImages;
     
-    @ManyToMany(mappedBy = "collections")
-    private List<Poem> poems;
-    
-    @ManyToMany(mappedBy = "collections")
-    private List<Person> persons;
-    
-    @ManyToMany(mappedBy = "collections")
-    private List<Miscellanea> miscellaneas;
-    
-    @ManyToMany(mappedBy = "collections")
-    private List<CollectionImage> collectionImages;
-    
-    @ManyToMany(mappedBy = "collections")
+    @ManyToMany
+    @JoinTable(
+        name = "collection_has_illustrator",
+        joinColumns = @JoinColumn(name = "collection_id"),
+        inverseJoinColumns = @JoinColumn(name = "illustrator_id")
+    )
     private List<Illustrator> illustrators;
 
 	public Collection() {

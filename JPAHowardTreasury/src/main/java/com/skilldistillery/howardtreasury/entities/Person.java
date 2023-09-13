@@ -3,6 +3,7 @@ package com.skilldistillery.howardtreasury.entities;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,22 +26,12 @@ public class Person {
 	private String name;
 	
 	@JsonIgnore
-    @ManyToMany
-    @JoinTable(
-        name = "person_has_list_content",
-        joinColumns = @JoinColumn(name = "person_id"),
-        inverseJoinColumns = @JoinColumn(name = "list_content_id")
-    )
-    private List<ListContent> listContents;
-    
+	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
+	private List<ListContent> listContents;
+	
 	@JsonIgnore
-    @ManyToMany
-    @JoinTable(
-    		name = "collection_has_person",
-    		joinColumns = @JoinColumn(name = "person_id"),
-    		inverseJoinColumns = @JoinColumn(name = "collection_id")
-    		)
-    private List<Collection> collections;
+	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
+	private List<Collection> collections;
 
 	public Person() {
 		super();

@@ -3,6 +3,7 @@ package com.skilldistillery.howardtreasury.entities;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,13 +28,8 @@ public class CollectionImage {
 	private String imageUrl;
 	
 	@JsonIgnore
-    @ManyToMany
-    @JoinTable(
-    		name = "collection_has_collection_image",
-    		joinColumns = @JoinColumn(name = "collection_image_id"),
-    		inverseJoinColumns = @JoinColumn(name = "collection_id")
-    		)
-    private List<Collection> collections;
+	@ManyToMany(mappedBy = "collectionImages", cascade = CascadeType.MERGE)
+	private List<Collection> collections;
 
 	public CollectionImage() {
 		super();

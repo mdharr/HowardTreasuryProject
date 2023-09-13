@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -27,18 +28,38 @@ public class ListContent {
 	@ManyToOne
 	@JoinColumn(name = "user_list_id")
 	private UserList userList;
+    
+	@ManyToMany
+	@JoinTable(
+	    name = "story_has_list_content",
+	    joinColumns = @JoinColumn(name = "list_content_id"),
+	    inverseJoinColumns = @JoinColumn(name = "story_id")
+	)
+	private List<Story> stories;
 	
-    @ManyToMany(mappedBy = "listContents")
-    private List<Story> stories;
-    
-    @ManyToMany(mappedBy = "listContents")
-    private List<Poem> poems;
-    
-    @ManyToMany(mappedBy = "listContents")
-    private List<Person> persons;
-    
-    @ManyToMany(mappedBy = "listContents")
-    private List<Miscellanea> miscellaneas;
+	@ManyToMany
+	@JoinTable(
+			name = "poem_has_list_content",
+			joinColumns = @JoinColumn(name = "list_content_id"),
+			inverseJoinColumns = @JoinColumn(name = "poem_id")
+			)
+	private List<Poem> poems;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "person_has_list_content",
+			joinColumns = @JoinColumn(name = "list_content_id"),
+			inverseJoinColumns = @JoinColumn(name = "person_id")
+			)
+	private List<Person> persons;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "miscellanea_has_list_content",
+			joinColumns = @JoinColumn(name = "list_content_id"),
+			inverseJoinColumns = @JoinColumn(name = "miscellanea_id")
+			)
+	private List<Miscellanea> miscellaneas;
 
 	public ListContent() {
 		super();

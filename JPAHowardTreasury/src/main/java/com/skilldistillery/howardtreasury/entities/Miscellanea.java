@@ -3,6 +3,7 @@ package com.skilldistillery.howardtreasury.entities;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,22 +26,12 @@ public class Miscellanea {
 	private String title;
 	
 	@JsonIgnore
-    @ManyToMany
-    @JoinTable(
-        name = "miscellanea_has_list_content",
-        joinColumns = @JoinColumn(name = "miscellanea_id"),
-        inverseJoinColumns = @JoinColumn(name = "list_content_id")
-    )
-    private List<ListContent> listContents;
-    
+	@ManyToMany(mappedBy = "miscellaneas", cascade = CascadeType.MERGE)
+	private List<ListContent> listContents;
+	
 	@JsonIgnore
-    @ManyToMany
-    @JoinTable(
-    		name = "collection_has_miscellanea",
-    		joinColumns = @JoinColumn(name = "miscellanea_id"),
-    		inverseJoinColumns = @JoinColumn(name = "collection_id")
-    		)
-    private List<Collection> collections;
+	@ManyToMany(mappedBy = "miscellaneas", cascade = CascadeType.MERGE)
+	private List<Collection> collections;
 
 	public Miscellanea() {
 		super();

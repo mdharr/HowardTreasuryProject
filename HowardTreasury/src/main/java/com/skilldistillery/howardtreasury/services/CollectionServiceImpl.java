@@ -5,11 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.howardtreasury.entities.Collection;
+import com.skilldistillery.howardtreasury.entities.Illustrator;
+import com.skilldistillery.howardtreasury.entities.Series;
+import com.skilldistillery.howardtreasury.repositories.CollectionImageRepository;
 import com.skilldistillery.howardtreasury.repositories.CollectionRepository;
+import com.skilldistillery.howardtreasury.repositories.IllustratorRepository;
+import com.skilldistillery.howardtreasury.repositories.MiscellaneaRepository;
+import com.skilldistillery.howardtreasury.repositories.PersonRepository;
+import com.skilldistillery.howardtreasury.repositories.PoemRepository;
+import com.skilldistillery.howardtreasury.repositories.SeriesRepository;
+import com.skilldistillery.howardtreasury.repositories.StoryRepository;
 
 @Service
 public class CollectionServiceImpl implements CollectionService {
@@ -38,80 +49,44 @@ public class CollectionServiceImpl implements CollectionService {
 		
 		Collection newCollection = new Collection();
 		
+		
 		newCollection.setTitle(collection.getTitle());
 		newCollection.setPublishedAt(collection.getPublishedAt());
 		newCollection.setPageCount(collection.getPageCount());
 		newCollection.setDescription(collection.getDescription());
-		newCollection.setSeries(collection.getSeries());
-		newCollection.setIllustrators(collection.getIllustrators());
-		newCollection.setStories(collection.getStories());
-		newCollection.setPoems(collection.getPoems());
-		newCollection.setPersons(collection.getPersons());
-		newCollection.setMiscellaneas(collection.getMiscellaneas());
-		newCollection.setCollectionImages(collection.getCollectionImages());
+		
+		if (collection.getSeries() != null) {
+			newCollection.setSeries(collection.getSeries());
+		}
+		
+		if (collection.getIllustrators() != null) {
+		    newCollection.setIllustrators(collection.getIllustrators());
+		}
+
+		
+		if (collection.getStories() != null) {
+		    newCollection.setStories(collection.getStories());
+		}
+		
+		if (collection.getPoems() != null) {
+			newCollection.setPoems(collection.getPoems());
+		}
+		
+		if (collection.getPersons() != null) {
+			newCollection.setPersons(collection.getPersons());
+		}
+		
+		if (collection.getMiscellaneas() != null) {
+			newCollection.setMiscellaneas(collection.getMiscellaneas());
+		}
+		
+		if (collection.getCollectionImages() != null) {
+			newCollection.setCollectionImages(collection.getCollectionImages());
+		}
 		
 		return collectionRepo.save(newCollection);
 	}
 
-//	@Override
-//	public Collection update(int collectionId, Collection collection) {
-//		
-//		Optional<Collection> existingCollectionOpt = collectionRepo.findById(collectionId);
-//		
-//		if(existingCollectionOpt.isPresent()) {
-//			Collection existingCollection = existingCollectionOpt.get();
-//			
-//	        if (collection.getTitle() != null) {
-//	            existingCollection.setTitle(collection.getTitle());
-//	        }
-//	        
-//	        if (collection.getPublishedAt() != null) {
-//	        	existingCollection.setPublishedAt(collection.getPublishedAt());
-//	        }
-//	        
-//	        if (collection.getPageCount() != 0) {
-//	        	existingCollection.setPageCount(collection.getPageCount());
-//	        }
-//	        
-//	        if (collection.getDescription() != null) {
-//	        	existingCollection.setDescription(collection.getDescription());
-//	        }
-//	        
-//	        if (collection.getSeries() != null) {
-//	        	existingCollection.setSeries(collection.getSeries());
-//	        }
-//	        
-//	        if (collection.getIllustrators() != null) {
-//	        	existingCollection.setIllustrators(collection.getIllustrators());
-//	        }
-//	        
-//	        if (collection.getStories() != null) {
-//	        	existingCollection.setStories(collection.getStories());
-//	        }
-//	        
-//	        if (collection.getPoems() != null) {
-//	        	existingCollection.setPoems(collection.getPoems());
-//	        }
-//	        
-//	        if (collection.getPersons() != null) {
-//	        	existingCollection.setPersons(collection.getPersons());
-//	        }
-//	        
-//	        if (collection.getMiscellaneas() != null) {
-//	        	existingCollection.setMiscellaneas(collection.getMiscellaneas());
-//	        }
-//	        
-//	        if (collection.getCollectionImages() != null) {
-//	        	existingCollection.setCollectionImages(collection.getCollectionImages());
-//	        }
-//			
-//			return collectionRepo.save(existingCollection);
-//		}
-//		
-//		return null;
-//	}
-	
-	// less verbose way of updating collection object
 	@Override
 	public Collection update(int collectionId, Collection collection) {
 	    Optional<Collection> existingCollectionOpt = collectionRepo.findById(collectionId);
