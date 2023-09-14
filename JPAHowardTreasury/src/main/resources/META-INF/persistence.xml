@@ -11,6 +11,10 @@
 		<class>com.skilldistillery.howardtreasury.entities.UserList</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserListHasStory</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserListHasStoryId</class>
+		<class>com.skilldistillery.howardtreasury.entities.UserListHasPoem</class>
+		<class>com.skilldistillery.howardtreasury.entities.UserListHasPoemId</class>
+		<class>com.skilldistillery.howardtreasury.entities.UserListHasStory</class>
+		<class>com.skilldistillery.howardtreasury.entities.UserListHasStoryId</class>
 		<class>com.skilldistillery.howardtreasury.entities.ListContent</class>
 		<class>com.skilldistillery.howardtreasury.entities.Story</class>
 		<class>com.skilldistillery.howardtreasury.entities.StoryHasListContent</class>
