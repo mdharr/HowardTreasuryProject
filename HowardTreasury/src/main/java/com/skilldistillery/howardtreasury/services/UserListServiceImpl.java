@@ -89,29 +89,30 @@ public class UserListServiceImpl implements UserListService {
 	}
 
 	
-	public void removeStoryFromUserList(int userListId, Story story) {
+	public void removeStoryFromUserList(int userListId, int storyId, String username) {
 	    UserList userList = userListRepo.findById(userListId).orElse(null);
-	    if (userList != null) {
-	        userList.getStories().remove(story);
+	    if (userList != null && userList.getUser().getUsername().equals(username)) {
+	        userList.getStories().removeIf(story -> story.getId() == storyId);
 	        userListRepo.save(userList);
 	    }
 	}
 
-	public void removePoemFromUserList(int userListId, Poem poem) {
+	public void removePoemFromUserList(int userListId, int poemId, String username) {
 	    UserList userList = userListRepo.findById(userListId).orElse(null);
-	    if (userList != null) {
-	        userList.getPoems().remove(poem);
+	    if (userList != null && userList.getUser().getUsername().equals(username)) {
+	        userList.getPoems().removeIf(poem -> poem.getId() == poemId);
 	        userListRepo.save(userList);
 	    }
 	}
 
-	public void removeMiscellaneaFromUserList(int userListId, Miscellanea miscellanea) {
+	public void removeMiscellaneaFromUserList(int userListId, int miscellaneaId, String username) {
 	    UserList userList = userListRepo.findById(userListId).orElse(null);
-	    if (userList != null) {
-	        userList.getMiscellaneas().remove(miscellanea);
+	    if (userList != null && userList.getUser().getUsername().equals(username)) {
+	        userList.getMiscellaneas().removeIf(miscellanea -> miscellanea.getId() == miscellaneaId);
 	        userListRepo.save(userList);
 	    }
 	}
+
 
 
 
