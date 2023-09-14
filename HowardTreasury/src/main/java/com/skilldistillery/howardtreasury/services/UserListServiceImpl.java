@@ -62,35 +62,5 @@ public class UserListServiceImpl implements UserListService {
 	    }
 	    
 	}
-	
-	@Override
-    public void addStoryToList(int userListId, Story story, String username) {
-        Optional<UserList> userListOpt = userListRepo.findById(userListId);
-
-        if (userListOpt.isPresent()) {
-            UserList userList = userListOpt.get();
-            userList.getListContents().add(new ListContent(userList, story));
-            userListRepo.save(userList);
-        }
-    }
-
-	@Override
-    public void removeStoryFromList(int userListId, int storyId, String username) {
-        Optional<UserList> userListOpt = userListRepo.findById(userListId);
-
-        if (userListOpt.isPresent()) {
-            UserList userList = userListOpt.get();
-            ListContent listContentToRemove = userList.getListContents()
-                .stream()
-                .filter(content -> content.getStories().stream().anyMatch(story -> story.getId() == storyId))
-                .findFirst()
-                .orElse(null);
-
-            if (listContentToRemove != null) {
-                userList.getListContents().remove(listContentToRemove);
-                userListRepo.save(userList);
-            }
-        }
-    }
 
 }

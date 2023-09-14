@@ -104,25 +104,5 @@ public class UserListController {
         userListService.delete(principal.getName(), listId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-    @PostMapping("users/{uid}/lists/{listId}/contents")
-    public ResponseEntity<Void> addListContentToUserList(
-            @PathVariable("uid") int userId,
-            @PathVariable("listId") int listId,
-            @RequestBody ListContent listContent,
-            Principal principal) {
-        userListService.addListContent(listId, listContent, principal.getName());
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("users/{uid}/lists/{listId}/contents/{listContentId}")
-    public ResponseEntity<Void> removeListContentFromUserList(
-            @PathVariable("uid") int userId,
-            @PathVariable("listId") int listId,
-            @PathVariable("listContentId") int listContentId,
-            Principal principal) {
-        userListService.removeListContent(listId, listContentId, principal.getName());
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 	
 }
