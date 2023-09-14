@@ -8,8 +8,6 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.howardtreasury.entities.ListContent;
-import com.skilldistillery.howardtreasury.entities.Story;
 import com.skilldistillery.howardtreasury.entities.UserList;
 import com.skilldistillery.howardtreasury.repositories.UserListRepository;
 
