@@ -25,9 +25,9 @@ public class Miscellanea {
 	
 	private String title;
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "miscellaneas", cascade = CascadeType.MERGE)
-	private List<ListContent> listContents;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "miscellaneas")
+    private List<UserList> userLists;
 	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "miscellaneas", cascade = CascadeType.MERGE)
@@ -38,11 +38,11 @@ public class Miscellanea {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Miscellanea(int id, String title, List<ListContent> listContents, List<Collection> collections) {
+	public Miscellanea(int id, String title, List<UserList> userLists, List<Collection> collections) {
 		super();
 		this.id = id;
 		this.title = title;
-		this.listContents = listContents;
+		this.userLists = userLists;
 		this.collections = collections;
 	}
 
@@ -60,14 +60,6 @@ public class Miscellanea {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public List<ListContent> getListContents() {
-		return listContents;
-	}
-
-	public void setListContents(List<ListContent> listContents) {
-		this.listContents = listContents;
 	}
 
 	public List<Collection> getCollections() {
@@ -97,7 +89,7 @@ public class Miscellanea {
 
 	@Override
 	public String toString() {
-		return "Miscellanea [id=" + id + ", title=" + title + ", listContents=" + listContents + "]";
+		return "Miscellanea [id=" + id + ", title=" + title + "]";
 	}
     
 }
