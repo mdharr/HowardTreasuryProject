@@ -105,7 +105,7 @@ public class UserListController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping("users/{uid}/lists/{listId}/listContents")
+    @PostMapping("users/{uid}/lists/{listId}/contents")
     public ResponseEntity<Void> addListContentToUserList(
             @PathVariable("uid") int userId,
             @PathVariable("listId") int listId,
@@ -115,7 +115,7 @@ public class UserListController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("users/{uid}/lists/{listId}/listContents/{listContentId}")
+    @DeleteMapping("users/{uid}/lists/{listId}/contents/{listContentId}")
     public ResponseEntity<Void> removeListContentFromUserList(
             @PathVariable("uid") int userId,
             @PathVariable("listId") int listId,

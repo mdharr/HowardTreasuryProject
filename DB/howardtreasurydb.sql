@@ -135,120 +135,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `list_content`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `list_content` ;
-
-CREATE TABLE IF NOT EXISTS `list_content` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `user_list_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_list_content_user_list1_idx` (`user_list_id` ASC),
-  CONSTRAINT `fk_list_content_user_list1`
-    FOREIGN KEY (`user_list_id`)
-    REFERENCES `user_list` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `story_has_list_content`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `story_has_list_content` ;
-
-CREATE TABLE IF NOT EXISTS `story_has_list_content` (
-  `story_id` INT NOT NULL,
-  `list_content_id` INT NOT NULL,
-  PRIMARY KEY (`story_id`, `list_content_id`),
-  INDEX `fk_story_has_list_content_list_content1_idx` (`list_content_id` ASC),
-  INDEX `fk_story_has_list_content_story1_idx` (`story_id` ASC),
-  CONSTRAINT `fk_story_has_list_content_story1`
-    FOREIGN KEY (`story_id`)
-    REFERENCES `story` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_story_has_list_content_list_content1`
-    FOREIGN KEY (`list_content_id`)
-    REFERENCES `list_content` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `poem_has_list_content`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `poem_has_list_content` ;
-
-CREATE TABLE IF NOT EXISTS `poem_has_list_content` (
-  `poem_id` INT NOT NULL,
-  `list_content_id` INT NOT NULL,
-  PRIMARY KEY (`poem_id`, `list_content_id`),
-  INDEX `fk_poem_has_list_content_list_content1_idx` (`list_content_id` ASC),
-  INDEX `fk_poem_has_list_content_poem1_idx` (`poem_id` ASC),
-  CONSTRAINT `fk_poem_has_list_content_poem1`
-    FOREIGN KEY (`poem_id`)
-    REFERENCES `poem` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_poem_has_list_content_list_content1`
-    FOREIGN KEY (`list_content_id`)
-    REFERENCES `list_content` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `miscellanea_has_list_content`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `miscellanea_has_list_content` ;
-
-CREATE TABLE IF NOT EXISTS `miscellanea_has_list_content` (
-  `miscellanea_id` INT NOT NULL,
-  `list_content_id` INT NOT NULL,
-  PRIMARY KEY (`miscellanea_id`, `list_content_id`),
-  INDEX `fk_miscellanea_has_list_content_list_content1_idx` (`list_content_id` ASC),
-  INDEX `fk_miscellanea_has_list_content_miscellanea1_idx` (`miscellanea_id` ASC),
-  CONSTRAINT `fk_miscellanea_has_list_content_miscellanea1`
-    FOREIGN KEY (`miscellanea_id`)
-    REFERENCES `miscellanea` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_miscellanea_has_list_content_list_content1`
-    FOREIGN KEY (`list_content_id`)
-    REFERENCES `list_content` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `person_has_list_content`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `person_has_list_content` ;
-
-CREATE TABLE IF NOT EXISTS `person_has_list_content` (
-  `person_id` INT NOT NULL,
-  `list_content_id` INT NOT NULL,
-  PRIMARY KEY (`person_id`, `list_content_id`),
-  INDEX `fk_person_has_list_content_list_content1_idx` (`list_content_id` ASC),
-  INDEX `fk_person_has_list_content_person1_idx` (`person_id` ASC),
-  CONSTRAINT `fk_person_has_list_content_person1`
-    FOREIGN KEY (`person_id`)
-    REFERENCES `person` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_person_has_list_content_list_content1`
-    FOREIGN KEY (`list_content_id`)
-    REFERENCES `list_content` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `collection_has_story`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `collection_has_story` ;
@@ -560,6 +446,78 @@ CREATE TABLE IF NOT EXISTS `collection_has_illustrator` (
   CONSTRAINT `fk_collection_has_illustrator_illustrator1`
     FOREIGN KEY (`illustrator_id`)
     REFERENCES `illustrator` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `user_list_has_story`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user_list_has_story` ;
+
+CREATE TABLE IF NOT EXISTS `user_list_has_story` (
+  `user_list_id` INT NOT NULL,
+  `story_id` INT NOT NULL,
+  PRIMARY KEY (`user_list_id`, `story_id`),
+  INDEX `fk_user_list_has_story_story1_idx` (`story_id` ASC),
+  INDEX `fk_user_list_has_story_user_list1_idx` (`user_list_id` ASC),
+  CONSTRAINT `fk_user_list_has_story_user_list1`
+    FOREIGN KEY (`user_list_id`)
+    REFERENCES `user_list` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_list_has_story_story1`
+    FOREIGN KEY (`story_id`)
+    REFERENCES `story` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `user_list_has_poem`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user_list_has_poem` ;
+
+CREATE TABLE IF NOT EXISTS `user_list_has_poem` (
+  `user_list_id` INT NOT NULL,
+  `poem_id` INT NOT NULL,
+  PRIMARY KEY (`user_list_id`, `poem_id`),
+  INDEX `fk_user_list_has_poem_poem1_idx` (`poem_id` ASC),
+  INDEX `fk_user_list_has_poem_user_list1_idx` (`user_list_id` ASC),
+  CONSTRAINT `fk_user_list_has_poem_user_list1`
+    FOREIGN KEY (`user_list_id`)
+    REFERENCES `user_list` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_list_has_poem_poem1`
+    FOREIGN KEY (`poem_id`)
+    REFERENCES `poem` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `user_list_has_miscellanea`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user_list_has_miscellanea` ;
+
+CREATE TABLE IF NOT EXISTS `user_list_has_miscellanea` (
+  `user_list_id` INT NOT NULL,
+  `miscellanea_id` INT NOT NULL,
+  PRIMARY KEY (`user_list_id`, `miscellanea_id`),
+  INDEX `fk_user_list_has_miscellanea_miscellanea1_idx` (`miscellanea_id` ASC),
+  INDEX `fk_user_list_has_miscellanea_user_list1_idx` (`user_list_id` ASC),
+  CONSTRAINT `fk_user_list_has_miscellanea_user_list1`
+    FOREIGN KEY (`user_list_id`)
+    REFERENCES `user_list` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_list_has_miscellanea_miscellanea1`
+    FOREIGN KEY (`miscellanea_id`)
+    REFERENCES `miscellanea` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -885,78 +843,6 @@ INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (1, 'King Kull Poems', 
 INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (2, 'King Kull Stories', 2);
 INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (3, 'King Kull Miscellanea', 2);
 INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (4, 'King Kull Favorites', 2);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `list_content`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `howardtreasurydb`;
-INSERT INTO `list_content` (`id`, `user_list_id`) VALUES (1, 1);
-INSERT INTO `list_content` (`id`, `user_list_id`) VALUES (2, 2);
-INSERT INTO `list_content` (`id`, `user_list_id`) VALUES (3, 3);
-INSERT INTO `list_content` (`id`, `user_list_id`) VALUES (4, 4);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `story_has_list_content`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `howardtreasurydb`;
-INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (1, 2);
-INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (2, 2);
-INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (3, 2);
-INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (4, 2);
-INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (5, 2);
-INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (6, 2);
-INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (7, 2);
-INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (8, 2);
-INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (9, 2);
-INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (10, 2);
-INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (11, 2);
-INSERT INTO `story_has_list_content` (`story_id`, `list_content_id`) VALUES (1, 4);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `poem_has_list_content`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `howardtreasurydb`;
-INSERT INTO `poem_has_list_content` (`poem_id`, `list_content_id`) VALUES (1, 1);
-INSERT INTO `poem_has_list_content` (`poem_id`, `list_content_id`) VALUES (2, 1);
-INSERT INTO `poem_has_list_content` (`poem_id`, `list_content_id`) VALUES (3, 1);
-INSERT INTO `poem_has_list_content` (`poem_id`, `list_content_id`) VALUES (1, 4);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `miscellanea_has_list_content`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `howardtreasurydb`;
-INSERT INTO `miscellanea_has_list_content` (`miscellanea_id`, `list_content_id`) VALUES (1, 3);
-INSERT INTO `miscellanea_has_list_content` (`miscellanea_id`, `list_content_id`) VALUES (2, 3);
-INSERT INTO `miscellanea_has_list_content` (`miscellanea_id`, `list_content_id`) VALUES (3, 3);
-INSERT INTO `miscellanea_has_list_content` (`miscellanea_id`, `list_content_id`) VALUES (4, 3);
-INSERT INTO `miscellanea_has_list_content` (`miscellanea_id`, `list_content_id`) VALUES (5, 3);
-INSERT INTO `miscellanea_has_list_content` (`miscellanea_id`, `list_content_id`) VALUES (1, 4);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `person_has_list_content`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `howardtreasurydb`;
-INSERT INTO `person_has_list_content` (`person_id`, `list_content_id`) VALUES (13, 4);
 
 COMMIT;
 
@@ -1502,6 +1388,52 @@ INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VAL
 INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (10, 5);
 INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (10, 8);
 INSERT INTO `collection_has_illustrator` (`collection_id`, `illustrator_id`) VALUES (11, 9);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_list_has_story`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 1);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 2);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 3);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 4);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 5);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 6);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 7);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 8);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 9);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 10);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 11);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_list_has_poem`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `user_list_has_poem` (`user_list_id`, `poem_id`) VALUES (1, 1);
+INSERT INTO `user_list_has_poem` (`user_list_id`, `poem_id`) VALUES (1, 2);
+INSERT INTO `user_list_has_poem` (`user_list_id`, `poem_id`) VALUES (1, 3);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_list_has_miscellanea`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (3, 1);
+INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (3, 2);
+INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (3, 3);
+INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (3, 4);
+INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (3, 5);
 
 COMMIT;
 

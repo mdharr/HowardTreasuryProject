@@ -2,7 +2,7 @@ package com.skilldistillery.howardtreasury.services;
 
 import java.util.List;
 
-import com.skilldistillery.howardtreasury.entities.ListContent;
+import com.skilldistillery.howardtreasury.entities.Story;
 import com.skilldistillery.howardtreasury.entities.UserList;
 
 public interface UserListService {
@@ -17,7 +17,8 @@ public interface UserListService {
 	
 	public void delete(String username, int userListId);
 
-	void addListContent(int userListId, ListContent listContent, String username);
+	void addStoryToList(int userListId, Story story, String username);
 
-	void removeListContent(int userListId, int listContentId, String username);
+	void removeStoryFromList(int userListId, int storyId, String username);
+	
 }

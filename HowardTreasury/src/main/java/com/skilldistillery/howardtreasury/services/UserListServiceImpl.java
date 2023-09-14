@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.howardtreasury.entities.ListContent;
+import com.skilldistillery.howardtreasury.entities.Story;
 import com.skilldistillery.howardtreasury.entities.UserList;
 import com.skilldistillery.howardtreasury.repositories.UserListRepository;
 
@@ -63,40 +64,33 @@ public class UserListServiceImpl implements UserListService {
 	}
 	
 	@Override
-	public void addListContent(int userListId, ListContent listContent, String username) {
-	    Optional<UserList> userListOpt = userListRepo.findById(userListId);
-	    
-	    if (userListOpt.isPresent()) {
-	    	UserList userList = userListOpt.get();
-	    	
-	    	// Add the list content to the user list.
-	    	userList.getListContents().add(listContent);
-	    	
-	    	// Update the user list to persist the changes.
-	    	userListRepo.save(userList);
-	    }
-	}
-	
+    public void addStoryToList(int userListId, Story story, String username) {
+        Optional<UserList> userListOpt = userListRepo.findById(userListId);
+
+        if (userListOpt.isPresent()) {
+            UserList userList = userListOpt.get();
+            userList.getListContents().add(new ListContent(userList, story));
+            userListRepo.save(userList);
+        }
+    }
+
 	@Override
-	public void removeListContent(int userListId, int listContentId, String username) {
-	    Optional<UserList> userListOpt = userListRepo.findById(userListId);
-	    
-	    if (userListOpt.isPresent()) {
-	    	UserList userList = userListOpt.get();
+    public void removeStoryFromList(int userListId, int storyId, String username) {
+        Optional<UserList> userListOpt = userListRepo.findById(userListId);
 
-	    	// Find the list content to remove by ID.
-	    	ListContent listContentToRemove = userList.getListContents().stream()
-	    			.filter(content -> content.getId() == listContentId)
-	    			.findFirst()
-	    			.orElseThrow(() -> new EntityNotFoundException("ListContent not found with ID: " + listContentId));
-	    	
-	    	// Remove the list content from the user list.
-	    	userList.getListContents().remove(listContentToRemove);
-	    	
-	    	// Update the user list to persist the changes.
-	    	userListRepo.save(userList);
-	    }
-	}
+        if (userListOpt.isPresent()) {
+            UserList userList = userListOpt.get();
+            ListContent listContentToRemove = userList.getListContents()
+                .stream()
+                .filter(content -> content.getStories().stream().anyMatch(story -> story.getId() == storyId))
+                .findFirst()
+                .orElse(null);
 
+            if (listContentToRemove != null) {
+                userList.getListContents().remove(listContentToRemove);
+                userListRepo.save(userList);
+            }
+        }
+    }
 
 }
