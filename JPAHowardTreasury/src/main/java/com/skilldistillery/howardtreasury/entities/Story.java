@@ -25,9 +25,9 @@ public class Story {
 	
 	private String title;
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "stories", cascade = CascadeType.MERGE)
-	private List<ListContent> listContents;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "stories")
+    private List<UserList> userLists;
 	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "stories", cascade = CascadeType.MERGE)
@@ -38,11 +38,11 @@ public class Story {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Story(int id, String title, List<ListContent> listContents, List<Collection> collections) {
+	public Story(int id, String title, List<UserList> userLists, List<Collection> collections) {
 		super();
 		this.id = id;
 		this.title = title;
-		this.listContents = listContents;
+		this.userLists = userLists;
 		this.collections = collections;
 	}
 
@@ -62,12 +62,12 @@ public class Story {
 		this.title = title;
 	}
 
-	public List<ListContent> getListContents() {
-		return listContents;
+	public List<UserList> getUserLists() {
+		return userLists;
 	}
 
-	public void setListContents(List<ListContent> listContents) {
-		this.listContents = listContents;
+	public void setUserLists(List<UserList> userLists) {
+		this.userLists = userLists;
 	}
 
 	public List<Collection> getCollections() {
@@ -97,7 +97,7 @@ public class Story {
 
 	@Override
 	public String toString() {
-		return "Story [id=" + id + ", title=" + title + ", listContents=" + listContents + "]";
+		return "Story [id=" + id + ", title=" + title + "]";
 	}
 
 }
