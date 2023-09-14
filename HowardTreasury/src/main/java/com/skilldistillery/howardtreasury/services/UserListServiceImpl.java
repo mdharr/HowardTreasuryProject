@@ -64,29 +64,30 @@ public class UserListServiceImpl implements UserListService {
 	    
 	}
 	
-	public void addStoryToUserList(int userListId, Story story) {
+	public void addStoryToUserList(int userListId, Story story, String username) {
 	    UserList userList = userListRepo.findById(userListId).orElse(null);
-	    if (userList != null) {
+	    if (userList != null && userList.getUser().getUsername().equals(username)) {
 	        userList.getStories().add(story);
 	        userListRepo.save(userList);
 	    }
 	}
 
-	public void addPoemToUserList(int userListId, Poem poem) {
+	public void addPoemToUserList(int userListId, Poem poem, String username) {
 	    UserList userList = userListRepo.findById(userListId).orElse(null);
-	    if (userList != null) {
+	    if (userList != null && userList.getUser().getUsername().equals(username)) {
 	        userList.getPoems().add(poem);
 	        userListRepo.save(userList);
 	    }
 	}
 
-	public void addMiscellaneaToUserList(int userListId, Miscellanea miscellanea) {
+	public void addMiscellaneaToUserList(int userListId, Miscellanea miscellanea, String username) {
 	    UserList userList = userListRepo.findById(userListId).orElse(null);
-	    if (userList != null) {
+	    if (userList != null && userList.getUser().getUsername().equals(username)) {
 	        userList.getMiscellaneas().add(miscellanea);
 	        userListRepo.save(userList);
 	    }
 	}
+
 	
 	public void removeStoryFromUserList(int userListId, Story story) {
 	    UserList userList = userListRepo.findById(userListId).orElse(null);
