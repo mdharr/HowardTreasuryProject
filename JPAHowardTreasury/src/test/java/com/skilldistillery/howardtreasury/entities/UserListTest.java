@@ -54,46 +54,40 @@ class UserListTest {
 	}
 	
 	@Test
-	void test_UserList_ListContent_one_to_many_mapping() {
-		assertNotNull(userList);
-		assertEquals(1, userList.getListContents().get(0).getId());
-	}
-	
-	@Test
 	void test_UserList_User_many_to_one_mapping() {
 		assertNotNull(userList);
 		assertEquals("Kull", userList.getUser().getUsername());
 	}
 	
-	@Test
-	void test_UserList_ListContent_one_to_many_mapping2() {
-		assertNotNull(userList2);
-		assertTrue(userList2.getListContents().size() > 0);
-	    List<ListContent> listContents = userList2.getListContents();
-
-	    for (ListContent listContent : listContents) {
-	        List<Story> stories = listContent.getStories();
-	        List<Poem> poems = listContent.getPoems();
-	        List<Person> persons = listContent.getPersons();
-	        List<Miscellanea> miscellaneas = listContent.getMiscellaneas();
-
-	        for (Story story : stories) {
-	            System.out.println("Story Title: " + story.getTitle());
-	        }
-
-	        for (Poem poem : poems) {
-	        	System.out.println("Poem Title: " + poem.getTitle());
-	        }
-
-	        for (Person person : persons) {
-	        	System.out.println("Person Name: " + person.getName());
-	        }
-
-	        for (Miscellanea miscellanea : miscellaneas) {
-	        	System.out.println("Miscellanea Title: " + miscellanea.getTitle());
-	        }
-	        
-	    }
-	}
+//	@Test
+//	void test_UserList_ListContent_one_to_many_mapping2() {
+//		assertNotNull(userList2);
+//		assertTrue(userList2.getListContents().size() > 0);
+//	    List<ListContent> listContents = userList2.getListContents();
+//
+//	    for (ListContent listContent : listContents) {
+//	        List<Story> stories = listContent.getStories();
+//	        List<Poem> poems = listContent.getPoems();
+//	        List<Person> persons = listContent.getPersons();
+//	        List<Miscellanea> miscellaneas = listContent.getMiscellaneas();
+//
+//	        for (Story story : stories) {
+//	            System.out.println("Story Title: " + story.getTitle());
+//	        }
+//
+//	        for (Poem poem : poems) {
+//	        	System.out.println("Poem Title: " + poem.getTitle());
+//	        }
+//
+//	        for (Person person : persons) {
+//	        	System.out.println("Person Name: " + person.getName());
+//	        }
+//
+//	        for (Miscellanea miscellanea : miscellaneas) {
+//	        	System.out.println("Miscellanea Title: " + miscellanea.getTitle());
+//	        }
+//	        
+//	    }
+//	}
 
 }

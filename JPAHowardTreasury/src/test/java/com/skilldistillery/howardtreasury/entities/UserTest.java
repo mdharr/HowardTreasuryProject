@@ -60,7 +60,6 @@ class UserTest {
 	void test_User_Illustrator_mapping() {
 		assertNotNull(user2);
 		assertEquals("Justin Sweet", user2.getUserLists().get(1)
-				.getListContents().get(0)
 				.getStories().get(0)
 				.getCollections().get(0)
 				.getIllustrators().get(0)
