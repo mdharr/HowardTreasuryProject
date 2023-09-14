@@ -15,19 +15,10 @@
 		<class>com.skilldistillery.howardtreasury.entities.UserListHasPoemId</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserListHasMiscellanea</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserListHasMiscellaneaId</class>
-		<class>com.skilldistillery.howardtreasury.entities.ListContent</class>
 		<class>com.skilldistillery.howardtreasury.entities.Story</class>
-		<class>com.skilldistillery.howardtreasury.entities.StoryHasListContent</class>
-		<class>com.skilldistillery.howardtreasury.entities.StoryHasListContentId</class>
 		<class>com.skilldistillery.howardtreasury.entities.Poem</class>
-		<class>com.skilldistillery.howardtreasury.entities.PoemHasListContent</class>
-		<class>com.skilldistillery.howardtreasury.entities.PoemHasListContentId</class>
 		<class>com.skilldistillery.howardtreasury.entities.Person</class>
-		<class>com.skilldistillery.howardtreasury.entities.PersonHasListContent</class>
-		<class>com.skilldistillery.howardtreasury.entities.PersonHasListContentId</class>
 		<class>com.skilldistillery.howardtreasury.entities.Miscellanea</class>
-		<class>com.skilldistillery.howardtreasury.entities.MiscellaneaHasListContent</class>
-		<class>com.skilldistillery.howardtreasury.entities.MiscellaneaHasListContentId</class>
 		<class>com.skilldistillery.howardtreasury.entities.Series</class>
 		<class>com.skilldistillery.howardtreasury.entities.Illustrator</class>
 		<class>com.skilldistillery.howardtreasury.entities.CollectionHasIllustrator</class>
