@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.howardtreasury.entities.Miscellanea;
@@ -51,30 +53,42 @@ public class UserListServiceImpl implements UserListService {
 	@Override
 	public UserList update(String username, int userListId, UserList userList) {
 	    Optional<UserList> existingUserListOpt = userListRepo.findById(userListId);
-	    
+
 	    if (existingUserListOpt.isPresent()) {
-	    	UserList existingUserList = existingUserListOpt.get();
-	    	// Update properties of existingUserList with values from updatedUserList.
-	    	existingUserList.setName(userList.getName());
-	    	// Save the updated UserList.
-	    	return userListRepo.save(existingUserList);
+	        UserList existingUserList = existingUserListOpt.get();
+
+	        // Check if the user is the owner of the list.
+	        if (existingUserList.getUser().getUsername().equals(username)) {
+	            // Update properties of existingUserList with values from updatedUserList.
+	            existingUserList.setName(userList.getName());
+	            // Save the updated UserList.
+	            return userListRepo.save(existingUserList);
+	        } else {
+	            return null; // Unauthorized access
+	        }
 	    }
-	    return null;
+	    return null; // List not found
 	}
 
 	@Override
-	public void delete(String username, int userListId) {
+	public ResponseEntity<Void> delete(String username, int userListId) {
 	    Optional<UserList> userListOpt = userListRepo.findById(userListId);
-	    
+
 	    if (userListOpt.isPresent()) {
-	    	
-	    	UserList userList = userListOpt.get();
-	    	
-	    	userListRepo.delete(userList);
-	    	
+	        UserList userList = userListOpt.get();
+
+	        // Check if the user is the owner of the list.
+	        if (userList.getUser().getUsername().equals(username)) {
+	            userListRepo.delete(userList);
+	            return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Resource deleted
+	        } else {
+	            return new ResponseEntity<>(HttpStatus.FORBIDDEN); // Unauthorized access
+	        }
+	    } else {
+	        return new ResponseEntity<>(HttpStatus.NOT_FOUND); // List not found
 	    }
-	    
 	}
+
 	
 	@Override
 	public UserList addStoryToUserList(int listId, int storyId, String username) {

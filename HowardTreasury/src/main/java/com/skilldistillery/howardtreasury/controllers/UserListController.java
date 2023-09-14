@@ -96,9 +96,20 @@ public class UserListController {
     public ResponseEntity<Void> deleteUserList(
             @PathVariable("listId") int listId,
             Principal principal) {
-        userListService.delete(principal.getName(), listId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        ResponseEntity<Void> response = userListService.delete(principal.getName(), listId);
+        
+        if (response.getStatusCode() == HttpStatus.NO_CONTENT) {
+            return response; // Successfully deleted
+        } else if (response.getStatusCode() == HttpStatus.FORBIDDEN) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN); // Unauthorized access
+        } else if (response.getStatusCode() == HttpStatus.NOT_FOUND) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // List not found
+        }
+        
+        // Handle any other status codes if needed.
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
     
     @PostMapping("lists/{listId}/stories/{storyId}")
     public ResponseEntity<?> addStoryToList(
