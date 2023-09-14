@@ -1,5 +1,6 @@
 package com.skilldistillery.howardtreasury.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Column;
