@@ -2,7 +2,6 @@ package com.skilldistillery.howardtreasury.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -59,35 +58,30 @@ class UserListTest {
 		assertEquals("Kull", userList.getUser().getUsername());
 	}
 	
-//	@Test
-//	void test_UserList_ListContent_one_to_many_mapping2() {
-//		assertNotNull(userList2);
-//		assertTrue(userList2.getListContents().size() > 0);
-//	    List<ListContent> listContents = userList2.getListContents();
-//
-//	    for (ListContent listContent : listContents) {
-//	        List<Story> stories = listContent.getStories();
-//	        List<Poem> poems = listContent.getPoems();
-//	        List<Person> persons = listContent.getPersons();
-//	        List<Miscellanea> miscellaneas = listContent.getMiscellaneas();
-//
-//	        for (Story story : stories) {
-//	            System.out.println("Story Title: " + story.getTitle());
-//	        }
-//
-//	        for (Poem poem : poems) {
-//	        	System.out.println("Poem Title: " + poem.getTitle());
-//	        }
-//
-//	        for (Person person : persons) {
-//	        	System.out.println("Person Name: " + person.getName());
-//	        }
-//
-//	        for (Miscellanea miscellanea : miscellaneas) {
-//	        	System.out.println("Miscellanea Title: " + miscellanea.getTitle());
-//	        }
-//	        
-//	    }
-//	}
+	@Test
+	void test_UserList_Story_many_to_many_mapping() {
+		assertNotNull(userList2);
+		assertEquals("The Shadow Kingdom", userList2.getStories().get(0).getTitle());
+	}
+	
+	@Test
+	void test_UserList_many_to_many_mappings() {
+		assertNotNull(userList2);
+		List<Story> stories = userList2.getStories();
+		List<Poem> poems = userList2.getPoems();
+		List<Miscellanea> miscellaneas = userList2.getMiscellaneas();
+		
+		for (Story story : stories) {
+			System.out.println(story.getTitle());
+		}
+		
+		for (Poem poem : poems) {
+			System.out.println(poem.getTitle());
+		}
+		
+		for (Miscellanea miscellanea : miscellaneas) {
+			System.out.println(miscellanea.getTitle());
+		}
+	}
 
 }

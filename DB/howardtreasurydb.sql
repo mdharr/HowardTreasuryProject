@@ -1408,6 +1408,7 @@ INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 8);
 INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 9);
 INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 10);
 INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 11);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (4, 9);
 
 COMMIT;
 
@@ -1420,6 +1421,7 @@ USE `howardtreasurydb`;
 INSERT INTO `user_list_has_poem` (`user_list_id`, `poem_id`) VALUES (1, 1);
 INSERT INTO `user_list_has_poem` (`user_list_id`, `poem_id`) VALUES (1, 2);
 INSERT INTO `user_list_has_poem` (`user_list_id`, `poem_id`) VALUES (1, 3);
+INSERT INTO `user_list_has_poem` (`user_list_id`, `poem_id`) VALUES (4, 1);
 
 COMMIT;
 
@@ -1434,6 +1436,7 @@ INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUE
 INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (3, 3);
 INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (3, 4);
 INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (3, 5);
+INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (4, 1);
 
 COMMIT;
 
