@@ -9,6 +9,8 @@
 		<!-- begin entities -->
 		<class>com.skilldistillery.howardtreasury.entities.User</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserList</class>
+		<class>com.skilldistillery.howardtreasury.entities.UserListHasStory</class>
+		<class>com.skilldistillery.howardtreasury.entities.UserListHasStoryId</class>
 		<class>com.skilldistillery.howardtreasury.entities.ListContent</class>
 		<class>com.skilldistillery.howardtreasury.entities.Story</class>
 		<class>com.skilldistillery.howardtreasury.entities.StoryHasListContent</class>
