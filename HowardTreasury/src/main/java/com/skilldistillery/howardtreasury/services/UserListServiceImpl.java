@@ -8,6 +8,9 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.howardtreasury.entities.Miscellanea;
+import com.skilldistillery.howardtreasury.entities.Poem;
+import com.skilldistillery.howardtreasury.entities.Story;
 import com.skilldistillery.howardtreasury.entities.UserList;
 import com.skilldistillery.howardtreasury.repositories.UserListRepository;
 
@@ -60,5 +63,55 @@ public class UserListServiceImpl implements UserListService {
 	    }
 	    
 	}
+	
+	public void addStoryToUserList(int userListId, Story story) {
+	    UserList userList = userListRepo.findById(userListId).orElse(null);
+	    if (userList != null) {
+	        userList.getStories().add(story);
+	        userListRepo.save(userList);
+	    }
+	}
+
+	public void addPoemToUserList(int userListId, Poem poem) {
+	    UserList userList = userListRepo.findById(userListId).orElse(null);
+	    if (userList != null) {
+	        userList.getPoems().add(poem);
+	        userListRepo.save(userList);
+	    }
+	}
+
+	public void addMiscellaneaToUserList(int userListId, Miscellanea miscellanea) {
+	    UserList userList = userListRepo.findById(userListId).orElse(null);
+	    if (userList != null) {
+	        userList.getMiscellaneas().add(miscellanea);
+	        userListRepo.save(userList);
+	    }
+	}
+	
+	public void removeStoryFromUserList(int userListId, Story story) {
+	    UserList userList = userListRepo.findById(userListId).orElse(null);
+	    if (userList != null) {
+	        userList.getStories().remove(story);
+	        userListRepo.save(userList);
+	    }
+	}
+
+	public void removePoemFromUserList(int userListId, Poem poem) {
+	    UserList userList = userListRepo.findById(userListId).orElse(null);
+	    if (userList != null) {
+	        userList.getPoems().remove(poem);
+	        userListRepo.save(userList);
+	    }
+	}
+
+	public void removeMiscellaneaFromUserList(int userListId, Miscellanea miscellanea) {
+	    UserList userList = userListRepo.findById(userListId).orElse(null);
+	    if (userList != null) {
+	        userList.getMiscellaneas().remove(miscellanea);
+	        userListRepo.save(userList);
+	    }
+	}
+
+
 
 }
