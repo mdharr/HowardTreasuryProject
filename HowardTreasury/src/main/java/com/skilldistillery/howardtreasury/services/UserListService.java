@@ -15,5 +15,17 @@ public interface UserListService {
 	public UserList update(String username, int userListId, UserList userList);
 	
 	public void delete(String username, int userListId);
-	
+
+	UserList addStoryToUserList(int listId, int storyId, String username);
+
+	UserList removeStoryFromUserList(int listId, int storyId, String username);
+
+	UserList addPoemToUserList(int listId, int poemId, String username);
+
+	UserList removePoemFromUserList(int listId, int poemId, String username);
+
+	UserList addMiscellaneaToUserList(int listId, int miscellaneaId, String username);
+
+	UserList removeMiscellaneaFromUserList(int listId, int miscellaneaId, String username);
+
 }

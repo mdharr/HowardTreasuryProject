@@ -12,6 +12,9 @@ import com.skilldistillery.howardtreasury.entities.Miscellanea;
 import com.skilldistillery.howardtreasury.entities.Poem;
 import com.skilldistillery.howardtreasury.entities.Story;
 import com.skilldistillery.howardtreasury.entities.UserList;
+import com.skilldistillery.howardtreasury.repositories.MiscellaneaRepository;
+import com.skilldistillery.howardtreasury.repositories.PoemRepository;
+import com.skilldistillery.howardtreasury.repositories.StoryRepository;
 import com.skilldistillery.howardtreasury.repositories.UserListRepository;
 
 @Service
@@ -19,6 +22,15 @@ public class UserListServiceImpl implements UserListService {
 
 	@Autowired
 	private UserListRepository userListRepo;
+	
+	@Autowired
+	private StoryRepository storyRepo;
+	
+	@Autowired
+	private PoemRepository poemRepo;
+	
+	@Autowired
+	private MiscellaneaRepository miscellaneaRepo;
 
 	@Override
 	public List<UserList> findAll(String username) {
@@ -64,56 +76,94 @@ public class UserListServiceImpl implements UserListService {
 	    
 	}
 	
-	public void addStoryToUserList(int userListId, Story story, String username) {
-	    UserList userList = userListRepo.findById(userListId).orElse(null);
-	    if (userList != null && userList.getUser().getUsername().equals(username)) {
+	@Override
+	public UserList addStoryToUserList(int listId, int storyId, String username) {
+	    // Fetch the UserList and Story entities by their IDs.
+	    UserList userList = userListRepo.findById(listId).orElse(null);
+	    Story story = storyRepo.findById(storyId).orElse(null);
+
+	    // Ensure that both entities exist and the user is the owner of the list.
+	    if (userList != null && story != null && userList.getUser().getUsername().equals(username)) {
+	        // Add the story to the user list.
 	        userList.getStories().add(story);
-	        userListRepo.save(userList);
+	        return userListRepo.save(userList);
 	    }
+	    return null; // Handle the case when the operation fails.
 	}
 
-	public void addPoemToUserList(int userListId, Poem poem, String username) {
-	    UserList userList = userListRepo.findById(userListId).orElse(null);
-	    if (userList != null && userList.getUser().getUsername().equals(username)) {
+	@Override
+	public UserList removeStoryFromUserList(int listId, int storyId, String username) {
+	    // Fetch the UserList and Story entities by their IDs.
+	    UserList userList = userListRepo.findById(listId).orElse(null);
+	    Story story = storyRepo.findById(storyId).orElse(null);
+
+	    // Ensure that both entities exist and the user is the owner of the list.
+	    if (userList != null && story != null && userList.getUser().getUsername().equals(username)) {
+	        // Remove the story from the user list.
+	        userList.getStories().remove(story);
+	        return userListRepo.save(userList);
+	    }
+	    return null; // Handle the case when the operation fails.
+	}
+
+	@Override
+	public UserList addPoemToUserList(int listId, int poemId, String username) {
+	    // Fetch the UserList and Poem entities by their IDs.
+	    UserList userList = userListRepo.findById(listId).orElse(null);
+	    Poem poem = poemRepo.findById(poemId).orElse(null);
+
+	    // Ensure that both entities exist and the user is the owner of the list.
+	    if (userList != null && poem != null && userList.getUser().getUsername().equals(username)) {
+	        // Add the poem to the user list.
 	        userList.getPoems().add(poem);
-	        userListRepo.save(userList);
+	        return userListRepo.save(userList);
 	    }
+	    return null; // Handle the case when the operation fails.
 	}
 
-	public void addMiscellaneaToUserList(int userListId, Miscellanea miscellanea, String username) {
-	    UserList userList = userListRepo.findById(userListId).orElse(null);
-	    if (userList != null && userList.getUser().getUsername().equals(username)) {
-	        userList.getMiscellaneas().add(miscellanea);
-	        userListRepo.save(userList);
-	    }
-	}
+	@Override
+	public UserList removePoemFromUserList(int listId, int poemId, String username) {
+	    // Fetch the UserList and Poem entities by their IDs.
+	    UserList userList = userListRepo.findById(listId).orElse(null);
+	    Poem poem = poemRepo.findById(poemId).orElse(null);
 
+	    // Ensure that both entities exist and the user is the owner of the list.
+	    if (userList != null && poem != null && userList.getUser().getUsername().equals(username)) {
+	        // Remove the poem from the user list.
+	        userList.getPoems().remove(poem);
+	        return userListRepo.save(userList);
+	    }
+	    return null; // Handle the case when the operation fails.
+	}
 	
-	public void removeStoryFromUserList(int userListId, int storyId, String username) {
-	    UserList userList = userListRepo.findById(userListId).orElse(null);
-	    if (userList != null && userList.getUser().getUsername().equals(username)) {
-	        userList.getStories().removeIf(story -> story.getId() == storyId);
-	        userListRepo.save(userList);
+	@Override
+	public UserList addMiscellaneaToUserList(int listId, int miscellaneaId, String username) {
+	    // Fetch the UserList and Miscellanea entities by their IDs.
+	    UserList userList = userListRepo.findById(listId).orElse(null);
+	    Miscellanea miscellanea = miscellaneaRepo.findById(miscellaneaId).orElse(null);
+
+	    // Ensure that both entities exist and the user is the owner of the list.
+	    if (userList != null && miscellanea != null && userList.getUser().getUsername().equals(username)) {
+	        // Add the miscellanea to the user list.
+	        userList.getMiscellaneas().add(miscellanea);
+	        return userListRepo.save(userList);
 	    }
+	    return null; // Handle the case when the operation fails.
 	}
 
-	public void removePoemFromUserList(int userListId, int poemId, String username) {
-	    UserList userList = userListRepo.findById(userListId).orElse(null);
-	    if (userList != null && userList.getUser().getUsername().equals(username)) {
-	        userList.getPoems().removeIf(poem -> poem.getId() == poemId);
-	        userListRepo.save(userList);
+	@Override
+	public UserList removeMiscellaneaFromUserList(int listId, int miscellaneaId, String username) {
+	    // Fetch the UserList and Miscellanea entities by their IDs.
+	    UserList userList = userListRepo.findById(listId).orElse(null);
+	    Miscellanea miscellanea = miscellaneaRepo.findById(miscellaneaId).orElse(null);
+
+	    // Ensure that both entities exist and the user is the owner of the list.
+	    if (userList != null && miscellanea != null && userList.getUser().getUsername().equals(username)) {
+	        // Remove the miscellanea from the user list.
+	        userList.getMiscellaneas().remove(miscellanea);
+	        return userListRepo.save(userList);
 	    }
+	    return null; // Handle the case when the operation fail
 	}
-
-	public void removeMiscellaneaFromUserList(int userListId, int miscellaneaId, String username) {
-	    UserList userList = userListRepo.findById(userListId).orElse(null);
-	    if (userList != null && userList.getUser().getUsername().equals(username)) {
-	        userList.getMiscellaneas().removeIf(miscellanea -> miscellanea.getId() == miscellaneaId);
-	        userListRepo.save(userList);
-	    }
-	}
-
-
-
-
+	
 }

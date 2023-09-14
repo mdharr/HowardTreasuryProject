@@ -103,5 +103,66 @@ public class UserListController {
         userListService.delete(principal.getName(), listId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    
+    @PostMapping("users/{uid}/lists/{listId}/stories/{storyId}")
+    public ResponseEntity<Void> addStoryToList(
+            @PathVariable("uid") int userId,
+            @PathVariable("listId") int listId,
+            @PathVariable("storyId") int storyId,
+            Principal principal) {
+        userListService.addStoryToUserList(listId, storyId, principal.getName());
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("users/{uid}/lists/{listId}/stories/{storyId}")
+    public ResponseEntity<Void> removeStoryFromList(
+            @PathVariable("uid") int userId,
+            @PathVariable("listId") int listId,
+            @PathVariable("storyId") int storyId,
+            Principal principal) {
+        userListService.removeStoryFromUserList(listId, storyId, principal.getName());
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("users/{uid}/lists/{listId}/poems/{poemId}")
+    public ResponseEntity<Void> addPoemToList(
+            @PathVariable("uid") int userId,
+            @PathVariable("listId") int listId,
+            @PathVariable("poemId") int poemId,
+            Principal principal) {
+        userListService.addPoemToUserList(listId, poemId, principal.getName());
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("users/{uid}/lists/{listId}/poems/{poemId}")
+    public ResponseEntity<Void> removePoemFromList(
+            @PathVariable("uid") int userId,
+            @PathVariable("listId") int listId,
+            @PathVariable("poemId") int poemId,
+            Principal principal) {
+        userListService.removePoemFromUserList(listId, poemId, principal.getName());
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("users/{uid}/lists/{listId}/miscellaneas/{miscellaneaId}")
+    public ResponseEntity<Void> addMiscellaneaToList(
+            @PathVariable("uid") int userId,
+            @PathVariable("listId") int listId,
+            @PathVariable("miscellaneaId") int miscellaneaId,
+            Principal principal) {
+        userListService.addMiscellaneaToUserList(listId, miscellaneaId, principal.getName());
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("users/{uid}/lists/{listId}/miscellaneas/{miscellaneaId}")
+    public ResponseEntity<Void> removeMiscellaneaFromList(
+            @PathVariable("uid") int userId,
+            @PathVariable("listId") int listId,
+            @PathVariable("miscellaneaId") int miscellaneaId,
+            Principal principal) {
+        userListService.removeMiscellaneaFromUserList(listId, miscellaneaId, principal.getName());
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 	
 }
