@@ -33,7 +33,7 @@ public class UserListHasPoem {
 
 	public UserListHasPoem(UserListHasPoemId id, UserList userList, Poem poem) {
 		super();
-		this.id = id;
+		this.id = new UserListHasPoemId(userList.getId(), poem.getId());
 		this.userList = userList;
 		this.poem = poem;
 	}
