@@ -37,14 +37,13 @@ public class UserListController {
 	@Autowired
 	private AuthService authService;
 	
-	@GetMapping("users/{uid}/lists")
-	public List<UserList> getAllUserLists(@PathVariable("uid") int userId, Principal principal, HttpServletRequest req, HttpServletResponse res) {
-		return userListService.findAll(principal.getName());
-	}
-	
-    @GetMapping("users/{uid}/lists/{listId}")
+	@GetMapping("lists")
+    public List<UserList> getAllUserLists(Principal principal) {
+        return userListService.findAll(principal.getName());
+    }
+
+    @GetMapping("lists/{listId}")
     public ResponseEntity<UserList> getUserList(
-            @PathVariable("uid") int userId,
             @PathVariable("listId") int listId,
             Principal principal) {
         UserList userList = userListService.find(principal.getName(), listId);
@@ -55,20 +54,20 @@ public class UserListController {
         }
     }
 
-    @PostMapping("users/{uid}/lists")
+    @PostMapping("lists")
     public ResponseEntity<UserList> createUserList(
-            @PathVariable("uid") int userId,
-            @RequestBody UserList userList) {
+            @RequestBody UserList userList,
+            Principal principal) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        
+
         // Ensure the user is authenticated.
         if (authentication != null && authentication.isAuthenticated()) {
             // Retrieve the username from the authentication object.
             String username = authentication.getName();
-            
+
             // Fetch the User entity based on the username (or ID) from your user repository.
             User user = authService.getUserByUsername(username);
-            
+
             if (user != null) {
                 userList.setUser(user); // Set the associated user.
                 UserList createdUserList = userListService.create(username, userList);
@@ -80,10 +79,8 @@ public class UserListController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-
-    @PutMapping("users/{uid}/lists/{listId}")
+    @PutMapping("lists/{listId}")
     public ResponseEntity<UserList> updateUserList(
-            @PathVariable("uid") int userId,
             @PathVariable("listId") int listId,
             @RequestBody UserList userList,
             Principal principal) {
@@ -95,74 +92,96 @@ public class UserListController {
         }
     }
 
-    @DeleteMapping("users/{uid}/lists/{listId}")
+    @DeleteMapping("lists/{listId}")
     public ResponseEntity<Void> deleteUserList(
-            @PathVariable("uid") int userId,
             @PathVariable("listId") int listId,
             Principal principal) {
         userListService.delete(principal.getName(), listId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     
-    @PostMapping("users/{uid}/lists/{listId}/stories/{storyId}")
-    public ResponseEntity<Void> addStoryToList(
-            @PathVariable("uid") int userId,
+    @PostMapping("lists/{listId}/stories/{storyId}")
+    public ResponseEntity<?> addStoryToList(
             @PathVariable("listId") int listId,
             @PathVariable("storyId") int storyId,
             Principal principal) {
-        userListService.addStoryToUserList(listId, storyId, principal.getName());
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        UserList updatedUserList = userListService.addStoryToUserList(listId, storyId, principal.getName());
+
+        if (updatedUserList != null) {
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>("Unauthorized access: You cannot modify this user's list.", HttpStatus.FORBIDDEN);
+        }
     }
 
-    @DeleteMapping("users/{uid}/lists/{listId}/stories/{storyId}")
-    public ResponseEntity<Void> removeStoryFromList(
-            @PathVariable("uid") int userId,
+    @DeleteMapping("lists/{listId}/stories/{storyId}")
+    public ResponseEntity<?> removeStoryFromList(
             @PathVariable("listId") int listId,
             @PathVariable("storyId") int storyId,
             Principal principal) {
-        userListService.removeStoryFromUserList(listId, storyId, principal.getName());
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        UserList updatedUserList = userListService.removeStoryFromUserList(listId, storyId, principal.getName());
+
+        if (updatedUserList != null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>("Unauthorized access: You cannot modify this user's list.", HttpStatus.FORBIDDEN);
+        }
     }
 
-    @PostMapping("users/{uid}/lists/{listId}/poems/{poemId}")
-    public ResponseEntity<Void> addPoemToList(
-            @PathVariable("uid") int userId,
+    @PostMapping("lists/{listId}/poems/{poemId}")
+    public ResponseEntity<?> addPoemToList(
             @PathVariable("listId") int listId,
             @PathVariable("poemId") int poemId,
             Principal principal) {
-        userListService.addPoemToUserList(listId, poemId, principal.getName());
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        UserList updatedUserList = userListService.addPoemToUserList(listId, poemId, principal.getName());
+
+        if (updatedUserList != null) {
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>("Unauthorized access: You cannot modify this user's list.", HttpStatus.FORBIDDEN);
+        }
     }
 
-    @DeleteMapping("users/{uid}/lists/{listId}/poems/{poemId}")
-    public ResponseEntity<Void> removePoemFromList(
-            @PathVariable("uid") int userId,
+    @DeleteMapping("lists/{listId}/poems/{poemId}")
+    public ResponseEntity<?> removePoemFromList(
             @PathVariable("listId") int listId,
             @PathVariable("poemId") int poemId,
             Principal principal) {
-        userListService.removePoemFromUserList(listId, poemId, principal.getName());
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        UserList updatedUserList = userListService.removePoemFromUserList(listId, poemId, principal.getName());
+
+        if (updatedUserList != null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>("Unauthorized access: You cannot modify this user's list.", HttpStatus.FORBIDDEN);
+        }
     }
 
-    @PostMapping("users/{uid}/lists/{listId}/miscellaneas/{miscellaneaId}")
-    public ResponseEntity<Void> addMiscellaneaToList(
-            @PathVariable("uid") int userId,
+    @PostMapping("lists/{listId}/miscellaneas/{miscellaneaId}")
+    public ResponseEntity<?> addMiscellaneaToList(
             @PathVariable("listId") int listId,
             @PathVariable("miscellaneaId") int miscellaneaId,
             Principal principal) {
-        userListService.addMiscellaneaToUserList(listId, miscellaneaId, principal.getName());
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        UserList updatedUserList = userListService.addMiscellaneaToUserList(listId, miscellaneaId, principal.getName());
+
+        if (updatedUserList != null) {
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>("Unauthorized access: You cannot modify this user's list.", HttpStatus.FORBIDDEN);
+        }
     }
 
-    @DeleteMapping("users/{uid}/lists/{listId}/miscellaneas/{miscellaneaId}")
-    public ResponseEntity<Void> removeMiscellaneaFromList(
-            @PathVariable("uid") int userId,
+    @DeleteMapping("lists/{listId}/miscellaneas/{miscellaneaId}")
+    public ResponseEntity<?> removeMiscellaneaFromList(
             @PathVariable("listId") int listId,
             @PathVariable("miscellaneaId") int miscellaneaId,
             Principal principal) {
-        userListService.removeMiscellaneaFromUserList(listId, miscellaneaId, principal.getName());
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+        UserList updatedUserList = userListService.removeMiscellaneaFromUserList(listId, miscellaneaId, principal.getName());
 
+        if (updatedUserList != null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>("Unauthorized access: You cannot modify this user's list.", HttpStatus.FORBIDDEN);
+        }
+    }
 	
 }
