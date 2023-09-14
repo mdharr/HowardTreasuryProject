@@ -27,10 +27,6 @@ public class Person {
 	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
-	private List<ListContent> listContents;
-	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 
 	public Person() {
@@ -38,11 +34,10 @@ public class Person {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Person(int id, String name, List<ListContent> listContents, List<Collection> collections) {
+	public Person(int id, String name, List<Collection> collections) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.listContents = listContents;
 		this.collections = collections;
 	}
 
@@ -60,14 +55,6 @@ public class Person {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<ListContent> getListContents() {
-		return listContents;
-	}
-
-	public void setListContents(List<ListContent> listContents) {
-		this.listContents = listContents;
 	}
 
 	public List<Collection> getCollections() {
@@ -97,7 +84,7 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", name=" + name + ", listContents=" + listContents + "]";
+		return "Person [id=" + id + ", name=" + name + "]";
 	}
 
 }
