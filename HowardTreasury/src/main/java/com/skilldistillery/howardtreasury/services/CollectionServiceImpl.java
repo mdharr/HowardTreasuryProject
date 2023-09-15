@@ -2,7 +2,9 @@ package com.skilldistillery.howardtreasury.services;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -153,9 +155,25 @@ public class CollectionServiceImpl implements CollectionService {
 	@Override
     public CollectionDetailsDTO findCollectionDetails(int collectionId) {
         Optional<Collection> collectionOpt = collectionRepo.findById(collectionId);
-
+        
         if (collectionOpt.isPresent()) {
             Collection collection = collectionOpt.get();
+            
+            Map<String, Object> response = new HashMap<>();
+            
+            response.put("stories", collection.getStories());
+            response.put("poems", collection.getPoems());
+            response.put("persons", collection.getPersons());
+            response.put("miscellaneas", collection.getMiscellaneas());
+            
+            for (String key : response.keySet()) {
+				
+            	Object value = response.get(key);
+            	
+            	System.out.print("Key:" + key);
+            	System.out.println("Value:" + value);
+			}
+            
             Series series = collection.getSeries();
             List<Story> stories = collection.getStories();
             List<Poem> poems = collection.getPoems();
