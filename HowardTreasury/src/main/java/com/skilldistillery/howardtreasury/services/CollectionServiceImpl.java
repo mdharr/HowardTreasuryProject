@@ -5,22 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
-import com.skilldistillery.howardtreasury.entities.Illustrator;
-import com.skilldistillery.howardtreasury.entities.Series;
-import com.skilldistillery.howardtreasury.repositories.CollectionImageRepository;
+import com.skilldistillery.howardtreasury.entities.Miscellanea;
+import com.skilldistillery.howardtreasury.entities.Person;
+import com.skilldistillery.howardtreasury.entities.Poem;
+import com.skilldistillery.howardtreasury.entities.Story;
 import com.skilldistillery.howardtreasury.repositories.CollectionRepository;
-import com.skilldistillery.howardtreasury.repositories.IllustratorRepository;
-import com.skilldistillery.howardtreasury.repositories.MiscellaneaRepository;
-import com.skilldistillery.howardtreasury.repositories.PersonRepository;
-import com.skilldistillery.howardtreasury.repositories.PoemRepository;
-import com.skilldistillery.howardtreasury.repositories.SeriesRepository;
-import com.skilldistillery.howardtreasury.repositories.StoryRepository;
 
 @Service
 public class CollectionServiceImpl implements CollectionService {
@@ -152,5 +146,30 @@ public class CollectionServiceImpl implements CollectionService {
 	public Collection getByTitle(String collectionTitle) {
 		return collectionRepo.findByTitle(collectionTitle);
 	}
+	
+	@Override
+    public CollectionDetailsDTO findCollectionDetails(int collectionId) {
+        Optional<Collection> collectionOpt = collectionRepo.findById(collectionId);
+
+        if (collectionOpt.isPresent()) {
+            Collection collection = collectionOpt.get();
+            List<Story> stories = collection.getStories();
+            List<Poem> poems = collection.getPoems();
+            List<Person> persons = collection.getPersons();
+            List<Miscellanea> miscellaneas = collection.getMiscellaneas();
+
+            // Create and populate the DTO
+            CollectionDetailsDTO collectionDetailsDTO = new CollectionDetailsDTO();
+            collectionDetailsDTO.setCollection(collection);
+            collectionDetailsDTO.setStories(stories);
+            collectionDetailsDTO.setPoems(poems);
+            collectionDetailsDTO.setPersons(persons);
+            collectionDetailsDTO.setMiscellaneas(miscellaneas);
+
+            return collectionDetailsDTO;
+        }
+
+        return null;
+    }
 	
 }

@@ -2,6 +2,7 @@ package com.skilldistillery.howardtreasury.services;
 
 import java.util.List;
 
+import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
 
 public interface CollectionService {
@@ -17,4 +18,6 @@ public interface CollectionService {
 	public void delete(int collectionId);
 	
 	public Collection getByTitle(String collectionTitle);
+
+	CollectionDetailsDTO findCollectionDetails(int collectionId);
 }
