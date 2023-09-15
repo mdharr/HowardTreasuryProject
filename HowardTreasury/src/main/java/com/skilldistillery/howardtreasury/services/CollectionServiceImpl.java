@@ -10,9 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
+import com.skilldistillery.howardtreasury.entities.CollectionImage;
+import com.skilldistillery.howardtreasury.entities.Illustrator;
 import com.skilldistillery.howardtreasury.entities.Miscellanea;
 import com.skilldistillery.howardtreasury.entities.Person;
 import com.skilldistillery.howardtreasury.entities.Poem;
+import com.skilldistillery.howardtreasury.entities.Series;
 import com.skilldistillery.howardtreasury.entities.Story;
 import com.skilldistillery.howardtreasury.repositories.CollectionRepository;
 
@@ -153,18 +156,24 @@ public class CollectionServiceImpl implements CollectionService {
 
         if (collectionOpt.isPresent()) {
             Collection collection = collectionOpt.get();
+            Series series = collection.getSeries();
             List<Story> stories = collection.getStories();
             List<Poem> poems = collection.getPoems();
             List<Person> persons = collection.getPersons();
             List<Miscellanea> miscellaneas = collection.getMiscellaneas();
+            List<Illustrator> illustrators = collection.getIllustrators();
+            List<CollectionImage> collectionImages = collection.getCollectionImages();
 
             // Create and populate the DTO
             CollectionDetailsDTO collectionDetailsDTO = new CollectionDetailsDTO();
             collectionDetailsDTO.setCollection(collection);
+            collectionDetailsDTO.setSeries(series);
             collectionDetailsDTO.setStories(stories);
             collectionDetailsDTO.setPoems(poems);
             collectionDetailsDTO.setPersons(persons);
             collectionDetailsDTO.setMiscellaneas(miscellaneas);
+            collectionDetailsDTO.setIllustrators(illustrators);
+            collectionDetailsDTO.setCollectionImages(collectionImages);
 
             return collectionDetailsDTO;
         }
