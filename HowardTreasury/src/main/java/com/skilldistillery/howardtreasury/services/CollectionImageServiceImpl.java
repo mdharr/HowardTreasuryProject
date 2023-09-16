@@ -32,6 +32,6 @@ public class CollectionImageServiceImpl implements CollectionImageService {
 
 	@Override
 	public CollectionImage create(CollectionImage collectionImage) {
-		return null;
+		return collectionImageRepo.save(collectionImage);
 	}
 }
