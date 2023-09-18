@@ -8,4 +8,6 @@ public interface StoryService {
 
 	public List<Story> findByCollectionId(int collectionId);
 	
+	public List<Story> findAll();
+	
 }

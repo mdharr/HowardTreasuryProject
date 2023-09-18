@@ -25,4 +25,9 @@ public class StoryServiceImpl implements StoryService {
 		return storyRepo.findByCollections_Id(collectionId);
 	}
 
+	@Override
+	public List<Story> findAll() {
+		return storyRepo.findAll();
+	}
+
 }
