@@ -31,3 +31,20 @@ public class StoryServiceImpl implements StoryService {
 	}
 
 }
+
+//public Collection create(Collection collection) {
+//
+//Collection newCollection = new Collection();
+//
+//newCollection.setTitle(collection.getTitle());
+//
+//if (collection.getSeries() != null) {
+//	newCollection.setSeries(collection.getSeries());
+//}
+//
+//if (collection.getStories() != null) {
+//    newCollection.setStories(collection.getStories());
+//}
+//
+//return collectionRepo.save(newCollection);
+//}

@@ -19,3 +19,20 @@ public class PersonServiceImpl implements PersonService {
 		return personRepo.findAll();
 	}
 }
+
+//public Collection create(Collection collection) {
+//
+//Collection newCollection = new Collection();
+//
+//newCollection.setTitle(collection.getTitle());
+//
+//if (collection.getSeries() != null) {
+//	newCollection.setSeries(collection.getSeries());
+//}
+//
+//if (collection.getStories() != null) {
+//    newCollection.setStories(collection.getStories());
+//}
+//
+//return collectionRepo.save(newCollection);
+//}
