@@ -18,4 +18,9 @@ public class MiscellaneaServiceImpl implements MiscellaneaService {
 	public List<Miscellanea> findByCollectionId(int collectionId) {
 		return miscellaneaRepo.findByCollections_Id(collectionId);
 	}
+
+	@Override
+	public List<Miscellanea> findAll() {
+		return miscellaneaRepo.findAll();
+	}
 }

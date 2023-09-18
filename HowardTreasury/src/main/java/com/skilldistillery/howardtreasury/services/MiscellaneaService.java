@@ -7,4 +7,6 @@ import com.skilldistillery.howardtreasury.entities.Miscellanea;
 public interface MiscellaneaService {
 
 	public List<Miscellanea> findByCollectionId(int collectionId);
+	
+	public List<Miscellanea> findAll();
 }
