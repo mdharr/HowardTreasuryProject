@@ -18,4 +18,9 @@ public class PoemServiceImpl implements PoemService {
 	public List<Poem> findByCollectionId(int collectionId) {
 		return poemRepo.findByCollections_Id(collectionId);
 	}
+
+	@Override
+	public List<Poem> findAll() {
+		return poemRepo.findAll();
+	}
 }
