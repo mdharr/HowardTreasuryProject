@@ -31,14 +31,25 @@ public class CollectionController {
 	private CollectionService collectionService;
 	
 	@GetMapping("collections")
-	public List<Collection> getAllCollections() {
-		return collectionService.findAll();
+	public ResponseEntity<List<Collection>> getAllCollections() {
+		List<Collection> collections = collectionService.findAll();
+		if (collections.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		else {
+			return new ResponseEntity<>(collections, HttpStatus.OK);
+		}
 	}
 	
-	// collection by id
 	@GetMapping("collections/{cid}")
-	public Collection getCollectionById(@PathVariable("cid") int collectionId) {
-		return collectionService.find(collectionId);
+	public ResponseEntity<Collection> getCollectionById(@PathVariable("cid") int collectionId) {
+		Collection collection = collectionService.find(collectionId);
+		if (collection != null) {
+			return new ResponseEntity<>(collection, HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@PostMapping("collections")
