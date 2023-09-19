@@ -61,7 +61,6 @@ public class CollectionServiceImpl implements CollectionService {
 		if (collection.getIllustrators() != null) {
 		    newCollection.setIllustrators(collection.getIllustrators());
 		}
-
 		
 		if (collection.getStories() != null) {
 		    newCollection.setStories(collection.getStories());

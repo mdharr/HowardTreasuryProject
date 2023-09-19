@@ -35,22 +35,15 @@ public class IllustratorServiceImpl implements IllustratorService {
 
 	@Override
 	public Illustrator create(Illustrator illustrator) {
-		return illustratorRepo.save(illustrator);
+		
+		Illustrator newIllustrator = new Illustrator();
+		
+		newIllustrator.setName(illustrator.getName());
+		
+		if(illustrator.getCollections() != null) {
+			newIllustrator.setCollections(illustrator.getCollections());
+		}
+		
+		return illustratorRepo.save(newIllustrator);
 	}
 }
-//public Collection create(Collection collection) {
-//
-//Collection newCollection = new Collection();
-//
-//newCollection.setTitle(collection.getTitle());
-//
-//if (collection.getSeries() != null) {
-//	newCollection.setSeries(collection.getSeries());
-//}
-//
-//if (collection.getStories() != null) {
-//    newCollection.setStories(collection.getStories());
-//}
-//
-//return collectionRepo.save(newCollection);
-//}
