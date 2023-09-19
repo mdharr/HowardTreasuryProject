@@ -5,6 +5,8 @@ import java.util.List;
 import com.skilldistillery.howardtreasury.entities.CollectionImage;
 
 public interface CollectionImageService {
+	
+	public List<CollectionImage> findByCollectionId(int collectionId);
 
 	public List<CollectionImage> findAll();
 	

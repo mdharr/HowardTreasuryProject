@@ -26,14 +26,37 @@ public class CollectionImageController {
 	@Autowired
 	private CollectionImageService collectionImageService;
 	
+	@GetMapping("collections/{cid}/collection-images")
+	public ResponseEntity<List<CollectionImage>> getCollectionImagesByCollection(@PathVariable("cid") int collectionId) {
+		List<CollectionImage> collectionImages = collectionImageService.findByCollectionId(collectionId);
+		if (collectionImages.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		else {
+			return new ResponseEntity<>(collectionImages, HttpStatus.OK);
+		}
+	}
+	
 	@GetMapping("collection-images")
-	public List<CollectionImage> getAllCollectionImages() {
-		return collectionImageService.findAll();
+	public ResponseEntity<List<CollectionImage>> getAllCollectionImages() {
+		List<CollectionImage> collectionImages = collectionImageService.findAll();
+		if (collectionImages.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		else {
+			return new ResponseEntity<>(collectionImages, HttpStatus.OK);
+		}
 	}
 	
 	@GetMapping("collection-images/{cid}")
-	public CollectionImage getCollectionImageById(@PathVariable("cid") int collectionImageId) {
-		return collectionImageService.find(collectionImageId);
+	public ResponseEntity<CollectionImage> getCollectionImageById(@PathVariable("cid") int collectionImageId) {
+		CollectionImage collectionImage = collectionImageService.find(collectionImageId);
+		if (collectionImage != null) {
+			return new ResponseEntity<>(collectionImage, HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@PostMapping("collection-images")

@@ -14,6 +14,12 @@ public class CollectionImageServiceImpl implements CollectionImageService {
 
 	@Autowired
 	private CollectionImageRepository collectionImageRepo;
+	
+
+	@Override
+	public List<CollectionImage> findByCollectionId(int collectionId) {
+		return collectionImageRepo.findByCollections_Id(collectionId);
+	}
 
 	@Override
 	public List<CollectionImage> findAll() {
@@ -42,6 +48,7 @@ public class CollectionImageServiceImpl implements CollectionImageService {
 		
 		return collectionImageRepo.save(newCollectionImage);
 	}
+
 	
 	
 	
