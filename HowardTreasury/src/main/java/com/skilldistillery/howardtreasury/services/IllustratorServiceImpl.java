@@ -16,6 +16,11 @@ public class IllustratorServiceImpl implements IllustratorService {
 	private IllustratorRepository illustratorRepo;
 
 	@Override
+	public List<Illustrator> findByCollectionId(int collectionId) {
+		return illustratorRepo.findByCollections_Id(collectionId);
+	}
+
+	@Override
 	public List<Illustrator> findAll() {
 		return illustratorRepo.findAll();
 	}
@@ -46,4 +51,5 @@ public class IllustratorServiceImpl implements IllustratorService {
 		
 		return illustratorRepo.save(newIllustrator);
 	}
+
 }
