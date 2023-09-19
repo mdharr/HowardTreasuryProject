@@ -1,6 +1,7 @@
 package com.skilldistillery.howardtreasury.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,21 +19,28 @@ public class SeriesServiceImpl implements SeriesService {
 	public List<Series> findAll() {
 		return seriesRepo.findAll();
 	}
-}
 
-//public Collection create(Collection collection) {
-//
-//Collection newCollection = new Collection();
-//
-//newCollection.setTitle(collection.getTitle());
-//
-//if (collection.getSeries() != null) {
-//	newCollection.setSeries(collection.getSeries());
-//}
-//
-//if (collection.getStories() != null) {
-//    newCollection.setStories(collection.getStories());
-//}
-//
-//return collectionRepo.save(newCollection);
-//}
+	@Override
+	public Series find(int seriesId) {
+		Optional<Series> seriesOpt = seriesRepo.findById(seriesId);
+		if(seriesOpt.isPresent()) {
+			Series series = seriesOpt.get();
+			return series;
+		}
+		return null;
+	}
+
+	@Override
+	public Series create(Series series) {
+		
+		Series newSeries = new Series();
+		
+		newSeries.setTitle(series.getTitle());
+		
+		if(series.getCollections() != null) {
+			newSeries.setCollections(series.getCollections());
+		}
+		
+		return seriesRepo.save(newSeries);
+	}
+}
