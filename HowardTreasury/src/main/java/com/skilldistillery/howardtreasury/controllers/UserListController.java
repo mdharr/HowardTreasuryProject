@@ -35,8 +35,14 @@ public class UserListController {
 	private AuthService authService;
 	
 	@GetMapping("lists")
-    public List<UserList> getAllUserLists(Principal principal) {
-        return userListService.findAll(principal.getName());
+    public ResponseEntity<List<UserList>> getAllUserLists(Principal principal) {
+		List<UserList> userLists = userListService.findAll(principal.getName());
+		if (userLists.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		else {
+			return new ResponseEntity<>(userLists, HttpStatus.OK);
+		}
     }
 
     @GetMapping("lists/{listId}")
