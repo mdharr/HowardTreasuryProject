@@ -3,6 +3,8 @@ package com.skilldistillery.howardtreasury.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,8 +23,42 @@ public class MiscellaneaController {
 	private MiscellaneaService miscellaneaService;
 	
 	@GetMapping("collections/{cid}/miscellaneas")
-    public List<Miscellanea> getAllMiscellaneaByCollection(@PathVariable("cid") int collectionId) {
-        return miscellaneaService.findByCollectionId(collectionId);
+    public ResponseEntity<List<Miscellanea>> getAllMiscellaneaByCollection(@PathVariable("cid") int collectionId) {
+		List<Miscellanea> miscellaneas = miscellaneaService.findByCollectionId(collectionId);
+		
+		if (miscellaneas.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		else {
+			return new ResponseEntity<>(miscellaneas, HttpStatus.OK);
+		}
+		
     }
+	
+	@GetMapping("miscellaneas")
+	public ResponseEntity<List<Miscellanea>> getAllMiscellanea() {
+		List<Miscellanea> miscellaneas = miscellaneaService.findAll();
+		
+		if (miscellaneas.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		else {
+			return new ResponseEntity<>(miscellaneas, HttpStatus.OK);
+		}
+		
+	}
+	
+	@GetMapping("miscellaneas/{mid}")
+	public ResponseEntity<Miscellanea> getMiscellaneaById(@PathVariable("mid") int miscellaneaId) {
+		Miscellanea miscellanea = miscellaneaService.find(miscellaneaId);
+		
+		if (miscellanea != null) {
+			return new ResponseEntity<>(miscellanea, HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+	}
 	
 }
