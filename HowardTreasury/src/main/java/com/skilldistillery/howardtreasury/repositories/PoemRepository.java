@@ -10,4 +10,5 @@ public interface PoemRepository extends JpaRepository<Poem, Integer> {
 
 	List<Poem> findByCollections_Id(int collectionId);
 	
+	List<Poem> findAllByOrderByIdAsc();
 }

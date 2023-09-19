@@ -22,7 +22,7 @@ public class PoemServiceImpl implements PoemService {
 
 	@Override
 	public List<Poem> findAll() {
-		return poemRepo.findAll();
+		return poemRepo.findAllByOrderByIdAsc();
 	}
 
 	@Override
