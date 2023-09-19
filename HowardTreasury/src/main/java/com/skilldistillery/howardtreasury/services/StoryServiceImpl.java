@@ -27,7 +27,7 @@ public class StoryServiceImpl implements StoryService {
 
 	@Override
 	public List<Story> findAll() {
-		return storyRepo.findAll();
+		return storyRepo.findAllByOrderByIdAsc();
 	}
 
 	@Override
