@@ -30,21 +30,30 @@ public class StoryServiceImpl implements StoryService {
 		return storyRepo.findAll();
 	}
 
-}
+	@Override
+	public Story find(int storyId) {
+		Optional<Story> storyOpt = storyRepo.findById(storyId);
+		if(storyOpt.isPresent()) {
+			Story story = storyOpt.get();
+			return story;
+		}
+		return null;
+	}
 
-//public Collection create(Collection collection) {
-//
-//Collection newCollection = new Collection();
-//
-//newCollection.setTitle(collection.getTitle());
-//
-//if (collection.getSeries() != null) {
-//	newCollection.setSeries(collection.getSeries());
-//}
-//
-//if (collection.getStories() != null) {
-//    newCollection.setStories(collection.getStories());
-//}
-//
-//return collectionRepo.save(newCollection);
-//}
+	@Override
+	public Story create(Story story) {
+		Story newStory = new Story();
+		newStory.setTitle(story.getTitle());
+		
+		if(story.getCollections() != null) {
+			newStory.setCollections(story.getCollections());
+		}
+		
+		if(story.getUserLists() != null) {
+			newStory.setUserLists(story.getUserLists());
+		}
+		
+		return storyRepo.save(newStory);
+	}
+
+}

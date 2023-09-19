@@ -10,4 +10,8 @@ public interface StoryService {
 	
 	public List<Story> findAll();
 	
+	public Story find(int storyId);
+	
+	public Story create(Story story);
+	
 }
