@@ -9,5 +9,9 @@ public interface PoemService {
 	public List<Poem> findByCollectionId(int collectionId);
 	
 	public List<Poem> findAll();
+	
+	public Poem find(int poemId);
+	
+	public Poem create(Poem poem);
 
 }
