@@ -1,6 +1,7 @@
 package com.skilldistillery.howardtreasury.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,21 +19,29 @@ public class PersonServiceImpl implements PersonService {
 	public List<Person> findAll() {
 		return personRepo.findAll();
 	}
+
+	@Override
+	public Person find(int personId) {
+		Optional<Person> personOpt = personRepo.findById(personId);
+		if(personOpt.isPresent()) {
+			Person person = personOpt.get();
+			return person;
+		}
+		return null;
+	}
+
+	@Override
+	public Person create(Person person) {
+		
+		Person newPerson = new Person();
+		
+		newPerson.setName(person.getName());
+		
+		if(person.getCollections() != null) {
+			newPerson.setCollections(person.getCollections());
+		}
+		
+		return personRepo.save(newPerson);
+	}
 }
 
-//public Collection create(Collection collection) {
-//
-//Collection newCollection = new Collection();
-//
-//newCollection.setTitle(collection.getTitle());
-//
-//if (collection.getSeries() != null) {
-//	newCollection.setSeries(collection.getSeries());
-//}
-//
-//if (collection.getStories() != null) {
-//    newCollection.setStories(collection.getStories());
-//}
-//
-//return collectionRepo.save(newCollection);
-//}
