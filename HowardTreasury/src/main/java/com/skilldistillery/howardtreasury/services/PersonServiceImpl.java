@@ -43,5 +43,10 @@ public class PersonServiceImpl implements PersonService {
 		
 		return personRepo.save(newPerson);
 	}
+	
+	@Override
+	public List<Person> findByCollectionId(int collectionId) {
+		return personRepo.findByCollections_Id(collectionId);
+	}
 }
 

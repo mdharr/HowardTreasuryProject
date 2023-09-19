@@ -11,4 +11,6 @@ public interface PersonService {
 	public Person find(int personId);
 	
 	public Person create(Person person);
+
+	List<Person> findByCollectionId(int collectionId);
 }
