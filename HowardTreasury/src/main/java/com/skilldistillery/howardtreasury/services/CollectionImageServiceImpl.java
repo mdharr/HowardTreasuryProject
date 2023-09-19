@@ -32,6 +32,17 @@ public class CollectionImageServiceImpl implements CollectionImageService {
 
 	@Override
 	public CollectionImage create(CollectionImage collectionImage) {
-		return collectionImageRepo.save(collectionImage);
+		CollectionImage newCollectionImage = new CollectionImage();
+		
+		newCollectionImage.setImageUrl(collectionImage.getImageUrl());
+		
+		if(collectionImage.getCollections() != null) {
+			newCollectionImage.setCollections(collectionImage.getCollections());
+		}
+		
+		return collectionImageRepo.save(newCollectionImage);
 	}
+	
+	
+	
 }
