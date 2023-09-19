@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
+import com.skilldistillery.howardtreasury.entities.Miscellanea;
 import com.skilldistillery.howardtreasury.services.CollectionService;
 
 @RestController
@@ -55,6 +56,16 @@ public class CollectionController {
 	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	    }
 	}
+	
+//	@PostMapping("collections")
+//	public ResponseEntity<Collection> create(@RequestBody Collection collection) {
+//		Collection createdCollection = collectionService.create(collection);
+//	    if (createdCollection != null) {
+//	        return new ResponseEntity<>(createdCollection, HttpStatus.CREATED);
+//	    } else {
+//	        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//	    }
+//	}
 	
 	@PutMapping("collections/{cid}")
 	public ResponseEntity<Collection> updateCollection(@RequestBody Collection collection, @PathVariable("cid") int collectionId) {
