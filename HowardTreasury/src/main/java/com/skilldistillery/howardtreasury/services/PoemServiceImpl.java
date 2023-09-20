@@ -40,6 +40,8 @@ public class PoemServiceImpl implements PoemService {
 		Poem newPoem = new Poem();
 		newPoem.setTitle(poem.getTitle());
 		
+		newPoem.setTextUrl(poem.getTextUrl());
+		
 		if (poem.getCollections() != null) {
 			newPoem.setCollections(poem.getCollections());
 		}
