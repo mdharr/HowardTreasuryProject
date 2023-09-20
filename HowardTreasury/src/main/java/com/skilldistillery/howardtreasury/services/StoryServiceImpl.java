@@ -45,6 +45,8 @@ public class StoryServiceImpl implements StoryService {
 		Story newStory = new Story();
 		newStory.setTitle(story.getTitle());
 		
+		newStory.setTextUrl(story.getTextUrl());
+		
 		if(story.getCollections() != null) {
 			newStory.setCollections(story.getCollections());
 		}
