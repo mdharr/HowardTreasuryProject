@@ -1,0 +1,22 @@
+<mat-toolbar style="border-bottom: 1px solid #b5b5b5;">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div style="display: flex; justify-content: center; width: 100%;">
+      <h1 style="margin:0; font-size: 16px; font-family: Libre Baskerville,Helvetica,Arial,sans-serif;">The Robert E. Howard Treasury</h1>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="menu" [@expandMenu]="menuState">
+  <!-- Menu content goes here -->
+  <div class="menu-row">About</div>
+  <div class="menu-row">Collections</div>
+  <div class="menu-row">Stories</div>
+  <div class="menu-row">Poems</div>
+  <div class="menu-row">Characters</div>
+  <div class="menu-row">Miscellanea</div>
+</div>
+<div style="width: 100%; height: 20px; padding: 5px;">
+  <p style="font-size: 12px; float:right;">Welcome Guest. Please Login or Register.</p>
+</div>

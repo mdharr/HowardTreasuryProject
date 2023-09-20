@@ -1,0 +1,19 @@
+.menu {
+  background-color: #ffffff;
+  max-height: 100%;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s, opacity 0.3s;
+}
+
+.menu-row {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  font-family: Hind,Helvetica,Arial,sans-serif;
+  text-transform: uppercase;
+}
+
+/* .menu-row:last-child {
+  border-bottom: none;
+} */
