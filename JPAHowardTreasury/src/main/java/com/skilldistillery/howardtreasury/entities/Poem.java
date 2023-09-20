@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +26,9 @@ public class Poem {
 	
 	private String title;
 	
+	@Column(name = "text_url")
+	private String textUrl;
+	
     @JsonIgnore
     @ManyToMany(mappedBy = "poems")
     private List<UserList> userLists;
@@ -38,10 +42,11 @@ public class Poem {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Poem(int id, String title, List<UserList> userLists, List<Collection> collections) {
+	public Poem(int id, String title, String textUrl, List<UserList> userLists, List<Collection> collections) {
 		super();
 		this.id = id;
 		this.title = title;
+		this.textUrl = textUrl;
 		this.userLists = userLists;
 		this.collections = collections;
 	}
@@ -60,6 +65,14 @@ public class Poem {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getTextUrl() {
+		return textUrl;
+	}
+
+	public void setTextUrl(String textUrl) {
+		this.textUrl = textUrl;
 	}
 
 	public List<UserList> getUserLists() {
@@ -97,7 +110,7 @@ public class Poem {
 
 	@Override
 	public String toString() {
-		return "Poem [id=" + id + ", title=" + title + "]";
+		return "Poem [id=" + id + ", title=" + title + ", textUrl=" + textUrl + "]";
 	}
     
 }

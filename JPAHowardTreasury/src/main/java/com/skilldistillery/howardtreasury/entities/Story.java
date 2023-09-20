@@ -4,17 +4,14 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Story {
@@ -24,6 +21,9 @@ public class Story {
 	private int id;
 	
 	private String title;
+	
+	@Column(name = "text_url")
+	private String textUrl;
 	
     @JsonIgnore
     @ManyToMany(mappedBy = "stories")
@@ -38,10 +38,11 @@ public class Story {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Story(int id, String title, List<UserList> userLists, List<Collection> collections) {
+	public Story(int id, String title, String textUrl, List<UserList> userLists, List<Collection> collections) {
 		super();
 		this.id = id;
 		this.title = title;
+		this.textUrl = textUrl;
 		this.userLists = userLists;
 		this.collections = collections;
 	}
@@ -60,6 +61,14 @@ public class Story {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getTextUrl() {
+		return textUrl;
+	}
+
+	public void setTextUrl(String textUrl) {
+		this.textUrl = textUrl;
 	}
 
 	public List<UserList> getUserLists() {
@@ -97,7 +106,7 @@ public class Story {
 
 	@Override
 	public String toString() {
-		return "Story [id=" + id + ", title=" + title + "]";
+		return "Story [id=" + id + ", title=" + title + ", textUrl=" + textUrl + "]";
 	}
 
 }
