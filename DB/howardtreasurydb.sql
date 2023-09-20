@@ -583,7 +583,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `story` (`id`, `title`, `text_url`) VALUES (1, 'The Altar and the Scorpion', '');
+INSERT INTO `story` (`id`, `title`, `text_url`) VALUES (1, 'The Altar and the Scorpion', NULL);
 INSERT INTO `story` (`id`, `title`, `text_url`) VALUES (2, 'By This Axe I Rule!', NULL);
 INSERT INTO `story` (`id`, `title`, `text_url`) VALUES (3, 'The Cat and the Skull', NULL);
 INSERT INTO `story` (`id`, `title`, `text_url`) VALUES (4, 'The Curse of the Golden Skull', NULL);
