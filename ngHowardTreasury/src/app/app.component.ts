@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngHowardTreasury';
+  sidenav: any;
+
+  onMenuClick() {
+    console.log('Menu clicked');
+    this.sidenav.toggle();
+  }
+
 }
