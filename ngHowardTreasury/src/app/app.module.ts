@@ -27,6 +27,7 @@ import { CollectionsComponent } from './components/collections/collections.compo
 import { CollectionDetailsComponent } from './components/collection-details/collection-details.component';
 import { StoriesComponent } from './components/stories/stories.component';
 import { StoryDetailsComponent } from './components/story-details/story-details.component';
+import { PoemsComponent } from './components/poems/poems.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { StoryDetailsComponent } from './components/story-details/story-details.
     CollectionDetailsComponent,
     StoriesComponent,
     StoryDetailsComponent,
+    PoemsComponent,
   ],
   imports: [
     BrowserModule,
