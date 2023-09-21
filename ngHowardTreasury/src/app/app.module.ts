@@ -21,6 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     NavbarComponent,
     LoginComponent,
     LogoutComponent,
+    LoginDialogComponent,
   ],
   imports: [
     BrowserModule,
