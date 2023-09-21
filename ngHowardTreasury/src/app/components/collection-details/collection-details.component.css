@@ -1,8 +1,42 @@
 .main {
   display: flex;
+  justify-content: space-evenly;
+  padding: 75px;
+  padding-top: 0;
 }
 
 .contents-box {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.collection-image {
+  width: 400px;
+}
+
+.contents-lists {
+  list-style: upper-roman;
+}
+
+.contents-title {
+  padding-left: 10px;
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  color: #9e0000;
+  margin:0;
+}
+
+.collection-title {
+  font-size: 30px;
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  color: #9e0000;
+}
+
+.title-container {
+  padding: 25px;
+  display:flex;
+  justify-content: center;
+  margin-top: 25px;
 }

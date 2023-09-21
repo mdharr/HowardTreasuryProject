@@ -8,11 +8,11 @@
     <ng-container *ngFor="let collection of collections">
       <li class="collection-item">
         <div class="collection-card">
-          <a [routerLink]="['/collections', collection.id, 'magazines']" class="collection-thumbnail">
+          <a [routerLink]="['/collections', collection.id]" class="collection-thumbnail">
             <img class="thumbnail-img" src="{{ collection.collectionImages[0].imageUrl }}" alt="" loading="lazy">
           </a>
           <div class="collection-title">
-            <a [routerLink]="['/collections', collection.id, 'magazines']">
+            <a [routerLink]="['/collections', collection.id]">
               <h4>{{ collection.title }}</h4>
             </a>
           </div>

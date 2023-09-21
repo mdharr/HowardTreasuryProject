@@ -1,31 +1,34 @@
+<div class="title-container">
+  <h1 class="collection-title">{{ collection.title }}</h1>
+</div>
 <div class="main">
   <div class="contents-box">
-    <h2>Stories</h2>
-    <div>
-      <ul>
+    <h2 class="contents-title">Stories</h2>
+    <div class="story-contents">
+      <ul class="contents-lists">
         <ng-container *ngFor="let story of collection.stories">
           <li>{{ story.title }}</li>
         </ng-container>
       </ul>
     </div>
-    <h2>Poems</h2>
-    <div>
-      <ul>
+    <h2 class="contents-title">Poems</h2>
+    <div class="poem-contents">
+      <ul class="contents-lists">
         <ng-container *ngFor="let poem of collection.poems">
           <li>{{ poem.title }}</li>
         </ng-container>
       </ul>
     </div>
-    <h2>Miscellanea</h2>
-    <div>
-      <ul>
+    <h2 class="contents-title">Miscellanea</h2>
+    <div class="miscellanea-contents">
+      <ul class="contents-lists">
         <ng-container *ngFor="let miscellanea of collection.miscellaneas">
           <li>{{ miscellanea.title }}</li>
         </ng-container>
       </ul>
     </div>
   </div>
-  <div class="collection-image">
-    <img src="{{ collection.collectionImages[0].imageUrl }}" alt="">
+  <div class="image-container">
+    <img class="collection-image" *ngIf="collectionImages && collectionImages.length > 0" src="{{ collectionImages[0].imageUrl }}" alt="">
   </div>
 </div>

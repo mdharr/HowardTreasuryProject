@@ -32,7 +32,7 @@ export class Collection {
     poems: Poem[] = [],
     persons: Person[] = [],
     miscellaneas: Miscellanea[] = [],
-    collectionImages: CollectionImage[],
+    collectionImages: CollectionImage[] = [],
     illustrators: Illustrator[] = []
   ) {
     this.id = id;

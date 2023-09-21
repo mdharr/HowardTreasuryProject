@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Collection } from 'src/app/models/collection';
 import { AuthService } from 'src/app/services/auth.service';
 import { CollectionService } from 'src/app/services/collection.service';
+import { CollectionImage } from 'src/app/models/collection-image';
 
 @Component({
   selector: 'app-collection-details',
@@ -15,6 +16,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   // property initialization
   collectionId: number = 0;
   collection: Collection = new Collection();
+  collectionImages!: CollectionImage[];
 
   // service injection
   auth = inject(AuthService);
@@ -48,6 +50,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
     this.collectionSubscription = this.collectionService.find(this.collectionId).subscribe({
       next: (data) => {
         this.collection = data;
+        this.collectionImages = data.collectionImages;
       },
       error: (fail) => {
         console.error('Error getting collection');
