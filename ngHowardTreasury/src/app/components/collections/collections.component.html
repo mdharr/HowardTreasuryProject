@@ -1,1 +1,18 @@
-<p>collections works!</p>
+<div class="main">
+  <ul class="collection-list">
+    <ng-container *ngFor="let collection of collections">
+      <li class="collection-item">
+        <div class="collection-card">
+          <!-- <a [routerLink]="['/collections', collection.id, 'magazines']" class="collection-thumbnail">
+            <img class="thumbnail-img" src="{{ collection.imageUrl }}" alt="" loading="lazy">
+          </a> -->
+          <div class="collection-title">
+            <a [routerLink]="['/collections', collection.id, 'magazines']">
+              <h4>{{ collection.title }}</h4>
+            </a>
+          </div>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</div>

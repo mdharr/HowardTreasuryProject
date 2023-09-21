@@ -1,0 +1,132 @@
+.collection-container {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.collection-card {
+  border: 1px rgb(44, 44, 44);
+  border-radius: var(--tileCornerRadius, 4px);
+  box-shadow: 1px 1px 2px 0px;
+  box-sizing: border-box;
+  max-height: 310px;
+  height: 310px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 260px;
+  width: 260px;
+  padding: 5px;
+}
+
+.collection-card:hover {
+  box-shadow: rgba(8, 8, 32, 0.8) 0px 0px 6px 2px;
+    transition: box-shadow 0.1s ease 0s;
+    cursor:pointer;
+}
+
+.thumbnail-img {
+  border: 1px solid black;
+  max-width: 182px;
+}
+
+.collection-title {
+  text-align:center;
+}
+
+.collection-title a {
+  text-decoration: none;
+  color: #9e0000;
+}
+
+.collection-title a:hover {
+  text-decoration: underline;
+}
+
+::ng-deep .mat-typography h4 {
+  font-size: 20px;
+    font-weight: 600;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.collection-thumbnail {
+  text-align: center;
+}
+
+
+ .main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.collection-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.collection-item {
+  margin: 5px;
+}
+
+.collection-card {
+  background-color: #fff;
+  border: 1px solid rgb(44, 44, 44);
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px 0px;
+  max-height: 310px;
+  height: 310px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 260px;
+  width: 260px;
+  padding: 10px;
+  transition: box-shadow 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.collection-card:hover {
+  box-shadow: rgba(8, 8, 32, 0.8) 0px 0px 6px 2px;
+  cursor: pointer;
+}
+
+.thumbnail-img {
+  border: 1px solid black;
+  max-width: 182px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.collection-title {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.collection-title a {
+  text-decoration: none;
+  color: #9e0000;
+  transition: color 0.2s ease-in-out;
+}
+
+.collection-title a:hover {
+  text-decoration: underline;
+  color: #c00;
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
