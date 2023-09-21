@@ -23,6 +23,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { RegisterDialogComponent } from './components/register-dialog/register-dialog.component';
+import { CollectionsComponent } from './components/collections/collections.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { RegisterDialogComponent } from './components/register-dialog/register-d
     LogoutComponent,
     LoginDialogComponent,
     RegisterDialogComponent,
+    CollectionsComponent,
   ],
   imports: [
     BrowserModule,
