@@ -35,4 +35,16 @@ export class CollectionService {
       })
     );
   }
+
+  find(id: number): Observable<Collection> {
+    return this.http.get<Collection>(`${this.url}/${id}`).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('CollectionService.find(): error retrieving collection: ' + err)
+        );
+      })
+    );
+  }
 }
