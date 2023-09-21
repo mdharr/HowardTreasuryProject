@@ -1,1 +1,23 @@
-<p>login-dialog works!</p>
+<div class="login-dialog">
+  <div class="title-box">
+    <h1 class="login-modal-title">Login</h1>
+    <div class="cancel-box">
+      <a class="overlay-titleCloser js-overlayClose" role="button" (click)="dismissDialog()">X</a>
+    </div>
+  </div>
+  <form class="login-form">
+    <div class="form-group">
+      <label class="label-email" for="username">
+        Username
+        <input type="text" id="username" class="text" name="username" [(ngModel)]="loginUser.username" required />
+      </label>
+    </div>
+    <div class="form-group">
+      <label class="label-password" for="password">
+        Password
+        <input type="password" id="password" class="text" name="password" [(ngModel)]="loginUser.password" required />
+      </label>
+    </div>
+    <button id="loginFormBtn" type="button" (click)="login(loginUser)">Log In</button>
+  </form>
+</div>
