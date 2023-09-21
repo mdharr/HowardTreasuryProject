@@ -2,7 +2,10 @@
   <div class="title-box">
     <h1 class="login-modal-title">Login</h1>
     <div class="cancel-box">
-      <a class="overlay-titleCloser js-overlayClose" role="button" (click)="dismissDialog()">X</a>
+      <!-- <a class="overlay-titleCloser js-overlayClose" role="button" (click)="dismissDialog()">X</a> -->
+      <button mat-icon-button (click)="dismissDialog()">
+        <mat-icon>close</mat-icon>
+      </button>
     </div>
   </div>
   <form class="login-form">

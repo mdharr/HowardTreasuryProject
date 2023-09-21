@@ -89,16 +89,3 @@ button#registerFormBtn:hover {
 .show-password-checkbox {
   margin-right: 5px;
 }
-
-.cancel-box {
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.cancel-box:hover {
-  background-color: crimson;
-}
