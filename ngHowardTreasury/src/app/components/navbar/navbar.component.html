@@ -1,7 +1,8 @@
 <mat-toolbar style="border-bottom: 1px solid #b5b5b5; position: relative;">
   <mat-toolbar-row>
     <button mat-icon-button (click)="toggleMenu()">
-      <mat-icon>menu</mat-icon>
+      <mat-icon *ngIf="!this.isMenuOpen">menu</mat-icon>
+      <mat-icon *ngIf="this.isMenuOpen">close</mat-icon>
     </button>
 
     <!-- Centered Flex Container -->

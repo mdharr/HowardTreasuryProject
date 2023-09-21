@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+
 import {
   trigger,
   state,
@@ -37,11 +38,17 @@ import { AuthService } from 'src/app/services/auth.service';
       ),
       transition('collapsed <=> expanded', [animate('300ms cubic-bezier(0.68, -0.55, 0.27, 1.55)')]),
     ]),
+    trigger('menuIcon', [
+      state('menu', style({ transform: 'rotate(0deg)' })),
+      state('close', style({ transform: 'rotate(45deg)' })),
+      transition('menu <=> close', animate('200ms ease-in-out')),
+    ]),
   ],
 })
 export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
 
   menuState: 'collapsed' | 'expanded' = 'collapsed';
+  isMenuOpen: boolean = false;
 
   loggedInUser: User = new User();
 
@@ -92,8 +99,13 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
     return this.authService.checkLogin();
   }
 
+  // toggleMenu() {
+  //   this.menuState = this.menuState === 'collapsed' ? 'expanded' : 'collapsed';
+  // }
+
   toggleMenu() {
     this.menuState = this.menuState === 'collapsed' ? 'expanded' : 'collapsed';
+    this.isMenuOpen = !this.isMenuOpen;
   }
 
   openLoginDialog() {
