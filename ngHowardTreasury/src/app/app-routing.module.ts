@@ -5,6 +5,7 @@ import { CharactersComponent } from './components/characters/characters.componen
 import { CollectionDetailsComponent } from './components/collection-details/collection-details.component';
 import { CollectionsComponent } from './components/collections/collections.component';
 import { HomeComponent } from './components/home/home.component';
+import { MiscellaneaComponent } from './components/miscellanea/miscellanea.component';
 import { PoemDetailsComponent } from './components/poem-details/poem-details.component';
 import { PoemsComponent } from './components/poems/poems.component';
 import { StoriesComponent } from './components/stories/stories.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'poems/:poemId', component: PoemDetailsComponent },
   { path: 'characters', component: CharactersComponent },
   { path: 'characters/:characterId', component: CharacterDetailsComponent },
+  { path: 'miscellanea', component: MiscellaneaComponent },
 ];
 
 @NgModule({
