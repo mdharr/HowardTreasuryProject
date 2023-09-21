@@ -22,6 +22,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
+import { RegisterDialogComponent } from './components/register-dialog/register-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
     LoginComponent,
     LogoutComponent,
     LoginDialogComponent,
+    RegisterDialogComponent,
   ],
   imports: [
     BrowserModule,
