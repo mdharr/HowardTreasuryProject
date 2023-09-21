@@ -22,7 +22,7 @@ export class LoginDialogComponent {
         console.log("Login success");
         this.dialogRef.close();
         this.snackBar.open('Login Success!', 'Dismiss', {
-          duration: 4000,
+          duration: 50000,
           panelClass: ['mat-toolbar', 'mat-primary'],
           verticalPosition: 'bottom'
         });
