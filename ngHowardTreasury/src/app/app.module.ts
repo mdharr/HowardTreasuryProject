@@ -29,6 +29,7 @@ import { StoriesComponent } from './components/stories/stories.component';
 import { StoryDetailsComponent } from './components/story-details/story-details.component';
 import { PoemsComponent } from './components/poems/poems.component';
 import { PoemDetailsComponent } from './components/poem-details/poem-details.component';
+import { CharactersComponent } from './components/characters/characters.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { PoemDetailsComponent } from './components/poem-details/poem-details.com
     StoryDetailsComponent,
     PoemsComponent,
     PoemDetailsComponent,
+    CharactersComponent,
   ],
   imports: [
     BrowserModule,
