@@ -25,7 +25,7 @@ export class CollectionService {
   }
 
   indexAll(): Observable<Collection[]> {
-    return this.http.get<Collection[]>(this.url, this.getHttpOptions()).pipe(
+    return this.http.get<Collection[]>(this.url).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

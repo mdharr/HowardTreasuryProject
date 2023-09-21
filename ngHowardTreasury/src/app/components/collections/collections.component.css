@@ -4,7 +4,7 @@
   margin: 5px;
 }
 
-.collection-card {
+/* .collection-card {
   border: 1px rgb(44, 44, 44);
   border-radius: var(--tileCornerRadius, 4px);
   box-shadow: 1px 1px 2px 0px;
@@ -17,7 +17,7 @@
   max-width: 260px;
   width: 260px;
   padding: 5px;
-}
+} */
 
 .collection-card:hover {
   box-shadow: rgba(8, 8, 32, 0.8) 0px 0px 6px 2px;
@@ -44,7 +44,7 @@
 }
 
 ::ng-deep .mat-typography h4 {
-  font-size: 20px;
+  font-size: 16px;
     font-weight: 600;
 }
 
@@ -84,11 +84,11 @@
   border: 1px solid rgb(44, 44, 44);
   border-radius: 4px;
   box-shadow: 1px 1px 2px 0px;
-  max-height: 310px;
-  height: 310px;
+  max-height: 377.76px;
+  height: 377.76px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   max-width: 260px;
   width: 260px;
   padding: 10px;
