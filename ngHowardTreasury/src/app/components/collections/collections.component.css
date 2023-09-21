@@ -32,11 +32,16 @@
 
 .collection-title {
   text-align:center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .collection-title a {
   text-decoration: none;
   color: #9e0000;
+
 }
 
 .collection-title a:hover {
@@ -73,6 +78,7 @@
   margin: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .collection-item {
@@ -125,8 +131,27 @@
 }
 
 h4 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   margin: 0;
+}
+
+.main-title {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 25px;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+}
+
+.title-text {
+  font-size: 30px;
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  color: #9e0000;
 }
 
