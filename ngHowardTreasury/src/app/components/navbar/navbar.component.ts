@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   trigger,
   state,
@@ -36,7 +36,13 @@ import {
 export class NavbarComponent {
   menuState: 'collapsed' | 'expanded' = 'collapsed';
 
+  dialogService = inject(DialogService);
+
   toggleMenu() {
     this.menuState = this.menuState === 'collapsed' ? 'expanded' : 'collapsed';
+  }
+
+  openLoginDialog() {
+    this.dialogService.openLoginDialog();
   }
 }
