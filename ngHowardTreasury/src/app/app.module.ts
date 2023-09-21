@@ -30,6 +30,7 @@ import { StoryDetailsComponent } from './components/story-details/story-details.
 import { PoemsComponent } from './components/poems/poems.component';
 import { PoemDetailsComponent } from './components/poem-details/poem-details.component';
 import { CharactersComponent } from './components/characters/characters.component';
+import { CharacterDetailsComponent } from './components/character-details/character-details.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CharactersComponent } from './components/characters/characters.componen
     PoemsComponent,
     PoemDetailsComponent,
     CharactersComponent,
+    CharacterDetailsComponent,
   ],
   imports: [
     BrowserModule,
