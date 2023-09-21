@@ -6,6 +6,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-navbar',
