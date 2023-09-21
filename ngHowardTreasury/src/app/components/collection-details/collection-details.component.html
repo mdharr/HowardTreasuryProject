@@ -3,29 +3,29 @@
     <h2>Stories</h2>
     <div>
       <ul>
-        <ng-container >
-          <li></li>
+        <ng-container *ngFor="let story of collection.stories">
+          <li>{{ story.title }}</li>
         </ng-container>
       </ul>
     </div>
     <h2>Poems</h2>
     <div>
       <ul>
-        <ng-container >
-          <li></li>
+        <ng-container *ngFor="let poem of collection.poems">
+          <li>{{ poem.title }}</li>
         </ng-container>
       </ul>
     </div>
     <h2>Miscellanea</h2>
     <div>
       <ul>
-        <ng-container >
-          <li></li>
+        <ng-container *ngFor="let miscellanea of collection.miscellaneas">
+          <li>{{ miscellanea.title }}</li>
         </ng-container>
       </ul>
     </div>
   </div>
   <div class="collection-image">
-    <img src="" alt="">
+    <img src="{{ collection.collectionImages[0].imageUrl }}" alt="">
   </div>
 </div>
