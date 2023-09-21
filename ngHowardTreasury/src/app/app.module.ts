@@ -25,6 +25,7 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
 import { RegisterDialogComponent } from './components/register-dialog/register-dialog.component';
 import { CollectionsComponent } from './components/collections/collections.component';
 import { CollectionDetailsComponent } from './components/collection-details/collection-details.component';
+import { StoriesComponent } from './components/stories/stories.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { CollectionDetailsComponent } from './components/collection-details/coll
     RegisterDialogComponent,
     CollectionsComponent,
     CollectionDetailsComponent,
+    StoriesComponent,
   ],
   imports: [
     BrowserModule,
