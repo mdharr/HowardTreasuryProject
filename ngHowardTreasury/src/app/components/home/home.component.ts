@@ -11,24 +11,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   authService = inject(AuthService);
 
   ngOnInit() {
-    this.tempTestDeleteMeLater(); // DELETE LATER
+
   }
 
   ngOnDestroy() {
 
   }
 
-  tempTestDeleteMeLater() {
-    this.authService.login('admin','wombat1').subscribe({
-      next: (data) => {
-        console.log('Logged in:');
-        console.log(data);
-      },
-      error: (fail) => {
-        console.error('Error authenticating:');
-        console.error(fail);
-
-      }
-    });
-  }
 }

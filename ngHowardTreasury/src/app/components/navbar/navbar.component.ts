@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { AfterViewInit, Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import {
   trigger,
   state,
@@ -7,6 +7,11 @@ import {
   transition,
 } from '@angular/animations';
 import { DialogService } from 'src/app/services/dialog.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription, tap } from 'rxjs';
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -34,10 +39,58 @@ import { DialogService } from 'src/app/services/dialog.service';
     ]),
   ],
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
+
   menuState: 'collapsed' | 'expanded' = 'collapsed';
 
+  loggedInUser: User = new User();
+
+  private loggedInUserSubscription: Subscription | undefined;
+
+  route = inject(ActivatedRoute);
+  router = inject(Router);
+  authService = inject(AuthService);
+  modalService = inject(NgbModal);
+  renderer = inject(Renderer2);
   dialogService = inject(DialogService);
+
+  ngOnInit(): void {
+    this.authService.getCurrentLoggedInUser().subscribe((user: User) => {
+      this.loggedInUser = user;
+      // Do something with the logged-in user object, e.g. update UI
+    });
+
+    this.authService.getLoggedInUser().subscribe({
+      next: (user) => {
+        this.loggedInUser = user;
+      },
+      error: (error) => {
+        console.log('Error getting loggedInUser');
+        console.log(error);
+      },
+    });
+
+    this.loggedInUserSubscription = this.authService.getLoggedInUser().pipe(
+      tap(user => {
+        this.loggedInUser = user;
+      })
+    ).subscribe({
+      error: (error) => {
+        console.log('Error getting loggedInUser Profile Component');
+        console.log(error);
+      },
+    });
+  }
+  ngOnDestroy(): void {
+
+  }
+  ngAfterViewInit(): void {
+
+  }
+
+  loggedIn(): boolean {
+    return this.authService.checkLogin();
+  }
 
   toggleMenu() {
     this.menuState = this.menuState === 'collapsed' ? 'expanded' : 'collapsed';
@@ -45,5 +98,9 @@ export class NavbarComponent {
 
   openLoginDialog() {
     this.dialogService.openLoginDialog();
+  }
+
+  openSignupDialog() {
+    this.dialogService.openRegisterDialog();
   }
 }
