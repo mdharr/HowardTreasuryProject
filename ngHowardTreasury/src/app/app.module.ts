@@ -32,6 +32,7 @@ import { PoemDetailsComponent } from './components/poem-details/poem-details.com
 import { CharactersComponent } from './components/characters/characters.component';
 import { CharacterDetailsComponent } from './components/character-details/character-details.component';
 import { MiscellaneaComponent } from './components/miscellanea/miscellanea.component';
+import { MiscellaneaDetailsComponent } from './components/miscellanea-details/miscellanea-details.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MiscellaneaComponent } from './components/miscellanea/miscellanea.compo
     CharactersComponent,
     CharacterDetailsComponent,
     MiscellaneaComponent,
+    MiscellaneaDetailsComponent,
   ],
   imports: [
     BrowserModule,
