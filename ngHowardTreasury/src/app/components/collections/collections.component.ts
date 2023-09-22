@@ -30,6 +30,7 @@ export class CollectionsComponent implements OnInit, OnDestroy {
       }
     });
   }
+
   ngOnDestroy(): void {
     if (this.collectionSubscription) {
       this.collectionSubscription.unsubscribe();
