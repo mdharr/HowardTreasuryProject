@@ -11,16 +11,22 @@
   justify-content: space-evenly;
 }
 
-.collection-image {
-  width: 300px;
+.img-wrapper {
+  width:fit-content;
+  height:fit-content;
+  /* overflow: hidden; */
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 20px;
-  transition: border-radius 0.3s ease-in-out;
+}
+
+.collection-image {
+  transition: 0.3s;
+  width: 300px;
+  height:auto;
 }
 
 .collection-image:hover {
-  cursor:zoom-in;
-  border-radius: 0;
+  transform: scale(1.02);
+  cursor: zoom-in;
 }
 
 .contents-lists {
@@ -65,6 +71,7 @@
   font-weight: 700;
   color: #9e0000;
   text-align: center;
+
 }
 
 .description-box {

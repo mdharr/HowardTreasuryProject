@@ -1,8 +1,7 @@
-.collection-container {
+/* .collection-container {
   display: flex;
-  flex-direction: column;
   margin: 5px;
-}
+} */
 
 /* .collection-card {
   border: 1px rgb(44, 44, 44);
@@ -139,8 +138,8 @@ h4 {
 .main-title {
   display: flex;
   justify-content: center;
-  width: 100%;
-  margin: 25px;
+  /* width: 100%; */
+  margin: 50px;
 }
 
 .title-container {
@@ -154,4 +153,140 @@ h4 {
   font-weight: 700;
   color: #9e0000;
 }
+
+/* Add styles for the book container */
+.frame {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+/* Add styles for the collection container */
+.collection-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-between;
+  width: fit-content;
+  margin-top: 70px;
+}
+
+/* Book */
+.book {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 300px;
+  margin: 40px;
+  margin-bottom: 100px;
+  padding: 0;
+  transform: translate3d(0, 0, 0);
+  perspective: 800px;
+  width: 300px;
+}
+
+.book:hover {
+  cursor: pointer;
+}
+
+.book ul {
+  display: block;
+  position: relative;
+  width: 200px;
+  height: 300px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  perspective-origin: 0 50% 0;
+  perspective: 800px;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.book ul > li {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 300px;
+  padding: 0;
+  margin: 0;
+  background-color: #ffffff;
+  transform-origin: 0 50% 0;
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.25, 1);
+  backface-visibility: hidden;
+  border: 1px solid black;
+}
+
+.book ul > img {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 300px;
+  padding: 0;
+  margin: 0;
+  background-color: #ffffff;
+  transform-origin: 0 50% 0;
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.25, 1);
+  backface-visibility: hidden;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+/* Book Cover and Pages */
+.cover {
+  z-index: 2 !important;
+  display: block;
+  width: 200px;
+  height: 300px;
+  background: #333 !important;
+  transform: rotateY(0deg) translateZ(0px);
+}
+
+.page1 {
+  display: none;
+  transform: rotateY(20deg) translateZ(-1px);
+}
+
+.page2 {
+  display: none;
+  transform: rotateY(30deg) translateZ(-2px);
+}
+
+.page3 {
+  display: none;
+  transform: rotateY(40deg) translateZ(-3px);
+}
+
+/* Book Hover Effects */
+.book:hover .page1 {
+  display: block;
+  transform: rotateY(-34deg);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.book:hover .page2 {
+  display: block;
+  transform: rotateY(-27deg);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.book:hover .page3 {
+  display: block;
+  transform: rotateY(-15deg);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.book:hover .cover {
+  transform: rotateY(-40deg);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+
 
