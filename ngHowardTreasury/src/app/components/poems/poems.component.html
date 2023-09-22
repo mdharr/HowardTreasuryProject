@@ -1,1 +1,7 @@
-<p>poems works!</p>
+<div>
+  <ng-container *ngFor="let poem of poems">
+    <ul>
+      <li>{{ poem.title }}</li>
+    </ul>
+  </ng-container>
+</div>
