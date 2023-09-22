@@ -16,7 +16,7 @@
     <div *ngIf="result.type === 'Story'">
       <h3>{{ result.data.title }}</h3>
       <!-- Display other properties specific to the Story type -->
-      <p>Text URL: <a href="{{ result.data.textUrl }}" target="_blank">{{ result.data.textUrl }}</a></p>
+      <p>Read Online: <a href="{{ result.data.textUrl }}" target="_blank">{{ result.data.textUrl }}</a></p>
       <!-- Add more properties as needed -->
     </div>
     <div *ngIf="result.type === 'Poem'">
