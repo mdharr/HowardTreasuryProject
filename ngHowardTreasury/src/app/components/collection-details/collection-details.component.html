@@ -7,7 +7,7 @@
     <div class="story-contents">
       <ul class="contents-lists" *ngIf="collection.stories.length">
         <ng-container *ngFor="let story of collection.stories">
-          <li class="contents-items">{{ story.title }}</li>
+          <li class="contents-items" [routerLink]="['/stories', story.id]">{{ story.title }}</li>
         </ng-container>
       </ul>
       <ul class="no-contents-lists" *ngIf="!collection.stories.length">
@@ -18,7 +18,7 @@
     <div class="poem-contents">
       <ul class="contents-lists" *ngIf="collection.poems.length">
         <ng-container *ngFor="let poem of collection.poems">
-          <li class="contents-items">{{ poem.title }}</li>
+          <li class="contents-items" [routerLink]="['/poems', poem.id]">{{ poem.title }}</li>
         </ng-container>
       </ul>
       <ul class="no-contents-lists" *ngIf="!collection.poems.length">
@@ -29,7 +29,7 @@
     <div class="miscellanea-contents">
       <ul class="contents-lists" *ngIf="collection.miscellaneas.length">
         <ng-container *ngFor="let miscellanea of collection.miscellaneas">
-          <li class="contents-items">{{ miscellanea.title }}</li>
+          <li class="contents-items" [routerLink]="['/miscellanea', miscellanea.id]">{{ miscellanea.title }}</li>
         </ng-container>
       </ul>
       <ul class="no-contents-lists" *ngIf="!collection.miscellaneas.length">
