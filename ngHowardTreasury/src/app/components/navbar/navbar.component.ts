@@ -122,6 +122,11 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
         // this.router.navigate(['/search-results'], { state: { results: results } });
         this.router.navigate(['/search-results', JSON.stringify(results)]);
       });
+      this.toggleMenu();
     }
+  }
+
+  closeMenu = () => {
+    this.menuState = 'collapsed';
   }
 }

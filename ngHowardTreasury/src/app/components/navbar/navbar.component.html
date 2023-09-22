@@ -6,7 +6,7 @@
     </button>
 
     <!-- Centered Flex Container -->
-    <div class="logo-box" [routerLink]="['/home']">
+    <div class="logo-box" [routerLink]="['/home']" (click)="menuState === 'expanded' ? toggleMenu() : null">
       <div style="border: 2px solid black;">
         <img style="width: 43px; height: 41px;" src="https://cafans.b-cdn.net/images/Category_2871/subcat_124271/gianni_solomonkane.jpg" alt="">
       </div>
@@ -34,11 +34,11 @@
 <div class="menu" [@expandMenu]="menuState">
   <!-- Menu content goes here -->
   <div class="menu-row">About</div>
-  <div class="menu-row" [routerLink]="['/collections']">Collections</div>
-  <div class="menu-row" [routerLink]="['/stories']">Stories</div>
-  <div class="menu-row" [routerLink]="['/poems']">Poems</div>
-  <div class="menu-row" [routerLink]="['/characters']">Characters</div>
-  <div class="menu-row" [routerLink]="['/miscellanea']">Miscellanea</div>
+  <div class="menu-row" (click)="toggleMenu()" [routerLink]="['/collections']">Collections</div>
+  <div class="menu-row" (click)="toggleMenu()" [routerLink]="['/stories']">Stories</div>
+  <div class="menu-row" (click)="toggleMenu()" [routerLink]="['/poems']">Poems</div>
+  <div class="menu-row" (click)="toggleMenu()" [routerLink]="['/characters']">Characters</div>
+  <div class="menu-row" (click)="toggleMenu()" [routerLink]="['/miscellanea']">Miscellanea</div>
   <div class="menu-row">
     <!-- Inside navbar.component.html -->
     <div class="search-container">
