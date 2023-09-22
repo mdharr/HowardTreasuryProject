@@ -33,6 +33,7 @@ import { CharactersComponent } from './components/characters/characters.componen
 import { CharacterDetailsComponent } from './components/character-details/character-details.component';
 import { MiscellaneaComponent } from './components/miscellanea/miscellanea.component';
 import { MiscellaneaDetailsComponent } from './components/miscellanea-details/miscellanea-details.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { MiscellaneaDetailsComponent } from './components/miscellanea-details/mi
     CharacterDetailsComponent,
     MiscellaneaComponent,
     MiscellaneaDetailsComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
