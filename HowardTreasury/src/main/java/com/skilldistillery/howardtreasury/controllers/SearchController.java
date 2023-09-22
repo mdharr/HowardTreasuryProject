@@ -1,6 +1,7 @@
 package com.skilldistillery.howardtreasury.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +23,8 @@ public class SearchController {
 	private SearchService searchService;
 	
     @GetMapping("search")
-    public ResponseEntity<List<Object>> search(@RequestParam String query) {
-        List<Object> results = searchService.search(query);
+    public ResponseEntity<List<Map<String, Object>>> search(@RequestParam String query) {
+    	List<Map<String, Object>> results = searchService.search(query);
         
         // Check if results are empty and return an appropriate response
         if (results.isEmpty()) {

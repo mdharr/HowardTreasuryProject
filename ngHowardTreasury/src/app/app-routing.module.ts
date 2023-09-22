@@ -9,6 +9,7 @@ import { MiscellaneaDetailsComponent } from './components/miscellanea-details/mi
 import { MiscellaneaComponent } from './components/miscellanea/miscellanea.component';
 import { PoemDetailsComponent } from './components/poem-details/poem-details.component';
 import { PoemsComponent } from './components/poems/poems.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { StoriesComponent } from './components/stories/stories.component';
 import { StoryDetailsComponent } from './components/story-details/story-details.component';
 
@@ -25,6 +26,8 @@ const routes: Routes = [
   { path: 'characters/:characterId', component: CharacterDetailsComponent },
   { path: 'miscellanea', component: MiscellaneaComponent },
   { path: 'miscellanea/:miscellaneaId', component: MiscellaneaDetailsComponent },
+  { path: 'search-results', component: SearchResultsComponent },
+  { path: 'search-results/:results', component: SearchResultsComponent },
 ];
 
 @NgModule({

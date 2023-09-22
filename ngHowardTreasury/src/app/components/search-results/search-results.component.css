@@ -1,0 +1,33 @@
+.main-title {
+  display: flex;
+  justify-content: center;
+  /* width: 100%; */
+  margin: 50px;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+}
+
+.title-text {
+  font-size: 30px;
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  color: #9e0000;
+}
+
+.results-wrapper {
+  padding-left: 100px;
+  margin-bottom: 100px;
+}
+
+.results-items {
+  width: fit-content;
+}
+
+.results-items:hover {
+  color:#9e0000;
+  cursor: pointer;
+  font-weight:700;
+}

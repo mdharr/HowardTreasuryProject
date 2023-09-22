@@ -39,7 +39,12 @@
   <div class="menu-row" [routerLink]="['/poems']">Poems</div>
   <div class="menu-row" [routerLink]="['/characters']">Characters</div>
   <div class="menu-row" [routerLink]="['/miscellanea']">Miscellanea</div>
+  <div class="menu-row">
+    <!-- Inside navbar.component.html -->
+    <div class="search-container">
+      <input [(ngModel)]="searchQuery" (keyup.enter)="performSearch()" placeholder="Search">
+      <button (click)="performSearch()">Search</button>
+    </div>
+  </div>
 </div>
-<!-- <div style="width: 100%; height: 20px; padding: 5px;">
-  <p style="font-size: 12px; float:right;">Welcome Guest. Please Login or Register.</p>
-</div> -->
+

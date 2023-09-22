@@ -34,6 +34,7 @@ import { CharacterDetailsComponent } from './components/character-details/charac
 import { MiscellaneaComponent } from './components/miscellanea/miscellanea.component';
 import { MiscellaneaDetailsComponent } from './components/miscellanea-details/miscellanea-details.component';
 import { SearchComponent } from './components/search/search.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { SearchComponent } from './components/search/search.component';
     MiscellaneaComponent,
     MiscellaneaDetailsComponent,
     SearchComponent,
+    SearchResultsComponent,
   ],
   imports: [
     BrowserModule,

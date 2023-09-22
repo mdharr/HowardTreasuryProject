@@ -13,6 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription, tap } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-navbar',
@@ -38,17 +39,13 @@ import { AuthService } from 'src/app/services/auth.service';
       ),
       transition('collapsed <=> expanded', [animate('300ms cubic-bezier(0.68, -0.55, 0.27, 1.55)')]),
     ]),
-    trigger('menuIcon', [
-      state('menu', style({ transform: 'rotate(0deg)' })),
-      state('close', style({ transform: 'rotate(45deg)' })),
-      transition('menu <=> close', animate('200ms ease-in-out')),
-    ]),
   ],
 })
 export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
 
   menuState: 'collapsed' | 'expanded' = 'collapsed';
   isMenuOpen: boolean = false;
+  searchQuery: string = '';
 
   loggedInUser: User = new User();
 
@@ -60,6 +57,7 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   modalService = inject(NgbModal);
   renderer = inject(Renderer2);
   dialogService = inject(DialogService);
+  searchService = inject(SearchService);
 
   ngOnInit(): void {
     this.authService.getCurrentLoggedInUser().subscribe((user: User) => {
@@ -114,5 +112,16 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
 
   openSignupDialog() {
     this.dialogService.openRegisterDialog();
+  }
+
+  performSearch() {
+    if (this.searchQuery) {
+      this.searchService.search(this.searchQuery).subscribe((results) => {
+        console.log('Search results from service:', results);
+        // Navigate to the results page and pass the search results as data
+        // this.router.navigate(['/search-results'], { state: { results: results } });
+        this.router.navigate(['/search-results', JSON.stringify(results)]);
+      });
+    }
   }
 }

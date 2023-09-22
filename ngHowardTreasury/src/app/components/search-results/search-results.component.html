@@ -1,0 +1,40 @@
+<div class="main-title">
+  <div class="title-container">
+    <h1 class="title-text">Search Results</h1>
+  </div>
+</div>
+
+<div class="results-wrapper">
+  <ng-container *ngFor="let result of searchResults">
+    <h2>{{ result.type }}</h2>
+    <div *ngIf="result.type === 'Collection'">
+      <h3 class="results-items" [routerLink]="['/collections', result.data.id]">{{ result.data.title }}</h3>
+      <!-- Display other properties specific to the Collection type -->
+      <p>Published: {{ result.data.publishedAt | date:'longDate' }}</p>
+      <!-- Add more properties as needed -->
+    </div>
+    <div *ngIf="result.type === 'Story'">
+      <h3>{{ result.data.title }}</h3>
+      <!-- Display other properties specific to the Story type -->
+      <p>Text URL: <a href="{{ result.data.textUrl }}" target="_blank">{{ result.data.textUrl }}</a></p>
+      <!-- Add more properties as needed -->
+    </div>
+    <div *ngIf="result.type === 'Poem'">
+      <h3>{{ result.data.title }}</h3>
+      <!-- Display other properties specific to the Poem type -->
+      <!-- Add more properties as needed -->
+    </div>
+    <div *ngIf="result.type === 'Person'">
+      <h3>{{ result.data.name }}</h3>
+      <!-- Display other properties specific to the Person type -->
+      <!-- Add more properties as needed -->
+    </div>
+    <div *ngIf="result.type === 'Miscellanea'">
+      <h3>{{ result.data.title }}</h3>
+      <!-- Display other properties specific to the Miscellanea type -->
+      <!-- Add more properties as needed -->
+    </div>
+    <!-- You can add more conditional blocks for other types -->
+  </ng-container>
+</div>
+
