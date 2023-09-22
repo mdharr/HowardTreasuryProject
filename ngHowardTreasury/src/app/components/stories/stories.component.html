@@ -1,7 +1,7 @@
 <div>
-  <ng-container >
+  <ng-container *ngFor="let story of stories">
     <ul>
-      <li></li>
+      <li>{{ story.title }}</li>
     </ul>
   </ng-container>
 </div>
