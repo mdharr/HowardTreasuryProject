@@ -12,12 +12,25 @@
 }
 
 .collection-image {
-  width: 400px;
+  width: 300px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 20px;
+  transition: border-radius 0.3s ease-in-out;
+}
+
+.collection-image:hover {
+  cursor: pointer;
+  border-radius: 0;
 }
 
 .contents-lists {
   list-style: upper-roman;
 }
+
+.no-contents-lists {
+  list-style: none;
+}
+
 
 .contents-title {
   padding-left: 10px;
@@ -66,7 +79,7 @@
 
 }
 
-.first-letter {
+::ng-deep .first-letter {
   font-size: 50px; /* Adjust the font size for the initial letter */
   font-family: Libre Baskerville, Helvetica, Arial, sans-serif;
   font-weight: 700;
@@ -75,5 +88,6 @@
   float: left; /* Float the initial letter to the left */
   margin-right: 10px; /* Add spacing between the initial letter and the text */
 }
+
 
 

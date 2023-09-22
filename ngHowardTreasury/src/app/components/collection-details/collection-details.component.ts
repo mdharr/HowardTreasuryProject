@@ -17,6 +17,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   collectionId: number = 0;
   collection: Collection = new Collection();
   collectionImages!: CollectionImage[];
+  collectionDescription: string = '';
 
   // service injection
   auth = inject(AuthService);
@@ -51,6 +52,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
       next: (data) => {
         this.collection = data;
         this.collectionImages = data.collectionImages;
+        this.collectionDescription = this.createIlluminatedInitial(data.description);
       },
       error: (fail) => {
         console.error('Error getting collection');
@@ -67,5 +69,17 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
     if(this.collectionSubscription) {
       this.collectionSubscription.unsubscribe();
     }
+  }
+
+  createIlluminatedInitial = (text: string): string => {
+    if (text.length === 0) {
+      return '';
+    }
+
+    const firstLetter = text.charAt(0);
+    const restOfString = text.slice(1);
+
+    const illuminatedInitial = `<span class="first-letter">${firstLetter}</span>`;
+    return illuminatedInitial + restOfString;
   }
 }

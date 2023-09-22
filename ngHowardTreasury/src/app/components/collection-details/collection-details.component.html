@@ -5,26 +5,35 @@
   <div class="contents-box">
     <h2 class="contents-title">Stories</h2>
     <div class="story-contents">
-      <ul class="contents-lists">
+      <ul class="contents-lists" *ngIf="collection.stories.length">
         <ng-container *ngFor="let story of collection.stories">
           <li>{{ story.title }}</li>
         </ng-container>
       </ul>
+      <ul class="no-contents-lists" *ngIf="!collection.stories.length">
+        <li>No content</li>
+      </ul>
     </div>
     <h2 class="contents-title">Poems</h2>
     <div class="poem-contents">
-      <ul class="contents-lists">
+      <ul class="contents-lists" *ngIf="collection.poems.length">
         <ng-container *ngFor="let poem of collection.poems">
           <li>{{ poem.title }}</li>
         </ng-container>
       </ul>
+      <ul class="no-contents-lists" *ngIf="!collection.poems.length">
+        <li>No content</li>
+      </ul>
     </div>
     <h2 class="contents-title">Miscellanea</h2>
     <div class="miscellanea-contents">
-      <ul class="contents-lists">
+      <ul class="contents-lists" *ngIf="collection.miscellaneas.length">
         <ng-container *ngFor="let miscellanea of collection.miscellaneas">
           <li>{{ miscellanea.title }}</li>
         </ng-container>
+      </ul>
+      <ul class="no-contents-lists" *ngIf="!collection.miscellaneas.length">
+        <li>No content</li>
       </ul>
     </div>
   </div>
@@ -35,12 +44,14 @@
 <div class="description-container">
   <h2 class="description-title">Description</h2>
   <div class="description-box">
-    <p class="description-text">
+    <!-- <p class="description-text">
       <span class="first-letter">L</span>orem ipsum dolor, sit amet consectetur adipisicing elit. Odio sed nisi deserunt, voluptatem perspiciatis facere. Voluptatibus quas dolor, praesentium quod modi consequuntur. Maiores beatae exercitationem nemo repellendus, dolores voluptatibus dolorem?
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet exercitationem quisquam perspiciatis quibusdam expedita mollitia nisi culpa. Aliquid tenetur nulla error, incidunt labore voluptates minima quisquam, sint magni, quas alias.
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni amet quae, id in numquam, minima ducimus perferendis magnam sunt eligendi quasi quia laboriosam corrupti assumenda libero saepe quibusdam reiciendis dolores?
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint eveniet labore officiis, ducimus, porro asperiores placeat possimus necessitatibus modi facilis laboriosam in, dicta fugit dolores odit minima qui nobis ipsum.
-    </p>
+    </p> -->
+    <p class="description-text" [innerHTML]="collectionDescription"></p>
+
   </div>
 </div>
 
