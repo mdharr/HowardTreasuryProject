@@ -10,4 +10,6 @@ public interface MiscellaneaRepository extends JpaRepository<Miscellanea, Intege
 
 	List<Miscellanea> findByCollections_Id(int collectionId);
 	
+	List<Miscellanea> findByTitleContaining(String query);
+	
 }

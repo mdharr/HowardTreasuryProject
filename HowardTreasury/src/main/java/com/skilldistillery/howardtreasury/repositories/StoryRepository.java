@@ -11,4 +11,6 @@ public interface StoryRepository extends JpaRepository<Story, Integer> {
 	List<Story> findByCollections_Id(int collectionId);
 	
 	List<Story> findAllByOrderByIdAsc();
+
+	List<Story> findByTitleContaining(String query);
 }

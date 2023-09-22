@@ -9,4 +9,6 @@ import com.skilldistillery.howardtreasury.entities.Person;
 public interface PersonRepository extends JpaRepository<Person, Integer> {
 
 	List<Person> findByCollections_Id(int collectionId);
+	
+	List<Person> findByNameContaining(String query);
 }
