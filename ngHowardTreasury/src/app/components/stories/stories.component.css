@@ -16,3 +16,12 @@
   font-weight: 700;
   color: #9e0000;
 }
+
+.contents-wrapper {
+  padding: 50px;
+  padding-top: 0;
+}
+
+.contents-list-items {
+  list-style:upper-roman;
+}

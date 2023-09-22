@@ -3,10 +3,10 @@
     <h1 class="title-text">Characters</h1>
   </div>
 </div>
-<div>
-  <ng-container *ngFor="let person of persons">
-    <ul>
-      <li>{{ person.name }}</li>
-    </ul>
-  </ng-container>
+<div class="contents-wrapper">
+  <ul class="contents-list">
+    <ng-container *ngFor="let person of persons">
+      <li class="contents-list-items">{{ person.name }}</li>
+    </ng-container>
+  </ul>
 </div>

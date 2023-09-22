@@ -3,10 +3,10 @@
     <h1 class="title-text">Stories</h1>
   </div>
 </div>
-<div>
-  <ng-container *ngFor="let story of stories">
-    <ul>
-      <li>{{ story.title }}</li>
-    </ul>
-  </ng-container>
+<div class="contents-wrapper">
+  <ul class="contents-list">
+    <ng-container *ngFor="let story of stories">
+      <li class="contents-list-items">{{ story.title }}</li>
+    </ng-container>
+  </ul>
 </div>
