@@ -24,10 +24,13 @@
 
 .results-items {
   width: fit-content;
+  transition: transform 0.3s ease-in-out;
 }
 
 .results-items:hover {
-  color:#9e0000;
+  color: #9e0000;
   cursor: pointer;
-  font-weight:700;
+  transform: scale(1.05); /* Increase font size to simulate font-weight change */
 }
+
+
