@@ -37,9 +37,29 @@
       </ul>
     </div>
   </div>
-  <div class="image-container">
-    <img class="collection-image" *ngIf="collectionImages && collectionImages.length > 0" src="{{ collectionImages[0].imageUrl }}" alt="">
-  </div>
+<!-- Your Angular template -->
+<div class="image-container">
+  <img
+    class="collection-image"
+    *ngIf="collectionImages && collectionImages.length > 0"
+    src="{{ collectionImages[0].imageUrl }}"
+    alt=""
+    (click)="toggleFullScreenImage()"
+  >
+</div>
+<div
+  class="overlay"
+  [ngClass]="{ 'active': isFullScreenImageVisible }"
+  (click)="toggleFullScreenImage()"
+>
+  <img
+    class="full-screen-image"
+    *ngIf="isFullScreenImageVisible"
+    src="{{ collectionImages[0].imageUrl }}"
+    alt=""
+  >
+</div>
+
 </div>
 <div class="description-container">
   <h2 class="description-title">Description</h2>

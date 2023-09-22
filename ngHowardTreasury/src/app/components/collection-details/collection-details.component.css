@@ -19,7 +19,7 @@
 }
 
 .collection-image:hover {
-  cursor: pointer;
+  cursor:zoom-in;
   border-radius: 0;
 }
 
@@ -87,6 +87,40 @@
   line-height: 1; /* Adjust the line height for the initial letter */
   float: left; /* Float the initial letter to the left */
   margin-right: 10px; /* Add spacing between the initial letter and the text */
+}
+
+/* Styles for the overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent gray background */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999; /* Ensure the overlay is on top of other content */
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Styles for the full-screen image */
+.full-screen-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.full-screen-image:hover {
+  cursor:zoom-out;
 }
 
 

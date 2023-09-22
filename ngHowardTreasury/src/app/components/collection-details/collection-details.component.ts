@@ -19,6 +19,9 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   collectionImages!: CollectionImage[];
   collectionDescription: string = '';
 
+  // booleans
+  isFullScreenImageVisible = false;
+
   // service injection
   auth = inject(AuthService);
   collectionService = inject(CollectionService);
@@ -81,5 +84,9 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
 
     const illuminatedInitial = `<span class="first-letter">${firstLetter}</span>`;
     return illuminatedInitial + restOfString;
+  }
+
+  toggleFullScreenImage(): void {
+    this.isFullScreenImageVisible = !this.isFullScreenImageVisible;
   }
 }
