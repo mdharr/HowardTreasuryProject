@@ -6,7 +6,7 @@
 
 <div class="results-wrapper">
   <ng-container *ngFor="let result of searchResults">
-    <h2>{{ result.type }}</h2>
+    <h2>{{ result.type === 'Person' ? 'Character' : result.type }}</h2>
     <div *ngIf="result.type === 'Collection'">
       <h3 class="results-items" [routerLink]="['/collections', result.data.id]">{{ result.data.title }}</h3>
       <!-- Display other properties specific to the Collection type -->
