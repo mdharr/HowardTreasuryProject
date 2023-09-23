@@ -37,5 +37,4 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     }
   }
 
-
 }

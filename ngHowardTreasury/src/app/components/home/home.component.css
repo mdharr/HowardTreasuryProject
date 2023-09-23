@@ -15,3 +15,19 @@ img.alignleft, .wp-caption.alignleft {
 .wrapper {
   padding: 50px;
 }
+
+.main-title {
+  display: flex;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+}
+
+.title-text {
+  font-size: 20px;
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  color: #9e0000;
+}
