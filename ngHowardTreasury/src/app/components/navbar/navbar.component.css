@@ -36,6 +36,22 @@
   cursor: pointer;
 }
 
-/* .menu-row:last-child {
-  border-bottom: none;
-} */
+.search-container {
+  display: flex;
+  justify-content: center;
+}
+
+.search-button {
+  border-radius: 0px 3px 3px 0px;
+  background: linear-gradient(#607d8b, #455a64);
+  color: #fff;
+  border: 1px solid #455A64;
+}
+
+.search-icon {
+  padding-top: 2px;
+}
+
+.search-input-field {
+
+}

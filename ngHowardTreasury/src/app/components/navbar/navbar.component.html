@@ -42,8 +42,8 @@
   <div class="menu-row">
     <!-- Inside navbar.component.html -->
     <div class="search-container">
-      <input [(ngModel)]="searchQuery" (keyup.enter)="performSearch()" placeholder="Search">
-      <button (click)="performSearch()">Search</button>
+      <input class="search-input-field" [(ngModel)]="searchQuery" (keyup.enter)="performSearch()" placeholder="Search ...">
+      <button class="search-button" (click)="performSearch()"><mat-icon class="search-icon">search</mat-icon></button>
     </div>
   </div>
 </div>
