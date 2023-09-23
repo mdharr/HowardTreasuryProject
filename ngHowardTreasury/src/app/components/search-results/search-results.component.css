@@ -3,6 +3,7 @@
   justify-content: center;
   /* width: 100%; */
   margin: 50px;
+  margin-bottom: 10px;
 }
 
 .title-container {
@@ -20,17 +21,42 @@
 .results-wrapper {
   padding-left: 100px;
   margin-bottom: 100px;
+  border-top: 1px solid;
+  padding-top: 20px;
 }
 
 .results-items {
   width: fit-content;
+  font-weight: 700;
+  color: #9e0000;
   transition: transform 0.3s ease-in-out;
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
 }
 
 .results-items:hover {
-  color: #9e0000;
   cursor: pointer;
-  transform: scale(1.05); /* Increase font size to simulate font-weight change */
+  text-decoration: underline;
+}
+
+.type-header {
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  color: #9e0000;
+}
+
+.items-name {
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  color: #9e0000;
+}
+
+.placeholder-container {
+  width: 100%;
+  height: 50px;
+}
+
+.results-count {
+  font-style: italic;
 }
 
 

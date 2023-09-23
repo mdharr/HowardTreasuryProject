@@ -9,6 +9,7 @@ import { SearchResultsService } from 'src/app/services/search-results.service';
 })
 export class SearchResultsComponent implements OnInit {
   searchResults: any[] = [];
+  searchResultsCount: number = 0;
 
   constructor(private searchResultsService: SearchResultsService) {}
 
@@ -16,6 +17,9 @@ export class SearchResultsComponent implements OnInit {
     // Subscribe to the searchResults$ observable to get updated results
     this.searchResultsService.searchResults$.subscribe((results) => {
       this.searchResults = results;
+      for(let i = 0; i < results.length; i++) {
+        this.searchResultsCount++;
+      }
     });
   }
 
