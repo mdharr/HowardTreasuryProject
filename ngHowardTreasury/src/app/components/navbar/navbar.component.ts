@@ -14,6 +14,7 @@ import { Subscription, tap } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { SearchService } from 'src/app/services/search.service';
+import { SearchResultsService } from 'src/app/services/search-results.service';
 
 @Component({
   selector: 'app-navbar',
@@ -25,7 +26,7 @@ import { SearchService } from 'src/app/services/search.service';
         'collapsed',
         style({
           height: '0',
-          overflow: 'hidden',
+          // overflow: 'hidden',
           opacity: '0',
         })
       ),
@@ -33,7 +34,7 @@ import { SearchService } from 'src/app/services/search.service';
         'expanded',
         style({
           height: '*',
-          overflow: 'visible',
+          // overflow: 'visible',
           opacity: '1',
         })
       ),
@@ -58,6 +59,7 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   renderer = inject(Renderer2);
   dialogService = inject(DialogService);
   searchService = inject(SearchService);
+  searchResultsService = inject(SearchResultsService);
 
   ngOnInit(): void {
     this.authService.getCurrentLoggedInUser().subscribe((user: User) => {
@@ -118,9 +120,9 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.searchQuery) {
       this.searchService.search(this.searchQuery).subscribe((results) => {
         console.log('Search results from service:', results);
-        // Navigate to the results page and pass the search results as data
-        // this.router.navigate(['/search-results'], { state: { results: results } });
-        this.router.navigate(['/search-results', JSON.stringify(results)]);
+        // Update the search results in the shared service
+        this.searchResultsService.updateSearchResults(results);
+        this.router.navigate(['/search-results']);
       });
       this.toggleMenu();
     }

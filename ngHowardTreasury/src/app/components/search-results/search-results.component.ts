@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SearchResultsService } from 'src/app/services/search-results.service';
 
 @Component({
   selector: 'app-search-results',
@@ -9,18 +10,13 @@ import { ActivatedRoute } from '@angular/router';
 export class SearchResultsComponent implements OnInit {
   searchResults: any[] = [];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private searchResultsService: SearchResultsService) {}
 
   ngOnInit() {
-    // Retrieve route parameter 'results'
-    const resultsRouteParam = this.route.snapshot.paramMap.get('results');
-
-    if (resultsRouteParam) {
-      this.searchResults = JSON.parse(resultsRouteParam);
-      console.log('Search results:', this.searchResults);
-    } else {
-      console.log('No search results found.');
-    }
+    // Subscribe to the searchResults$ observable to get updated results
+    this.searchResultsService.searchResults$.subscribe((results) => {
+      this.searchResults = results;
+    });
   }
 
 }
