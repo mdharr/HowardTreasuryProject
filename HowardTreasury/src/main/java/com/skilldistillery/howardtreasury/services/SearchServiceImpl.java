@@ -1,14 +1,21 @@
 package com.skilldistillery.howardtreasury.services;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.howardtreasury.entities.Story;
 import com.skilldistillery.howardtreasury.repositories.CollectionRepository;
 import com.skilldistillery.howardtreasury.repositories.MiscellaneaRepository;
 import com.skilldistillery.howardtreasury.repositories.PersonRepository;
@@ -67,6 +74,40 @@ public class SearchServiceImpl implements SearchService {
                 .collect(Collectors.toList());
     }
     
+//    private List<Map<String, Object>> searchStories(String query, String type) {
+//        List<Map<String, Object>> results = new ArrayList<>();
+//
+//        // Search in story titles
+//        List<Story> storiesWithMatchingTitle = storyRepo.findByTitleContaining(query);
+//        results.addAll(storiesWithMatchingTitle.stream()
+//                .map(story -> createResultMap(story, type))
+//                .collect(Collectors.toList()));
+//
+//        // Fetch and parse HTML content asynchronously
+//        List<CompletableFuture<Void>> asyncTasks = storiesWithMatchingTitle.stream()
+//                .map(story -> CompletableFuture.runAsync(() -> {
+//                    String textUrl = story.getTextUrl();
+//                    if (textUrl != null) {
+//                        String htmlContent = fetchHtmlContent(textUrl); // Implement this method to fetch HTML content
+//
+//                        if (htmlContent != null) {
+//                            String extractedText = parseHtmlAndExtractText(htmlContent); // Implement this method to parse HTML and extract text
+//
+//                            if (extractedText.toLowerCase().contains(query.toLowerCase())) {
+//                                results.add(createResultMap(story, type));
+//                            }
+//                        }
+//                    }
+//                }))
+//                .collect(Collectors.toList());
+//
+//        // Wait for all async tasks to complete
+//        CompletableFuture<Void> allOf = CompletableFuture.allOf(asyncTasks.toArray(new CompletableFuture[0]));
+//        allOf.join();
+//
+//        return results;
+//    }
+    
     private List<Map<String, Object>> searchPoems(String query, String type) {
         return poemRepo.findByTitleContaining(query).stream()
                 .map(poem -> createResultMap(poem, type))
@@ -91,56 +132,29 @@ public class SearchServiceImpl implements SearchService {
         resultMap.put("data", entity);
         return resultMap;
     }
+    
+    private String fetchHtmlContent(String url) {
+        try {
+            // Fetch the HTML content from the URL
+            Document doc = Jsoup.connect(url).get();
+            return doc.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-//    @Override
-//    public List<Object> search(String query) {
-//        List<Object> results = new ArrayList<>();
-//        
-//        // Search for collections and add to results
-//        results.addAll(searchCollections(query));
-//        
-//        // Search for stories and add to results
-//        results.addAll(searchStories(query));
-//        
-//        // Search for poems and add to results
-//        results.addAll(searchPoems(query));
-//        
-//        // Search for persons and add to results
-//        results.addAll(searchPersons(query));
-//        
-//        // Search for miscellanea and add to results
-//        results.addAll(searchMiscellanea(query));
-//        
-//        return results;
-//    }
-//    
-//    private List<Object> searchCollections(String query) {
-//        return collectionRepo.findByTitleContaining(query).stream()
-//                .map(collection -> (Object) collection)
-//                .collect(Collectors.toList());
-//    }
-//    
-//    private List<Object> searchStories(String query) {
-//        return storyRepo.findByTitleContaining(query).stream()
-//                .map(story -> (Object) story)
-//                .collect(Collectors.toList());
-//    }
-//    
-//    private List<Object> searchPoems(String query) {
-//        return poemRepo.findByTitleContaining(query).stream()
-//                .map(poem -> (Object) poem)
-//                .collect(Collectors.toList());
-//    }
-//    
-//    private List<Object> searchPersons(String query) {
-//        return personRepo.findByNameContaining(query).stream()
-//                .map(person -> (Object) person)
-//                .collect(Collectors.toList());
-//    }
-//    
-//    private List<Object> searchMiscellanea(String query) {
-//        return miscellaneaRepo.findByTitleContaining(query).stream()
-//                .map(miscellanea -> (Object) miscellanea)
-//                .collect(Collectors.toList());
-//    }
+    private String parseHtmlAndExtractText(String htmlContent) {
+        // Parse the HTML content and extract text
+        Document doc = Jsoup.parse(htmlContent);
+        Elements elements = doc.select("p"); // You can adjust this selector based on your HTML structure
+
+        StringBuilder extractedText = new StringBuilder();
+        for (Element element : elements) {
+            extractedText.append(element.text()).append("\n");
+        }
+
+        return extractedText.toString();
+    }
+
 }

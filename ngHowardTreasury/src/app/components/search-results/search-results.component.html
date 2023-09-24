@@ -5,7 +5,7 @@
 </div>
 
 <div class="results-wrapper">
-  <p class="results-count">{{ searchResultsCount !== 0 ? 'About ' + searchResultsCount + ' results' : searchResultsCount + ' results' }}</p>
+  <p class="results-count">{{ searchResultsCount > 1 ? 'About ' + searchResultsCount + ' results' : searchResultsCount === 1 ? searchResultsCount + ' result' : searchResultsCount + ' results match your query.' }}</p>
   <ng-container *ngFor="let result of searchResults; let lastIndex = last">
     <h2 class="type-header">{{ result.type === 'Person' ? 'Character' : result.type }}</h2>
     <div *ngIf="result.type === 'Collection'">
@@ -20,13 +20,14 @@
     <div *ngIf="result.type === 'Story'">
       <h3>{{ result.data.title }}</h3>
       <!-- Display other properties specific to the Story type -->
-      <p><span></span>Read Online: <a href="{{ result.data.textUrl }}" target="_blank">{{ result.data.textUrl }}</a></p>
+      <p><span class="items-name">Read Online: </span><a href="{{ result.data.textUrl }}" target="_blank">{{ result.data.textUrl }}</a></p>
       <!-- Add more properties as needed -->
     </div>
     <div *ngIf="result.type === 'Poem'">
       <h3>{{ result.data.title }}</h3>
       <!-- Display other properties specific to the Poem type -->
       <!-- Add more properties as needed -->
+      <p><span class="items-name">Read Online: </span><a href="{{ result.data.textUrl }}" target="_blank">{{ result.data.textUrl }}</a></p>
     </div>
     <div *ngIf="result.type === 'Person'">
       <h3>{{ result.data.name }}</h3>
