@@ -123,6 +123,8 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
         // Update the search results in the shared service
         this.searchResultsService.updateSearchResults(results);
         this.router.navigate(['/search-results']);
+
+        this.searchQuery = '';
       });
       this.toggleMenu();
     }

@@ -17,6 +17,7 @@ export class SearchResultsComponent implements OnInit {
     // Subscribe to the searchResults$ observable to get updated results
     this.searchResultsService.searchResults$.subscribe((results) => {
       this.searchResults = results;
+      this.searchResultsCount = 0;
       for(let i = 0; i < results.length; i++) {
         this.searchResultsCount++;
       }
