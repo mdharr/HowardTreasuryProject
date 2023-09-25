@@ -1,5 +1,6 @@
 package com.skilldistillery.howardtreasury.entities;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,6 +26,20 @@ public class Story {
 	@Column(name = "text_url")
 	private String textUrl;
 	
+	@Column(name = "first_published")
+	private LocalDateTime firstPublished;
+	
+	@Column(name = "alternate_title")
+	private String alternateTitle;
+	
+	@Column(name = "is_copyrighted")
+	private boolean isCopyrighted;
+	
+	@Column(name = "copyright_expires_at")
+	private LocalDateTime copyrightExpiresAt;
+	
+	private String excerpt;
+	
     @JsonIgnore
     @ManyToMany(mappedBy = "stories")
     private List<UserList> userLists;
@@ -38,11 +53,18 @@ public class Story {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Story(int id, String title, String textUrl, List<UserList> userLists, List<Collection> collections) {
+	public Story(int id, String title, String textUrl, LocalDateTime firstPublished, String alternateTitle,
+			boolean isCopyrighted, LocalDateTime copyrightExpiresAt, String excerpt, List<UserList> userLists,
+			List<Collection> collections) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.textUrl = textUrl;
+		this.firstPublished = firstPublished;
+		this.alternateTitle = alternateTitle;
+		this.isCopyrighted = isCopyrighted;
+		this.copyrightExpiresAt = copyrightExpiresAt;
+		this.excerpt = excerpt;
 		this.userLists = userLists;
 		this.collections = collections;
 	}
@@ -69,6 +91,46 @@ public class Story {
 
 	public void setTextUrl(String textUrl) {
 		this.textUrl = textUrl;
+	}
+
+	public LocalDateTime getFirstPublished() {
+		return firstPublished;
+	}
+
+	public void setFirstPublished(LocalDateTime firstPublished) {
+		this.firstPublished = firstPublished;
+	}
+
+	public String getAlternateTitle() {
+		return alternateTitle;
+	}
+
+	public void setAlternateTitle(String alternateTitle) {
+		this.alternateTitle = alternateTitle;
+	}
+
+	public boolean isCopyrighted() {
+		return isCopyrighted;
+	}
+
+	public void setCopyrighted(boolean isCopyrighted) {
+		this.isCopyrighted = isCopyrighted;
+	}
+
+	public LocalDateTime getCopyrightExpiresAt() {
+		return copyrightExpiresAt;
+	}
+
+	public void setCopyrightExpiresAt(LocalDateTime copyrightExpiresAt) {
+		this.copyrightExpiresAt = copyrightExpiresAt;
+	}
+
+	public String getExcerpt() {
+		return excerpt;
+	}
+
+	public void setExcerpt(String excerpt) {
+		this.excerpt = excerpt;
 	}
 
 	public List<UserList> getUserLists() {
