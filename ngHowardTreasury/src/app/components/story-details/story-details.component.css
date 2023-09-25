@@ -1,0 +1,9 @@
+::ng-deep .first-letter {
+  font-size: 50px; /* Adjust the font size for the initial letter */
+  font-family: Libre Baskerville, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  color: #9e0000;
+  line-height: 1; /* Adjust the line height for the initial letter */
+  float: left; /* Float the initial letter to the left */
+  margin-right: 10px; /* Add spacing between the initial letter and the text */
+}
