@@ -13,4 +13,6 @@ public interface StoryRepository extends JpaRepository<Story, Integer> {
 	List<Story> findAllByOrderByIdAsc();
 
 	List<Story> findByTitleContaining(String query);
+	
+	List<Story> findByAlternateTitleContaining(String query);
 }
