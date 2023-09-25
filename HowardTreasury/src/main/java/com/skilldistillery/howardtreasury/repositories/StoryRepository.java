@@ -15,4 +15,7 @@ public interface StoryRepository extends JpaRepository<Story, Integer> {
 	List<Story> findByTitleContaining(String query);
 	
 	List<Story> findByAlternateTitleContaining(String query);
+	
+    List<Story> findByTitleContainingOrAlternateTitleContaining(String title, String alternateTitle);
+
 }

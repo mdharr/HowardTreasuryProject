@@ -68,10 +68,15 @@ public class SearchServiceImpl implements SearchService {
                 .collect(Collectors.toList());
     }
     
+//    private List<Map<String, Object>> searchStories(String query, String type) {
+//        return storyRepo.findByTitleContaining(query).stream()
+//                .map(story -> createResultMap(story, type))
+//                .collect(Collectors.toList());
+//    }
     private List<Map<String, Object>> searchStories(String query, String type) {
-        return storyRepo.findByTitleContaining(query).stream()
-                .map(story -> createResultMap(story, type))
-                .collect(Collectors.toList());
+    	return storyRepo.findByTitleContainingOrAlternateTitleContaining(query, query).stream()
+    			.map(story -> createResultMap(story, type))
+    			.collect(Collectors.toList());
     }
     
 //    private List<Map<String, Object>> searchStories(String query, String type) {

@@ -33,7 +33,7 @@ public class Story {
 	private String alternateTitle;
 	
 	@Column(name = "is_copyrighted")
-	private boolean isCopyrighted;
+	private Boolean isCopyrighted;
 	
 	@Column(name = "copyright_expires_at")
 	private LocalDateTime copyrightExpiresAt;
@@ -54,7 +54,7 @@ public class Story {
 	}
 
 	public Story(int id, String title, String textUrl, LocalDateTime firstPublished, String alternateTitle,
-			boolean isCopyrighted, LocalDateTime copyrightExpiresAt, String excerpt, List<UserList> userLists,
+			Boolean isCopyrighted, LocalDateTime copyrightExpiresAt, String excerpt, List<UserList> userLists,
 			List<Collection> collections) {
 		super();
 		this.id = id;
@@ -109,11 +109,11 @@ public class Story {
 		this.alternateTitle = alternateTitle;
 	}
 
-	public boolean isCopyrighted() {
+	public Boolean isCopyrighted() {
 		return isCopyrighted;
 	}
 
-	public void setCopyrighted(boolean isCopyrighted) {
+	public void setCopyrighted(Boolean isCopyrighted) {
 		this.isCopyrighted = isCopyrighted;
 	}
 
