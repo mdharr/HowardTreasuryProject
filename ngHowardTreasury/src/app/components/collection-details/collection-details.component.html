@@ -1,71 +1,78 @@
-<div class="title-container">
-  <h1 class="collection-title">{{ collection.title }}</h1>
-</div>
-<div class="main">
-  <div class="contents-box">
-    <h2 class="contents-title">Stories</h2>
-    <div class="story-contents">
-      <ul class="contents-lists" *ngIf="collection.stories.length">
-        <ng-container *ngFor="let story of collection.stories">
-          <li class="contents-items" [routerLink]="['/stories', story.id]">{{ story.title }}</li>
-        </ng-container>
-      </ul>
-      <ul class="no-contents-lists" *ngIf="!collection.stories.length">
-        <li>No content</li>
-      </ul>
-    </div>
-    <h2 class="contents-title">Poems</h2>
-    <div class="poem-contents">
-      <ul class="contents-lists" *ngIf="collection.poems.length">
-        <ng-container *ngFor="let poem of collection.poems">
-          <li class="contents-items" [routerLink]="['/poems', poem.id]">{{ poem.title }}</li>
-        </ng-container>
-      </ul>
-      <ul class="no-contents-lists" *ngIf="!collection.poems.length">
-        <li>No content</li>
-      </ul>
-    </div>
-    <h2 class="contents-title">Miscellanea</h2>
-    <div class="miscellanea-contents">
-      <ul class="contents-lists" *ngIf="collection.miscellaneas.length">
-        <ng-container *ngFor="let miscellanea of collection.miscellaneas">
-          <li class="contents-items" [routerLink]="['/miscellanea', miscellanea.id]">{{ miscellanea.title }}</li>
-        </ng-container>
-      </ul>
-      <ul class="no-contents-lists" *ngIf="!collection.miscellaneas.length">
-        <li>No content</li>
-      </ul>
-    </div>
+<div  *ngIf="!isLoaded" class="spinner-wrapper">
+  <div class="spinner-box">
+    <mat-spinner></mat-spinner>
   </div>
-<!-- Your Angular template -->
-<div class="img-wrapper">
-  <img
-    class="collection-image"
-    *ngIf="collectionImages && collectionImages.length > 0"
-    src="{{ collectionImages[0].imageUrl }}"
-    alt=""
-    (click)="toggleFullScreenImage()"
-  >
 </div>
-<div
-  class="overlay"
-  [ngClass]="{ 'active': isFullScreenImageVisible }"
-  (click)="toggleFullScreenImage()"
->
-  <img
-    class="full-screen-image"
-    *ngIf="isFullScreenImageVisible"
-    src="{{ collectionImages[0].imageUrl }}"
-    alt=""
-  >
-</div>
+<div *ngIf="isLoaded">
+  <div class="title-container">
+    <h1 class="collection-title">{{ collection.title }}</h1>
+  </div>
+  <div class="main">
+    <div class="contents-box">
+      <h2 class="contents-title">Stories</h2>
+      <div class="story-contents">
+        <ul class="contents-lists" *ngIf="collection.stories.length">
+          <ng-container *ngFor="let story of collection.stories">
+            <li class="contents-items" [routerLink]="['/stories', story.id]">{{ story.title }}</li>
+          </ng-container>
+        </ul>
+        <ul class="no-contents-lists" *ngIf="!collection.stories.length">
+          <li>No content</li>
+        </ul>
+      </div>
+      <h2 class="contents-title">Poems</h2>
+      <div class="poem-contents">
+        <ul class="contents-lists" *ngIf="collection.poems.length">
+          <ng-container *ngFor="let poem of collection.poems">
+            <li class="contents-items" [routerLink]="['/poems', poem.id]">{{ poem.title }}</li>
+          </ng-container>
+        </ul>
+        <ul class="no-contents-lists" *ngIf="!collection.poems.length">
+          <li>No content</li>
+        </ul>
+      </div>
+      <h2 class="contents-title">Miscellanea</h2>
+      <div class="miscellanea-contents">
+        <ul class="contents-lists" *ngIf="collection.miscellaneas.length">
+          <ng-container *ngFor="let miscellanea of collection.miscellaneas">
+            <li class="contents-items" [routerLink]="['/miscellanea', miscellanea.id]">{{ miscellanea.title }}</li>
+          </ng-container>
+        </ul>
+        <ul class="no-contents-lists" *ngIf="!collection.miscellaneas.length">
+          <li>No content</li>
+        </ul>
+      </div>
+    </div>
+    <!-- Your Angular template -->
+    <div class="img-wrapper">
+      <img
+        class="collection-image"
+        *ngIf="collectionImages && collectionImages.length > 0"
+        src="{{ collectionImages[0].imageUrl }}"
+        alt=""
+        (click)="toggleFullScreenImage()"
+      >
+    </div>
+    <div
+      class="overlay"
+      [ngClass]="{ 'active': isFullScreenImageVisible }"
+      (click)="toggleFullScreenImage()"
+    >
+      <img
+        class="full-screen-image"
+        *ngIf="isFullScreenImageVisible"
+        src="{{ collectionImages[0].imageUrl }}"
+        alt=""
+      >
+    </div>
 
-</div>
-<div class="description-container">
-  <h2 class="description-title">Description</h2>
-  <div class="description-box">
-    <p class="description-text" [innerHTML]="collectionDescription"></p>
-    <hr>
+  </div>
+  <div class="description-container">
+    <h2 class="description-title">Description</h2>
+    <div class="description-box">
+      <p class="description-text" [innerHTML]="collectionDescription"></p>
+      <hr>
+    </div>
   </div>
 </div>
 

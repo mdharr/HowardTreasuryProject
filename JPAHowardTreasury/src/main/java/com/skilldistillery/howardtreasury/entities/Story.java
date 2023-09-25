@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Story {
@@ -44,7 +45,8 @@ public class Story {
     @ManyToMany(mappedBy = "stories")
     private List<UserList> userLists;
 	
-	@JsonIgnore
+//	@JsonIgnore
+	@JsonIgnoreProperties("stories")
 	@ManyToMany(mappedBy = "stories", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 

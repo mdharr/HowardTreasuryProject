@@ -21,7 +21,7 @@ export class CollectionsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.delay(200).then(() => {
+    this.delay(250).then(() => {
       this.collectionSubscription = this.collectionService.indexAll().subscribe({
         next: (data) => {
           this.collections = data;

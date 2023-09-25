@@ -8,10 +8,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
+  // booleans
+  isLoaded = false;
+
   authService = inject(AuthService);
 
   ngOnInit() {
-
+    setTimeout(() => {
+      this.isLoaded = true;
+    }, 250);
   }
 
   ngOnDestroy() {

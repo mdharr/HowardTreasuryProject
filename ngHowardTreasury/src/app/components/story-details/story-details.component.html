@@ -1,1 +1,39 @@
-<p>story-details works!</p>
+<div *ngIf="!isLoaded" class="spinner-wrapper">
+  <div class="spinner-box">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
+<div *ngIf="isLoaded">
+  <div class="title-container">
+    <h1 class="story-title">{{ story.title }}</h1>
+  </div>
+
+  <div class="description-container">
+    <div class="description-title-box">
+      <h2 class="description-title">Excerpt</h2>
+    </div>
+    <div class="description-box">
+      <p class="description-text" [innerHTML]="storyExcerpt"></p><span *ngIf="story.textUrl"><a class="story-text-link" href="{{ story.textUrl }}">Read Full Story</a></span>
+      <hr>
+    </div>
+    <div class="story-details">
+      <div>
+        <p>First published in {{ story.firstPublished | date:'yyyy' }}</p>
+      </div>
+      <div>
+        <p>Copyright status: {{ story.isCopyrighted === true ? 'Under copyright until ' + (story.copyrightExpiresAt | date:'mediumDate') + '.' : 'No longer under copyright.' }}</p>
+      </div>
+      <div>
+        <p>Appears in the following collection(s):
+          <ng-container *ngFor="let collection of storyCollections; let lastIndex = last; let firstIndex = first">
+            <span class="collection-link" [routerLink]="['/collections/' + collection.id]">
+              {{ firstIndex && lastIndex ? (collection.title) : (collection.title + ', ') }}
+            </span>
+          </ng-container>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+

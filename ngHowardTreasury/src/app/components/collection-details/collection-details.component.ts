@@ -21,6 +21,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
 
   // booleans
   isFullScreenImageVisible = false;
+  isLoaded = false;
 
   // service injection
   auth = inject(AuthService);
@@ -51,16 +52,19 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   }
 
   subscribeToCollectionServiceById = () => {
-    this.collectionSubscription = this.collectionService.find(this.collectionId).subscribe({
-      next: (data) => {
-        this.collection = data;
-        this.collectionImages = data.collectionImages;
-        this.collectionDescription = this.createIlluminatedInitial(data.description);
-      },
-      error: (fail) => {
-        console.error('Error getting collection');
-        console.error(fail);
-      }
+    this.delay(250).then(() => {
+      this.collectionSubscription = this.collectionService.find(this.collectionId).subscribe({
+        next: (data) => {
+          this.collection = data;
+          this.collectionImages = data.collectionImages;
+          this.collectionDescription = this.createIlluminatedInitial(data.description);
+          this.isLoaded = true;
+        },
+        error: (fail) => {
+          console.error('Error getting collection');
+          console.error(fail);
+        }
+      });
     });
   }
 
@@ -88,5 +92,13 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
 
   toggleFullScreenImage(): void {
     this.isFullScreenImageVisible = !this.isFullScreenImageVisible;
+  }
+
+  delay(ms: number): Promise<void> {
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, ms);
+    });
   }
 }

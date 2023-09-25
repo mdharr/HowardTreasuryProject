@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { SearchResultsService } from './../../services/search-results.service';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SearchResultsService } from 'src/app/services/search-results.service';
 
 @Component({
   selector: 'app-search-results',
@@ -11,7 +11,11 @@ export class SearchResultsComponent implements OnInit {
   searchResults: any[] = [];
   searchResultsCount: number = 0;
 
-  constructor(private searchResultsService: SearchResultsService) {}
+  // booleans
+  isLoaded = false;
+
+  // inject services
+  searchResultsService = inject(SearchResultsService);
 
   ngOnInit() {
     // Subscribe to the searchResults$ observable to get updated results
@@ -21,7 +25,11 @@ export class SearchResultsComponent implements OnInit {
       for(let i = 0; i < results.length; i++) {
         this.searchResultsCount++;
       }
+      setTimeout(() => {
+        this.isLoaded = true;
+      }, 250);
     });
+
   }
 
 }
