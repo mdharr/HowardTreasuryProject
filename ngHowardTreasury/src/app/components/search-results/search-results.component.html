@@ -26,14 +26,14 @@
       <div *ngIf="result.type === 'Story'">
         <h3>{{ result.data.title }}</h3>
         <!-- Display other properties specific to the Story type -->
-        <p><span class="items-name">Read Online: </span><a href="{{ result.data.textUrl }}" target="_blank">{{ result.data.textUrl }}</a></p>
+        <p *ngIf="result.data.textUrl"><span class="items-name">Read Online: </span><a href="{{ result.data.textUrl }}" target="_blank">{{ result.data.textUrl }}</a></p>
         <!-- Add more properties as needed -->
       </div>
       <div *ngIf="result.type === 'Poem'">
         <h3>{{ result.data.title }}</h3>
         <!-- Display other properties specific to the Poem type -->
         <!-- Add more properties as needed -->
-        <p><span class="items-name">Read Online: </span><a href="{{ result.data.textUrl }}" target="_blank">{{ result.data.textUrl }}</a></p>
+        <p *ngIf="result.data.textUrl"><span class="items-name">Read Online: </span><a href="{{ result.data.textUrl }}" target="_blank">{{ result.data.textUrl }}</a></p>
       </div>
       <div *ngIf="result.type === 'Person'">
         <h3>{{ result.data.name }}</h3>
