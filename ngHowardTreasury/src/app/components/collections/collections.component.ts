@@ -26,6 +26,11 @@ export class CollectionsComponent implements OnInit, OnDestroy {
         next: (data) => {
           this.collections = data;
           this.loading = false; // Set loading to false when data is available
+
+                  // Wait for images to load
+        this.loadImages().then(() => {
+          console.log('All images loaded.');
+        });
         },
         error: (fail) => {
           console.error('Error retrieving collections');
@@ -48,6 +53,25 @@ export class CollectionsComponent implements OnInit, OnDestroy {
         resolve();
       }, ms);
     });
+  }
+
+  async loadImages(): Promise<void> {
+    // Create a promise for each collection image
+    const imagePromises = this.collections.map((collection) => {
+      const image = new Image();
+      image.src = collection.collectionImages[0].imageUrl;
+
+      return new Promise<void>((resolve) => {
+        image.onload = () => {
+          // When the image is loaded, set the isLoadingImage flag to false
+          collection.isLoadingImage = false;
+          resolve();
+        };
+      });
+    });
+
+    // Wait for all image promises to resolve
+    await Promise.all(imagePromises);
   }
 
 }

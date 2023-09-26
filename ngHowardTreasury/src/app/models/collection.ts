@@ -21,6 +21,8 @@ export class Collection {
   collectionImages: CollectionImage[];
   illustrators: Illustrator[];
 
+  isLoadingImage: boolean = true;
+
   constructor(
     id: number = 0,
     title: string = '',

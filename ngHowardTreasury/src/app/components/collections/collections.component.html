@@ -1,61 +1,33 @@
-<!-- <div class="main">
-  <div class="main-title">
-    <div class="title-container">
-      <h1 class="title-text">Collections</h1>
-    </div>
-  </div>
-  <ul class="collection-list">
-    <ng-container *ngFor="let collection of collections">
-      <li class="collection-item">
-        <div class="collection-card">
-          <a [routerLink]="['/collections', collection.id]" class="collection-thumbnail">
-            <img class="thumbnail-img" src="{{ collection.collectionImages[0].imageUrl }}" alt="" loading="lazy">
-          </a>
-          <div class="collection-title">
-            <a [routerLink]="['/collections', collection.id]">
-              <h4>{{ collection.title }}</h4>
-            </a>
-          </div>
-        </div>
-      </li>
-    </ng-container>
-  </ul>
-</div> -->
-
 <div  *ngIf="loading" class="spinner-wrapper">
   <div class="spinner-box">
     <mat-spinner></mat-spinner>
   </div>
 </div>
 
-<!-- <div class="frame"> -->
-  <div class="main-title">
-    <div class="title-container">
-      <h1 class="title-text">Collections</h1>
-    </div>
+<div class="main-title" *ngIf="!loading">
+  <div class="title-container">
+    <h1 class="title-text">Collections</h1>
   </div>
-  <div class="collection-container">
-    <ng-container *ngFor="let collection of collections; let i = index">
-      <!-- Use ngIf to conditionally render collections from index 0 to 9 -->
-      <div class="book" [routerLink]="['/collections', collection.id]" *ngIf="i <= 10">
-        <a>
-          <ul>
-            <li class="page page3"></li>
-            <li class="page page2"></li>
-            <li class="page page1"></li>
-            <img class="cover" src="{{ collection.collectionImages[0].imageUrl }}" alt="Book Cover">
-          </ul>
+</div>
+<div class="collection-container">
+  <ng-container *ngFor="let collection of collections; let i = index">
+    <div class="book" [routerLink]="['/collections', collection.id]" *ngIf="!collection.isLoadingImage && i <= 10">
+      <a>
+        <ul>
+          <li class="page page3"></li>
+          <li class="page page2"></li>
+          <li class="page page1"></li>
+          <img class="cover" src="{{ collection.collectionImages[0].imageUrl }}" alt="Book Cover">
+        </ul>
+      </a>
+      <div class="collection-title" style="padding-top: 30px; margin-bottom: 30px;">
+        <a [routerLink]="['/collections', collection.id]">
+          <h4>{{ collection.title }}</h4>
         </a>
-        <div class="collection-title" style="padding-top: 30px; margin-bottom: 30px;">
-          <a [routerLink]="['/collections', collection.id]">
-            <h4>{{ collection.title }}</h4>
-          </a>
-        </div>
       </div>
-    </ng-container>
-  </div>
-
-<!-- </div> -->
+    </div>
+  </ng-container>
+</div>
 
 
 
