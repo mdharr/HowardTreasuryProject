@@ -11,11 +11,29 @@
   <div class="description-container">
     <div class="description-title-box">
       <h2 class="description-title">Excerpt</h2>
+      <b class="b-element"></b>
     </div>
     <div class="description-box">
-      <p class="description-text" [innerHTML]="storyExcerpt"></p><span *ngIf="story.textUrl"><a class="story-text-link" href="{{ story.textUrl }}">Read Full Story</a></span>
-      <hr>
+      <p class="description-text" [innerHTML]="storyExcerpt"></p><span class="read-online-box" *ngIf="story.textUrl"><a class="story-text-link" href="{{ story.textUrl }}">Continue reading</a></span>
+      <!-- <hr> -->
     </div>
+
+    <div class="description-container">
+      <div class="description-title-box">
+        <h2 class="description-title">Description</h2>
+        <b class="b-element"></b>
+      </div>
+
+    </div>
+
+    <div class="description-container">
+      <div class="description-title-box">
+        <h2 class="description-title">Artwork</h2>
+        <b class="b-element"></b>
+      </div>
+
+    </div>
+
     <div class="story-details">
       <div>
         <p>First published in {{ story.firstPublished | date:'yyyy' }}</p>
@@ -34,6 +52,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 

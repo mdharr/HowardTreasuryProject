@@ -31,8 +31,9 @@
 }
 
 .contents-lists {
-  list-style: upper-roman;
+  list-style: decimal-leading-zero;
   font-size: 14px;
+
 }
 
 .no-contents-lists {

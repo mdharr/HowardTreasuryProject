@@ -138,8 +138,8 @@ h4 {
 .main-title {
   display: flex;
   justify-content: center;
-  /* width: 100%; */
-  margin: 50px;
+  padding: 50px;
+  padding-bottom: 0;
 }
 
 .title-container {
@@ -169,7 +169,7 @@ h4 {
   justify-content: space-around;
   align-content: space-between;
   width: fit-content;
-  margin-top: 70px;
+  padding-top: 10px;
 }
 
 /* Book */

@@ -26,7 +26,24 @@
   font-weight: 700;
   color: #9e0000;
   text-align: center;
+  border: 2px solid rgba(184, 174, 154, 0.5);
+  width: fit-content;
+  padding: 0.3em 0.8em;
+  margin:0;
+}
 
+.description-title-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.b-element {
+  background-color: #b8ae9a;
+  display: block;
+  flex: 1;
+  height: 2px;
+  opacity: 0.5;
 }
 
 .description-box {
@@ -68,14 +85,6 @@
   align-items: center;
 }
 
-.story-text-link {
-  text-decoration: none;
-}
-
-.story-text-link:hover {
-  text-decoration: underline;
-}
-
 .collection-link {
   color: #9e0000;
 }
@@ -99,4 +108,27 @@
 
 .mat-mdc-progress-spinner {
   --mdc-circular-progress-active-indicator-color: #9e0000;
+}
+
+.read-online-box {
+  border: 1px solid #9e0000;
+  background-color:rgba(158, 0, 0, 0.2);
+  padding: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.read-online-box:hover {
+  background-color:rgba(158, 0, 0, 1);
+  cursor:pointer;
+}
+
+.story-text-link {
+  color: black;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-family: fantasy;
+}
+
+.read-online-box:hover .story-text-link {
+  color: #fff;
 }
