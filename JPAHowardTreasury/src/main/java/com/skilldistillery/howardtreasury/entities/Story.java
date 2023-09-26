@@ -41,6 +41,8 @@ public class Story {
 	
 	private String excerpt;
 	
+	private String description;
+	
     @JsonIgnore
     @ManyToMany(mappedBy = "stories")
     private List<UserList> userLists;
@@ -56,8 +58,8 @@ public class Story {
 	}
 
 	public Story(int id, String title, String textUrl, LocalDateTime firstPublished, String alternateTitle,
-			Boolean isCopyrighted, LocalDateTime copyrightExpiresAt, String excerpt, List<UserList> userLists,
-			List<Collection> collections) {
+			Boolean isCopyrighted, LocalDateTime copyrightExpiresAt, String excerpt, String description, 
+			List<UserList> userLists, List<Collection> collections) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -67,6 +69,7 @@ public class Story {
 		this.isCopyrighted = isCopyrighted;
 		this.copyrightExpiresAt = copyrightExpiresAt;
 		this.excerpt = excerpt;
+		this.description = description;
 		this.userLists = userLists;
 		this.collections = collections;
 	}
@@ -111,11 +114,11 @@ public class Story {
 		this.alternateTitle = alternateTitle;
 	}
 
-	public Boolean isCopyrighted() {
+	public Boolean getIsCopyrighted() {
 		return isCopyrighted;
 	}
 
-	public void setCopyrighted(Boolean isCopyrighted) {
+	public void setIsCopyrighted(Boolean isCopyrighted) {
 		this.isCopyrighted = isCopyrighted;
 	}
 
@@ -133,6 +136,14 @@ public class Story {
 
 	public void setExcerpt(String excerpt) {
 		this.excerpt = excerpt;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public List<UserList> getUserLists() {
