@@ -4,8 +4,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Collection {
@@ -82,6 +85,10 @@ public class Collection {
         inverseJoinColumns = @JoinColumn(name = "illustrator_id")
     )
     private List<Illustrator> illustrators;
+    
+    @OneToMany(mappedBy = "collection", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<CollectionHasStory> collectionHasStories;
+
 
 	public Collection() {
 		super();
@@ -91,7 +98,8 @@ public class Collection {
 	public Collection(int id, String title, LocalDateTime publishedAt, Integer pageCount,
 			String description, Series series, List<Story> stories,
 			List<Poem> poems, List<Person> persons, List<Miscellanea> miscellaneas,
-			List<CollectionImage> collectionImages, List<Illustrator> illustrators) {
+			List<CollectionImage> collectionImages, List<Illustrator> illustrators,
+			List<CollectionHasStory> collectionHasStories) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -105,6 +113,7 @@ public class Collection {
 		this.miscellaneas = miscellaneas;
 		this.collectionImages = collectionImages;
 		this.illustrators = illustrators;
+		this.collectionHasStories = collectionHasStories;
 	}
 
 	public int getId() {
@@ -201,6 +210,14 @@ public class Collection {
 
 	public void setIllustrators(List<Illustrator> illustrators) {
 		this.illustrators = illustrators;
+	}
+
+	public List<CollectionHasStory> getCollectionHasStories() {
+		return collectionHasStories;
+	}
+
+	public void setCollectionHasStories(List<CollectionHasStory> collectionHasStories) {
+		this.collectionHasStories = collectionHasStories;
 	}
 
 	@Override

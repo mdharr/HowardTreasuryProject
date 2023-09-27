@@ -7,10 +7,12 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -47,10 +49,12 @@ public class Story {
     @ManyToMany(mappedBy = "stories")
     private List<UserList> userLists;
 	
-//	@JsonIgnore
 	@JsonIgnoreProperties("stories")
 	@ManyToMany(mappedBy = "stories", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
+	
+	@OneToMany(mappedBy = "story", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<CollectionHasStory> collectionHasStories;
 
 	public Story() {
 		super();
@@ -59,7 +63,7 @@ public class Story {
 
 	public Story(int id, String title, String textUrl, LocalDateTime firstPublished, String alternateTitle,
 			Boolean isCopyrighted, LocalDateTime copyrightExpiresAt, String excerpt, String description, 
-			List<UserList> userLists, List<Collection> collections) {
+			List<UserList> userLists, List<Collection> collections, List<CollectionHasStory> collectionHasStories) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -72,6 +76,7 @@ public class Story {
 		this.description = description;
 		this.userLists = userLists;
 		this.collections = collections;
+		this.collectionHasStories = collectionHasStories;
 	}
 
 	public int getId() {
@@ -160,6 +165,14 @@ public class Story {
 
 	public void setCollections(List<Collection> collections) {
 		this.collections = collections;
+	}
+
+	public List<CollectionHasStory> getCollectionHasStories() {
+		return collectionHasStories;
+	}
+
+	public void setCollectionHasStories(List<CollectionHasStory> collectionHasStories) {
+		this.collectionHasStories = collectionHasStories;
 	}
 
 	@Override

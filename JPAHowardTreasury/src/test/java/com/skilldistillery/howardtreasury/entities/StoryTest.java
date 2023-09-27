@@ -45,5 +45,11 @@ class StoryTest {
 		assertNotNull(story);
 		assertEquals("The Altar and the Scorpion", story.getTitle());
 	}
+	
+	@Test
+	void test_Story_CollectionHasStory_one_to_many_mapping() {
+		assertNotNull(story);
+		assertEquals(133, story.getCollectionHasStories().get(0).getPageNumber());
+	}
 
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
+import com.skilldistillery.howardtreasury.entities.CollectionHasStory;
+import com.skilldistillery.howardtreasury.entities.Story;
 
 public interface CollectionService {
 
@@ -18,6 +20,11 @@ public interface CollectionService {
 	public void delete(int collectionId);
 	
 	public Collection getByTitle(String collectionTitle);
+	
+	public Integer getPageNumberForStoryInCollection(Collection collection, Story story);
+	
+	public List<CollectionHasStory> findStoriesByCollectionOrderByPageNumberAsc(Collection collection);
 
 	CollectionDetailsDTO findCollectionDetails(int collectionId);
+
 }

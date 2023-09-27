@@ -2,6 +2,7 @@ package com.skilldistillery.howardtreasury.entities;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -15,6 +16,9 @@ public class CollectionHasStory {
 
 	@EmbeddedId
 	private CollectionHasStoryId id;
+	
+	@Column(name = "page_number")
+	private Integer pageNumber;
 	
 	@ManyToOne
 	@JoinColumn(name = "collection_id")
@@ -31,9 +35,10 @@ public class CollectionHasStory {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CollectionHasStory(CollectionHasStoryId id, Collection collection, Story story) {
+	public CollectionHasStory(CollectionHasStoryId id, Integer pageNumber, Collection collection, Story story) {
 		super();
 		this.id = new CollectionHasStoryId(collection.getId(), story.getId());
+		this.pageNumber = pageNumber;
 		this.collection = collection;
 		this.story = story;
 	}
@@ -44,6 +49,14 @@ public class CollectionHasStory {
 
 	public void setId(CollectionHasStoryId id) {
 		this.id = id;
+	}
+
+	public Integer getPageNumber() {
+		return pageNumber;
+	}
+
+	public void setPageNumber(Integer pageNumber) {
+		this.pageNumber = pageNumber;
 	}
 
 	public Collection getCollection() {

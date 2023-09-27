@@ -75,6 +75,11 @@ class CollectionTest {
 		assertNotNull(collection);
 		assertEquals("Mark Schultz", collection.getIllustrators().get(0).getName());
 	}
-
+	
+	@Test
+	void test_Collection_CollectionHasStory_one_to_many_mapping() {
+		assertNotNull(collection);
+		assertEquals(151, collection.getCollectionHasStories().get(0).getPageNumber());
+	}
 
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
+import com.skilldistillery.howardtreasury.entities.CollectionHasStory;
 import com.skilldistillery.howardtreasury.entities.CollectionImage;
 import com.skilldistillery.howardtreasury.entities.Illustrator;
 import com.skilldistillery.howardtreasury.entities.Miscellanea;
@@ -19,6 +20,7 @@ import com.skilldistillery.howardtreasury.entities.Person;
 import com.skilldistillery.howardtreasury.entities.Poem;
 import com.skilldistillery.howardtreasury.entities.Series;
 import com.skilldistillery.howardtreasury.entities.Story;
+import com.skilldistillery.howardtreasury.repositories.CollectionHasStoryRepository;
 import com.skilldistillery.howardtreasury.repositories.CollectionRepository;
 
 @Service
@@ -26,6 +28,9 @@ public class CollectionServiceImpl implements CollectionService {
 
 	@Autowired
 	private CollectionRepository collectionRepo;
+	
+	@Autowired
+	private CollectionHasStoryRepository collectionHasStoryRepo;
 
 	@Override
 	public List<Collection> findAll() {
@@ -152,6 +157,24 @@ public class CollectionServiceImpl implements CollectionService {
 	}
 	
 	@Override
+	public Integer getPageNumberForStoryInCollection(Collection collection, Story story) {
+        CollectionHasStory collectionHasStory = collectionHasStoryRepo
+        		.findByCollectionAndStory(collection, story);
+
+        if (collectionHasStory != null) {
+            return collectionHasStory.getPageNumber();
+        } else {
+            // Handle the case when the story is not found in the collection
+            return null; // You can return a default value or throw an exception if needed
+        }
+	}
+	
+    @Override
+    public List<CollectionHasStory> findStoriesByCollectionOrderByPageNumberAsc(Collection collection) {
+        return collectionHasStoryRepo.findStoriesByCollectionOrderByPageNumberAsc(collection);
+    }
+	
+	@Override
     public CollectionDetailsDTO findCollectionDetails(int collectionId) {
         Optional<Collection> collectionOpt = collectionRepo.findById(collectionId);
         
@@ -197,5 +220,6 @@ public class CollectionServiceImpl implements CollectionService {
 
         return null;
     }
+
 	
 }
