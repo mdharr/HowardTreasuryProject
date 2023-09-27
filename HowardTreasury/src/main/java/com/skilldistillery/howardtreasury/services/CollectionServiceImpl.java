@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
+import com.skilldistillery.howardtreasury.dtos.CollectionWithStoriesDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
 import com.skilldistillery.howardtreasury.entities.CollectionHasStory;
 import com.skilldistillery.howardtreasury.entities.CollectionImage;
@@ -157,17 +158,55 @@ public class CollectionServiceImpl implements CollectionService {
 	}
 	
 	@Override
-	public Integer getPageNumberForStoryInCollection(Collection collection, Story story) {
-        CollectionHasStory collectionHasStory = collectionHasStoryRepo
-        		.findByCollectionAndStory(collection, story);
-
-        if (collectionHasStory != null) {
-            return collectionHasStory.getPageNumber();
-        } else {
-            // Handle the case when the story is not found in the collection
-            return null; // You can return a default value or throw an exception if needed
-        }
+	public CollectionWithStoriesDTO findCollectionWithStories(int collectionId) {
+	    Optional<Collection> collectionOpt = collectionRepo.findById(collectionId);
+	    if (collectionOpt.isPresent()) {
+	        Collection collection = collectionOpt.get();
+	        CollectionWithStoriesDTO dto = new CollectionWithStoriesDTO();
+	        
+	        // Populate basic collection details
+	        dto.setId(collection.getId());
+	        dto.setTitle(collection.getTitle());
+	        dto.setPublishedAt(collection.getPublishedAt());
+	        dto.setPageCount(collection.getPageCount());
+	        dto.setDescription(collection.getDescription());
+	        dto.setSeries(collection.getSeries());
+	        
+	        // Populate stories with page numbers
+	        List<CollectionHasStory> collectionHasStories = collectionHasStoryRepo.findByCollectionId(collectionId);
+	        List<CollectionWithStoriesDTO.StoryWithPageNumberDTO> storyDTOs = new ArrayList<>();
+	        for (CollectionHasStory collectionHasStory : collectionHasStories) {
+	            CollectionWithStoriesDTO.StoryWithPageNumberDTO storyDTO = new CollectionWithStoriesDTO.StoryWithPageNumberDTO();
+	            
+	            Story story = collectionHasStory.getStory();
+	            
+	            storyDTO.setId(story.getId());
+	            storyDTO.setTitle(story.getTitle());
+	            storyDTO.setTextUrl(story.getTextUrl());
+	            storyDTO.setPageNumber(collectionHasStory.getPageNumber());
+	            storyDTO.setFirstPublished(story.getFirstPublished());
+	            storyDTO.setAlternateTitle(story.getAlternateTitle());
+	            storyDTO.setIsCopyrighted(story.getIsCopyrighted());
+	            storyDTO.setCopyrightExpiresAt(story.getCopyrightExpiresAt());
+	            storyDTO.setExcerpt(story.getExcerpt());
+	            storyDTO.setDescription(story.getDescription());
+	            
+	            storyDTOs.add(storyDTO);
+	        }
+	        dto.setStories(storyDTOs);
+	        
+	        // Populate other properties from Collection entity here
+	        dto.setPoems(collection.getPoems());
+	        dto.setPersons(collection.getPersons());
+	        dto.setMiscellaneas(collection.getMiscellaneas());
+	        dto.setCollectionImages(collection.getCollectionImages());
+	        dto.setIllustrators(collection.getIllustrators());
+	        
+	        return dto;
+	    }
+	    return null;
 	}
+
 	
     @Override
     public List<CollectionHasStory> findStoriesByCollectionOrderByPageNumberAsc(Collection collection) {
@@ -221,5 +260,4 @@ public class CollectionServiceImpl implements CollectionService {
         return null;
     }
 
-	
 }

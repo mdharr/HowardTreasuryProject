@@ -10,6 +10,8 @@ import com.skilldistillery.howardtreasury.entities.CollectionHasStory;
 import com.skilldistillery.howardtreasury.entities.Story;
 
 public interface CollectionHasStoryRepository extends JpaRepository<CollectionHasStory, Integer>{
+	
+	List<CollectionHasStory> findByCollectionId(int collectionId);
 
 	CollectionHasStory findByCollectionAndStory(Collection collection, Story story);
 	

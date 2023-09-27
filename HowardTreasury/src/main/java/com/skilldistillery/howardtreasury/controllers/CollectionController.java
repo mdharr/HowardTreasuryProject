@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
+import com.skilldistillery.howardtreasury.dtos.CollectionWithStoriesDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
 import com.skilldistillery.howardtreasury.entities.Miscellanea;
 import com.skilldistillery.howardtreasury.services.CollectionService;
@@ -141,5 +142,15 @@ public class CollectionController {
 //		}
 //		return collectionService.getByTitle(originalTitle);
 //	}
+    
+    @GetMapping("collections/{cid}/pages")
+    public ResponseEntity<CollectionWithStoriesDTO> getCollectionWithStoriesById(@PathVariable("cid") int collectionId) {
+        CollectionWithStoriesDTO collectionDTO = collectionService.findCollectionWithStories(collectionId);
+        if (collectionDTO != null) {
+            return new ResponseEntity<>(collectionDTO, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 	
 }

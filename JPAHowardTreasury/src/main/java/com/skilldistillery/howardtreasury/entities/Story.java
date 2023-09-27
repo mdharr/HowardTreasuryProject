@@ -53,6 +53,7 @@ public class Story {
 	@ManyToMany(mappedBy = "stories", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "story", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<CollectionHasStory> collectionHasStories;
 

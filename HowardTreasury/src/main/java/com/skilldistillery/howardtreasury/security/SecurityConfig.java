@@ -32,6 +32,7 @@ public class SecurityConfig {
         .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/collections").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/collections/*").permitAll()     // will hit the OPTIONS on the route
+        .antMatchers(HttpMethod.GET, "/api/collections/*/pages").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/stories").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/stories/*").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/poems").permitAll()     // will hit the OPTIONS on the route

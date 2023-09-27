@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Collection } from '../models/collection';
+import { CollectionWithStoriesDTO } from '../models/collection-with-stories-dto';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -43,6 +44,18 @@ export class CollectionService {
         return throwError(
           () =>
             new Error('CollectionService.find(): error retrieving collection: ' + err)
+        );
+      })
+    );
+  }
+
+  findCollectionWithStoriesById(id: number): Observable<CollectionWithStoriesDTO> {
+    return this.http.get<CollectionWithStoriesDTO>(`${this.url}/${id}/pages`).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError(
+          () =>
+            new Error('CollectionService.findCollectionWithStoriesById(): error retrieving collection with stories: ' + err)
         );
       })
     );

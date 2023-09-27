@@ -5,6 +5,7 @@ import { Collection } from 'src/app/models/collection';
 import { AuthService } from 'src/app/services/auth.service';
 import { CollectionService } from 'src/app/services/collection.service';
 import { CollectionImage } from 'src/app/models/collection-image';
+import { CollectionWithStoriesDTO } from 'src/app/models/collection-with-stories-dto';
 
 @Component({
   selector: 'app-collection-details',
@@ -15,7 +16,8 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
 
   // property initialization
   collectionId: number = 0;
-  collection: Collection = new Collection();
+  // collection: Collection = new Collection();
+  collection: CollectionWithStoriesDTO = new CollectionWithStoriesDTO();
   collectionImages!: CollectionImage[];
   collectionDescription: string = '';
 
@@ -52,10 +54,27 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   }
 
   subscribeToCollectionServiceById = () => {
+    // this.delay(250).then(() => {
+    //   this.collectionSubscription = this.collectionService.find(this.collectionId).subscribe({
+    //     next: (data) => {
+    //       this.collection = data;
+    //       this.collectionImages = data.collectionImages;
+    //       this.collectionDescription = this.createIlluminatedInitial(data.description);
+    //       this.isLoaded = true;
+    //     },
+    //     error: (fail) => {
+    //       console.error('Error getting collection');
+    //       console.error(fail);
+    //     }
+    //   });
+    // });
+
+    // subscription using DTO implementation to retrieve page numbers
     this.delay(250).then(() => {
-      this.collectionSubscription = this.collectionService.find(this.collectionId).subscribe({
+      this.collectionSubscription = this.collectionService.findCollectionWithStoriesById((this.collectionId)).subscribe({
         next: (data) => {
           this.collection = data;
+          this.sortStoriesByPageNumber();
           this.collectionImages = data.collectionImages;
           this.collectionDescription = this.createIlluminatedInitial(data.description);
           this.isLoaded = true;
@@ -100,5 +119,10 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
         resolve();
       }, ms);
     });
+  }
+
+  sortStoriesByPageNumber(): void {
+    // Sort the stories within the collection by page number
+    this.collection.stories.sort((a, b) => a.pageNumber - b.pageNumber);
   }
 }
