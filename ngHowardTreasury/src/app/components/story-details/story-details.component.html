@@ -10,49 +10,68 @@
 
   <div class="description-container">
     <div class="description-title-box">
-      <h2 class="description-title">Excerpt</h2>
+      <div class="title-box">
+        <h2 class="description-title">Excerpt</h2>
+      </div>
       <b class="b-element"></b>
+      <div class="flair-wrapper">
+        <img class="flair-img" src="https://howardtreasury.s3.amazonaws.com/assets/siteassets/solomon-kane-flair-removebg-preview.png" alt="">
+      </div>
     </div>
-    <div class="description-box">
-      <p class="description-text" [innerHTML]="storyExcerpt"></p><span class="read-online-box" *ngIf="story.textUrl"><a class="story-text-link" href="{{ story.textUrl }}">Continue reading</a></span>
+    <div class="excerpt-box">
+      <p class="excerpt-text" [innerHTML]="storyExcerpt"></p><span class="read-online-box" *ngIf="story.textUrl"><a class="story-text-link" href="{{ story.textUrl }}">Continue reading</a></span>
       <!-- <hr> -->
     </div>
 
-    <div class="description-container">
+    <div class="description-container" *ngIf="story.description">
       <div class="description-title-box">
-        <h2 class="description-title">Description</h2>
+        <div class="title-box">
+          <h2 class="description-title">Description</h2>
+        </div>
         <b class="b-element"></b>
+        <div class="flair-wrapper">
+          <img class="flair-img" src="https://howardtreasury.s3.amazonaws.com/assets/siteassets/solomon-kane-flair-removebg-preview.png" alt="">
+        </div>
+      </div>
+      <div class="description-box">
+        <p class="description-text">{{ story.description }}</p>
+        <!-- <hr> -->
       </div>
 
     </div>
 
     <div class="description-container">
       <div class="description-title-box">
-        <h2 class="description-title">Artwork</h2>
+        <div class="title-box">
+          <h2 class="description-title">Artwork</h2>
+        </div>
         <b class="b-element"></b>
+        <div class="flair-wrapper">
+          <img class="flair-img" src="https://howardtreasury.s3.amazonaws.com/assets/siteassets/solomon-kane-flair-removebg-preview.png" alt="">
+        </div>
       </div>
 
     </div>
 
     <div class="story-details">
-      <div>
-        <p>First published in {{ story.firstPublished | date:'yyyy' }}</p>
-      </div>
-      <div>
-        <p>Copyright status: {{ story.isCopyrighted === true ? 'Under copyright until ' + (story.copyrightExpiresAt | date:'mediumDate') + '.' : 'No longer under copyright.' }}</p>
-      </div>
-      <div>
-        <p>Appears in the following collection(s):
-          <ng-container *ngFor="let collection of storyCollections; let lastIndex = last; let firstIndex = first">
-            <span class="collection-link" [routerLink]="['/collections/' + collection.id]">
-              {{ firstIndex && lastIndex ? (collection.title) : (collection.title + ', ') }}
-            </span>
-          </ng-container>
-        </p>
+      <div class="details-wrapper">
+        <div>
+          <p>First published in {{ story.firstPublished | date:'yyyy' }}</p>
+        </div>
+        <div>
+          <p>Copyright status: {{ story.isCopyrighted === true ? 'Under copyright until ' + (story.copyrightExpiresAt | date:'mediumDate') + '.' : 'No longer under copyright.' }}</p>
+        </div>
+        <div>
+          <p>Appears in the following collection(s):
+            <ng-container *ngFor="let collection of storyCollections; let lastIndex = last; let firstIndex = first">
+              <span class="collection-link" [routerLink]="['/collections/' + collection.id]">
+                {{ firstIndex && lastIndex ? (collection.title) : (collection.title + ', ') }}
+              </span>
+            </ng-container>
+          </p>
+        </div>
       </div>
     </div>
   </div>
 
 </div>
-
-

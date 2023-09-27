@@ -24,7 +24,7 @@
         <!-- Add more properties as needed -->
       </div>
       <div *ngIf="result.type === 'Story'">
-        <h3>{{ result.data.title }}</h3>
+        <h3 class="results-items" [routerLink]="['/stories', result.data.id]">{{ result.data.title }}</h3>
         <!-- Display other properties specific to the Story type -->
         <p *ngIf="result.data.textUrl"><span class="items-name">Read Online: </span><a href="{{ result.data.textUrl }}" target="_blank">{{ result.data.textUrl }}</a></p>
         <!-- Add more properties as needed -->

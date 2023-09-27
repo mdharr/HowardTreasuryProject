@@ -48,3 +48,39 @@ img.alignleft, .wp-caption.alignleft {
 .mat-mdc-progress-spinner {
   --mdc-circular-progress-active-indicator-color: #9e0000;
 }
+
+.description-title {
+  font-family: Libre Baskerville, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  color: #9e0000;
+  text-align: center;
+  border: 4px double #9e0000;
+  width: fit-content;
+  padding: 0.3em 0.8em;
+  margin:0;
+}
+
+.description-title-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.b-element {
+  background-color: #9e0000;
+  display: block;
+  flex: 1;
+  height: 2px;
+  opacity: 0.5;
+}
+
+.flair-wrapper {
+
+}
+
+.flair-img {
+  width: 150px;
+  height: auto;
+  box-shadow: none !important;
+  padding-bottom: 3px;
+}

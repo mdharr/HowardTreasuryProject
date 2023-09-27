@@ -69,14 +69,6 @@
   justify-content: center;
 }
 
-.description-title {
-  font-family: Libre Baskerville, Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  color: #9e0000;
-  text-align: center;
-
-}
-
 .description-box {
   text-align: justify;
   padding-left: 10%;
@@ -172,6 +164,94 @@
 
 .mat-mdc-progress-spinner {
   --mdc-circular-progress-active-indicator-color: #9e0000;
+}
+
+.description-title {
+  font-family: Libre Baskerville, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  color: #9e0000;
+  text-align: center;
+  /* border: 3px double rgba(184, 174, 154, 0.5); */
+  border: 4px double #9e0000;
+  width: fit-content;
+  padding: 0.3em 0.8em;
+  margin:0;
+}
+
+.description-title-box {
+  display: flex;
+  align-items: center;
+  /* margin-bottom: 50px; */
+}
+
+.b-element {
+  background-color: #9e0000;
+  display: block;
+  flex: 1;
+  height: 2px;
+  opacity: 0.5;
+}
+
+.title-box {
+  padding: 50px;
+}
+
+.flair-img {
+  width: 150px;
+  height: auto;
+  padding-bottom: 3px;
+}
+
+.contents-wrapper {
+  display:flex;
+  flex-direction: column;
+}
+
+.story-title {
+  font-family: Libre Baskerville, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  color: #9e0000;
+  text-align: center;
+}
+
+@media screen and (max-width: 815px) {
+  .main {
+    flex-direction: column;
+    /* Additional styles for the 'column' direction if needed */
+  }
+
+  .img-wrapper {
+    order: -1; /* This places img-wrapper before contents-box in the column layout */
+    /* Additional styles for img-wrapper */
+    margin-bottom: 20px;
+    flex:1;
+  }
+
+  .collection-image {
+    flex:1;
+    max-width: 100%;
+    min-width:200px;
+  }
+
+  .contents-box {
+    /* Additional styles for contents-box */
+  }
+
+  .description-title,
+  .description-title h2 {
+    flex:1;
+    max-width:100%;
+    min-width:100px;
+    font-size: 10px;
+    min-height:25px;
+  }
+
+  .flair-img {
+    flex:1;
+    max-width:100%;
+    min-width: 50px;
+  }
+
 }
 
 

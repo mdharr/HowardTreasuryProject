@@ -10,6 +10,7 @@ export class Story {
   isCopyrighted: boolean;
   copyrightExpiresAt: string;
   excerpt: string;
+  description: string;
   // userLists: UserList[];
   collections: Collection[];
 
@@ -22,6 +23,7 @@ export class Story {
     isCopyrighted: boolean = false,
     copyrightExpiresAt: string = '',
     excerpt: string = '',
+    description: string = '',
     // userLists: UserList[] = [],
     collections: Collection[] = []
   ) {
@@ -33,6 +35,7 @@ export class Story {
     this.isCopyrighted = isCopyrighted;
     this.copyrightExpiresAt = copyrightExpiresAt;
     this.excerpt = excerpt;
+    this.description = description;
     // this.userLists = userLists;
     this.collections = collections;
   }

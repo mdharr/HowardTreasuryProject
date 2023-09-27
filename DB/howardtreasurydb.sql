@@ -151,6 +151,7 @@ DROP TABLE IF EXISTS `collection_has_story` ;
 CREATE TABLE IF NOT EXISTS `collection_has_story` (
   `collection_id` INT NOT NULL,
   `story_id` INT NOT NULL,
+  `page_number` INT NULL,
   PRIMARY KEY (`collection_id`, `story_id`),
   INDEX `fk_collection_has_story_story1_idx` (`story_id` ASC),
   INDEX `fk_collection_has_story_collection1_idx` (`collection_id` ASC),
@@ -175,6 +176,7 @@ DROP TABLE IF EXISTS `collection_has_poem` ;
 CREATE TABLE IF NOT EXISTS `collection_has_poem` (
   `collection_id` INT NOT NULL,
   `poem_id` INT NOT NULL,
+  `page_number` INT NULL,
   PRIMARY KEY (`collection_id`, `poem_id`),
   INDEX `fk_collection_has_poem_poem1_idx` (`poem_id` ASC),
   INDEX `fk_collection_has_poem_collection1_idx` (`collection_id` ASC),
@@ -199,6 +201,7 @@ DROP TABLE IF EXISTS `collection_has_miscellanea` ;
 CREATE TABLE IF NOT EXISTS `collection_has_miscellanea` (
   `collection_id` INT NOT NULL,
   `miscellanea_id` INT NOT NULL,
+  `page_number` INT NULL,
   PRIMARY KEY (`collection_id`, `miscellanea_id`),
   INDEX `fk_collection_has_miscellanea_miscellanea1_idx` (`miscellanea_id` ASC),
   INDEX `fk_collection_has_miscellanea_collection1_idx` (`collection_id` ASC),
@@ -527,6 +530,66 @@ CREATE TABLE IF NOT EXISTS `user_list_has_miscellanea` (
   CONSTRAINT `fk_user_list_has_miscellanea_miscellanea1`
     FOREIGN KEY (`miscellanea_id`)
     REFERENCES `miscellanea` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `story_image`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `story_image` ;
+
+CREATE TABLE IF NOT EXISTS `story_image` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `image_url` VARCHAR(1000) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `story_has_story_image`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `story_has_story_image` ;
+
+CREATE TABLE IF NOT EXISTS `story_has_story_image` (
+  `story_id` INT NOT NULL,
+  `story_image_id` INT NOT NULL,
+  PRIMARY KEY (`story_id`, `story_image_id`),
+  INDEX `fk_story_has_story_image_story_image1_idx` (`story_image_id` ASC),
+  INDEX `fk_story_has_story_image_story1_idx` (`story_id` ASC),
+  CONSTRAINT `fk_story_has_story_image_story1`
+    FOREIGN KEY (`story_id`)
+    REFERENCES `story` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_story_has_story_image_story_image1`
+    FOREIGN KEY (`story_image_id`)
+    REFERENCES `story_image` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `story_image_has_illustrator`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `story_image_has_illustrator` ;
+
+CREATE TABLE IF NOT EXISTS `story_image_has_illustrator` (
+  `story_image_id` INT NOT NULL,
+  `illustrator_id` INT NOT NULL,
+  PRIMARY KEY (`story_image_id`, `illustrator_id`),
+  INDEX `fk_story_image_has_illustrator_illustrator1_idx` (`illustrator_id` ASC),
+  INDEX `fk_story_image_has_illustrator_story_image1_idx` (`story_image_id` ASC),
+  CONSTRAINT `fk_story_image_has_illustrator_story_image1`
+    FOREIGN KEY (`story_image_id`)
+    REFERENCES `story_image` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_story_image_has_illustrator_illustrator1`
+    FOREIGN KEY (`illustrator_id`)
+    REFERENCES `illustrator` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -861,150 +924,150 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (6, 1);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (6, 2);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (6, 3);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (6, 4);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (6, 5);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (6, 6);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (6, 7);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (6, 8);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (6, 9);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (6, 10);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (6, 11);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (1, 12);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (1, 13);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (1, 14);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (1, 15);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (1, 16);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (1, 17);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (1, 18);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (1, 19);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (1, 20);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (1, 21);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (1, 22);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (1, 23);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (1, 24);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (2, 25);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (2, 26);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (2, 27);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (2, 28);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (2, 29);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (2, 30);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (2, 31);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (2, 32);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (2, 33);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (3, 34);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (3, 35);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (3, 36);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (4, 37);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (4, 6);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (4, 38);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (4, 39);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (4, 40);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (4, 41);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (4, 42);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (5, 43);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (5, 44);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (5, 45);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (5, 46);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (5, 47);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (10, 48);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (10, 49);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (10, 50);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (10, 51);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (10, 52);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (10, 53);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (10, 54);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (10, 55);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (10, 56);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (10, 57);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (10, 58);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (10, 59);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (11, 60);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (11, 61);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (11, 62);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (11, 63);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (11, 64);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (11, 65);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (11, 66);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (11, 67);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (11, 68);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (11, 69);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (11, 70);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (11, 71);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (11, 72);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (11, 73);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (11, 74);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 75);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 76);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 77);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 78);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 79);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 80);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 81);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 82);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 83);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 84);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 85);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 86);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 87);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 88);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 89);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 90);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 91);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 92);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 93);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 94);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 95);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 96);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 97);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 98);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 99);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 100);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 101);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 102);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 103);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 104);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 105);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 106);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 37);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 27);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 39);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 29);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (9, 42);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 43);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 76);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 4);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 38);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 107);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 108);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 109);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 52);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 6);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 110);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 35);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 30);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 9);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 111);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 112);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (7, 42);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 113);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 114);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 2);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 115);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 66);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 93);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 7);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 95);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 98);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 46);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 70);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 53);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 22);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 116);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 117);
-INSERT INTO `collection_has_story` (`collection_id`, `story_id`) VALUES (8, 33);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (6, 1, 133);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (6, 2, 155);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (6, 3, 87);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (6, 4, 139);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (6, 5, 1);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (6, 6, 215);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (6, 7, 53);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (6, 8, 117);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (6, 9, 11);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (6, 10, 127);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (6, 11, 181);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (1, 12, 151);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (1, 13, 319);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (1, 14, 29);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (1, 15, 39);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (1, 16, 185);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (1, 17, 5);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (1, 18, 249);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (1, 19, 119);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (1, 20, 277);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (1, 21, 83);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (1, 22, 59);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (1, 23, 301);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (1, 24, 217);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (2, 25, 177);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (2, 26, 323);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (2, 27, 223);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (2, 28, 97);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (2, 29, 73);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (2, 30, 29);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (2, 31, 19);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (2, 32, 1);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (2, 33, 273);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (3, 34, 81);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (3, 35, 1);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (3, 36, 255);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (4, 37, 215);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (4, 6, 31);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (4, 38, 129);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (4, 39, 197);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (4, 40, 167);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (4, 41, 1);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (4, 42, 83);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (5, 43, 43);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (5, 44, 101);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (5, 45, 175);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (5, 46, 209);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (5, 47, 1);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (10, 48, 231);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (10, 49, 29);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (10, 50, 449);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (10, 51, 365);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (10, 52, 183);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (10, 53, 335);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (10, 54, 275);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (10, 55, 385);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (10, 56, 3);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (10, 57, 87);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (10, 58, 471);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (10, 59, 425);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (11, 60, 365);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (11, 61, 197);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (11, 62, 135);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (11, 63, 169);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (11, 64, 33);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (11, 65, 107);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (11, 66, 295);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (11, 67, 225);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (11, 68, 71);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (11, 69, 423);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (11, 70, 387);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (11, 71, 291);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (11, 72, 253);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (11, 73, 1);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (11, 74, 331);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 75, 379);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 76, 159);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 77, 223);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 78, 71);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 79, 449);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 80, 217);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 81, 105);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 82, 131);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 83, 29);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 84, 318);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 85, 75);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 86, 456);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 87, 410);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 88, 289);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 89, 185);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 90, 338);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 91, 1);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 92, 376);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 93, 360);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 94, 305);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 95, 365);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 96, 80);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 97, 201);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 98, 424);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 99, 89);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 100, 35);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 101, 95);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 102, 487);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 103, 58);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 104, 176);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 105, 269);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 106, 6);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 37, 143);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 27, 110);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 39, 43);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 29, 51);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (9, 42, 240);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 43, 353);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 76, 121);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 4, 29);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 38, 63);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 107, 139);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 108, 249);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 109, 153);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 52, 405);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 6, 87);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 110, 217);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 35, 283);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 30, 33);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 9, 1);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 111, 453);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 112, 259);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (7, 42, 185);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 113, 357);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 114, 161);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 2, 1);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 115, 263);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 66, 83);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 93, 179);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 7, 21);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 95, 185);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 98, 281);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 46, 399);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 70, 123);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 53, 331);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 22, 29);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 116, 195);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 117, 311);
+INSERT INTO `collection_has_story` (`collection_id`, `story_id`, `page_number`) VALUES (8, 33, 53);
 
 COMMIT;
 
@@ -1014,64 +1077,64 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (6, 1);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (6, 2);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (6, 3);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (1, 4);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (2, 5);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (2, 6);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (2, 7);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (4, 8);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (4, 9);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (4, 10);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (11, 11);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (11, 12);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (11, 13);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (11, 14);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 15);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 16);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 17);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 18);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 19);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 20);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 21);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 22);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 23);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 24);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 25);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 26);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 27);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 28);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 29);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 30);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 31);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 32);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 33);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (9, 34);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (7, 35);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (7, 36);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (7, 37);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (7, 38);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (7, 39);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (7, 40);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (7, 5);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (7, 41);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (7, 29);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (7, 42);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (7, 43);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (7, 44);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (8, 45);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (8, 46);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (8, 4);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (8, 47);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (8, 48);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (8, 49);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (8, 2);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (8, 26);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (8, 50);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (8, 7);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (8, 14);
-INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`) VALUES (8, 34);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (6, 1, 250);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (6, 2, 211);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (6, 3, 249);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (1, 4, 1);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (2, 5, 171);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (2, 6, 269);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (2, 7, 379);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (4, 8, 77);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (4, 9, 187);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (4, 10, 283);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (11, 11, 293);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (11, 12, 69);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (11, 13, 503);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (11, 14, 329);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 15, 200);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 16, 88);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 17, 5);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 18, 337);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 19, 49);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 20, 104);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 21, 184);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 22, 57);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 23, 478);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 24, 42);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 25, 41);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 26, 158);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 27, 409);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 28, 28);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 29, 142);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 30, 268);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 31, 50);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 32, 409);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 33, 27);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (9, 34, 479);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (7, 35, 403);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (7, 36, 213);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (7, 37, 279);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (7, 38, 27);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (7, 39, 469);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (7, 40, 85);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (7, 5, 59);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (7, 41, 119);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (7, 29, 137);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (7, 42, 183);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (7, 43, 257);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (7, 44, 247);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (8, 45, 119);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (8, 46, 177);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (8, 4, 471);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (8, 47, 159);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (8, 48, 397);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (8, 49, 279);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (8, 2, 19);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (8, 26, 329);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (8, 50, 309);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (8, 7, 79);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (8, 14, 117);
+INSERT INTO `collection_has_poem` (`collection_id`, `poem_id`, `page_number`) VALUES (8, 34, 51);
 
 COMMIT;
 
@@ -1081,37 +1144,37 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (6, 1);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (6, 2);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (6, 3);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (6, 4);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (6, 5);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (1, 6);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (1, 7);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (1, 8);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (1, 9);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (1, 10);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (1, 11);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (1, 12);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (1, 13);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (2, 14);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (2, 15);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (2, 16);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (2, 17);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (3, 18);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (4, 19);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (4, 20);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (5, 21);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (11, 22);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (11, 23);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (11, 24);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (11, 25);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (11, 26);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (11, 27);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (11, 28);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (9, 29);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (9, 30);
-INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`) VALUES (9, 31);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (6, 1, 145);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (6, 2, 67);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (6, 3, 253);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (6, 4, 255);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (6, 5, 151);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (1, 6, 379);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (1, 7, 375);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (1, 8, 409);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (1, 9, 405);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (1, 10, 399);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (1, 11, 403);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (1, 12, 401);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (1, 13, 407);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (2, 14, 85);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (2, 15, 347);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (2, 16, 93);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (2, 17, 255);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (3, 18, 315);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (4, 19, 277);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (4, 20, 287);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (5, 21, 287);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (11, 22, 505);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (11, 23, 499);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (11, 24, 477);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (11, 25, 459);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (11, 26, 495);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (11, 27, 501);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (11, 28, 497);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (9, 29, 483);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (9, 30, 498);
+INSERT INTO `collection_has_miscellanea` (`collection_id`, `miscellanea_id`, `page_number`) VALUES (9, 31, 505);
 
 COMMIT;
 
@@ -1446,6 +1509,26 @@ INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUE
 INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (3, 4);
 INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (3, 5);
 INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (4, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `story_image`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (1, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `story_has_story_image`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (32, 1);
 
 COMMIT;
 

@@ -26,7 +26,7 @@
   font-weight: 700;
   color: #9e0000;
   text-align: center;
-  border: 2px solid rgba(184, 174, 154, 0.5);
+  border: 4px double #9e0000;
   width: fit-content;
   padding: 0.3em 0.8em;
   margin:0;
@@ -39,11 +39,19 @@
 }
 
 .b-element {
-  background-color: #b8ae9a;
+  background-color: #9e0000;
   display: block;
   flex: 1;
   height: 2px;
   opacity: 0.5;
+}
+
+.excerpt-box {
+  text-align: justify;
+  padding-left: 10%;
+  padding-right: 10%;
+  line-height: 2;
+  margin-bottom: 70px;
 }
 
 .description-box {
@@ -68,10 +76,15 @@
   margin-top: 40px;
 }
 
+.excerpt-text {
+  font-style:normal;
+  font-size: 16px;
+  font-family: fantasy,Libre Baskerville,Helvetica,Arial,sans-serif;
+}
+
 .description-text {
-  font-style:italic;
-  font-size: 14px;
-  font-family: fantasy;
+  font-size: 16px;
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
 }
 
 .collection-link {
@@ -126,9 +139,23 @@
   color: black;
   text-decoration: none;
   transition: color 0.2s ease;
-  font-family: fantasy;
+  font-family: fantasy,Libre Baskerville,Helvetica,Arial,sans-serif;
 }
 
 .read-online-box:hover .story-text-link {
   color: #fff;
+}
+
+.flair-img {
+  width: 150px;
+  height: auto;
+  padding-bottom: 3px;
+}
+
+.title-box {
+  padding-left: 50px;
+}
+
+.details-wrapper {
+  text-align: start;
 }
