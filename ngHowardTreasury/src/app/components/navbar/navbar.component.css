@@ -68,3 +68,30 @@
   font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
   font-weight: 700;
 }
+
+@media screen and (max-width: 700px) {
+
+  .logo-box {
+    position:unset;
+    left:unset;
+    transform:none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 533px) {
+
+  .app-logo {
+    display:none;
+  }
+  .logo-box {
+    position:unset;
+    left:unset;
+    transform:none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+}
