@@ -39,6 +39,7 @@
 		<class>com.skilldistillery.howardtreasury.entities.ChatMessage</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserHasChatRoom</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserHasChatRoomId</class>
+		<class>com.skilldistillery.howardtreasury.entities.StoryImage</class>
 
 		<!-- end entities -->
 

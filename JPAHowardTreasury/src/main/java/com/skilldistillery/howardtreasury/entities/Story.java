@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -53,6 +55,14 @@ public class Story {
 	@ManyToMany(mappedBy = "stories", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 	
+	@ManyToMany
+	@JoinTable(
+			name = "story_has_story_image",
+			joinColumns = @JoinColumn(name = "story_id"),
+			inverseJoinColumns = @JoinColumn(name = "story_image_id")
+			)
+	private List<StoryImage> storyImages;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "story", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<CollectionHasStory> collectionHasStories;
@@ -64,7 +74,8 @@ public class Story {
 
 	public Story(int id, String title, String textUrl, LocalDateTime firstPublished, String alternateTitle,
 			Boolean isCopyrighted, LocalDateTime copyrightExpiresAt, String excerpt, String description, 
-			List<UserList> userLists, List<Collection> collections, List<CollectionHasStory> collectionHasStories) {
+			List<UserList> userLists, List<Collection> collections, List<StoryImage> storyImages, 
+			List<CollectionHasStory> collectionHasStories) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -77,6 +88,7 @@ public class Story {
 		this.description = description;
 		this.userLists = userLists;
 		this.collections = collections;
+		this.storyImages = storyImages;
 		this.collectionHasStories = collectionHasStories;
 	}
 
@@ -166,6 +178,14 @@ public class Story {
 
 	public void setCollections(List<Collection> collections) {
 		this.collections = collections;
+	}
+
+	public List<StoryImage> getStoryImages() {
+		return storyImages;
+	}
+
+	public void setStoryImages(List<StoryImage> storyImages) {
+		this.storyImages = storyImages;
 	}
 
 	public List<CollectionHasStory> getCollectionHasStories() {

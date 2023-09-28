@@ -6,7 +6,6 @@ import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
 import com.skilldistillery.howardtreasury.dtos.CollectionWithStoriesDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
 import com.skilldistillery.howardtreasury.entities.CollectionHasStory;
-import com.skilldistillery.howardtreasury.entities.Story;
 
 public interface CollectionService {
 
