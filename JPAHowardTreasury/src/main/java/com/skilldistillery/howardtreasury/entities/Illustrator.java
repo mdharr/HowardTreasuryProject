@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Illustrator {
@@ -24,6 +25,10 @@ public class Illustrator {
 	@JsonIgnore
 	@ManyToMany(mappedBy = "illustrators", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
+	
+	@JsonIgnoreProperties("illustrators")
+	@ManyToMany(mappedBy = "illustrators", cascade = CascadeType.MERGE)
+	private List<StoryImage> storyImages;
 
 
 	public Illustrator() {
@@ -31,11 +36,12 @@ public class Illustrator {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Illustrator(int id, String name, List<Collection> collections) {
+	public Illustrator(int id, String name, List<Collection> collections, List<StoryImage> storyImages) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.collections = collections;
+		this.storyImages = storyImages;
 	}
 
 	public int getId() {
@@ -60,6 +66,14 @@ public class Illustrator {
 
 	public void setCollections(List<Collection> collections) {
 		this.collections = collections;
+	}
+
+	public List<StoryImage> getStoryImages() {
+		return storyImages;
+	}
+
+	public void setStoryImages(List<StoryImage> storyImages) {
+		this.storyImages = storyImages;
 	}
 
 	@Override
