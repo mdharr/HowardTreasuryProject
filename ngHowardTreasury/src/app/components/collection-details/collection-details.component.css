@@ -24,11 +24,13 @@
   transition: 0.3s;
   width: 300px;
   height:auto;
+
 }
 
 .collection-image:hover {
   transform: scale(1.02);
   cursor: zoom-in;
+
 }
 
 .contents-lists {

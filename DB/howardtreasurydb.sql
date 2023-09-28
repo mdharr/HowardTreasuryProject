@@ -95,6 +95,7 @@ CREATE TABLE IF NOT EXISTS `poem` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NULL,
   `text_url` VARCHAR(1000) NULL,
+  `excerpt` TEXT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `title_UNIQUE` (`title` ASC))
 ENGINE = InnoDB;
@@ -108,6 +109,8 @@ DROP TABLE IF EXISTS `miscellanea` ;
 CREATE TABLE IF NOT EXISTS `miscellanea` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
+  `text_url` VARCHAR(1000) NULL,
+  `excerpt` TEXT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -120,6 +123,8 @@ DROP TABLE IF EXISTS `person` ;
 CREATE TABLE IF NOT EXISTS `person` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
+  `image_url` VARCHAR(1000) NULL,
+  `description` TEXT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -779,56 +784,56 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (1, 'Am-ra the Ta-an', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (2, 'The King and the Oak', 'http://gutenberg.net.au/ebooks13/1303801h.html');
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (3, 'Summer Morn', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (4, 'Cimmeria', 'http://gutenberg.net.au/ebooks13/1303771h.html');
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (5, 'The One Black Stain', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (6, 'The Return of Sir Richard Grenville', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (7, 'Solomon Kane\'s Homecoming', 'http://gutenberg.net.au/ebooks13/1303871h.html');
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (8, 'A Song of the Race', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (9, 'The Drums of Pictdom', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (10, 'Untitled poem (There\'s a bell that hangs...)', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (11, 'A Thousand Years Ago', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (12, 'The Outgoing of Sigurd the Jerusalem-Farer', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (13, 'The Sign of the Sickle', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (14, 'Timur-lang', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (15, 'A Dull Sound as of Knocking', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (16, 'A Legend of Faring Town', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (17, 'A Song of the Werewolf Folk', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (18, 'An Open Window', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (19, 'Dead Man\'s Hate', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (20, 'The Dead Slaver\'s Tale', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (21, 'The Dweller in Dark Valley', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (22, 'The Fear that Follows', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (23, 'Fragment', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (24, 'Moon Mockery', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (25, 'The Moor Ghost', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (26, 'Musings', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (27, 'One Who Comes at Eventide', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (28, 'Remembrance', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (29, 'The Song of a Mad Minstrel', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (30, 'The Symbol', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (31, 'The Tavern', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (32, 'To a Woman', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (33, 'Up, John Kane!', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (34, 'Which Will Scarcely Be Understood', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (35, 'A Word From the Outer Dark', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (36, 'An Echo From the Iron Harp', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (37, 'The Dust Dance (version 1)', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (38, 'The Ghost Kings', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (39, 'Lines Written in the Realization That I Must Die', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (40, 'The Marching Song of Connacht', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (41, 'Recompense', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (42, 'The Song of the Last Briton', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (43, 'The Tide', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (44, 'Untitled (\"You have built a world of paper and wood...\")', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (45, 'A Song of the Naked Lands', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (46, 'Black Harps in the Hills', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (47, 'Echoes From an Anvil', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (48, 'Flint\'s Passing', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (49, 'The Grim Land', NULL);
-INSERT INTO `poem` (`id`, `title`, `text_url`) VALUES (50, 'Never Beyond the Beast', NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (1, 'Am-ra the Ta-an', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (2, 'The King and the Oak', 'http://gutenberg.net.au/ebooks13/1303801h.html', 'Before the shadows slew the sun the kites were soaring free,\nAnd Kull rode down the forest road, his red sword at his knee;\nAnd winds were whispering round the world: \"King Kull rides to the sea.\"\n\nThe sun died crimson in the sea, the long gray shadows fell;\nThe moon rose like a silver skull that wrought a demon\'s spell,\nFor in its light great trees stood up like spectres out of hell.');
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (3, 'Summer Morn', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (4, 'Cimmeria', 'http://gutenberg.net.au/ebooks13/1303771h.html', NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (5, 'The One Black Stain', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (6, 'The Return of Sir Richard Grenville', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (7, 'Solomon Kane\'s Homecoming', 'http://gutenberg.net.au/ebooks13/1303871h.html', NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (8, 'A Song of the Race', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (9, 'The Drums of Pictdom', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (10, 'Untitled poem (There\'s a bell that hangs...)', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (11, 'A Thousand Years Ago', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (12, 'The Outgoing of Sigurd the Jerusalem-Farer', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (13, 'The Sign of the Sickle', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (14, 'Timur-lang', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (15, 'A Dull Sound as of Knocking', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (16, 'A Legend of Faring Town', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (17, 'A Song of the Werewolf Folk', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (18, 'An Open Window', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (19, 'Dead Man\'s Hate', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (20, 'The Dead Slaver\'s Tale', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (21, 'The Dweller in Dark Valley', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (22, 'The Fear that Follows', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (23, 'Fragment', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (24, 'Moon Mockery', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (25, 'The Moor Ghost', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (26, 'Musings', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (27, 'One Who Comes at Eventide', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (28, 'Remembrance', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (29, 'The Song of a Mad Minstrel', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (30, 'The Symbol', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (31, 'The Tavern', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (32, 'To a Woman', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (33, 'Up, John Kane!', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (34, 'Which Will Scarcely Be Understood', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (35, 'A Word From the Outer Dark', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (36, 'An Echo From the Iron Harp', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (37, 'The Dust Dance (version 1)', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (38, 'The Ghost Kings', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (39, 'Lines Written in the Realization That I Must Die', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (40, 'The Marching Song of Connacht', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (41, 'Recompense', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (42, 'The Song of the Last Briton', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (43, 'The Tide', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (44, 'Untitled (\"You have built a world of paper and wood...\")', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (45, 'A Song of the Naked Lands', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (46, 'Black Harps in the Hills', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (47, 'Echoes From an Anvil', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (48, 'Flint\'s Passing', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (49, 'The Grim Land', NULL, NULL);
+INSERT INTO `poem` (`id`, `title`, `text_url`, `excerpt`) VALUES (50, 'Never Beyond the Beast', NULL, NULL);
 
 COMMIT;
 
@@ -838,37 +843,37 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (1, 'The Black City (fragment)');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (2, 'Untitled draft (\"\'Thus,\' said Tu...\")');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (3, 'Untitled fragment (\"A land of wild, fantastic beauty...\")');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (4, 'Untitled fragment (\"So I set out up the hill-trail...\")');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (5, 'Untitled fragment (\"Three men sat...\")');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (6, 'The Hyborian Age (essay)');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (7, 'Notes on Various Peoples of the Hyborian Age (essay)');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (8, 'Untitled draft (\"Amboola awakened slowly...\")');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (9, 'Untitled fragment (\"The battlefield stretched silent...\")');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (10, 'Untitled synopsis (\"A squad of Zamoran soldiers...\")');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (11, 'Untitled synopsis (Black Colossus)');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (12, 'Untitled synopsis (The Scarlet Citadel)');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (13, 'Untitled synopsis (\"The setting: The city of Shumballa...\")');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (14, 'The Castle of the Devil (fragment)');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (15, 'The Children of Asshur (fragment)');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (16, 'Death\'s Black Riders (unfinished)');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (17, 'Hawk of Basti (unfinished)');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (18, 'Untitled draft (\"Three men squatted beside the water hole...\")');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (19, 'Untitled fragment (\"A grey sky arched...\")');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (20, 'Untitled fragment (\"Men have had vision ere now...\")');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (21, 'Wolves Beyond the Border (unfinished)');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (22, 'Mistress of Death (uncompleted draft)');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (23, 'Recap of Harold Lamb\'s \"The Wolf Chaser\"');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (24, 'The Slave-Princess (fragment)');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (25, 'The Track of Bohemund (unfinished draft)');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (26, 'Untitled fragment (\"He knew de Bracy...\")');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (27, 'Untitled fragment (\"The Persians had all fled...\")');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (28, 'Untitled fragment (\"The wind from the Mediterranean...\")');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (29, 'Golnar the Ape (unfinished)');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (30, 'The House (fragment)');
-INSERT INTO `miscellanea` (`id`, `title`) VALUES (31, 'Untitled fragment (\"Beneath the glare of the sun...\")');
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (1, 'The Black City (fragment)', NULL, 'The cold eyes of Kull, king of Valusia, clouded with perplexity as they rested on the man who had so abruptly entered the royal presence and who now stood before th eking, trembling with passion. Kull sighed; he knew the barbarians who served him, for was not he himself an Atlantean by birth? Brule, the Spear-slayer, bursting rudely into the king\'s chamber, had torn from his harness every emblem given him by Valusia and now stood bare of any sign to show that he was allied to the empire. And Kull knew the meaning of this gesture. \"Kull!\" barked the Pict, pale with fury. \"I will have justice!\" Again Kull sighed. There were times when peace and quiet were things to be desired and in Kamula he thought he had found them. Dreamy Kamula — even as he waited for the raging Pict to continue his tirade, Kull\'s thoughts drifted away and back along the lazy, dreamy days that had passed since his coming to this mountain city, this metropolis of pleasure, whose marble and lapis-lazuli palaces were built, tier upon gleaming tier, about the dome shaped hill that formed the city\'s center.');
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (2, 'Untitled draft (\"\'Thus,\' said Tu...\")', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (3, 'Untitled fragment (\"A land of wild, fantastic beauty...\")', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (4, 'Untitled fragment (\"So I set out up the hill-trail...\")', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (5, 'Untitled fragment (\"Three men sat...\")', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (6, 'The Hyborian Age (essay)', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (7, 'Notes on Various Peoples of the Hyborian Age (essay)', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (8, 'Untitled draft (\"Amboola awakened slowly...\")', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (9, 'Untitled fragment (\"The battlefield stretched silent...\")', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (10, 'Untitled synopsis (\"A squad of Zamoran soldiers...\")', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (11, 'Untitled synopsis (Black Colossus)', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (12, 'Untitled synopsis (The Scarlet Citadel)', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (13, 'Untitled synopsis (\"The setting: The city of Shumballa...\")', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (14, 'The Castle of the Devil (fragment)', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (15, 'The Children of Asshur (fragment)', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (16, 'Death\'s Black Riders (unfinished)', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (17, 'Hawk of Basti (unfinished)', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (18, 'Untitled draft (\"Three men squatted beside the water hole...\")', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (19, 'Untitled fragment (\"A grey sky arched...\")', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (20, 'Untitled fragment (\"Men have had vision ere now...\")', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (21, 'Wolves Beyond the Border (unfinished)', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (22, 'Mistress of Death (uncompleted draft)', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (23, 'Recap of Harold Lamb\'s \"The Wolf Chaser\"', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (24, 'The Slave-Princess (fragment)', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (25, 'The Track of Bohemund (unfinished draft)', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (26, 'Untitled fragment (\"He knew de Bracy...\")', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (27, 'Untitled fragment (\"The Persians had all fled...\")', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (28, 'Untitled fragment (\"The wind from the Mediterranean...\")', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (29, 'Golnar the Ape (unfinished)', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (30, 'The House (fragment)', NULL, NULL);
+INSERT INTO `miscellanea` (`id`, `title`, `text_url`, `excerpt`) VALUES (31, 'Untitled fragment (\"Beneath the glare of the sun...\")', NULL, NULL);
 
 COMMIT;
 
@@ -878,30 +883,30 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `person` (`id`, `name`) VALUES (1, 'Ace Jessel');
-INSERT INTO `person` (`id`, `name`) VALUES (2, 'Bran Mak Morn');
-INSERT INTO `person` (`id`, `name`) VALUES (3, 'Breckinridge Elkins');
-INSERT INTO `person` (`id`, `name`) VALUES (4, 'Buckner J. Grimes');
-INSERT INTO `person` (`id`, `name`) VALUES (5, 'Conan');
-INSERT INTO `person` (`id`, `name`) VALUES (6, 'Cormac Fitzgeoffrey');
-INSERT INTO `person` (`id`, `name`) VALUES (7, 'Cormac Mac Art');
-INSERT INTO `person` (`id`, `name`) VALUES (8, 'Dark Agnes');
-INSERT INTO `person` (`id`, `name`) VALUES (9, 'Dennis Dorgan');
-INSERT INTO `person` (`id`, `name`) VALUES (10, 'El Borak');
-INSERT INTO `person` (`id`, `name`) VALUES (11, 'James Allison');
-INSERT INTO `person` (`id`, `name`) VALUES (12, 'Kirby O\'Donnell');
-INSERT INTO `person` (`id`, `name`) VALUES (13, 'Kull');
-INSERT INTO `person` (`id`, `name`) VALUES (14, 'Lal Singh');
-INSERT INTO `person` (`id`, `name`) VALUES (15, 'Pike Bearfield');
-INSERT INTO `person` (`id`, `name`) VALUES (16, 'Solomon Kane');
-INSERT INTO `person` (`id`, `name`) VALUES (17, 'The Sonora Kid');
-INSERT INTO `person` (`id`, `name`) VALUES (18, 'Steve Costigan');
-INSERT INTO `person` (`id`, `name`) VALUES (19, 'Steve Harrison');
-INSERT INTO `person` (`id`, `name`) VALUES (20, 'Terence Vulmea');
-INSERT INTO `person` (`id`, `name`) VALUES (21, 'Turlogh O\'Brien');
-INSERT INTO `person` (`id`, `name`) VALUES (22, 'Wild Bill Clanton');
-INSERT INTO `person` (`id`, `name`) VALUES (23, 'Yar Ali Khan');
-INSERT INTO `person` (`id`, `name`) VALUES (24, 'Red Sonya');
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (1, 'Ace Jessel', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (2, 'Bran Mak Morn', 'https://reh.world/wp-content/uploads/2021/04/Gary-Gianni-_-Bran-mak-Morn.jpg', 'Bran Mak Morn is a hero of several stories by Robert E. Howard. In the stories, he is the last king of Howard\'s romanticized version of the tribal race of Picts. He is a direct descendant of Brule the Spear Slayer, companion of the Atlantean king Kull, whom his magician summons to fight with him in \"Kings of The Night\", a novelette first published in Weird Tales #16 (November 1930).\n\nBran Mak Morn is the leader of a dying and degenerate people, a poor reflection of what they once were and is deeply aware of their inevitable path to extinction. Still, like all of Howard\'s characters, he choses to fight against this rather than succumb. His main enemies are the Romans and he makes a very unholy alliance to defeat them in \"Worms of the Earth\", a novelette first published in Weird Tales #20 (November 1932).');
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (3, 'Breckinridge Elkins', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (4, 'Buckner J. Grimes', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (5, 'Conan', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (6, 'Cormac Fitzgeoffrey', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (7, 'Cormac Mac Art', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (8, 'Dark Agnes', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (9, 'Dennis Dorgan', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (10, 'El Borak', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (11, 'James Allison', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (12, 'Kirby O\'Donnell', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (13, 'Kull', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (14, 'Lal Singh', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (15, 'Pike Bearfield', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (16, 'Solomon Kane', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (17, 'The Sonora Kid', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (18, 'Steve Costigan', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (19, 'Steve Harrison', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (20, 'Terence Vulmea', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (21, 'Turlogh O\'Brien', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (22, 'Wild Bill Clanton', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (23, 'Yar Ali Khan', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (24, 'Red Sonya', NULL, NULL);
 
 COMMIT;
 
@@ -1518,7 +1523,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `story_image` (`id`, `image_url`) VALUES (1, NULL);
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (1, 'https://reh.world/wp-content/uploads/2022/02/Bran-Mak-Worms.jpg');
 
 COMMIT;
 
@@ -1528,7 +1533,17 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (32, 1);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (42, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `story_image_has_illustrator`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (1, 1);
 
 COMMIT;
 

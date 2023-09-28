@@ -237,4 +237,47 @@ public class CollectionWithStoriesDTO {
 		}
 
     }
+	
+	public static class PoemWithPageNumberDTO {
+        private int id;
+        private String title;
+        private String textUrl;
+        private Integer pageNumber;
+		public PoemWithPageNumberDTO() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+		public PoemWithPageNumberDTO(int id,  String title, String textUrl, Integer pageNumber) {
+			super();
+			this.id = id;
+			this.title = title;
+			this.textUrl = textUrl;
+			this.pageNumber = pageNumber;
+		}
+		public int getId() {
+			return id;
+		}
+		public void setId(int id) {
+			this.id = id;
+		}
+		public String getTitle() {
+			return title;
+		}
+		public void setTitle(String title) {
+			this.title = title;
+		}
+		public String getTextUrl() {
+			return textUrl;
+		}
+		public void setTextUrl(String textUrl) {
+			this.textUrl = textUrl;
+		}
+		public Integer getPageNumber() {
+			return pageNumber;
+		}
+		public void setPageNumber(Integer pageNumber) {
+			this.pageNumber = pageNumber;
+		}
+    }
+	
 }
