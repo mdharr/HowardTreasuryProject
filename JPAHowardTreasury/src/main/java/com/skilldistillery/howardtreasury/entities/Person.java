@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Person {
@@ -30,17 +31,22 @@ public class Person {
 	@JsonIgnore
 	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
+	
+	@JsonIgnoreProperties("persons")
+	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
+	private List<Story> stories;
 
 	public Person() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Person(int id, String name, List<Collection> collections) {
+	public Person(int id, String name, List<Collection> collections, List<Story> stories) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.collections = collections;
+		this.stories = stories;
 	}
 
 	public int getId() {
@@ -81,6 +87,14 @@ public class Person {
 
 	public void setCollections(List<Collection> collections) {
 		this.collections = collections;
+	}
+
+	public List<Story> getStories() {
+		return stories;
+	}
+
+	public void setStories(List<Story> stories) {
+		this.stories = stories;
 	}
 
 	@Override
