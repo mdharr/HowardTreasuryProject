@@ -13,6 +13,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
 
   // properties initialization
   persons: Person[] = [];
+  person: Person = new Person();
 
   // subscriptions declarations
   private personSubscription: Subscription | undefined;

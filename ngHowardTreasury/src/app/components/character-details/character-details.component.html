@@ -1,1 +1,15 @@
-<p>character-details works!</p>
+<div class="main">
+  <div class="character-profile">
+    <div class="profile-name">
+      <h1>{{ person.name }}</h1>
+    </div>
+    <div class="profile-image">
+      <img class="person-image" src="{{ person.imageUrl }}" alt="">
+    </div>
+  </div>
+  <div class="character-details">
+    <div class="details-text">
+      <p>{{ person.description }}</p>
+    </div>
+  </div>
+</div>

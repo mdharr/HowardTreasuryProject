@@ -1,0 +1,24 @@
+.main {
+  display: flex;
+  padding: 100px;
+}
+
+.character-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.person-image {
+  width: 300px;
+  height: auto;
+}
+
+.character-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+  padding: 50px;
+}
