@@ -19,9 +19,9 @@ public class CollectionWithStoriesDTO {
     private String description;
     private Series series;
     private List<StoryWithPageNumberDTO> stories;
-    private List<Poem> poems;
+    private List<PoemWithPageNumberDTO> poems;
     private List<Person> persons;
-    private List<Miscellanea> miscellaneas;
+    private List<MiscellaneaWithPageNumberDTO> miscellaneas;
     private List<CollectionImage> collectionImages;
     private List<Illustrator> illustrators;
     
@@ -31,8 +31,8 @@ public class CollectionWithStoriesDTO {
 	}
 
 	public CollectionWithStoriesDTO(int id, String title, LocalDateTime publishedAt, Integer pageCount,
-			String description, Series series, List<StoryWithPageNumberDTO> stories, List<Poem> poems,
-			List<Person> persons, List<Miscellanea> miscellaneas, List<CollectionImage> collectionImages,
+			String description, Series series, List<StoryWithPageNumberDTO> stories, List<PoemWithPageNumberDTO> poems,
+			List<Person> persons, List<MiscellaneaWithPageNumberDTO> miscellaneas, List<CollectionImage> collectionImages,
 			List<Illustrator> illustrators) {
 		super();
 		this.id = id;
@@ -105,11 +105,11 @@ public class CollectionWithStoriesDTO {
 		this.stories = stories;
 	}
 
-	public List<Poem> getPoems() {
+	public List<PoemWithPageNumberDTO> getPoems() {
 		return poems;
 	}
 
-	public void setPoems(List<Poem> poems) {
+	public void setPoems(List<PoemWithPageNumberDTO> poems) {
 		this.poems = poems;
 	}
 
@@ -121,11 +121,11 @@ public class CollectionWithStoriesDTO {
 		this.persons = persons;
 	}
 
-	public List<Miscellanea> getMiscellaneas() {
+	public List<MiscellaneaWithPageNumberDTO> getMiscellaneas() {
 		return miscellaneas;
 	}
 
-	public void setMiscellaneas(List<Miscellanea> miscellaneas) {
+	public void setMiscellaneas(List<MiscellaneaWithPageNumberDTO> miscellaneas) {
 		this.miscellaneas = miscellaneas;
 	}
 

@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
 import com.skilldistillery.howardtreasury.dtos.CollectionWithStoriesDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
+import com.skilldistillery.howardtreasury.entities.CollectionHasMiscellanea;
+import com.skilldistillery.howardtreasury.entities.CollectionHasPoem;
 import com.skilldistillery.howardtreasury.entities.CollectionHasStory;
 import com.skilldistillery.howardtreasury.entities.CollectionImage;
 import com.skilldistillery.howardtreasury.entities.Illustrator;
@@ -21,6 +23,8 @@ import com.skilldistillery.howardtreasury.entities.Person;
 import com.skilldistillery.howardtreasury.entities.Poem;
 import com.skilldistillery.howardtreasury.entities.Series;
 import com.skilldistillery.howardtreasury.entities.Story;
+import com.skilldistillery.howardtreasury.repositories.CollectionHasMiscellaneaRepository;
+import com.skilldistillery.howardtreasury.repositories.CollectionHasPoemRepository;
 import com.skilldistillery.howardtreasury.repositories.CollectionHasStoryRepository;
 import com.skilldistillery.howardtreasury.repositories.CollectionRepository;
 
@@ -32,6 +36,12 @@ public class CollectionServiceImpl implements CollectionService {
 	
 	@Autowired
 	private CollectionHasStoryRepository collectionHasStoryRepo;
+	
+	@Autowired
+	private CollectionHasPoemRepository collectionHasPoemRepo;
+	
+	@Autowired
+	private CollectionHasMiscellaneaRepository collectionHasMiscellaneaRepo;
 
 	@Override
 	public List<Collection> findAll() {
@@ -174,31 +184,71 @@ public class CollectionServiceImpl implements CollectionService {
 	        
 	        // Populate stories with page numbers
 	        List<CollectionHasStory> collectionHasStories = collectionHasStoryRepo.findByCollectionId(collectionId);
+	        List<CollectionHasPoem> collectionHasPoems = collectionHasPoemRepo.findByCollectionId(collectionId);
+	        List<CollectionHasMiscellanea> collectionHasMiscellaneas = collectionHasMiscellaneaRepo.findByCollectionId(collectionId);
+	        
 	        List<CollectionWithStoriesDTO.StoryWithPageNumberDTO> storyDTOs = new ArrayList<>();
+	        List<CollectionWithStoriesDTO.PoemWithPageNumberDTO> poemDTOs = new ArrayList<>();
+	        List<CollectionWithStoriesDTO.MiscellaneaWithPageNumberDTO> miscellaneaDTOs = new ArrayList<>();
+
 	        for (CollectionHasStory collectionHasStory : collectionHasStories) {
 	            CollectionWithStoriesDTO.StoryWithPageNumberDTO storyDTO = new CollectionWithStoriesDTO.StoryWithPageNumberDTO();
-	            
+	        	CollectionWithStoriesDTO.PoemWithPageNumberDTO poemDTO = new CollectionWithStoriesDTO.PoemWithPageNumberDTO();
+	        	CollectionWithStoriesDTO.MiscellaneaWithPageNumberDTO miscellaneaDTO = new CollectionWithStoriesDTO.MiscellaneaWithPageNumberDTO();
+
 	            Story story = collectionHasStory.getStory();
+	            Poem poem = collectionHasStory.getPoem();
+	            Miscellanea miscellanea = collectionHasStory.getMiscellanea();
 	            
 	            storyDTO.setId(story.getId());
 	            storyDTO.setTitle(story.getTitle());
 	            storyDTO.setTextUrl(story.getTextUrl());
-	            storyDTO.setPageNumber(collectionHasStory.getPageNumber());
 	            storyDTO.setFirstPublished(story.getFirstPublished());
 	            storyDTO.setAlternateTitle(story.getAlternateTitle());
 	            storyDTO.setIsCopyrighted(story.getIsCopyrighted());
 	            storyDTO.setCopyrightExpiresAt(story.getCopyrightExpiresAt());
 	            storyDTO.setExcerpt(story.getExcerpt());
 	            storyDTO.setDescription(story.getDescription());
+	            storyDTO.setPageNumber(collectionHasStory.getPageNumber());
 	            
 	            storyDTOs.add(storyDTO);
 	        }
-	        dto.setStories(storyDTOs);
 	        
-	        // Populate other properties from Collection entity here
-	        dto.setPoems(collection.getPoems());
+	        for (CollectionHasPoem collectionHasPoem : collectionHasPoems) {
+	        	CollectionWithStoriesDTO.PoemWithPageNumberDTO poemDTO = new CollectionWithStoriesDTO.PoemWithPageNumberDTO();
+	        	
+	        	Poem poem = collectionHasPoem.getPoem();
+	        	
+	        	poemDTO.setId(poem.getId());
+	        	poemDTO.setTitle(poem.getTitle());
+	        	poemDTO.setTextUrl(poem.getTextUrl());
+	        	poemDTO.setExcerpt(poem.getExcerpt());
+	        	poemDTO.setPageNumber(collectionHasPoem.getPageNumber());
+	        	
+	        	poemDTOs.add(poemDTO);
+	        }
+	        
+	        for (CollectionHasMiscellanea collectionHasMiscellanea : collectionHasMiscellaneas) {
+	        	CollectionWithStoriesDTO.MiscellaneaWithPageNumberDTO miscellaneaDTO = new CollectionWithStoriesDTO.MiscellaneaWithPageNumberDTO();
+	        	
+	        	Miscellanea miscellanea = collectionHasMiscellanea.getMiscellanea();
+	        	
+	        	miscellaneaDTO.setId(miscellanea.getId());
+	        	miscellaneaDTO.setTitle(miscellanea.getTitle());
+	        	miscellaneaDTO.setTextUrl(miscellanea.getTextUrl());
+	        	miscellaneaDTO.setExcerpt(miscellanea.getExcerpt());
+	        	miscellaneaDTO.setPageNumber(collectionHasMiscellanea.getPageNumber());
+	        	
+	        	miscellaneaDTOs.add(miscellaneaDTO);
+	        }
+
+	        
+	        
+	        
+	        dto.setStories(storyDTOs);
+	        dto.setPoems(poemDTOs);
 	        dto.setPersons(collection.getPersons());
-	        dto.setMiscellaneas(collection.getMiscellaneas());
+	        dto.setMiscellaneas(miscellaneaDTOs);
 	        dto.setCollectionImages(collection.getCollectionImages());
 	        dto.setIllustrators(collection.getIllustrators());
 	        
