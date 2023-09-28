@@ -29,6 +29,8 @@ public class Poem {
 	@Column(name = "text_url")
 	private String textUrl;
 	
+	private String excerpt;
+	
     @JsonIgnore
     @ManyToMany(mappedBy = "poems")
     private List<UserList> userLists;
@@ -42,11 +44,13 @@ public class Poem {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Poem(int id, String title, String textUrl, List<UserList> userLists, List<Collection> collections) {
+	public Poem(int id, String title, String textUrl, String excerpt,
+			List<UserList> userLists, List<Collection> collections) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.textUrl = textUrl;
+		this.excerpt = excerpt;
 		this.userLists = userLists;
 		this.collections = collections;
 	}
@@ -73,6 +77,14 @@ public class Poem {
 
 	public void setTextUrl(String textUrl) {
 		this.textUrl = textUrl;
+	}
+
+	public String getExcerpt() {
+		return excerpt;
+	}
+
+	public void setExcerpt(String excerpt) {
+		this.excerpt = excerpt;
 	}
 
 	public List<UserList> getUserLists() {
