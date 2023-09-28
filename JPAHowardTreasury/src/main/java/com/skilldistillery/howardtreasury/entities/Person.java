@@ -39,6 +39,10 @@ public class Person {
 	@JsonIgnoreProperties("persons")
 	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
 	private List<Poem> poems;
+	
+	@JsonIgnoreProperties("persons")
+	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
+	private List<Miscellanea> miscellaneas;
 
 	public Person() {
 		super();
@@ -46,13 +50,14 @@ public class Person {
 	}
 
 	public Person(int id, String name, List<Collection> collections, List<Story> stories,
-			List<Poem> poems) {
+			List<Poem> poems, List<Miscellanea> miscellaneas) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.collections = collections;
 		this.stories = stories;
 		this.poems = poems;
+		this.miscellaneas = miscellaneas;
 	}
 
 	public int getId() {
@@ -109,6 +114,14 @@ public class Person {
 
 	public void setPoems(List<Poem> poems) {
 		this.poems = poems;
+	}
+
+	public List<Miscellanea> getMiscellaneas() {
+		return miscellaneas;
+	}
+
+	public void setMiscellaneas(List<Miscellanea> miscellaneas) {
+		this.miscellaneas = miscellaneas;
 	}
 
 	@Override

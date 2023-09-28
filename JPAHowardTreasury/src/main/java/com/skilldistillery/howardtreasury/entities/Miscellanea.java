@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,6 +36,14 @@ public class Miscellanea {
 	@JsonIgnore
 	@ManyToMany(mappedBy = "miscellaneas", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "miscellanea_has_person",
+			joinColumns = @JoinColumn(name = "miscellanea_id"),
+			inverseJoinColumns = @JoinColumn(name = "person_id")
+			)
+	private List<Person> persons;
 
 	public Miscellanea() {
 		super();
@@ -41,7 +51,7 @@ public class Miscellanea {
 	}
 
 	public Miscellanea(int id, String title, String textUrl, String excerpt, 
-			List<UserList> userLists, List<Collection> collections) {
+			List<UserList> userLists, List<Collection> collections, List<Person> persons) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -49,6 +59,7 @@ public class Miscellanea {
 		this.excerpt = excerpt;
 		this.userLists = userLists;
 		this.collections = collections;
+		this.persons = persons;
 	}
 
 	public int getId() {
@@ -97,6 +108,14 @@ public class Miscellanea {
 
 	public void setCollections(List<Collection> collections) {
 		this.collections = collections;
+	}
+
+	public List<Person> getPersons() {
+		return persons;
+	}
+
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
 	}
 
 	@Override
