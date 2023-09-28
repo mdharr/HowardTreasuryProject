@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  width: 400px;
+  width: 500px;
   min-width:200px;
 }
 
@@ -236,6 +236,14 @@
   text-align: center;
 }
 
+@media screen and (max-width: 1050px) {
+  .contents-box {
+    flex:1;
+    max-width:100%;
+    min-width: 200px;
+  }
+}
+
 @media screen and (max-width: 969px) {
   .main {
     flex-direction: column;
@@ -289,7 +297,7 @@
 
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 496px) {
 
   .main {
     padding: 20px;

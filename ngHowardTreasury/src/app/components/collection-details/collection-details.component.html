@@ -28,7 +28,7 @@
             <ng-container *ngFor="let story of collection.stories">
               <li class="contents-items" [routerLink]="['/stories', story.id]">
                 <span class="story-text">{{ story.title }}</span>
-                <span class="dots">......................................................................</span>
+                <span class="dots">................................................................................................................</span>
                 <span class="page-number">{{ story.pageNumber }}</span>
               </li>
             </ng-container>
@@ -41,7 +41,11 @@
         <div class="poem-contents">
           <ul class="contents-lists" *ngIf="collection.poems.length">
             <ng-container *ngFor="let poem of collection.poems">
-              <li class="contents-items" [routerLink]="['/poems', poem.id]">{{ poem.title }}</li>
+              <li class="contents-items" [routerLink]="['/poems', poem.id]">
+                <span class="story-text">{{ poem.title }}</span>
+                <span class="dots">................................................................................................................</span>
+                <span class="page-number">{{ poem.pageNumber }}</span>
+              </li>
             </ng-container>
           </ul>
           <ul class="no-contents-lists" *ngIf="!collection.poems.length">
@@ -52,7 +56,11 @@
         <div class="miscellanea-contents">
           <ul class="contents-lists" *ngIf="collection.miscellaneas.length">
             <ng-container *ngFor="let miscellanea of collection.miscellaneas">
-              <li class="contents-items" [routerLink]="['/miscellanea', miscellanea.id]">{{ miscellanea.title }}</li>
+              <li class="contents-items" [routerLink]="['/miscellanea', miscellanea.id]">
+                <span class="story-text">{{ miscellanea.title }}</span>
+                <span class="dots">................................................................................................................</span>
+                <span class="page-number">{{ miscellanea.pageNumber }}</span>
+              </li>
             </ng-container>
           </ul>
           <ul class="no-contents-lists" *ngIf="!collection.miscellaneas.length">

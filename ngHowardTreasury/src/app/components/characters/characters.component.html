@@ -6,7 +6,7 @@
 <div class="contents-wrapper">
   <ul class="contents-list">
     <ng-container *ngFor="let person of persons">
-      <li class="contents-list-items">{{ person.name }}</li>
+      <li class="contents-list-items" [routerLink]="['/characters', person.id]">{{ person.name }}</li>
     </ng-container>
   </ul>
 </div>
