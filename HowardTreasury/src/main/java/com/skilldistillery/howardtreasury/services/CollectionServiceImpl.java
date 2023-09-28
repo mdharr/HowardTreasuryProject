@@ -205,6 +205,7 @@ public class CollectionServiceImpl implements CollectionService {
 	            storyDTO.setCopyrightExpiresAt(story.getCopyrightExpiresAt());
 	            storyDTO.setExcerpt(story.getExcerpt());
 	            storyDTO.setDescription(story.getDescription());
+	            storyDTO.setStoryImages(story.getStoryImages());
 	            storyDTO.setPageNumber(collectionHasStory.getPageNumber());
 	            
 	            storyDTOs.add(storyDTO);

@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Miscellanea {
@@ -29,11 +30,11 @@ public class Miscellanea {
 	
 	private String excerpt;
 	
-    @JsonIgnore
+	@JsonIgnoreProperties("miscellaneas")
     @ManyToMany(mappedBy = "miscellaneas")
     private List<UserList> userLists;
 	
-	@JsonIgnore
+    @JsonIgnore
 	@ManyToMany(mappedBy = "miscellaneas", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 	

@@ -14,7 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "story_image")
@@ -27,7 +27,7 @@ public class StoryImage {
 	@Column(name = "image_url")
 	private String imageUrl;
 	
-	@JsonIgnoreProperties("storyImages")
+	@JsonIgnore
 	@ManyToMany(mappedBy = "storyImages", cascade = CascadeType.MERGE)
 	private List<Story> stories;
 	

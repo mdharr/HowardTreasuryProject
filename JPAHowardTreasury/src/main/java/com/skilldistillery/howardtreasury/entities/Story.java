@@ -71,9 +71,9 @@ public class Story {
 			)
 	private List<Person> persons;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "story", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<CollectionHasStory> collectionHasStories;
+//	@JsonIgnore
+//	@OneToMany(mappedBy = "story", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	private List<CollectionHasStory> collectionHasStories;
 
 	public Story() {
 		super();
@@ -83,7 +83,7 @@ public class Story {
 	public Story(int id, String title, String textUrl, LocalDateTime firstPublished, String alternateTitle,
 			Boolean isCopyrighted, LocalDateTime copyrightExpiresAt, String excerpt, String description, 
 			List<UserList> userLists, List<Collection> collections, List<StoryImage> storyImages, 
-			List<Person> persons, List<CollectionHasStory> collectionHasStories) {
+			List<Person> persons) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -98,7 +98,6 @@ public class Story {
 		this.collections = collections;
 		this.storyImages = storyImages;
 		this.persons = persons;
-		this.collectionHasStories = collectionHasStories;
 	}
 
 	public int getId() {
@@ -205,13 +204,13 @@ public class Story {
 		this.persons = persons;
 	}
 
-	public List<CollectionHasStory> getCollectionHasStories() {
-		return collectionHasStories;
-	}
-
-	public void setCollectionHasStories(List<CollectionHasStory> collectionHasStories) {
-		this.collectionHasStories = collectionHasStories;
-	}
+//	public List<CollectionHasStory> getCollectionHasStories() {
+//		return collectionHasStories;
+//	}
+//
+//	public void setCollectionHasStories(List<CollectionHasStory> collectionHasStories) {
+//		this.collectionHasStories = collectionHasStories;
+//	}
 
 	@Override
 	public int hashCode() {

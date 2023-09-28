@@ -9,6 +9,7 @@ import com.skilldistillery.howardtreasury.entities.Miscellanea;
 import com.skilldistillery.howardtreasury.entities.Person;
 import com.skilldistillery.howardtreasury.entities.Poem;
 import com.skilldistillery.howardtreasury.entities.Series;
+import com.skilldistillery.howardtreasury.entities.StoryImage;
 
 public class CollectionWithStoriesDTO {
 
@@ -155,6 +156,7 @@ public class CollectionWithStoriesDTO {
         private LocalDateTime copyrightExpiresAt;
         private String excerpt;
         private String description;
+        private List<StoryImage> storyImages;
         private Integer pageNumber;
 		public StoryWithPageNumberDTO() {
 			super();
@@ -162,7 +164,8 @@ public class CollectionWithStoriesDTO {
 		}
 		public StoryWithPageNumberDTO(int id,  String title, String textUrl,
 				LocalDateTime firstPublished, String alternateTitle, Boolean isCopyrighted,
-				LocalDateTime copyrightExpiresAt, String excerpt, String description, Integer pageNumber) {
+				LocalDateTime copyrightExpiresAt, String excerpt, String description, Integer pageNumber,
+				List<StoryImage> storyImages) {
 			super();
 			this.id = id;
 			this.title = title;
@@ -173,6 +176,7 @@ public class CollectionWithStoriesDTO {
 			this.copyrightExpiresAt = copyrightExpiresAt;
 			this.excerpt = excerpt;
 			this.description = description;
+			this.storyImages = storyImages;
 			this.pageNumber = pageNumber;
 		}
 		public int getId() {
@@ -228,6 +232,13 @@ public class CollectionWithStoriesDTO {
 		}
 		public void setDescription(String description) {
 			this.description = description;
+		}
+		
+		public List<StoryImage> getStoryImages() {
+			return storyImages;
+		}
+		public void setStoryImages(List<StoryImage> storyImages) {
+			this.storyImages = storyImages;
 		}
 		public Integer getPageNumber() {
 			return pageNumber;

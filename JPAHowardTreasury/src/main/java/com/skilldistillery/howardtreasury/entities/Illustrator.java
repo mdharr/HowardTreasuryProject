@@ -22,11 +22,11 @@ public class Illustrator {
 	
 	private String name;
 	
-	@JsonIgnore
+    @JsonIgnore
 	@ManyToMany(mappedBy = "illustrators", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 	
-	@JsonIgnoreProperties("illustrators")
+    @JsonIgnore
 	@ManyToMany(mappedBy = "illustrators", cascade = CascadeType.MERGE)
 	private List<StoryImage> storyImages;
 
