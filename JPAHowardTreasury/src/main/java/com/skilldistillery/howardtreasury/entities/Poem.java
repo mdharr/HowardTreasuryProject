@@ -38,6 +38,14 @@ public class Poem {
 	@JsonIgnore
 	@ManyToMany(mappedBy = "poems", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "poem_has_person",
+			joinColumns = @JoinColumn(name = "poem_id"),
+			inverseJoinColumns = @JoinColumn(name = "person_id")
+			)
+	private List<Person> persons;
 
 	public Poem() {
 		super();
@@ -45,7 +53,7 @@ public class Poem {
 	}
 
 	public Poem(int id, String title, String textUrl, String excerpt,
-			List<UserList> userLists, List<Collection> collections) {
+			List<UserList> userLists, List<Collection> collections, List<Person> persons) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -53,6 +61,7 @@ public class Poem {
 		this.excerpt = excerpt;
 		this.userLists = userLists;
 		this.collections = collections;
+		this.persons = persons;
 	}
 
 	public int getId() {
@@ -101,6 +110,14 @@ public class Poem {
 
 	public void setCollections(List<Collection> collections) {
 		this.collections = collections;
+	}
+
+	public List<Person> getPersons() {
+		return persons;
+	}
+
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
 	}
 
 	@Override

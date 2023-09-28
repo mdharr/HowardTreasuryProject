@@ -35,18 +35,24 @@ public class Person {
 	@JsonIgnoreProperties("persons")
 	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
 	private List<Story> stories;
+	
+	@JsonIgnoreProperties("persons")
+	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
+	private List<Poem> poems;
 
 	public Person() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Person(int id, String name, List<Collection> collections, List<Story> stories) {
+	public Person(int id, String name, List<Collection> collections, List<Story> stories,
+			List<Poem> poems) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.collections = collections;
 		this.stories = stories;
+		this.poems = poems;
 	}
 
 	public int getId() {
@@ -95,6 +101,14 @@ public class Person {
 
 	public void setStories(List<Story> stories) {
 		this.stories = stories;
+	}
+
+	public List<Poem> getPoems() {
+		return poems;
+	}
+
+	public void setPoems(List<Poem> poems) {
+		this.poems = poems;
 	}
 
 	@Override
