@@ -242,16 +242,18 @@ public class CollectionWithStoriesDTO {
         private int id;
         private String title;
         private String textUrl;
+        private String excerpt;
         private Integer pageNumber;
 		public PoemWithPageNumberDTO() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
-		public PoemWithPageNumberDTO(int id,  String title, String textUrl, Integer pageNumber) {
+		public PoemWithPageNumberDTO(int id,  String title, String textUrl, String excerpt, Integer pageNumber) {
 			super();
 			this.id = id;
 			this.title = title;
 			this.textUrl = textUrl;
+			this.excerpt = excerpt;
 			this.pageNumber = pageNumber;
 		}
 		public int getId() {
@@ -271,6 +273,62 @@ public class CollectionWithStoriesDTO {
 		}
 		public void setTextUrl(String textUrl) {
 			this.textUrl = textUrl;
+		}
+		public String getExcerpt() {
+			return excerpt;
+		}
+		public void setExcerpt(String excerpt) {
+			this.excerpt = excerpt;
+		}
+		public Integer getPageNumber() {
+			return pageNumber;
+		}
+		public void setPageNumber(Integer pageNumber) {
+			this.pageNumber = pageNumber;
+		}
+    }
+	
+	public static class MiscellaneaWithPageNumberDTO {
+        private int id;
+        private String title;
+        private String textUrl;
+        private String excerpt;
+        private Integer pageNumber;
+		public MiscellaneaWithPageNumberDTO() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+		public MiscellaneaWithPageNumberDTO(int id,  String title, String textUrl, String excerpt, Integer pageNumber) {
+			super();
+			this.id = id;
+			this.title = title;
+			this.textUrl = textUrl;
+			this.excerpt = excerpt;
+			this.pageNumber = pageNumber;
+		}
+		public int getId() {
+			return id;
+		}
+		public void setId(int id) {
+			this.id = id;
+		}
+		public String getTitle() {
+			return title;
+		}
+		public void setTitle(String title) {
+			this.title = title;
+		}
+		public String getTextUrl() {
+			return textUrl;
+		}
+		public void setTextUrl(String textUrl) {
+			this.textUrl = textUrl;
+		}
+		public String getExcerpt() {
+			return excerpt;
+		}
+		public void setExcerpt(String excerpt) {
+			this.excerpt = excerpt;
 		}
 		public Integer getPageNumber() {
 			return pageNumber;
