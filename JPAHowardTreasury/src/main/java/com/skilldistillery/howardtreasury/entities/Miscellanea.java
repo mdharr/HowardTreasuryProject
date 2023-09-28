@@ -4,17 +4,14 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Miscellanea {
@@ -24,6 +21,11 @@ public class Miscellanea {
 	private int id;
 	
 	private String title;
+	
+	@Column(name = "text_url")
+	private String textUrl;
+	
+	private String excerpt;
 	
     @JsonIgnore
     @ManyToMany(mappedBy = "miscellaneas")
@@ -38,10 +40,13 @@ public class Miscellanea {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Miscellanea(int id, String title, List<UserList> userLists, List<Collection> collections) {
+	public Miscellanea(int id, String title, String textUrl, String excerpt, 
+			List<UserList> userLists, List<Collection> collections) {
 		super();
 		this.id = id;
 		this.title = title;
+		this.textUrl = textUrl;
+		this.excerpt = excerpt;
 		this.userLists = userLists;
 		this.collections = collections;
 	}
@@ -60,6 +65,30 @@ public class Miscellanea {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getTextUrl() {
+		return textUrl;
+	}
+
+	public void setTextUrl(String textUrl) {
+		this.textUrl = textUrl;
+	}
+
+	public String getExcerpt() {
+		return excerpt;
+	}
+
+	public void setExcerpt(String excerpt) {
+		this.excerpt = excerpt;
+	}
+
+	public List<UserList> getUserLists() {
+		return userLists;
+	}
+
+	public void setUserLists(List<UserList> userLists) {
+		this.userLists = userLists;
 	}
 
 	public List<Collection> getCollections() {
