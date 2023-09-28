@@ -30,7 +30,7 @@ public class Miscellanea {
 	
 	private String excerpt;
 	
-	@JsonIgnoreProperties("miscellaneas")
+    @JsonIgnore
     @ManyToMany(mappedBy = "miscellaneas")
     private List<UserList> userLists;
 	

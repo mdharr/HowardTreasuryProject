@@ -32,7 +32,7 @@ public class Poem {
 	
 	private String excerpt;
 	
-	@JsonIgnoreProperties("poems")
+    @JsonIgnore
     @ManyToMany(mappedBy = "poems")
     private List<UserList> userLists;
     

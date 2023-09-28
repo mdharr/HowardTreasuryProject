@@ -4,6 +4,7 @@ import { Miscellanea } from "./miscellanea";
 import { Person } from "./person";
 import { Poem } from "./poem";
 import { Series } from "./series";
+import { StoryImage } from "./story-image";
 
 export class CollectionWithStoriesDTO {
   id: number;

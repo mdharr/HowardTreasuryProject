@@ -1,4 +1,6 @@
+import { StoryImage } from './story-image';
 import { Collection } from "./collection";
+import { Person } from './person';
 
 export class Story {
 
@@ -13,6 +15,8 @@ export class Story {
   description: string;
   // userLists: UserList[];
   collections: Collection[];
+  storyImages: StoryImage[];
+  persons: Person[];
 
   constructor(
     id: number = 0,
@@ -25,7 +29,9 @@ export class Story {
     excerpt: string = '',
     description: string = '',
     // userLists: UserList[] = [],
-    collections: Collection[] = []
+    collections: Collection[] = [],
+    storyImages: StoryImage[] = [],
+    persons: Person[] = []
   ) {
     this.id = id;
     this.title = title;
@@ -38,5 +44,7 @@ export class Story {
     this.description = description;
     // this.userLists = userLists;
     this.collections = collections;
+    this.storyImages = storyImages;
+    this.persons = persons;
   }
 }
