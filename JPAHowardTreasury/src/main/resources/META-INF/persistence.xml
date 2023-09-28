@@ -40,6 +40,8 @@
 		<class>com.skilldistillery.howardtreasury.entities.UserHasChatRoom</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserHasChatRoomId</class>
 		<class>com.skilldistillery.howardtreasury.entities.StoryImage</class>
+		<class>com.skilldistillery.howardtreasury.entities.StoryHasStoryImage</class>
+		<class>com.skilldistillery.howardtreasury.entities.StoryHasStoryImageId</class>
 
 		<!-- end entities -->
 
