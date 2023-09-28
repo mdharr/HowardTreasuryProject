@@ -29,9 +29,9 @@ export class CollectionWithStoriesDTO {
     description: string = '',
     series: Series = new Series(),
     stories: StoryWithPageNumberDTO[] = [],
-    poems: Poem[] = [],
+    poems: PoemWithPageNumberDTO[] = [],
     persons: Person[] = [],
-    miscellaneas: Miscellanea[] = [],
+    miscellaneas: MiscellaneaWithPageNumberDTO[] = [],
     collectionImages: CollectionImage[] = [],
     illustrators: Illustrator[] = []
   ) {
@@ -60,6 +60,7 @@ export class StoryWithPageNumberDTO {
   copyrightExpiresAt: string; // Change the type if needed
   excerpt: string;
   description: string;
+  storyImages: StoryImage[];
   pageNumber: number;
 
   constructor(
@@ -72,6 +73,7 @@ export class StoryWithPageNumberDTO {
     copyrightExpiresAt: string = '',
     excerpt: string = '',
     description: string = '',
+    storyImages: StoryImage[] = [],
     pageNumber: number = 0
   ) {
     this.id = id;
@@ -83,6 +85,51 @@ export class StoryWithPageNumberDTO {
     this.copyrightExpiresAt = copyrightExpiresAt;
     this.excerpt = excerpt;
     this.description = description;
+    this.storyImages = storyImages;
+    this.pageNumber = pageNumber;
+  }
+}
+
+export class PoemWithPageNumberDTO {
+  id: number;
+  title: string;
+  textUrl: string;
+  excerpt: string;
+  pageNumber: number;
+
+  constructor(
+    id: number = 0,
+    title: string = '',
+    textUrl: string = '',
+    excerpt: string = '',
+    pageNumber: number = 0
+  ) {
+    this.id = id;
+    this.title = title;
+    this.textUrl = textUrl;
+    this.excerpt = excerpt;
+    this.pageNumber = pageNumber;
+  }
+}
+
+export class MiscellaneaWithPageNumberDTO {
+  id: number;
+  title: string;
+  textUrl: string;
+  excerpt: string;
+  pageNumber: number;
+
+  constructor(
+    id: number = 0,
+    title: string = '',
+    textUrl: string = '',
+    excerpt: string = '',
+    pageNumber: number = 0
+  ) {
+    this.id = id;
+    this.title = title;
+    this.textUrl = textUrl;
+    this.excerpt = excerpt;
     this.pageNumber = pageNumber;
   }
 }
