@@ -159,3 +159,14 @@
 .details-wrapper {
   text-align: start;
 }
+
+.story-image-box {
+  display:flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+.story-image {
+  width: 300px;
+  height: auto;
+}

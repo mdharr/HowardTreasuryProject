@@ -52,8 +52,14 @@
           <img class="flair-img" src="https://howardtreasury.s3.amazonaws.com/assets/siteassets/solomon-kane-flair-removebg-preview.png" alt="">
         </div>
       </div>
+      <div class="story-image-box" *ngIf="story.storyImages.length">
+        <img class="story-image" src="{{ story.storyImages[0].imageUrl }}">
+        <!-- <hr> -->
+      </div>
 
     </div>
+
+    <hr>
 
     <div class="story-details">
       <div class="details-wrapper">
@@ -66,8 +72,17 @@
         <div>
           <p>Appears in the following collection(s):
             <ng-container *ngFor="let collection of storyCollections; let lastIndex = last; let firstIndex = first">
-              <span class="collection-link" [routerLink]="['/collections/' + collection.id]">
-                {{ firstIndex && lastIndex ? (collection.title) : (collection.title + ', ') }}
+              <span class="collection-link" [routerLink]="['/collections', collection.id]">
+                {{ firstIndex && !lastIndex ? (collection.title + ', ') : firstIndex && lastIndex ? (collection.title) : !firstIndex && !lastIndex ? (collection.title + ', ') : (collection.title) }}
+              </span>
+            </ng-container>
+          </p>
+        </div>
+        <div>
+          <p>Recurring characters:
+            <ng-container *ngFor="let person of story.persons; let lastIndex = last; let firstIndex = first">
+              <span class="collection-link" [routerLink]="['/characters', person.id]">
+                {{ firstIndex && !lastIndex ? (person.name + ', ') : firstIndex && lastIndex ? (person.name) : !firstIndex && !lastIndex ? (person.name + ', ') : (person.name) }}
               </span>
             </ng-container>
           </p>

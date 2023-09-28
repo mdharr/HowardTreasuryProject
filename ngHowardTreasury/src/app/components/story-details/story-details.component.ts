@@ -65,10 +65,10 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.storySubscription = this.storyService.find(this.storyId).subscribe({
         next: (data) => {
           this.story = data;
-          this.storyCollections = data.collections;
           if(data.excerpt) {
             this.storyExcerpt = this.createIlluminatedInitial(data.excerpt);
           }
+          this.storyCollections = data.collections;
           this.isLoaded = true;
         },
         error: (fail) => {
