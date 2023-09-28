@@ -63,6 +63,14 @@ public class Story {
 			)
 	private List<StoryImage> storyImages;
 	
+	@ManyToMany
+	@JoinTable(
+			name = "story_has_person",
+			joinColumns = @JoinColumn(name = "story_id"),
+			inverseJoinColumns = @JoinColumn(name = "person_id")
+			)
+	private List<Person> persons;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "story", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<CollectionHasStory> collectionHasStories;
@@ -75,7 +83,7 @@ public class Story {
 	public Story(int id, String title, String textUrl, LocalDateTime firstPublished, String alternateTitle,
 			Boolean isCopyrighted, LocalDateTime copyrightExpiresAt, String excerpt, String description, 
 			List<UserList> userLists, List<Collection> collections, List<StoryImage> storyImages, 
-			List<CollectionHasStory> collectionHasStories) {
+			List<Person> persons, List<CollectionHasStory> collectionHasStories) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -89,6 +97,7 @@ public class Story {
 		this.userLists = userLists;
 		this.collections = collections;
 		this.storyImages = storyImages;
+		this.persons = persons;
 		this.collectionHasStories = collectionHasStories;
 	}
 
@@ -186,6 +195,14 @@ public class Story {
 
 	public void setStoryImages(List<StoryImage> storyImages) {
 		this.storyImages = storyImages;
+	}
+
+	public List<Person> getPersons() {
+		return persons;
+	}
+
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
 	}
 
 	public List<CollectionHasStory> getCollectionHasStories() {

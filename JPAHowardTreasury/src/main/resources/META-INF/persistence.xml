@@ -44,6 +44,8 @@
 		<class>com.skilldistillery.howardtreasury.entities.StoryHasStoryImageId</class>
 		<class>com.skilldistillery.howardtreasury.entities.StoryImageHasIllustrator</class>
 		<class>com.skilldistillery.howardtreasury.entities.StoryImageHasIllustratorId</class>
+		<class>com.skilldistillery.howardtreasury.entities.StoryHasPerson</class>
+		<class>com.skilldistillery.howardtreasury.entities.StoryHasPersonId</class>
 
 		<!-- end entities -->
 
