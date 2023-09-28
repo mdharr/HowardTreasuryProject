@@ -23,5 +23,42 @@
 }
 
 .contents-list-items {
-  list-style:upper-roman;
+  list-style:circle;
+  width:fit-content;
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  color: #9e0000;
 }
+
+.contents-list-items:hover {
+  cursor:pointer;
+  /* color:#6b0000; */
+  text-decoration: underline;
+}
+
+.characters-header {
+  width: 100%;
+  position: relative;
+  background-image: url(https://reh.world/wp-content/uploads/2022/02/Kayanan-Howard-characters.png);
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+
+}
+
+.characters-header::before {
+  content: "";
+  display: block;
+  padding-bottom: 41.8%; /* Adjust this percentage based on the aspect ratio of your image */
+  border-left: 1px solid #efe9c5;
+  border-right: 1px solid #efe9c5;
+}
+
+.header-wrapper {
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+
+
+
