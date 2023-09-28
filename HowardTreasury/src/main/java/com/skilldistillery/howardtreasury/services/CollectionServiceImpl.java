@@ -193,12 +193,8 @@ public class CollectionServiceImpl implements CollectionService {
 
 	        for (CollectionHasStory collectionHasStory : collectionHasStories) {
 	            CollectionWithStoriesDTO.StoryWithPageNumberDTO storyDTO = new CollectionWithStoriesDTO.StoryWithPageNumberDTO();
-	        	CollectionWithStoriesDTO.PoemWithPageNumberDTO poemDTO = new CollectionWithStoriesDTO.PoemWithPageNumberDTO();
-	        	CollectionWithStoriesDTO.MiscellaneaWithPageNumberDTO miscellaneaDTO = new CollectionWithStoriesDTO.MiscellaneaWithPageNumberDTO();
 
 	            Story story = collectionHasStory.getStory();
-	            Poem poem = collectionHasStory.getPoem();
-	            Miscellanea miscellanea = collectionHasStory.getMiscellanea();
 	            
 	            storyDTO.setId(story.getId());
 	            storyDTO.setTitle(story.getTitle());
@@ -241,9 +237,6 @@ public class CollectionServiceImpl implements CollectionService {
 	        	
 	        	miscellaneaDTOs.add(miscellaneaDTO);
 	        }
-
-	        
-	        
 	        
 	        dto.setStories(storyDTOs);
 	        dto.setPoems(poemDTOs);
