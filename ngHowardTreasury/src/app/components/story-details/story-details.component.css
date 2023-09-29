@@ -79,7 +79,7 @@
 .excerpt-text {
   font-style:normal;
   font-size: 16px;
-  font-family: fantasy,Libre Baskerville,Helvetica,Arial,sans-serif;
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
 }
 
 .description-text {
@@ -139,7 +139,7 @@
   color: black;
   text-decoration: none;
   transition: color 0.2s ease;
-  font-family: fantasy,Libre Baskerville,Helvetica,Arial,sans-serif;
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
 }
 
 .read-online-box:hover .story-text-link {

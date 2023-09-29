@@ -315,6 +315,10 @@
   .page-number {
     display: none;
   }
+
+  .story-text {
+    white-space:normal;
+  }
 }
 
 @media screen and (max-width: 375px) {

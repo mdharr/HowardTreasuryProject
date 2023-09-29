@@ -331,7 +331,7 @@ h4 {
 }
 
 .title-box {
-  padding: 50px;
+  padding-top: 50px;
   padding-bottom: 15px;
 }
 
@@ -341,5 +341,22 @@ h4 {
   padding-bottom: 3px;
 }
 
+@media screen and (max-width: 320px) {
 
+  .flair-img {
+    display:none;
+  }
 
+  .b-element {
+    display:none;
+  }
+
+  .collection-container {
+    width:unset;
+  }
+
+  .description-title-box {
+    justify-content: center;
+  }
+
+}

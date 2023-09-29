@@ -1,6 +1,13 @@
 .main {
   display: flex;
-  padding: 100px;
+  padding: 50px;
+  justify-content: space-between;
+}
+
+.name-text {
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  color: #9e0000;
 }
 
 .character-profile {
@@ -8,6 +15,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.details-text {
+  font-size: 20px;
+  line-height: 1.4;
 }
 
 .person-image {
@@ -20,7 +32,7 @@
   justify-content: center;
   align-items: center;
   text-align: justify;
-  padding: 50px;
+  padding: 25px;
 }
 
 .spinner-wrapper {
@@ -42,5 +54,27 @@
 
 .hidden {
   display: none;
+}
+
+@media screen and (max-width: 320px) {
+
+  .person-image {
+    width: 100%;
+  }
+
+  .character-details {
+    padding: 0;
+    padding-top: 25px;
+    text-align: justify;
+  }
+}
+
+@media screen and (max-width: 910px) {
+  .main {
+    flex-direction: column;
+    padding: 0;
+    margin-top: 50px;
+  }
+
 }
 
