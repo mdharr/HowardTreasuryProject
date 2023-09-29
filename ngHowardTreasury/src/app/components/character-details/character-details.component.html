@@ -3,7 +3,7 @@
     <div class="profile-name">
       <h1 class="name-text">{{ person.name }}</h1>
     </div>
-    <div class="profile-image">
+    <div class="profile-image with-drop-shadow box">
       <img
         class="person-image"
         src="{{ person.imageUrl }}"
@@ -13,8 +13,8 @@
     </div>
   </div>
   <div class="character-details">
-    <div class="details-text">
-      <p>{{ person.description }}</p>
+    <div class="details-box">
+      <p class="details-text">{{ person.description }}</p>
     </div>
   </div>
 </div>
