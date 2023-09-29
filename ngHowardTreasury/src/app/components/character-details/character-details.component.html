@@ -1,15 +1,25 @@
-<div class="main">
+<div class="main" [class.hidden]="!isLoaded">
   <div class="character-profile">
     <div class="profile-name">
       <h1>{{ person.name }}</h1>
     </div>
     <div class="profile-image">
-      <img class="person-image" src="{{ person.imageUrl }}" alt="">
+      <img
+        class="person-image"
+        src="{{ person.imageUrl }}"
+        alt=""
+        (load)="onImageLoad()"
+      />
     </div>
   </div>
   <div class="character-details">
     <div class="details-text">
       <p>{{ person.description }}</p>
     </div>
+  </div>
+</div>
+<div class="spinner-wrapper" *ngIf="!isLoaded">
+  <div class="spinner-box">
+    <mat-spinner></mat-spinner>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, OnDestroy, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Person } from 'src/app/models/person';
 import { AuthService } from 'src/app/services/auth.service';
@@ -15,8 +15,16 @@ export class CharactersComponent implements OnInit, OnDestroy {
   persons: Person[] = [];
   person: Person = new Person();
 
+  // booleans
+  isLoaded: boolean = false;
+
   // subscriptions declarations
   private personSubscription: Subscription | undefined;
+
+  // view child
+  @ViewChild('bgImage') bgImage!: ElementRef;
+
+  backgroundImageUrl = 'https://reh.world/wp-content/uploads/2022/02/Kayanan-Howard-characters.png';
 
   // service injections
   auth = inject(AuthService);
@@ -27,6 +35,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
     this.personSubscription = this.personService.indexAll().subscribe({
       next: (data) => {
         this.persons = data;
+        // this.isLoaded = true;
       },
       error:(fail) => {
         console.error('Error retrieving persons');
@@ -39,5 +48,10 @@ export class CharactersComponent implements OnInit, OnDestroy {
     if (this.personSubscription) {
       this.personSubscription.unsubscribe();
     }
+  }
+
+  imageLoaded() {
+    // Set isLoaded to true when the image is loaded
+    this.isLoaded = true;
   }
 }

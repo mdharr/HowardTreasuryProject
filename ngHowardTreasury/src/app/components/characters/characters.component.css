@@ -32,7 +32,6 @@
 
 .contents-list-items:hover {
   cursor:pointer;
-  /* color:#6b0000; */
   text-decoration: underline;
 }
 
@@ -42,7 +41,6 @@
   background-image: url(https://reh.world/wp-content/uploads/2022/02/Kayanan-Howard-characters.png);
   background-size: 100% auto;
   background-repeat: no-repeat;
-
 }
 
 .characters-header::before {

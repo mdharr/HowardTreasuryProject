@@ -1,15 +1,24 @@
-<div class="header-wrapper">
-  <div class="characters-header"></div>
-</div>
-<div class="main-title">
-  <div class="title-container">
-    <h1 class="title-text">Characters</h1>
+<div *ngIf="isLoaded">
+  <div class="header-wrapper">
+    <div class="characters-header" id="characters-header"></div>
+  </div>
+  <div class="main-title">
+    <div class="title-container">
+      <h1 class="title-text">Characters</h1>
+    </div>
+  </div>
+  <div class="contents-wrapper">
+    <ul class="contents-list">
+      <ng-container *ngFor="let person of persons">
+        <li class="contents-list-items" [routerLink]="['/characters', person.id]">{{ person.name }}</li>
+      </ng-container>
+    </ul>
   </div>
 </div>
-<div class="contents-wrapper">
-  <ul class="contents-list">
-    <ng-container *ngFor="let person of persons">
-      <li class="contents-list-items" [routerLink]="['/characters', person.id]">{{ person.name }}</li>
-    </ng-container>
-  </ul>
+
+<div *ngIf="!isLoaded">
+  <mat-progress-spinner mode="indeterminate" [value]="" color="primary"></mat-progress-spinner>
 </div>
+
+<img #bgImage [src]="backgroundImageUrl" (load)="imageLoaded()" style="display: none;">
+
