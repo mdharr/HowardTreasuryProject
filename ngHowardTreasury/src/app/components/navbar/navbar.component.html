@@ -1,5 +1,5 @@
 <mat-toolbar class="navbar">
-  <mat-toolbar-row>
+  <mat-toolbar-row id="mat-toolbar-menu-row">
     <div class="menu-btn-wrapper">
       <button class="menu-button" style="margin-right: 15px;" mat-icon-button (click)="toggleMenu()">
         <mat-icon *ngIf="!this.isMenuOpen">menu</mat-icon>
@@ -37,8 +37,22 @@
         <span class="register-text">Register</span>
       </button>
 
-      <button class="navbar-btn-group" mat-button class="animated-ui" *ngIf="loggedIn()"><span class="profile-text">{{ loggedInUser.username }}</span></button>
-      <button class="navbar-btn-group" class="logout-text animated-ui" mat-button *ngIf="loggedIn()">
+      <button
+      style="margin-left: 10px;
+      padding: 0;
+      padding-right: 8px;
+      padding-left: 8px;
+      height: 40px;
+      line-height: 28px;
+      border: 1px solid #e0e0e0;" class="navbar-btn-group" mat-button class="animated-ui" *ngIf="loggedIn()"><span class="profile-text">{{ loggedInUser.username }}</span></button>
+      <button
+      style="margin-left: 10px;
+      padding: 0;
+      padding-right: 8px;
+      padding-left: 8px;
+      height: 40px;
+      line-height: 28px;
+      border: 1px solid #e0e0e0;" class="navbar-btn-group" class="animated-ui" mat-button *ngIf="loggedIn()">
         <app-logout></app-logout>
       </button>
     </div>
@@ -46,9 +60,12 @@
     <div class="flex-menu-row">
       <div class="search-container">
         <input class="search-input-field" [(ngModel)]="searchQuery" (keyup.enter)="performSearchNoMenu()" placeholder="Search ...">
-        <button class="search-button" (click)="performSearchNoMenu()"><mat-icon class="search-icon">search</mat-icon></button>
+        <button mat-icon-button class="search-button" (click)="performSearchNoMenu()">
+          <mat-icon class="search-icon">search</mat-icon>
+        </button>
       </div>
     </div>
+
   </div>
 
   </mat-toolbar-row>

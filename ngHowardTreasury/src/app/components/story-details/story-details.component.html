@@ -9,7 +9,7 @@
   </div>
 
   <div class="description-container">
-    <div  *ngIf="story.excerpt">
+    <div>
       <div class="description-title-box">
         <div class="title-box">
           <h2 class="description-title">Excerpt</h2>
@@ -19,8 +19,12 @@
           <img class="flair-img" src="https://howardtreasury.s3.amazonaws.com/assets/siteassets/solomon-kane-flair-removebg-preview.png" alt="">
         </div>
       </div>
-      <div class="excerpt-box">
+      <div class="excerpt-box" *ngIf="story.excerpt">
         <p class="excerpt-text" [innerHTML]="storyExcerpt"></p><span class="read-online-box" *ngIf="story.textUrl"><a class="story-text-link" href="{{ story.textUrl }}">Continue reading</a></span>
+        <!-- <hr> -->
+      </div>
+      <div class="excerpt-box" style="justify-content:flex-start; margin:20px;" *ngIf="!story.excerpt">
+        <p class="excerpt-text">Excerpt not yet available.</p><span class="read-online-box" *ngIf="story.textUrl"><a class="story-text-link" href="{{ story.textUrl }}">Continue reading</a></span>
         <!-- <hr> -->
       </div>
     </div>
@@ -35,8 +39,12 @@
           <img class="flair-img" src="https://howardtreasury.s3.amazonaws.com/assets/siteassets/solomon-kane-flair-removebg-preview.png" alt="">
         </div>
       </div>
-      <div class="description-box">
+      <div class="description-box" *ngIf="story.description">
         <p class="description-text">{{ story.description }}</p>
+        <!-- <hr> -->
+      </div>
+      <div class="description-box" style="justify-content:flex-start; margin:20px;" *ngIf="!story.description">
+        <p class="description-text">Description not yet available.</p>
         <!-- <hr> -->
       </div>
 
@@ -54,6 +62,10 @@
       </div>
       <div class="story-image-box" *ngIf="story.storyImages.length">
         <img class="story-image" src="{{ story.storyImages[0].imageUrl }}">
+        <!-- <hr> -->
+      </div>
+      <div class="story-image-box" style="justify-content:flex-start; margin:20px;" *ngIf="!story.storyImages.length">
+        <p class="description-text">Artwork not yet available.</p>
         <!-- <hr> -->
       </div>
 

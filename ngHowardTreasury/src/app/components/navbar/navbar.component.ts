@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, HostListener, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 
 import {
   trigger,
@@ -144,5 +144,15 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
 
   closeMenu = () => {
     this.menuState = 'collapsed';
+    this.isMenuOpen = false;
   }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+  // Check the screen width and close the menu if it's greater than 1087px
+  if (window.innerWidth > 1087) {
+    this.closeMenu();
+  }
+}
+
 }
