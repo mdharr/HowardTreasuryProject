@@ -1,32 +1,56 @@
-<mat-toolbar style="border-bottom: 1px solid #b5b5b5; position: relative;">
+<mat-toolbar class="navbar">
   <mat-toolbar-row>
-    <button mat-icon-button (click)="toggleMenu()">
-      <mat-icon *ngIf="!this.isMenuOpen">menu</mat-icon>
-      <mat-icon *ngIf="this.isMenuOpen">close</mat-icon>
-    </button>
+    <div class="menu-btn-wrapper">
+      <button class="menu-button" style="margin-right: 15px;" mat-icon-button (click)="toggleMenu()">
+        <mat-icon *ngIf="!this.isMenuOpen">menu</mat-icon>
+        <mat-icon *ngIf="this.isMenuOpen">close</mat-icon>
+      </button>
 
-    <!-- Centered Flex Container -->
-    <div class="logo-box" [routerLink]="['/home']" (click)="menuState === 'expanded' ? toggleMenu() : null">
-      <div style="border: 2px solid black;">
-        <img style="width: 43px; height: 41px;" src="https://cafans.b-cdn.net/images/Category_2871/subcat_124271/gianni_solomonkane.jpg" alt="">
+      <div class="logo-menu-wrapper">
+        <!-- Centered Flex Container -->
+        <div class="logo-box" [routerLink]="['/home']" (click)="menuState === 'expanded' ? toggleMenu() : null">
+          <div style="display:flex;">
+            <div style="border: 2px solid black;">
+              <img style="width: 43px; height: 41px;" src="https://cafans.b-cdn.net/images/Category_2871/subcat_124271/gianni_solomonkane.jpg" alt="">
+            </div>
+            <h1 class="app-logo">The Robert E. Howard Treasury</h1>
+          </div>
+        </div>
+
+        <!-- Button to trigger the menu -->
+        <button id="nav-menu-btn" mat-button [matMenuTriggerFor]="menu">Menu<span>
+          <mat-icon style="vertical-align: top;">
+            arrow_drop_down
+            </mat-icon>
+          </span>
+        </button>
       </div>
-      <h1 class="app-logo">The Robert E. Howard Treasury</h1>
     </div>
 
+  <div class="search-auth-wrapper">
     <!-- Auth Buttons Container -->
     <div class="auth-container">
-      <button mat-button *ngIf="!loggedIn()" (click)="openLoginDialog()">
+      <button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openLoginDialog()">
         <span class="login-text">Log in</span>
       </button>
-      <button mat-button *ngIf="!loggedIn()" (click)="openSignupDialog()">
+      <button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openSignupDialog()">
         <span class="register-text">Register</span>
       </button>
 
-      <button mat-button class="animated-ui" *ngIf="loggedIn()"><span class="profile-text">{{ loggedInUser.username }}</span></button>
-      <button class="logout-text animated-ui" mat-button *ngIf="loggedIn()">
+      <button class="navbar-btn-group" mat-button class="animated-ui" *ngIf="loggedIn()"><span class="profile-text">{{ loggedInUser.username }}</span></button>
+      <button class="navbar-btn-group" class="logout-text animated-ui" mat-button *ngIf="loggedIn()">
         <app-logout></app-logout>
       </button>
     </div>
+
+    <div class="flex-menu-row">
+      <div class="search-container">
+        <input class="search-input-field" [(ngModel)]="searchQuery" (keyup.enter)="performSearchNoMenu()" placeholder="Search ...">
+        <button class="search-button" (click)="performSearchNoMenu()"><mat-icon class="search-icon">search</mat-icon></button>
+      </div>
+    </div>
+  </div>
+
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -47,4 +71,14 @@
     </div>
   </div>
 </div>
+
+<!-- Define the menu -->
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="/about">About</button>
+  <button mat-menu-item routerLink="/collections">Collections</button>
+  <button mat-menu-item routerLink="/stories">Stories</button>
+  <button mat-menu-item routerLink="/poems">Poems</button>
+  <button mat-menu-item routerLink="/characters">Characters</button>
+  <button mat-menu-item routerLink="/miscellanea">Miscellanea</button>
+</mat-menu>
 
