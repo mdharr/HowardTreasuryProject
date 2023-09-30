@@ -35,10 +35,11 @@
 /* Container for the entire story list */
 .story-list {
   text-align: center;
-  padding: 20px;
+  margin-top: 50px;
+  padding-left:20px;
+  padding-right:20px;
   /* background-image: url('https://clipart-library.com/images/kiMK4KqLT.gif');
   background-repeat: repeat-y; */
-  color: #8B4513;
   font-family: 'Libre Baskerville', Helvetica, Arial, sans-serif;
 }
 
@@ -46,7 +47,7 @@
 .title-text {
   font-size: 36px;
   font-weight: 700;
-  /* color: #FFD700; */
+  color: #9e0101;
   /* text-shadow: 1px 1px 1px #333; */
   font-family: 'Libre Baskerville', Helvetica, Arial, sans-serif;
 }
@@ -59,12 +60,16 @@
 .sort-button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #FFD700;
-  color: #8B4513;
+  background-color: rgba(255, 255, 255, 0.8);
   border: none;
   border-radius: 5px;
   margin-right: 10px;
   cursor: pointer;
+}
+
+.sort-button:hover {
+  background-color:#9e0101;
+  color:#fff;
 }
 
 /* Story list styling */
@@ -92,8 +97,8 @@
 }
 
 .story-item:hover {
-  background-color: #FFD700;
-  color: #8B4513;
+  background-color: #9e0101;
+  color: #fff;
   cursor: pointer;
 }
 
