@@ -1,7 +1,6 @@
-.main-title {
+/* .main-title {
   display: flex;
   justify-content: center;
-  /* width: 100%; */
   margin: 50px;
 }
 
@@ -24,4 +23,75 @@
 
 .contents-list-items {
   list-style:upper-roman;
+} */
+
+/* Container for the entire poem list */
+.poem-list {
+  text-align: center;
+  margin-top: 50px;
+  padding-left:20px;
+  padding-right:20px;
+  /* background-image: url('https://clipart-library.com/images/kiMK4KqLT.gif');
+  background-repeat: repeat-y; */
+  font-family: 'Libre Baskerville', Helvetica, Arial, sans-serif;
+}
+
+/* Title styling */
+.title-text {
+  font-size: 36px;
+  font-weight: 700;
+  color: #9e0101;
+  /* text-shadow: 1px 1px 1px #333; */
+  font-family: 'Libre Baskerville', Helvetica, Arial, sans-serif;
+}
+
+/* Buttons for sorting */
+.buttons-container {
+  margin-top: 20px;
+}
+
+.sort-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.sort-button:hover {
+  background-color:#9e0101;
+  color:#fff;
+}
+
+/* Story list styling */
+.poem-items {
+  list-style: none;
+  padding: 0;
+}
+
+.poem-item {
+  font-size: 20px;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+/* Custom sword icon */
+.sword-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.poem-item:hover {
+  background-color: rgba(158, 1, 1, 1);
+  color: #fff;
+  cursor: pointer;
 }

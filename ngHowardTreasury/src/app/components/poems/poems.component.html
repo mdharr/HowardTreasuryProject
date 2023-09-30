@@ -1,4 +1,4 @@
-<div class="main-title">
+<!-- <div class="main-title">
   <div class="title-container">
     <h1 class="title-text">Poems</h1>
   </div>
@@ -7,6 +7,22 @@
   <ul class="contents-list">
     <ng-container *ngFor="let poem of poems">
       <li class="contents-list-items">{{ poem.title }}</li>
+    </ng-container>
+  </ul>
+</div> -->
+
+<div class="poem-list">
+  <h1 class="title-text">Poems</h1>
+  <!-- <div class="buttons-container">
+    <button class="sort-button" (click)="sortStoriesByTitle()">Sort By Title</button>
+    <button class="sort-button" (click)="sortStoriesByFirstPublished()">Sort By First Published</button>
+  </div> -->
+  <ul class="poem-items">
+    <ng-container *ngFor="let poem of poems">
+      <li [routerLink]="['/poems', poem.id]" class="poem-item">
+        <span class="sword-icon">🗡️</span>
+        {{ poem.title }}
+      </li>
     </ng-container>
   </ul>
 </div>

@@ -82,8 +82,9 @@
   font-size: 20px;
   margin: 10px 0;
   padding: 10px;
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -97,7 +98,7 @@
 }
 
 .story-item:hover {
-  background-color: #9e0101;
+  background-color: rgba(158, 1, 1, 1);
   color: #fff;
   cursor: pointer;
 }
