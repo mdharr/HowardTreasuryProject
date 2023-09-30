@@ -23,5 +23,12 @@
 }
 
 .contents-list-items {
-  list-style:upper-roman;
+  list-style:circle;
+  color: #9e0000;
+  width:fit-content;
+}
+
+.contents-list-items:hover {
+  cursor:pointer;
+  text-decoration: underline;
 }

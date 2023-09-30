@@ -40,4 +40,16 @@ export class StoriesComponent implements OnInit, OnDestroy {
     }
   }
 
+  sortStoriesByTitle(): void {
+    this.stories.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
+  sortStoriesByFirstPublished(): void {
+    this.stories.sort((a, b) => new Date(a.firstPublished).getTime() - new Date(b.firstPublished).getTime());
+  }
+
+  filterByCopyrighted(): void {
+
+  }
+
 }

@@ -164,6 +164,7 @@
   display:flex;
   justify-content: center;
   padding: 50px;
+  padding-top: 0;
 }
 
 .story-image {

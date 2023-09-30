@@ -5,8 +5,10 @@
 </div>
 <div class="contents-wrapper">
   <ul class="contents-list">
+    <button (click)="sortStoriesByTitle()">Story By Title</button>
+    <button (click)="sortStoriesByFirstPublished()">Sort Stories By First Published</button>
     <ng-container *ngFor="let story of stories">
-      <li class="contents-list-items">{{ story.title }}</li>
+      <li [routerLink]="['/stories', story.id]" class="contents-list-items">{{ story.title }}</li>
     </ng-container>
   </ul>
 </div>
