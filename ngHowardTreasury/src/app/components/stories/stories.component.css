@@ -1,7 +1,6 @@
-.main-title {
+/* .main-title {
   display: flex;
   justify-content: center;
-  /* width: 100%; */
   margin: 50px;
 }
 
@@ -31,4 +30,70 @@
 .contents-list-items:hover {
   cursor:pointer;
   text-decoration: underline;
+} */
+
+/* Container for the entire story list */
+.story-list {
+  text-align: center;
+  padding: 20px;
+  /* background-image: url('https://clipart-library.com/images/kiMK4KqLT.gif');
+  background-repeat: repeat-y; */
+  color: #8B4513;
+  font-family: 'Libre Baskerville', Helvetica, Arial, sans-serif;
 }
+
+/* Title styling */
+.title-text {
+  font-size: 36px;
+  font-weight: 700;
+  /* color: #FFD700; */
+  /* text-shadow: 1px 1px 1px #333; */
+  font-family: 'Libre Baskerville', Helvetica, Arial, sans-serif;
+}
+
+/* Buttons for sorting */
+.buttons-container {
+  margin-top: 20px;
+}
+
+.sort-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #FFD700;
+  color: #8B4513;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* Story list styling */
+.story-items {
+  list-style: none;
+  padding: 0;
+}
+
+.story-item {
+  font-size: 20px;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+/* Custom sword icon */
+.sword-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.story-item:hover {
+  background-color: #FFD700;
+  color: #8B4513;
+  cursor: pointer;
+}
+
