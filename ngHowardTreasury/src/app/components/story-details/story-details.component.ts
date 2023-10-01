@@ -1,3 +1,4 @@
+import { CollectionImage } from './../../models/collection-image';
 import { Component, inject, OnDestroy, OnInit, Renderer2, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -18,6 +19,7 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
     story: Story = new Story();
     storyExcerpt: string = '';
     storyCollections: Collection[] = [];
+    collectionImage: CollectionImage = new CollectionImage();
 
     // booleans
     isLoaded = false;
@@ -68,7 +70,9 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
           if(data.excerpt) {
             this.storyExcerpt = this.createIlluminatedInitial(data.excerpt);
           }
-          this.storyCollections = data.collections;
+          if(data.collections) {
+            this.storyCollections = data.collections;
+          }
           this.isLoaded = true;
         },
         error: (fail) => {
@@ -97,22 +101,6 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
       const restOfString = text.slice(1);
 
       const illuminatedInitial = `<span class="first-letter">${firstLetter}</span>`;
-
-      let dots = ''; // Initialize dots as an empty string
-
-      const interval = setInterval(() => {
-        if (dots === '') {
-          this.storyExcerpt = illuminatedInitial + restOfString; // Replace dots with restOfString
-        } else {
-          this.storyExcerpt = illuminatedInitial + restOfString + dots; // Add dots to the end
-        }
-
-        dots += '.'; // Add a dot in each iteration
-
-        if (dots.length > 3) {
-          dots = ''; // Reset dots to an empty string after '...'
-        }
-      }, 600); // Adjust the interval duration as needed (e.g., 500ms for half a second)
 
       return illuminatedInitial + restOfString;
     }
