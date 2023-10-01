@@ -58,7 +58,6 @@ public class Collection {
 			)
 	private List<Poem> poems;
 	
-	@JsonBackReference("collection-persons")
 	@ManyToMany
 	@JoinTable(
 			name = "collection_has_person",
