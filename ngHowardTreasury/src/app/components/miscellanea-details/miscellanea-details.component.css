@@ -1,0 +1,237 @@
+::ng-deep .first-letter {
+  font-size: 50px; /* Adjust the font size for the initial letter */
+  font-family: Libre Baskerville, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  color: #9e0000;
+  line-height: 1.2; /* Adjust the line height for the initial letter */
+  float: left; /* Float the initial letter to the left */
+  margin-right: 10px; /* Add spacing between the initial letter and the text */
+  font-style: normal;
+  border: 3px dotted #9e0000;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  outline: 3px dashed #9e0000;
+}
+
+.description-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.description-title {
+  font-family: Libre Baskerville, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  color: #9e0000;
+  text-align: center;
+  border: 4px double #9e0000;
+  width: fit-content;
+  padding: 0.3em 0.8em;
+  margin:0;
+}
+
+.description-title-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.b-element {
+  background-color: #9e0000;
+  display: block;
+  flex: 1;
+  height: 2px;
+  opacity: 0.5;
+}
+
+.excerpt-box {
+  text-align: justify;
+  padding-left: 5%;
+  padding-right: 5%;
+  line-height: 2;
+  margin-bottom: 70px;
+}
+
+.description-box p {
+  text-align: justify;
+  padding-left: 5%;
+  padding-right: 5%;
+  line-height: 2;
+  margin-bottom: 70px;
+}
+
+.story-title {
+  font-size: 30px;
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  color: #9e0000;
+}
+
+.title-container {
+  padding: 25px;
+  display:flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.excerpt-text {
+  font-style:normal;
+  font-size: 16px;
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+}
+
+.description-text {
+  font-size: 16px;
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+}
+
+.collection-link {
+  cursor: pointer;
+}
+
+.story-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.collection-link {
+  color: #9e0000;
+}
+
+.collection-link:hover {
+ text-decoration: underline;
+}
+
+.spinner-wrapper {
+  width: 100%;
+  height: 88vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-box {
+  width: 50px;
+  height: 50px;
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #9e0000;
+}
+
+.read-online-box {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: #f5f5f5;
+  padding: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.read-online-box:hover {
+  background-color:rgba(158, 0, 0, 1);
+  cursor:pointer;
+}
+
+.story-text-link {
+  color: black;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+}
+
+.read-online-box:hover .story-text-link {
+  color: #fff;
+}
+
+.flair-img {
+  width: 150px;
+  height: auto;
+  padding-bottom: 3px;
+}
+
+.title-box {
+  /* padding-left: 50px; */
+}
+
+.details-wrapper {
+  text-align: start;
+}
+
+.story-image-box {
+  display:flex;
+  justify-content: center;
+  padding: 50px;
+  padding-top: 0;
+  justify-content:flex-start;
+  margin:20px;
+}
+
+.story-image {
+  width: 300px;
+  height: auto;
+}
+
+.collection-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.collection-title-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.collection-title {
+  font-family: Libre Baskerville, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  color: #9e0000;
+  text-align: center;
+  border: 4px double #9e0000;
+  width: fit-content;
+  padding: 0.3em 0.8em;
+  margin:0;
+}
+
+.collection-box {
+  display:flex;
+  padding-bottom: 50px;
+  gap: 25px;
+  flex-wrap: wrap;
+  padding-left: 50px;
+}
+
+.collection-wrapper {
+  width:fit-content;
+}
+
+.collection-wrapper:hover {
+  cursor:pointer;
+}
+
+.collection-images {
+  width:150px;
+  height: auto;
+}
+
+@media screen and (max-width: 380px) {
+  .story-image-box {
+    padding:0;
+  }
+  .collection-box {
+    padding-left:0;
+  }
+  .excerpt-box {
+    margin-bottom:20px;
+  }
+  .excerpt-box .read-online-box {
+    display:flex;
+    justify-content: center;
+    margin-bottom:20px;
+  }
+}
