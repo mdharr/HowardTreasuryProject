@@ -1,1 +1,105 @@
-<p>poem-details works!</p>
+<div *ngIf="!isLoaded" class="spinner-wrapper">
+  <div class="spinner-box">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
+<div *ngIf="isLoaded">
+  <div class="title-container">
+    <h1 class="story-title">{{ poem.title }}</h1>
+  </div>
+
+  <div class="collection-container">
+    <div class="collection-title-box">
+      <div class="title-box">
+        <h2 class="collection-title">Collections</h2>
+      </div>
+      <b class="b-element"></b>
+      <div class="flair-wrapper">
+        <img class="flair-img" src="https://howardtreasury.s3.amazonaws.com/assets/siteassets/solomon-kane-flair-removebg-preview.png" alt="">
+      </div>
+    </div>
+    <div class="collection-box" *ngIf="poem.collections.length">
+      <ng-container *ngFor="let collection of poem.collections">
+        <div class="collection-wrapper" [routerLink]="['/collections', collection.id]">
+          <img class="collection-images" src="{{ collection.collectionImages[0].imageUrl }}" alt="">
+        </div>
+      </ng-container>
+    </div>
+
+  </div>
+
+  <div class="description-container">
+    <div>
+      <div class="description-title-box">
+        <div class="title-box">
+          <h2 class="description-title">Excerpt</h2>
+        </div>
+        <b class="b-element"></b>
+        <div class="flair-wrapper">
+          <img class="flair-img" src="https://howardtreasury.s3.amazonaws.com/assets/siteassets/solomon-kane-flair-removebg-preview.png" alt="">
+        </div>
+      </div>
+      <div class="excerpt-box" *ngIf="poem.excerpt">
+        <p class="excerpt-text" [innerHTML]="poemExcerpt"></p><span class="read-online-box" *ngIf="poem.textUrl"><a class="story-text-link" href="{{ poem.textUrl }}">Continue reading</a></span>
+        <!-- <hr> -->
+      </div>
+      <div class="excerpt-box" style="justify-content:flex-start; margin:20px;" *ngIf="!poem.excerpt">
+        <p class="excerpt-text">Excerpt not yet available.</p><span class="read-online-box" *ngIf="poem.textUrl"><a class="story-text-link" href="{{ poem.textUrl }}">Continue reading</a></span>
+        <!-- <hr> -->
+      </div>
+    </div>
+
+    <!-- <div class="description-container">
+      <div class="description-title-box">
+        <div class="title-box">
+          <h2 class="description-title">Artwork</h2>
+        </div>
+        <b class="b-element"></b>
+        <div class="flair-wrapper">
+          <img class="flair-img" src="https://howardtreasury.s3.amazonaws.com/assets/siteassets/solomon-kane-flair-removebg-preview.png" alt="">
+        </div>
+      </div>
+      <div class="story-image-box" *ngIf="poem.poemImages.length">
+        <img class="story-image" src="{{ story.storyImages[0].imageUrl }}">
+
+      </div>
+      <div class="story-image-box" *ngIf="!poem.storyImages.length">
+        <p class="description-text">Artwork not yet available.</p>
+
+      </div>
+
+    </div> -->
+
+    <!-- <hr>
+
+    <div class="story-details">
+      <div class="details-wrapper">
+        <div>
+          <p>First published in {{ poem.firstPublished | date:'yyyy' }}</p>
+        </div>
+        <div>
+          <p>Copyright status: {{ poem.isCopyrighted === true ? 'Under copyright until ' + (poem.copyrightExpiresAt | date:'mediumDate') + '.' : 'No longer under copyright.' }}</p>
+        </div>
+        <div>
+          <p>Appears in the following collection(s):
+            <ng-container *ngFor="let collection of poemCollections; let lastIndex = last; let firstIndex = first">
+              <span class="collection-link" [routerLink]="['/collections', collection.id]">
+                {{ firstIndex && !lastIndex ? (collection.title + ', ') : firstIndex && lastIndex ? (collection.title) : !firstIndex && !lastIndex ? (collection.title + ', ') : (collection.title) }}
+              </span>
+            </ng-container>
+          </p>
+        </div>
+        <div>
+          <p>Recurring characters:
+            <ng-container *ngFor="let person of poem.persons; let lastIndex = last; let firstIndex = first">
+              <span class="collection-link" [routerLink]="['/characters', person.id]">
+                {{ firstIndex && !lastIndex ? (person.name + ', ') : firstIndex && lastIndex ? (person.name) : !firstIndex && !lastIndex ? (person.name + ', ') : (person.name) }}
+              </span>
+            </ng-container>
+          </p>
+        </div>
+      </div>
+    </div> -->
+  </div>
+
+</div>

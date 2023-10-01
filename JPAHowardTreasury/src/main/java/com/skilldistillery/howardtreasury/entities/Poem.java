@@ -36,7 +36,7 @@ public class Poem {
     @ManyToMany(mappedBy = "poems")
     private List<UserList> userLists;
     
-    @JsonIgnore
+    @JsonManagedReference
 	@ManyToMany(mappedBy = "poems", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 	

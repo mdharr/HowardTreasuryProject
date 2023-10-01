@@ -124,8 +124,9 @@
 }
 
 .read-online-box {
-  border: 1px solid #9e0000;
-  background-color:rgba(158, 0, 0, 0.2);
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: #f5f5f5;
   padding: 10px;
   transition: background-color 0.2s ease;
 }
@@ -202,6 +203,7 @@
   padding-bottom: 50px;
   gap: 25px;
   flex-wrap: wrap;
+  padding-left: 50px;
 }
 
 .collection-wrapper {
@@ -220,5 +222,16 @@
 @media screen and (max-width: 380px) {
   .story-image-box {
     padding:0;
+  }
+  .collection-box {
+    padding-left:0;
+  }
+  .excerpt-box {
+    margin-bottom:20px;
+  }
+  .excerpt-box .read-online-box {
+    display:flex;
+    justify-content: center;
+    margin-bottom:20px;
   }
 }
