@@ -14,4 +14,6 @@ public interface CollectionRepository extends JpaRepository<Collection, Integer>
 	
 	List<Collection> findByPoems_Id(int poemId);
 	
+	List<Collection> findByMiscellaneas_Id(int miscellaneaId);
+	
 }
