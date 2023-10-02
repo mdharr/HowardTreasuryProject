@@ -32,11 +32,11 @@ public class Poem {
 	
 	private String excerpt;
 	
-    @JsonIgnore
+	@JsonIgnore
     @ManyToMany(mappedBy = "poems")
     private List<UserList> userLists;
     
-    @JsonManagedReference
+	@JsonIgnore
 	@ManyToMany(mappedBy = "poems", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 	

@@ -51,7 +51,7 @@ public class Story {
     @ManyToMany(mappedBy = "stories")
     private List<UserList> userLists;
 	
-    @JsonIgnoreProperties("stories")
+	@JsonIgnoreProperties("stories")
 	@ManyToMany(mappedBy = "stories", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 	

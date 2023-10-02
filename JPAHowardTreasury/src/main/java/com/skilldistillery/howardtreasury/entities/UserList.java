@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "user_list")
@@ -25,7 +26,7 @@ public class UserList {
 	
 	private String name;
 	
-	@JsonBackReference
+	@JsonBackReference("user-userlists")
 	@ManyToOne
     @JoinColumn(name = "user_id")
 	private User user;

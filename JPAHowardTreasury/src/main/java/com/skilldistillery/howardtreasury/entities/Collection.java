@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Collection {
@@ -49,7 +50,6 @@ public class Collection {
 			)
 	private List<Story> stories;
 	
-	@JsonBackReference("collection-poems")
 	@ManyToMany
 	@JoinTable(
 			name = "collection_has_poem",
@@ -66,7 +66,6 @@ public class Collection {
 			)
 	private List<Person> persons;
 	
-	@JsonBackReference("collection-miscellaneas")
 	@ManyToMany
 	@JoinTable(
 			name = "collection_has_miscellanea",

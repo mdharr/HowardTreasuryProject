@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -31,11 +32,11 @@ public class Miscellanea {
 	
 	private String excerpt;
 	
-    @JsonIgnore
+	@JsonIgnore
     @ManyToMany(mappedBy = "miscellaneas")
     private List<UserList> userLists;
 	
-    @JsonManagedReference
+	@JsonIgnore
 	@ManyToMany(mappedBy = "miscellaneas", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 	
