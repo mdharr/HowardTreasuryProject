@@ -1,12 +1,13 @@
 import { Collection } from "./collection";
 import { Person } from "./person";
+import { UserList } from "./user-list";
 
 export class Miscellanea {
   id: number;
   title: string;
   textUrl: string;
   excerpt: string;
-  // userLists: UserList[];
+  userLists: UserList[];
   collections: Collection[];
   persons: Person[];
 
@@ -15,7 +16,7 @@ export class Miscellanea {
     title: string = '',
     textUrl: string = '',
     excerpt: string = '',
-    // userLists: UserList[] = [],
+    userLists: UserList[] = [],
     collections: Collection[] = [],
     persons: Person[] = []
   ) {
@@ -23,7 +24,7 @@ export class Miscellanea {
     this.title = title;
     this.textUrl = textUrl;
     this.excerpt = excerpt;
-    // this.userLists = userLists;
+    this.userLists = userLists;
     this.collections = collections;
     this.persons = persons;
   }

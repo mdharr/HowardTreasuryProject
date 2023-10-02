@@ -1,5 +1,6 @@
 import { Person } from './person';
 import { Collection } from "./collection";
+import { UserList } from './user-list';
 
 export class Poem {
 
@@ -7,7 +8,7 @@ export class Poem {
   title: string;
   textUrl: string;
   excerpt: string;
-  // userLists: UserList[];
+  userLists: UserList[];
   collections: Collection[];
   persons: Person[];
 
@@ -16,7 +17,7 @@ export class Poem {
     title: string = '',
     textUrl: string = '',
     excerpt: string = '',
-    // userLists: UserList[] = [],
+    userLists: UserList[] = [],
     collections: Collection[] = [],
     persons: Person[] = []
   ) {
@@ -24,7 +25,7 @@ export class Poem {
     this.title = title;
     this.textUrl = textUrl;
     this.excerpt = excerpt;
-    // this.userLists = userLists;
+    this.userLists = userLists;
     this.collections = collections;
     this.persons = persons;
   }

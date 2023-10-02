@@ -1,6 +1,7 @@
 import { StoryImage } from './story-image';
 import { Collection } from "./collection";
 import { Person } from './person';
+import { UserList } from './user-list';
 
 export class Story {
 
@@ -13,7 +14,7 @@ export class Story {
   copyrightExpiresAt: string;
   excerpt: string;
   description: string;
-  // userLists: UserList[];
+  userLists: UserList[];
   collections: Collection[];
   storyImages: StoryImage[];
   persons: Person[];
@@ -28,7 +29,7 @@ export class Story {
     copyrightExpiresAt: string = '',
     excerpt: string = '',
     description: string = '',
-    // userLists: UserList[] = [],
+    userLists: UserList[] = [],
     collections: Collection[] = [],
     storyImages: StoryImage[] = [],
     persons: Person[] = []
@@ -42,7 +43,7 @@ export class Story {
     this.copyrightExpiresAt = copyrightExpiresAt;
     this.excerpt = excerpt;
     this.description = description;
-    // this.userLists = userLists;
+    this.userLists = userLists;
     this.collections = collections;
     this.storyImages = storyImages;
     this.persons = persons;
