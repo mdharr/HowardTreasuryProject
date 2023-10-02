@@ -12,4 +12,6 @@ public interface CollectionRepository extends JpaRepository<Collection, Integer>
 
 	List<Collection> findByTitleContaining(String query);
 	
+	List<Collection> findByPoems_Id(int poemId);
+	
 }

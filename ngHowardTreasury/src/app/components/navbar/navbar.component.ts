@@ -64,7 +64,7 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit(): void {
     this.authService.getCurrentLoggedInUser().subscribe((user: User) => {
       this.loggedInUser = user;
-      // Do something with the logged-in user object, e.g. update UI
+
     });
 
     this.authService.getLoggedInUser().subscribe({

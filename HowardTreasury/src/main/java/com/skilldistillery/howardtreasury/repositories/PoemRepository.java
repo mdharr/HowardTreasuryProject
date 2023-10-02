@@ -13,4 +13,5 @@ public interface PoemRepository extends JpaRepository<Poem, Integer> {
 	List<Poem> findAllByOrderByIdAsc();
 	
 	List<Poem> findByTitleContaining(String query);
+	
 }

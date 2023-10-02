@@ -2,6 +2,7 @@ package com.skilldistillery.howardtreasury.controllers;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
 import com.skilldistillery.howardtreasury.dtos.CollectionWithStoriesDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
-import com.skilldistillery.howardtreasury.entities.Miscellanea;
+import com.skilldistillery.howardtreasury.entities.Poem;
+import com.skilldistillery.howardtreasury.repositories.PoemRepository;
 import com.skilldistillery.howardtreasury.services.CollectionService;
 
 @RestController
@@ -30,6 +32,9 @@ public class CollectionController {
 
 	@Autowired
 	private CollectionService collectionService;
+	
+	@Autowired
+	private PoemRepository poemRepo;
 	
 	@GetMapping("collections")
 	public ResponseEntity<List<Collection>> getAllCollections() {
@@ -151,6 +156,17 @@ public class CollectionController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+    
+    @GetMapping("poems/{pid}/collection")
+    public ResponseEntity<List<Collection>> getCollectionsByPoem(@PathVariable("pid") int poemId) {
+    	Optional<Poem> poemOpt = poemRepo.findById(poemId);
+    	if(poemOpt.isPresent()) {
+    		Poem poem = poemOpt.get();
+    		List<Collection> collections = collectionService.getByPoemId(poem.getId());
+    		return new ResponseEntity<>(collections, HttpStatus.OK);
+    	}
+    	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 	
 }

@@ -26,5 +26,7 @@ public interface CollectionService {
 	public List<CollectionHasStory> findStoriesByCollectionOrderByPageNumberAsc(Collection collection);
 
 	CollectionDetailsDTO findCollectionDetails(int collectionId);
+	
+	public List<Collection> getByPoemId(int poemId);
 
 }

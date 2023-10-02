@@ -304,4 +304,9 @@ public class CollectionServiceImpl implements CollectionService {
         return null;
     }
 
+	@Override
+	public List<Collection> getByPoemId(int poemId) {
+		return collectionRepo.findByPoems_Id(poemId);
+	}
+
 }
