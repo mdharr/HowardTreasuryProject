@@ -307,5 +307,10 @@ public class CollectionServiceImpl implements CollectionService {
 	public List<Collection> getByPoemId(int poemId) {
 		return collectionRepo.findByPoems_Id(poemId);
 	}
+	
+	@Override
+	public List<Collection> getByMiscellaneaId(int miscellaneaId) {
+		return collectionRepo.findByMiscellaneas_Id(miscellaneaId);
+	}
 
 }
