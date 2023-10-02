@@ -101,6 +101,10 @@ export class MiscellaneaDetailsComponent implements OnInit, OnDestroy, AfterView
       if(this.miscellaneaSubscription) {
         this.miscellaneaSubscription.unsubscribe();
       }
+
+      if(this.collectionsSubscription) {
+        this.collectionsSubscription.unsubscribe();
+      }
     }
 
     createIlluminatedInitial = (text: string): string => {

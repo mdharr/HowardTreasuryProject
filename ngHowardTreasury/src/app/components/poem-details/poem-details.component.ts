@@ -101,6 +101,10 @@ export class PoemDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
       if(this.poemSubscription) {
         this.poemSubscription.unsubscribe();
       }
+
+      if(this.collectionsSubscription) {
+        this.collectionsSubscription.unsubscribe();
+      }
     }
 
     createIlluminatedInitial = (text: string): string => {
