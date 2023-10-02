@@ -28,5 +28,7 @@ public interface CollectionService {
 	CollectionDetailsDTO findCollectionDetails(int collectionId);
 	
 	public List<Collection> getByPoemId(int poemId);
+	
+	public List<Collection> getByMiscellaneaId(int miscellaneaId);
 
 }
