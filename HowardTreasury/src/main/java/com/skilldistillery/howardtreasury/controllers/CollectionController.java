@@ -21,7 +21,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
 import com.skilldistillery.howardtreasury.dtos.CollectionWithStoriesDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
+import com.skilldistillery.howardtreasury.entities.Miscellanea;
 import com.skilldistillery.howardtreasury.entities.Poem;
+import com.skilldistillery.howardtreasury.repositories.MiscellaneaRepository;
 import com.skilldistillery.howardtreasury.repositories.PoemRepository;
 import com.skilldistillery.howardtreasury.services.CollectionService;
 
@@ -35,6 +37,9 @@ public class CollectionController {
 	
 	@Autowired
 	private PoemRepository poemRepo;
+	
+	@Autowired
+	private MiscellaneaRepository miscellaneaRepo;
 	
 	@GetMapping("collections")
 	public ResponseEntity<List<Collection>> getAllCollections() {
@@ -164,6 +169,17 @@ public class CollectionController {
     	if(poemOpt.isPresent()) {
     		Poem poem = poemOpt.get();
     		List<Collection> collections = collectionService.getByPoemId(poem.getId());
+    		return new ResponseEntity<>(collections, HttpStatus.OK);
+    	}
+    	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    
+    @GetMapping("miscellaneas/{mid}/collection")
+    public ResponseEntity<List<Collection>> getCollectionsByMiscellanea(@PathVariable("mid") int miscellaneaId) {
+    	Optional<Miscellanea> miscellaneaOpt = miscellaneaRepo.findById(miscellaneaId);
+    	if(miscellaneaOpt.isPresent()) {
+    		Miscellanea miscellanea = miscellaneaOpt.get();
+    		List<Collection> collections = collectionService.getByMiscellaneaId(miscellanea.getId());
     		return new ResponseEntity<>(collections, HttpStatus.OK);
     	}
     	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
