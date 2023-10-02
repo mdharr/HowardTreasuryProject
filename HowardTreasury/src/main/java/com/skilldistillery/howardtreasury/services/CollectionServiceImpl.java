@@ -300,7 +300,6 @@ public class CollectionServiceImpl implements CollectionService {
 
             return collectionDetailsDTO;
         }
-
         return null;
     }
 

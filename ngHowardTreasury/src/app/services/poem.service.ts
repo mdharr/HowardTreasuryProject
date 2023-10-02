@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Collection } from '../models/collection';
 import { Poem } from '../models/poem';
 import { AuthService } from './auth.service';
 
@@ -44,6 +45,18 @@ export class PoemService {
         return throwError(
           () =>
             new Error('PoemService.find(): error retrieving poem: ' + err)
+        );
+      })
+    );
+  }
+
+  findCollectionsByPoemId(id: number): Observable<Collection[]> {
+    return this.http.get<Collection[]>(`${this.url}/${id}/collection`).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('PoemService.findCollectionsByPoemId(): error retrieving collections: ' + err)
         );
       })
     );
