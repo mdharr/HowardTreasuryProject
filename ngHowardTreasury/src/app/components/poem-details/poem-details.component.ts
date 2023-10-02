@@ -32,6 +32,7 @@ export class PoemDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
     // subscription declaration
     private paramsSubscription: Subscription | undefined;
     private poemSubscription: Subscription | undefined;
+    private collectionsSubscription: Subscription | undefined;
 
     ngOnInit(): void {
       setTimeout(() => {
@@ -77,6 +78,17 @@ export class PoemDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
         error: (fail) => {
           console.error('Error getting story');
           console.error(fail);
+        }
+      });
+
+      this.collectionsSubscription = this.poemService.findCollectionsByPoemId(this.poemId).subscribe({
+        next: (data) => {
+          this.poemCollections = data;
+        },
+        error: (fail) => {
+          console.error('Error getting poem collections');
+          console.error(fail);
+
         }
       });
     }
