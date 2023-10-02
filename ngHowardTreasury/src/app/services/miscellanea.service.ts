@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Collection } from '../models/collection';
 import { Miscellanea } from '../models/miscellanea';
 import { AuthService } from './auth.service';
 
@@ -44,6 +45,18 @@ export class MiscellaneaService {
         return throwError(
           () =>
             new Error('MiscellaneaService.find(): error retrieving miscellanea: ' + err)
+        );
+      })
+    );
+  }
+
+  findCollectionsByMiscellaneaId(id: number): Observable<Collection[]> {
+    return this.http.get<Collection[]>(`${this.url}/${id}/collection`).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('MiscellaneaService.findCollectionsByMiscellaneaId(): error retrieving collections: ' + err)
         );
       })
     );

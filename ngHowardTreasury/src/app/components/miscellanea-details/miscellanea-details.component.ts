@@ -32,6 +32,7 @@ export class MiscellaneaDetailsComponent implements OnInit, OnDestroy, AfterView
     // subscription declaration
     private paramsSubscription: Subscription | undefined;
     private miscellaneaSubscription: Subscription | undefined;
+    private collectionsSubscription: Subscription | undefined;
 
     ngOnInit(): void {
       setTimeout(() => {
@@ -77,6 +78,17 @@ export class MiscellaneaDetailsComponent implements OnInit, OnDestroy, AfterView
         error: (fail) => {
           console.error('Error getting miscellanea');
           console.error(fail);
+        }
+      });
+
+      this.collectionsSubscription = this.miscellaneaService.findCollectionsByMiscellaneaId(this.miscellaneaId).subscribe({
+        next: (data) => {
+          this.miscellaneaCollections = data;
+        },
+        error: (fail) => {
+          console.error('Error getting miscellanea collections');
+          console.error(fail);
+
         }
       });
     }

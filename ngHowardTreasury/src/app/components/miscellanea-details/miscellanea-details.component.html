@@ -18,8 +18,8 @@
         <img class="flair-img" src="https://howardtreasury.s3.amazonaws.com/assets/siteassets/solomon-kane-flair-removebg-preview.png" alt="">
       </div>
     </div>
-    <div class="collection-box" *ngIf="miscellanea.collections.length">
-      <ng-container *ngFor="let collection of miscellanea.collections">
+    <div class="collection-box" *ngIf="miscellaneaCollections">
+      <ng-container *ngFor="let collection of miscellaneaCollections">
         <div class="collection-wrapper" [routerLink]="['/collections', collection.id]">
           <img class="collection-images" src="{{ collection.collectionImages[0].imageUrl }}" alt="">
         </div>
