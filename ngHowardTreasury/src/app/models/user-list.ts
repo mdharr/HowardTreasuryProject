@@ -3,8 +3,7 @@ import { Poem } from "./poem";
 import { Story } from "./story";
 import { User } from "./user";
 
-export class Userlist {
-
+export class UserList {
   id: number;
   name: string;
   user: User;

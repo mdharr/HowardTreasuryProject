@@ -1,3 +1,5 @@
+import { UserList } from "./user-list";
+
 export class User {
 
   id: number;
@@ -7,6 +9,7 @@ export class User {
   enabled: boolean;
   role: string;
   email: string;
+  userLists: UserList[];
 
   constructor(
     id: number = 0,
@@ -15,7 +18,8 @@ export class User {
     confirmPassword: string = '',
     enabled: boolean = false,
     role: string = '',
-    email: string = ''
+    email: string = '',
+    userLists: UserList[] = []
   ) {
     this.id = id;
     this.username = username;
@@ -24,5 +28,6 @@ export class User {
     this.enabled = enabled;
     this.role = role;
     this.email = email;
+    this.userLists = userLists;
   }
 }
