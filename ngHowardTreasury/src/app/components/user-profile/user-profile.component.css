@@ -1,0 +1,60 @@
+.main {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  gap: 20px;
+}
+
+.account-info-wrapper {
+  background-color: #fdfdff;
+  border: 1px solid #f1f0f4;
+  border-radius:6px;
+  flex:1;
+  height:fit-content;
+}
+
+.userlists-wrapper {
+  background-color: #fdfdff;
+  border: 1px solid #f1f0f4;
+  border-radius:6px;
+  flex:2;
+}
+
+.title-wrapper {
+  background-color:#f7f7f8;
+  border: 1px solid #f1f0f4;
+  display:flex;
+  justify-content: center;
+  padding:10px;
+}
+
+.title-text {
+  margin:0;
+  font-weight:bolder;
+}
+
+.details-wrapper {
+  margin:0;
+  display:flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+.edit-wrapper {
+  margin:0;
+  display:flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+.delete-wrapper {
+  margin:0;
+  display:flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+.details-text {
+  display:flex;
+  flex-direction: column;
+}

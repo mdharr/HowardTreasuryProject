@@ -1,3 +1,26 @@
 .expansion-panels {
   margin-bottom: 10px;
 }
+
+.title-wrapper {
+  background-color:#f7f7f8;
+  border: 1px solid #f1f0f4;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin:0;
+  padding:5px;
+}
+
+.title-text {
+  margin: 0;
+  font-weight:bolder;
+}
+
+.main {
+  padding:0;
+}
+
+.lists-wrapper {
+  padding: 25px;
+}

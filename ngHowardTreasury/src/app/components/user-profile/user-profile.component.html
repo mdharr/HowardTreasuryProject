@@ -1,4 +1,29 @@
-<p>user-profile works!</p>
-<div>
-  <app-user-lists></app-user-lists>
+<div class="main">
+  <div class="account-info-wrapper">
+    <div class="title-wrapper">
+      <p class="title-text">ACCOUNT DETAILS</p>
+    </div>
+    <div class="details-wrapper">
+      <div class="details-text">
+        <p><strong>Username:</strong> {{ loggedInUser.username }}</p>
+        <p><strong>Email:</strong> {{ loggedInUser.email }}</p>
+        <p><strong>Role:</strong> {{ loggedInUser.role }}</p>
+      </div>
+    </div>
+    <div class="title-wrapper">
+      <p class="title-text">EDIT ACCOUNT</p>
+    </div>
+    <div class="edit-wrapper">
+      <button>Edit</button>
+    </div>
+    <div class="title-wrapper">
+      <p class="title-text">TERMINATE ACCOUNT</p>
+    </div>
+    <div class="delete-wrapper">
+      <button class="delete-btn">Delete</button>
+    </div>
+  </div>
+  <div class="userlists-wrapper">
+    <app-user-lists></app-user-lists>
+  </div>
 </div>
