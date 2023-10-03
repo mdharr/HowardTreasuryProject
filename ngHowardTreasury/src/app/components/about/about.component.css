@@ -1,0 +1,24 @@
+.main {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  background-color: whitesmoke;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 5vh;
+}
+
+.title-text {
+  color: #9e0101;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bolder;
+  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+  padding: 20px;
+}
+
+table {
+  width: 90%;
+}

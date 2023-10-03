@@ -6,6 +6,7 @@
 <div *ngIf="isLoaded">
   <div class="title-container">
     <h1 class="story-title">{{ story.title }}</h1>
+    <p *ngIf="story.description" class="description-text">{{ story.description }}</p>
   </div>
 
   <div class="collection-container">
@@ -49,7 +50,7 @@
       </div>
     </div>
 
-    <div class="description-container">
+    <!-- <div class="description-container">
       <div class="description-title-box">
         <div class="title-box">
           <h2 class="description-title">Description</h2>
@@ -61,14 +62,12 @@
       </div>
       <div class="description-box" *ngIf="story.description">
         <p class="description-text">{{ story.description }}</p>
-        <!-- <hr> -->
       </div>
       <div class="description-box" style="justify-content:flex-start; margin:20px;" *ngIf="!story.description">
         <p class="description-text">Description not yet available.</p>
-        <!-- <hr> -->
       </div>
 
-    </div>
+    </div> -->
 
     <div class="description-container">
       <div class="description-title-box">
@@ -80,17 +79,23 @@
           <img class="flair-img" src="https://howardtreasury.s3.amazonaws.com/assets/siteassets/solomon-kane-flair-removebg-preview.png" alt="">
         </div>
       </div>
-      <div class="story-image-box" *ngIf="story.storyImages.length">
-        <img class="story-image" src="{{ story.storyImages[0].imageUrl }}">
-        <!-- <hr> -->
+      <div class="story-image-box" *ngIf="storyImages && imagesLoaded">
+        <ng-container *ngFor="let storyImage of storyImages; let i = index">
+          <img class="story-image shine" src="{{ storyImage.imageUrl }}" (click)="openLightbox(i, $event)" loading="lazy">
+        </ng-container>
       </div>
-      <div class="story-image-box" *ngIf="!story.storyImages.length">
+      <div *ngIf="!imagesLoaded" class="image-spinner-wrapper">
+        <div class="image-spinner-box">
+          <mat-spinner></mat-spinner>
+        </div>
+      </div>
+
+      <div class="story-image-box" *ngIf="!storyImages">
         <p class="description-text">Artwork not yet available.</p>
         <!-- <hr> -->
       </div>
 
     </div>
-
     <hr>
 
     <div class="story-details">
@@ -124,3 +129,56 @@
   </div>
 
 </div>
+
+<!-- <div class="lightbox" *ngIf="showLightbox">
+  <div class="lightbox-content">
+    <img src="{{ selectedImage.imageUrl }}" class="lightbox-image" (click)="onLightboxImageClick($event)">
+    <div class="lightbox-controls">
+      <div class="control download-icon" (click)="downloadImage(selectedImage)">&#8681;</div>
+      <div class="control close-icon" (click)="closeLightbox()">&#10006;</div>
+    </div>
+    <div class="lightbox-image-count">{{ currentIndex + 1 }} of {{ storyImages.length }}</div>
+  </div>
+  <div class="lightbox-thumbnails">
+    <div class="thumbnails-container" [style.transform]="'translateX(' + getThumbnailTransform() + 'px)'">
+      <ng-container *ngFor="let storyImage of storyImages; let i = index">
+        <div class="thumbnail-text">{{ i + 1 }}</div>
+        <div
+          class="thumbnail"
+          [class.selected]="i === selectedThumbnailIndex"
+          (click)="selectImage(i)"
+        >
+          <img src="{{ storyImage.imageUrl }}" class="thumbnail-image">
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div> -->
+
+<div class="lightbox" *ngIf="showLightbox">
+  <div class="lightbox-content">
+    <div class="lightbox-image-container">
+      <img src="{{ selectedImage.imageUrl }}" class="lightbox-image" (click)="onLightboxImageClick($event)">
+    </div>
+    <div class="lightbox-controls" (click)="$event.stopPropagation()">
+      <div class="control download-icon" (click)="downloadImage(selectedImage)">&#8681;</div>
+      <div class="control close-icon" (click)="closeLightbox()">&#10006;</div>
+    </div>
+    <div class="lightbox-image-count">{{ currentIndex + 1 }} of {{ storyImages.length }}</div>
+  </div>
+  <div class="lightbox-thumbnails" (click)="$event.stopPropagation()">
+    <div class="thumbnails-container" [style.transform]="'translateX(' + getThumbnailTransform() + 'px)'">
+      <ng-container *ngFor="let storyImage of storyImages; let i = index">
+        <div class="thumbnail-text">{{ i + 1 }}</div>
+        <div
+          class="thumbnail"
+          [class.selected]="i === selectedThumbnailIndex"
+          (click)="selectImage(i)"
+        >
+          <img src="{{ storyImage.imageUrl }}" class="thumbnail-image">
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+

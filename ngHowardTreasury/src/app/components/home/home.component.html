@@ -3,17 +3,12 @@
     <mat-spinner></mat-spinner>
   </div>
 </div>
-<div *ngIf="isLoaded">
+<!-- <div *ngIf="isLoaded">
   <div id="main" class="wrapper">
     <div id="primary" class="site-content">
       <div id="content" role="main">
         <article id="post-2" class="post-2 page type-page status-publish hentry">
           <div class="entry-content">
-            <!-- <div class="main-title">
-              <div class="title-container">
-                <h1 class="title-text">Welcome to the Robert E. Howard Treasury!</h1>
-              </div>
-            </div> -->
             <div class="description-title-box">
               <h2 class="description-title">Home</h2>
               <b class="b-element"></b>
@@ -41,4 +36,56 @@
       </div>
     </div>
   </div>
+</div> -->
+<div class="main" *ngIf="isLoaded">
+  <div class="biography-container">
+    <section class="biography">
+      <h1>Robert E. Howard</h1>
+      <p>
+        Robert Ervin Howard (1906-1936) was an American author best known for his contributions to the
+        pulp fiction genre. He is the creator of iconic characters such as Conan the Barbarian, Solomon Kane,
+        and Bran Mak Morn.
+      </p>
+      <p>
+        Howard's works span multiple genres, including adventure, fantasy, horror, and historical fiction.
+        His vivid storytelling and richly detailed worlds have left a lasting legacy in the world of literature.
+      </p>
+    </section>
+  </div>
+
+  <div class="timeline-container">
+    <section class="timeline">
+      <h2>Timeline of Robert E. Howard's Life</h2>
+      <ul>
+        <li>
+          <div class="year">1906</div>
+          <div class="event">Robert E. Howard is born in Peaster, Texas.</div>
+        </li>
+        <li>
+          <div class="year">1921</div>
+          <div class="event">Howard's first published work, a poem titled "La Belle Dame sans Merci," appears in The Tattler, his high school newspaper.</div>
+        </li>
+        <li>
+          <div class="year">1925</div>
+          <div class="event">Howard's first published story, "Spear and Fang," appears in the pulp magazine Weird Tales.</div>
+        </li>
+        <li>
+          <div class="year">1932</div>
+          <div class="event">Conan the Barbarian, one of Howard's most iconic characters, makes his debut in "The Phoenix on the Sword," published in Weird Tales.</div>
+        </li>
+        <li>
+          <div class="year">1933</div>
+          <div class="event">Howard's character Solomon Kane appears in "Red Shadows," another popular story in Weird Tales.</div>
+        </li>
+        <li>
+          <div class="year">1936</div>
+          <div class="event">Tragically, Robert E. Howard passes away at the age of 30.</div>
+        </li>
+        <!-- Add more timeline events here -->
+      </ul>
+    </section>
+  </div>
+
+
+
 </div>

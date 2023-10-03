@@ -3,9 +3,14 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
 
+:root {
+  --centerOffset: 0px; /* Initial value, can be adjusted as needed */
+}
+
 html, body { height: 100%; }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #efe9c5;
 }
+

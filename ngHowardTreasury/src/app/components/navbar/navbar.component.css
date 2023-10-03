@@ -1,3 +1,23 @@
+::ng-deep .mat-mdc-menu-content {
+  margin: 0;
+  padding: 0 !important;
+  min-width: 240px;
+  max-width: 320px;
+  border-radius: 6px;
+  min-height:fit-content;
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12), 0 3px 5px 0 rgba(0,0,0,.2);
+}
+
+::ng-deep .mat-mdc-menu-content > .mat-mdc-menu-item {
+  padding: 0 !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+::ng-deep .mat-mdc-menu-item:hover .mdc-list-item__primary-text {
+  color:#9e0101 !important;
+}
+
 .menu {
   background-color: #ffffff;
   max-height: 100%;

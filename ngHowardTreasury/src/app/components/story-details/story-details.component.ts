@@ -1,11 +1,12 @@
 import { CollectionImage } from './../../models/collection-image';
-import { Component, inject, OnDestroy, OnInit, Renderer2, AfterViewInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, Renderer2, AfterViewInit, HostListener, ElementRef } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Collection } from 'src/app/models/collection';
 import { Story } from 'src/app/models/story';
 import { AuthService } from 'src/app/services/auth.service';
 import { StoryService } from 'src/app/services/story.service';
+import { StoryImage } from 'src/app/models/story-image';
 
 @Component({
   selector: 'app-story-details',
@@ -19,16 +20,26 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
     story: Story = new Story();
     storyExcerpt: string = '';
     storyCollections: Collection[] = [];
+    storyImages: StoryImage[] = [];
     collectionImage: CollectionImage = new CollectionImage();
+
+    // lightbox properties
+    showLightbox = false;
+    selectedImage: any;
+    currentIndex = 0;
+    selectedThumbnailIndex = 0;
+    centerOffset: number = 0;
 
     // booleans
     isLoaded = false;
+    imagesLoaded = false;
 
     // service injection
     auth = inject(AuthService);
     storyService = inject(StoryService);
     activatedRoute = inject(ActivatedRoute);
     renderer = inject(Renderer2);
+    elementRef = inject(ElementRef);
 
     // subscription declaration
     private paramsSubscription: Subscription | undefined;
@@ -49,6 +60,7 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngAfterViewInit(): void {
 
+      this.selectImage(this.currentIndex);
     }
 
 
@@ -72,6 +84,11 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
           }
           if(data.collections) {
             this.storyCollections = data.collections;
+          }
+          if(data.storyImages) {
+            this.storyImages = data.storyImages;
+            this.imagesLoaded = true;
+            // this.shuffleImages(this.storyImages);
           }
           this.isLoaded = true;
         },
@@ -105,5 +122,109 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
       return illuminatedInitial + restOfString;
     }
 
+    shuffleImages = (storyImages: StoryImage[]) => {
+      for (let i = storyImages.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [storyImages[i], storyImages[j]] = [storyImages[j], storyImages[i]];
+      }
+    }
+
+    openLightbox(index: number, event: MouseEvent) {
+      event.stopPropagation();
+      this.showLightbox = true;
+      this.selectedImage = this.storyImages[index];
+      this.selectedThumbnailIndex = index;
+      this.currentIndex = index;
+
+      setTimeout(() => {
+        this.selectImage(this.currentIndex);
+      }, 0);
+    }
+
+    selectImage(index: number) {
+      this.currentIndex = index;
+      this.selectedImage = this.storyImages[index];
+      this.selectedThumbnailIndex = index;
+
+      // Calculate the transform based on the selectedThumbnailIndex
+      const thumbnailWidth = 50; // Adjust as needed
+      const thumbnailsCount = this.storyImages.length;
+      const containerWidth = thumbnailsCount * thumbnailWidth;
+      const transform = containerWidth / 2 - this.selectedThumbnailIndex * thumbnailWidth;
+
+      // Set the transform directly on the element
+      const thumbnailsContainer = this.elementRef.nativeElement.querySelector('.thumbnails-container') as HTMLElement;
+      if (thumbnailsContainer) {
+        thumbnailsContainer.style.transform = `translateX(${transform}px)`;
+      }
+    }
+
+    getThumbnailTransform(): string {
+      // Return an empty string here since the transform is set in selectImage
+      return '';
+    }
+
+    closeLightbox() {
+      this.showLightbox = false;
+    }
+
+    nextImage() {
+      this.currentIndex = (this.currentIndex + 1) % this.storyImages.length;
+      this.selectedImage = this.storyImages[this.currentIndex];
+    }
+
+    prevImage() {
+      this.currentIndex = (this.currentIndex - 1 + this.storyImages.length) % this.storyImages.length;
+      this.selectedImage = this.storyImages[this.currentIndex];
+    }
+
+    downloadImage(image: any) {
+      // Replace 'image.blobUrl' with the actual property that stores the image URL.
+      const downloadLink = document.createElement('a');
+      downloadLink.href = image.textUrl;
+      downloadLink.download = 'image.jpg'; // Set the desired file name.
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    }
+
+    onLightboxImageClick(event: MouseEvent) {
+      const clickX = event.clientX;
+      const lightboxWidth = window.innerWidth;
+
+      if (clickX < lightboxWidth / 2) {
+        // Clicked on the left half
+        this.prevImage();
+      } else {
+        // Clicked on the right half
+        this.nextImage();
+      }
+      this.selectImage(this.currentIndex);
+
+    }
+
+    @HostListener('document:click', ['$event'])
+    onDocumentClick(event: MouseEvent) {
+      if (this.showLightbox) {
+        const lightboxContent = this.elementRef.nativeElement.querySelector('.lightbox-content');
+        const lightboxImages = this.elementRef.nativeElement.querySelectorAll('.lightbox-image');
+
+        // Check if the clicked element is outside the lightbox content
+        if (lightboxContent && !lightboxContent.contains(event.target)) {
+          // Check if the clicked element is any of the lightbox images
+          let clickedOnLightboxImage = false;
+          lightboxImages.forEach((image: HTMLElement) => {
+            if (image.contains(event.target as Node)) {
+              clickedOnLightboxImage = true;
+              return;
+            }
+          });
+
+          if (!clickedOnLightboxImage) {
+            this.closeLightbox();
+          }
+        }
+      }
+    }
 
 }
