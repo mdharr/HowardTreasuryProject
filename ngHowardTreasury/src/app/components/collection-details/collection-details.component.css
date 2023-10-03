@@ -273,8 +273,8 @@
 
   .collection-image {
     flex:1;
-    max-width: 100%;
-    min-width:200px;
+    max-width: 200px;
+    /* min-width:200px; */
   }
 
   .contents-box {
@@ -290,7 +290,7 @@
     flex:1;
     max-width:100%;
     min-width:100px;
-    font-size: 10px;
+    font-size: 16px;
     min-height:25px;
   }
 
@@ -309,7 +309,7 @@
 
 }
 
-@media screen and (max-width: 496px) {
+@media screen and (max-width: 520px) {
 
   .main {
     padding: 20px;
@@ -322,6 +322,11 @@
 
   .dots {
     display: none;
+  }
+
+  .description-title,
+  .description-title h2 {
+    font-size: 12px;
   }
 
   .page-number {

@@ -85,3 +85,10 @@ img.alignleft, .wp-caption.alignleft {
   padding-bottom: 3px;
 }
 
+@media screen and (max-width: 600px) {
+  .wrapper {
+    padding-left:10px;
+    padding-right:10px;
+  }
+}
+
