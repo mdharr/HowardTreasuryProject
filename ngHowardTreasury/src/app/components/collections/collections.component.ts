@@ -20,31 +20,13 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   collectionService = inject(CollectionService);
 
   ngOnInit(): void {
+    this.subscribeToSubscriptions();
 
-    this.delay(250).then(() => {
-      this.collectionSubscription = this.collectionService.indexAll().subscribe({
-        next: (data) => {
-          this.collections = data;
-          this.loading = false; // Set loading to false when data is available
-
-                  // Wait for images to load
-        this.loadImages().then(() => {
-          console.log('All images loaded.');
-        });
-        },
-        error: (fail) => {
-          console.error('Error retrieving collections');
-          console.error(fail);
-          this.loading = false; // Set loading to false in case of an error
-        }
-      });
-    });
   }
 
   ngOnDestroy(): void {
-    if (this.collectionSubscription) {
-      this.collectionSubscription.unsubscribe();
-    }
+    this.destroySubscriptions();
+
   }
 
   delay(ms: number): Promise<void> {
@@ -72,6 +54,33 @@ export class CollectionsComponent implements OnInit, OnDestroy {
 
     // Wait for all image promises to resolve
     await Promise.all(imagePromises);
+  }
+
+  subscribeToSubscriptions = () => {
+    this.delay(250).then(() => {
+      this.collectionSubscription = this.collectionService.indexAll().subscribe({
+        next: (data) => {
+          this.collections = data;
+          this.loading = false; // Set loading to false when data is available
+
+                  // Wait for images to load
+        this.loadImages().then(() => {
+          console.log('All images loaded.');
+        });
+        },
+        error: (fail) => {
+          console.error('Error retrieving collections');
+          console.error(fail);
+          this.loading = false; // Set loading to false in case of an error
+        }
+      });
+    });
+  }
+
+  destroySubscriptions = () => {
+    if (this.collectionSubscription) {
+      this.collectionSubscription.unsubscribe();
+    }
   }
 
 }

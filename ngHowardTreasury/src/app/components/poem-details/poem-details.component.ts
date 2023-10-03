@@ -37,8 +37,7 @@ export class PoemDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
     ngOnInit(): void {
       setTimeout(() => {
         this.getRouteParams();
-
-        this.subscribeToPoemServiceById();
+        this.subscribeToPoemService();
       }, 200);
 
     }
@@ -62,7 +61,7 @@ export class PoemDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     }
 
-    subscribeToPoemServiceById = () => {
+    subscribeToPoemService = () => {
 
       this.poemSubscription = this.poemService.find(this.poemId).subscribe({
         next: (data) => {

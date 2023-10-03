@@ -22,7 +22,14 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
     miscellaneaService = inject(MiscellaneaService);
 
     ngOnInit(): void {
+      this.subscribeToSubscriptions();
+    }
 
+    ngOnDestroy(): void {
+      this.destroySubscriptions();
+    }
+
+    subscribeToSubscriptions = () => {
       this.miscellaneaSubscription = this.miscellaneaService.indexAll().subscribe({
         next: (data) => {
           this.miscellaneas = data;
@@ -34,7 +41,7 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
       });
     }
 
-    ngOnDestroy(): void {
+    destroySubscriptions = () => {
       if (this.miscellaneaSubscription) {
         this.miscellaneaSubscription.unsubscribe();
       }

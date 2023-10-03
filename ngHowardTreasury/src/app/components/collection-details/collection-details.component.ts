@@ -37,7 +37,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getRouteParams();
-    this.subscribeToCollectionServiceById();
+    this.subscribeToCollectionService();
   }
 
   ngOnDestroy(): void {
@@ -53,21 +53,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  subscribeToCollectionServiceById = () => {
-    // this.delay(250).then(() => {
-    //   this.collectionSubscription = this.collectionService.find(this.collectionId).subscribe({
-    //     next: (data) => {
-    //       this.collection = data;
-    //       this.collectionImages = data.collectionImages;
-    //       this.collectionDescription = this.createIlluminatedInitial(data.description);
-    //       this.isLoaded = true;
-    //     },
-    //     error: (fail) => {
-    //       console.error('Error getting collection');
-    //       console.error(fail);
-    //     }
-    //   });
-    // });
+  subscribeToCollectionService = () => {
 
     // subscription using DTO implementation to retrieve page numbers
     this.delay(250).then(() => {

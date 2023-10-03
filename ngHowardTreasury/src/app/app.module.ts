@@ -39,6 +39,7 @@ import { SearchComponent } from './components/search/search.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { AboutComponent } from './components/about/about.component';
 import { UserListsComponent } from './components/user-lists/user-lists.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { UserListsComponent } from './components/user-lists/user-lists.component
     SearchResultsComponent,
     AboutComponent,
     UserListsComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -31,7 +31,21 @@ export class CharactersComponent implements OnInit, OnDestroy {
   personService = inject(PersonService);
 
   ngOnInit(): void {
+    this.subscribeToSubscriptions();
 
+  }
+
+  ngOnDestroy(): void {
+    this.destroySubscriptions();
+
+  }
+
+  imageLoaded() {
+    // Set isLoaded to true when the image is loaded
+    this.isLoaded = true;
+  }
+
+  subscribeToSubscriptions = () => {
     this.personSubscription = this.personService.indexAll().subscribe({
       next: (data) => {
         this.persons = data;
@@ -44,14 +58,9 @@ export class CharactersComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
+  destroySubscriptions = () => {
     if (this.personSubscription) {
       this.personSubscription.unsubscribe();
     }
-  }
-
-  imageLoaded() {
-    // Set isLoaded to true when the image is loaded
-    this.isLoaded = true;
   }
 }

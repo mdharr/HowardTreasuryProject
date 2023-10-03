@@ -22,7 +22,16 @@ export class PoemsComponent implements OnInit, OnDestroy {
   poemService = inject(PoemService);
 
   ngOnInit(): void {
+    this.subscribeToSubscriptions();
 
+  }
+
+  ngOnDestroy(): void {
+    this.destroySubscriptions();
+
+  }
+
+  subscribeToSubscriptions = () => {
     this.poemSubscription = this.poemService.indexAll().subscribe({
       next: (data) => {
         this.poems = data;
@@ -34,7 +43,7 @@ export class PoemsComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
+  destroySubscriptions = () => {
     if (this.poemSubscription) {
       this.poemSubscription.unsubscribe();
     }

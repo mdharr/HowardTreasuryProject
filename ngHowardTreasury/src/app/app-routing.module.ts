@@ -14,12 +14,14 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { StoriesComponent } from './components/stories/stories.component';
 import { StoryDetailsComponent } from './components/story-details/story-details.component';
 import { UserListsComponent } from './components/user-lists/user-lists.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'lists', component: UserListsComponent },
+  { path: 'profile', component: UserProfileComponent },
   { path: 'collections', component: CollectionsComponent },
   { path: 'collections/:collectionId', component: CollectionDetailsComponent },
   { path: 'stories', component: StoriesComponent },

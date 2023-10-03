@@ -41,7 +41,7 @@ export class CharacterDetailsComponent {
     setTimeout(() => {
       this.getRouteParams();
 
-      this.subscribeToStoryServiceById();
+      this.subscribeToStoryService();
     }, 200);
   }
 
@@ -62,7 +62,7 @@ export class CharacterDetailsComponent {
     );
   };
 
-  subscribeToStoryServiceById = () => {
+  subscribeToStoryService = () => {
     this.personSubscription = this.personService.find(this.personId).subscribe({
       next: (data) => {
         this.person = data;

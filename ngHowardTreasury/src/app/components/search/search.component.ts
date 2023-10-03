@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
@@ -6,30 +7,66 @@ import { SearchService } from 'src/app/services/search.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit, OnDestroy {
 
+  // property initialization
   query: string = '';
   searchResults: any[] = [];
   loading: boolean = false;
   error: string | null = null;
 
+  // subscription declarations
+  private searchSubscription: Subscription | undefined;
+
+  // service injection
   searchService = inject(SearchService);
 
-  search() {
+  ngOnInit = () => {
+    this.search();
+  }
+
+  ngOnDestroy = () => {
+    this.destroySubscriptions();
+  }
+
+  // search = () => {
+  //   this.loading = true;
+  //   this.error = null;
+
+  //   this.searchSubscription = this.searchService.search(this.query)
+  //     .subscribe(
+  //       (results: any[]) => {
+  //         this.searchResults = results;
+  //         this.loading = false;
+  //       },
+  //       (error) => {
+  //         this.error = 'An error occurred while searching.';
+  //         this.loading = false;
+  //       }
+  //     );
+  // }
+
+  // refined search function
+  search = () => {
     this.loading = true;
     this.error = null;
 
-    this.searchService.search(this.query)
-      .subscribe(
-        (results: any[]) => {
-          this.searchResults = results;
-          this.loading = false;
-        },
-        (error) => {
-          this.error = 'An error occurred while searching.';
-          this.loading = false;
-        }
-      );
+    this.searchSubscription = this.searchService.search(this.query).subscribe({
+      next: (results: any[]) => {
+        this.searchResults = results;
+        this.loading = false;
+      },
+      error: (fail) => {
+        this.error = 'An error occurred while searching.';
+        this.loading = false;
+      }
+    });
+  }
+
+  destroySubscriptions = () => {
+    if(this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
+    }
   }
 
 }

@@ -16,8 +16,10 @@
   </div>
 </div>
 
-<div *ngIf="!isLoaded">
-  <mat-progress-spinner mode="indeterminate" [value]="" color="primary"></mat-progress-spinner>
+<div class="spinner-wrapper" *ngIf="!isLoaded">
+  <div class="spinner-box">
+    <mat-spinner></mat-spinner>
+  </div>
 </div>
 
 <img #bgImage [src]="backgroundImageUrl" (load)="imageLoaded()" style="display: none;">

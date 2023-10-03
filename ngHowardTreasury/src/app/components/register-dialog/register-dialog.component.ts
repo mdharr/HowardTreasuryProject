@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -10,8 +11,11 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './register-dialog.component.html',
   styleUrls: ['./register-dialog.component.css']
 })
-export class RegisterDialogComponent {
+export class RegisterDialogComponent implements OnDestroy {
   newUser: User = new User();
+
+  // subscription declarations
+  private authSubscription: Subscription | undefined;
 
   auth = inject(AuthService);
   router = inject(Router);
@@ -31,13 +35,29 @@ export class RegisterDialogComponent {
       });
       return;
     }
-    this.auth.register(newUser).subscribe({
+    this.subscribeToAuth();
+  }
+
+  dismissDialog() {
+    this.dialogRef.close();
+  }
+
+  capitalizeFirstLetter(text: string): string {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  }
+
+  ngOnDestroy = () => {
+    this.destroySubscriptions();
+  }
+
+  subscribeToAuth = () => {
+    this.authSubscription = this.auth.register(this.newUser).subscribe({
       next: (registeredUser) => {
-        this.auth.login(newUser.username, newUser.password).subscribe({
+        this.auth.login(this.newUser.username, this.newUser.password).subscribe({
           next: (loggedInUser) => {
             this.dialogRef.close();
             this.router.navigateByUrl('/');
-            this.snackBar.open('Success! Welcome ' + this.capitalizeFirstLetter(newUser.username), 'Dismiss', {
+            this.snackBar.open('Success! Welcome ' + this.capitalizeFirstLetter(this.newUser.username), 'Dismiss', {
               duration: 4000,
               panelClass: ['mat-toolbar', 'mat-primary'],
               verticalPosition: 'bottom'
@@ -61,11 +81,9 @@ export class RegisterDialogComponent {
     });
   }
 
-  dismissDialog() {
-    this.dialogRef.close();
-  }
-
-  capitalizeFirstLetter(text: string): string {
-    return text.charAt(0).toUpperCase() + text.slice(1);
+  destroySubscriptions = () => {
+    if(this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
   }
 }

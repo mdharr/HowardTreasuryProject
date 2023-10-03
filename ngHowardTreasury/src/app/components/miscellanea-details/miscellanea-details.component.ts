@@ -37,8 +37,7 @@ export class MiscellaneaDetailsComponent implements OnInit, OnDestroy, AfterView
     ngOnInit(): void {
       setTimeout(() => {
         this.getRouteParams();
-
-        this.subscribeToMiscellaneaServiceById();
+        this.subscribeToMiscellaneaService();
       }, 200);
 
     }
@@ -62,7 +61,7 @@ export class MiscellaneaDetailsComponent implements OnInit, OnDestroy, AfterView
       });
     }
 
-    subscribeToMiscellaneaServiceById = () => {
+    subscribeToMiscellaneaService = () => {
 
       this.miscellaneaSubscription = this.miscellaneaService.find(this.miscellaneaId).subscribe({
         next: (data) => {

@@ -31,7 +31,7 @@
                 <!-- Display story information here -->
                 <span [routerLink]="['/stories', story.id]">{{ story.title }}</span>
                 <!-- Add a checkbox here for selection -->
-                <mat-checkbox></mat-checkbox>
+                <!-- <mat-checkbox></mat-checkbox> -->
               </mat-list-option>
             </mat-selection-list>
             <button (click)="removeSelectedStories(userList)">Remove</button>
@@ -49,7 +49,7 @@
                 <!-- Display poem information here -->
                 <span [routerLink]="['/poems', poem.id]">{{ poem.title }}</span>
                 <!-- Add a checkbox here for selection -->
-                <mat-checkbox></mat-checkbox>
+                <!-- <mat-checkbox></mat-checkbox> -->
               </mat-list-option>
             </mat-selection-list>
             <button (click)="removeSelectedPoems(userList)">Remove</button>
@@ -67,7 +67,7 @@
                 <!-- Display miscellanea information here -->
                 <span [routerLink]="['/miscellanea', miscellanea.id]">{{ miscellanea.title }}</span>
                 <!-- Add a checkbox here for selection -->
-                <mat-checkbox></mat-checkbox>
+                <!-- <mat-checkbox></mat-checkbox> -->
               </mat-list-option>
             </mat-selection-list>
             <button (click)="removeSelectedMiscellaneas(userList)">

@@ -22,7 +22,7 @@ export class UserListsComponent implements OnInit, OnDestroy {
 
   // subscriptions
   private paramsSubscription: Subscription | undefined;
-  private userListsSubscription: Subscription | undefined;
+  private authSubscription: Subscription | undefined;
 
   // service injection
   route = inject(ActivatedRoute);
@@ -32,7 +32,7 @@ export class UserListsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.authService.getLoggedInUser().subscribe({
+    this.authSubscription = this.authService.getLoggedInUser().subscribe({
       next: (user) => {
         this.loggedInUser = user;
         console.log(this.loggedInUser);
@@ -46,7 +46,14 @@ export class UserListsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.destroySubscriptions();
+  }
 
+  destroySubscriptions = () => {
+    if(this.authSubscription) {
+      this.authSubscription.unsubscribe();
+      console.log('user-lists comp auth sub destroyed');
+    }
   }
 
   removeSelectedStories = (userList: UserList) => {
