@@ -148,6 +148,7 @@ img.alignleft, .wp-caption.alignleft {
 
 .main {
   padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 @media screen and (max-width:693px) {
