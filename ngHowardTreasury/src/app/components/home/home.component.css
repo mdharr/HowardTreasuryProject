@@ -1,4 +1,4 @@
-/* .alignleft {
+.alignleft {
   float: left;
 }
 
@@ -30,7 +30,7 @@ img.alignleft, .wp-caption.alignleft {
   font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
   font-weight: 700;
   color: #9e0000;
-} */
+}
 
 .spinner-wrapper {
   width: 100%;
@@ -49,7 +49,7 @@ img.alignleft, .wp-caption.alignleft {
   --mdc-circular-progress-active-indicator-color: #9e0000;
 }
 
-/* .description-title {
+.description-title {
   font-family: Libre Baskerville, Helvetica, Arial, sans-serif;
   font-weight: 700;
   color: #9e0000;
@@ -83,77 +83,5 @@ img.alignleft, .wp-caption.alignleft {
   height: auto;
   box-shadow: none !important;
   padding-bottom: 3px;
-} */
-
-.biography-container {
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  display:flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.home-image {
-  width: 200px;
-  height: auto;
-}
-
-.biography h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
-
-.biography p {
-  font-size: 18px;
-  line-height: 1.5;
-}
-
-.timeline-container {
-  background-color: #f0f0f0;
-  padding: 20px;
-}
-
-.timeline h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.timeline ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.timeline li {
-  display: flex;
-  margin-bottom: 20px;
-}
-
-.timeline .year {
-  flex: 0 0 80px;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 10px;
-  font-weight: bold;
-}
-
-.timeline .event {
-  flex: 1;
-  background-color: #fff;
-  padding: 10px;
-  border-left: 2px solid #333;
-}
-
-.main {
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-
-@media screen and (max-width:693px) {
-  .biography-container {
-    flex-direction: column;
-  }
 }
 

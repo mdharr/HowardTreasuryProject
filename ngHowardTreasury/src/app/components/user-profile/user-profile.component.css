@@ -59,3 +59,9 @@
   display:flex;
   flex-direction: column;
 }
+
+@media screen and (max-width:832px) {
+  .main {
+    flex-direction:column;
+  }
+}

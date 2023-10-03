@@ -74,7 +74,7 @@
 
 <div class="menu" [@expandMenu]="menuState">
   <!-- Menu content goes here -->
-  <div class="menu-row">About</div>
+  <div class="menu-row" (click)="toggleMenu()" [routerLink]="['/about']">About</div>
   <div class="menu-row" (click)="toggleMenu()" [routerLink]="['/collections']">Collections</div>
   <div class="menu-row" (click)="toggleMenu()" [routerLink]="['/stories']">Stories</div>
   <div class="menu-row" (click)="toggleMenu()" [routerLink]="['/poems']">Poems</div>
