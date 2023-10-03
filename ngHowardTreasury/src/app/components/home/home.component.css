@@ -90,6 +90,14 @@ img.alignleft, .wp-caption.alignleft {
   color: #fff;
   padding: 20px;
   text-align: center;
+  display:flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.home-image {
+  width: 200px;
+  height: auto;
 }
 
 .biography h1 {
@@ -140,5 +148,11 @@ img.alignleft, .wp-caption.alignleft {
 
 .main {
   padding-top: 50px;
+}
+
+@media screen and (max-width:693px) {
+  .biography-container {
+    flex-direction: column;
+  }
 }
 

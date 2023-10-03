@@ -40,16 +40,11 @@ export class CharactersComponent implements OnInit, OnDestroy {
 
   }
 
-  imageLoaded() {
-    // Set isLoaded to true when the image is loaded
-    this.isLoaded = true;
-  }
-
   subscribeToSubscriptions = () => {
     this.personSubscription = this.personService.indexAll().subscribe({
       next: (data) => {
         this.persons = data;
-        // this.isLoaded = true;
+        this.isLoaded = true;
       },
       error:(fail) => {
         console.error('Error retrieving persons');

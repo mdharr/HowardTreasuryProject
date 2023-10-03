@@ -21,4 +21,22 @@
 
 table {
   width: 90%;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.dates-table {
+  display: flex;
+  gap: 10px;
+}
+
+.dates-table > tr {
+  display:flex;
+  gap: 10px;
+}
+
+.dates-wrapper {
+  display: flex;
+  justify-content: center;
 }
