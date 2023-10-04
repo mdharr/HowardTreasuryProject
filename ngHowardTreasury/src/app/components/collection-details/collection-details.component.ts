@@ -62,7 +62,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
           this.collection = data;
           this.sortStoriesByPageNumber();
           this.collectionImages = data.collectionImages;
-          this.collectionDescription = this.createIlluminatedInitial(data.description);
+          this.collectionDescription = data.description;
           this.isLoaded = true;
         },
         error: (fail) => {

@@ -11,6 +11,7 @@
   border-radius:6px;
   flex:1;
   height:fit-content;
+  font-family: var(--contentFontFamily);
 }
 
 .userlists-wrapper {
@@ -18,6 +19,7 @@
   border: 1px solid #f1f0f4;
   border-radius:6px;
   flex:2;
+  font-family: var(--contentFontFamily);
 }
 
 .title-wrapper {
@@ -58,6 +60,10 @@
 .details-text {
   display:flex;
   flex-direction: column;
+}
+
+::ng-deep mat-content {
+  font-family: var(--contentFontFamily);
 }
 
 @media screen and (max-width:832px) {

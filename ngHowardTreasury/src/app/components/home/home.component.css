@@ -32,6 +32,10 @@ img.alignleft, .wp-caption.alignleft {
   color: #9e0000;
 }
 
+.welcome-text {
+  color: #9e0101;
+}
+
 .spinner-wrapper {
   width: 100%;
   height: 88vh;
@@ -89,6 +93,10 @@ img.alignleft, .wp-caption.alignleft {
   .wrapper {
     padding-left:10px;
     padding-right:10px;
+  }
+
+  .description-title {
+    font-size: inherit;
   }
 }
 

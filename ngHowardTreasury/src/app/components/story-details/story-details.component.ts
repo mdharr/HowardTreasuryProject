@@ -80,7 +80,7 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
         next: (data) => {
           this.story = data;
           if(data.excerpt) {
-            this.storyExcerpt = this.createIlluminatedInitial(data.excerpt);
+            this.storyExcerpt = data.excerpt;
           }
           if(data.collections) {
             this.storyCollections = data.collections;

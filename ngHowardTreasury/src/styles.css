@@ -8,10 +8,10 @@
 
   --mainHeaderFontSize: 24px;
 
-  --headerFontFamily: 'Fondamento, cursive';
+  --headerFontFamily: 'Libre Baskerville', Helvetica, Arial, sans-serif;
   --headerFontSize: 18px;
 
-  --contentFontFamily: 'Lora, serif';
+  --contentFontFamily: 'Lora', serif;
   --contentFontSize: 15.6px;
 
   --superBold: bolder;

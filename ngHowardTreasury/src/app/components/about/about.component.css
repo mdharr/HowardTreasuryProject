@@ -1,6 +1,6 @@
 .biography-container {
-  background-color: #1e1e1e;
-  color: #C2C2C2;
+  background-color: #fff;
+  color: #212529;;
   padding: 20px;
   text-align: center;
   display:flex;
@@ -22,14 +22,14 @@
 .biography h1 {
   font-size: 32px;
   margin-bottom: 10px;
-  color:#f5f5f5;
+  color:#9e0101;
 }
 
 .biography p {
   font-size: 22px;
   line-height: 1.5;
   text-align: justify;
-  color:#f5f5f5;
+  color:#212529;;
 }
 
 .timeline-container {
@@ -56,7 +56,8 @@
 
 .timeline .year {
   flex: 0 0 80px;
-  background-color: #1e1e1e;
+  /* background-color: #1e1e1e; */
+  background-color: #9e0101;
   color: #f5f5f5;
   text-align: center;
   padding: 10px;
@@ -83,6 +84,21 @@
 @media screen and (max-width:693px) {
   .biography-container {
     flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .timeline li {
+    flex-direction: column;
+  }
+  .home-image {
+    width: 150px;
+  }
+
+  .main {
+    padding: 0;
+    padding-top: 25px;
+    padding-bottom: 25px;
   }
 }
 

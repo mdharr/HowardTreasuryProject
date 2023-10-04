@@ -10,11 +10,13 @@
   align-items: center;
   margin:0;
   padding:5px;
+  font-family: var(--contentFontFamily);
 }
 
 .title-text {
   margin: 0;
-  font-weight:bolder;
+  font-weight:bold;
+  font-family: var(--contentFontFamily);
 }
 
 .main {
@@ -26,4 +28,8 @@
 }
 ::ng-deep .mat-mdc-list-option.mat-accent .mdc-list-item__end {
   --mdc-checkbox-selected-icon-color: #9d0101 !important;
+}
+
+mat-expansion-panel-header {
+  font-family: var(--contentFontFamily);
 }

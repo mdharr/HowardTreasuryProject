@@ -46,17 +46,20 @@
 
 .contents-title {
   padding-left: 10px;
-  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
   font-weight: 700;
   color: #9e0000;
   margin:0;
+  font-family: var(--headerFontFamily);
+  font-size: var(--headerFontSize);
 }
 
 .collection-title {
   font-size: 30px;
-  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+  font-family: var(--headerFontFamily);
+  /* font-size: var(--headerFontSize); */
   font-weight: 700;
   color: #9e0000;
+
 }
 
 .title-container {
@@ -64,21 +67,36 @@
   display:flex;
   justify-content: center;
   margin-top: 40px;
+  font-family: var(--headerFontFamily);
+  font-size: var(--headerFontSize);
 }
 
 .description-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: var(--headerFontFamily);
+  font-size: var(--headerFontSize);
+}
+
+/* CSS */
+.description-text:first-child:first-letter {
+  float: left;
+  margin-right: 5px;
+  font-size: 50px;
+  color: #3D3529;
+  vertical-align: top; /* Align the first letter with the top of the line */
+  line-height: 1;
 }
 
 .description-box {
   text-align: justify;
   padding-left: 10%;
   padding-right: 10%;
-  line-height: 2;
+  line-height: 1.4; /* Adjust as needed to control the line height of the rest of the text */
   margin-bottom: 70px;
 }
+
 
 .description-text {
 
@@ -94,22 +112,29 @@
   margin-right: 10px;
 } */
 
-::ng-deep .first-letter {
-  font-size: 50px; /* Adjust the font size for the initial letter */
-  font-family: Libre Baskerville, Helvetica, Arial, sans-serif;
+/* ::ng-deep .first-letter {
+  font-size: 50px;
+  font-family: var(--headerFontFamily);
   font-weight: 700;
   color: #9e0000;
-  line-height: 1.2; /* Adjust the line height for the initial letter */
-  float: left; /* Float the initial letter to the left */
-  margin-right: 10px; /* Add spacing between the initial letter and the text */
+  line-height: 1.2;
+  float: left;
+  margin-right: 18px;
   font-style: normal;
   border: 3px dotted #9e0000;
-  padding-top: 5px;
-  padding-bottom: 5px;
   padding-left: 10px;
   padding-right: 10px;
   outline: 3px dashed #9e0000;
-}
+  margin-left: 18px;
+} */
+
+/* ::ng-deep .first-letter {
+  float:left;
+  margin-top:7px;
+  font-size:70px;
+  margin-right:5px;
+  color:#3D3529;
+  } */
 
 /* Styles for the overlay */
 .overlay {

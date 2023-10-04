@@ -39,6 +39,11 @@
   text-decoration: underline;
 }
 
+.result-text {
+  font-family: var(--contentFontFamily);
+  font-size: var(--contentFontSize);
+}
+
 .type-header {
   font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
   font-weight: 700;
