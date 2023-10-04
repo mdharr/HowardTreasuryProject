@@ -1,5 +1,7 @@
 .logout-text {
-
+  font-family: var(--contentFontFamily);
+  font-size: var(--contentFontSize);
+  font-weight: var(--superBold);
 }
 
 .logout-text:hover {

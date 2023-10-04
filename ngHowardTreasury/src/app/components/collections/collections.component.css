@@ -338,7 +338,7 @@ h4 {
 .flair-img {
   width: 150px;
   height: auto;
-  padding-bottom: 3px;
+  margin-left: -1px;
 }
 
 @media screen and (max-width: 320px) {

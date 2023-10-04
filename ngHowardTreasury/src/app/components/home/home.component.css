@@ -82,7 +82,7 @@ img.alignleft, .wp-caption.alignleft {
   width: 150px;
   height: auto;
   box-shadow: none !important;
-  padding-bottom: 3px;
+  margin-left: -1px;
 }
 
 @media screen and (max-width: 600px) {
@@ -90,5 +90,21 @@ img.alignleft, .wp-caption.alignleft {
     padding-left:10px;
     padding-right:10px;
   }
+}
+
+h2 {
+  font-family: var(--headerFontFamily);
+  font-size: var(--mainHeaderFontSize);
+  font-weight: var(--superBold);
+}
+
+p {
+  font-family: var(--contentFontFamily);
+  font-size: var(--contentFontSize);
+}
+
+span {
+  font-family: var(--contentFontFamily);
+  font-size: var(--contentFontSize);
 }
 

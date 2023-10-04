@@ -1,10 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~bootstrap/dist/css/bootstrap.min.css";
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fondamento:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 
 :root {
-  --centerOffset: 0px; /* Initial value, can be adjusted as needed */
+  --centerOffset: 0px;
+
+  --mainHeaderFontSize: 24px;
+
+  --headerFontFamily: 'Fondamento, cursive';
+  --headerFontSize: 18px;
+
+  --contentFontFamily: 'Lora, serif';
+  --contentFontSize: 15.6px;
+
+  --superBold: bolder;
 }
 
 html, body { height: 100%; }

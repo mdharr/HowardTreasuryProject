@@ -24,3 +24,6 @@
 .lists-wrapper {
   padding: 25px;
 }
+::ng-deep .mat-mdc-list-option.mat-accent .mdc-list-item__end {
+  --mdc-checkbox-selected-icon-color: #9d0101 !important;
+}
