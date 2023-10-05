@@ -87,7 +87,7 @@
   }
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 394px) {
   .timeline li {
     flex-direction: column;
   }
