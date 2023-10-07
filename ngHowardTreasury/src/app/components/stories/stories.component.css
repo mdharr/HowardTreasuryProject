@@ -36,11 +36,11 @@
 .story-list {
   text-align: center;
   margin-top: 50px;
-  padding-left:20px;
-  padding-right:20px;
+  padding-left:60px;
+  padding-right:60px;
   /* background-image: url('https://clipart-library.com/images/kiMK4KqLT.gif');
   background-repeat: repeat-y; */
-  font-family: 'Libre Baskerville', Helvetica, Arial, sans-serif;
+  font-family: 'Lora', Helvetica, Arial, sans-serif !important;
 }
 
 /* Title styling */
@@ -49,7 +49,13 @@
   font-weight: 700;
   color: #9e0101;
   /* text-shadow: 1px 1px 1px #333; */
-  font-family: 'Libre Baskerville', Helvetica, Arial, sans-serif;
+  font-family: 'Lora', Helvetica, Arial, sans-serif !important;
+}
+
+.story-title {
+  display:flex;
+  justify-content: flex-start;
+  text-align: left;
 }
 
 /* Buttons for sorting */
@@ -102,5 +108,88 @@
   background-color: rgba(158, 1, 1, 1);
   color: #fff;
   cursor: pointer;
+}
+
+.spinner-wrapper {
+  width: 100%;
+  height: 88vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-box {
+  width: 50px;
+  height: 50px;
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #9e0000;
+}
+
+.description-title {
+  font-family: var(--contentFontFamily);
+  font-weight: var(--superBold);
+  color: #9e0000;
+  text-align: center;
+  border: 4px double #9e0000;
+  width: fit-content;
+  padding: 0.3em 0.8em;
+  margin:0;
+}
+
+.description-title-box {
+  display: flex;
+  align-items: center;
+  /* margin-bottom: 50px; */
+}
+
+.b-element {
+  background-color: #9e0000;
+  display: block;
+  flex: 1;
+  height: 2px;
+  opacity: 0.5;
+}
+
+.title-box {
+  padding-top: 50px;
+  padding-bottom: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.flair-img {
+  width: 150px;
+  height: auto;
+  margin-left: -1px;
+}
+
+@media screen and (max-width: 624px) {
+
+  .flair-img {
+    width: 130px;
+  }
+
+  .story-list {
+    padding:0;
+  }
+
+  .story-title {
+    font-size: 14px;
+  }
+
+  .sort-button {
+    font-size: 12px;
+  }
+
+  .title-box {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .description-title {
+    font-size: 14px;
+  }
 }
 

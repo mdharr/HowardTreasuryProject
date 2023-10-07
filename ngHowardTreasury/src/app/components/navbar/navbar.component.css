@@ -65,6 +65,8 @@
   border-bottom: 1px solid #b5b5b5;
   position: relative;
   padding: 0;
+  color: #fff;
+  background-color: #740101;
 }
 
 .menu-row:hover {

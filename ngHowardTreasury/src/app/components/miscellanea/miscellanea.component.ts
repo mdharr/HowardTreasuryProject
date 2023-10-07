@@ -14,6 +14,9 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
     // properties initialization
     miscellaneas: Miscellanea[] = [];
 
+    // booleans
+    loading: boolean = false;
+
     // subscriptions declarations
     private miscellaneaSubscription: Subscription | undefined;
 

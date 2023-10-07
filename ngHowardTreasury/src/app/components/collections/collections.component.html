@@ -11,7 +11,9 @@
 </div> -->
 <div class="title-box">
   <div class="description-title-box" *ngIf="!loading">
-    <h2 class="description-title">Collections</h2>
+    <div class="description-title-wrapper">
+      <h2 class="description-title">Collections</h2>
+    </div>
     <b class="b-element"></b>
     <div class="flair-wrapper">
       <img class="flair-img" src="http://www.barbariankeep.com/LSWORD.GIF" alt="">
@@ -32,7 +34,7 @@
       </a>
       <div class="collection-title">
         <a [routerLink]="['/collections', collection.id]">
-          <h4>{{ collection.title }}</h4>
+          <h4 class="collection-title-text">{{ collection.title }}</h4>
         </a>
       </div>
     </div>

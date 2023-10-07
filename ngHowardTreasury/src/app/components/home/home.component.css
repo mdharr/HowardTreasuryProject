@@ -93,10 +93,28 @@ img.alignleft, .wp-caption.alignleft {
   .wrapper {
     padding-left:10px;
     padding-right:10px;
+    padding-top: 30px;
   }
 
   .description-title {
     font-size: inherit;
+  }
+
+  .description-title-box {
+    margin-bottom: 30px;
+  }
+
+  .description-title {
+    font-size: 14px;
+  }
+
+  .flair-img {
+    width: 130px;
+  }
+
+  .title-box {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 }
 

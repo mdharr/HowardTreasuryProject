@@ -67,7 +67,7 @@ export class PoemDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
         next: (data) => {
           this.poem = data;
           if(data.excerpt) {
-            this.poemExcerpt = this.createIlluminatedInitial(data.excerpt);
+            this.poemExcerpt = data.excerpt;
           }
           if(data.collections) {
             this.poemCollections = data.collections;

@@ -1,9 +1,14 @@
-<div *ngIf="isLoaded">
-  <div class="main-title">
-    <div class="title-container">
-      <h1 class="title-text">Characters</h1>
+<div class="title-box">
+  <div class="description-title-box" *ngIf="!loading">
+    <h2 class="description-title">Characters</h2>
+    <b class="b-element"></b>
+    <div class="flair-wrapper">
+      <img class="flair-img" src="http://www.barbariankeep.com/LSWORD.GIF" alt="">
     </div>
   </div>
+</div>
+
+<div *ngIf="isLoaded">
   <div class="contents-wrapper">
     <ul class="contents-list">
       <ng-container *ngFor="let person of persons">

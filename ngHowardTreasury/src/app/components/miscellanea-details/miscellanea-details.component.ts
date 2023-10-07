@@ -67,7 +67,7 @@ export class MiscellaneaDetailsComponent implements OnInit, OnDestroy, AfterView
         next: (data) => {
           this.miscellanea = data;
           if(data.excerpt) {
-            this.miscellaneaExcerpt = this.createIlluminatedInitial(data.excerpt);
+            this.miscellaneaExcerpt = data.excerpt;
           }
           if(data.collections) {
             this.miscellaneaCollections = data.collections;

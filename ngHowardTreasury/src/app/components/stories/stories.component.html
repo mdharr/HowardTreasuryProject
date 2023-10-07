@@ -1,20 +1,16 @@
-<!-- <div class="main-title">
-  <div class="title-container">
-    <h1 class="title-text">Stories</h1>
+<div class="title-box">
+  <div class="description-title-box" *ngIf="!loading">
+    <div class="description-title-wrapper">
+      <h2 class="description-title">Stories</h2>
+    </div>
+    <b class="b-element"></b>
+    <div class="flair-wrapper">
+      <img class="flair-img" src="http://www.barbariankeep.com/LSWORD.GIF" alt="">
+    </div>
   </div>
 </div>
-<div class="contents-wrapper">
-  <ul class="contents-list">
-    <button (click)="sortStoriesByTitle()">Story By Title</button>
-    <button (click)="sortStoriesByFirstPublished()">Sort Stories By First Published</button>
-    <ng-container *ngFor="let story of stories">
-      <li [routerLink]="['/stories', story.id]" class="contents-list-items">{{ story.title }}</li>
-    </ng-container>
-  </ul>
-</div> -->
 
 <div class="story-list">
-  <h1 class="title-text">Stories</h1>
   <div class="buttons-container">
     <button class="sort-button" (click)="sortStoriesByTitle()">Sort By Title</button>
     <button class="sort-button" (click)="sortStoriesByFirstPublished()">Sort By First Published</button>
@@ -23,7 +19,7 @@
     <ng-container *ngFor="let story of stories">
       <li [routerLink]="['/stories', story.id]" class="story-item">
         <span class="sword-icon">🗡️</span>
-        {{ story.title }}
+        <span class="story-title">{{ story.title }}</span>
       </li>
     </ng-container>
   </ul>

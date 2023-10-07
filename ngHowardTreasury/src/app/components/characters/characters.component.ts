@@ -17,6 +17,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
 
   // booleans
   isLoaded: boolean = false;
+  loading: boolean = false;
 
   // subscriptions declarations
   private personSubscription: Subscription | undefined;

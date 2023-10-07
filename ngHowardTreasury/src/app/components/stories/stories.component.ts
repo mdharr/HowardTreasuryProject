@@ -14,6 +14,9 @@ export class StoriesComponent implements OnInit, OnDestroy {
   // properties initialization
   stories: Story[] = [];
 
+  // booleans
+  loading: boolean = false;
+
   // subscriptions declarations
   private storySubscription: Subscription | undefined;
 

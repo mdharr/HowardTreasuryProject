@@ -14,6 +14,9 @@ export class PoemsComponent implements OnInit, OnDestroy {
   // properties initialization
   poems: Poem[] = [];
 
+  // booleans
+  loading: boolean = false;
+
   // subscriptions declarations
   private poemSubscription: Subscription | undefined;
 

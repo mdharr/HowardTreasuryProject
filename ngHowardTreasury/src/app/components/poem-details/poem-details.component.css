@@ -19,6 +19,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-size: var(--headerFontSize);
 }
 
 .description-title {
@@ -46,12 +47,23 @@
   opacity: 0.5;
 }
 
+.excerpt-text:first-child:first-letter {
+  float: left;
+  margin-right: 5px;
+  font-size: 50px;
+  color: #3D3529;
+  vertical-align: top;
+  line-height: 1;
+}
+
 .excerpt-box {
   text-align: justify;
   padding-left: 5%;
   padding-right: 5%;
-  line-height: 2;
+  line-height: 1.4;
   margin-bottom: 70px;
+  font-family: var(--contentFontFamily);
+  position: relative;
 }
 
 .description-box p {
@@ -74,12 +86,6 @@
   display:flex;
   justify-content: center;
   margin-top: 40px;
-}
-
-.excerpt-text {
-  font-style:normal;
-  font-size: 16px;
-  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
 }
 
 .description-text {
@@ -124,27 +130,23 @@
 }
 
 .read-online-box {
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  background-color: #f5f5f5;
-  padding: 10px;
-  transition: background-color 0.2s ease;
+  transition: text-decoration 0.2s ease;
 }
 
 .read-online-box:hover {
-  background-color:rgba(158, 0, 0, 1);
   cursor:pointer;
 }
 
 .story-text-link {
-  color: black;
+  color:#9e0000;
   text-decoration: none;
   transition: color 0.2s ease;
-  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
+  font-family: var(--contentFontFamily);
+  font-weight: var(--superBold);
 }
 
 .read-online-box:hover .story-text-link {
-  color: #fff;
+  color: #7d0000;
 }
 
 .flair-img {
@@ -219,19 +221,56 @@
   height: auto;
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 400px) {
   .story-image-box {
     padding:0;
   }
+
   .collection-box {
     padding-left:0;
+    justify-content: space-evenly;
   }
+
   .excerpt-box {
     margin-bottom:20px;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
   }
+
   .excerpt-box .read-online-box {
     display:flex;
     justify-content: center;
-    margin-bottom:20px;
+    margin-bottom:30px;
+  }
+
+  .title-container {
+    padding:5px;
+    padding-bottom: 25px;
+  }
+
+  .title-box {
+    padding-left: 5px;
+  }
+
+  .description-title {
+    font-size: 14px;
+  }
+
+  .collection-title {
+    font-size: 14px;
+  }
+
+  .flair-img {
+    width: 130px;
+  }
+
+  .story-title {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .collection-images {
+    width:115px;
   }
 }

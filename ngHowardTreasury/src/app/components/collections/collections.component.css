@@ -345,6 +345,8 @@ h4 {
 .title-box {
   padding-top: 50px;
   padding-bottom: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .flair-img {
@@ -353,9 +355,81 @@ h4 {
   margin-left: -1px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 624px) {
+  .collection-container {
+    justify-content: space-evenly;
+  }
+
+  .collection-title-text {
+    font-size: 12px;
+  }
+
+  .book {
+    width: 150px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .book ul {
+    width: 120px;
+    height: 180px;
+  }
+
+  .book ul > li {
+    width: 120px;
+    height: 180px;
+  }
+
+  .book ul > img {
+    width: 120px;
+    height: 180px;
+  }
+
+  .cover {
+    width: 120px;
+    height: 180px;
+  }
+
+  .book:hover .page1 {
+    display: block;
+    transform: rotateY(-34deg);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  .book:hover .page2 {
+    display: block;
+    transform: rotateY(-27deg);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  .book:hover .page3 {
+    display: block;
+    transform: rotateY(-15deg);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  .book:hover .cover {
+    transform: rotateY(-40deg);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
 
   .flair-img {
+    width: 130px;
+  }
+
+  .title-box {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .description-title {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 393px) {
+
+  /* .flair-img {
     display:none;
   }
 
@@ -370,5 +444,11 @@ h4 {
   .description-title-box {
     justify-content: center;
   }
+
+  .title-box {
+    padding:0;
+    padding-left: 5px;
+    padding-right: 5px;
+  } */
 
 }

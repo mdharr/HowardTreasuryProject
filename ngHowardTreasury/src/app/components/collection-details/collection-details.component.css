@@ -120,6 +120,7 @@
 
 .amazon-link-text {
   font-family: var(--contentFontFamily);
+  font-weight: var(--superBold);
   color:#9e0000;
   text-decoration:none;
 }
@@ -450,6 +451,10 @@
   .description-box {
     padding:10px;
     padding-top: 30px;
+  }
+
+  .flair-img {
+    width: 130px;
   }
 }
 

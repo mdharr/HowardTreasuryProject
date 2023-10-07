@@ -43,8 +43,8 @@
         <p class="excerpt-text" [innerHTML]="poemExcerpt"></p><span class="read-online-box" *ngIf="poem.textUrl"><a class="story-text-link" href="{{ poem.textUrl }}">Continue reading</a></span>
         <!-- <hr> -->
       </div>
-      <div class="excerpt-box" style="justify-content:flex-start; margin:20px;" *ngIf="!poem.excerpt">
-        <p class="excerpt-text">Excerpt not yet available.</p><span class="read-online-box" *ngIf="poem.textUrl"><a class="story-text-link" href="{{ poem.textUrl }}">Continue reading</a></span>
+      <div style="justify-content:flex-start; margin:20px;" *ngIf="!poem.excerpt">
+        <p>Excerpt not yet available.</p><span class="read-online-box" *ngIf="poem.textUrl"><a class="story-text-link" href="{{ poem.textUrl }}">Continue reading</a></span>
         <!-- <hr> -->
       </div>
     </div>

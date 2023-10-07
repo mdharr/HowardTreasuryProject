@@ -64,7 +64,7 @@
   line-height: 1.4;
   margin-bottom: 70px;
   font-family: var(--contentFontFamily);
-  position: relative; /* Add relative positioning to the container */
+  position: relative;
 }
 
 .description-box p {
@@ -166,14 +166,15 @@
 }
 
 .story-text-link {
-  color: black;
+  color:#9e0000;
   text-decoration: none;
   transition: color 0.2s ease;
   font-family: var(--contentFontFamily);
+  font-weight: var(--superBold);
 }
 
 .read-online-box:hover .story-text-link {
-  color: #9e0000;
+  color: #7d0000;
 }
 
 .flair-img {
@@ -183,7 +184,7 @@
 }
 
 .title-box {
-  /* padding-left: 50px; */
+
 }
 
 .details-wrapper {
@@ -432,30 +433,33 @@
   .story-image-box {
     padding:0;
   }
+
   .collection-box {
     padding-left:0;
     justify-content: space-evenly;
   }
+
   .excerpt-box {
     margin-bottom:20px;
     position: relative;
     padding-left: 10px;
     padding-right: 10px;
   }
+
   .excerpt-box .read-online-box {
     display:flex;
     justify-content: center;
-    margin-bottom:20px;
+    margin-bottom:30px;
   }
 
   .collection-images {
-    width:150px;
+    width:115px;
     height: auto;
     transition: box-shadow .3s, transform .3s, border .1s, border-radius .3s, opacity .3s;
     border-radius:0px;
     /* border: 1px solid #ccc; */
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-    opacity: 0.8;
+    opacity: 1;
   }
 
   .collection-images:hover {
@@ -470,6 +474,28 @@
     padding:5px;
     padding-bottom: 25px;
   }
+
+  .title-box {
+    padding-left: 5px;
+  }
+
+  .description-title {
+    font-size: 14px;
+  }
+
+  .collection-title {
+    font-size: 14px;
+  }
+
+  .flair-img {
+    width: 130px;
+  }
+
+  .story-title {
+    font-size: 20px;
+    text-align: center;
+  }
+
 }
 
 /* Add this CSS to your stylesheet */
