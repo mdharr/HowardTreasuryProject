@@ -17,9 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Collection {
@@ -37,6 +35,9 @@ public class Collection {
 	private Integer pageCount;
 	
 	private String description;
+	
+	@Column(name = "amazon_url")
+	private String amazonUrl;
 	
 	@ManyToOne
 	@JoinColumn(name = "series_id")
@@ -100,7 +101,7 @@ public class Collection {
 	}
 
 	public Collection(int id, String title, LocalDateTime publishedAt, Integer pageCount,
-			String description, Series series, List<Story> stories,
+			String description, String amazonUrl, Series series, List<Story> stories,
 			List<Poem> poems, List<Person> persons, List<Miscellanea> miscellaneas,
 			List<CollectionImage> collectionImages, List<Illustrator> illustrators,
 			List<CollectionHasStory> collectionHasStories) {
@@ -110,6 +111,7 @@ public class Collection {
 		this.publishedAt = publishedAt;
 		this.pageCount = pageCount;
 		this.description = description;
+		this.amazonUrl = amazonUrl;
 		this.series = series;
 		this.stories = stories;
 		this.poems = poems;
@@ -158,6 +160,14 @@ public class Collection {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getAmazonUrl() {
+		return amazonUrl;
+	}
+	
+	public void setAmazonUrl(String amazonUrl) {
+		this.amazonUrl = amazonUrl;
 	}
 
 	public Series getSeries() {

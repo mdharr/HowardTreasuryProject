@@ -64,11 +64,11 @@ public class CollectionServiceImpl implements CollectionService {
 		
 		Collection newCollection = new Collection();
 		
-		
 		newCollection.setTitle(collection.getTitle());
 		newCollection.setPublishedAt(collection.getPublishedAt());
 		newCollection.setPageCount(collection.getPageCount());
 		newCollection.setDescription(collection.getDescription());
+		newCollection.setAmazonUrl(collection.getAmazonUrl());
 		
 		if (collection.getSeries() != null) {
 			newCollection.setSeries(collection.getSeries());
@@ -180,6 +180,7 @@ public class CollectionServiceImpl implements CollectionService {
 	        dto.setPublishedAt(collection.getPublishedAt());
 	        dto.setPageCount(collection.getPageCount());
 	        dto.setDescription(collection.getDescription());
+	        dto.setAmazonUrl(collection.getAmazonUrl());
 	        dto.setSeries(collection.getSeries());
 	        
 	        // Populate stories with page numbers

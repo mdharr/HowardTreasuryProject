@@ -18,6 +18,7 @@ public class CollectionWithStoriesDTO {
     private LocalDateTime publishedAt;
     private Integer pageCount;
     private String description;
+    private String amazonUrl;
     private Series series;
     private List<StoryWithPageNumberDTO> stories;
     private List<PoemWithPageNumberDTO> poems;
@@ -32,7 +33,7 @@ public class CollectionWithStoriesDTO {
 	}
 
 	public CollectionWithStoriesDTO(int id, String title, LocalDateTime publishedAt, Integer pageCount,
-			String description, Series series, List<StoryWithPageNumberDTO> stories, List<PoemWithPageNumberDTO> poems,
+			String description, String amazonUrl, Series series, List<StoryWithPageNumberDTO> stories, List<PoemWithPageNumberDTO> poems,
 			List<Person> persons, List<MiscellaneaWithPageNumberDTO> miscellaneas, List<CollectionImage> collectionImages,
 			List<Illustrator> illustrators) {
 		super();
@@ -41,6 +42,7 @@ public class CollectionWithStoriesDTO {
 		this.publishedAt = publishedAt;
 		this.pageCount = pageCount;
 		this.description = description;
+		this.amazonUrl = amazonUrl;
 		this.series = series;
 		this.stories = stories;
 		this.poems = poems;
@@ -88,6 +90,14 @@ public class CollectionWithStoriesDTO {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getAmazonUrl() {
+		return amazonUrl;
+	}
+	
+	public void setAmazonUrl(String amazonUrl) {
+		this.amazonUrl = amazonUrl;
 	}
 
 	public Series getSeries() {
