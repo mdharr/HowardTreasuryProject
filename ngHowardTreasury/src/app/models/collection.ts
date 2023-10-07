@@ -13,6 +13,7 @@ export class Collection {
   publishedAt: string;
   pageCount: number;
   description: string;
+  amazonUrl: string;
   series: Series;
   stories: Story[];
   poems: Poem[];
@@ -29,6 +30,7 @@ export class Collection {
     publishedAt: string = '',
     pageCount: number = 0,
     description: string = '',
+    amazonUrl: string = '',
     series: Series = new Series(),
     stories: Story[] = [],
     poems: Poem[] = [],
@@ -42,6 +44,7 @@ export class Collection {
     this.publishedAt = publishedAt;
     this.pageCount = pageCount;
     this.description = description;
+    this.amazonUrl = amazonUrl;
     this.series = series;
     this.stories = stories;
     this.poems = poems;
