@@ -41,14 +41,14 @@
         </div>
       </div>
       <div class="excerpt-box" *ngIf="story.excerpt">
-        <p class="excerpt-text" [innerHTML]="storyExcerpt"></p><span class="read-online-box" *ngIf="story.textUrl"><a class="story-text-link" href="{{ story.textUrl }}">Continue reading</a></span>
+        <p class="excerpt-text" [innerHTML]="storyExcerpt"></p><span class="read-online-box" *ngIf="story.textUrl"><a class="story-text-link" href="{{ story.textUrl }}" target="_blank">Continue reading</a></span>
       </div>
       <div class="excerpt-box" style="justify-content:flex-start; margin:20px;" *ngIf="!story.excerpt">
-        <p class="">Excerpt not yet available.</p><span class="read-online-box" *ngIf="story.textUrl"><a class="story-text-link" href="{{ story.textUrl }}">Continue reading</a></span>
+        <p class="">Excerpt not yet available.</p><span class="read-online-box" *ngIf="story.textUrl"><a class="story-text-link" href="{{ story.textUrl }}" target="_blank">Continue reading</a></span>
       </div>
     </div>
 
-    <div class="description-container">
+    <div class="description-container" *ngIf="story.storyImages.length">
       <div class="description-title-box">
         <div class="title-box">
           <h2 class="description-title">Artwork</h2>

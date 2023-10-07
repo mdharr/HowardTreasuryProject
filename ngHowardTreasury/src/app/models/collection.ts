@@ -6,6 +6,7 @@ import { Poem } from "./poem";
 import { Series } from "./series";
 import { Story } from "./story";
 
+
 export class Collection {
 
   id: number;

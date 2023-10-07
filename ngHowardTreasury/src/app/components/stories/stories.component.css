@@ -55,6 +55,7 @@
 /* Buttons for sorting */
 .buttons-container {
   margin-top: 20px;
+  display: flex;
 }
 
 .sort-button {

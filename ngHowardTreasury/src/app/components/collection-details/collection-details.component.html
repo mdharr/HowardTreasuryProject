@@ -19,7 +19,7 @@
   <div class="main">
     <div class="contents-wrapper">
       <div class="story-title">
-        <h2>{{ collection.title }}</h2>
+        <h2 class="story-header-text">{{ collection.title }}</h2>
       </div>
       <div class="contents-box">
         <h2 class="contents-title">Stories</h2>
@@ -70,14 +70,27 @@
       </div>
     </div>
     <!-- Your Angular template -->
-    <div class="img-wrapper box with-drop-shadow">
-      <img
-        class="collection-image"
-        *ngIf="collectionImages && collectionImages.length > 0"
-        src="{{ collectionImages[0].imageUrl }}"
-        alt=""
-        (click)="toggleFullScreenImage()"
-      >
+    <div class="collection-details-wrapper">
+      <div class="img-wrapper box with-drop-shadow">
+        <img
+          class="collection-image"
+          *ngIf="collectionImages && collectionImages.length > 0"
+          src="{{ collectionImages[0].imageUrl }}"
+          alt=""
+          (click)="toggleFullScreenImage()"
+        >
+      </div>
+      <div class="collection-details-box">
+        <div>
+          <p class="series-text">Series: {{ collection.series.title }}</p>
+        </div>
+        <div>
+          <p class="publication-date">Published: {{ collection.publishedAt | date:'shortDate' }}</p>
+        </div>
+        <div class="amazon-link-wrapper">
+          <a class="amazon-link-text" href="{{ collection.amazonUrl }}" target="_blank">View on Amazon!</a>
+        </div>
+      </div>
     </div>
     <div
       class="overlay"

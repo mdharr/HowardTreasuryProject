@@ -12,6 +12,7 @@ export class CollectionWithStoriesDTO {
   publishedAt: string; // Change the type if needed
   pageCount: number;
   description: string;
+  amazonUrl: string;
   series: any; // Define the type for Series if needed
   stories: StoryWithPageNumberDTO[];
   poems: any[]; // Define the type for Poem if needed
@@ -28,6 +29,7 @@ export class CollectionWithStoriesDTO {
     publishedAt: string = '',
     pageCount: number = 0,
     description: string = '',
+    amazonUrl: string = '',
     series: Series = new Series(),
     stories: StoryWithPageNumberDTO[] = [],
     poems: PoemWithPageNumberDTO[] = [],
@@ -41,6 +43,7 @@ export class CollectionWithStoriesDTO {
     this.publishedAt = publishedAt;
     this.pageCount = pageCount;
     this.description = description;
+    this.amazonUrl = amazonUrl;
     this.series = series;
     this.stories = stories;
     this.poems = poems;

@@ -1,7 +1,6 @@
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Collection } from 'src/app/models/collection';
 import { AuthService } from 'src/app/services/auth.service';
 import { CollectionService } from 'src/app/services/collection.service';
 import { CollectionImage } from 'src/app/models/collection-image';
