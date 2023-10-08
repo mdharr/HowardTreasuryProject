@@ -496,6 +496,17 @@
   color:#9e0000;
 }
 
+.tail-image-wrapper {
+  display:flex;
+  justify-content: center;
+  width:100%;
+}
+
+.tail-image {
+  width:30%;
+  height:auto;
+}
+
 @media screen and (max-width: 1073px) {
   .collection-info {
     display:none;
@@ -525,8 +536,8 @@
   .excerpt-box {
     margin-bottom:20px;
     position: relative;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .excerpt-box .read-online-box {

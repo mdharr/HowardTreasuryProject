@@ -57,6 +57,9 @@
       <div class="excerpt-box" *ngIf="story.excerpt">
         <p class="excerpt-text" [innerHTML]="storyExcerpt"></p><span class="read-online-box" *ngIf="story.textUrl"><a class="story-text-link" href="{{ story.textUrl }}" target="_blank">Continue reading</a></span>
       </div>
+      <div class="tail-image-wrapper">
+        <img class="tail-image" src="http://gutenberg.net.au/ebooks06/0600761h-images/JewelsOfGwahlur-2.gif" alt="">
+      </div>
       <div class="excerpt-box" style="justify-content:flex-start; margin:20px;" *ngIf="!story.excerpt">
         <p class="">Excerpt not yet available.</p><span class="read-online-box" *ngIf="story.textUrl"><a class="story-text-link" href="{{ story.textUrl }}" target="_blank">Continue reading</a></span>
       </div>

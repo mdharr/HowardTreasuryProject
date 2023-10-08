@@ -10,10 +10,11 @@
         <!-- Centered Flex Container -->
         <div class="logo-box" [routerLink]="['/home']" (click)="menuState === 'expanded' ? toggleMenu() : null">
           <div style="display:flex;">
-            <div style="border: 2px solid #eace92;">
+            <div style="border: 2px solid #e0e0e0;">
               <img style="width: 43px; height: 41px;" src="https://cafans.b-cdn.net/images/Category_2871/subcat_124271/gianni_solomonkane.jpg" alt="">
             </div>
             <h1 class="app-logo">The Robert E. Howard Treasury</h1>
+            <h1 class="small-app-logo">REH Treasury</h1>
           </div>
         </div>
 
@@ -44,17 +45,10 @@
       padding-left: 8px;
       height: 40px;
       line-height: 28px;
-      border: 1px solid #e0e0e0;" class="navbar-btn-group" mat-button class="animated-ui" *ngIf="loggedIn()" [routerLink]="['/profile']"><span class="profile-text">{{ loggedInUser.username }}</span></button>
-      <button
-      style="margin-left: 10px;
-      padding: 0;
-      padding-right: 8px;
-      padding-left: 8px;
-      height: 40px;
-      line-height: 28px;
-      border: 1px solid #e0e0e0;" class="navbar-btn-group" class="animated-ui" mat-button *ngIf="loggedIn()">
+      border: 2px solid #e0e0e0;" class="navbar-btn-group" mat-button *ngIf="loggedIn()" [routerLink]="['/profile']"><span class="profile-text">{{ loggedInUser.username }}</span></button>
+      <div *ngIf="loggedIn()">
         <app-logout></app-logout>
-      </button>
+      </div>
     </div>
 
     <div class="flex-menu-row">
@@ -74,6 +68,19 @@
 
 <div class="menu" [@expandMenu]="menuState">
   <!-- Menu content goes here -->
+  <div class="auth-menu-row" (click)="toggleMenu()">
+      <button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openLoginDialog()">
+        <span class="login-text">Log in</span>
+      </button>
+      <button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openSignupDialog()">
+        <span class="register-text">Register</span>
+      </button>
+
+      <button class="profile-button" mat-button *ngIf="loggedIn()" [routerLink]="['/profile']"><span class="profile-text">{{ loggedInUser.username }}</span></button>
+      <div *ngIf="loggedIn()" style="flex:1; padding-right:10px;">
+        <app-logout></app-logout>
+      </div>
+  </div>
   <div class="menu-row" (click)="toggleMenu()" [routerLink]="['/about']">About</div>
   <div class="menu-row" (click)="toggleMenu()" [routerLink]="['/collections']">Collections</div>
   <div class="menu-row" (click)="toggleMenu()" [routerLink]="['/stories']">Stories</div>

@@ -299,6 +299,7 @@
   font-weight: 700;
   color: #9e0000;
   text-align: center;
+  font-size: 16px;
 }
 
 .story-header-text {
@@ -316,6 +317,12 @@
 .box {
   background-color: white;
   /* border-radius: 2px; */
+}
+
+.story-contents .contents-lists .contents-items .story-text,
+.story-contents .contents-lists .contents-items .dots,
+.story-contents .contents-lists .contents-items .page-number {
+  font-size: 16px !important;
 }
 
 @media screen and (max-width: 1050px) {
@@ -456,12 +463,26 @@
   .flair-img {
     width: 130px;
   }
+
+  .contents-title {
+    padding-left: 0;
+  }
+
+  .contents-lists {
+    padding-left: 0;
+  }
+
+  .story-title h2 {
+    font-size: 16px;
+    line-height: 1.5;
+  }
 }
 
 @media screen and (max-width: 375px) {
 
   .story-title h2 {
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 1.5;
   }
 }
 

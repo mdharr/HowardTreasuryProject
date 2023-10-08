@@ -16,9 +16,91 @@ img.alignleft, .wp-caption.alignleft {
   padding: 50px;
 }
 
-.main-title {
-  display: flex;
+.header {
+  text-align: center;
+  padding: 50px;
+  background-color:#9e0101;
+
 }
+
+.main-title {
+  font-size: 36px;
+  font-weight: bold;
+  font-family: var(--headerFontFamily);
+  color: #fff;
+  margin: 0;
+}
+
+.subheader {
+  font-size: 24px;
+  font-family: var(--contentFontFamily);
+  color: #efe9c5;
+  margin: 0;
+}
+
+.content {
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.content p {
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.content .quote {
+  font-size: 24px;
+  font-family: var(--contentFontFamily);
+  font-style: italic;
+  margin: 20px 0;
+}
+
+.content .highlight {
+  color: #c00;
+  font-weight: bold;
+}
+
+.quote-content {
+  padding: 20px;
+  background-color:#9e010145;
+}
+
+.quote-content p {
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.quote-content .quote {
+  font-size: 24px;
+  font-family: var(--contentFontFamily);
+  font-style: italic;
+  margin: 20px 0;
+}
+
+.quote-content .highlight {
+  color: #c00;
+  font-weight: bold;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #c00;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.cta-button:hover {
+  background-color: #9c0000;
+}
+
 
 .title-container {
   display: flex;
