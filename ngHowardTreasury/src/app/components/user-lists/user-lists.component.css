@@ -46,3 +46,19 @@ mat-expansion-panel-header {
   align-items: center;
   justify-content: space-between;
 }
+
+::ng-deep .mat-content {
+  font-family: var(--headerFontFamily);
+  font-size: var(--contentFontSize);
+}
+
+h3 {
+  font-family:var(--headerFontFamily);
+  font-size:var(--headerFontSize);
+  color:#9d0101;
+  margin:0;
+}
+
+p {
+  padding-left:16px;
+}

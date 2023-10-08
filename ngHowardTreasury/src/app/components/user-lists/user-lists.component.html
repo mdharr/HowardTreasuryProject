@@ -78,8 +78,8 @@
           {{ userList.name }}
         </mat-expansion-panel-header>
         <div>
-          <h4>Stories</h4>
-          <mat-selection-list>
+          <h3>Stories</h3>
+          <mat-selection-list *ngIf="userList.stories.length">
             <mat-list-option [disableRipple]="true"
               *ngFor="let story of userList.stories"
               [value]="story"
@@ -88,10 +88,11 @@
               <mat-checkbox [(ngModel)]="story.selected"></mat-checkbox>
             </mat-list-option>
           </mat-selection-list>
+          <p *ngIf="!userList.stories.length">No stories on list</p>
         </div>
         <div>
-          <h4>Poems</h4>
-          <mat-selection-list>
+          <h3>Poems</h3>
+          <mat-selection-list *ngIf="userList.poems.length">
             <mat-list-option [disableRipple]="true"
               *ngFor="let poem of userList.poems"
               [value]="poem"
@@ -100,10 +101,11 @@
               <mat-checkbox [(ngModel)]="poem.selected"></mat-checkbox>
             </mat-list-option>
           </mat-selection-list>
+          <p *ngIf="!userList.poems.length">No poems on list</p>
         </div>
         <div>
-          <h4>Miscellaneas</h4>
-          <mat-selection-list>
+          <h3>Miscellanea</h3>
+          <mat-selection-list *ngIf="userList.miscellaneas.length">
             <mat-list-option [disableRipple]="true"
               *ngFor="let miscellanea of userList.miscellaneas"
               [value]="miscellanea"
@@ -112,6 +114,7 @@
               <mat-checkbox [(ngModel)]="miscellanea.selected"></mat-checkbox>
             </mat-list-option>
           </mat-selection-list>
+          <p *ngIf="!userList.miscellaneas.length">No miscellanea on list</p>
         </div>
         <div>
           <button (click)="removeSelectedItems(userList)">Remove Selected</button>
