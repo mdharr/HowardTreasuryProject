@@ -16,7 +16,10 @@
 .title-text {
   margin: 0;
   font-weight:bold;
-  font-family: var(--contentFontFamily);
+  font-family:var(--contentFontFamily);
+  font-size:var(--headerFontSize);
+  color:#9d0101;
+  margin:0;
 }
 
 .main {
