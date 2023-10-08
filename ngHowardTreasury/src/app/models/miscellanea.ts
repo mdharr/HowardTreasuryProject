@@ -10,6 +10,7 @@ export class Miscellanea {
   userLists: UserList[];
   collections: Collection[];
   persons: Person[];
+  selected: boolean = false;
 
   constructor(
     id: number = 0,

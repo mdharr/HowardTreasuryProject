@@ -68,4 +68,32 @@ export class UserListsComponent implements OnInit, OnDestroy {
 
   }
 
+  removeSelectedItems(userList: UserList) {
+    const selectedStories = userList.stories.filter(story => story.selected);
+    const selectedPoems = userList.poems.filter(poem => poem.selected);
+    const selectedMiscellaneas = userList.miscellaneas.filter(miscellanea => miscellanea.selected);
+
+    const itemsToRemove = {
+      story: selectedStories.map(story => story.id),
+      poem: selectedPoems.map(poem => poem.id),
+      miscellanea: selectedMiscellaneas.map(miscellanea => miscellanea.id)
+    };
+
+    // Call the service method to remove selected items
+    this.userListService.removeItemsFromUserList(userList.id, itemsToRemove).subscribe({
+      next: updatedUserList => {
+        // Update the user list in the component with the received data
+        userList.stories = updatedUserList.stories;
+        userList.poems = updatedUserList.poems;
+        userList.miscellaneas = updatedUserList.miscellaneas;
+
+        // Optionally, you can perform additional UI updates or actions here
+      },
+      error: error => {
+        // Handle any errors that occurred during the request (if needed).
+        console.error('Error removing items from user list:', error);
+      }
+    });
+  }
+
 }

@@ -37,6 +37,18 @@ export class UserlistService {
     );
   }
 
+  removeItemsFromUserList(listId: number, itemsToRemove: any): Observable<UserList> {
+    return this.http.post<UserList>(`${this.url}/${listId}/removeItems`, itemsToRemove, this.getHttpOptions()).pipe(
+      catchError((error: any) => {
+        console.error(error);
+        return throwError(
+          () =>
+            new Error('UserListService.removeItemsFromUserList(): error removing items from user list ' + error)
+        );
+      })
+    );
+  }
+
   // getUserList(listId: number): Observable<UserList> {
   //   // Implement code to get a specific user list by ID from the backend
   // }

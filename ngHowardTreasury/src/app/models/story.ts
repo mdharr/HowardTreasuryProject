@@ -18,6 +18,7 @@ export class Story {
   collections: Collection[];
   storyImages: StoryImage[];
   persons: Person[];
+  selected: boolean = false;
 
   constructor(
     id: number = 0,

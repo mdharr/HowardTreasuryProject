@@ -1,4 +1,4 @@
-<div class="main">
+<!-- <div class="main">
   <div class="title-wrapper">
     <h3 class="title-text">MY LISTS</h3>
   </div>
@@ -6,10 +6,10 @@
     <ng-container *ngFor="let userList of loggedInUser.userLists">
       <mat-expansion-panel class="expansion-panels">
         <mat-expansion-panel-header>
-          {{ userList.name }} <!-- Display the name of the user list -->
+          {{ userList.name }}
         </mat-expansion-panel-header>
         <div>
-          <!-- Stories -->
+
           <ng-container *ngIf=" userList.stories != null && userList.stories.length > 0">
             <h4>Stories</h4>
             <mat-selection-list [multiple]="true">
@@ -17,17 +17,16 @@
                 *ngFor="let story of userList.stories"
                 [value]="story"
               >
-                <!-- Display story information here -->
+
                 <span [routerLink]="['/stories', story.id]">{{ story.title }}</span>
-                <!-- Add a checkbox here for selection -->
-                <!-- <mat-checkbox></mat-checkbox> -->
+
               </mat-list-option>
             </mat-selection-list>
             <button (click)="removeSelectedStories(userList)">Remove</button>
           </ng-container>
         </div>
         <div>
-          <!-- Poems -->
+
           <ng-container *ngIf="userList.poems != null && userList.poems.length > 0">
             <h4>Poems</h4>
             <mat-selection-list [multiple]="true">
@@ -35,17 +34,17 @@
                 *ngFor="let poem of userList.poems"
                 [value]="poem"
               >
-                <!-- Display poem information here -->
+
                 <span [routerLink]="['/poems', poem.id]">{{ poem.title }}</span>
-                <!-- Add a checkbox here for selection -->
-                <!-- <mat-checkbox></mat-checkbox> -->
+
+
               </mat-list-option>
             </mat-selection-list>
             <button (click)="removeSelectedPoems(userList)">Remove</button>
           </ng-container>
         </div>
         <div>
-          <!-- Miscellaneas -->
+
           <ng-container *ngIf="userList.miscellaneas != null && userList.miscellaneas.length > 0">
             <h4>Miscellaneas</h4>
             <mat-selection-list [multiple]="true">
@@ -53,10 +52,9 @@
                 *ngFor="let miscellanea of userList.miscellaneas"
                 [value]="miscellanea"
               >
-                <!-- Display miscellanea information here -->
+
                 <span [routerLink]="['/miscellanea', miscellanea.id]">{{ miscellanea.title }}</span>
-                <!-- Add a checkbox here for selection -->
-                <!-- <mat-checkbox></mat-checkbox> -->
+
               </mat-list-option>
             </mat-selection-list>
             <button (click)="removeSelectedMiscellaneas(userList)">
@@ -67,5 +65,62 @@
       </mat-expansion-panel>
     </ng-container>
   </div>
+</div> -->
+
+<div class="main">
+  <div class="title-wrapper">
+    <h3 class="title-text">MY LISTS</h3>
+  </div>
+  <div class="lists-wrapper">
+    <ng-container *ngFor="let userList of loggedInUser.userLists">
+      <mat-expansion-panel class="expansion-panels">
+        <mat-expansion-panel-header>
+          {{ userList.name }}
+        </mat-expansion-panel-header>
+        <div>
+          <h4>Stories</h4>
+          <mat-selection-list>
+            <mat-list-option [disableRipple]="true"
+              *ngFor="let story of userList.stories"
+              [value]="story"
+            >
+              <span [routerLink]="['/stories', story.id]">{{ story.title }}</span>
+              <mat-checkbox [(ngModel)]="story.selected"></mat-checkbox>
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+        <div>
+          <h4>Poems</h4>
+          <mat-selection-list>
+            <mat-list-option [disableRipple]="true"
+              *ngFor="let poem of userList.poems"
+              [value]="poem"
+            >
+              <span [routerLink]="['/poems', poem.id]">{{ poem.title }}</span>
+              <mat-checkbox [(ngModel)]="poem.selected"></mat-checkbox>
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+        <div>
+          <h4>Miscellaneas</h4>
+          <mat-selection-list>
+            <mat-list-option [disableRipple]="true"
+              *ngFor="let miscellanea of userList.miscellaneas"
+              [value]="miscellanea"
+            >
+              <span [routerLink]="['/miscellanea', miscellanea.id]">{{ miscellanea.title }}</span>
+              <mat-checkbox [(ngModel)]="miscellanea.selected"></mat-checkbox>
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+        <div>
+          <button (click)="removeSelectedItems(userList)">Remove Selected</button>
+        </div>
+      </mat-expansion-panel>
+    </ng-container>
+  </div>
 </div>
+
+
+
 

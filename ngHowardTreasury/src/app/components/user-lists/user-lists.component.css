@@ -26,10 +26,23 @@
 .lists-wrapper {
   padding: 25px;
 }
+
 ::ng-deep .mat-mdc-list-option.mat-accent .mdc-list-item__end {
   --mdc-checkbox-selected-icon-color: #9d0101 !important;
 }
 
 mat-expansion-panel-header {
   font-family: var(--contentFontFamily);
+}
+
+::ng-deep .mdc-list-item.mdc-list-item--with-one-line .mdc-list-item__end {
+  align-self: center;
+  margin-top: 0;
+  display: none;
+}
+
+::ng-deep .mdc-list-item__primary-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
