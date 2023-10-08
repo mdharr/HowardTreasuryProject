@@ -59,7 +59,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
       this.collectionSubscription = this.collectionService.findCollectionWithStoriesById((this.collectionId)).subscribe({
         next: (data) => {
           this.collection = data;
-          this.sortStoriesByPageNumber();
+          this.sortByPageNumber();
           this.collectionImages = data.collectionImages;
           this.collectionDescription = data.description;
           this.isLoaded = true;
@@ -106,8 +106,10 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  sortStoriesByPageNumber(): void {
+  sortByPageNumber(): void {
     // Sort the stories within the collection by page number
     this.collection.stories.sort((a, b) => a.pageNumber - b.pageNumber);
+    this.collection.poems.sort((a, b) => a.pageNumber - b.pageNumber);
+    this.collection.miscellaneas.sort((a, b) => a.pageNumber - b.pageNumber);
   }
 }

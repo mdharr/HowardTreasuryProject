@@ -7,6 +7,7 @@ import { Story } from 'src/app/models/story';
 import { AuthService } from 'src/app/services/auth.service';
 import { StoryService } from 'src/app/services/story.service';
 import { StoryImage } from 'src/app/models/story-image';
+import { CollectionService } from 'src/app/services/collection.service';
 
 @Component({
   selector: 'app-story-details',
@@ -21,6 +22,7 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
     storyExcerpt: string = '';
     storyCollections: Collection[] = [];
     storyImages: StoryImage[] = [];
+    collections: Collection[] = [];
     collectionImage: CollectionImage = new CollectionImage();
 
     // lightbox properties
@@ -37,6 +39,7 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
     // service injection
     auth = inject(AuthService);
     storyService = inject(StoryService);
+    collectionService = inject(CollectionService);
     activatedRoute = inject(ActivatedRoute);
     renderer = inject(Renderer2);
     elementRef = inject(ElementRef);
@@ -44,12 +47,14 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
     // subscription declaration
     private paramsSubscription: Subscription | undefined;
     private storySubscription: Subscription | undefined;
+    private collectionsSubscription: Subscription | undefined;
 
     ngOnInit(): void {
       setTimeout(() => {
         this.getRouteParams();
 
         this.subscribeToStoryServiceById();
+        this.subscribeToCollectionsService();
       }, 200);
 
     }
@@ -99,6 +104,19 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     }
 
+    subscribeToCollectionsService = () => {
+
+      this.collectionsSubscription = this.collectionService.indexAll().subscribe({
+        next: (data) => {
+          this.collections = data;
+        },
+        error: (fail) => {
+          console.error('Error getting collections');
+          console.error(fail);
+        }
+      });
+    }
+
     destroySubscriptions = () => {
       if(this.paramsSubscription) {
         this.paramsSubscription.unsubscribe();
@@ -106,6 +124,10 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
 
       if(this.storySubscription) {
         this.storySubscription.unsubscribe();
+      }
+
+      if(this.collectionsSubscription) {
+        this.collectionsSubscription.unsubscribe();
       }
     }
 

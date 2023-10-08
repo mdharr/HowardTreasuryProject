@@ -12,7 +12,7 @@
   <div class="collection-container">
     <div class="collection-title-box">
       <div class="title-box">
-        <h2 class="collection-title">Collections</h2>
+        <h2 class="collection-title" [routerLink]="['/collections']">Collections</h2>
       </div>
       <b class="b-element"></b>
       <div class="flair-wrapper">
@@ -20,11 +20,25 @@
       </div>
     </div>
     <div class="collection-box" *ngIf="story.collections.length">
-      <ng-container *ngFor="let collection of story.collections">
-        <div class="collection-wrapper" [routerLink]="['/collections', collection.id]">
-          <img class="collection-images" src="{{ collection.collectionImages[0].imageUrl }}" alt="">
+      <div class="collection-info-wrapper">
+        <div class="collection-wrapper">
+          <ng-container *ngFor="let collection of story.collections">
+            <div class="collection-images-wrapper">
+              <img class="collection-images" src="{{ collection.collectionImages[0].imageUrl }}" alt="" [routerLink]="['/collections', collection.id]">
+            </div>
+          </ng-container>
         </div>
-      </ng-container>
+          <div class="collection-info">
+            <p>The Del Rey collections use Howard’s original typescripts wherever possible, and are usually
+               accompanied by a lively appendix of unfinished drafts, alternate versions, and commentary
+               from noted Howard scholars.</p>
+              <ul class="collections-list">
+                <ng-container *ngFor="let collection of collections">
+                  <li class="collection-list-items" [routerLink]="['/collections', collection.id]">{{ collection.title }}</li>
+                </ng-container>
+              </ul>
+          </div>
+        </div>
     </div>
 
   </div>
@@ -57,6 +71,9 @@
         <div class="flair-wrapper">
           <img class="flair-img" src="http://www.barbariankeep.com/LSWORD.GIF" alt="">
         </div>
+      </div>
+      <div class="illustrator-wrapper">
+        <p class="illustrator-reference">Artwork by <span class="illustrator-name">{{ story.storyImages.at(0)?.illustrators?.at(0)?.name }}</span></p>
       </div>
       <div class="story-image-box" *ngIf="storyImages && imagesLoaded">
         <ng-container *ngFor="let storyImage of storyImages; let i = index">

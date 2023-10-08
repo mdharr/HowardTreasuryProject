@@ -85,7 +85,7 @@
           <p class="series-text">Series: {{ collection.series.title }}</p>
         </div>
         <div>
-          <p class="publication-date">Published: {{ collection.publishedAt | date:'shortDate' }}</p>
+          <p class="publication-date">Published: {{ collection.publishedAt | date:'mediumDate' }}</p>
         </div>
         <div class="amazon-link-wrapper">
           <a class="amazon-link-text" href="{{ collection.amazonUrl }}" target="_blank">View on Amazon!</a>
