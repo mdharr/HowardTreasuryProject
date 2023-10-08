@@ -2,6 +2,7 @@ package com.skilldistillery.howardtreasury.controllers;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -197,5 +198,22 @@ public class UserListController {
             return new ResponseEntity<>("Unauthorized access: You cannot modify this user's list.", HttpStatus.FORBIDDEN);
         }
     }
+    
+    @PostMapping("lists/{listId}/removeItems")
+    public ResponseEntity<UserList> removeItemsFromUserList(
+        @PathVariable int listId,
+        @RequestBody Map<String, List<Integer>> itemsToRemove,
+        Principal principal
+    ) {
+        String username = principal.getName();
+        UserList updatedUserList = userListService.removeItemsFromUserList(listId, itemsToRemove, username);
+
+        if (updatedUserList != null) {
+            return new ResponseEntity<>(updatedUserList, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 	
 }

@@ -10,3 +10,15 @@
   width: 100%;
   text-align: center;
 }
+
+.container-fluid {
+  /* Give it a flex layout to fill the available vertical space */
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* Style your content container as needed */
+.container-fluid {
+  padding: 20px;
+}

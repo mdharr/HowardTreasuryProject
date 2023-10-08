@@ -1,6 +1,7 @@
 package com.skilldistillery.howardtreasury.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 
@@ -29,5 +30,7 @@ public interface UserListService {
 	UserList addMiscellaneaToUserList(int listId, int miscellaneaId, String username);
 
 	UserList removeMiscellaneaFromUserList(int listId, int miscellaneaId, String username);
+
+	UserList removeItemsFromUserList(int listId, Map<String, List<Integer>> itemsToRemove, String username);
 
 }

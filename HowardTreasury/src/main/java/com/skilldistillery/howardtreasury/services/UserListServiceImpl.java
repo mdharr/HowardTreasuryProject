@@ -1,6 +1,7 @@
 package com.skilldistillery.howardtreasury.services;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -179,5 +180,40 @@ public class UserListServiceImpl implements UserListService {
 	    }
 	    return null; // Handle the case when the operation fail
 	}
+	
+	@Override
+	public UserList removeItemsFromUserList(int listId, Map<String, List<Integer>> itemsToRemove, String username) {
+	    // Fetch the UserList by its ID.
+	    UserList userList = userListRepo.findById(listId).orElse(null);
+
+	    // Ensure that the UserList exists and the user is the owner of the list.
+	    if (userList != null && userList.getUser().getUsername().equals(username)) {
+	        // Iterate over the map and remove items based on their type.
+	        for (Map.Entry<String, List<Integer>> entry : itemsToRemove.entrySet()) {
+	            String itemType = entry.getKey();
+	            List<Integer> itemIds = entry.getValue();
+
+	            switch (itemType) {
+	                case "story":
+	                    // Remove story items
+	                    userList.getStories().removeIf(story -> itemIds.contains(story.getId()));
+	                    break;
+	                case "poem":
+	                    // Remove poem items
+	                    userList.getPoems().removeIf(poem -> itemIds.contains(poem.getId()));
+	                    break;
+	                case "miscellanea":
+	                    // Remove miscellanea items
+	                    userList.getMiscellaneas().removeIf(miscellanea -> itemIds.contains(miscellanea.getId()));
+	                    break;
+	                // Handle other item types if needed
+	            }
+	        }
+
+	        return userListRepo.save(userList);
+	    }
+	    return null; // Handle the case when the operation fails.
+	}
+
 	
 }
