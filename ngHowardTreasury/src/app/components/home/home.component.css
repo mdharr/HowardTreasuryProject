@@ -14,12 +14,16 @@ img.alignleft, .wp-caption.alignleft {
 
 .wrapper {
   padding: 50px;
+  padding-bottom:0;
 }
 
 .header {
   text-align: center;
-  padding: 50px;
-  background-color:#9e0101;
+  padding: 30px;
+  background-color: #9e0101;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
 }
 
@@ -77,7 +81,8 @@ img.alignleft, .wp-caption.alignleft {
   font-size: 24px;
   font-family: var(--contentFontFamily);
   font-style: italic;
-  margin: 20px 0;
+  margin: 0;
+  line-height: 1.2;
 }
 
 .quote-content .highlight {
@@ -101,7 +106,6 @@ img.alignleft, .wp-caption.alignleft {
   background-color: #9c0000;
 }
 
-
 .title-container {
   display: flex;
   justify-content: center;
@@ -116,6 +120,34 @@ img.alignleft, .wp-caption.alignleft {
 
 .welcome-text {
   color: #9e0101;
+}
+
+.tail-image-wrapper {
+display:flex;
+justify-content: center;
+width:100%;
+margin-bottom:30px;
+}
+
+.tail-image {
+width:30%;
+height:auto;
+}
+
+.excerpt-text:first-child:first-letter {
+  float: left;
+  margin-right: 5px;
+  font-size: 50px;
+  color: #3D3529;
+  vertical-align: top;
+  line-height: 1;
+}
+
+.excerpt-box {
+  text-align: justify;
+  line-height: 1.4;
+  font-family: var(--contentFontFamily);
+  position: relative;
 }
 
 .spinner-wrapper {
@@ -173,9 +205,14 @@ img.alignleft, .wp-caption.alignleft {
 
 @media screen and (max-width: 600px) {
   .wrapper {
-    padding-left:10px;
-    padding-right:10px;
+    padding-left: 0;
+    padding-right: 0;
     padding-top: 30px;
+  }
+
+  .content {
+    padding:0;
+    border-radius:0;
   }
 
   .description-title {
