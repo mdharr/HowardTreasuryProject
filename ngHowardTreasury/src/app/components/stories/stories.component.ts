@@ -12,10 +12,16 @@ import { StoryService } from 'src/app/services/story.service';
 export class StoriesComponent implements OnInit, OnDestroy {
 
   // properties initialization
+  originalData: Story[] = [];
   stories: Story[] = [];
+  searchQuery: string = '';
+  filteredStories: Story[] = [];
 
   // booleans
   loading: boolean = false;
+  sortTitleActive: boolean = false;
+  sortFirstPublishedActive: boolean = false;
+  filterCopyrightedActive: boolean = false;
 
   // subscriptions declarations
   private storySubscription: Subscription | undefined;
@@ -29,6 +35,8 @@ export class StoriesComponent implements OnInit, OnDestroy {
     this.storySubscription = this.storyService.indexAll().subscribe({
       next: (data) => {
         this.stories = data;
+        this.originalData = data;
+        this.filteredStories = data;
       },
       error:(fail) => {
         console.error('Error retrieving stories');
@@ -44,15 +52,51 @@ export class StoriesComponent implements OnInit, OnDestroy {
   }
 
   sortStoriesByTitle(): void {
-    this.stories.sort((a, b) => a.title.localeCompare(b.title));
+    this.filteredStories = this.filteredStories.sort((a, b) => a.title.localeCompare(b.title));
+    this.sortTitleActive = true;
+    this.sortFirstPublishedActive = false;
   }
 
   sortStoriesByFirstPublished(): void {
-    this.stories.sort((a, b) => new Date(a.firstPublished).getTime() - new Date(b.firstPublished).getTime());
+    this.filteredStories = this.filteredStories.sort((a, b) => new Date(a.firstPublished).getTime() - new Date(b.firstPublished).getTime());
+    this.sortFirstPublishedActive = true;
+    this.sortTitleActive = false;
   }
 
   filterByCopyrighted(): void {
+    this.filteredStories = this.filteredStories.filter(story => !story.isCopyrighted);
+    this.filterCopyrightedActive = true;
+  }
 
+
+  filterStories(): void {
+    if (this.searchQuery.trim() === '') {
+      // If the search query is empty, reset to the current filtered data
+      this.filteredStories = [...this.originalData];
+      // Reapply filters if active
+      if (this.filterCopyrightedActive) {
+        this.filteredStories = this.filteredStories.filter(story => !story.isCopyrighted);
+      }
+    } else {
+      // Filter based on the current search query
+      this.filteredStories = this.originalData.filter(story =>
+        story.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+      // Reapply filters if active
+      if (this.filterCopyrightedActive) {
+        this.filteredStories = this.filteredStories.filter(story => !story.isCopyrighted);
+      }
+    }
+  }
+
+  clearFilters(): void {
+    // Reset all filters and restore the original data
+    this.filteredStories = [...this.originalData];
+    this.stories = [...this.originalData];
+    this.searchQuery = '';
+    this.sortTitleActive = false;
+    this.sortFirstPublishedActive = false;
+    this.filterCopyrightedActive = false;
   }
 
 }

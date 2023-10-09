@@ -165,6 +165,13 @@
   margin-left: -1px;
 }
 
+.active-button {
+  background-color: #9e0101;
+  color: #FFF;
+  box-shadow:rgba(158, 1, 1, 1);
+}
+
+
 @media screen and (max-width: 624px) {
 
   .flair-img {

@@ -12,11 +12,14 @@
 
 <div class="story-list">
   <div class="buttons-container">
-    <button class="sort-button" (click)="sortStoriesByTitle()">Sort By Title</button>
-    <button class="sort-button" (click)="sortStoriesByFirstPublished()">Sort By First Published</button>
+    <button class="sort-button" [ngClass]="{'active-button': sortTitleActive}" (click)="sortStoriesByTitle()">Sort By Title</button>
+    <button class="sort-button" [ngClass]="{'active-button': sortFirstPublishedActive}" (click)="sortStoriesByFirstPublished()">Sort By First Published</button>
+    <button class="sort-button" [ngClass]="{'active-button': filterCopyrightedActive}" (click)="filterByCopyrighted()">Filter by Copyrighted</button>
+    <button class="sort-button" (click)="clearFilters()">Reset Filters</button>
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Search stories..." (input)="filterStories()">
   </div>
   <ul class="story-items">
-    <ng-container *ngFor="let story of stories">
+    <ng-container *ngFor="let story of filteredStories">
       <li [routerLink]="['/stories', story.id]" class="story-item">
         <span class="sword-icon">🗡️</span>
         <span class="story-title">{{ story.title }}</span>
