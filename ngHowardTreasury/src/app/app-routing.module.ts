@@ -11,6 +11,7 @@ import { MiscellaneaComponent } from './components/miscellanea/miscellanea.compo
 import { PoemDetailsComponent } from './components/poem-details/poem-details.component';
 import { PoemsComponent } from './components/poems/poems.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { StoriesTestComponent } from './components/stories-test/stories-test.component';
 import { StoriesComponent } from './components/stories/stories.component';
 import { StoryDetailsComponent } from './components/story-details/story-details.component';
 import { UserListsComponent } from './components/user-lists/user-lists.component';
@@ -19,6 +20,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
+  { path: 'stories-test', component: StoriesTestComponent },
   { path: 'about', component: AboutComponent },
   { path: 'lists', component: UserListsComponent },
   { path: 'profile', component: UserProfileComponent },
