@@ -88,7 +88,7 @@
               <mat-checkbox [(ngModel)]="story.selected"></mat-checkbox>
             </mat-list-option>
           </mat-selection-list>
-          <p *ngIf="!userList.stories.length">No stories on list</p>
+          <p *ngIf="!userList.stories.length" class="no-items-text" [routerLink]="['/stories']">No stories on list</p>
         </div>
         <div>
           <h3>Poems</h3>
@@ -101,7 +101,7 @@
               <mat-checkbox [(ngModel)]="poem.selected"></mat-checkbox>
             </mat-list-option>
           </mat-selection-list>
-          <p *ngIf="!userList.poems.length">No poems on list</p>
+          <p *ngIf="!userList.poems.length" class="no-items-text" [routerLink]="['/poems']">No poems on list</p>
         </div>
         <div>
           <h3>Miscellanea</h3>
@@ -114,7 +114,7 @@
               <mat-checkbox [(ngModel)]="miscellanea.selected"></mat-checkbox>
             </mat-list-option>
           </mat-selection-list>
-          <p *ngIf="!userList.miscellaneas.length">No miscellanea on list</p>
+          <p *ngIf="!userList.miscellaneas.length" class="no-items-text" [routerLink]="['/miscellanea']">No miscellanea on list</p>
         </div>
         <div>
           <button (click)="removeSelectedItems(userList)">Remove Selected</button>
