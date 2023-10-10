@@ -41,6 +41,7 @@ import { AboutComponent } from './components/about/about.component';
 import { UserListsComponent } from './components/user-lists/user-lists.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { StoriesTestComponent } from './components/stories-test/stories-test.component';
+import { AddToUserListDialogComponent } from './components/add-to-user-list-dialog/add-to-user-list-dialog.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { StoriesTestComponent } from './components/stories-test/stories-test.com
     UserListsComponent,
     UserProfileComponent,
     StoriesTestComponent,
+    AddToUserListDialogComponent,
   ],
   imports: [
     BrowserModule,
