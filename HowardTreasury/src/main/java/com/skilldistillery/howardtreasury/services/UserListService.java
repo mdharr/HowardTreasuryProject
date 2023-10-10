@@ -32,5 +32,7 @@ public interface UserListService {
 	UserList removeMiscellaneaFromUserList(int listId, int miscellaneaId, String username);
 
 	UserList removeItemsFromUserList(int listId, Map<String, List<Integer>> itemsToRemove, String username);
+	
+    UserList addItemsToUserList(int listId, Map<String, List<Integer>> itemsToAdd, String username);
 
 }

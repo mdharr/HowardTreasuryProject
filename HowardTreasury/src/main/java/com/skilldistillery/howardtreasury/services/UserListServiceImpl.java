@@ -214,6 +214,56 @@ public class UserListServiceImpl implements UserListService {
 	    }
 	    return null; // Handle the case when the operation fails.
 	}
+	
+	@Override
+	public UserList addItemsToUserList(int listId, Map<String, List<Integer>> itemsToAdd, String username) {
+	    // Fetch the UserList by its ID.
+	    UserList userList = userListRepo.findById(listId).orElse(null);
+
+	    // Ensure that the UserList exists and the user is the owner of the list.
+	    if (userList != null && userList.getUser().getUsername().equals(username)) {
+	        // Iterate over the map and add items based on their type.
+	        for (Map.Entry<String, List<Integer>> entry : itemsToAdd.entrySet()) {
+	            String itemType = entry.getKey();
+	            List<Integer> itemIds = entry.getValue();
+
+	            switch (itemType) {
+	                case "story":
+	                    // Add story items
+	                    for (Integer storyId : itemIds) {
+	                        Story story = storyRepo.findById(storyId).orElse(null);
+	                        if (story != null) {
+	                            userList.getStories().add(story);
+	                        }
+	                    }
+	                    break;
+	                case "poem":
+	                    // Add poem items
+	                    for (Integer poemId : itemIds) {
+	                        Poem poem = poemRepo.findById(poemId).orElse(null);
+	                        if (poem != null) {
+	                            userList.getPoems().add(poem);
+	                        }
+	                    }
+	                    break;
+	                case "miscellanea":
+	                    // Add miscellanea items
+	                    for (Integer miscellaneaId : itemIds) {
+	                        Miscellanea miscellanea = miscellaneaRepo.findById(miscellaneaId).orElse(null);
+	                        if (miscellanea != null) {
+	                            userList.getMiscellaneas().add(miscellanea);
+	                        }
+	                    }
+	                    break;
+	                // Handle other item types if needed
+	            }
+	        }
+
+	        return userListRepo.save(userList);
+	    }
+	    return null; // Handle the case when the operation fails.
+	}
+
 
 	
 }
