@@ -33,6 +33,6 @@ public interface UserListService {
 
 	UserList removeItemsFromUserList(int listId, Map<String, List<Integer>> itemsToRemove, String username);
 	
-    UserList addItemToUserLists(int listId, String itemType, int itemId, String username);
+	List<UserList> addObjectToUserLists(int objectId, String objectType, List<Integer> userListIds, String username);
 
 }

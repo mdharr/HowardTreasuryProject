@@ -4,11 +4,15 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.howardtreasury.entities.User;
@@ -215,21 +220,23 @@ public class UserListController {
         }
     }
     
-    @PostMapping("lists/{listId}/addItems")
-    public ResponseEntity<UserList> addItemsToUserList(
-        @PathVariable int listId,
-        @RequestBody String itemType, int itemId,
-        Principal principal
-    ) {
-        String username = principal.getName();
-        UserList updatedUserList = userListService.addItemToUserLists(listId, itemType, itemId, username);
+    @PostMapping("lists/addItems")
+    public ResponseEntity<?> addItemsToUserList(
+            @RequestParam("objectId") int objectId,
+            @RequestParam("objectType") String objectType,
+            @RequestParam("userListIds") List<Integer> userListIds,
+            Principal principal) {
 
-        if (updatedUserList != null) {
-            return new ResponseEntity<>(updatedUserList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        String username = principal.getName();
+
+        try {
+            List<UserList> updatedUserLists = userListService.addObjectToUserLists(objectId, objectType, userListIds, username);
+            return ResponseEntity.ok(updatedUserLists);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (AccessDeniedException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("User does not have permission to update the user list.");
         }
     }
 
-	
 }

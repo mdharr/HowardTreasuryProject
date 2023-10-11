@@ -17,7 +17,6 @@ export class StoriesComponent implements OnInit, OnDestroy {
   stories: Story[] = [];
   searchQuery: string = '';
   filteredStories: Story[] = [];
-  item: any;
 
   // booleans
   loading: boolean = false;
@@ -102,10 +101,8 @@ export class StoriesComponent implements OnInit, OnDestroy {
     this.filterCopyrightedActive = false;
   }
 
-  openUserListDialog(item: any) {
-    console.log("Item data:", item); // Check the item data before opening the dialog
-    this.dialogService.openUserListDialog(item);
+  openUserListDialog(story: any) {
+    this.dialogService.openUserListDialog(story);
   }
-
 
 }

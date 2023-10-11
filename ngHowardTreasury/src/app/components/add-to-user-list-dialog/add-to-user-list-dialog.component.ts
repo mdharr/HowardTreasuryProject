@@ -20,7 +20,7 @@ export class AddToUserListDialogComponent implements OnInit, OnDestroy {
     userLists: UserList[] = [];
     newUserListName: string = '';
     userList: UserList = new UserList();
-    selectedUserLists: UserList[] = []; // Array to store selected user lists
+    selectedUserLists: UserList[] = [];
     isAnyUserListSelectedFlag: boolean = false;
     selectedItem: any;
 
@@ -37,9 +37,16 @@ export class AddToUserListDialogComponent implements OnInit, OnDestroy {
     router = inject(Router);
     authService = inject(AuthService);
     userListService = inject(UserlistService);
-    dialogRef = inject(MatDialogRef<AddToUserListDialogComponent>)
+
+    constructor(
+      private dialogRef: MatDialogRef<AddToUserListDialogComponent>,
+      @Inject(MAT_DIALOG_DATA) private data: any
+    ) { }
 
     ngOnInit(): void {
+
+      this.selectedItem = this.data.object;
+
       this.authSubscription = this.authService.getLoggedInUser().subscribe({
         next: (user) => {
           this.loggedInUser = user;
@@ -57,6 +64,27 @@ export class AddToUserListDialogComponent implements OnInit, OnDestroy {
         this.authSubscription.unsubscribe();
       }
     }
+
+    userListContainsObject(userList: UserList, object: any): boolean {
+      // Replace with logic to check if the object is already in the user list
+      return userList.stories.some(story => story.id === object.id);
+    }
+
+    addToSelectedUserLists() {
+      const selectedUserListIds = this.loggedInUser.userLists
+        .filter(userList => userList.selected)
+        .map(userList => userList.id);
+
+      if (selectedUserListIds.length > 0) {
+        this.userListService
+          .addObjectToUserLists(this.selectedItem.id, 'story', selectedUserListIds)
+          .subscribe(updatedUserLists => {
+            // Handle the response, e.g., close the dialog
+            this.closeDialog();
+          });
+      }
+    }
+
 
     closeDialog() {
       this.dialogRef.close();

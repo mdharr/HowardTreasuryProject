@@ -21,7 +21,6 @@ export class UserListsComponent implements OnInit, OnDestroy {
   isLoggedIn: boolean = false;
 
   // subscriptions
-  private paramsSubscription: Subscription | undefined;
   private authSubscription: Subscription | undefined;
 
   // service injection
@@ -54,18 +53,6 @@ export class UserListsComponent implements OnInit, OnDestroy {
       this.authSubscription.unsubscribe();
       console.log('user-lists comp auth sub destroyed');
     }
-  }
-
-  removeSelectedStories = (userList: UserList) => {
-
-  }
-
-  removeSelectedPoems = (userList: UserList) => {
-
-  }
-
-  removeSelectedMiscellaneas = (userList: UserList) => {
-
   }
 
   removeSelectedItems(userList: UserList) {

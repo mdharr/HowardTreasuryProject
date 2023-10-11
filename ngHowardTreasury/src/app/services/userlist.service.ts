@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -49,55 +49,26 @@ export class UserlistService {
     );
   }
 
-  addItemsToUserList(listId: number, itemsToAdd: any): Observable<UserList> {
-    return this.http.post<UserList>(`${this.url}/${listId}/addItems`, itemsToAdd, this.getHttpOptions()).pipe(
+  addObjectToUserLists(objectId: number, objectType: string, userListIds: number[]): Observable<UserList[]> {
+    // Construct the query parameters
+    const params = new HttpParams()
+      .set('objectId', objectId.toString())
+      .set('objectType', objectType)
+      .set('userListIds', userListIds.join(',')); // Convert the array to a comma-separated string
+
+    return this.http.post<UserList[]>(`${this.url}/addItems`, null, {
+      params: params,
+      ...this.getHttpOptions(), // Include any other headers or options you need
+    }).pipe(
       catchError((error: any) => {
         console.error(error);
         return throwError(
           () =>
-            new Error('UserListService.addItemsToUserList(): error adding item(s) from user list ' + error)
+            new Error('UserListService.addObjectToUserLists(): error adding object to user lists ' + error)
         );
       })
     );
   }
 
-  // getUserList(listId: number): Observable<UserList> {
-  //   // Implement code to get a specific user list by ID from the backend
-  // }
 
-  // createUserList(userList: UserList): Observable<UserList> {
-  //   // Implement code to create a new user list on the backend
-  // }
-
-  // updateUserList(listId: number, userList: UserList): Observable<UserList> {
-  //   // Implement code to update a user list on the backend
-  // }
-
-  // deleteUserList(listId: number): Observable<void> {
-  //   // Implement code to delete a user list by ID on the backend
-  // }
-
-  // addStoryToList(listId: number, storyId: number): Observable<void> {
-  //   // Implement code to add a story to a user list on the backend
-  // }
-
-  // removeStoryFromList(listId: number, storyId: number): Observable<void> {
-  //   // Implement code to remove a story from a user list on the backend
-  // }
-
-  // addPoemToList(listId: number, poemId: number): Observable<void> {
-  //   // Implement code to add a poem to a user list on the backend
-  // }
-
-  // removePoemFromList(listId: number, poemId: number): Observable<void> {
-  //   // Implement code to remove a poem from a user list on the backend
-  // }
-
-  // addMiscellaneaToList(listId: number, miscellaneaId: number): Observable<void> {
-  //   // Implement code to add a miscellanea to a user list on the backend
-  // }
-
-  // removeMiscellaneaFromList(listId: number, miscellaneaId: number): Observable<void> {
-  //   // Implement code to remove a miscellanea from a user list on the backend
-  // }
 }

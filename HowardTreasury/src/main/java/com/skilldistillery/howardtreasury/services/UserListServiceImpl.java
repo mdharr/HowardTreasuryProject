@@ -9,16 +9,19 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.howardtreasury.entities.Miscellanea;
 import com.skilldistillery.howardtreasury.entities.Poem;
 import com.skilldistillery.howardtreasury.entities.Story;
+import com.skilldistillery.howardtreasury.entities.User;
 import com.skilldistillery.howardtreasury.entities.UserList;
 import com.skilldistillery.howardtreasury.repositories.MiscellaneaRepository;
 import com.skilldistillery.howardtreasury.repositories.PoemRepository;
 import com.skilldistillery.howardtreasury.repositories.StoryRepository;
 import com.skilldistillery.howardtreasury.repositories.UserListRepository;
+import com.skilldistillery.howardtreasury.repositories.UserRepository;
 
 @Service
 public class UserListServiceImpl implements UserListService {
@@ -34,6 +37,9 @@ public class UserListServiceImpl implements UserListService {
 	
 	@Autowired
 	private MiscellaneaRepository miscellaneaRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public List<UserList> findAll(String username) {
@@ -216,54 +222,60 @@ public class UserListServiceImpl implements UserListService {
 	}
 	
 	@Override
-	public UserList addItemToUserLists(int listId, String itemType, int itemId, String username) {
-	    // Fetch the UserList by its ID.
-	    Optional<UserList> optionalUserList = userListRepo.findById(listId);
+	public List<UserList> addObjectToUserLists(int objectId, String objectType, List<Integer> userListIds, String username) {
+	    // Check if the provided 'username' matches the owner of the user lists.
+	    User user = userRepo.findByUsername(username);
+	    if (user == null) {
+	        throw new EntityNotFoundException("User not found");
+	    }
+	    
+	    List<UserList> userLists = userListRepo.findAllById(userListIds);
 
-	    if (optionalUserList.isPresent()) {
-	        UserList userList = optionalUserList.get();
-
-	        if (userList.getUser().getUsername().equals(username)) {
-	            switch (itemType) {
-	                case "story":
-	                    Optional<Story> storyToAddOpt = storyRepo.findById(itemId);
-	                    if (storyToAddOpt.isPresent()) {
-	                        Story storyToAdd = storyToAddOpt.get();
-	                        userList.getStories().add(storyToAdd);
-	                    } else {
-	                        throw new EntityNotFoundException();
-	                    }
-	                    break;
-	                case "poem":
-	                    Optional<Poem> poemToAddOpt = poemRepo.findById(itemId);
-	                    if (poemToAddOpt.isPresent()) {
-	                        Poem poemToAdd = poemToAddOpt.get();
-	                        userList.getPoems().add(poemToAdd);
-	                    } else {
-	                        throw new EntityNotFoundException();
-	                    }
-	                    break;
-	                case "miscellanea":
-	                    Optional<Miscellanea> miscellaneaToAddOpt = miscellaneaRepo.findById(itemId);
-	                    if (miscellaneaToAddOpt.isPresent()) {
-	                        Miscellanea miscellaneaToAdd = miscellaneaToAddOpt.get();
-	                        userList.getMiscellaneas().add(miscellaneaToAdd);
-	                    } else {
-	                        throw new EntityNotFoundException();
-	                    }
-	                    break;
-	                default:
-	                    throw new IllegalArgumentException("Invalid item type: " + itemType);
-	            }
-
-	            return userListRepo.save(userList);
+	    // Ensure that the user requesting the update owns the user lists.
+	    for (UserList userList : userLists) {
+	        if (!user.equals(userList.getUser())) {
+	            throw new AccessDeniedException("User does not have permission to update the user list.");
 	        }
 	    }
 
-	    return null;
+	    if ("story".equals(objectType)) {
+	        Optional<Story> storyOptional = storyRepo.findById(objectId);
+	        if (storyOptional.isPresent()) {
+	            Story story = storyOptional.get();
+
+	            for (UserList userList : userLists) {
+	                userList.getStories().add(story);
+	            }
+
+	            return userListRepo.saveAll(userLists);
+	        }
+	    } else if ("poem".equals(objectType)) {
+	        Optional<Poem> poemOptional = poemRepo.findById(objectId);
+	        if (poemOptional.isPresent()) {
+	            Poem poem = poemOptional.get();
+
+	            for (UserList userList : userLists) {
+	                userList.getPoems().add(poem);
+	            }
+
+	            return userListRepo.saveAll(userLists);
+	        }
+	    } else if ("miscellanea".equals(objectType)) {
+	        Optional<Miscellanea> miscellaneaOptional = miscellaneaRepo.findById(objectId);
+	        if (miscellaneaOptional.isPresent()) {
+	            Miscellanea miscellanea = miscellaneaOptional.get();
+
+	            for (UserList userList : userLists) {
+	                userList.getMiscellaneas().add(miscellanea);
+	            }
+
+	            return userListRepo.saveAll(userLists);
+	        }
+	    }
+
+	    // Handle the case where the object type or object ID doesn't correspond to any of the expected entities.
+	    throw new EntityNotFoundException("Object not found");
 	}
-
-
 
 
 	

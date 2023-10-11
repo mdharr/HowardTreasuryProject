@@ -23,10 +23,10 @@ export class DialogService {
     });
   }
 
-  openUserListDialog(item: any) {
+  openUserListDialog(object: any) {
     this.dialog.open(AddToUserListDialogComponent, {
       width: '400px',
-      data: { item: item } // Pass the 'item' data here
+      data: { object: object } // Pass the object as data to the dialog component
     });
   }
 }
