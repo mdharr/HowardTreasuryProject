@@ -55,7 +55,7 @@
 }
 
 .timeline .year {
-  flex: 0 0 80px;
+  flex: 0 0 215px;
   /* background-color: #1e1e1e; */
   background-color: #9e0101;
   color: #f5f5f5;
@@ -72,7 +72,8 @@
   padding: 10px;
   border-left: 2px solid #333;
   font-family:var(--contentFontFamily);
-  font-size:var(--contentFontSize);
+  /* font-size:var(--contentFontSize); */
+  font-size: 18px;
 }
 
 .main {
@@ -85,12 +86,18 @@
   .biography-container {
     flex-direction: column;
   }
-}
 
-@media screen and (max-width: 394px) {
   .timeline li {
     flex-direction: column;
   }
+
+  .timeline .year {
+    flex: 0 0 60px;
+  }
+}
+
+@media screen and (max-width: 394px) {
+
   .home-image {
     width: 150px;
   }

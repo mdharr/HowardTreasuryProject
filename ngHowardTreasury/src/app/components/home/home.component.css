@@ -126,12 +126,13 @@ img.alignleft, .wp-caption.alignleft {
 display:flex;
 justify-content: center;
 width:100%;
-margin-bottom:30px;
+margin-bottom:100px;
 }
 
 .tail-image {
 width:30%;
 height:auto;
+padding-top:30px;
 }
 
 .excerpt-text:first-child:first-letter {
@@ -234,6 +235,14 @@ height:auto;
   .title-box {
     padding-left: 5px;
     padding-right: 5px;
+  }
+
+  .main-title {
+    font-size: 24px;
+  }
+
+  .quote-content .quote {
+    font-size: 16px;
   }
 }
 
