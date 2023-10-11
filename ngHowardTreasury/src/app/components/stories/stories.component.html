@@ -20,10 +20,26 @@
   </div>
   <ul class="story-items">
     <ng-container *ngFor="let story of filteredStories">
-      <li [routerLink]="['/stories', story.id]" class="story-item">
-        <span class="sword-icon">🗡️</span>
-        <span class="story-title">{{ story.title }}</span>
-      </li>
+      <div style="display:flex;">
+        <li class="story-item">
+          <div style="display: flex; justify-content: space-between; width: 100%;">
+            <div style="display:flex; gap:15px;">
+              <span class="sword-icon">🗡️</span>
+              <span [routerLink]="['/stories', story.id]" class="story-title">{{ story.title }}</span>
+            </div>
+            <div style="display:flex; justify-content:flex-end;">
+              <span class="add-button">
+                <button
+                style=
+                "width: fit-content;
+                height: fit-content;
+                align-self: center;"
+                (click)="openUserListDialog(story)">+</button>
+              </span>
+            </div>
+          </div>
+        </li>
+      </div>
     </ng-container>
   </ul>
 </div>

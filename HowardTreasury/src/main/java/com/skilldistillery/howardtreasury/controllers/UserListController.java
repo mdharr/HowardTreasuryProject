@@ -218,11 +218,11 @@ public class UserListController {
     @PostMapping("lists/{listId}/addItems")
     public ResponseEntity<UserList> addItemsToUserList(
         @PathVariable int listId,
-        @RequestBody Map<String, List<Integer>> itemsToAdd,
+        @RequestBody String itemType, int itemId,
         Principal principal
     ) {
         String username = principal.getName();
-        UserList updatedUserList = userListService.addItemsToUserList(listId, itemsToAdd, username);
+        UserList updatedUserList = userListService.addItemToUserLists(listId, itemType, itemId, username);
 
         if (updatedUserList != null) {
             return new ResponseEntity<>(updatedUserList, HttpStatus.OK);

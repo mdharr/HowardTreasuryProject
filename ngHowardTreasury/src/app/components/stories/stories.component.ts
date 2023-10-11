@@ -1,3 +1,4 @@
+import { DialogService } from 'src/app/services/dialog.service';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Story } from 'src/app/models/story';
@@ -16,6 +17,7 @@ export class StoriesComponent implements OnInit, OnDestroy {
   stories: Story[] = [];
   searchQuery: string = '';
   filteredStories: Story[] = [];
+  item: any;
 
   // booleans
   loading: boolean = false;
@@ -29,6 +31,7 @@ export class StoriesComponent implements OnInit, OnDestroy {
   // service injections
   auth = inject(AuthService);
   storyService = inject(StoryService);
+  dialogService = inject(DialogService);
 
   ngOnInit(): void {
 
@@ -98,5 +101,11 @@ export class StoriesComponent implements OnInit, OnDestroy {
     this.sortFirstPublishedActive = false;
     this.filterCopyrightedActive = false;
   }
+
+  openUserListDialog(item: any) {
+    console.log("Item data:", item); // Check the item data before opening the dialog
+    this.dialogService.openUserListDialog(item);
+  }
+
 
 }

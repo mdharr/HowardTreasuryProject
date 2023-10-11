@@ -212,57 +212,58 @@ public class UserListServiceImpl implements UserListService {
 
 	        return userListRepo.save(userList);
 	    }
-	    return null; // Handle the case when the operation fails.
+	    return null;
 	}
 	
 	@Override
-	public UserList addItemsToUserList(int listId, Map<String, List<Integer>> itemsToAdd, String username) {
+	public UserList addItemToUserLists(int listId, String itemType, int itemId, String username) {
 	    // Fetch the UserList by its ID.
-	    UserList userList = userListRepo.findById(listId).orElse(null);
+	    Optional<UserList> optionalUserList = userListRepo.findById(listId);
 
-	    // Ensure that the UserList exists and the user is the owner of the list.
-	    if (userList != null && userList.getUser().getUsername().equals(username)) {
-	        // Iterate over the map and add items based on their type.
-	        for (Map.Entry<String, List<Integer>> entry : itemsToAdd.entrySet()) {
-	            String itemType = entry.getKey();
-	            List<Integer> itemIds = entry.getValue();
+	    if (optionalUserList.isPresent()) {
+	        UserList userList = optionalUserList.get();
 
+	        if (userList.getUser().getUsername().equals(username)) {
 	            switch (itemType) {
 	                case "story":
-	                    // Add story items
-	                    for (Integer storyId : itemIds) {
-	                        Story story = storyRepo.findById(storyId).orElse(null);
-	                        if (story != null) {
-	                            userList.getStories().add(story);
-	                        }
+	                    Optional<Story> storyToAddOpt = storyRepo.findById(itemId);
+	                    if (storyToAddOpt.isPresent()) {
+	                        Story storyToAdd = storyToAddOpt.get();
+	                        userList.getStories().add(storyToAdd);
+	                    } else {
+	                        throw new EntityNotFoundException();
 	                    }
 	                    break;
 	                case "poem":
-	                    // Add poem items
-	                    for (Integer poemId : itemIds) {
-	                        Poem poem = poemRepo.findById(poemId).orElse(null);
-	                        if (poem != null) {
-	                            userList.getPoems().add(poem);
-	                        }
+	                    Optional<Poem> poemToAddOpt = poemRepo.findById(itemId);
+	                    if (poemToAddOpt.isPresent()) {
+	                        Poem poemToAdd = poemToAddOpt.get();
+	                        userList.getPoems().add(poemToAdd);
+	                    } else {
+	                        throw new EntityNotFoundException();
 	                    }
 	                    break;
 	                case "miscellanea":
-	                    // Add miscellanea items
-	                    for (Integer miscellaneaId : itemIds) {
-	                        Miscellanea miscellanea = miscellaneaRepo.findById(miscellaneaId).orElse(null);
-	                        if (miscellanea != null) {
-	                            userList.getMiscellaneas().add(miscellanea);
-	                        }
+	                    Optional<Miscellanea> miscellaneaToAddOpt = miscellaneaRepo.findById(itemId);
+	                    if (miscellaneaToAddOpt.isPresent()) {
+	                        Miscellanea miscellaneaToAdd = miscellaneaToAddOpt.get();
+	                        userList.getMiscellaneas().add(miscellaneaToAdd);
+	                    } else {
+	                        throw new EntityNotFoundException();
 	                    }
 	                    break;
-	                // Handle other item types if needed
+	                default:
+	                    throw new IllegalArgumentException("Invalid item type: " + itemType);
 	            }
-	        }
 
-	        return userListRepo.save(userList);
+	            return userListRepo.save(userList);
+	        }
 	    }
-	    return null; // Handle the case when the operation fails.
+
+	    return null;
 	}
+
+
 
 
 	

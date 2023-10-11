@@ -96,6 +96,7 @@
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
+  width:100%;
 }
 
 /* Custom sword icon */
@@ -104,9 +105,8 @@
   line-height: 1;
 }
 
-.story-item:hover {
-  background-color: rgba(158, 1, 1, 1);
-  color: #fff;
+.story-title:hover {
+  color: rgba(158, 1, 1, 1);
   cursor: pointer;
 }
 

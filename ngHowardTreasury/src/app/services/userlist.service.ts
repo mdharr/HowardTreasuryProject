@@ -49,6 +49,18 @@ export class UserlistService {
     );
   }
 
+  addItemsToUserList(listId: number, itemsToAdd: any): Observable<UserList> {
+    return this.http.post<UserList>(`${this.url}/${listId}/addItems`, itemsToAdd, this.getHttpOptions()).pipe(
+      catchError((error: any) => {
+        console.error(error);
+        return throwError(
+          () =>
+            new Error('UserListService.addItemsToUserList(): error adding item(s) from user list ' + error)
+        );
+      })
+    );
+  }
+
   // getUserList(listId: number): Observable<UserList> {
   //   // Implement code to get a specific user list by ID from the backend
   // }

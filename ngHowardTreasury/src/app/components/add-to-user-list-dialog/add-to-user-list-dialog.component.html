@@ -2,18 +2,12 @@
 
 <mat-dialog-content>
   <!-- List of user lists with checkboxes -->
-  <mat-checkbox *ngFor="let userList of userLists" [(ngModel)]="userList.selected">
+  <mat-checkbox *ngFor="let userList of loggedInUser.userLists" [(ngModel)]="userList.selected">
     {{ userList.name }}
   </mat-checkbox>
-
-  <!-- Create a new user list -->
-  <mat-form-field>
-    <input matInput placeholder="Name" [(ngModel)]="newUserListName">
-  </mat-form-field>
-  <button mat-button color="primary" (click)="createNewUserList()">Create</button>
 </mat-dialog-content>
 
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button color="primary" (click)="addToSelectedUserLists()">Add</button>
+  <button mat-button color="primary">Add</button>
 </mat-dialog-actions>

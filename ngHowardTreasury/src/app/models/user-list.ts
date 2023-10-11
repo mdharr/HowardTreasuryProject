@@ -10,6 +10,7 @@ export class UserList {
   stories: Story[];
   poems: Poem[];
   miscellaneas: Miscellanea[];
+  selected: boolean = false;
 
   constructor(
     id: number = 0,
