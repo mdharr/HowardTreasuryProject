@@ -190,6 +190,21 @@ h4 {
   width: 250px;
 }
 
+.loading-book {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: auto;
+  margin: 25px;
+  margin-bottom: 10px;
+  /* margin-bottom: 100px; */
+  padding: 0;
+  transform: translate3d(0, 0, 0);
+  perspective: 800px;
+  width: 250px;
+}
+
 .book:hover {
   cursor: pointer;
 }
@@ -365,6 +380,13 @@ h4 {
   }
 
   .book {
+    width: 150px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin:5px;
+  }
+
+  .loading-book {
     width: 150px;
     margin-left: 5px;
     margin-right: 5px;

@@ -37,7 +37,7 @@ export class StoriesComponent implements OnInit, OnDestroy {
     this.storySubscription = this.storyService.indexAll().subscribe({
       next: (data) => {
         this.stories = data;
-        this.originalData = data;
+        this.originalData = this.deepCopyArray(data);
         this.filteredStories = data;
       },
       error:(fail) => {
@@ -103,6 +103,48 @@ export class StoriesComponent implements OnInit, OnDestroy {
 
   openUserListDialog(story: any) {
     this.dialogService.openUserListDialog(story);
+  }
+
+  deepCopyArray(arr: any[]): any[] {
+    const copy = [];
+    for (const item of arr) {
+      if (typeof item === 'object' && item !== null) {
+        if (Array.isArray(item)) {
+          // If it's an array, recursively deep copy it
+          copy.push(this.deepCopyArray(item));
+        } else {
+          // If it's an object, recursively deep copy it
+          copy.push(this.deepCopyObject(item));
+        }
+      } else {
+        // If it's a primitive value, simply assign it
+        copy.push(item);
+      }
+    }
+    return copy;
+  }
+
+  // Manually deep copy an object
+  deepCopyObject(obj: { [key: string]: any }): { [key: string]: any } {
+    const copy: { [key: string]: any } = {};
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const value = obj[key];
+        if (typeof value === 'object' && value !== null) {
+          if (Array.isArray(value)) {
+            // If it's an array, recursively deep copy it
+            copy[key] = this.deepCopyArray(value);
+          } else {
+            // If it's an object, recursively deep copy it
+            copy[key] = this.deepCopyObject(value);
+          }
+        } else {
+          // If it's a primitive value, simply assign it
+          copy[key] = value;
+        }
+      }
+    }
+    return copy;
   }
 
 }

@@ -457,6 +457,11 @@
   opacity:1;
 }
 
+.illustrator-wrapper {
+  display:flex;
+  justify-content: center;
+}
+
 .illustrator-reference {
   font-family: var(--contentFontFamily);
   font-weight: 500;

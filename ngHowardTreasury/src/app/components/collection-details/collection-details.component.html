@@ -8,19 +8,22 @@
     <h1 class="collection-title">{{ collection.title }}</h1>
   </div> -->
   <div class="title-box">
-    <div class="description-title-box">
-      <h2 class="description-title">Contents</h2>
-      <b class="b-element"></b>
-      <div class="flair-wrapper">
-        <img class="flair-img" src="http://www.barbariankeep.com/LSWORD.GIF" alt="">
-      </div>
+    <div class="story-title">
+      <h2 class="story-header-text">{{ collection.title }}</h2>
+    </div>
+    <div class="collection-subheader">
+      <p>Del Rey, {{ collection.publishedAt | date:'yyyy' }}. Illustrated by
+        <ng-container *ngFor="let illustrator of collection.illustrators; let lastIndex = last; let firstIndex = first;">
+          <span>
+            {{ firstIndex && !lastIndex ? (illustrator.name + ' and ') : firstIndex && lastIndex ? (illustrator.name + '.') : !firstIndex && !lastIndex ? (illustrator.name + ', ') : (illustrator.name) + '.' }}
+          </span>
+        </ng-container>
+      </p>
     </div>
   </div>
+
   <div class="main">
     <div class="contents-wrapper">
-      <div class="story-title">
-        <h2 class="story-header-text">{{ collection.title }}</h2>
-      </div>
       <div class="contents-box">
         <h2 class="contents-title">Stories</h2>
         <div class="story-contents">
@@ -29,7 +32,6 @@
               <li class="contents-items" [routerLink]="['/stories', story.id]">
                 <div style="display: flex;">
                   <span class="story-text">{{ story.title }}</span>
-                  <!-- <span class="dots">................................................................................................................</span> -->
                   <span class="page-number">{{ story.pageNumber }}</span>
                 </div>
               </li>
@@ -46,7 +48,6 @@
               <li class="contents-items" [routerLink]="['/poems', poem.id]">
                 <div style="display: flex;">
                   <span class="story-text">{{ poem.title }}</span>
-                  <!-- <span class="dots">................................................................................................................</span> -->
                   <span class="page-number">{{ poem.pageNumber }}</span>
                 </div>
               </li>
@@ -63,7 +64,6 @@
               <li class="contents-items" [routerLink]="['/miscellanea', miscellanea.id]">
                 <div style="display: flex;">
                   <span class="story-text">{{ miscellanea.title }}</span>
-                  <!-- <span class="dots">................................................................................................................</span> -->
                   <span class="page-number">{{ miscellanea.pageNumber }}</span>
                 </div>
               </li>
@@ -114,12 +114,8 @@
   </div>
   <div class="description-container">
     <div class="title-box">
-      <div class="description-title-box">
-        <h2 class="description-title">Description</h2>
-        <b class="b-element"></b>
-        <div class="flair-wrapper">
-          <img class="flair-img" src="http://www.barbariankeep.com/LSWORD.GIF" alt="">
-        </div>
+      <div class="story-title">
+        <h2 class="story-header-text">Description</h2>
       </div>
     </div>
     <div class="description-box">

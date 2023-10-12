@@ -281,7 +281,7 @@
 }
 
 .title-box {
-  padding: 50px;
+  padding: 5ch;
 }
 
 .flair-img {
@@ -336,6 +336,14 @@
 .miscellanea-contents .contents-lists .contents-items .dots,
 .miscellanea-contents .contents-lists .contents-items .page-number {
   font-size: 16px !important;
+}
+
+.collection-subheader {
+  display: flex;
+  justify-content: center;
+  font-family: var(--contentFontFamily);
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 @media screen and (max-width: 1050px) {
@@ -465,7 +473,7 @@
 
   .title-box {
     padding:5px;
-    padding-top:30px;
+    padding-top:5ch;
   }
 
   .description-box {
@@ -490,9 +498,10 @@
   }
 
   .story-title h2 {
-    font-size: 16px;
+    font-size: 1.3rem;
     line-height: 1.5;
   }
+
 }
 
 @media screen and (max-width: 375px) {
