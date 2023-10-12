@@ -38,6 +38,7 @@ export class PoemDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
     private collectionsSubscription: Subscription | undefined;
 
     ngOnInit(): void {
+      window.scrollTo(0, 0);
       setTimeout(() => {
         this.getRouteParams();
         this.subscribeToPoemService();

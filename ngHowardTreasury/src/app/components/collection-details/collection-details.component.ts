@@ -35,6 +35,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   private collectionSubscription: Subscription | undefined;
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.getRouteParams();
     this.subscribeToCollectionService();
   }
