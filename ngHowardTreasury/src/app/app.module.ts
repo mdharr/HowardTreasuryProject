@@ -42,6 +42,7 @@ import { UserListsComponent } from './components/user-lists/user-lists.component
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { StoriesTestComponent } from './components/stories-test/stories-test.component';
 import { AddToUserListDialogComponent } from './components/add-to-user-list-dialog/add-to-user-list-dialog.component';
+import { ScrollToTopButtonComponent } from './components/scroll-to-top-button/scroll-to-top-button.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { AddToUserListDialogComponent } from './components/add-to-user-list-dial
     UserProfileComponent,
     StoriesTestComponent,
     AddToUserListDialogComponent,
+    ScrollToTopButtonComponent,
   ],
   imports: [
     BrowserModule,
