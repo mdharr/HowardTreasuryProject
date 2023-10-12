@@ -1,7 +1,7 @@
 .main {
   display: flex;
   justify-content: space-evenly;
-  padding: 75px;
+  /* padding: 75px; */
   padding-top: 0;
   padding-bottom: 10px;
 }
@@ -35,9 +35,8 @@
 }
 
 .contents-lists {
-  list-style: none;
+  list-style: circle;
   font-size: 14px;
-
 }
 
 .no-contents-lists {
@@ -209,9 +208,19 @@
 }
 
 .contents-items {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  transition:color 0.2s ease;
+}
+
+.contents-items:hover {
+  cursor: pointer;
+  color:#9e0000;
+  list-style:disc;
+  transition: list-style 0.2s ease;
+  text-decoration:underline;
+}
+
+.contents-items:hover .story-text {
+  transition: text-decoration 0.2s ease;
 }
 
 .story-text {
@@ -226,14 +235,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-
-.contents-items:hover {
-  cursor: pointer;
-  color:#9e0000;
-  font-weight:700;
-  /* text-decoration:underline; */
 }
 
 .spinner-wrapper {
@@ -322,6 +323,18 @@
 .story-contents .contents-lists .contents-items .story-text,
 .story-contents .contents-lists .contents-items .dots,
 .story-contents .contents-lists .contents-items .page-number {
+  font-size: 16px !important;
+}
+
+.poem-contents .contents-lists .contents-items .story-text,
+.poem-contents .contents-lists .contents-items .dots,
+.poem-contents .contents-lists .contents-items .page-number {
+  font-size: 16px !important;
+}
+
+.miscellanea-contents .contents-lists .contents-items .story-text,
+.miscellanea-contents .contents-lists .contents-items .dots,
+.miscellanea-contents .contents-lists .contents-items .page-number {
   font-size: 16px !important;
 }
 
@@ -430,7 +443,7 @@
 
   .story-text {
     flex-grow: 1;
-
+    padding-right: 10px;
   }
 
   .dots {
@@ -443,7 +456,7 @@
   }
 
   .page-number {
-    display: none;
+    /* display: none; */
   }
 
   .story-text {
@@ -470,6 +483,10 @@
 
   .contents-lists {
     padding-left: 0;
+  }
+
+  .contents-items {
+    list-style:none;
   }
 
   .story-title h2 {

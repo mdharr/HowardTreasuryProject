@@ -1,3 +1,4 @@
+import { CollectionService } from './../../services/collection.service';
 import { AfterViewInit, Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -19,6 +20,7 @@ export class MiscellaneaDetailsComponent implements OnInit, OnDestroy, AfterView
     miscellaneaExcerpt: string = '';
     miscellaneaCollections: Collection[] = [];
     collectionImage: CollectionImage = new CollectionImage();
+    collections: Collection[] = [];
 
     // booleans
     isLoaded = false;
@@ -28,6 +30,7 @@ export class MiscellaneaDetailsComponent implements OnInit, OnDestroy, AfterView
     miscellaneaService = inject(MiscellaneaService);
     activatedRoute = inject(ActivatedRoute);
     renderer = inject(Renderer2);
+    collectionService = inject(CollectionService);
 
     // subscription declaration
     private paramsSubscription: Subscription | undefined;
@@ -38,6 +41,7 @@ export class MiscellaneaDetailsComponent implements OnInit, OnDestroy, AfterView
       setTimeout(() => {
         this.getRouteParams();
         this.subscribeToMiscellaneaService();
+        this.subscribeToCollectionsService();
       }, 200);
 
     }
@@ -88,6 +92,19 @@ export class MiscellaneaDetailsComponent implements OnInit, OnDestroy, AfterView
           console.error('Error getting miscellanea collections');
           console.error(fail);
 
+        }
+      });
+    }
+
+    subscribeToCollectionsService = () => {
+
+      this.collectionsSubscription = this.collectionService.indexAll().subscribe({
+        next: (data) => {
+          this.collections = data;
+        },
+        error: (fail) => {
+          console.error('Error getting collections');
+          console.error(fail);
         }
       });
     }

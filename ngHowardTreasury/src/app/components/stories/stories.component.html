@@ -1,4 +1,4 @@
-<div class="title-box">
+<!-- <div class="title-box">
   <div class="description-title-box" *ngIf="!loading">
     <div class="description-title-wrapper">
       <h2 class="description-title">Stories</h2>
@@ -8,33 +8,40 @@
       <img class="flair-img" src="http://www.barbariankeep.com/LSWORD.GIF" alt="">
     </div>
   </div>
+</div> -->
+<div class="header-wrapper">
+  <div class="header">
+    <h1 class="main-title">Stories</h1>
+    <p class="subheader">Thrilling adventures filled with vivid characters and exotic settings</p>
+  </div>
 </div>
 
 <div class="story-list">
   <div class="buttons-container">
-    <button class="sort-button" [ngClass]="{'active-button': sortTitleActive}" (click)="sortStoriesByTitle()">Sort By Title</button>
-    <button class="sort-button" [ngClass]="{'active-button': sortFirstPublishedActive}" (click)="sortStoriesByFirstPublished()">Sort By First Published</button>
-    <button class="sort-button" [ngClass]="{'active-button': filterCopyrightedActive}" (click)="filterByCopyrighted()">Filter by Copyrighted</button>
-    <button class="sort-button" (click)="clearFilters()">Reset Filters</button>
-    <input type="text" [(ngModel)]="searchQuery" placeholder="Search stories..." (input)="filterStories()">
+    <button mat-button class="checkbox-text" [ngClass]="{'active-button': sortTitleActive}" (click)="sortStoriesByTitle()">Title</button>
+    <button mat-button class="checkbox-text" [ngClass]="{'active-button': sortFirstPublishedActive}" (click)="sortStoriesByFirstPublished()">Published</button>
+    <button mat-button class="checkbox-text" [ngClass]="{'active-button': filterCopyrightedActive}" (click)="filterByCopyrighted()">Copyrighted</button>
+    <button mat-button class="checkbox-text" (click)="clearFilters()">Clear</button>
+    <div class="search-input-wrapper">
+      <mat-form-field>
+        <input matInput type="text" [(ngModel)]="searchQuery" placeholder="Search stories..." (input)="filterStories()">
+      </mat-form-field>
+    </div>
   </div>
   <ul class="story-items">
     <ng-container *ngFor="let story of filteredStories">
-      <div style="display:flex;">
+      <div style="display:flex; border-bottom: 1px solid;">
         <li class="story-item">
-          <div style="display: flex; justify-content: space-between; width: 100%;">
+          <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
             <div style="display:flex; gap:15px;">
               <span class="sword-icon">🗡️</span>
               <span [routerLink]="['/stories', story.id]" class="story-title">{{ story.title }}</span>
             </div>
             <div style="display:flex; justify-content:flex-end;">
               <span class="add-button">
-                <button
-                style=
-                "width: fit-content;
-                height: fit-content;
-                align-self: center;"
-                (click)="openUserListDialog(story)">+</button>
+                <button mat-button (click)="openUserListDialog(story)">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
               </span>
             </div>
           </div>

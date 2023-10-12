@@ -1,0 +1,39 @@
+/* Styles for the mat-dialog */
+.mat-dialog-container {
+  max-width: 400px;
+}
+
+h2[mat-dialog-title] {
+  background-color: #9e0101;
+  color: white;
+  padding: 15px;
+}
+
+.mat-dialog-content {
+  padding: 15px;
+}
+
+.mat-dialog-actions {
+  justify-content: flex-end;
+  padding: 15px;
+}
+
+/* Styles for mat-checkbox */
+.mat-checkbox {
+  margin-bottom: 10px;
+}
+
+/* Styles for the buttons */
+button[mat-button] {
+  margin-left: 10px;
+}
+
+/* Primary button style */
+button[color="primary"] {
+  background-color: #9e0101;
+  color: white;
+}
+
+button[color="primary"]:hover {
+  background-color: #750000;
+}

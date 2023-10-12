@@ -15,7 +15,7 @@
   /* Give it a flex layout to fill the available vertical space */
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  min-height: 88vh;
 }
 
 /* Style your content container as needed */
