@@ -14,53 +14,64 @@ import { UserlistService } from 'src/app/services/userlist.service';
 })
 export class CreateUserListDialogComponent {
     // property initialization
-    loggedInUser: User = new User();
-    userList: UserList = new UserList();
-    newUserListName: string = '';
+  loggedInUser: User = new User();
+  newUserListName: string = '';
 
-    // booleans
-    isLoggedIn: boolean = false;
+  private authSubscription: Subscription | undefined;
 
-    // subscriptions
-    private authSubscription: Subscription | undefined;
+  constructor(
+    private dialogRef: MatDialogRef<CreateUserListDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: any,
+    private authService: AuthService,
+    private userListService: UserlistService
+  ) {}
 
-    // service injection
-    route = inject(ActivatedRoute);
-    router = inject(Router);
-    authService = inject(AuthService);
-    userListService = inject(UserlistService);
+  ngOnInit(): void {
+    this.subscribeToAuth();
+  }
 
-    constructor(
-      private dialogRef: MatDialogRef<CreateUserListDialogComponent>,
-      @Inject(MAT_DIALOG_DATA) private data: any
-    ) { }
+  subscribeToAuth = () => {
+    this.authSubscription = this.authService.getLoggedInUser().subscribe({
+      next: (user) => {
+        this.loggedInUser = user;
+      },
+      error: (error) => {
+        console.log('Error getting loggedInUser');
+        console.log(error);
+      },
+    });
+  }
 
-    ngOnInit(): void {
-
-      this.subscribeToAuth();
-
+  ngOnDestroy(): void {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
     }
+  }
 
-    subscribeToAuth = () => {
-      this.authSubscription = this.authService.getLoggedInUser().subscribe({
-        next: (user) => {
-          this.loggedInUser = user;
+  createUserList() {
+    // Create a new UserList object with the name
+    const userList: UserList = {
+      name: this.newUserListName,
+      id: 0,
+      user: this.loggedInUser,
+      stories: [],
+      poems: [],
+      miscellaneas: [],
+      selected: false,
+    };
 
-        },
-        error: (error) => {
-          console.log('Error getting loggedInUser');
-          console.log(error);
-        },
-      });
-    }
-
-    ngOnDestroy(): void {
-      if (this.authSubscription) {
-        this.authSubscription.unsubscribe();
+    this.userListService.createUserList(userList).subscribe({
+      next: (data) => {
+        console.log('User list created:', data);
+        this.dialogRef.close(); // Close the dialog
+      },
+      error: (fail) => {
+        console.error('Error creating user list:', fail);
       }
-    }
+    });
+  }
 
-    closeDialog() {
-      this.dialogRef.close();
-    }
+  closeDialog() {
+    this.dialogRef.close();
+  }
 }

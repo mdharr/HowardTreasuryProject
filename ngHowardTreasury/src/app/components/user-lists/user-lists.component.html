@@ -1,9 +1,14 @@
 <div class="main">
   <div class="title-wrapper">
     <h3 class="title-text">MY LISTS</h3>
+    <span class="add-button">
+      <button mat-button (click)="openCreateUserListDialog(newUserList)">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </span>
   </div>
   <div class="lists-wrapper">
-    <ng-container *ngFor="let userList of loggedInUser.userLists">
+    <ng-container *ngFor="let userList of userLists$ | async">
       <mat-expansion-panel class="expansion-panels">
         <mat-expansion-panel-header>
           {{ userList.name }}

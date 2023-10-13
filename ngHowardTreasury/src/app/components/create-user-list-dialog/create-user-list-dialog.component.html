@@ -1,1 +1,12 @@
-<p>create-user-list-dialog works!</p>
+<h2 mat-dialog-title class="dialog-title">Create a User List</h2>
+
+<div mat-dialog-content class="dialog-content">
+  <mat-form-field class="dialog-input">
+    <input matInput [(ngModel)]="newUserListName" placeholder="User List Name">
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button (click)="closeDialog()" class="cancel-button">Cancel</button>
+  <button mat-button (click)="createUserList()" class="create-button">Create User List</button>
+</div>

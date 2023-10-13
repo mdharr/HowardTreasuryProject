@@ -35,7 +35,7 @@ export class DialogService {
   openCreateUserListDialog(userList: UserList) {
     this.dialog.open(CreateUserListDialogComponent,{
       width: '400px',
-      data: { userList: UserList}
+      data: { userList: UserList }
     });
   }
 }

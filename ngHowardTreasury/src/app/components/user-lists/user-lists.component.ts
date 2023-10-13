@@ -1,10 +1,11 @@
 import { UserlistService } from './../../services/userlist.service';
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserList } from 'src/app/models/user-list';
 import { AuthService } from 'src/app/services/auth.service';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-user-lists',
@@ -16,6 +17,8 @@ export class UserListsComponent implements OnInit, OnDestroy {
   // property initialization
   loggedInUser: User = new User();
   userLists: UserList[] = [];
+  newUserList: UserList = new UserList();
+  userLists$: Observable<UserList[]> | undefined;
 
   // booleans
   isLoggedIn: boolean = false;
@@ -28,8 +31,11 @@ export class UserListsComponent implements OnInit, OnDestroy {
   router = inject(Router);
   authService = inject(AuthService);
   userListService = inject(UserlistService);
+  dialogService = inject(DialogService);
 
   ngOnInit(): void {
+    this.userLists$ = this.userListService.userLists$;
+
     this.subscribeToAuth();
   }
 
@@ -48,6 +54,7 @@ export class UserListsComponent implements OnInit, OnDestroy {
     this.authSubscription = this.authService.getLoggedInUser().subscribe({
       next: (user) => {
         this.loggedInUser = user;
+        this.userLists = user.userLists;
         console.log(this.loggedInUser);
       },
       error: (error) => {
@@ -85,17 +92,8 @@ export class UserListsComponent implements OnInit, OnDestroy {
     });
   }
 
-  createUserList(userList: UserList) {
-    this.userListService.createUserList(userList).subscribe({
-      next:(data) => {
-        console.log('User list created:', data);
-
-      },
-      error:(fail) => {
-        console.error('Error creating user list:', fail);
-
-      }
-    });
+  openCreateUserListDialog(newUserList: UserList) {
+    this.dialogService.openCreateUserListDialog(newUserList);
   }
 
 }

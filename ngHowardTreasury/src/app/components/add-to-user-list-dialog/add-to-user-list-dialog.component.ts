@@ -14,7 +14,6 @@ import { UserlistService } from 'src/app/services/userlist.service';
 })
 export class AddToUserListDialogComponent implements OnInit, OnDestroy {
 
-
     // property initialization
     loggedInUser: User = new User();
     userLists: UserList[] = [];
