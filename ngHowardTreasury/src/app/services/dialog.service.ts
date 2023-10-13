@@ -1,8 +1,10 @@
+import { CreateUserListDialogComponent } from './../components/create-user-list-dialog/create-user-list-dialog.component';
 import { AddToUserListDialogComponent } from './../components/add-to-user-list-dialog/add-to-user-list-dialog.component';
 import { inject, Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginDialogComponent } from '../components/login-dialog/login-dialog.component';
 import { RegisterDialogComponent } from '../components/register-dialog/register-dialog.component';
+import { UserList } from '../models/user-list';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +29,13 @@ export class DialogService {
     this.dialog.open(AddToUserListDialogComponent, {
       width: '400px',
       data: { object: object } // Pass the object as data to the dialog component
+    });
+  }
+
+  openCreateUserListDialog(userList: UserList) {
+    this.dialog.open(CreateUserListDialogComponent,{
+      width: '400px',
+      data: { userList: UserList}
     });
   }
 }
