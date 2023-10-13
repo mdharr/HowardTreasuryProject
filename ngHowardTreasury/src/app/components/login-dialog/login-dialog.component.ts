@@ -1,3 +1,4 @@
+import { UserlistService } from 'src/app/services/userlist.service';
 import { Component, inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,11 +16,13 @@ export class LoginDialogComponent {
   dialogRef = inject(MatDialogRef<LoginDialogComponent>);
   auth = inject(AuthService);
   snackBar = inject(MatSnackBar);
+  userListService = inject(UserlistService);
 
   login(loginUser: User) {
     this.auth.login(this.loginUser.username, this.loginUser.password).subscribe({
       next: (loggedInUser) => {
         console.log("Login success");
+        this.userListService.loadUserLists();
         this.dialogRef.close();
         this.snackBar.open('Login Success!', 'Dismiss', {
           duration: 4000,

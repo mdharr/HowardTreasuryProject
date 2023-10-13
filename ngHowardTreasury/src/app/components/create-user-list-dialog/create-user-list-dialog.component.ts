@@ -1,4 +1,4 @@
-import { Component, inject, Inject } from '@angular/core';
+import { Component, inject, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -12,12 +12,13 @@ import { UserlistService } from 'src/app/services/userlist.service';
   templateUrl: './create-user-list-dialog.component.html',
   styleUrls: ['./create-user-list-dialog.component.css']
 })
-export class CreateUserListDialogComponent {
+export class CreateUserListDialogComponent implements OnInit, OnDestroy {
     // property initialization
   loggedInUser: User = new User();
   newUserListName: string = '';
 
   private authSubscription: Subscription | undefined;
+  private userListSubscription: Subscription | undefined;
 
   constructor(
     private dialogRef: MatDialogRef<CreateUserListDialogComponent>,
@@ -46,6 +47,9 @@ export class CreateUserListDialogComponent {
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
     }
+    if (this.userListSubscription) {
+      this.userListSubscription.unsubscribe();
+    }
   }
 
   createUserList() {
@@ -60,7 +64,7 @@ export class CreateUserListDialogComponent {
       selected: false,
     };
 
-    this.userListService.createUserList(userList).subscribe({
+    this.userListSubscription = this.userListService.createUserList(userList).subscribe({
       next: (data) => {
         console.log('User list created:', data);
         this.dialogRef.close(); // Close the dialog

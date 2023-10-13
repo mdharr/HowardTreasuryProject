@@ -3,6 +3,8 @@ import {
   Component,
   ElementRef,
   inject,
+  OnDestroy,
+  OnInit,
   Renderer2,
   ViewChild,
 } from '@angular/core';
@@ -17,7 +19,7 @@ import { PersonService } from 'src/app/services/person.service';
   templateUrl: './character-details.component.html',
   styleUrls: ['./character-details.component.css'],
 })
-export class CharacterDetailsComponent {
+export class CharacterDetailsComponent implements OnInit, OnDestroy {
   // property initialization
   personId: number = 0;
   person: Person = new Person();

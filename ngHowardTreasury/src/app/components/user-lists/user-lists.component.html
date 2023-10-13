@@ -2,12 +2,13 @@
   <div class="title-wrapper">
     <h3 class="title-text">MY LISTS</h3>
     <span class="add-button">
-      <button mat-button (click)="openCreateUserListDialog(newUserList)">
-        <mat-icon>more_vert</mat-icon>
+      <button class="create-button" mat-button (click)="openCreateUserListDialog(newUserList)">
+        <mat-icon class="create-icon">add_circle</mat-icon>
+        Create New List
       </button>
     </span>
   </div>
-  <div class="lists-wrapper">
+  <div class="lists-wrapper" *ngIf="userLists$">
     <ng-container *ngFor="let userList of userLists$ | async">
       <mat-expansion-panel class="expansion-panels">
         <mat-expansion-panel-header>
@@ -16,7 +17,7 @@
         <div>
           <h3>Stories</h3>
           <mat-selection-list *ngIf="userList.stories.length">
-            <mat-list-option [disableRipple]="true"
+            <mat-list-option class="list-options" [disableRipple]="true"
               *ngFor="let story of userList.stories"
               [value]="story"
             >
@@ -24,8 +25,11 @@
               <mat-checkbox [(ngModel)]="story.selected"></mat-checkbox>
             </mat-list-option>
           </mat-selection-list>
-          <p *ngIf="!userList.stories.length" class="no-items-text" [routerLink]="['/stories']">No stories on list</p>
+          <div *ngIf="!userList.stories.length" class="no-items-wrapper">
+            <p class="no-items-text" [routerLink]="['/stories']">No stories on list</p>
+          </div>
         </div>
+        <hr>
         <div>
           <h3>Poems</h3>
           <mat-selection-list *ngIf="userList.poems.length">
@@ -37,8 +41,11 @@
               <mat-checkbox [(ngModel)]="poem.selected"></mat-checkbox>
             </mat-list-option>
           </mat-selection-list>
-          <p *ngIf="!userList.poems.length" class="no-items-text" [routerLink]="['/poems']">No poems on list</p>
+          <div *ngIf="!userList.poems.length" class="no-items-wrapper">
+            <p class="no-items-text" [routerLink]="['/poems']">No poems on list</p>
+          </div>
         </div>
+        <hr>
         <div>
           <h3>Miscellanea</h3>
           <mat-selection-list *ngIf="userList.miscellaneas.length">
@@ -50,14 +57,16 @@
               <mat-checkbox [(ngModel)]="miscellanea.selected"></mat-checkbox>
             </mat-list-option>
           </mat-selection-list>
-          <p *ngIf="!userList.miscellaneas.length" class="no-items-text" [routerLink]="['/miscellanea']">No miscellanea on list</p>
+          <div *ngIf="!userList.miscellaneas.length" class="no-items-wrapper">
+            <p class="no-items-text" [routerLink]="['/miscellanea']">No miscellanea on list</p>
+          </div>
         </div>
         <div class="buttons-container">
           <div>
-            <button mat-button (click)="removeSelectedItems(userList)" class="remove-button">Remove Selected</button>
+            <button mat-button (click)="deleteUserList(userList)" class="remove-button">Delete List</button>
           </div>
           <div>
-            <button mat-button (click)="deleteUserList(userList)" class="remove-button">Delete List</button>
+            <button mat-button (click)="removeSelectedItems(userList)" class="remove-button">Remove Selected</button>
           </div>
         </div>
       </mat-expansion-panel>

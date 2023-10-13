@@ -25,6 +25,9 @@ export class UserListsComponent implements OnInit, OnDestroy {
 
   // subscriptions
   private authSubscription: Subscription | undefined;
+  private removeItemsSubscription: Subscription | undefined;
+  private createListSubscription: Subscription | undefined;
+  private userListsSubscription: Subscription | undefined;
 
   // service injection
   route = inject(ActivatedRoute);
@@ -34,8 +37,8 @@ export class UserListsComponent implements OnInit, OnDestroy {
   dialogService = inject(DialogService);
 
   ngOnInit(): void {
-    this.userLists$ = this.userListService.userLists$;
 
+    this.refreshUserLists();
     this.subscribeToAuth();
   }
 
@@ -46,7 +49,18 @@ export class UserListsComponent implements OnInit, OnDestroy {
   destroySubscriptions = () => {
     if(this.authSubscription) {
       this.authSubscription.unsubscribe();
-      console.log('user-lists comp auth sub destroyed');
+
+    }
+    if(this.removeItemsSubscription) {
+      this.removeItemsSubscription.unsubscribe();
+
+    }
+    if(this.createListSubscription) {
+      this.createListSubscription.unsubscribe();
+
+    }
+    if (this.userListsSubscription) {
+      this.userListsSubscription.unsubscribe();
     }
   }
 
@@ -55,7 +69,7 @@ export class UserListsComponent implements OnInit, OnDestroy {
       next: (user) => {
         this.loggedInUser = user;
         this.userLists = user.userLists;
-        console.log(this.loggedInUser);
+
       },
       error: (error) => {
         console.log('Error getting loggedInUser');
@@ -76,7 +90,7 @@ export class UserListsComponent implements OnInit, OnDestroy {
     };
 
     // Call the service method to remove selected items
-    this.userListService.removeItemsFromUserList(userList.id, itemsToRemove).subscribe({
+    this.removeItemsSubscription = this.userListService.removeItemsFromUserList(userList.id, itemsToRemove).subscribe({
       next: updatedUserList => {
         // Update the user list in the component with the received data
         userList.stories = updatedUserList.stories;
@@ -97,7 +111,7 @@ export class UserListsComponent implements OnInit, OnDestroy {
   }
 
   deleteUserList = (userList: UserList):void => {
-    this.userListService.deleteUserList(userList.id).subscribe({
+    this.createListSubscription = this.userListService.deleteUserList(userList.id).subscribe({
       next: (success) => {
         console.log('User list successfully deleted');
 
@@ -105,9 +119,30 @@ export class UserListsComponent implements OnInit, OnDestroy {
       error: (fail) => {
         console.error(fail);
         console.error('Error deleting user list ' + fail);
-
       }
     });
+  }
+
+  refreshUserLists() {
+
+    if (this.userListsSubscription) {
+      this.userListsSubscription.unsubscribe();
+    }
+
+    this.userLists$ = this.userListService.userLists$;
+
+    this.userListsSubscription = this.userLists$.subscribe({
+      next: (userLists) => {
+        // Log the userLists data
+        console.log('Received user lists:', userLists);
+        // Handle the updated user lists
+        this.userLists = userLists;
+      },
+      error: (error) => {
+        console.error('Error fetching user lists:', error);
+      }
+    });
+
   }
 
 }

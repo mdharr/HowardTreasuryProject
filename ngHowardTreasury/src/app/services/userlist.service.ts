@@ -44,9 +44,7 @@ export class UserlistService {
     );
   }
 
-  private loadUserLists() {
-    // Fetch user lists and update the subject
-    // Replace this with your actual HTTP request to get user lists
+  loadUserLists() {
     this.http.get<UserList[]>(this.url, this.getHttpOptions()).subscribe(
       (userLists) => {
         this.userListsSubject.next(userLists);
@@ -55,6 +53,10 @@ export class UserlistService {
         console.error('Error loading user lists:', error);
       }
     );
+  }
+
+  clearUserLists() {
+    this.userListsSubject.next([]); // Clear the user lists by emitting an empty array
   }
 
   createUserList(userList: UserList): Observable<UserList> {
