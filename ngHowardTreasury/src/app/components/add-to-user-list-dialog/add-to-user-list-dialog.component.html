@@ -4,7 +4,7 @@
   <div *ngFor="let userList of loggedInUser.userLists">
     <mat-checkbox
       [(ngModel)]="userList.selected"
-      [disabled]="userListContainsObject(userList, selectedItem)">
+      [disabled]="userListContainsObject(userList, selectedItem, objectType)">
       {{ userList.name }}
     </mat-checkbox>
   </div>

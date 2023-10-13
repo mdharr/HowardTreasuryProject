@@ -102,7 +102,7 @@ export class StoriesComponent implements OnInit, OnDestroy {
   }
 
   openUserListDialog(story: any) {
-    this.dialogService.openUserListDialog(story);
+    this.dialogService.openUserListDialog(story, 'story');
   }
 
   deepCopyArray(arr: any[]): any[] {

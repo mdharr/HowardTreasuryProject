@@ -22,6 +22,7 @@ export class AddToUserListDialogComponent implements OnInit, OnDestroy {
     selectedUserLists: UserList[] = [];
     isAnyUserListSelectedFlag: boolean = false;
     selectedItem: any;
+    objectType: any;
 
 
     // booleans
@@ -45,6 +46,7 @@ export class AddToUserListDialogComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
 
       this.selectedItem = this.data.object;
+      this.objectType = this.data.objectType;
 
       this.authSubscription = this.authService.getLoggedInUser().subscribe({
         next: (user) => {
@@ -64,26 +66,33 @@ export class AddToUserListDialogComponent implements OnInit, OnDestroy {
       }
     }
 
-    userListContainsObject(userList: UserList, object: any): boolean {
-      // Replace with logic to check if the object is already in the user list
-      return userList.stories.some(story => story.id === object.id);
+    userListContainsObject(userList: UserList, object: any, objectType: string): boolean {
+      if (objectType === 'story') {
+        return userList.stories.some(story => story.id === object.id);
+      } else if (objectType === 'poem') {
+        return userList.poems.some(poem => poem.id === object.id);
+      } else if (objectType === 'miscellanea') {
+        return userList.miscellaneas.some(misc => misc.id === object.id);
+      } else {
+        return false; // Handle unknown object types or return an appropriate default value
+      }
     }
+
 
     addToSelectedUserLists() {
       const selectedUserListIds = this.loggedInUser.userLists
-        .filter(userList => userList.selected)
-        .map(userList => userList.id);
+      .filter(userList => userList.selected)
+      .map(userList => userList.id);
 
       if (selectedUserListIds.length > 0) {
         this.userListService
-          .addObjectToUserLists(this.selectedItem.id, 'story', selectedUserListIds)
+          .addObjectToUserLists(this.selectedItem.id, this.objectType, selectedUserListIds)
           .subscribe(updatedUserLists => {
             // Handle the response, e.g., close the dialog
             this.closeDialog();
           });
       }
     }
-
 
     closeDialog() {
       this.dialogRef.close();
