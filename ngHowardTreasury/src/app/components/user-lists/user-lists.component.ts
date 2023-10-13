@@ -96,4 +96,18 @@ export class UserListsComponent implements OnInit, OnDestroy {
     this.dialogService.openCreateUserListDialog(newUserList);
   }
 
+  deleteUserList = (userList: UserList):void => {
+    this.userListService.deleteUserList(userList.id).subscribe({
+      next: (success) => {
+        console.log('User list successfully deleted');
+
+      },
+      error: (fail) => {
+        console.error(fail);
+        console.error('Error deleting user list ' + fail);
+
+      }
+    });
+  }
+
 }

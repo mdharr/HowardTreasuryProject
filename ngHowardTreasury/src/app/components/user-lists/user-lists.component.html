@@ -52,8 +52,13 @@
           </mat-selection-list>
           <p *ngIf="!userList.miscellaneas.length" class="no-items-text" [routerLink]="['/miscellanea']">No miscellanea on list</p>
         </div>
-        <div>
-          <button (click)="removeSelectedItems(userList)">Remove Selected</button>
+        <div class="buttons-container">
+          <div>
+            <button mat-button (click)="removeSelectedItems(userList)" class="remove-button">Remove Selected</button>
+          </div>
+          <div>
+            <button mat-button (click)="deleteUserList(userList)" class="remove-button">Delete List</button>
+          </div>
         </div>
       </mat-expansion-panel>
     </ng-container>

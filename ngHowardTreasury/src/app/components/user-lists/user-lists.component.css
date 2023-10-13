@@ -65,3 +65,23 @@ h3 {
 p {
   padding-left:16px;
 }
+
+.remove-button {
+  background-color: #9d0101; /* Choose your desired color */
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  /* font-family: var(--contentFontFamily);
+  font-size: var(--headerFontSize); */
+}
+
+.remove-button:hover {
+  background-color: #770000; /* Hover color */
+}
+
+.buttons-container {
+  display:flex;
+}
+

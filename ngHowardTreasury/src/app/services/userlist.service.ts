@@ -78,6 +78,25 @@ export class UserlistService {
     );
   }
 
+  deleteUserList(listId: number): Observable<number> {
+    return this.http.delete<UserList>(`${this.url}/${listId}`, this.getHttpOptions()).pipe(
+      catchError((error: any) => {
+        console.error(error);
+        return throwError(
+          () =>
+            new Error('UserListService.deleteUserList(): error deleting user list ' + error)
+        );
+      }),
+      switchMap(() => {
+        // After deleting the user list, update the user lists subject
+        const currentLists = this.userListsSubject.value;
+        const updatedLists = currentLists.filter(list => list.id !== listId);
+        this.userListsSubject.next(updatedLists);
+        return of(listId); // You can return the ID of the deleted list or null if you prefer.
+      })
+    );
+  }
+
   removeItemsFromUserList(listId: number, itemsToRemove: any): Observable<UserList> {
     return this.http.post<UserList>(`${this.url}/${listId}/removeItems`, itemsToRemove, this.getHttpOptions()).pipe(
       catchError((error: any) => {
