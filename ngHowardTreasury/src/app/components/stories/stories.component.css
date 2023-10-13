@@ -84,11 +84,11 @@
 }
 
 ::ng-deep .mat-mdc-button .mdc-button__label, .mat-mdc-unelevated-button .mdc-button__label, .mat-mdc-raised-button .mdc-button__label, .mat-mdc-outlined-button .mdc-button__label {
-  color: #fff;
+  /* color: #fff; */
 }
 
 .checkbox-text {
-  color:blue;
+  color:#fff;
 }
 
 .search-input-wrapper {

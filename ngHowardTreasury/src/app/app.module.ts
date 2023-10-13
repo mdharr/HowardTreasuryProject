@@ -43,6 +43,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { StoriesTestComponent } from './components/stories-test/stories-test.component';
 import { AddToUserListDialogComponent } from './components/add-to-user-list-dialog/add-to-user-list-dialog.component';
 import { ScrollToTopButtonComponent } from './components/scroll-to-top-button/scroll-to-top-button.component';
+import { CreateUserListDialogComponent } from './components/create-user-list-dialog/create-user-list-dialog.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { ScrollToTopButtonComponent } from './components/scroll-to-top-button/sc
     StoriesTestComponent,
     AddToUserListDialogComponent,
     ScrollToTopButtonComponent,
+    CreateUserListDialogComponent,
   ],
   imports: [
     BrowserModule,

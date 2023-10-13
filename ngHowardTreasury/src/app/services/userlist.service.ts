@@ -37,6 +37,18 @@ export class UserlistService {
     );
   }
 
+  createUserList(userList: UserList): Observable<UserList> {
+    return this.http.post<UserList>(this.url, userList, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+          new Error('UserListService.createUserList(): error creating userlist ' + err)
+        );
+      })
+    );
+  }
+
   removeItemsFromUserList(listId: number, itemsToRemove: any): Observable<UserList> {
     return this.http.post<UserList>(`${this.url}/${listId}/removeItems`, itemsToRemove, this.getHttpOptions()).pipe(
       catchError((error: any) => {

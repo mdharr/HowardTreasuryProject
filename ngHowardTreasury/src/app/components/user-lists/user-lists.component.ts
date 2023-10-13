@@ -30,18 +30,7 @@ export class UserListsComponent implements OnInit, OnDestroy {
   userListService = inject(UserlistService);
 
   ngOnInit(): void {
-
-    this.authSubscription = this.authService.getLoggedInUser().subscribe({
-      next: (user) => {
-        this.loggedInUser = user;
-        console.log(this.loggedInUser);
-      },
-      error: (error) => {
-        console.log('Error getting loggedInUser');
-        console.log(error);
-      },
-    });
-
+    this.subscribeToAuth();
   }
 
   ngOnDestroy(): void {
@@ -53,6 +42,19 @@ export class UserListsComponent implements OnInit, OnDestroy {
       this.authSubscription.unsubscribe();
       console.log('user-lists comp auth sub destroyed');
     }
+  }
+
+  subscribeToAuth = () => {
+    this.authSubscription = this.authService.getLoggedInUser().subscribe({
+      next: (user) => {
+        this.loggedInUser = user;
+        console.log(this.loggedInUser);
+      },
+      error: (error) => {
+        console.log('Error getting loggedInUser');
+        console.log(error);
+      },
+    });
   }
 
   removeSelectedItems(userList: UserList) {
@@ -79,6 +81,19 @@ export class UserListsComponent implements OnInit, OnDestroy {
       error: error => {
         // Handle any errors that occurred during the request (if needed).
         console.error('Error removing items from user list:', error);
+      }
+    });
+  }
+
+  createUserList(userList: UserList) {
+    this.userListService.createUserList(userList).subscribe({
+      next:(data) => {
+        console.log('User list created:', data);
+
+      },
+      error:(fail) => {
+        console.error('Error creating user list:', fail);
+
       }
     });
   }
