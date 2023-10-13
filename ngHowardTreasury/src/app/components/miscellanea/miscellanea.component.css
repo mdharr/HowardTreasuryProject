@@ -25,7 +25,7 @@
   list-style:upper-roman;
 } */
 
-/* Container for the entire poem list */
+/* Container for the entire miscellanea list */
 .miscellanea-list {
   text-align: center;
   margin-top: 50px;
@@ -45,44 +45,73 @@
   font-family: 'Lora', Helvetica, Arial, sans-serif !important;
 }
 
-/* Buttons for sorting */
 .buttons-container {
-  margin-top: 20px;
   display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+  flex-wrap: wrap;
+  background: #202528;
+  border-radius: 9px 9px 0 0;
 }
 
-.sort-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: rgba(255, 255, 255, 0.8);
+.mat-button {
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 5px;
-  margin-right: 10px;
+  padding: 10px 20px;
   cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
 }
 
-.sort-button:hover {
-  background-color:#9e0101;
+.mat-button:hover {
+  background-color: #0056b3;
+}
+
+::ng-deep .mat-mdc-button .mdc-button__label, .mat-mdc-unelevated-button .mdc-button__label, .mat-mdc-raised-button .mdc-button__label, .mat-mdc-outlined-button .mdc-button__label {
+  /* color: #fff; */
+}
+
+.checkbox-text {
   color:#fff;
 }
 
-/* Story list styling */
+.search-input-wrapper {
+  flex-grow: 1;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-right: 10px;
+}
+
+::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
 .miscellanea-items {
   list-style: none;
   padding: 0;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .miscellanea-item {
   font-size: 20px;
   margin: 10px 0;
   padding: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 6px;
-  border: 1px solid #e0e0e0;
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  /* border-radius: 6px; */
+  /* border: 1px solid #e0e0e0; */
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
+  width:100%;
 }
 
 /* Custom sword icon */

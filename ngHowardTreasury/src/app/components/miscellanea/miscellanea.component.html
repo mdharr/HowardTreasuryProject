@@ -19,13 +19,46 @@
   </div>
 </div>
 
-<div class="miscellanea-list">
+<!-- <div class="miscellanea-list">
   <ul class="miscellanea-items">
     <ng-container *ngFor="let miscellanea of miscellaneas">
       <li [routerLink]="['/miscellanea', miscellanea.id]" class="miscellanea-item">
         <span class="sword-icon">🗡️</span>
         <span class="miscellanea-title">{{ miscellanea.title }}</span>
       </li>
+    </ng-container>
+  </ul>
+</div> -->
+
+<div class="miscellanea-list">
+  <div class="buttons-container">
+    <button mat-button class="checkbox-text" [ngClass]="{'active-button': sortTitleActive}" (click)="sortMiscellaneasByTitle()">Title</button>
+    <button mat-button class="checkbox-text" (click)="clearFilters()">Clear</button>
+    <div class="search-input-wrapper">
+      <mat-form-field>
+        <input matInput type="text" [(ngModel)]="searchQuery" placeholder="Search miscellanea..." (input)="filterMiscellaneas()">
+      </mat-form-field>
+    </div>
+  </div>
+  <ul class="miscellanea-items">
+    <ng-container *ngFor="let miscellanea of filteredMiscellaneas">
+      <div style="display:flex; border-bottom: 1px solid;">
+        <li class="miscellanea-item">
+          <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+            <div style="display:flex; gap:15px;">
+              <span class="sword-icon">🗡️</span>
+              <span [routerLink]="['/miscellanea', miscellanea.id]" class="miscellanea-title">{{ miscellanea.title }}</span>
+            </div>
+            <div style="display:flex; justify-content:flex-end;">
+              <span class="add-button">
+                <button mat-button (click)="openUserListDialog(miscellanea)">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+              </span>
+            </div>
+          </div>
+        </li>
+      </div>
     </ng-container>
   </ul>
 </div>
