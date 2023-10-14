@@ -8,7 +8,6 @@ img.alignleft, .wp-caption.alignleft {
 }
 
 .entry-content img, .comment-content img, .widget img, img.header-image, .author-avatar img, img.wp-post-image {
-  border-radius: 3px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -20,7 +19,7 @@ img.alignleft, .wp-caption.alignleft {
 .header {
   text-align: center;
   padding: 30px;
-  background-color: #9e0101;
+  background-color: var(--dark_color);
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -28,17 +27,17 @@ img.alignleft, .wp-caption.alignleft {
 }
 
 .main-title {
-  font-size: 36px;
-  font-weight: bold;
+  font-size: var(--header_font);
+  font-weight: var(--superBold);
   font-family: var(--headerFontFamily);
-  color: #fff;
+  color: var(--title_color);
   margin: 0;
 }
 
 .subheader {
-  font-size: 24px;
+  font-size: var(--subheader_font);
   font-family: var(--contentFontFamily);
-  color: #efe9c5;
+  color: var(--subheader_color);
   margin: 0;
 }
 
@@ -49,13 +48,14 @@ img.alignleft, .wp-caption.alignleft {
 }
 
 .content p {
-  font-size: 20px;
+  font-size: var(--body_font);
   line-height: 1.5;
   text-align: justify;
+  color: var(--body_color);
 }
 
 .content .quote {
-  font-size: 24px;
+  font-size: var(--subheader_color);
   font-family: var(--contentFontFamily);
   font-style: italic;
   margin: 20px 0;
@@ -68,17 +68,18 @@ img.alignleft, .wp-caption.alignleft {
 
 .quote-content {
   padding: 20px;
-  background-color:#9e01011a;
+  background-color: var(--quote_color);
+  color: var(--active_color);
 }
 
 .quote-content p {
-  font-size: 20px;
+  font-size: var(--body_font);
   line-height: 1.5;
   text-align: justify;
 }
 
 .quote-content .quote {
-  font-size: 24px;
+  font-size: var(--subheader_font);
   font-family: var(--contentFontFamily);
   font-style: italic;
   margin: 0;
@@ -112,14 +113,14 @@ img.alignleft, .wp-caption.alignleft {
 }
 
 .title-text {
-  font-size: 20px;
+  font-size: var(--subheader_color);
   font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
   font-weight: 700;
   color: #9e0000;
 }
 
 .welcome-text {
-  color: #9e0101;
+  color: var(--body_color);
 }
 
 .tail-image-wrapper {
@@ -138,8 +139,9 @@ padding-top:30px;
 .excerpt-text:first-child:first-letter {
   float: left;
   margin-right: 5px;
-  font-size: 50px;
-  color: #3D3529;
+  /* font-size: 50px; */
+  font-size: var(--header_font);
+  color: var(--body_color);
   vertical-align: top;
   line-height: 1;
 }
@@ -165,15 +167,21 @@ padding-top:30px;
 }
 
 .mat-mdc-progress-spinner {
-  --mdc-circular-progress-active-indicator-color: #9e0000;
+  --mdc-circular-progress-active-indicator-color: var(--body_color);
+}
+
+.home-image {
+  max-width: 125px;
+  border: 10px solid var(--border_color);
+  border-radius: 0;
 }
 
 .description-title {
   font-family: Libre Baskerville, Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  color: #9e0000;
+  font-weight: var(--superBold);
+  color: var(--body_color);
   text-align: center;
-  border: 4px double #9e0000;
+  border: 4px double var(--border_color);
   width: fit-content;
   padding: 0.3em 0.8em;
   margin:0;
@@ -186,7 +194,7 @@ padding-top:30px;
 }
 
 .b-element {
-  background-color: #9e0000;
+  background-color: var(--body_color);
   display: block;
   flex: 1;
   height: 2px;
@@ -225,7 +233,7 @@ padding-top:30px;
   }
 
   .description-title {
-    font-size: 14px;
+    font-size: var(--caption_font);
   }
 
   .flair-img {
@@ -238,64 +246,27 @@ padding-top:30px;
   }
 
   .main-title {
-    font-size: 24px;
+    font-size: var(--subheader_font);
   }
 
   .quote-content .quote {
-    font-size: 16px;
+    font-size: var(--body_font);
   }
 }
 
 h2 {
   font-family: var(--headerFontFamily);
-  font-size: var(--mainHeaderFontSize);
+  font-size: var(--header_font);
   font-weight: var(--superBold);
 }
 
 p {
   font-family: var(--contentFontFamily);
-  font-size: var(--contentFontSize);
+  font-size: var(--body_font);
 }
 
 span {
   font-family: var(--contentFontFamily);
-  font-size: var(--contentFontSize);
+  font-size: var(--body_font);
 }
-
-/* .divider {
-  position: relative;
-  width: 100%;
-  margin: 4em 0;
-  padding: 0 15px;
-  background-color: #efe9c5;
-}
-
-.divider .line {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #000;
-}
-
-.divider .circle {
-  display: flex;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  background-color: #c13439;
-  border-radius: 50%;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 50%;
-  margin-top: -27px;
-  z-index: 2;
-}
-
-.divider .chevron {
-  font-size: 52px;
-  color: #eaead7;
-} */
 

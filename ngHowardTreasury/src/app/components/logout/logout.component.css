@@ -29,10 +29,10 @@
   padding-left: 8px;
   height: 40px;
   line-height: 28px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--white_color);
   flex:1;
-  background-color: #740101;
-  color: #fff;
+  background-color: var(--red_black);
+  color: var(--title_color);
   width:100%;
   font-family: var(--contentFontFamily);
   font-size: var(--contentFontSize);
