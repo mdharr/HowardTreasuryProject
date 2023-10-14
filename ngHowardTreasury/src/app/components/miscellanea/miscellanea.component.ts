@@ -31,6 +31,7 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
     dialogService = inject(DialogService);
 
     ngOnInit(): void {
+      window.scrollTo(0, 0);
       this.subscribeToSubscriptions();
     }
 

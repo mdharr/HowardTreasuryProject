@@ -13,8 +13,8 @@ import { PoemService } from 'src/app/services/poem.service';
 export class PoemsComponent implements OnInit, OnDestroy {
 
   // properties initialization
-  originalData: Poem[] = [];
   poems: Poem[] = [];
+  originalData: Poem[] = [];
   searchQuery: string = '';
   filteredPoems: Poem[] = [];
 
@@ -31,6 +31,7 @@ export class PoemsComponent implements OnInit, OnDestroy {
   dialogService = inject(DialogService);
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.subscribeToSubscriptions();
 
   }

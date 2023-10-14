@@ -40,6 +40,7 @@ export class CharacterDetailsComponent implements OnInit, OnDestroy {
   private personSubscription: Subscription | undefined;
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     setTimeout(() => {
       this.getRouteParams();
 

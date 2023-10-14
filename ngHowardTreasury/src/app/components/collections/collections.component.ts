@@ -20,6 +20,7 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   collectionService = inject(CollectionService);
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.subscribeToSubscriptions();
 
   }

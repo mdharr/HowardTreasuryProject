@@ -262,3 +262,40 @@ span {
   font-size: var(--contentFontSize);
 }
 
+/* .divider {
+  position: relative;
+  width: 100%;
+  margin: 4em 0;
+  padding: 0 15px;
+  background-color: #efe9c5;
+}
+
+.divider .line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+}
+
+.divider .circle {
+  display: flex;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background-color: #c13439;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50%;
+  margin-top: -27px;
+  z-index: 2;
+}
+
+.divider .chevron {
+  font-size: 52px;
+  color: #eaead7;
+} */
+

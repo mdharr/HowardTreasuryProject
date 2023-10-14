@@ -22,8 +22,8 @@
   </div>
 
   <div class="story-list-wrapper">
-    <h3 class="list-header" *ngIf="loggedIn()">Add stories to your own collections!</h3>
-    <h3 class="list-header" *ngIf="!loggedIn()">Log in to add stories to your own collections!</h3>
+    <h3 class="list-header" *ngIf="loggedIn()"> Add stories to your<span class="standout-text" [routerLink]="['/profile']"> own collections</span>!</h3>
+    <h3 class="list-header" *ngIf="!loggedIn()"> <span class="standout-text" (click)="openLoginDialog()">Log in</span> to add stories to your own collections!</h3>
     <div class="story-list">
       <div class="buttons-container">
         <div class="buttons">

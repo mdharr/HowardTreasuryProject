@@ -14,19 +14,19 @@
         <mat-expansion-panel-header>
           {{ userList.name }}
         </mat-expansion-panel-header>
-        <div>
+        <div class="category-wrapper">
           <h3>Stories</h3>
           <mat-selection-list *ngIf="userList.stories.length">
             <mat-list-option class="list-options" [disableRipple]="true"
               *ngFor="let story of userList.stories"
               [value]="story"
             >
-              <span [routerLink]="['/stories', story.id]">{{ story.title }}</span>
+              <span class="content-titles" [routerLink]="['/stories', story.id]">{{ story.title }}</span>
               <mat-checkbox [(ngModel)]="story.selected"></mat-checkbox>
             </mat-list-option>
           </mat-selection-list>
-          <div *ngIf="!userList.stories.length" class="no-items-wrapper">
-            <p class="no-items-text" [routerLink]="['/stories']">No stories on list</p>
+          <div class="no-items-wrapper">
+            <p class="no-items-text" [routerLink]="['/stories']">Add stories to your list</p>
             <span class="add-button">
               <button mat-button [routerLink]="['/stories']">
                 <mat-icon>add</mat-icon>
@@ -34,43 +34,43 @@
             </span>
           </div>
         </div>
-        <hr>
-        <div>
+        <!-- <hr> -->
+        <div class="category-wrapper">
           <h3>Poems</h3>
           <mat-selection-list *ngIf="userList.poems.length">
             <mat-list-option [disableRipple]="true"
               *ngFor="let poem of userList.poems"
               [value]="poem"
             >
-              <span [routerLink]="['/poems', poem.id]">{{ poem.title }}</span>
+              <span class="content-titles" [routerLink]="['/poems', poem.id]">{{ poem.title }}</span>
               <mat-checkbox [(ngModel)]="poem.selected"></mat-checkbox>
             </mat-list-option>
           </mat-selection-list>
-          <div *ngIf="!userList.poems.length" class="no-items-wrapper">
-            <p class="no-items-text" [routerLink]="['/poems']">No poems on list</p>
+          <div class="no-items-wrapper">
+            <p class="no-items-text" [routerLink]="['/poems']">Add poems to your list</p>
             <span class="add-button">
-              <button mat-button [routerLink]="['/stories']">
+              <button mat-button [routerLink]="['/poems']">
                 <mat-icon>add</mat-icon>
               </button>
             </span>
           </div>
         </div>
-        <hr>
-        <div>
+        <!-- <hr> -->
+        <div class="category-wrapper">
           <h3>Miscellanea</h3>
           <mat-selection-list *ngIf="userList.miscellaneas.length">
             <mat-list-option [disableRipple]="true"
               *ngFor="let miscellanea of userList.miscellaneas"
               [value]="miscellanea"
             >
-              <span [routerLink]="['/miscellanea', miscellanea.id]">{{ miscellanea.title }}</span>
+              <span class="content-titles" [routerLink]="['/miscellanea', miscellanea.id]">{{ miscellanea.title }}</span>
               <mat-checkbox [(ngModel)]="miscellanea.selected"></mat-checkbox>
             </mat-list-option>
           </mat-selection-list>
-          <div *ngIf="!userList.miscellaneas.length" class="no-items-wrapper">
-            <p class="no-items-text" [routerLink]="['/miscellanea']">No miscellanea on list</p>
+          <div class="no-items-wrapper">
+            <p class="no-items-text" [routerLink]="['/miscellanea']">Add miscellanea to your list</p>
             <span class="add-button">
-              <button mat-button [routerLink]="['/stories']">
+              <button mat-button [routerLink]="['/miscellanea']">
                 <mat-icon>add</mat-icon>
               </button>
             </span>

@@ -6,19 +6,43 @@
 :root {
   --centerOffset: 0px;
 
-  --mainHeaderFontSize: 24px;
-
+  /* font families */
   --headerFontFamily: 'Libre Baskerville', Helvetica, Arial, sans-serif;
-  --headerFontSize: 18px;
-
   --contentFontFamily: 'Lora', serif;
-  --contentFontSize: 15.6px;
-
   --crimsonText: "Crimson Text", Georgia, serif;
-
   --metamorphoseText: Metamorphous, "Comic Sans MS", cursive, sans-serif;
 
+  /* font weights */
   --superBold: bolder;
+
+  /* font sizes */
+  --mainHeaderFontSize: 24px;
+  --headerFontSize: 18px;
+  --contentFontSize: 15.6px;
+
+  /* new font sizes */
+  --body_font: 1.1rem;
+  --header_font: 2.5rem;
+  --subheader_font: 1.5rem;
+  --caption_font: 0.8rem;
+
+
+  /* font size percentages */
+  --smallest: 90%;
+  --small: 100%;
+  --medium: 120%;
+  --large: 150%;
+
+
+  /* colors */
+  --bkg_color: #c13438;
+  --dark_color: #262626;
+  --header_color: #230f2b;
+  --subheader_color: #eaead7;
+  --body_color: #fff;
+  --inactivelink_color: #777777;
+  --border_color: #e0e0e0;
+  --quote_color: #9e01011a;
 }
 
 html, body { height: 100%; }
@@ -28,3 +52,13 @@ body {
   background-color: #efe9c5;
 }
 
+/* media query breakpoints */
+
+/* 768px min-width */
+/* 110% */
+
+/* 1024px min-width */
+/* 120% */
+
+/* 1200px min-width */
+/* 130% */

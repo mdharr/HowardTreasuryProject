@@ -28,6 +28,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
 
+      window.scrollTo(0, 0);
+
       this.authSubscription = this.authService.getLoggedInUser().subscribe({
         next: (user) => {
           this.loggedInUser = user;

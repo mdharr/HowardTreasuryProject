@@ -32,6 +32,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
   personService = inject(PersonService);
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.subscribeToSubscriptions();
 
   }

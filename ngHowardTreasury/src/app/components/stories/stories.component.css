@@ -49,14 +49,9 @@
 .story-list {
   text-align: center;
   margin-top: 25px;
-  /* padding-left:60px;
-  padding-right:60px; */
-  /* background-image: url('https://clipart-library.com/images/kiMK4KqLT.gif');
-  background-repeat: repeat-y; */
   font-family: 'Lora', Helvetica, Arial, sans-serif !important;
-  border: 1px solid;
   border-radius: 10px 10px 0 0;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 /* Title styling */
@@ -83,11 +78,12 @@
   flex-wrap: wrap;
   background: #9d0101;
   border-radius: 9px 9px 0 0;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 
 .buttons {
   display:flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width:100%;
 }
 
@@ -135,12 +131,14 @@ mat-form-field {
 
 .story-box {
   display:flex;
-  border-left: 1px solid;
-  border-right: 1px solid;
-  border-bottom: 1px solid;
-  border-top: 1px solid;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   margin-top: 15px;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.story-box:hover {
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; */
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .story-item {
@@ -281,7 +279,7 @@ mat-form-field {
 .search-container {
   display: flex;
   align-items: center;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px 1px, rgba(0, 0, 0, 0.24) 0px 1px 2px 1px;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
   border-radius: 4px 4px;
   width:100%;
 }
@@ -340,6 +338,15 @@ mat-form-field {
 .tail-image {
   width:30%;
   height:auto;
+}
+
+.standout-text {
+  color: #c13439;
+}
+.standout-text:hover {
+  color: #97272a;
+  text-decoration:underline;
+  cursor: pointer;
 }
 
 @keyframes fadeIn {

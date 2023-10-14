@@ -74,6 +74,10 @@ export class StoriesComponent implements OnInit, OnDestroy {
     return this.authService.checkLogin();
   }
 
+  openLoginDialog() {
+    this.dialogService.openLoginDialog();
+  }
+
   ngOnDestroy(): void {
     if (this.storySubscription) {
       this.storySubscription.unsubscribe();

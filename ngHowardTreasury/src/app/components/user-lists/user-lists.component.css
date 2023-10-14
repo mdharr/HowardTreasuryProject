@@ -32,6 +32,10 @@
   padding: 25px;
 }
 
+.category-wrapper {
+  padding: 25px 0;
+}
+
 ::ng-deep .mat-mdc-list-option.mat-accent .mdc-list-item__end {
   --mdc-checkbox-selected-icon-color: #9d0101 !important;
 }
@@ -55,6 +59,10 @@ mat-expansion-panel-header {
 ::ng-deep .mat-content {
   font-family: var(--headerFontFamily);
   font-size: var(--contentFontSize);
+}
+
+::ng-deep .mat-mdc-checkbox {
+  padding-right: 16px;
 }
 
 h3 {
@@ -110,20 +118,28 @@ p {
 }
 
 .mdc-list-item.mdc-list-item--with-one-line {
-  border: solid;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   margin-bottom:5px;
+  font-family: var(--contentFontFamily);
+}
+
+.content-titles {
+  font-family: var(--contentFontFamily);
+  font-size: 1.1rem;
 }
 
 .no-items-wrapper {
   display:flex;
   justify-content: space-between;
   height:48px;
-  border:solid;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   align-items: center;
 }
 
 .no-items-text {
   margin:0;
+  font-family: var(--contentFontFamily);
+  font-size: 1.1rem;
 }
 
 @media screen and (max-width: 600px) {

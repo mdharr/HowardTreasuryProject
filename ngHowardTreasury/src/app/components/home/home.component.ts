@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   authService = inject(AuthService);
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     setTimeout(() => {
       this.isLoaded = true;
     }, 250);

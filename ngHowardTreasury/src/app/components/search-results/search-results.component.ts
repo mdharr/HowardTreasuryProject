@@ -23,6 +23,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   searchResultsService = inject(SearchResultsService);
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.subscribeToSearchResults();
   }
 
