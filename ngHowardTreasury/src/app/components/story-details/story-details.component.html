@@ -5,7 +5,7 @@
 </div>
 <div *ngIf="isLoaded">
   <div class="title-container">
-    <h1 class="story-title">{{ story.title }}</h1>
+    <h1 class="story-title"><span class="story-title-text">{{ story.title }}</span></h1>
     <p *ngIf="story.description" class="description-text">{{ story.description }}</p>
   </div>
 
@@ -26,9 +26,9 @@
       <div style="justify-content:flex-start; margin:20px;" *ngIf="!story.excerpt">
         <p class="">Excerpt not yet available.</p><span class="read-online-box" *ngIf="story.textUrl"><a class="story-text-link" href="{{ story.textUrl }}" target="_blank">Continue reading</a></span>
       </div>
-      <div class="tail-image-wrapper">
+      <!-- <div class="tail-image-wrapper">
         <img class="tail-image" src="http://gutenberg.net.au/ebooks06/0600761h-images/JewelsOfGwahlur-2.gif" alt="">
-      </div>
+      </div> -->
     </div>
 
     <div class="description-container" *ngIf="story.storyImages.length">
@@ -85,6 +85,9 @@
             </ul>
           </div>
         </div>
+        <div class="tail-image-wrapper">
+          <img class="tail-image" src="http://gutenberg.net.au/ebooks06/0600761h-images/JewelsOfGwahlur-2.gif" alt="">
+        </div>
       </div>
 
     </div>
@@ -129,38 +132,12 @@
 
 </div>
 
-<!-- <div class="lightbox" *ngIf="showLightbox">
-  <div class="lightbox-content">
-    <img src="{{ selectedImage.imageUrl }}" class="lightbox-image" (click)="onLightboxImageClick($event)">
-    <div class="lightbox-controls">
-      <div class="control download-icon" (click)="downloadImage(selectedImage)">&#8681;</div>
-      <div class="control close-icon" (click)="closeLightbox()">&#10006;</div>
-    </div>
-    <div class="lightbox-image-count">{{ currentIndex + 1 }} of {{ storyImages.length }}</div>
-  </div>
-  <div class="lightbox-thumbnails">
-    <div class="thumbnails-container" [style.transform]="'translateX(' + getThumbnailTransform() + 'px)'">
-      <ng-container *ngFor="let storyImage of storyImages; let i = index">
-        <div class="thumbnail-text">{{ i + 1 }}</div>
-        <div
-          class="thumbnail"
-          [class.selected]="i === selectedThumbnailIndex"
-          (click)="selectImage(i)"
-        >
-          <img src="{{ storyImage.imageUrl }}" class="thumbnail-image">
-        </div>
-      </ng-container>
-    </div>
-  </div>
-</div> -->
-
 <div class="lightbox" *ngIf="showLightbox">
   <div class="lightbox-content">
     <div class="lightbox-image-container">
       <img src="{{ selectedImage.imageUrl }}" class="lightbox-image" (click)="onLightboxImageClick($event)">
     </div>
     <div class="lightbox-controls" (click)="$event.stopPropagation()">
-      <div class="control download-icon" (click)="downloadImage(selectedImage)">&#8681;</div>
       <div class="control close-icon" (click)="closeLightbox()">&#10006;</div>
     </div>
     <div class="lightbox-image-count">{{ currentIndex + 1 }} of {{ storyImages.length }}</div>

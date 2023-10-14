@@ -129,6 +129,7 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
       this.toggleMenu();
     }
   }
+
   performSearchNoMenu() {
     if (this.searchQuery) {
       this.searchService.search(this.searchQuery).subscribe((results) => {

@@ -27,6 +27,11 @@
           </mat-selection-list>
           <div *ngIf="!userList.stories.length" class="no-items-wrapper">
             <p class="no-items-text" [routerLink]="['/stories']">No stories on list</p>
+            <span class="add-button">
+              <button mat-button [routerLink]="['/stories']">
+                <mat-icon>add</mat-icon>
+              </button>
+            </span>
           </div>
         </div>
         <hr>
@@ -43,6 +48,11 @@
           </mat-selection-list>
           <div *ngIf="!userList.poems.length" class="no-items-wrapper">
             <p class="no-items-text" [routerLink]="['/poems']">No poems on list</p>
+            <span class="add-button">
+              <button mat-button [routerLink]="['/stories']">
+                <mat-icon>add</mat-icon>
+              </button>
+            </span>
           </div>
         </div>
         <hr>
@@ -59,6 +69,11 @@
           </mat-selection-list>
           <div *ngIf="!userList.miscellaneas.length" class="no-items-wrapper">
             <p class="no-items-text" [routerLink]="['/miscellanea']">No miscellanea on list</p>
+            <span class="add-button">
+              <button mat-button [routerLink]="['/stories']">
+                <mat-icon>add</mat-icon>
+              </button>
+            </span>
           </div>
         </div>
         <div class="buttons-container">

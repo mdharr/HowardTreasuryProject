@@ -37,3 +37,9 @@ button[color="primary"] {
 button[color="primary"]:hover {
   background-color: #750000;
 }
+
+.dialog-wrapper {
+  max-height: 300px;
+  min-height: 200px;
+  overflow-y: scroll;
+}

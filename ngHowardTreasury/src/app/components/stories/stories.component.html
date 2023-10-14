@@ -9,46 +9,73 @@
     </div>
   </div>
 </div> -->
-<div class="header-wrapper">
-  <div class="header">
-    <h1 class="main-title">Stories</h1>
-    <p class="subheader">Thrilling adventures filled with vivid characters and exotic settings</p>
-  </div>
-</div>
-
-<div class="story-list">
-  <div class="buttons-container">
-    <button mat-button class="checkbox-text" [ngClass]="{'active-button': sortTitleActive}" (click)="sortStoriesByTitle()">Title</button>
-    <button mat-button class="checkbox-text" [ngClass]="{'active-button': sortFirstPublishedActive}" (click)="sortStoriesByFirstPublished()">Published</button>
-    <button mat-button class="checkbox-text" [ngClass]="{'active-button': filterCopyrightedActive}" (click)="filterByCopyrighted()">Copyrighted</button>
-    <button mat-button class="checkbox-text" (click)="clearFilters()">Clear</button>
-    <div class="search-input-wrapper">
-      <mat-form-field>
-        <input matInput type="text" [(ngModel)]="searchQuery" placeholder="Search stories..." (input)="filterStories()">
-      </mat-form-field>
+<div class="body-wrapper">
+  <div class="header-wrapper">
+    <div class="header">
+      <h1 class="main-title">Stories</h1>
+      <p class="subheader">Thrilling adventures filled with vivid characters and exotic settings</p>
+      <p class="header-description">Robert E. Howard's short stories are a mesmerizing journey into the realms of pulp fiction and sword-and-sorcery literature. With a pen as mighty as the broadswords wielded by his iconic characters, Howard transported readers to distant, primordial worlds where barbaric heroes like Conan the Cimmerian and Solomon Kane battled against otherworldly forces and ancient evils. Howard's prose is infused with a vivid, almost visceral intensity that immerses readers in action-packed adventures, and his ability to craft atmospheres of untamed wilderness, dark sorcery, and relentless combat is unparalleled. His stories explore themes of courage, honor, and the struggle between civilization and savagery, making them enduring classics in the fantasy and adventure genres. In each tale, Howard's mastery of storytelling and his larger-than-life characters continue to captivate and inspire generations of readers.</p>
+    </div>
+    <div class="tail-image-wrapper">
+      <img class="tail-image" src="http://gutenberg.net.au/ebooks06/0600761h-images/JewelsOfGwahlur-2.gif" alt="">
     </div>
   </div>
-  <ul class="story-items">
-    <ng-container *ngFor="let story of filteredStories">
-      <div style="display:flex; border-bottom: 1px solid;">
-        <li class="story-item">
-          <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
-            <div style="display:flex; gap:15px;">
-              <span class="sword-icon">🗡️</span>
-              <span [routerLink]="['/stories', story.id]" class="story-title">{{ story.title }}</span>
-            </div>
-            <div style="display:flex; justify-content:flex-end;">
-              <span class="add-button">
-                <button mat-button (click)="openUserListDialog(story)">
-                  <mat-icon>more_vert</mat-icon>
-                </button>
-              </span>
-            </div>
-          </div>
-        </li>
+
+  <div class="story-list-wrapper">
+    <h3 class="list-header" *ngIf="loggedIn()">Add stories to your own collections!</h3>
+    <h3 class="list-header" *ngIf="!loggedIn()">Log in to add stories to your own collections!</h3>
+    <div class="story-list">
+      <div class="buttons-container">
+        <div class="buttons">
+          <button mat-button class="checkbox-text" [ngClass]="{'active-button': sortTitleActive}" (click)="sortStoriesByTitle()">Title</button>
+          <button mat-button class="checkbox-text" [ngClass]="{'active-button': sortFirstPublishedActive}" (click)="sortStoriesByFirstPublished()">Published</button>
+          <button mat-button class="checkbox-text" [ngClass]="{'active-button': filterCopyrightedActive}" (click)="filterByCopyrighted()">Copyrighted</button>
+          <button mat-button class="checkbox-text" (click)="clearFilters()">Clear</button>
+        </div>
+        <!-- <div class="search-input-wrapper">
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="searchQuery" placeholder="Search stories..." (input)="filterStories()">
+          </mat-form-field>
+        </div> -->
+        <div class="search-container">
+          <input class="search-input-field" [(ngModel)]="searchQuery" (input)="filterStories()" (keyup.enter)="performSearch()" placeholder="Search ...">
+          <button class="search-button" (click)="performSearch()"><mat-icon class="search-icon">search</mat-icon></button>
+        </div>
       </div>
-    </ng-container>
-  </ul>
+      <div class="list-box">
+        <ul class="story-items">
+          <ng-container *ngFor="let story of filteredStories" class="cascade-animation" [style.animation-delay.ms]="cascadeDelay">
+            <div class="story-box">
+              <li class="story-item">
+                <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                  <div style="display:flex; gap:15px;">
+                    <span class="sword-icon">🗡️</span>
+                    <span [routerLink]="['/stories', story.id]" class="story-title">{{ story.title }}</span>
+                  </div>
+                  <div style="display:flex; justify-content:flex-end;" *ngIf="loggedIn()">
+                    <span class="add-button">
+                      <button mat-button (click)="openUserListDialog(story)">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </li>
+            </div>
+          </ng-container>
+          <li *ngIf="noMatches && filteredStories.length === 0" class="story-item">
+            <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+              <div style="display:flex; gap:15px;">
+                <span class="sword-icon">🗡️</span>
+                <span>No matches found.</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 

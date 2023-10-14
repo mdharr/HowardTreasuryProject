@@ -14,6 +14,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   // booleans
   isLoaded: boolean = false;
+  hasResults: boolean = true;
 
   // subscription declarations
   private searchSubscription: Subscription | undefined;
@@ -32,10 +33,15 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   subscribeToSearchResults = () => {
     // Subscribe to the searchResults$ observable to get updated results
     this.searchSubscription = this.searchResultsService.searchResults$.subscribe((results) => {
-      this.searchResults = results;
-      this.searchResultsCount = 0;
-      for(let i = 0; i < results.length; i++) {
-        this.searchResultsCount++;
+      if(results != null) {
+        this.searchResults = results;
+        this.searchResultsCount = 0;
+        for(let i = 0; i < results.length; i++) {
+          this.searchResultsCount++;
+        }
+      }
+      else {
+        this.hasResults = false;
       }
       setTimeout(() => {
         this.isLoaded = true;

@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div class="results-wrapper">
+  <div class="results-wrapper" *ngIf="hasResults">
     <p class="results-count">{{ searchResultsCount > 1 ? 'About ' + searchResultsCount + ' results' : searchResultsCount === 1 ? searchResultsCount + ' result' : searchResultsCount + ' results match your query.' }}</p>
     <ng-container *ngFor="let result of searchResults; let lastIndex = last">
       <h2 class="type-header">{{ result.type === 'Person' ? 'Character' : result.type }}</h2>
@@ -48,6 +48,9 @@
       <!-- You can add more conditional blocks for other types -->
       <hr *ngIf="!lastIndex">
     </ng-container>
+  </div>
+  <div *ngIf="!hasResults">
+    <p>No results match your search query.</p>
   </div>
   <div class="placeholder-container">
 

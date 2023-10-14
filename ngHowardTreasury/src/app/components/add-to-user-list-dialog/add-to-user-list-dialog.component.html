@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Add to User List</h2>
 
-<mat-dialog-content>
+<mat-dialog-content class="dialog-wrapper">
   <div *ngFor="let userList of loggedInUser.userLists">
     <mat-checkbox
       [(ngModel)]="userList.selected"

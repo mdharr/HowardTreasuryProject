@@ -4,6 +4,10 @@ import { Subscription } from 'rxjs';
 import { Story } from 'src/app/models/story';
 import { AuthService } from 'src/app/services/auth.service';
 import { StoryService } from 'src/app/services/story.service';
+import { User } from 'src/app/models/user';
+import { SearchService } from 'src/app/services/search.service';
+import { SearchResultsService } from 'src/app/services/search-results.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-stories',
@@ -13,27 +17,46 @@ import { StoryService } from 'src/app/services/story.service';
 export class StoriesComponent implements OnInit, OnDestroy {
 
   // properties initialization
+  loggedInUser: User = new User();
   originalData: Story[] = [];
   stories: Story[] = [];
   searchQuery: string = '';
   filteredStories: Story[] = [];
+  cascadeDelay: number = 0;
+
 
   // booleans
   loading: boolean = false;
   sortTitleActive: boolean = false;
   sortFirstPublishedActive: boolean = false;
   filterCopyrightedActive: boolean = false;
+  noMatches: boolean = false;
 
   // subscriptions declarations
   private storySubscription: Subscription | undefined;
+  private authSubscription: Subscription | undefined;
 
   // service injections
-  auth = inject(AuthService);
+  router = inject(Router);
+  authService = inject(AuthService);
   storyService = inject(StoryService);
   dialogService = inject(DialogService);
+  searchService = inject(SearchService);
+  searchResultsService = inject(SearchResultsService);
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
+    this.subscribeToAuthService();
+    this.subscribeToStoryService();
+  }
 
+  subscribeToAuthService = () => {
+    this.authSubscription = this.authService.getLoggedInUser().subscribe((user: User) => {
+      this.loggedInUser = user;
+    });
+  }
+
+  subscribeToStoryService = () => {
     this.storySubscription = this.storyService.indexAll().subscribe({
       next: (data) => {
         this.stories = data;
@@ -47,9 +70,16 @@ export class StoriesComponent implements OnInit, OnDestroy {
     });
   }
 
+  loggedIn(): boolean {
+    return this.authService.checkLogin();
+  }
+
   ngOnDestroy(): void {
     if (this.storySubscription) {
       this.storySubscription.unsubscribe();
+    }
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
     }
   }
 
@@ -72,6 +102,9 @@ export class StoriesComponent implements OnInit, OnDestroy {
 
 
   filterStories(): void {
+    this.noMatches = false;
+    console.log(this.noMatches);
+
     if (this.searchQuery.trim() === '') {
       // If the search query is empty, reset to the current filtered data
       this.filteredStories = [...this.originalData];
@@ -84,6 +117,9 @@ export class StoriesComponent implements OnInit, OnDestroy {
       this.filteredStories = this.originalData.filter(story =>
         story.title.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
+      if (this.filteredStories.length === 0) {
+        this.noMatches = true;
+      }
       // Reapply filters if active
       if (this.filterCopyrightedActive) {
         this.filteredStories = this.filteredStories.filter(story => !story.isCopyrighted);
@@ -99,6 +135,20 @@ export class StoriesComponent implements OnInit, OnDestroy {
     this.sortTitleActive = false;
     this.sortFirstPublishedActive = false;
     this.filterCopyrightedActive = false;
+    this.noMatches = false;
+  }
+
+  performSearch() {
+    if (this.searchQuery) {
+      this.searchService.search(this.searchQuery).subscribe((results) => {
+        console.log('Search results from service:', results);
+        // Update the search results in the shared service
+        this.searchResultsService.updateSearchResults(results);
+        this.router.navigate(['/search-results']);
+
+        // this.searchQuery = '';
+      });
+    }
   }
 
   openUserListDialog(story: any) {

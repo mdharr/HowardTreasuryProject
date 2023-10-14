@@ -33,14 +33,30 @@
 } */
 
 /* Container for the entire story list */
+
+.body-wrapper {
+  display: flex;
+  padding-top: 30px;
+}
+
+.story-list-wrapper {
+  padding: 0 15px;
+  min-height: 52vh;
+  padding-bottom: 10vh;
+  width: 50%;
+}
+
 .story-list {
   text-align: center;
-  margin-top: 50px;
-  padding-left:60px;
-  padding-right:60px;
+  margin-top: 25px;
+  /* padding-left:60px;
+  padding-right:60px; */
   /* background-image: url('https://clipart-library.com/images/kiMK4KqLT.gif');
   background-repeat: repeat-y; */
   font-family: 'Lora', Helvetica, Arial, sans-serif !important;
+  border: 1px solid;
+  border-radius: 10px 10px 0 0;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 /* Title styling */
@@ -61,11 +77,18 @@
 .buttons-container {
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 10px;
   padding: 10px;
   flex-wrap: wrap;
-  background: #202528;
+  background: #9d0101;
   border-radius: 9px 9px 0 0;
+}
+
+.buttons {
+  display:flex;
+  justify-content: space-evenly;
+  width:100%;
 }
 
 .mat-button {
@@ -108,10 +131,16 @@ mat-form-field {
 .story-items {
   list-style: none;
   padding: 0;
+}
+
+.story-box {
+  display:flex;
   border-left: 1px solid;
   border-right: 1px solid;
   border-bottom: 1px solid;
+  border-top: 1px solid;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  margin-top: 15px;
 }
 
 .story-item {
@@ -126,6 +155,12 @@ mat-form-field {
   justify-content: flex-start;
   gap: 10px;
   width:100%;
+}
+
+.list-box {
+  padding: 0 25px;
+  overflow-y: scroll;
+  height: 60vh;
 }
 
 /* Custom sword icon */
@@ -200,33 +235,158 @@ mat-form-field {
   box-shadow:rgba(158, 1, 1, 1);
 }
 
+.header-wrapper {
+  width:50%;
+}
+
 .header {
   text-align: center;
     padding: 30px;
-    background-color: #9e0101;
+    /* background-color: #9e0101; */
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.header-wrapper {
-  padding: 50px;
-  padding-bottom: 0;
+.header-description {
+  font-family: var(--contentFontFamily);
+  text-align: justify;
+  text-indent: 3rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
 }
 
 .main-title {
   font-size: 36px;
     font-weight: bold;
     font-family: var(--headerFontFamily);
-    color: #fff;
+    color: #9e0101;
     margin: 0;
 }
 
 .subheader {
-  font-size: 24px;
+  font-size: 20px;
   font-family: var(--contentFontFamily);
-  color: #efe9c5;
+  /* color: #efe9c5; */
   margin: 0;
+  line-height: 1.2;
+}
+
+.list-header {
+  text-align: center;
+  font-family:var(--headerFontFamily);
+}
+
+/* Styles for the search container */
+.search-container {
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px 1px, rgba(0, 0, 0, 0.24) 0px 1px 2px 1px;
+  border-radius: 4px 4px;
+  width:100%;
+}
+
+/* Styles for the search input field */
+.search-input-field {
+  flex-grow: 1;
+  padding: 10px;
+  border: 2px solid #e0e0e0;
+  border-radius: 4px 0px 0px 4px;
+  height: 40px;
+  outline: none;
+  background-color: #f5f5f5;
+  color: #333;
+  transition: background-color 0.3s ease;
+  font-family: var(--contentFontFamily);
+  font-size: var(--contentFontSize);
+  font-weight: var(--superBold);
+}
+
+/* Darken the input field background on hover */
+.search-input-field:hover {
+  background-color: #e0e0e0; /* Adjust the desired hover background color */
+}
+
+/* Styles for the search button */
+.search-button {
+  background-color: #9e0101; /* Change this to your desired button color */
+  color: #fff;
+  border: none;
+  border-radius: 0px 4px 4px 0px;
+  height: 40px;
+  padding: 8px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Add box shadow to the search button on hover */
+.search-button:hover {
+  /* background-color: #0056b3; */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Adjust the box shadow as needed */
+}
+
+.cascade-animation {
+  animation: fadeIn 0.5s ease forwards;
+  opacity: 0;
+}
+
+.tail-image-wrapper {
+  display:flex;
+  justify-content: center;
+  width:100%;
+  padding: 10px;
+}
+
+.tail-image {
+  width:30%;
+  height:auto;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width:1087px) {
+  .body-wrapper {
+    flex-direction: column;
+  }
+  .header-wrapper {
+    width:100%;
+  }
+  .story-list-wrapper {
+    width: 100%;
+  }
+  .header-description {
+    text-indent:0;
+  }
+}
+
+@media screen and (max-width: 765px) {
+  .buttons {
+    display: flex;
+    width:100%;
+    justify-content: space-between;
+  }
+  .search-container {
+    width: 100%;
+  }
+  .story-list-wrapper {
+    padding: 0;
+  }
+  .header-wrapper {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .header {
+    padding:0;
+  }
 }
 
 @media screen and (max-width: 624px) {
@@ -254,11 +414,6 @@ mat-form-field {
 
   .description-title {
     font-size: 14px;
-  }
-
-  .header-wrapper {
-    padding-left: 0;
-    padding-right: 0;
   }
 
   .main-title {
