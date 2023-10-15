@@ -13,7 +13,7 @@
   <div class="header-wrapper">
     <div class="header">
       <h1 class="main-title">Stories</h1>
-      <p class="subheader">Thrilling adventures filled with vivid characters and exotic settings</p>
+      <p class="subheader">Thrilling tales of adventure filled with vivid characters and exotic settings</p>
       <p class="header-description">Robert E. Howard's short stories are a mesmerizing journey into the realms of pulp fiction and sword-and-sorcery literature. With a pen as mighty as the broadswords wielded by his iconic characters, Howard transported readers to distant, primordial worlds where barbaric heroes like Conan the Cimmerian and Solomon Kane battled against otherworldly forces and ancient evils. Howard's prose is infused with a vivid, almost visceral intensity that immerses readers in action-packed adventures, and his ability to craft atmospheres of untamed wilderness, dark sorcery, and relentless combat is unparalleled. His stories explore themes of courage, honor, and the struggle between civilization and savagery, making them enduring classics in the fantasy and adventure genres. In each tale, Howard's mastery of storytelling and his larger-than-life characters continue to captivate and inspire generations of readers.</p>
     </div>
     <div class="tail-image-wrapper">
@@ -22,8 +22,8 @@
   </div>
 
   <div class="story-list-wrapper">
-    <h3 class="list-header" *ngIf="loggedIn()"> Add stories to your<span class="standout-text" [routerLink]="['/profile']"> own collections</span>!</h3>
-    <h3 class="list-header" *ngIf="!loggedIn()"> <span class="standout-text" (click)="openLoginDialog()">Log in</span> to add stories to your own collections!</h3>
+    <!-- <h3 class="list-header" *ngIf="loggedIn()"> Add stories to your<span class="standout-text" [routerLink]="['/profile']"> own collections</span>!</h3>
+    <h3 class="list-header" *ngIf="!loggedIn()"> <span class="standout-text" (click)="openLoginDialog()">Log in</span> to add stories to your own collections!</h3> -->
     <div class="story-list">
       <div class="buttons-container">
         <div class="buttons">
@@ -76,6 +76,8 @@
         </ul>
       </div>
     </div>
+    <h3 class="list-header" *ngIf="loggedIn()"> Add stories to your<span class="standout-text" [routerLink]="['/profile']"> own collections</span>!</h3>
+    <h3 class="list-header" *ngIf="!loggedIn()"> <span class="standout-text" (click)="openLoginDialog()">Log in</span> to add stories to your own collections!</h3>
   </div>
 
 </div>

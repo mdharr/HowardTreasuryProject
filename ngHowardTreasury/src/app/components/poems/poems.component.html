@@ -1,7 +1,7 @@
 <!-- <div class="title-box">
   <div class="description-title-box" *ngIf="!loading">
     <div class="description-title-wrapper">
-      <h2 class="description-title">Poems</h2>
+      <h2 class="description-title">Stories</h2>
     </div>
     <b class="b-element"></b>
     <div class="flair-wrapper">
@@ -9,56 +9,77 @@
     </div>
   </div>
 </div> -->
-
-<div class="header-wrapper">
-  <div class="header">
-    <h1 class="main-title">Poems</h1>
-    <p class="subheader">
-      A potent blend of heroic and fantastical themes
-    </p>
-  </div>
-</div>
-
-<!-- <div class="poem-list">
-  <ul class="poem-items">
-    <ng-container *ngFor="let poem of poems">
-      <li [routerLink]="['/poems', poem.id]" class="poem-item">
-        <span class="sword-icon">🗡️</span>
-        <span class="poem-title">{{ poem.title }}</span>
-      </li>
-    </ng-container>
-  </ul>
-</div> -->
-
-<div class="poem-list">
-  <div class="buttons-container">
-    <button mat-button class="checkbox-text" [ngClass]="{'active-button': sortTitleActive}" (click)="sortPoemsByTitle()">Title</button>
-    <button mat-button class="checkbox-text" (click)="clearFilters()">Clear</button>
-    <div class="search-input-wrapper">
-      <mat-form-field>
-        <input matInput type="text" [(ngModel)]="searchQuery" placeholder="Search poems..." (input)="filterPoems()">
-      </mat-form-field>
+<div class="body-wrapper">
+  <div class="header-wrapper">
+    <div class="header">
+      <h1 class="main-title">Poems</h1>
+      <p class="subheader">A fusion of vivid emotion and dynamic storytelling in verse</p>
+      <p class="header-description">Robert E. Howard's poetry is a lesser-known yet equally compelling facet of his creative talents. With a pen that transitioned seamlessly from prose to verse, Howard's poetry delves into themes of romance, adventure, and the supernatural, often drawing inspiration from the same mythic and prehistoric landscapes that grace his famous short stories. His poems are imbued with a lyrical quality, vivid imagery, and a raw, emotional intensity that evoke a sense of timeless wonder. Whether it's the haunting verses of "Cimmeria," the swashbuckling ballads of pirates and warriors, or the eerie incantations of eldritch rituals, Howard's poetry adds depth to his imaginative world, revealing another dimension of his storytelling prowess that continues to captivate readers with its evocative power and a glimpse into the depths of his creative soul.</p>
+    </div>
+    <div class="tail-image-wrapper">
+      <img class="tail-image" src="http://gutenberg.net.au/ebooks06/0600761h-images/JewelsOfGwahlur-2.gif" alt="">
     </div>
   </div>
-  <ul class="poem-items">
-    <ng-container *ngFor="let poem of filteredPoems">
-      <div style="display:flex; border-bottom: 1px solid;">
-        <li class="poem-item">
-          <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
-            <div style="display:flex; gap:15px;">
-              <span class="sword-icon">🗡️</span>
-              <span [routerLink]="['/poems', poem.id]" class="poem-title">{{ poem.title }}</span>
-            </div>
-            <div style="display:flex; justify-content:flex-end;">
-              <span class="add-button">
-                <button mat-button (click)="openUserListDialog(poem)">
-                  <mat-icon>more_vert</mat-icon>
-                </button>
-              </span>
-            </div>
-          </div>
-        </li>
+
+  <div class="story-list-wrapper">
+    <!-- <h3 class="list-header" *ngIf="loggedIn()"> Add stories to your<span class="standout-text" [routerLink]="['/profile']"> own collections</span>!</h3>
+    <h3 class="list-header" *ngIf="!loggedIn()"> <span class="standout-text" (click)="openLoginDialog()">Log in</span> to add stories to your own collections!</h3> -->
+    <div class="story-list">
+      <div class="buttons-container">
+        <div class="buttons">
+          <button mat-button class="checkbox-text" [ngClass]="{'active-button': sortTitleActive}" (click)="sortPoemsByTitle()">Title</button>
+          <!-- <button mat-button class="checkbox-text" [ngClass]="{'active-button': sortFirstPublishedActive}" (click)="sortStoriesByFirstPublished()">Published</button> -->
+          <!-- <button mat-button class="checkbox-text" [ngClass]="{'active-button': filterCopyrightedActive}" (click)="filterByCopyrighted()">Copyrighted</button> -->
+          <button mat-button class="checkbox-text" (click)="clearFilters()">Clear</button>
+        </div>
+        <!-- <div class="search-input-wrapper">
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="searchQuery" placeholder="Search stories..." (input)="filterStories()">
+          </mat-form-field>
+        </div> -->
+        <div class="search-container">
+          <input class="search-input-field" [(ngModel)]="searchQuery" (input)="filterPoems()" (keyup.enter)="performSearch()" placeholder="Search ...">
+          <button class="search-button" (click)="performSearch()"><mat-icon class="search-icon">search</mat-icon></button>
+        </div>
       </div>
-    </ng-container>
-  </ul>
+      <div class="list-box">
+        <ul class="story-items">
+          <ng-container *ngFor="let poem of filteredPoems" class="cascade-animation" [style.animation-delay.ms]="cascadeDelay">
+            <div class="story-box">
+              <li class="story-item">
+                <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                  <div style="display:flex; gap:15px;">
+                    <span class="sword-icon">🗡️</span>
+                    <span [routerLink]="['/poems', poem.id]" class="story-title">{{ poem.title }}</span>
+                  </div>
+                  <div style="display:flex; justify-content:flex-end;" *ngIf="loggedIn()">
+                    <span class="add-button">
+                      <button mat-button (click)="openUserListDialog(poem)">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </li>
+            </div>
+          </ng-container>
+          <div class="story-box" *ngIf="noMatches && filteredPoems.length === 0">
+            <li class="story-item">
+              <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                <div style="display:flex; gap:15px;">
+                  <span class="sword-icon">🗡️</span>
+                  <span>No matches found.</span>
+                </div>
+              </div>
+            </li>
+          </div>
+        </ul>
+      </div>
+    </div>
+    <h3 class="list-header" *ngIf="loggedIn()"> Add poems to your<span class="standout-text" [routerLink]="['/profile']"> own collections</span>!</h3>
+    <h3 class="list-header" *ngIf="!loggedIn()"> <span class="standout-text" (click)="openLoginDialog()">Log in</span> to add poems to your own collections!</h3>
+  </div>
+
 </div>
+
+

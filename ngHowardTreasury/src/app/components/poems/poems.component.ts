@@ -1,9 +1,13 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Poem } from 'src/app/models/poem';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { DialogService } from 'src/app/services/dialog.service';
 import { PoemService } from 'src/app/services/poem.service';
+import { SearchResultsService } from 'src/app/services/search-results.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-poems',
@@ -17,31 +21,46 @@ export class PoemsComponent implements OnInit, OnDestroy {
   originalData: Poem[] = [];
   searchQuery: string = '';
   filteredPoems: Poem[] = [];
+  cascadeDelay: number = 0;
+  loggedInUser: User = new User();
 
   // booleans
   loading: boolean = false;
   sortTitleActive: boolean = false;
+  sortFirstPublishedActive: boolean = false;
+  filterCopyrightedActive: boolean = false;
+  noMatches: boolean = false;
 
   // subscriptions declarations
   private poemSubscription: Subscription | undefined;
+  private authSubscription: Subscription | undefined;
 
   // service injections
-  auth = inject(AuthService);
+  router = inject(Router);
+  authService = inject(AuthService);
   poemService = inject(PoemService);
   dialogService = inject(DialogService);
+  searchService = inject(SearchService);
+  searchResultsService = inject(SearchResultsService);
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    this.subscribeToSubscriptions();
+    this.subscribeToAuthService();
+    this.subscribeToPoemService();
 
   }
 
   ngOnDestroy(): void {
     this.destroySubscriptions();
-
   }
 
-  subscribeToSubscriptions = () => {
+  subscribeToAuthService = () => {
+    this.authSubscription = this.authService.getLoggedInUser().subscribe((user: User) => {
+      this.loggedInUser = user;
+    });
+  }
+
+  subscribeToPoemService = () => {
     this.poemSubscription = this.poemService.indexAll().subscribe({
       next: (data) => {
         this.poems = data;
@@ -55,9 +74,20 @@ export class PoemsComponent implements OnInit, OnDestroy {
     });
   }
 
+  loggedIn(): boolean {
+    return this.authService.checkLogin();
+  }
+
+  openLoginDialog() {
+    this.dialogService.openLoginDialog();
+  }
+
   destroySubscriptions = () => {
     if (this.poemSubscription) {
       this.poemSubscription.unsubscribe();
+    }
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
     }
   }
 
@@ -66,27 +96,56 @@ export class PoemsComponent implements OnInit, OnDestroy {
     this.sortTitleActive = true;
   }
 
+  // original filter poems function
+  // filterPoems(): void {
+  //   this.noMatches = false;
+  //   console.log(this.noMatches);
+  //   if (this.searchQuery.trim() === '') {
+  //     if(this.sortTitleActive) {
+  //       this.filteredPoems = [...this.originalData];
+  //       this.sortPoemsByTitle();
+  //     }
+  //     else {
+  //       this.filteredPoems = [...this.originalData];
+  //     }
+  //   } else {
+  //     if(this.sortTitleActive) {
+  //       this.filteredPoems = this.originalData.filter(poem =>
+  //         poem.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+  //       );
+  //       this.sortPoemsByTitle();
+  //     }
+  //     else {
+  //       this.filteredPoems = this.originalData.filter(poem =>
+  //         poem.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+  //       );
+  //     }
+  //   }
+  // }
+
   filterPoems(): void {
+    this.noMatches = false;
+    console.log(this.noMatches);
+
     if (this.searchQuery.trim() === '') {
-      if(this.sortTitleActive) {
-        this.filteredPoems = [...this.originalData];
-        this.sortPoemsByTitle();
-      }
-      else {
-        this.filteredPoems = [...this.originalData];
-      }
+      // If the search query is empty, reset to the current filtered data
+      this.filteredPoems = [...this.originalData];
+      // Reapply filters if active
+      // if (this.filterCopyrightedActive) {
+      //   this.filteredStories = this.filteredStories.filter(story => !story.isCopyrighted);
+      // }
     } else {
-      if(this.sortTitleActive) {
-        this.filteredPoems = this.originalData.filter(poem =>
-          poem.title.toLowerCase().includes(this.searchQuery.toLowerCase())
-        );
-        this.sortPoemsByTitle();
+      // Filter based on the current search query
+      this.filteredPoems = this.originalData.filter(poem =>
+        poem.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+      if (this.filteredPoems.length === 0) {
+        this.noMatches = true;
       }
-      else {
-        this.filteredPoems = this.originalData.filter(poem =>
-          poem.title.toLowerCase().includes(this.searchQuery.toLowerCase())
-        );
-      }
+      // Reapply filters if active
+      // if (this.filterCopyrightedActive) {
+      //   this.filteredPoems = this.filteredPoems.filter(poem => !poem.isCopyrighted);
+      // }
     }
   }
 
@@ -96,6 +155,20 @@ export class PoemsComponent implements OnInit, OnDestroy {
     this.poems = [...this.originalData];
     this.searchQuery = '';
     this.sortTitleActive = false;
+    this.noMatches = false;
+  }
+
+  performSearch() {
+    if (this.searchQuery) {
+      this.searchService.search(this.searchQuery).subscribe((results) => {
+        console.log('Search results from service:', results);
+        // Update the search results in the shared service
+        this.searchResultsService.updateSearchResults(results);
+        this.router.navigate(['/search-results']);
+
+        // this.searchQuery = '';
+      });
+    }
   }
 
   openUserListDialog(poem: any) {

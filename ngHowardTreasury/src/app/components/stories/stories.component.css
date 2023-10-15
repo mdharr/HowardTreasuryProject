@@ -282,6 +282,7 @@ mat-form-field {
   text-align: center;
   font-family:var(--headerFontFamily);
   color: var(--black_white);
+  padding-top: 16px;
 }
 
 /* Styles for the search container */
