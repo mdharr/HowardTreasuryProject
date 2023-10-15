@@ -18,12 +18,16 @@
 
 ::ng-deep .mat-mdc-menu-item .mdc-list-item__primary-text {
   font-family: var(--contentFontFamily) !important;
-  font-size: var(--subheader_font) !important;
+  font-size: var(--body_font) !important;
   font-weight: var(--superBold) !important;
 }
 
+::ng-deep .mat-mdc-menu-content .mat-mdc-menu-item:hover {
+  background-color: var(--red_color);
+}
+
 ::ng-deep .mat-mdc-menu-item:hover .mdc-list-item__primary-text {
-  color:var(--body_color) !important;
+  color:var(--white_color) !important;
 }
 
 .menu {
@@ -61,7 +65,7 @@
   padding: 10px;
   border-bottom: 1px solid #ccc;
   text-align: center;
-  font-family: var(--body_font);
+  font-family: var(--body_font) !important;
   text-transform: uppercase;
 }
 
@@ -76,14 +80,14 @@
 
 .menu-row:hover {
   cursor: pointer;
-  background-color: #9e0000;
-  color: #fff;
+  background-color: var(--red_color);
+  color: var(--white_color);
 }
 
 .menu-row:hover .navbar-btn-group {
   cursor: pointer;
-  background-color: #fff;
-  color: black;
+  background-color: var(--red_color);
+  color: var(--white_color);
 }
 
 .profile-button {
@@ -115,7 +119,7 @@
   padding: 10px;
   border-bottom: 1px solid #ccc;
   text-align: center;
-  font-family: Hind,Helvetica,Arial,sans-serif;
+  font-family: var(--body_font);
   text-transform: uppercase;
 }
 

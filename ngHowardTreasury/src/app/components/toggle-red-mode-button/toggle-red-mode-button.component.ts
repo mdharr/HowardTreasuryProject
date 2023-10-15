@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class ToggleRedModeButtonComponent {
 
-
   toggleRedTheme(): void {
     document.body.classList.toggle('red-theme');
   }
