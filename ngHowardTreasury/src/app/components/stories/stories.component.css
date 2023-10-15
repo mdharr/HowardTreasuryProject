@@ -76,7 +76,7 @@
   gap: 10px;
   padding: 10px;
   flex-wrap: wrap;
-  background: #9d0101;
+  background-color: var(--red_black);
   border-radius: 9px 9px 0 0;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
@@ -107,7 +107,7 @@
 }
 
 .checkbox-text {
-  color:#fff;
+  color: var(--white_color);
 }
 
 .search-input-wrapper {
@@ -155,10 +155,15 @@ mat-form-field {
   width:100%;
 }
 
+.story-box:hover {
+  background-color: var(--milk_white);
+}
+
 .list-box {
   padding: 0 25px;
   overflow-y: scroll;
   height: 60vh;
+  background-color: var(--white_milk);
 }
 
 /* Custom sword icon */
@@ -168,7 +173,7 @@ mat-form-field {
 }
 
 .story-title:hover {
-  color: rgba(158, 1, 1, 1);
+  color: var(--red_color);
   cursor: pointer;
 }
 
@@ -252,20 +257,21 @@ mat-form-field {
   text-indent: 3rem;
   font-size: 1.1rem;
   line-height: 1.5;
+  color: var(--black_white);
 }
 
 .main-title {
   font-size: 36px;
-    font-weight: bold;
-    font-family: var(--headerFontFamily);
-    color: #9e0101;
-    margin: 0;
+  font-family: var(--headerFontFamily);
+  color: var(--red_milk);
+  margin: 0;
+  font-weight: bold;
 }
 
 .subheader {
   font-size: 20px;
   font-family: var(--contentFontFamily);
-  /* color: #efe9c5; */
+  color: var(--black_white);
   margin: 0;
   line-height: 1.2;
 }
@@ -273,6 +279,7 @@ mat-form-field {
 .list-header {
   text-align: center;
   font-family:var(--headerFontFamily);
+  color: var(--black_white);
 }
 
 /* Styles for the search container */
@@ -307,14 +314,14 @@ mat-form-field {
 
 /* Styles for the search button */
 .search-button {
-  background-color: #9e0101; /* Change this to your desired button color */
+  background-color: var(--black_red); /* Change this to your desired button color */
   color: #fff;
   border: none;
   border-radius: 0px 4px 4px 0px;
   height: 40px;
   padding: 8px;
   cursor: pointer;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.2s ease-in-out;
 }
 
 /* Add box shadow to the search button on hover */
@@ -341,10 +348,10 @@ mat-form-field {
 }
 
 .standout-text {
-  color: #c13439;
+  color: var(--red_milk);
 }
 .standout-text:hover {
-  color: #97272a;
+  color: var(--red_black);
   text-decoration:underline;
   cursor: pointer;
 }
