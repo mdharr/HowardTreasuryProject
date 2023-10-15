@@ -83,6 +83,7 @@ body {
     --black_white: #262626;
     --red_white: #c13438;
     --white_red: #fff;
+    --black_milk: #262626;
 }
 
 body.red-theme {
@@ -106,6 +107,7 @@ body.red-theme {
   --black_white: #fff;
   --red_white: #fff;
   --white_red: #c13438;
+  --black_milk: #eaead7;
 }
 
 /* media query breakpoints */

@@ -1,11 +1,13 @@
 .biography-container {
-  background-color: #fff;
+  background-color: var(--black_milk);
   color: #212529;;
   padding: 20px;
   text-align: center;
   display:flex;
   justify-content: space-between;
   gap: 20px;
+  border: solid;
+  border-bottom: none;
 }
 
 .home-image {
@@ -22,18 +24,18 @@
 .biography h1 {
   font-size: 32px;
   margin-bottom: 10px;
-  color:#9e0101;
+  color: var(--red_color);
 }
 
 .biography p {
   font-size: 22px;
   line-height: 1.5;
   text-align: justify;
-  color:#212529;;
+  color: var(--white_black);
 }
 
 .timeline-container {
-  background-color: #f0f0f0;
+  background-color: var(--bkg_color);
   padding: 20px;
 }
 
@@ -41,6 +43,7 @@
   font-size: 24px;
   margin-bottom: 20px;
   font-family: var(--headerFontFamily);
+  color: var(--black_white);
 }
 
 .timeline ul {
@@ -52,12 +55,13 @@
   display: flex;
   margin-bottom: 20px;
   font-family:var(--contentFontFamily);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .timeline .year {
   flex: 0 0 215px;
   /* background-color: #1e1e1e; */
-  background-color: #9e0101;
+  background-color: var(--black_red);
   color: #f5f5f5;
   text-align: center;
   padding: 10px;
@@ -68,18 +72,20 @@
 
 .timeline .event {
   flex: 1;
-  background-color: #fff;
+  background-color: var(--white_black);
   padding: 10px;
-  border-left: 2px solid #333;
+  border-left: 2px solid var(--red_white);
   font-family:var(--contentFontFamily);
   /* font-size:var(--contentFontSize); */
   font-size: 18px;
+  color: var(--black_white);
 }
 
 .main {
-  padding:25px;
+  /* padding:25px;
   padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 50px; */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 @media screen and (max-width:693px) {
@@ -104,8 +110,8 @@
 
   .main {
     padding: 0;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    /* padding-top: 25px;
+    padding-bottom: 25px; */
   }
 
   .biography p {
