@@ -63,14 +63,16 @@
               </li>
             </div>
           </ng-container>
-          <li *ngIf="noMatches && filteredStories.length === 0" class="story-item">
-            <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
-              <div style="display:flex; gap:15px;">
-                <span class="sword-icon">🗡️</span>
-                <span>No matches found.</span>
+          <div class="story-box" *ngIf="noMatches && filteredStories.length === 0">
+            <li class="story-item">
+              <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                <div style="display:flex; gap:15px;">
+                  <span class="sword-icon">🗡️</span>
+                  <span>No matches found.</span>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
+          </div>
         </ul>
       </div>
     </div>

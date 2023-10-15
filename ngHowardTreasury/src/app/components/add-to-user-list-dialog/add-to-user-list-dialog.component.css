@@ -48,3 +48,9 @@ button[color="primary"]:hover {
 ::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
   background-color: var(--white_milk);
 }
+
+::ng-deep .mat-mdc-checkbox label {
+  cursor: pointer;
+  font-family: var(--contentFontFamily);
+  font-size: var(--medium);
+}

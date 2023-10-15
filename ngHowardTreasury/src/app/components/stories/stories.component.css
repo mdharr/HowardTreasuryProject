@@ -108,6 +108,7 @@
 
 .checkbox-text {
   color: var(--white_color);
+  font-family: var(--contentFontFamily);
 }
 
 .search-input-wrapper {
@@ -134,6 +135,7 @@ mat-form-field {
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   margin-top: 15px;
   transition: box-shadow 0.2s ease-in-out;
+  height: 76px;
 }
 
 .story-box:hover {
