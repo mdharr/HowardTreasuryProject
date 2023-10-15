@@ -4,7 +4,7 @@
 }
 
 h2[mat-dialog-title] {
-  background-color: #9e0101;
+  background-color: var(--red_black);
   color: white;
   padding: 15px;
 }
@@ -30,16 +30,21 @@ button[mat-button] {
 
 /* Primary button style */
 button[color="primary"] {
-  background-color: #9e0101;
+  background-color: var(--red_color);
   color: white;
 }
 
 button[color="primary"]:hover {
-  background-color: #750000;
+  background-color: var(--black_color);
+  color: var(--white_color);
 }
 
 .dialog-wrapper {
   max-height: 300px;
   min-height: 200px;
   overflow-y: scroll;
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: var(--white_milk);
 }
