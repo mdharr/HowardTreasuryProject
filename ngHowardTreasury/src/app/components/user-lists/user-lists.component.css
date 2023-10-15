@@ -3,8 +3,7 @@
 }
 
 .title-wrapper {
-  background-color: #f7f7f8;
-  border: 1px solid #f1f0f4;
+  background-color: var(--white_black);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,7 +20,7 @@
   font-weight:bold;
   font-family:var(--contentFontFamily);
   font-size:var(--headerFontSize);
-  color:#9d0101;
+  color:var(--red_white);
   margin:0;
 }
 
@@ -31,6 +30,7 @@
 
 .lists-wrapper {
   padding: 25px;
+  background-color: var(--milk_white);
 }
 
 .category-wrapper {
@@ -87,11 +87,11 @@ p {
   transition: background-color 0.3s;
   font-family: var(--contentFontFamily);
   /* font-size: var(--headerFontSize); */
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .remove-button:hover {
-  background-color: var(--black_color); /* Hover color */
+  background-color: var(--red_color); /* Hover color */
 }
 
 .buttons-container {
@@ -110,11 +110,11 @@ p {
   font-weight: bold;
   transition: background-color 0.3s;
   font-family: var(--contentFontFamily);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .create-button:hover {
-  background-color: var(--black_color);
+  background-color: var(--red_color);
 }
 
 .create-icon {

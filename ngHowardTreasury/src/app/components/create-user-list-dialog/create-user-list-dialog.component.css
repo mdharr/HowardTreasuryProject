@@ -5,9 +5,17 @@
 }
 
 h2[mat-dialog-title] {
-  background-color: #9e0101;
+  background-color: var(--red_black);
   color: white;
   padding: 15px;
+  font-family: var(--contentFontFamily);
+}
+
+button[mat-button] {
+  margin-left: 10px;
+  font-family: var(--contentFontFamily);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .dialog-content {
@@ -25,17 +33,36 @@ h2[mat-dialog-title] {
 }
 
 .cancel-button {
-  background-color: #ccc;
+  background-color: var(--white_color);
   color: #333;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .create-button {
-  background-color: #9e0101;
+  background-color: var(--red_color);
   color: white;
+  font-family: var(--contentFontFamily);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .create-button:hover {
-  background-color: #740000;
+  background-color: var(--black_color);
 }
 
-/* Add more styles as needed */
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: var(--white_color);
+}
+
+::ng-deep .mat-mdc-checkbox label {
+  cursor: pointer;
+  font-family: var(--contentFontFamily);
+  font-size: var(--medium);
+}
+
+::ng-deep .mdc-dialog__content > div {
+  display: flex;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  padding:5px;
+  margin-bottom: 5px;
+}
