@@ -15,7 +15,7 @@
   font-size: 30px;
   font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
   font-weight: 700;
-  color: #9e0000;
+  color: var(--red_milk);
 }
 
 .results-wrapper {
@@ -26,10 +26,14 @@
   padding-right: 100px;
 }
 
+.category {
+  color: var(--red_milk);
+}
+
 .results-items {
   width: fit-content;
   font-weight: 700;
-  color: #9e0000;
+  color: var(--black_white);
   transition: transform 0.3s ease-in-out;
   font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
 }
@@ -42,12 +46,19 @@
 .result-text {
   font-family: var(--contentFontFamily);
   font-size: var(--contentFontSize);
+  color: var(--black_white);
+}
+
+.no-results-text {
+  color: var(--black_white);
+  font-family: var(--contentFontFamily);
+  font-size: var(--contentFontSize);
 }
 
 .type-header {
   font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
   font-weight: 700;
-  color: #9e0000;
+  color: var(--red_milk);
 }
 
 .items-name {
@@ -63,6 +74,9 @@
 
 .results-count {
   font-style: italic;
+  font-family: var(--contentFontFamily);
+  font-size: var(--contentFontSize);
+  color: var(--black_white);
 }
 
 .spinner-wrapper {

@@ -14,33 +14,34 @@
     <p class="results-count">{{ searchResultsCount > 1 ? 'About ' + searchResultsCount + ' results' : searchResultsCount === 1 ? searchResultsCount + ' result' : searchResultsCount + ' results match your query.' }}</p>
     <ng-container *ngFor="let result of searchResults; let lastIndex = last">
       <h2 class="type-header">{{ result.type === 'Person' ? 'Character' : result.type }}</h2>
-      <div *ngIf="result.type === 'Collection'">
+      <div class="category" *ngIf="result.type === 'Collection'">
         <h3 class="results-items" [routerLink]="['/collections', result.data.id]">{{ result.data.title }}</h3>
         <!-- Display other properties specific to the Collection type -->
-        <p class="result-text"><span class="items-name">Description:</span> {{ result.data.description }}</p>
+        <!-- <p class="result-text"><span class="items-name">Description:</span> {{ result.data.description }}</p>
         <p class="result-text"><span class="items-name">Published:</span> {{ result.data.publishedAt | date:'longDate' }}</p>
         <p class="result-text"><span class="items-name">Series:</span> {{ result.data.series.title }}</p>
-        <p class="result-text"><span class="items-name">Recurring Character:</span> {{ result.data.persons[0].name }}</p>
+        <p class="result-text"><span class="items-name">Recurring Character:</span> {{ result.data.persons[0].name }}</p> -->
         <!-- Add more properties as needed -->
       </div>
-      <div *ngIf="result.type === 'Story'">
-        <h3 class="results-items" [routerLink]="['/stories', result.data.id]">{{ result.data.title }}</h3>
+      <div class="category" *ngIf="result.type === 'Story'">
+        <h3 class="results-items" [routerLink]="['/stories', result.data.id]">Title: {{ result.data.title }}</h3>
+        <!-- <h3 *ngIf="result.data.alternateTitle" class="results-items" [routerLink]="['/stories', result.data.id]">Alternate Title: {{ result.data.alternateTitle }}</h3> -->
         <!-- Display other properties specific to the Story type -->
-        <p *ngIf="result.data.textUrl"><span class="items-name">Read Online: </span><a href="{{ result.data.textUrl }}" target="_blank">{{ result.data.textUrl }}</a></p>
+        <!-- <p *ngIf="result.data.textUrl"><span class="items-name">Read Online: </span><a href="{{ result.data.textUrl }}" target="_blank">{{ result.data.textUrl }}</a></p> -->
         <!-- Add more properties as needed -->
       </div>
-      <div *ngIf="result.type === 'Poem'">
+      <div class="category" *ngIf="result.type === 'Poem'">
         <h3 class="results-items" [routerLink]="['/poems', result.data.id]">{{ result.data.title }}</h3>
         <!-- Display other properties specific to the Poem type -->
         <!-- Add more properties as needed -->
-        <p *ngIf="result.data.textUrl"><span class="items-name">Read Online: </span><a href="{{ result.data.textUrl }}" target="_blank">{{ result.data.textUrl }}</a></p>
+        <!-- <p *ngIf="result.data.textUrl"><span class="items-name">Read Online: </span><a href="{{ result.data.textUrl }}" target="_blank">{{ result.data.textUrl }}</a></p> -->
       </div>
-      <div *ngIf="result.type === 'Person'">
+      <div class="category" *ngIf="result.type === 'Person'">
         <h3 class="results-items" [routerLink]="['/characters', result.data.id]">{{ result.data.name }}</h3>
         <!-- Display other properties specific to the Person type -->
         <!-- Add more properties as needed -->
       </div>
-      <div *ngIf="result.type === 'Miscellanea'">
+      <div class="category" *ngIf="result.type === 'Miscellanea'">
         <h3 class="results-items" [routerLink]="['/miscellanea', result.data.id]">{{ result.data.title }}</h3>
         <!-- Display other properties specific to the Miscellanea type -->
         <!-- Add more properties as needed -->
@@ -50,7 +51,7 @@
     </ng-container>
   </div>
   <div *ngIf="!hasResults">
-    <p>No results match your search query.</p>
+    <p class="no-results-text">No results match your search query.</p>
   </div>
   <div class="placeholder-container">
 
