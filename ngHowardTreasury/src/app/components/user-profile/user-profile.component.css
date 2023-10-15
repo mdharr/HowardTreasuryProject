@@ -6,25 +6,42 @@
 }
 
 .account-info-wrapper {
-  background-color: #fdfdff;
-  border: 1px solid #f1f0f4;
+  background-color: var(--milk_white);
+  /* border: 1px solid var(--white_black); */
   border-radius:6px;
   flex:1;
   height:fit-content;
   font-family: var(--contentFontFamily);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .userlists-wrapper {
-  background-color: #fdfdff;
+  /* background-color: #fdfdff; */
   border: 1px solid #f1f0f4;
   border-radius:6px;
   flex:2;
   font-family: var(--contentFontFamily);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .title-wrapper {
-  background-color:#f7f7f8;
-  border: 1px solid #f1f0f4;
+  background-color:var(--white_black);
+  /* border: 1px solid #f1f0f4; */
+  display:flex;
+  justify-content: center;
+  padding:10px;
+  border-radius: 6px 6px 0 0;
+}
+.edit-account-wrapper {
+  background-color:var(--white_black);
+  /* border: 1px solid #f1f0f4; */
+  display:flex;
+  justify-content: center;
+  padding:10px;
+}
+.delete-account-wrapper {
+  background-color:var(--white_black);
+  /* border: 1px solid #f1f0f4; */
   display:flex;
   justify-content: center;
   padding:10px;
@@ -35,7 +52,7 @@
   font-weight:bold;
   font-family:var(--contentFontFamily);
   font-size:var(--headerFontSize);
-  color:#9d0101;
+  color: var(--red_white);
   margin:0;
 }
 
@@ -45,20 +62,21 @@
   justify-content: flex-start;
   padding: 5px;
   padding-left: 20px;
+  color: var(--black_color);
 }
 
 .edit-wrapper {
   margin:0;
   display:flex;
   justify-content: center;
-  padding: 5px;
+  padding: 20px 0;
 }
 
 .delete-wrapper {
   margin:0;
   display:flex;
   justify-content: center;
-  padding: 5px;
+  padding: 20px 0;
 }
 
 .details-text {
@@ -74,4 +92,38 @@
   .main {
     flex-direction:column;
   }
+}
+
+.delete-button {
+  background-color: var(--red_color); /* Choose your desired color */
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: var(--contentFontFamily);
+  /* font-size: var(--headerFontSize); */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.delete-button:hover {
+  background-color: var(--black_color); /* Hover color */
+}
+
+.edit-button {
+  background-color: var(--red_color); /* Choose your desired color */
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: var(--contentFontFamily);
+  /* font-size: var(--headerFontSize); */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.edit-button:hover {
+  background-color: var(--black_color); /* Hover color */
 }

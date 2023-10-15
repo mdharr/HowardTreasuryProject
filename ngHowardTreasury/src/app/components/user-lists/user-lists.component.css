@@ -9,10 +9,11 @@
   justify-content: space-between;
   align-items: center;
   margin: 0;
-  padding: 5px;
+  padding: 10px;
   padding-left: 25px;
   padding-right: 25px;
   font-family: var(--contentFontFamily);
+  border-radius: 3px 3px 0 0;
 }
 
 .title-text {
@@ -77,18 +78,20 @@ p {
 }
 
 .remove-button {
-  background-color: #9d0101; /* Choose your desired color */
+  background-color: var(--red_color); /* Choose your desired color */
   color: #fff;
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
-  /* font-family: var(--contentFontFamily);
-  font-size: var(--headerFontSize); */
+  transition: background-color 0.3s;
+  font-family: var(--contentFontFamily);
+  /* font-size: var(--headerFontSize); */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .remove-button:hover {
-  background-color: #770000; /* Hover color */
+  background-color: var(--black_color); /* Hover color */
 }
 
 .buttons-container {
@@ -98,7 +101,7 @@ p {
 }
 
 .create-button {
-  background-color: #9d0101;
+  background-color: var(--red_color);
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -106,10 +109,12 @@ p {
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s;
+  font-family: var(--contentFontFamily);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .create-button:hover {
-  background-color: #770000;
+  background-color: var(--black_color);
 }
 
 .create-icon {
