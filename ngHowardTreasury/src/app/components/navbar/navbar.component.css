@@ -65,8 +65,9 @@
   padding: 10px;
   border-bottom: 1px solid #ccc;
   text-align: center;
-  font-family: var(--body_font) !important;
-  text-transform: uppercase;
+  font-family: var(--contentFontFamily) !important;
+  text-transform: capitalize;
+  font-size: var(--body_font);
 }
 
 .navbar {
