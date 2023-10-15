@@ -308,7 +308,7 @@ ul li {
 .story-title {
   font-family: Libre Baskerville, Helvetica, Arial, sans-serif !important;
   font-weight: 700;
-  color: var(--red_white);
+  color: var(--red_milk);
   text-align: center;
   font-size: 16px;
 }
@@ -354,7 +354,7 @@ ul li {
   font-family: var(--contentFontFamily);
   padding-left: 30px;
   padding-right: 30px;
-  color: var(--black_milk);
+  color: var(--black_white);
 }
 
 @media screen and (max-width: 1050px) {
