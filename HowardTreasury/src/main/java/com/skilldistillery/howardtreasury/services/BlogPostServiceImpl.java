@@ -1,5 +1,6 @@
 package com.skilldistillery.howardtreasury.services;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,8 +33,14 @@ public class BlogPostServiceImpl implements BlogPostService {
 	private UserRepository userRepo;
 
 	@Override
-	public List<BlogPost> findAll() {
-		return blogPostRepo.findAll();
+	public List<BlogPost> findAll(int blogId) {
+		Optional<Blog> blogOpt = blogRepo.findById(blogId);
+		if(blogOpt.isPresent()) {
+			Blog blog = blogOpt.get();
+			
+			return blog.getBlogPosts();
+		}
+		return Collections.emptyList();
 	}
 
 	@Override

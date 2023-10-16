@@ -8,7 +8,7 @@ import com.skilldistillery.howardtreasury.entities.BlogPost;
 
 public interface BlogPostService {
 
-	public List<BlogPost> findAll();
+	public List<BlogPost> findAll(int blogId);
 	
 	public BlogPost find(int blogPostId);
 	
