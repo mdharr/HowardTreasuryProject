@@ -58,5 +58,19 @@ class BlogPostTest {
 		assertTrue(blogPost.getComments().size() > 0);
 		assertEquals("Great first post!", blogPost.getComments().get(0).getContent());
 	}
+	
+	@Test
+	void test_BlogPost_BlogComment_Replies() {
+		assertNotNull(blogPost);
+		assertTrue(blogPost.getComments().get(0).getReplies().size() > 0);
+		assertEquals("Great first comment!", blogPost.getComments().get(0).getReplies().get(0).getContent());
+	}
+	
+	@Test
+	void test_BlogPost_BlogComment_Replies_v2() {
+		assertNotNull(blogPost);
+		assertTrue(blogPost.getComments().get(0).getReplies().size() > 0);
+		assertEquals("Great first post!", blogPost.getComments().get(0).getReplies().get(0).getParentComment().getContent());
+	}
 
 }
