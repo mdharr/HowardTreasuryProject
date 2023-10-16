@@ -45,5 +45,12 @@ class BlogCommentTest {
 		assertNotNull(blogComment);
 		assertEquals("Great first post!", blogComment.getContent());
 	}
+	
+	@Test
+	void test_BlogComment_Replies_one_to_many_mapping() {
+		assertNotNull(blogComment);
+		assertTrue(blogComment.getReplies().size() > 0);
+		assertEquals("Great first comment!", blogComment.getReplies().get(0).getContent());
+	}
 
 }
