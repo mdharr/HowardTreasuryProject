@@ -16,7 +16,7 @@ class BlogCommentTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Story story;
+	private BlogComment blogComment;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,19 +31,19 @@ class BlogCommentTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		story = em.find(Story.class, 1);
+		blogComment = em.find(BlogComment.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		story = null;
+		blogComment = null;
 	}
 
 	@Test
-	void test_Story_entity_mapping() {
-		assertNotNull(story);
-		assertEquals("The Altar and the Scorpion", story.getTitle());
+	void test_BlogComment_entity_mapping() {
+		assertNotNull(blogComment);
+		assertEquals("Great first post!", blogComment.getContent());
 	}
 
 }
