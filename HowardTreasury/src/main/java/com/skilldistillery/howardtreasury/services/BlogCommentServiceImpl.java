@@ -92,9 +92,10 @@ public class BlogCommentServiceImpl implements BlogCommentService {
 
     @Override
     public ResponseEntity<Boolean> delete(String username, int blogCommentId) {
-        BlogComment commentToDelete = blogCommentRepo.findById(blogCommentId).orElse(null);
+        Optional<BlogComment> commentToDeleteOpt = blogCommentRepo.findById(blogCommentId);
         
-        if (commentToDelete != null) {
+        if (commentToDeleteOpt.isPresent()) {
+      	  BlogComment commentToDelete = commentToDeleteOpt.get();
             if (commentToDelete.getUser().getUsername().equals(username)) {
                 commentToDelete.setHidden(true);
                 blogCommentRepo.save(commentToDelete);

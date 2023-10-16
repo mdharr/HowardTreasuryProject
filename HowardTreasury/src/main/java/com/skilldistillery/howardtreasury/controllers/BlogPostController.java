@@ -67,6 +67,7 @@ public class BlogPostController {
 	    }
 	}
 
+	// hard delete
 	@DeleteMapping("blogs/{blogId}/posts/{postId}")
 	public ResponseEntity<Void> deletePost(@PathVariable("blogId") int blogId, @PathVariable("postId") int postId, Principal principal) {
 	    ResponseEntity<Void> response = blogPostService.delete(principal.getName(), postId);
@@ -78,6 +79,19 @@ public class BlogPostController {
 	    } else {
 	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	    }
+	}
+	
+	// soft delete
+	@DeleteMapping("blogs/{bid}/posts/{bpid}/hide")
+	public ResponseEntity<Boolean> softDelete(@PathVariable("bid") int blogId, @PathVariable("bpid") int blogPostId, Principal principal) {
+		ResponseEntity<Boolean> response = blogPostService.softDelete(principal.getName(), blogPostId);
+		if (response.getStatusCode() == HttpStatus.OK) {
+			return new ResponseEntity<>(true, HttpStatus.OK);
+		} else if (response.getStatusCode() == HttpStatus.FORBIDDEN) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		} else {
+			return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+		}
 	}
 	
 }

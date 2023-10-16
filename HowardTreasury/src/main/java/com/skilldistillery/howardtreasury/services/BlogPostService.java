@@ -17,4 +17,6 @@ public interface BlogPostService {
 	public BlogPost update(String username, int blogPostId, BlogPost blogPost);
 	
 	public ResponseEntity<Void> delete(String username, int blogPostId);
+	
+	public ResponseEntity<Boolean> softDelete(String username, int blogPostId);
 }

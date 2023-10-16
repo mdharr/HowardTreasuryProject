@@ -49,6 +49,8 @@ public class BlogPost {
     @OneToMany(mappedBy = "blogPost")
     @OrderBy("created_at ASC")
     private List<BlogComment> comments;
+    
+    private Boolean hidden;
 
 	public BlogPost() {
 		super();
@@ -56,7 +58,7 @@ public class BlogPost {
 	}
 
 	public BlogPost(int id, String title, String content, LocalDateTime createdAt, Blog blog, User user,
-			List<BlogComment> comments) {
+			List<BlogComment> comments, Boolean hidden) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -65,6 +67,7 @@ public class BlogPost {
 		this.blog = blog;
 		this.user = user;
 		this.comments = comments;
+		this.hidden = hidden;
 	}
 
 	public int getId() {
@@ -123,6 +126,14 @@ public class BlogPost {
 		this.comments = comments;
 	}
 
+	public Boolean getHidden() {
+		return hidden;
+	}
+
+	public void setHidden(Boolean hidden) {
+		this.hidden = hidden;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -143,7 +154,7 @@ public class BlogPost {
 	@Override
 	public String toString() {
 		return "BlogPost [id=" + id + ", title=" + title + ", content=" + content + ", createdAt=" + createdAt
-				+ ", blog=" + blog + ", user=" + user + "]";
+				+ ", blog=" + blog + ", user=" + user +  ", hidden=" + hidden + "]";
 	}
     
 }

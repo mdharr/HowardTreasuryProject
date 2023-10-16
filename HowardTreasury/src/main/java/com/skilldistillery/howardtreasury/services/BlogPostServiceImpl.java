@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.howardtreasury.entities.Blog;
+import com.skilldistillery.howardtreasury.entities.BlogComment;
 import com.skilldistillery.howardtreasury.entities.BlogPost;
 import com.skilldistillery.howardtreasury.entities.User;
 import com.skilldistillery.howardtreasury.repositories.BlogCommentRepository;
@@ -67,6 +68,7 @@ public class BlogPostServiceImpl implements BlogPostService {
 
 	        blogPost.setUser(user);
 	        blogPost.setBlog(blog);
+	        blogPost.setHidden(false);
 
 	        blogPost = blogPostRepo.save(blogPost);
 	        List<BlogPost> blogPosts = blog.getBlogPosts();
@@ -98,6 +100,7 @@ public class BlogPostServiceImpl implements BlogPostService {
 		return null;
 	}
 
+	//hard delete
 	@Override
 	public ResponseEntity<Void> delete(String username, int blogPostId) {
 	    Optional<BlogPost> blogPostOpt = blogPostRepo.findById(blogPostId);
@@ -119,5 +122,24 @@ public class BlogPostServiceImpl implements BlogPostService {
 	    }
 	}
 
+	// soft delete
+	@Override
+	public ResponseEntity<Boolean> softDelete(String username, int blogPostId) {
+		Optional<BlogPost> blogPostToDeleteOpt = blogPostRepo.findById(blogPostId);
+		
+		if(blogPostToDeleteOpt.isPresent()) {
+			BlogPost blogPostToDelete = blogPostToDeleteOpt.get();
+			if(blogPostToDelete.getUser().getUsername().equals(username)) {
+				blogPostToDelete.setHidden(true);
+				blogPostRepo.save(blogPostToDelete);
+				return ResponseEntity.ok(true);
+			}
+			else {
+				return ResponseEntity.status(HttpStatus.FORBIDDEN).body(false);
+			}
+		}
+		
+		return ResponseEntity.notFound().build();
+	}
 	
 }
