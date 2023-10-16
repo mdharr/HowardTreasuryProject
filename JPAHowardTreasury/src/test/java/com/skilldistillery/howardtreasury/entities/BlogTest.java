@@ -47,7 +47,7 @@ class BlogTest {
 	}
 	
 	@Test
-	void test_Blog_BlogPost_many_to_many_mapping() {
+	void test_Blog_BlogPost_one_to_many_mapping() {
 		assertNotNull(blog);
 		assertEquals("First blog post", blog.getBlogPosts().get(0).getTitle());
 	}

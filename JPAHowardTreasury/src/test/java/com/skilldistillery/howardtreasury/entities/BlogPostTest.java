@@ -45,5 +45,11 @@ class BlogPostTest {
 		assertNotNull(blogPost);
 		assertEquals("First blog post", blogPost.getTitle());
 	}
+	
+	@Test
+	void test_BlogPost_Blog_many_to_one_mapping() {
+		assertNotNull(blogPost);
+		assertEquals("Sword and Sorcery", blogPost.getBlog().getTitle());
+	}
 
 }
