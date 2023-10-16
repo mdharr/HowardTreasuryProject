@@ -32,6 +32,9 @@ public class User {
 	
 	private String email;
 	
+	// maybe add a json ignore here or opposite side in userlists
+	// can't see lists to add to in frontend ui when using json ignore
+//	@JsonIgnore
 	@JsonManagedReference("user-userlists")
 	@OneToMany(mappedBy = "user")
 	private List<UserList> userLists;
