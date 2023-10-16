@@ -73,22 +73,22 @@ public class BlogCommentServiceImpl implements BlogCommentService {
     }
 
     @Override
-    public BlogComment update(String username, int blogCommentId, BlogComment blogComment) {
-    	Optional<BlogComment> blogCommentOpt = blogCommentRepo.findById(blogCommentId);
-    	
+    public BlogComment update(String username, int blogCommentId, BlogComment updatedComment) {
+        Optional<BlogComment> blogCommentOpt = blogCommentRepo.findById(blogCommentId);
+        
         if (blogCommentOpt.isPresent()) {
-        	BlogComment existingBlogComment = blogCommentOpt.get();
-        	
-        	if (existingBlogComment.getUser().getUsername().equals(username)) {
-        		existingBlogComment.setContent(blogComment.getContent());
-        		return blogCommentRepo.save(blogComment);
-        	}
-        	else {
-        		return null;
-        	}
+            BlogComment existingBlogComment = blogCommentOpt.get();
+            
+            if (existingBlogComment.getUser().getUsername().equals(username)) {
+                existingBlogComment.setContent(updatedComment.getContent()); // Update the content of the existing comment.
+                return blogCommentRepo.save(existingBlogComment); // Save the existing comment with updated content.
+            } else {
+                return null;
+            }
         }
         return null;
     }
+
 
     @Override
     public ResponseEntity<Boolean> delete(String username, int blogCommentId) {
