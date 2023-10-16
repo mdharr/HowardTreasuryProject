@@ -2,6 +2,7 @@ package com.skilldistillery.howardtreasury.entities;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,4 +42,101 @@ public class BlogPost {
     
     @OneToMany(mappedBy = "blogPost")
     private List<BlogComment> comments;
+
+	public BlogPost() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public BlogPost(int id, String title, String content, LocalDateTime createdAt, Blog blog, User user,
+			List<BlogComment> comments) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.createdAt = createdAt;
+		this.blog = blog;
+		this.user = user;
+		this.comments = comments;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Blog getBlog() {
+		return blog;
+	}
+
+	public void setBlog(Blog blog) {
+		this.blog = blog;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<BlogComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<BlogComment> comments) {
+		this.comments = comments;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BlogPost other = (BlogPost) obj;
+		return id == other.id;
+	}
+
+	@Override
+	public String toString() {
+		return "BlogPost [id=" + id + ", title=" + title + ", content=" + content + ", createdAt=" + createdAt
+				+ ", blog=" + blog + ", user=" + user + "]";
+	}
+    
 }
