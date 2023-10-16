@@ -600,6 +600,75 @@ CREATE TABLE IF NOT EXISTS `story_image_has_illustrator` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `blog`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog` ;
+
+CREATE TABLE IF NOT EXISTS `blog` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(100) NULL,
+  `description` TEXT NULL,
+  `created_at` TIMESTAMP NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `blog_post`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog_post` ;
+
+CREATE TABLE IF NOT EXISTS `blog_post` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NULL,
+  `content` TEXT NULL,
+  `created_at` TIMESTAMP NULL,
+  `user_id` INT NOT NULL,
+  `blog_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_blog_post_user1_idx` (`user_id` ASC),
+  INDEX `fk_blog_post_blog1_idx` (`blog_id` ASC),
+  CONSTRAINT `fk_blog_post_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_blog_post_blog1`
+    FOREIGN KEY (`blog_id`)
+    REFERENCES `blog` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `blog_comment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `blog_comment` ;
+
+CREATE TABLE IF NOT EXISTS `blog_comment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `content` TEXT NULL,
+  `created_at` TIMESTAMP NULL,
+  `blog_post_id` INT NOT NULL,
+  `parent_comment_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_blog_comment_blog_post1_idx` (`blog_post_id` ASC),
+  INDEX `fk_blog_comment_blog_comment1_idx` (`parent_comment_id` ASC),
+  CONSTRAINT `fk_blog_comment_blog_post1`
+    FOREIGN KEY (`blog_post_id`)
+    REFERENCES `blog_post` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_blog_comment_blog_comment1`
+    FOREIGN KEY (`parent_comment_id`)
+    REFERENCES `blog_comment` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS howardtreasury@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -884,7 +953,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (1, 'Ace Jessel', NULL, NULL);
+INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (1, 'Ace Jessel', NULL, 'Ace Jessel is a character created by Robert E. Howard. He appeared in the short stories The Apparition in the Prize Ring (first published in the April 1929 issue of Ghost Stories) and Double-Cross (first in the 1983 collection Bran Mak Morn: A Play and Others).');
 INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (2, 'Bran Mak Morn', 'https://reh.world/wp-content/uploads/2021/04/Gary-Gianni-_-Bran-mak-Morn.jpg', 'Bran Mak Morn is a hero of several stories by Robert E. Howard. In the stories, he is the last king of Howard\'s romanticized version of the tribal race of Picts. He is a direct descendant of Brule the Spear Slayer, companion of the Atlantean king Kull, whom his magician summons to fight with him in \"Kings of The Night\", a novelette first published in Weird Tales #16 (November 1930).\n\nBran Mak Morn is the leader of a dying and degenerate people, a poor reflection of what they once were and is deeply aware of their inevitable path to extinction. Still, like all of Howard\'s characters, he choses to fight against this rather than succumb. His main enemies are the Romans and he makes a very unholy alliance to defeat them in \"Worms of the Earth\", a novelette first published in Weird Tales #20 (November 1932).');
 INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (3, 'Breckinridge Elkins', NULL, NULL);
 INSERT INTO `person` (`id`, `name`, `image_url`, `description`) VALUES (4, 'Buckner J. Grimes', NULL, NULL);
@@ -2022,6 +2091,37 @@ INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) V
 INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (158, 2);
 INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (159, 2);
 INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (160, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `blog`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `blog` (`id`, `title`, `description`, `created_at`) VALUES (1, 'Sword and Sorcery', 'A blog for weekly posts about the Sword and Sorcery subgenre.', '2023-03-03T12:35:22');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `blog_post`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `blog_post` (`id`, `title`, `content`, `created_at`, `user_id`, `blog_id`) VALUES (1, 'First blog post', 'This is a test for first blog post', '2023-03-04T12:35:22', 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `blog_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `blog_comment` (`id`, `content`, `created_at`, `blog_post_id`, `parent_comment_id`) VALUES (1, 'Great first post!', '2023-03-05T12:35:22', 1, NULL);
+INSERT INTO `blog_comment` (`id`, `content`, `created_at`, `blog_post_id`, `parent_comment_id`) VALUES (2, 'Great first comment!', '2023-03-06T12:35:22', 1, 1);
 
 COMMIT;
 
