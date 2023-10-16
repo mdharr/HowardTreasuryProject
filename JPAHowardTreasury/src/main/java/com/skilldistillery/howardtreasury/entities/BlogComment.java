@@ -1,6 +1,7 @@
 package com.skilldistillery.howardtreasury.entities;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,5 +39,92 @@ public class BlogComment {
     @ManyToOne
     @JoinColumn(name = "parent_comment_id")
     private BlogComment parentComment;
+
+	public BlogComment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public BlogComment(int id, String content, LocalDateTime createdAt, User user, BlogPost blogPost,
+			BlogComment parentComment) {
+		super();
+		this.id = id;
+		this.content = content;
+		this.createdAt = createdAt;
+		this.user = user;
+		this.blogPost = blogPost;
+		this.parentComment = parentComment;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public BlogPost getBlogPost() {
+		return blogPost;
+	}
+
+	public void setBlogPost(BlogPost blogPost) {
+		this.blogPost = blogPost;
+	}
+
+	public BlogComment getParentComment() {
+		return parentComment;
+	}
+
+	public void setParentComment(BlogComment parentComment) {
+		this.parentComment = parentComment;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BlogComment other = (BlogComment) obj;
+		return id == other.id;
+	}
+
+	@Override
+	public String toString() {
+		return "BlogComment [id=" + id + ", content=" + content + ", createdAt=" + createdAt + ", user=" + user
+				+ ", blogPost=" + blogPost + ", parentComment=" + parentComment + "]";
+	}
 
 }
