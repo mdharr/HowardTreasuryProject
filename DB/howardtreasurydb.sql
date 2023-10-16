@@ -627,6 +627,7 @@ CREATE TABLE IF NOT EXISTS `blog_post` (
   `created_at` TIMESTAMP NULL,
   `user_id` INT NOT NULL,
   `blog_id` INT NOT NULL,
+  `hidden` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_blog_post_user1_idx` (`user_id` ASC),
   INDEX `fk_blog_post_blog1_idx` (`blog_id` ASC),
@@ -2118,7 +2119,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `blog_post` (`id`, `title`, `content`, `created_at`, `user_id`, `blog_id`) VALUES (1, 'First blog post', 'This is a test for first blog post', '2023-03-04T12:35:22', 1, 1);
+INSERT INTO `blog_post` (`id`, `title`, `content`, `created_at`, `user_id`, `blog_id`, `hidden`) VALUES (1, 'First blog post', 'This is a test for first blog post', '2023-03-04T12:35:22', 1, 1, 0);
 
 COMMIT;
 
