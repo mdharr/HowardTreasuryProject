@@ -52,6 +52,7 @@
 		<class>com.skilldistillery.howardtreasury.entities.MiscellaneaHasPersonId</class>
 		<class>com.skilldistillery.howardtreasury.entities.Blog</class>
 		<class>com.skilldistillery.howardtreasury.entities.BlogPost</class>
+		<class>com.skilldistillery.howardtreasury.entities.BlogComment</class>
 
 		<!-- end entities -->
 
