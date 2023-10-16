@@ -17,6 +17,10 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "blog_post")
 public class BlogPost {
@@ -33,6 +37,7 @@ public class BlogPost {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "blog_id")
     private Blog blog;

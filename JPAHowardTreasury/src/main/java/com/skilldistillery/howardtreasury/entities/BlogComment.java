@@ -16,6 +16,11 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "blog_comment")
 public class BlogComment {
@@ -34,14 +39,17 @@ public class BlogComment {
     @JoinColumn(name = "user_id")
     private User user;
     
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "blog_post_id")
     private BlogPost blogPost;
     
+	@JsonBackReference("blogComment-replies")
     @ManyToOne
     @JoinColumn(name = "parent_comment_id")
     private BlogComment parentComment;
     
+    @JsonManagedReference("blogComment-replies")
     @OneToMany(mappedBy = "parentComment")
     private List<BlogComment> replies;
     
