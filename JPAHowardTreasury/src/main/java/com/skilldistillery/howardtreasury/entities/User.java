@@ -64,8 +64,8 @@ public class User {
 	}
 	
 	public User(int id, String username, String password, Boolean enabled, String role, String email,
-			List<UserList> userLists, List<ChatMessage> chatMessages, List<ChatRoom> ownedChatRooms, 
-			List<ChatRoom> chatRooms) {
+			List<UserList> userLists, List<BlogPost> blogPosts, List<BlogComment> comments,
+			List<ChatMessage> chatMessages, List<ChatRoom> ownedChatRooms, List<ChatRoom> chatRooms) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -74,6 +74,8 @@ public class User {
 		this.role = role;
 		this.email = email;
 		this.userLists = userLists;
+		this.blogPosts = blogPosts;
+		this.comments = comments;
 		this.chatMessages = chatMessages;
 		this.ownedChatRooms = ownedChatRooms;
 		this.chatRooms = chatRooms;
@@ -133,6 +135,22 @@ public class User {
 
 	public void setUserLists(List<UserList> userLists) {
 		this.userLists = userLists;
+	}
+
+	public List<BlogPost> getBlogPosts() {
+		return blogPosts;
+	}
+
+	public void setBlogPosts(List<BlogPost> blogPosts) {
+		this.blogPosts = blogPosts;
+	}
+
+	public List<BlogComment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<BlogComment> comments) {
+		this.comments = comments;
 	}
 
 	public List<ChatMessage> getChatMessages() {
