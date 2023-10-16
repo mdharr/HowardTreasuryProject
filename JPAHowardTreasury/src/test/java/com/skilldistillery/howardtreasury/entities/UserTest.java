@@ -71,5 +71,11 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals("Welcome to the Robert E. Howard Treasury chat room!", user.getChatMessages().get(0).getMessageContent());
 	}
+	
+	@Test
+	void test_User_BlogPost_one_to_many_mapping() {
+		assertNotNull(user);
+		assertEquals("First blog post", user.getBlogPosts().get(0).getTitle());
+	}
 
 }
