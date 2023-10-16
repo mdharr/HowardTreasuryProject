@@ -51,5 +51,12 @@ class BlogPostTest {
 		assertNotNull(blogPost);
 		assertEquals("Sword and Sorcery", blogPost.getBlog().getTitle());
 	}
+	
+	@Test
+	void test_BlogPost_BlogComment_one_to_many_mapping() {
+		assertNotNull(blogPost);
+		assertTrue(blogPost.getComments().size() > 0);
+		assertEquals("Great first post!", blogPost.getComments().get(0).getContent());
+	}
 
 }

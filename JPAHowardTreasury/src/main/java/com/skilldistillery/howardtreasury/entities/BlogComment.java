@@ -1,6 +1,7 @@
 package com.skilldistillery.howardtreasury.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -39,6 +41,9 @@ public class BlogComment {
     @ManyToOne
     @JoinColumn(name = "parent_comment_id")
     private BlogComment parentComment;
+    
+    @OneToMany(mappedBy = "parentComment")
+    private List<BlogComment> replies;
 
 	public BlogComment() {
 		super();
@@ -46,7 +51,7 @@ public class BlogComment {
 	}
 
 	public BlogComment(int id, String content, LocalDateTime createdAt, User user, BlogPost blogPost,
-			BlogComment parentComment) {
+			BlogComment parentComment, List<BlogComment> replies) {
 		super();
 		this.id = id;
 		this.content = content;
@@ -54,6 +59,7 @@ public class BlogComment {
 		this.user = user;
 		this.blogPost = blogPost;
 		this.parentComment = parentComment;
+		this.replies = replies;
 	}
 
 	public int getId() {
@@ -102,6 +108,14 @@ public class BlogComment {
 
 	public void setParentComment(BlogComment parentComment) {
 		this.parentComment = parentComment;
+	}
+
+	public List<BlogComment> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<BlogComment> replies) {
+		this.replies = replies;
 	}
 
 	@Override
