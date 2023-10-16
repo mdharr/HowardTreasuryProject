@@ -45,7 +45,7 @@ public class BlogComment {
     @OneToMany(mappedBy = "parentComment")
     private List<BlogComment> replies;
     
-    private boolean hidden;
+    private Boolean hidden;
 
 	public BlogComment() {
 		super();
@@ -53,7 +53,7 @@ public class BlogComment {
 	}
 
 	public BlogComment(int id, String content, LocalDateTime createdAt, User user, BlogPost blogPost,
-			BlogComment parentComment, List<BlogComment> replies, boolean hidden) {
+			BlogComment parentComment, List<BlogComment> replies, Boolean hidden) {
 		super();
 		this.id = id;
 		this.content = content;
@@ -121,11 +121,11 @@ public class BlogComment {
 		this.replies = replies;
 	}
 
-	public boolean isHidden() {
+	public Boolean isHidden() {
 		return hidden;
 	}
 
-	public void setHidden(boolean hidden) {
+	public void setHidden(Boolean hidden) {
 		this.hidden = hidden;
 	}
 

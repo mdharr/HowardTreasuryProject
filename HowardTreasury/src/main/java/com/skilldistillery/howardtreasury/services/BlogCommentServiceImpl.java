@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.howardtreasury.entities.Blog;
@@ -56,6 +58,7 @@ public class BlogCommentServiceImpl implements BlogCommentService {
     		
     		blogComment.setUser(user);
     		blogComment.setBlogPost(blogPost);
+    		blogComment.setHidden(false);
     		
     		blogComment = blogCommentRepo.save(blogComment);
     		List<BlogComment> blogComments = blogPost.getComments();
@@ -88,15 +91,22 @@ public class BlogCommentServiceImpl implements BlogCommentService {
     }
 
     @Override
-    public ResponseEntity<Void> delete(String username, int blogCommentId) {
+    public ResponseEntity<Boolean> delete(String username, int blogCommentId) {
         BlogComment commentToDelete = blogCommentRepo.findById(blogCommentId).orElse(null);
+        
         if (commentToDelete != null) {
-            // Implement logic to delete the comment.
-            blogCommentRepo.delete(commentToDelete);
-            return ResponseEntity.noContent().build();
+            if (commentToDelete.getUser().getUsername().equals(username)) {
+                commentToDelete.setHidden(true);
+                blogCommentRepo.save(commentToDelete);
+                return ResponseEntity.ok(true);
+            } else {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(false);
+            }
         }
+        
         return ResponseEntity.notFound().build();
     }
+
 
     @Override
     public BlogComment createReply(String username, int parentCommentId, BlogComment blogComment) {
@@ -113,6 +123,7 @@ public class BlogCommentServiceImpl implements BlogCommentService {
             blogComment.setUser(user);
             blogComment.setBlogPost(parentBlogPost);
             blogComment.setParentComment(parentComment);
+            blogComment.setHidden(false);
 
             // Save the reply.
             blogComment = blogCommentRepo.save(blogComment);

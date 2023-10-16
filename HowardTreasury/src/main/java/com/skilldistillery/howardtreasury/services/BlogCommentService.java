@@ -18,7 +18,7 @@ public interface BlogCommentService {
 	
 	public BlogComment update(String username, int blogCommentId, BlogComment blogComment);
 	
-	public ResponseEntity<Void> delete(String username, int blogCommentId);
+	public ResponseEntity<Boolean> delete(String username, int blogCommentId);
 	
     public BlogComment createReply(String username, int parentCommentId, BlogComment blogComment);
     
