@@ -31,12 +31,14 @@ public class BlogPost {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
-    // Add a many-to-one relationship with Blog
     @ManyToOne
     @JoinColumn(name = "blog_id")
     private Blog blog;
     
-    // Add a one-to-many relationship with BlogComment
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    
     @OneToMany(mappedBy = "blogPost")
     private List<BlogComment> comments;
 }

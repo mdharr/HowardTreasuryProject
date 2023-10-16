@@ -654,9 +654,11 @@ CREATE TABLE IF NOT EXISTS `blog_comment` (
   `created_at` TIMESTAMP NULL,
   `blog_post_id` INT NOT NULL,
   `parent_comment_id` INT NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_blog_comment_blog_post1_idx` (`blog_post_id` ASC),
   INDEX `fk_blog_comment_blog_comment1_idx` (`parent_comment_id` ASC),
+  INDEX `fk_blog_comment_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_blog_comment_blog_post1`
     FOREIGN KEY (`blog_post_id`)
     REFERENCES `blog_post` (`id`)
@@ -665,6 +667,11 @@ CREATE TABLE IF NOT EXISTS `blog_comment` (
   CONSTRAINT `fk_blog_comment_blog_comment1`
     FOREIGN KEY (`parent_comment_id`)
     REFERENCES `blog_comment` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_blog_comment_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -2120,8 +2127,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `blog_comment` (`id`, `content`, `created_at`, `blog_post_id`, `parent_comment_id`) VALUES (1, 'Great first post!', '2023-03-05T12:35:22', 1, NULL);
-INSERT INTO `blog_comment` (`id`, `content`, `created_at`, `blog_post_id`, `parent_comment_id`) VALUES (2, 'Great first comment!', '2023-03-06T12:35:22', 1, 1);
+INSERT INTO `blog_comment` (`id`, `content`, `created_at`, `blog_post_id`, `parent_comment_id`, `user_id`) VALUES (1, 'Great first post!', '2023-03-05T12:35:22', 1, NULL, 2);
+INSERT INTO `blog_comment` (`id`, `content`, `created_at`, `blog_post_id`, `parent_comment_id`, `user_id`) VALUES (2, 'Great first comment!', '2023-03-06T12:35:22', 1, 1, 1);
 
 COMMIT;
 

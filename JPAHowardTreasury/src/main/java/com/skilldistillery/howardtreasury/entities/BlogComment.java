@@ -27,17 +27,14 @@ public class BlogComment {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 	
-    // Add a many-to-one relationship with User to represent the author of the comment
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
     
-    // Add a many-to-one relationship with BlogPost
     @ManyToOne
     @JoinColumn(name = "blog_post_id")
     private BlogPost blogPost;
     
-    // Add a self-referencing relationship for replies
     @ManyToOne
     @JoinColumn(name = "parent_comment_id")
     private BlogComment parentComment;

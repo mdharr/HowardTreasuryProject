@@ -36,6 +36,12 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<UserList> userLists;
 	
+    @OneToMany(mappedBy = "user")
+    private List<BlogPost> blogPosts;
+    
+    @OneToMany(mappedBy = "user")
+    private List<BlogComment> comments;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<ChatMessage> chatMessages;
