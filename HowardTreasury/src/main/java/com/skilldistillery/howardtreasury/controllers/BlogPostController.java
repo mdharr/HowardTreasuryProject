@@ -40,7 +40,7 @@ public class BlogPostController {
 	
 	@GetMapping("blogs/{bid}/posts/{bpid}")
 	public ResponseEntity<BlogPost> getById(@PathVariable("bid") int blogId, @PathVariable("bpid") int blogPostId) {
-		BlogPost blogPost = blogPostService.find(blogId);
+		BlogPost blogPost = blogPostService.find(blogPostId);
 		if(blogPost != null) {
 			return new ResponseEntity<>(blogPost, HttpStatus.OK);
 		}
