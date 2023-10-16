@@ -655,6 +655,7 @@ CREATE TABLE IF NOT EXISTS `blog_comment` (
   `blog_post_id` INT NOT NULL,
   `parent_comment_id` INT NULL,
   `user_id` INT NOT NULL,
+  `hidden` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_blog_comment_blog_post1_idx` (`blog_post_id` ASC),
   INDEX `fk_blog_comment_blog_comment1_idx` (`parent_comment_id` ASC),
@@ -2127,8 +2128,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `blog_comment` (`id`, `content`, `created_at`, `blog_post_id`, `parent_comment_id`, `user_id`) VALUES (1, 'Great first post!', '2023-03-05T12:35:22', 1, NULL, 2);
-INSERT INTO `blog_comment` (`id`, `content`, `created_at`, `blog_post_id`, `parent_comment_id`, `user_id`) VALUES (2, 'Great first comment!', '2023-03-06T12:35:22', 1, 1, 1);
+INSERT INTO `blog_comment` (`id`, `content`, `created_at`, `blog_post_id`, `parent_comment_id`, `user_id`, `hidden`) VALUES (1, 'Great first post!', '2023-03-05T12:35:22', 1, NULL, 2, 0);
+INSERT INTO `blog_comment` (`id`, `content`, `created_at`, `blog_post_id`, `parent_comment_id`, `user_id`, `hidden`) VALUES (2, 'Great first comment!', '2023-03-06T12:35:22', 1, 1, 1, 0);
 
 COMMIT;
 

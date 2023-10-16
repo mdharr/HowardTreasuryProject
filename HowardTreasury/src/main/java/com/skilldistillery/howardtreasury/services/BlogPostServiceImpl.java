@@ -8,14 +8,28 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.howardtreasury.entities.Blog;
 import com.skilldistillery.howardtreasury.entities.BlogPost;
+import com.skilldistillery.howardtreasury.entities.User;
+import com.skilldistillery.howardtreasury.repositories.BlogCommentRepository;
 import com.skilldistillery.howardtreasury.repositories.BlogPostRepository;
+import com.skilldistillery.howardtreasury.repositories.BlogRepository;
+import com.skilldistillery.howardtreasury.repositories.UserRepository;
 
 @Service
 public class BlogPostServiceImpl implements BlogPostService {
+	
+	@Autowired
+	private BlogRepository blogRepo;
 
 	@Autowired
 	private BlogPostRepository blogPostRepo;
+	
+	@Autowired
+	private BlogCommentRepository blogCommentRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public List<BlogPost> findAll() {
@@ -33,9 +47,32 @@ public class BlogPostServiceImpl implements BlogPostService {
 	}
 
 	@Override
-	public BlogPost create(String username, BlogPost blogPost) {
-		return blogPostRepo.save(blogPost);
+	public BlogPost create(String username, int blogId, BlogPost blogPost) {
+	    Optional<Blog> blogOpt = blogRepo.findById(blogId);
+	    
+	    if (blogOpt.isPresent()) {
+	        Blog blog = blogOpt.get();
+	        
+	        User user = userRepo.findByUsername(username);
+	        if (user == null) {
+	            return null;
+	        }
+
+	        blogPost.setUser(user);
+	        blogPost.setBlog(blog);
+
+	        blogPost = blogPostRepo.save(blogPost);
+	        List<BlogPost> blogPosts = blog.getBlogPosts();
+	        blogPosts.add(blogPost);
+
+	        blogRepo.save(blog);
+
+	        return blogPost;
+	    } else {
+	        return null;
+	    }
 	}
+
 	
 	@Override
 	public BlogPost update(String username, int blogPostId, BlogPost blogPost) {
@@ -56,20 +93,24 @@ public class BlogPostServiceImpl implements BlogPostService {
 
 	@Override
 	public ResponseEntity<Void> delete(String username, int blogPostId) {
-		Optional<BlogPost> blogPostOpt = blogPostRepo.findById(blogPostId);
-		
-		if(blogPostOpt.isPresent()) {
-			BlogPost blogPost = blogPostOpt.get();
-			if(blogPost.getUser().getUsername().equals(username)) {
-				blogPostRepo.delete(blogPost);
-				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			}
-			else {
-				return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-			}
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+	    Optional<BlogPost> blogPostOpt = blogPostRepo.findById(blogPostId);
+
+	    if (blogPostOpt.isPresent()) {
+	        BlogPost blogPost = blogPostOpt.get();
+	        
+	        if (blogPost.getUser().getUsername().equals(username)) {
+	            blogCommentRepo.deleteAll(blogPost.getComments());
+	            
+	            blogPostRepo.delete(blogPost);
+	            
+	            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	        } else {
+	            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+	        }
+	    } else {
+	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
 	}
+
 	
 }
