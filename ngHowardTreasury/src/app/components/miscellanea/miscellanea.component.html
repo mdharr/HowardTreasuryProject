@@ -50,7 +50,7 @@
                 <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
                   <div style="display:flex; gap:15px;">
                     <span class="sword-icon">🗡️</span>
-                    <span [routerLink]="['/miscellaneas', miscellanea.id]" class="story-title">{{ miscellanea.title }}</span>
+                    <span [routerLink]="['/miscellanea', miscellanea.id]" class="story-title">{{ miscellanea.title }}</span>
                   </div>
                   <div style="display:flex; justify-content:flex-end;" *ngIf="loggedIn()">
                     <span class="add-button">
