@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import com.skilldistillery.howardtreasury.dtos.BlogCommentDTO;
 import com.skilldistillery.howardtreasury.entities.BlogComment;
 
 public interface BlogCommentService {
@@ -23,5 +24,7 @@ public interface BlogCommentService {
     public BlogComment createReply(String username, int parentCommentId, BlogComment blogComment);
     
     public List<BlogComment> findRepliesForComment(int parentCommentId);
+    
+    public BlogCommentDTO mapToDTO(BlogComment blogComment);
 
 }

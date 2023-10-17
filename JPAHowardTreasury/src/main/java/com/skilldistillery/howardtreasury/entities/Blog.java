@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Blog {
@@ -30,6 +31,7 @@ public class Blog {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 	
+	@JsonIgnore
     @OneToMany(mappedBy = "blog")
     private List<BlogPost> blogPosts;
 

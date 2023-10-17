@@ -39,7 +39,7 @@ public class BlogComment {
     @JoinColumn(name = "user_id")
     private User user;
     
-	@JsonIgnore
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "blog_post_id")
     private BlogPost blogPost;

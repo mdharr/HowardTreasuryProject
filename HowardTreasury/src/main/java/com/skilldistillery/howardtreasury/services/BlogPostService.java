@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import com.skilldistillery.howardtreasury.dtos.BlogPostDTO;
 import com.skilldistillery.howardtreasury.entities.BlogPost;
 
 public interface BlogPostService {
@@ -19,4 +20,7 @@ public interface BlogPostService {
 	public ResponseEntity<Void> delete(String username, int blogPostId);
 	
 	public ResponseEntity<Boolean> softDelete(String username, int blogPostId);
+	
+	public BlogPostDTO mapToDTO(BlogPost blogPost);
+
 }

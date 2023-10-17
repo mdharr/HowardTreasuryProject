@@ -1,6 +1,8 @@
 package com.skilldistillery.howardtreasury.services;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.howardtreasury.dtos.BlogCommentDTO;
+import com.skilldistillery.howardtreasury.dtos.BlogPostDTO;
+import com.skilldistillery.howardtreasury.dtos.UserDTO;
 import com.skilldistillery.howardtreasury.entities.Blog;
 import com.skilldistillery.howardtreasury.entities.BlogComment;
 import com.skilldistillery.howardtreasury.entities.BlogPost;
@@ -32,6 +37,12 @@ public class BlogPostServiceImpl implements BlogPostService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private BlogCommentService blogCommentService;
 
 	@Override
 	public List<BlogPost> findAll(int blogId) {
@@ -140,6 +151,60 @@ public class BlogPostServiceImpl implements BlogPostService {
 		}
 		
 		return ResponseEntity.notFound().build();
+	}
+
+	@Override
+	public BlogPostDTO mapToDTO(BlogPost blogPost) {
+	    BlogPostDTO dto = new BlogPostDTO();
+	    dto.setId(blogPost.getId());
+	    dto.setTitle(blogPost.getTitle());
+	    dto.setContent(blogPost.getContent());
+	    dto.setCreatedAt(blogPost.getCreatedAt());
+	    dto.setHidden(blogPost.getHidden());
+	    dto.setBlog(blogPost.getBlog());
+
+	    UserDTO userDTO = userService.mapUserToDTO(blogPost.getUser());
+	    dto.setUser(userDTO);
+
+	    List<BlogCommentDTO> commentDTOs = new ArrayList<>();
+
+	    for (BlogComment comment : blogPost.getComments()) {
+	        // Recursive function to map comments and their replies
+	        BlogCommentDTO commentDTO = mapCommentWithRepliesRecursive(comment);
+	        commentDTOs.add(commentDTO);
+	    }
+
+	    dto.setComments(commentDTOs);
+
+	    return dto;
+	}
+
+	private BlogCommentDTO mapCommentWithRepliesRecursive(BlogComment comment) {
+	    BlogCommentDTO commentDTO = new BlogCommentDTO();
+	    commentDTO.setId(comment.getId());
+	    commentDTO.setContent(comment.getContent());
+	    commentDTO.setCreatedAt(comment.getCreatedAt());
+	    commentDTO.setUser(userService.mapUserToDTO(comment.getUser()));
+	    commentDTO.setHidden(comment.isHidden());
+
+	    List<BlogCommentDTO> replyDTOs = new ArrayList<>();
+	    int maxDepth = 100;
+
+	    for (BlogComment reply : comment.getReplies()) {
+	        // Recursive function to map replies and nested replies
+	        BlogCommentDTO replyDTO = mapCommentWithRepliesRecursive(reply);
+	        replyDTO.setId(reply.getId());
+	        replyDTO.setContent(reply.getContent());
+	        replyDTO.setCreatedAt(reply.getCreatedAt());
+	        replyDTO.setUser(userService.mapUserToDTO(reply.getUser()));
+	        replyDTO.setHidden(reply.isHidden());
+	        replyDTO.setParentComment(blogCommentService.mapToDTO(reply.getParentComment()));
+	        replyDTOs.add(replyDTO);
+	    }
+
+	    commentDTO.setReplies(replyDTOs);
+
+	    return commentDTO;
 	}
 	
 }

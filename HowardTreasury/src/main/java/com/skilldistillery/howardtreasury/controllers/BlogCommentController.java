@@ -2,6 +2,7 @@ package com.skilldistillery.howardtreasury.controllers;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.howardtreasury.dtos.BlogCommentDTO;
 import com.skilldistillery.howardtreasury.entities.BlogComment;
 import com.skilldistillery.howardtreasury.services.BlogCommentService;
 
@@ -27,25 +29,53 @@ public class BlogCommentController {
 	@Autowired
 	private BlogCommentService blogCommentService;
 	
+//	@GetMapping("comments")
+//	public ResponseEntity<List<BlogComment>> getAllComments() {
+//	    List<BlogComment> comments = blogCommentService.findAll();
+//	    if (!comments.isEmpty()) {
+//	        return new ResponseEntity<>(comments, HttpStatus.OK);
+//	    } else {
+//	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//	    }
+//	}
+//
+//	@GetMapping("comments/{cid}")
+//	public ResponseEntity<BlogComment> getCommentById(@PathVariable("cid") int blogCommentId) {
+//	    BlogComment comment = blogCommentService.findById(blogCommentId);
+//	    if (comment != null) {
+//	        return new ResponseEntity<>(comment, HttpStatus.OK);
+//	    } else {
+//	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//	    }
+//	}
+	
+	// BlogCommentController.java
 	@GetMapping("comments")
-	public ResponseEntity<List<BlogComment>> getAllComments() {
+	public ResponseEntity<List<BlogCommentDTO>> getAllComments() {
 	    List<BlogComment> comments = blogCommentService.findAll();
 	    if (!comments.isEmpty()) {
-	        return new ResponseEntity<>(comments, HttpStatus.OK);
+	        // Map your BlogComment entities to BlogCommentDTOs
+	        List<BlogCommentDTO> commentDTOs = comments.stream()
+	                .map(blogCommentService::mapToDTO)
+	                .collect(Collectors.toList());
+	        return new ResponseEntity<>(commentDTOs, HttpStatus.OK);
 	    } else {
 	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	    }
 	}
 
 	@GetMapping("comments/{cid}")
-	public ResponseEntity<BlogComment> getCommentById(@PathVariable("cid") int blogCommentId) {
+	public ResponseEntity<BlogCommentDTO> getCommentById(@PathVariable("cid") int blogCommentId) {
 	    BlogComment comment = blogCommentService.findById(blogCommentId);
 	    if (comment != null) {
-	        return new ResponseEntity<>(comment, HttpStatus.OK);
+	        // Map the BlogComment entity to a BlogCommentDTO
+	        BlogCommentDTO commentDTO = blogCommentService.mapToDTO(comment);
+	        return new ResponseEntity<>(commentDTO, HttpStatus.OK);
 	    } else {
 	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	    }
 	}
+
 
 	@GetMapping("blogs/{bid}/posts/{bpid}/comments")
 	public ResponseEntity<List<BlogComment>> getCommentsForBlogPost(@PathVariable("bid") int blogId, @PathVariable("bpid") int blogPostId) {

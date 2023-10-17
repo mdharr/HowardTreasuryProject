@@ -1,15 +1,16 @@
 package com.skilldistillery.howardtreasury.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.howardtreasury.entities.Blog;
+import com.skilldistillery.howardtreasury.dtos.BlogCommentDTO;
+import com.skilldistillery.howardtreasury.dtos.UserDTO;
 import com.skilldistillery.howardtreasury.entities.BlogComment;
 import com.skilldistillery.howardtreasury.entities.BlogPost;
 import com.skilldistillery.howardtreasury.entities.User;
@@ -28,6 +29,9 @@ public class BlogCommentServiceImpl implements BlogCommentService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private UserService userService;
 
     @Override
     public List<BlogComment> findAll() {
@@ -133,10 +137,68 @@ public class BlogCommentServiceImpl implements BlogCommentService {
         return null;
     }
 
-
     @Override
     public List<BlogComment> findRepliesForComment(int parentCommentId) {
         return blogCommentRepo.findByParentCommentId(parentCommentId);
     }
+    
+    @Override
+    public BlogCommentDTO mapToDTO(BlogComment blogComment) {
+        BlogCommentDTO dto = new BlogCommentDTO();
+        dto.setId(blogComment.getId());
+        dto.setContent(blogComment.getContent());
+        dto.setCreatedAt(blogComment.getCreatedAt());
+        dto.setUser(userService.mapUserToDTO(blogComment.getUser()));
+        dto.setHidden(blogComment.isHidden());
+
+        List<BlogCommentDTO> replyDTOs = new ArrayList<>();
+        int maxDepth = 100;
+
+        for (BlogComment reply : blogComment.getReplies()) {
+            // Recursive function to map replies and nested replies
+            BlogCommentDTO replyDTO = mapCommentWithRepliesRecursive(reply);
+            replyDTOs.add(replyDTO);
+        }
+
+        dto.setReplies(replyDTOs);
+
+        return dto;
+    }
+
+
+    private BlogCommentDTO mapCommentWithRepliesRecursive(BlogComment comment) {
+        BlogCommentDTO commentDTO = new BlogCommentDTO();
+        commentDTO.setId(comment.getId());
+        commentDTO.setContent(comment.getContent());
+        commentDTO.setCreatedAt(comment.getCreatedAt());
+        commentDTO.setUser(userService.mapUserToDTO(comment.getUser()));
+        commentDTO.setHidden(comment.isHidden());
+
+        List<BlogCommentDTO> replyDTOs = new ArrayList<>();
+        int maxDepth = 100;
+
+        for (BlogComment reply : comment.getReplies()) {
+            // Recursive function to map replies and nested replies
+            BlogCommentDTO replyDTO = mapCommentWithRepliesRecursive(reply);
+            replyDTOs.add(replyDTO);
+        }
+
+        commentDTO.setReplies(replyDTOs);
+
+        return commentDTO;
+    }
+
+
+
+    private BlogCommentDTO mapCommentWithoutRepliesRecursive(BlogComment comment) {
+        BlogCommentDTO commentDTO = new BlogCommentDTO();
+        commentDTO.setId(comment.getId());
+        commentDTO.setContent(comment.getContent());
+        commentDTO.setCreatedAt(comment.getCreatedAt());
+        commentDTO.setUser(userService.mapUserToDTO(comment.getUser()));
+        commentDTO.setHidden(comment.isHidden());
+        return commentDTO;
+    }
+
 
 }

@@ -37,7 +37,6 @@ public class BlogPost {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
-	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "blog_id")
     private Blog blog;
