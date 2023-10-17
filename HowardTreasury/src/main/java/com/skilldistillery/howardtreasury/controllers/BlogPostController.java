@@ -29,30 +29,8 @@ public class BlogPostController {
 	@Autowired
 	private BlogPostService blogPostService;
 	
-//	@GetMapping("blogs/{bid}/posts")
-//    public ResponseEntity<List<BlogPost>> getAllBlogPosts(@PathVariable("bid") int blogId) {
-//		List<BlogPost> blogPosts = blogPostService.findAll(blogId);
-//		if(!blogPosts.isEmpty()) {
-//			return new ResponseEntity<>(blogPosts, HttpStatus.OK);
-//		}
-//		else {
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		}
-//    }
-//	
-//	@GetMapping("blogs/{bid}/posts/{bpid}")
-//	public ResponseEntity<BlogPost> getById(@PathVariable("bid") int blogId, @PathVariable("bpid") int blogPostId) {
-//		BlogPost blogPost = blogPostService.find(blogPostId);
-//		if(blogPost != null) {
-//			return new ResponseEntity<>(blogPost, HttpStatus.OK);
-//		}
-//		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//	}
-	
 	@GetMapping("posts")
-	public ResponseEntity<List<BlogPostDTO>> getAllBlogPosts(
-//			@PathVariable("bid") int blogId
-			) {
+	public ResponseEntity<List<BlogPostDTO>> getAllBlogPosts() {
 	    List<BlogPost> blogPosts = blogPostService.findAll();
 	    if (!blogPosts.isEmpty()) {
 	        // Map your BlogPost entities to BlogPostDTOs
@@ -88,7 +66,7 @@ public class BlogPostController {
 	}
 
 	@PutMapping("posts/{postId}")
-	public ResponseEntity<BlogPost> updatePost( @PathVariable("postId") int postId, @RequestBody BlogPost blogPost, Principal principal) {
+	public ResponseEntity<BlogPost> updatePost(@PathVariable("postId") int postId, @RequestBody BlogPost blogPost, Principal principal) {
 	    BlogPost updatedPost = blogPostService.update(principal.getName(), postId, blogPost);
 	    if (updatedPost != null) {
 	        return new ResponseEntity<>(updatedPost, HttpStatus.OK);

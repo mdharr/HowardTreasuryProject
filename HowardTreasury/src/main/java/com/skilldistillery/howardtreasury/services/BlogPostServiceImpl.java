@@ -1,8 +1,6 @@
 package com.skilldistillery.howardtreasury.services;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,20 +12,15 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.howardtreasury.dtos.BlogCommentDTO;
 import com.skilldistillery.howardtreasury.dtos.BlogPostDTO;
 import com.skilldistillery.howardtreasury.dtos.UserDTO;
-import com.skilldistillery.howardtreasury.entities.Blog;
 import com.skilldistillery.howardtreasury.entities.BlogComment;
 import com.skilldistillery.howardtreasury.entities.BlogPost;
 import com.skilldistillery.howardtreasury.entities.User;
 import com.skilldistillery.howardtreasury.repositories.BlogCommentRepository;
 import com.skilldistillery.howardtreasury.repositories.BlogPostRepository;
-import com.skilldistillery.howardtreasury.repositories.BlogRepository;
 import com.skilldistillery.howardtreasury.repositories.UserRepository;
 
 @Service
 public class BlogPostServiceImpl implements BlogPostService {
-
-	@Autowired
-	private BlogRepository blogRepo;
 
 	@Autowired
 	private BlogPostRepository blogPostRepo;

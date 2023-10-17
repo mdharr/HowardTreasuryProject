@@ -3,14 +3,11 @@ package com.skilldistillery.howardtreasury.dtos;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.skilldistillery.howardtreasury.entities.Blog;
-
 public class BlogPostDTO {
     private int id;
     private String title;
     private String content;
     private LocalDateTime createdAt;
-//    private Blog blog;
     private UserDTO user;
     private List<BlogCommentDTO> comments;
     private Boolean hidden;
@@ -24,7 +21,6 @@ public class BlogPostDTO {
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;
-//        this.blog = blog;
         this.user = user;
         this.comments = comments;
         this.hidden = hidden;
@@ -63,14 +59,6 @@ public class BlogPostDTO {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
-
-//    public Blog getBlog() {
-//        return blog;
-//    }
-//
-//    public void setBlog(Blog blog) {
-//        this.blog = blog;
-//    }
 
     public UserDTO getUser() {
         return user;

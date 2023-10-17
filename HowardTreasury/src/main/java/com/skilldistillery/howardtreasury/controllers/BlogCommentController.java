@@ -31,26 +31,6 @@ public class BlogCommentController {
 	@Autowired
 	private BlogCommentService blogCommentService;
 	
-//	@GetMapping("comments")
-//	public ResponseEntity<List<BlogComment>> getAllComments() {
-//	    List<BlogComment> comments = blogCommentService.findAll();
-//	    if (!comments.isEmpty()) {
-//	        return new ResponseEntity<>(comments, HttpStatus.OK);
-//	    } else {
-//	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//	    }
-//	}
-//
-//	@GetMapping("comments/{cid}")
-//	public ResponseEntity<BlogComment> getCommentById(@PathVariable("cid") int blogCommentId) {
-//	    BlogComment comment = blogCommentService.findById(blogCommentId);
-//	    if (comment != null) {
-//	        return new ResponseEntity<>(comment, HttpStatus.OK);
-//	    } else {
-//	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//	    }
-//	}
-	
 	// BlogCommentController.java
 	@GetMapping("comments")
 	public ResponseEntity<List<BlogCommentDTO>> getAllComments() {
@@ -91,16 +71,6 @@ public class BlogCommentController {
 	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	    }
 	}
-
-//	@GetMapping("blogs/{bid}/posts/{bpid}/comments")
-//	public ResponseEntity<List<BlogComment>> getCommentsForBlogPost(@PathVariable("bid") int blogId, @PathVariable("bpid") int blogPostId) {
-//	    List<BlogComment> comments = blogCommentService.findByBlogPost(blogPostId);
-//	    if (!comments.isEmpty()) {
-//	        return new ResponseEntity<>(comments, HttpStatus.OK);
-//	    } else {
-//	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//	    }
-//	}
 	
     @PostMapping("posts/{bpid}/comments")
     public ResponseEntity<BlogComment> createComment(@PathVariable("bpid") int blogPostId, @RequestBody BlogComment blogComment, Principal principal) {
