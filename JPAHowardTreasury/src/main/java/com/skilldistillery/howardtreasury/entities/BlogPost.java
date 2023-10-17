@@ -37,9 +37,9 @@ public class BlogPost {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
-    @ManyToOne
-    @JoinColumn(name = "blog_id")
-    private Blog blog;
+//    @ManyToOne
+//    @JoinColumn(name = "blog_id")
+//    private Blog blog;
     
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -56,14 +56,14 @@ public class BlogPost {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BlogPost(int id, String title, String content, LocalDateTime createdAt, Blog blog, User user,
+	public BlogPost(int id, String title, String content, LocalDateTime createdAt, User user,
 			List<BlogComment> comments, Boolean hidden) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.createdAt = createdAt;
-		this.blog = blog;
+//		this.blog = blog;
 		this.user = user;
 		this.comments = comments;
 		this.hidden = hidden;
@@ -101,13 +101,13 @@ public class BlogPost {
 		this.createdAt = createdAt;
 	}
 
-	public Blog getBlog() {
-		return blog;
-	}
-
-	public void setBlog(Blog blog) {
-		this.blog = blog;
-	}
+//	public Blog getBlog() {
+//		return blog;
+//	}
+//
+//	public void setBlog(Blog blog) {
+//		this.blog = blog;
+//	}
 
 	public User getUser() {
 		return user;
@@ -153,7 +153,7 @@ public class BlogPost {
 	@Override
 	public String toString() {
 		return "BlogPost [id=" + id + ", title=" + title + ", content=" + content + ", createdAt=" + createdAt
-				+ ", blog=" + blog + ", user=" + user +  ", hidden=" + hidden + "]";
+				+ ", user=" + user +  ", hidden=" + hidden + "]";
 	}
     
 }

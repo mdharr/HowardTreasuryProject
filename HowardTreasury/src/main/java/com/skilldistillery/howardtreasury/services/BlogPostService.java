@@ -9,11 +9,11 @@ import com.skilldistillery.howardtreasury.entities.BlogPost;
 
 public interface BlogPostService {
 
-	public List<BlogPost> findAll(int blogId);
+	public List<BlogPost> findAll();
 	
 	public BlogPost find(int blogPostId);
 	
-	public BlogPost create(String username, int blogId, BlogPost blogPost);
+	public BlogPost create(String username, BlogPost blogPost);
 	
 	public BlogPost update(String username, int blogPostId, BlogPost blogPost);
 	

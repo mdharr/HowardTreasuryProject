@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.howardtreasury.dtos.BlogCommentDTO;
+import com.skilldistillery.howardtreasury.dtos.BlogPostDTO;
 import com.skilldistillery.howardtreasury.entities.BlogComment;
+import com.skilldistillery.howardtreasury.entities.BlogPost;
 import com.skilldistillery.howardtreasury.services.BlogCommentService;
 
 @RestController
@@ -75,21 +77,33 @@ public class BlogCommentController {
 	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	    }
 	}
-
-
-	@GetMapping("blogs/{bid}/posts/{bpid}/comments")
-	public ResponseEntity<List<BlogComment>> getCommentsForBlogPost(@PathVariable("bid") int blogId, @PathVariable("bpid") int blogPostId) {
+	
+	@GetMapping("posts/{bpid}/comments")
+	public ResponseEntity<List<BlogCommentDTO>> getCommentsForBlogPost(@PathVariable("bpid") int blogPostId) {
 	    List<BlogComment> comments = blogCommentService.findByBlogPost(blogPostId);
 	    if (!comments.isEmpty()) {
-	        return new ResponseEntity<>(comments, HttpStatus.OK);
+	        // Map your BlogComment entities to BlogCommentDTOs
+	        List<BlogCommentDTO> commentDTOs = comments.stream()
+	                .map(blogCommentService::mapToDTO) // You need to create a mapping method in your service
+	                .collect(Collectors.toList());
+	        return new ResponseEntity<>(commentDTOs, HttpStatus.OK);
 	    } else {
 	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	    }
 	}
 
+//	@GetMapping("blogs/{bid}/posts/{bpid}/comments")
+//	public ResponseEntity<List<BlogComment>> getCommentsForBlogPost(@PathVariable("bid") int blogId, @PathVariable("bpid") int blogPostId) {
+//	    List<BlogComment> comments = blogCommentService.findByBlogPost(blogPostId);
+//	    if (!comments.isEmpty()) {
+//	        return new ResponseEntity<>(comments, HttpStatus.OK);
+//	    } else {
+//	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//	    }
+//	}
 	
-    @PostMapping("blogs/{bid}/posts/{bpid}/comments")
-    public ResponseEntity<BlogComment> createComment(@PathVariable("bid") int blogId, @PathVariable("bpid") int blogPostId, @RequestBody BlogComment blogComment, Principal principal) {
+    @PostMapping("posts/{bpid}/comments")
+    public ResponseEntity<BlogComment> createComment(@PathVariable("bpid") int blogPostId, @RequestBody BlogComment blogComment, Principal principal) {
         BlogComment createdComment = blogCommentService.create(principal.getName(), blogPostId, blogComment);
         if (createdComment != null) {
             return new ResponseEntity<>(createdComment, HttpStatus.CREATED);
@@ -98,8 +112,8 @@ public class BlogCommentController {
         }
     }
 
-    @PutMapping("blogs/{bid}/posts/{bpid}/comments/{cid}")
-    public ResponseEntity<BlogComment> updateComment(@PathVariable("bid") int blogId, @PathVariable("bpid") int blogPostId, @PathVariable("cid") int blogCommentId, @RequestBody BlogComment blogComment, Principal principal) {
+    @PutMapping("posts/{bpid}/comments/{cid}")
+    public ResponseEntity<BlogComment> updateComment(@PathVariable("bpid") int blogPostId, @PathVariable("cid") int blogCommentId, @RequestBody BlogComment blogComment, Principal principal) {
         BlogComment updatedComment = blogCommentService.update(principal.getName(), blogCommentId, blogComment);
         if (updatedComment != null) {
             return new ResponseEntity<>(updatedComment, HttpStatus.OK);
@@ -108,8 +122,8 @@ public class BlogCommentController {
         }
     }
 
-    @DeleteMapping("blogs/{bid}/posts/{bpid}/comments/{cid}")
-    public ResponseEntity<Boolean> deleteComment(@PathVariable("bid") int blogId, @PathVariable("bpid") int blogPostId, @PathVariable("cid") int blogCommentId, Principal principal) {
+    @DeleteMapping("posts/{bpid}/comments/{cid}")
+    public ResponseEntity<Boolean> deleteComment(@PathVariable("bpid") int blogPostId, @PathVariable("cid") int blogCommentId, Principal principal) {
         ResponseEntity<Boolean> response = blogCommentService.delete(principal.getName(), blogCommentId);
         if (response.getStatusCode() == HttpStatus.OK) {
             return new ResponseEntity<>(true, HttpStatus.OK);
@@ -120,8 +134,8 @@ public class BlogCommentController {
         }
     }
 
-    @PostMapping("blogs/{bid}/posts/{bpid}/comments/{cid}/replies")
-    public ResponseEntity<BlogComment> createReply(@PathVariable("bid") int blogId, @PathVariable("bpid") int blogPostId, @PathVariable("cid") int parentCommentId, @RequestBody BlogComment blogComment, Principal principal) {
+    @PostMapping("posts/{bpid}/comments/{cid}/replies")
+    public ResponseEntity<BlogComment> createReply(@PathVariable("bpid") int blogPostId, @PathVariable("cid") int parentCommentId, @RequestBody BlogComment blogComment, Principal principal) {
         BlogComment createdReply = blogCommentService.createReply(principal.getName(), parentCommentId, blogComment);
         if (createdReply != null) {
             return new ResponseEntity<>(createdReply, HttpStatus.CREATED);
@@ -130,8 +144,8 @@ public class BlogCommentController {
         }
     }
 
-    @GetMapping("blogs/{bid}/posts/{bpid}/comments/{cid}/replies")
-    public ResponseEntity<List<BlogComment>> getRepliesForComment(@PathVariable("bid") int blogId, @PathVariable("bpid") int blogPostId, @PathVariable("cid") int parentCommentId) {
+    @GetMapping("posts/{bpid}/comments/{cid}/replies")
+    public ResponseEntity<List<BlogComment>> getRepliesForComment(@PathVariable("bpid") int blogPostId, @PathVariable("cid") int parentCommentId) {
         List<BlogComment> replies = blogCommentService.findRepliesForComment(parentCommentId);
         if (!replies.isEmpty()) {
             return new ResponseEntity<>(replies, HttpStatus.OK);

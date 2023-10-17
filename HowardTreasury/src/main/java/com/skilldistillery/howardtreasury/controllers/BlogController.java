@@ -22,24 +22,24 @@ public class BlogController {
 	@Autowired
 	private BlogService blogService;
 
-	@GetMapping("blogs")
-    public ResponseEntity<List<Blog>> getAllBlogs() {
-		List<Blog> blogs = blogService.findAll();
-		if(!blogs.isEmpty()) {
-			return new ResponseEntity<>(blogs, HttpStatus.OK);
-		}
-		else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-    }
-	
-	@GetMapping("blogs/{bid}")
-	public ResponseEntity<Blog> getById(@PathVariable("bid") int blogId) {
-		Blog blog = blogService.find(blogId);
-		if(blog != null) {
-			return new ResponseEntity<>(blog, HttpStatus.OK);
-		}
-		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}
+//	@GetMapping("blogs")
+//    public ResponseEntity<List<Blog>> getAllBlogs() {
+//		List<Blog> blogs = blogService.findAll();
+//		if(!blogs.isEmpty()) {
+//			return new ResponseEntity<>(blogs, HttpStatus.OK);
+//		}
+//		else {
+//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		}
+//    }
+//	
+//	@GetMapping("blogs/{bid}")
+//	public ResponseEntity<Blog> getById(@PathVariable("bid") int blogId) {
+//		Blog blog = blogService.find(blogId);
+//		if(blog != null) {
+//			return new ResponseEntity<>(blog, HttpStatus.OK);
+//		}
+//		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//	}
 
 }

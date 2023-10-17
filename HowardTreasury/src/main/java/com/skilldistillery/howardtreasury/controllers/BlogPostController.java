@@ -49,10 +49,11 @@ public class BlogPostController {
 //		else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 //	}
 	
-	// BlogPostController.java
-	@GetMapping("blogs/{bid}/posts")
-	public ResponseEntity<List<BlogPostDTO>> getAllBlogPosts(@PathVariable("bid") int blogId) {
-	    List<BlogPost> blogPosts = blogPostService.findAll(blogId);
+	@GetMapping("posts")
+	public ResponseEntity<List<BlogPostDTO>> getAllBlogPosts(
+//			@PathVariable("bid") int blogId
+			) {
+	    List<BlogPost> blogPosts = blogPostService.findAll();
 	    if (!blogPosts.isEmpty()) {
 	        // Map your BlogPost entities to BlogPostDTOs
 	        List<BlogPostDTO> blogPostDTOs = blogPosts.stream()
@@ -64,8 +65,8 @@ public class BlogPostController {
 	    }
 	}
 
-	@GetMapping("blogs/{bid}/posts/{bpid}")
-	public ResponseEntity<BlogPostDTO> getById(@PathVariable("bid") int blogId, @PathVariable("bpid") int blogPostId) {
+	@GetMapping("posts/{bpid}")
+	public ResponseEntity<BlogPostDTO> getById(@PathVariable("bpid") int blogPostId) {
 	    BlogPost blogPost = blogPostService.find(blogPostId);
 	    if (blogPost != null) {
 	        // Map the BlogPost entity to a BlogPostDTO
@@ -75,11 +76,10 @@ public class BlogPostController {
 	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	    }
 	}
-
 	
-	@PostMapping("blogs/{blogId}/posts")
-	public ResponseEntity<BlogPost> createPost(@PathVariable("blogId") int blogId, @RequestBody BlogPost blogPost, Principal principal) {
-	    BlogPost createdPost = blogPostService.create(principal.getName(), blogId, blogPost);
+	@PostMapping("posts")
+	public ResponseEntity<BlogPost> createPost(@RequestBody BlogPost blogPost, Principal principal) {
+	    BlogPost createdPost = blogPostService.create(principal.getName(), blogPost);
 	    if (createdPost != null) {
 	        return new ResponseEntity<>(createdPost, HttpStatus.CREATED);
 	    } else {
@@ -87,8 +87,8 @@ public class BlogPostController {
 	    }
 	}
 
-	@PutMapping("blogs/{blogId}/posts/{postId}")
-	public ResponseEntity<BlogPost> updatePost(@PathVariable("blogId") int blogId, @PathVariable("postId") int postId, @RequestBody BlogPost blogPost, Principal principal) {
+	@PutMapping("posts/{postId}")
+	public ResponseEntity<BlogPost> updatePost( @PathVariable("postId") int postId, @RequestBody BlogPost blogPost, Principal principal) {
 	    BlogPost updatedPost = blogPostService.update(principal.getName(), postId, blogPost);
 	    if (updatedPost != null) {
 	        return new ResponseEntity<>(updatedPost, HttpStatus.OK);
@@ -98,8 +98,8 @@ public class BlogPostController {
 	}
 
 	// hard delete
-	@DeleteMapping("blogs/{blogId}/posts/{postId}")
-	public ResponseEntity<Void> deletePost(@PathVariable("blogId") int blogId, @PathVariable("postId") int postId, Principal principal) {
+	@DeleteMapping("posts/{postId}")
+	public ResponseEntity<Void> deletePost(@PathVariable("postId") int postId, Principal principal) {
 	    ResponseEntity<Void> response = blogPostService.delete(principal.getName(), postId);
 	    
 	    if (response.getStatusCode() == HttpStatus.NO_CONTENT) {
@@ -112,8 +112,8 @@ public class BlogPostController {
 	}
 	
 	// soft delete
-	@DeleteMapping("blogs/{bid}/posts/{bpid}/hide")
-	public ResponseEntity<Boolean> softDelete(@PathVariable("bid") int blogId, @PathVariable("bpid") int blogPostId, Principal principal) {
+	@DeleteMapping("posts/{bpid}/hide")
+	public ResponseEntity<Boolean> softDelete(@PathVariable("bpid") int blogPostId, Principal principal) {
 		ResponseEntity<Boolean> response = blogPostService.softDelete(principal.getName(), blogPostId);
 		if (response.getStatusCode() == HttpStatus.OK) {
 			return new ResponseEntity<>(true, HttpStatus.OK);

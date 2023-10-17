@@ -602,20 +602,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `blog`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `blog` ;
-
-CREATE TABLE IF NOT EXISTS `blog` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(100) NULL,
-  `description` TEXT NULL,
-  `created_at` TIMESTAMP NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `blog_post`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `blog_post` ;
@@ -626,19 +612,12 @@ CREATE TABLE IF NOT EXISTS `blog_post` (
   `content` TEXT NULL,
   `created_at` TIMESTAMP NULL,
   `user_id` INT NOT NULL,
-  `blog_id` INT NOT NULL,
   `hidden` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_blog_post_user1_idx` (`user_id` ASC),
-  INDEX `fk_blog_post_blog1_idx` (`blog_id` ASC),
   CONSTRAINT `fk_blog_post_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_blog_post_blog1`
-    FOREIGN KEY (`blog_id`)
-    REFERENCES `blog` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -2105,21 +2084,11 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `blog`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `howardtreasurydb`;
-INSERT INTO `blog` (`id`, `title`, `description`, `created_at`) VALUES (1, 'Sword and Sorcery', 'A blog for weekly posts about the Sword and Sorcery subgenre.', '2023-03-03T12:35:22');
-
-COMMIT;
-
-
--- -----------------------------------------------------
 -- Data for table `blog_post`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `blog_post` (`id`, `title`, `content`, `created_at`, `user_id`, `blog_id`, `hidden`) VALUES (1, 'First blog post', 'This is a test for first blog post', '2023-03-04T12:35:22', 1, 1, 0);
+INSERT INTO `blog_post` (`id`, `title`, `content`, `created_at`, `user_id`, `hidden`) VALUES (1, 'First blog post', 'This is a test for first blog post', '2023-03-04T12:35:22', 1, 0);
 
 COMMIT;
 

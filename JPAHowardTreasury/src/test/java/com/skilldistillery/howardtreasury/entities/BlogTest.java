@@ -46,10 +46,10 @@ class BlogTest {
 		assertEquals("Sword and Sorcery", blog.getTitle());
 	}
 	
-	@Test
-	void test_Blog_BlogPost_one_to_many_mapping() {
-		assertNotNull(blog);
-		assertEquals("First blog post", blog.getBlogPosts().get(0).getTitle());
-	}
+//	@Test
+//	void test_Blog_BlogPost_one_to_many_mapping() {
+//		assertNotNull(blog);
+//		assertEquals("First blog post", blog.getBlogPosts().get(0).getTitle());
+//	}
 
 }

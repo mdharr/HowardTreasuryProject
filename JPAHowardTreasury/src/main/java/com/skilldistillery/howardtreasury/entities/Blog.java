@@ -31,9 +31,9 @@ public class Blog {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 	
-	@JsonIgnore
-    @OneToMany(mappedBy = "blog")
-    private List<BlogPost> blogPosts;
+//	@JsonIgnore
+//    @OneToMany(mappedBy = "blog")
+//    private List<BlogPost> blogPosts;
 
 	public Blog() {
 		super();
@@ -46,7 +46,7 @@ public class Blog {
 		this.title = title;
 		this.description = description;
 		this.createdAt = createdAt;
-		this.blogPosts = blogPosts;
+//		this.blogPosts = blogPosts;
 	}
 
 	public int getId() {
@@ -81,13 +81,13 @@ public class Blog {
 		this.createdAt = createdAt;
 	}
 
-	public List<BlogPost> getBlogPosts() {
-		return blogPosts;
-	}
-
-	public void setBlogPosts(List<BlogPost> blogPosts) {
-		this.blogPosts = blogPosts;
-	}
+//	public List<BlogPost> getBlogPosts() {
+//		return blogPosts;
+//	}
+//
+//	public void setBlogPosts(List<BlogPost> blogPosts) {
+//		this.blogPosts = blogPosts;
+//	}
 
 	@Override
 	public int hashCode() {

@@ -10,7 +10,7 @@ public class BlogPostDTO {
     private String title;
     private String content;
     private LocalDateTime createdAt;
-    private Blog blog;
+//    private Blog blog;
     private UserDTO user;
     private List<BlogCommentDTO> comments;
     private Boolean hidden;
@@ -19,12 +19,12 @@ public class BlogPostDTO {
         // Default constructor
     }
 
-    public BlogPostDTO(int id, String title, String content, LocalDateTime createdAt, Blog blog, UserDTO user, List<BlogCommentDTO> comments, Boolean hidden) {
+    public BlogPostDTO(int id, String title, String content, LocalDateTime createdAt, UserDTO user, List<BlogCommentDTO> comments, Boolean hidden) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;
-        this.blog = blog;
+//        this.blog = blog;
         this.user = user;
         this.comments = comments;
         this.hidden = hidden;
@@ -64,13 +64,13 @@ public class BlogPostDTO {
         this.createdAt = createdAt;
     }
 
-    public Blog getBlog() {
-        return blog;
-    }
-
-    public void setBlog(Blog blog) {
-        this.blog = blog;
-    }
+//    public Blog getBlog() {
+//        return blog;
+//    }
+//
+//    public void setBlog(Blog blog) {
+//        this.blog = blog;
+//    }
 
     public UserDTO getUser() {
         return user;
