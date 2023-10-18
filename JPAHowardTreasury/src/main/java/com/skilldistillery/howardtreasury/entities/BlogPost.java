@@ -36,10 +36,6 @@ public class BlogPost {
 	@CreationTimestamp
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
-
-//    @ManyToOne
-//    @JoinColumn(name = "blog_id")
-//    private Blog blog;
     
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -50,6 +46,9 @@ public class BlogPost {
     private List<BlogComment> comments;
     
     private Boolean hidden;
+    
+    @Column(name = "image_url")
+    private String imageUrl;
 
 	public BlogPost() {
 		super();
@@ -57,16 +56,16 @@ public class BlogPost {
 	}
 
 	public BlogPost(int id, String title, String content, LocalDateTime createdAt, User user,
-			List<BlogComment> comments, Boolean hidden) {
+			List<BlogComment> comments, Boolean hidden, String imageUrl) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.createdAt = createdAt;
-//		this.blog = blog;
 		this.user = user;
 		this.comments = comments;
 		this.hidden = hidden;
+		this.imageUrl = imageUrl;
 	}
 
 	public int getId() {
@@ -131,6 +130,14 @@ public class BlogPost {
 
 	public void setHidden(Boolean hidden) {
 		this.hidden = hidden;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	@Override

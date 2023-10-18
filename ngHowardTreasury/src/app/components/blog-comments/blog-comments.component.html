@@ -1,10 +1,13 @@
 <div class="blog-post">
+  <h1>{{ post.title }}</h1>
   <!-- Display the blog post content -->
-  <div class="post">
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.content }}</p>
-  </div>
+  <img src="{{ post.imageUrl }}" alt="">
+  <div class="post" [innerHTML]="post.content">
 
+  </div>
+</div>
+<div class="blog-post">
+  <h3>Comments</h3>
   <!-- blog-comments.component.html -->
   <div class="comments">
     <app-comment *ngFor="let comment of comments" [comment]="comment" [replyDepth]="0" [maxDepth]="maxDepth"></app-comment>
