@@ -11,12 +11,13 @@ public class BlogPostDTO {
     private UserDTO user;
     private List<BlogCommentDTO> comments;
     private Boolean hidden;
+    private String imageUrl;
 
     public BlogPostDTO() {
         // Default constructor
     }
 
-    public BlogPostDTO(int id, String title, String content, LocalDateTime createdAt, UserDTO user, List<BlogCommentDTO> comments, Boolean hidden) {
+    public BlogPostDTO(int id, String title, String content, LocalDateTime createdAt, UserDTO user, List<BlogCommentDTO> comments, Boolean hidden, String imageUrl) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -24,6 +25,7 @@ public class BlogPostDTO {
         this.user = user;
         this.comments = comments;
         this.hidden = hidden;
+        this.imageUrl = imageUrl;
     }
 
     // Getters and setters
@@ -83,4 +85,13 @@ public class BlogPostDTO {
     public void setHidden(Boolean hidden) {
         this.hidden = hidden;
     }
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+    
 }
