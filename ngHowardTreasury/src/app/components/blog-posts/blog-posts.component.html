@@ -1,1 +1,15 @@
-<p>blog-posts works!</p>
+<div class="main">
+  <div>
+    <h1>Sword & Sorcery Blog</h1>
+  </div>
+  <div>
+    <div>
+      <h3>Posts</h3>
+    </div>
+    <div>
+      <ng-container *ngFor="let post of posts">
+        <p>{{ post.title }}</p>
+      </ng-container>
+    </div>
+  </div>
+</div>
