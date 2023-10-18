@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
+import { BlogPostsComponent } from './components/blog-posts/blog-posts.component';
 import { CharacterDetailsComponent } from './components/character-details/character-details.component';
 import { CharactersComponent } from './components/characters/characters.component';
 import { CollectionDetailsComponent } from './components/collection-details/collection-details.component';
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'miscellanea/:miscellaneaId', component: MiscellaneaDetailsComponent },
   { path: 'search-results', component: SearchResultsComponent },
   { path: 'search-results/:results', component: SearchResultsComponent },
+  { path: 'posts', component: BlogPostsComponent },
 ];
 
 @NgModule({
