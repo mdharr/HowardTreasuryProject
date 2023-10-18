@@ -45,6 +45,7 @@ import { AddToUserListDialogComponent } from './components/add-to-user-list-dial
 import { ScrollToTopButtonComponent } from './components/scroll-to-top-button/scroll-to-top-button.component';
 import { CreateUserListDialogComponent } from './components/create-user-list-dialog/create-user-list-dialog.component';
 import { ToggleRedModeButtonComponent } from './components/toggle-red-mode-button/toggle-red-mode-button.component';
+import { BlogPostsComponent } from './components/blog-posts/blog-posts.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { ToggleRedModeButtonComponent } from './components/toggle-red-mode-butto
     ScrollToTopButtonComponent,
     CreateUserListDialogComponent,
     ToggleRedModeButtonComponent,
+    BlogPostsComponent,
   ],
   imports: [
     BrowserModule,
