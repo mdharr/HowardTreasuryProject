@@ -1,16 +1,12 @@
 <div class="main">
-  <div>
-    <h1>Sword & Sorcery Blog</h1>
-  </div>
-  <div>
-    <div>
-      <h3>Posts</h3>
-    </div>
-    <div>
-      <ng-container *ngFor="let post of posts">
-        <p [routerLink]="['/posts', post.id, 'comments']">{{ post.title }}</p>
-      </ng-container>
-    </div>
+  <div class="body">
+    <ng-container *ngFor="let post of posts">
+      <div [routerLink]="['/posts', post.id, 'comments']" class="post-wrapper">
+        <div class="card">
+          <img class="post-image" src="{{ post.imageUrl }}" alt="">
+          <div class="title-text">{{ post.title }}</div>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </div>
-

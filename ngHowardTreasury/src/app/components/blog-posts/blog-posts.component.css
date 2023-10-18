@@ -1,0 +1,33 @@
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1200px; /* Adjust as needed */
+  width: 100%;
+}
+
+.post-wrapper {
+  margin: 10px;
+  width: 45%; /* Adjust to your preferred width */
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.post-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.title-text {
+  margin-top: 10px;
+  font-weight: bold;
+}
