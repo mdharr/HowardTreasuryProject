@@ -74,6 +74,7 @@ public class BlogPostServiceImpl implements BlogPostService {
 			if (existingBlogPost.getUser().getUsername().equals(username)) {
 				existingBlogPost.setTitle(blogPost.getTitle());
 				existingBlogPost.setContent(blogPost.getContent());
+				existingBlogPost.setImageUrl(blogPost.getImageUrl());
 				return blogPostRepo.save(existingBlogPost);
 			} else {
 				return null;
@@ -131,6 +132,7 @@ public class BlogPostServiceImpl implements BlogPostService {
 		dto.setContent(blogPost.getContent());
 		dto.setCreatedAt(blogPost.getCreatedAt());
 		dto.setHidden(blogPost.getHidden());
+		dto.setImageUrl(blogPost.getImageUrl());
 
 		UserDTO userDTO = userService.mapUserToDTO(blogPost.getUser());
 		dto.setUser(userDTO);
