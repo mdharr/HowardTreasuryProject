@@ -2,6 +2,7 @@
   border-left: 2px solid #007BFF; /* Vertical line to indicate comments */
   margin: 20px 0;
   padding: 20px;
+  padding-bottom: 0;
 }
 
 .parent-comment {
