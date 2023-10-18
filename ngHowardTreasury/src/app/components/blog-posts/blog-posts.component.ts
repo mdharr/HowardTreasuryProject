@@ -33,7 +33,7 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
   }
 
   subscribeToBlogPostIndexAll = () => {
-    this.authSubscription =this.blogPostService.indexAll().subscribe({
+    this.blogPostSubscription = this.blogPostService.indexAll().subscribe({
       next: (data) => {
         this.posts = data;
       },

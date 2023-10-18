@@ -1,0 +1,19 @@
+<div class="main">
+  <div class="stoplight-box">
+    <div class="top-light">
+      <div class="light" [ngStyle]="{
+        'background-color': currentState === states[0] ? 'rgb(0, 167, 0)' : 'rgb(0, 53, 0)'}">
+      </div>
+    </div>
+    <div class="middle-light">
+      <div class="light" [ngStyle]="{
+        'background-color': currentState === states[1] ? 'yellow' : 'rgb(70, 70, 0)'}">
+      </div>
+    </div>
+    <div class="bottom-light">
+      <div class="light" [ngStyle]="{
+        'background-color': currentState === states[2] ? 'red' : 'rgb(77, 0, 0)'}">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,14 @@
-<p>blog-comments works!</p>
+<div class="blog-post">
+  <!-- Display the blog post content -->
+  <div class="post">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+  </div>
+
+  <!-- blog-comments.component.html -->
+  <div class="comments">
+    <app-comment *ngFor="let comment of comments" [comment]="comment" [replyDepth]="0" [maxDepth]="maxDepth"></app-comment>
+  </div>
+
+</div>
+

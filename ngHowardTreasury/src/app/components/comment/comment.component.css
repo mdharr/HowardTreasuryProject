@@ -1,0 +1,14 @@
+.comment {
+  border-left: 2px solid #007BFF; /* Vertical line to indicate comments */
+  margin: 20px 0;
+  padding: 20px;
+}
+
+.parent-comment {
+  background-color: #f0f0f0; /* Example background color */
+  border: 1px solid #ccc; /* Example border */
+}
+
+.replies {
+  margin-left: 20px; /* Adjust as needed for proper nesting */
+}

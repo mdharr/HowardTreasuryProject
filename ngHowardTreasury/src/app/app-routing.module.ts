@@ -1,3 +1,4 @@
+import { StopLightTestComponent } from './components/stop-light-test/stop-light-test.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
@@ -17,11 +18,11 @@ import { StoriesComponent } from './components/stories/stories.component';
 import { StoryDetailsComponent } from './components/story-details/story-details.component';
 import { UserListsComponent } from './components/user-lists/user-lists.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { BlogCommentsComponent } from './components/blog-comments/blog-comments.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
-  { path: 'stories-test', component: StoriesTestComponent },
   { path: 'about', component: AboutComponent },
   { path: 'lists', component: UserListsComponent },
   { path: 'profile', component: UserProfileComponent },
@@ -38,6 +39,9 @@ const routes: Routes = [
   { path: 'search-results', component: SearchResultsComponent },
   { path: 'search-results/:results', component: SearchResultsComponent },
   { path: 'posts', component: BlogPostsComponent },
+  { path: 'posts/:postId/comments', component: BlogCommentsComponent },
+  { path: 'stories-test', component: StoriesTestComponent },
+  { path: 'stop-light-test', component: StopLightTestComponent },
 ];
 
 @NgModule({

@@ -1,0 +1,27 @@
+.blog-post {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.post {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.comments {
+  padding: 10px;
+}
+
+.comment {
+  border-left: 2px solid #007BFF; /* Vertical line to indicate comments */
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.replies {
+  margin-left: 10px; /* Adjust as needed for proper nesting */
+}

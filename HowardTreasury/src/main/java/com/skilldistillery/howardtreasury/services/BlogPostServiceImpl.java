@@ -131,7 +131,6 @@ public class BlogPostServiceImpl implements BlogPostService {
 		dto.setContent(blogPost.getContent());
 		dto.setCreatedAt(blogPost.getCreatedAt());
 		dto.setHidden(blogPost.getHidden());
-//	    dto.setBlog(blogPost.getBlog());
 
 		UserDTO userDTO = userService.mapUserToDTO(blogPost.getUser());
 		dto.setUser(userDTO);
@@ -156,6 +155,9 @@ public class BlogPostServiceImpl implements BlogPostService {
 		commentDTO.setCreatedAt(comment.getCreatedAt());
 		commentDTO.setUser(userService.mapUserToDTO(comment.getUser()));
 		commentDTO.setHidden(comment.isHidden());
+	    if (comment.getParentComment() != null) {
+	        commentDTO.setParentComment(blogCommentService.mapToDTO(comment.getParentComment()));
+	    }
 
 		List<BlogCommentDTO> replyDTOs = new ArrayList<>();
 		int maxDepth = 100;

@@ -1,0 +1,10 @@
+<div class="comment" [ngClass]="{'parent-comment': replyDepth === 0}">
+  <p>{{ comment.user.username }}</p>
+  <p>{{ comment.content }}</p>
+  <!-- Recursively render nested replies up to a maximum depth -->
+  <div *ngFor="let reply of comment.replies" class="reply">
+    <ng-container *ngIf="replyDepth < maxDepth">
+      <app-comment [comment]="reply" [replyDepth]="replyDepth + 1"></app-comment>
+    </ng-container>
+  </div>
+</div>

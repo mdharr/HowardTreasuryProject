@@ -47,6 +47,8 @@ import { CreateUserListDialogComponent } from './components/create-user-list-dia
 import { ToggleRedModeButtonComponent } from './components/toggle-red-mode-button/toggle-red-mode-button.component';
 import { BlogPostsComponent } from './components/blog-posts/blog-posts.component';
 import { BlogCommentsComponent } from './components/blog-comments/blog-comments.component';
+import { StopLightTestComponent } from './components/stop-light-test/stop-light-test.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,8 @@ import { BlogCommentsComponent } from './components/blog-comments/blog-comments.
     ToggleRedModeButtonComponent,
     BlogPostsComponent,
     BlogCommentsComponent,
+    StopLightTestComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,
