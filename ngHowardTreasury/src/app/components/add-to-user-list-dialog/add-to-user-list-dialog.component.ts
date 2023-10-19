@@ -1,7 +1,7 @@
 import { Component, inject, Inject, OnInit, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { UserList } from 'src/app/models/user-list';
 import { AuthService } from 'src/app/services/auth.service';
@@ -23,7 +23,7 @@ export class AddToUserListDialogComponent implements OnInit, OnDestroy {
     isAnyUserListSelectedFlag: boolean = false;
     selectedItem: any;
     objectType: any;
-
+    userLists$: Observable<UserList[]> | undefined;
 
     // booleans
     isLoggedIn: boolean = false;
@@ -31,6 +31,7 @@ export class AddToUserListDialogComponent implements OnInit, OnDestroy {
     // subscriptions
     private paramsSubscription: Subscription | undefined;
     private authSubscription: Subscription | undefined;
+    private userListsSubscription: Subscription | undefined;
 
     // service injection
     route = inject(ActivatedRoute);
@@ -64,6 +65,9 @@ export class AddToUserListDialogComponent implements OnInit, OnDestroy {
       if (this.authSubscription) {
         this.authSubscription.unsubscribe();
       }
+      if (this.userListsSubscription) {
+        this.userListsSubscription.unsubscribe();
+      }
     }
 
     userListContainsObject(userList: UserList, object: any, objectType: string): boolean {
@@ -81,21 +85,69 @@ export class AddToUserListDialogComponent implements OnInit, OnDestroy {
 
     addToSelectedUserLists() {
       const selectedUserListIds = this.loggedInUser.userLists
-      .filter(userList => userList.selected)
-      .map(userList => userList.id);
+        .filter(userList => userList.selected)
+        .map(userList => userList.id);
 
       if (selectedUserListIds.length > 0) {
-        this.userListService
-          .addObjectToUserLists(this.selectedItem.id, this.objectType, selectedUserListIds)
-          .subscribe(updatedUserLists => {
-            // Handle the response, e.g., close the dialog
-            this.closeDialog();
+        // Fetch all of the user's user lists from your service
+        this.userListService.fetchUserLists().subscribe(allUserLists => {
+          // Update the selected user lists with the added item
+          const updatedUserLists = allUserLists.map(userList => {
+            if (selectedUserListIds.includes(userList.id)) {
+              // Determine the property to update based on `objectType`
+              const propertyToUpdate = this.objectType === 'story'
+                ? 'stories'
+                : this.objectType === 'poem'
+                ? 'poems'
+                : this.objectType === 'miscellanea'
+                ? 'miscellaneas'
+                : null;
+
+              if (propertyToUpdate) {
+                // Push the item to the corresponding property in the user list
+                userList[propertyToUpdate].push(this.selectedItem);
+              }
+            }
+            return userList; // Return the modified user list
           });
+
+          // Update the user lists with the combined data
+          this.userListService.userListsSubject.next(updatedUserLists);
+
+          // Handle the response, e.g., close the dialog
+          this.closeDialog();
+        });
       }
     }
 
+
+
+
     closeDialog() {
       this.dialogRef.close();
+    }
+
+    refreshUserLists() {
+
+      if (this.userListsSubscription) {
+        this.userListsSubscription.unsubscribe();
+      }
+
+      this.userLists$ = this.userListService.userLists$;
+
+      this.userListsSubscription = this.userLists$.subscribe({
+        next: (userLists) => {
+          // Log the userLists data
+          console.log('Received user lists:', userLists);
+          // Handle the updated user lists
+          this.userLists = userLists;
+
+        },
+        error: (error) => {
+          console.error('Error fetching user lists:', error);
+        }
+      });
+
     }
 
 }

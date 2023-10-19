@@ -37,9 +37,8 @@ export class UserListsComponent implements OnInit, OnDestroy {
   dialogService = inject(DialogService);
 
   ngOnInit(): void {
-
-    this.refreshUserLists();
     this.subscribeToAuth();
+    this.userLists$ = this.userListService.userLists$;
   }
 
   ngOnDestroy(): void {
@@ -47,6 +46,8 @@ export class UserListsComponent implements OnInit, OnDestroy {
   }
 
   destroySubscriptions = () => {
+    console.log('DESTROYED');
+
     if(this.authSubscription) {
       this.authSubscription.unsubscribe();
 
@@ -121,28 +122,6 @@ export class UserListsComponent implements OnInit, OnDestroy {
         console.error('Error deleting user list ' + fail);
       }
     });
-  }
-
-  refreshUserLists() {
-
-    if (this.userListsSubscription) {
-      this.userListsSubscription.unsubscribe();
-    }
-
-    this.userLists$ = this.userListService.userLists$;
-
-    this.userListsSubscription = this.userLists$.subscribe({
-      next: (userLists) => {
-        // Log the userLists data
-        console.log('Received user lists:', userLists);
-        // Handle the updated user lists
-        this.userLists = userLists;
-      },
-      error: (error) => {
-        console.error('Error fetching user lists:', error);
-      }
-    });
-
   }
 
 }

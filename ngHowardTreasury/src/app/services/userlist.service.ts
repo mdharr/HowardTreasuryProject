@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, of, switchMap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserList } from '../models/user-list';
 import { AuthService } from './auth.service';
@@ -12,7 +12,7 @@ export class UserlistService {
 
   private url = environment.baseUrl + 'api/lists';
 
-  private userListsSubject = new BehaviorSubject<UserList[]>([]);
+  userListsSubject: BehaviorSubject<UserList[]> = new BehaviorSubject<UserList[]>([]);
   userLists$ = this.userListsSubject.asObservable();
 
   http = inject(HttpClient);
@@ -112,15 +112,14 @@ export class UserlistService {
   }
 
   addObjectToUserLists(objectId: number, objectType: string, userListIds: number[]): Observable<UserList[]> {
-    // Construct the query parameters
     const params = new HttpParams()
       .set('objectId', objectId.toString())
       .set('objectType', objectType)
-      .set('userListIds', userListIds.join(',')); // Convert the array to a comma-separated string
+      .set('userListIds', userListIds.join(','));
 
     return this.http.post<UserList[]>(`${this.url}/addItems`, null, {
       params: params,
-      ...this.getHttpOptions(), // Include any other headers or options you need
+      ...this.getHttpOptions(),
     }).pipe(
       catchError((error: any) => {
         console.error(error);
@@ -128,8 +127,32 @@ export class UserlistService {
           () =>
             new Error('UserListService.addObjectToUserLists(): error adding object to user lists ' + error)
         );
+      }),
+      switchMap(updatedUserLists => {
+        // After successfully adding the object, update the user lists subject
+        this.userListsSubject.next(updatedUserLists);
+        return of(updatedUserLists);
       })
     );
   }
+
+  fetchUserLists(): Observable<UserList[]> {
+    return this.http.get<UserList[]>(`${this.url}`, {
+      ...this.getHttpOptions(),
+    }).pipe(
+      tap((userLists) => {
+        // Emit the updated user lists
+        this.userListsSubject.next(userLists);
+      }),
+      catchError((error: any) => {
+        console.error(error);
+        return throwError(
+          () => new Error('UserListService.fetchUserLists(): error fetching user lists ' + error)
+        );
+      })
+    );
+  }
+
+
 
 }
