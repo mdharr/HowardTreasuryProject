@@ -50,6 +50,7 @@ import { BlogPostsComponent } from './components/blog-posts/blog-posts.component
 import { BlogCommentsComponent } from './components/blog-comments/blog-comments.component';
 import { StopLightTestComponent } from './components/stop-light-test/stop-light-test.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { QuillEditorComponent } from './components/quill-editor/quill-editor.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { CommentComponent } from './components/comment/comment.component';
     BlogCommentsComponent,
     StopLightTestComponent,
     CommentComponent,
+    QuillEditorComponent,
   ],
   imports: [
     BrowserModule,
