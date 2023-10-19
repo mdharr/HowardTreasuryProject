@@ -49,4 +49,52 @@ export class BlogCommentService {
       })
     );
   }
+
+  create(id: number, blogComment: BlogComment): Observable<BlogComment> {
+    return this.http.post<BlogComment>(`${this.otherUrl}/${id}/comments`, blogComment, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+          new Error('BlogCommentService.create(): error creating blog comment: ' + err)
+        );
+      })
+    );
+  }
+
+  update(id: number, blogComment: BlogComment): Observable<BlogComment> {
+    return this.http.put<BlogComment>(`${this.url}/${id}`, blogComment, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+          new Error('BlogCommentService.update(): error updating blog comment: ' + err)
+        );
+      })
+    );
+  }
+
+  delete(id: number, blogComment: BlogComment): Observable<BlogComment> {
+    return this.http.delete<BlogComment>(`${this.url}/${id}`, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+          new Error('BlogCommentService.delete(): error deleting blog comment: ' + err)
+        );
+      })
+    );
+  }
+
+  reply(id: number, blogComment: BlogComment): Observable<BlogComment> {
+    return this.http.post<BlogComment>(`${this.url}/${id}/replies`, blogComment, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+          new Error('BlogCommentService.reply(): error replying to blog comment: ' + err)
+        );
+      })
+    )
+  }
 }
