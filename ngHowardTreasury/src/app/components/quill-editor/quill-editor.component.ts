@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-quill-editor',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./quill-editor.component.css']
 })
 export class QuillEditorComponent {
-
+  @Input() editorContent: string = '';
 }
