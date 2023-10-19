@@ -1,10 +1,18 @@
+<!-- comment.component.html -->
 <div class="comment" [ngClass]="{'parent-comment': replyDepth === 0}">
   <p>{{ comment.user.username }}</p>
   <p>{{ comment.content }}</p>
+
+  <!-- Update and delete buttons for the comment -->
+  <button (click)="editComment()">Edit</button>
+  <button (click)="deleteComment()">Delete</button>
+
+  <!-- Reply button for the comment -->
+  <button (click)="replyToComment()">Reply</button>
+
   <!-- Recursively render nested replies up to a maximum depth -->
   <div *ngFor="let reply of comment.replies" class="reply">
-    <ng-container *ngIf="replyDepth < maxDepth">
-      <app-comment [comment]="reply" [replyDepth]="replyDepth + 1"></app-comment>
-    </ng-container>
+    <app-comment [comment]="reply" [replyDepth]="replyDepth + 1"></app-comment>
   </div>
 </div>
+

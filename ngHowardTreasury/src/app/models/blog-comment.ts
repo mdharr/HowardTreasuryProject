@@ -7,7 +7,7 @@ export class BlogComment {
   createdAt: string;
   user: User;
   blogPost: BlogPost;
-  parentComment: BlogComment;
+  parentComment?: BlogComment | null;
   replies: BlogComment[];
 
   constructor(

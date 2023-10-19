@@ -10,6 +10,11 @@
 <div class="blog-post">
   <h3>Comments</h3>
 
+  <div>
+    <input [(ngModel)]="newCommentContent" placeholder="Add a new comment...">
+    <button (click)="createComment()">Submit</button>
+  </div>
+
   <div class="comments">
     <app-comment *ngFor="let comment of comments" [comment]="comment" [replyDepth]="0" [maxDepth]="maxDepth"></app-comment>
   </div>

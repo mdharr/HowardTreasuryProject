@@ -50,51 +50,51 @@ export class BlogCommentService {
     );
   }
 
-  create(id: number, blogComment: BlogComment): Observable<BlogComment> {
+  createComment(id: number, blogComment: BlogComment): Observable<BlogComment> {
     return this.http.post<BlogComment>(`${this.otherUrl}/${id}/comments`, blogComment, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
           () =>
-          new Error('BlogCommentService.create(): error creating blog comment: ' + err)
+          new Error('BlogCommentService.createComment(): error creating blog comment: ' + err)
         );
       })
     );
   }
 
-  update(id: number, blogComment: BlogComment): Observable<BlogComment> {
+  updateComment(id: number, blogComment: BlogComment): Observable<BlogComment> {
     return this.http.put<BlogComment>(`${this.url}/${id}`, blogComment, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
           () =>
-          new Error('BlogCommentService.update(): error updating blog comment: ' + err)
+          new Error('BlogCommentService.updateComment(): error updating blog comment: ' + err)
         );
       })
     );
   }
 
-  delete(id: number, blogComment: BlogComment): Observable<BlogComment> {
-    return this.http.delete<BlogComment>(`${this.url}/${id}`, this.getHttpOptions()).pipe(
+  deleteComment(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.url}/${id}`, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
           () =>
-          new Error('BlogCommentService.delete(): error deleting blog comment: ' + err)
+          new Error('BlogCommentService.deleteComment(): error deleting blog comment: ' + err)
         );
       })
     );
   }
 
-  reply(id: number, blogComment: BlogComment): Observable<BlogComment> {
+  replyToComment(id: number, blogComment: BlogComment): Observable<BlogComment> {
     return this.http.post<BlogComment>(`${this.url}/${id}/replies`, blogComment, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
           () =>
-          new Error('BlogCommentService.reply(): error replying to blog comment: ' + err)
+          new Error('BlogCommentService.replyToComment(): error replying to blog comment: ' + err)
         );
       })
-    )
+    );
   }
 }
