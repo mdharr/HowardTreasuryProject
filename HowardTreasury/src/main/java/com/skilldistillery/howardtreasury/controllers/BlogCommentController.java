@@ -82,8 +82,8 @@ public class BlogCommentController {
         }
     }
 
-    @PutMapping("posts/{bpid}/comments/{cid}")
-    public ResponseEntity<BlogComment> updateComment(@PathVariable("bpid") int blogPostId, @PathVariable("cid") int blogCommentId, @RequestBody BlogComment blogComment, Principal principal) {
+    @PutMapping("comments/{cid}")
+    public ResponseEntity<BlogComment> updateComment(@PathVariable("cid") int blogCommentId, @RequestBody BlogComment blogComment, Principal principal) {
         BlogComment updatedComment = blogCommentService.update(principal.getName(), blogCommentId, blogComment);
         if (updatedComment != null) {
             return new ResponseEntity<>(updatedComment, HttpStatus.OK);
@@ -92,8 +92,8 @@ public class BlogCommentController {
         }
     }
 
-    @DeleteMapping("posts/{bpid}/comments/{cid}")
-    public ResponseEntity<Boolean> deleteComment(@PathVariable("bpid") int blogPostId, @PathVariable("cid") int blogCommentId, Principal principal) {
+    @DeleteMapping("comments/{cid}")
+    public ResponseEntity<Boolean> deleteComment(@PathVariable("cid") int blogCommentId, Principal principal) {
         ResponseEntity<Boolean> response = blogCommentService.delete(principal.getName(), blogCommentId);
         if (response.getStatusCode() == HttpStatus.OK) {
             return new ResponseEntity<>(true, HttpStatus.OK);
@@ -104,8 +104,8 @@ public class BlogCommentController {
         }
     }
 
-    @PostMapping("posts/{bpid}/comments/{cid}/replies")
-    public ResponseEntity<BlogComment> createReply(@PathVariable("bpid") int blogPostId, @PathVariable("cid") int parentCommentId, @RequestBody BlogComment blogComment, Principal principal) {
+    @PostMapping("comments/{cid}/replies")
+    public ResponseEntity<BlogComment> createReply(@PathVariable("cid") int parentCommentId, @RequestBody BlogComment blogComment, Principal principal) {
         BlogComment createdReply = blogCommentService.createReply(principal.getName(), parentCommentId, blogComment);
         if (createdReply != null) {
             return new ResponseEntity<>(createdReply, HttpStatus.CREATED);
@@ -114,8 +114,8 @@ public class BlogCommentController {
         }
     }
 
-    @GetMapping("posts/{bpid}/comments/{cid}/replies")
-    public ResponseEntity<List<BlogComment>> getRepliesForComment(@PathVariable("bpid") int blogPostId, @PathVariable("cid") int parentCommentId) {
+    @GetMapping("comments/{cid}/replies")
+    public ResponseEntity<List<BlogComment>> getRepliesForComment(@PathVariable("cid") int parentCommentId) {
         List<BlogComment> replies = blogCommentService.findRepliesForComment(parentCommentId);
         if (!replies.isEmpty()) {
             return new ResponseEntity<>(replies, HttpStatus.OK);

@@ -165,7 +165,6 @@ public class BlogCommentServiceImpl implements BlogCommentService {
         return dto;
     }
 
-
     private BlogCommentDTO mapCommentWithRepliesRecursive(BlogComment comment) {
         BlogCommentDTO commentDTO = new BlogCommentDTO();
         commentDTO.setId(comment.getId());
