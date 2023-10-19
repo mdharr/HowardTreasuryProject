@@ -15,7 +15,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { QuillModule } from 'ngx-quill';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,7 +49,6 @@ import { BlogPostsComponent } from './components/blog-posts/blog-posts.component
 import { BlogCommentsComponent } from './components/blog-comments/blog-comments.component';
 import { StopLightTestComponent } from './components/stop-light-test/stop-light-test.component';
 import { CommentComponent } from './components/comment/comment.component';
-import { QuillEditorComponent } from './components/quill-editor/quill-editor.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +83,6 @@ import { QuillEditorComponent } from './components/quill-editor/quill-editor.com
     BlogCommentsComponent,
     StopLightTestComponent,
     CommentComponent,
-    QuillEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,7 +103,6 @@ import { QuillEditorComponent } from './components/quill-editor/quill-editor.com
     MatDialogModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
-    QuillModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

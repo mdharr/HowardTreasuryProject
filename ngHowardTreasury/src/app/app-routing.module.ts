@@ -40,8 +40,8 @@ const routes: Routes = [
   { path: 'search-results/:results', component: SearchResultsComponent },
   { path: 'posts', component: BlogPostsComponent },
   { path: 'posts/:postId/comments', component: BlogCommentsComponent },
-  { path: 'stories-test', component: StoriesTestComponent },
-  { path: 'stop-light-test', component: StopLightTestComponent },
+  // { path: 'stories-test', component: StoriesTestComponent },
+  // { path: 'stop-light-test', component: StopLightTestComponent },
 ];
 
 @NgModule({
