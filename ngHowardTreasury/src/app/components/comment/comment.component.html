@@ -8,7 +8,13 @@
   <button (click)="deleteComment()">Delete</button>
 
   <!-- Reply button for the comment -->
-  <button (click)="replyToComment()">Reply</button>
+  <button (click)="toggleReplyInput()">Reply</button>
+
+  <!-- Input field for entering reply content (initially hidden) -->
+  <div *ngIf="showReplyInput">
+    <input [(ngModel)]="newReplyContent" placeholder="Enter your reply...">
+    <button (click)="replyToComment(comment)">Submit</button>
+  </div>
 
   <!-- Recursively render nested replies up to a maximum depth -->
   <div *ngFor="let reply of comment.replies" class="reply">
