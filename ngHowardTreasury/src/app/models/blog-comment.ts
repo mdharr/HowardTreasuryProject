@@ -9,6 +9,7 @@ export class BlogComment {
   blogPost: BlogPost;
   parentComment?: BlogComment | null;
   replies: BlogComment[];
+  hidden: boolean;
 
   constructor(
     id: number = 0,
@@ -17,7 +18,8 @@ export class BlogComment {
     user: User = new User(),
     blogPost: BlogPost = new BlogPost(),
     parentComment: BlogComment = new BlogComment(),
-    replies: BlogComment[] = []
+    replies: BlogComment[] = [],
+    hidden: boolean = false
   ) {
     this.id = id;
     this.content = content;
@@ -26,5 +28,6 @@ export class BlogComment {
     this.blogPost = blogPost;
     this.parentComment = parentComment;
     this.replies = replies;
+    this.hidden = hidden;
   }
 }

@@ -1,10 +1,15 @@
 <!-- comment.component.html -->
 <div class="comment" [ngClass]="{'parent-comment': replyDepth === 0}">
   <p>{{ comment.user.username }}</p>
-  <p>{{ comment.content }}</p>
+  <p>{{ comment.hidden ? 'Comment deleted by user.' : comment.content }}</p>
 
-  <!-- Update and delete buttons for the comment -->
-  <button (click)="editComment()">Edit</button>
+  <button *ngIf="comment.user.id == loggedInUser.id" (click)="toggleEditInput()">Edit</button>
+
+  <div *ngIf="showEditInput">
+    <input [(ngModel)]="newUpdateContent" placeholder="Edit your comment...">
+    <button (click)="submitEdit()">Submit</button>
+  </div>
+
   <button (click)="deleteComment()">Delete</button>
 
   <!-- Reply button for the comment -->

@@ -113,7 +113,8 @@ export class BlogCommentsComponent {
       user: this.loggedInUser,
       blogPost: this.post,
       replies: [],
-      parentComment: null
+      parentComment: null,
+      hidden: false
     };
 
     this.blogCommentService.createComment(this.postId, newComment).subscribe({
@@ -164,20 +165,19 @@ export class BlogCommentsComponent {
   replyToComment(parentComment: BlogComment) {
     const newReply: BlogComment = {
       content: this.newCommentContent,
-      id: 0, // Provide an appropriate ID, or let the backend assign it
-      createdAt: '', // Provide a timestamp, or let the backend assign it
-      user: this.loggedInUser, // Assign the user who is creating the reply
-      blogPost: this.post, // Assign the current blog post
-      replies: [], // Initialize the replies array as an empty array
-      parentComment: parentComment, // Set the parent comment
-      // Add other required properties based on your application's logic
+      id: 0,
+      createdAt: '',
+      user: this.loggedInUser,
+      blogPost: this.post,
+      replies: [],
+      parentComment: parentComment,
+      hidden: false
     };
 
     this.blogCommentService.replyToComment(parentComment.id, newReply).subscribe({
       next: (createdReply) => {
-        // Add the newly created reply to the parent comment's replies array
         parentComment.replies.push(createdReply);
-        this.newCommentContent = ''; // Clear the input field
+        this.newCommentContent = '';
       },
       error: (error) => {
         console.error('Error replying to comment', error);
