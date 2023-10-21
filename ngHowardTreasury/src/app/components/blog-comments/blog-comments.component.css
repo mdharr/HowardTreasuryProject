@@ -80,3 +80,52 @@
   justify-content: center;
   width: fit-content;
 }
+
+.usertext-edit {
+  margin-top: 5px;
+  padding: 0 1px;
+  width: 500px;
+}
+
+.md {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.md {
+  color: #222222;
+  max-width: 60em;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.md {
+  font-weight: 400;
+}
+
+.md {
+  font-size: 1.0769230769230769em;
+}
+
+.usertext-edit textarea {
+  width: 500px;
+  height: 100px;
+}
+
+.md textarea {
+  font-size: 1em;
+  line-height: 1.4285714285714286em;
+}
+
+button {
+  cursor: pointer;
+  padding: 2px 6px 3px;
+  background: #CA0A10;
+  color: white;
+  border: 0px;
+  transition: 200ms;
+}
+
+.usertext button {
+  margin: 5px 5px 10px 0;
+}

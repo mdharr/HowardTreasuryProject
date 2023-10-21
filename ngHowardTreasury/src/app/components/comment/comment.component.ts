@@ -46,12 +46,18 @@ export class CommentComponent implements OnInit {
     });
   }
 
+  loggedIn(): boolean {
+    return this.authService.checkLogin();
+  }
+
   toggleReplyInput() {
     this.showReplyInput = !this.showReplyInput;
+    this.showEditInput = false;
   }
 
   toggleEditInput() {
     this.showEditInput = !this.showEditInput;
+    this.showReplyInput = false;
   }
 
   replyToComment(parentComment: BlogComment) {

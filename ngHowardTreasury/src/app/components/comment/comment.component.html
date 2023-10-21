@@ -2,23 +2,38 @@
 <div class="comment" [ngClass]="{'parent-comment': replyDepth === 0}">
   <p>{{ comment.user.username }}</p>
   <p>{{ comment.hidden ? 'Comment deleted by user.' : comment.content }}</p>
+  <div class="body">
+    <div class="buttons-container">
 
-  <button *ngIf="comment.user.id == loggedInUser.id" (click)="toggleEditInput()">Edit</button>
+      <p *ngIf="comment.user.id == loggedInUser.id && loggedIn()" (click)="toggleEditInput()">Edit</p>
 
-  <div *ngIf="showEditInput">
-    <input [(ngModel)]="newUpdateContent" placeholder="Edit your comment...">
-    <button (click)="submitEdit()">Submit</button>
+      <p *ngIf="comment.user.id == loggedInUser.id && loggedIn()" (click)="deleteComment()">Delete</p>
+
+      <p *ngIf="loggedIn()" (click)="toggleReplyInput()">Reply</p>
+
+    </div>
   </div>
 
-  <button (click)="deleteComment()">Delete</button>
+  <div class="usertext-edit md-container" *ngIf="showEditInput">
+    <div class="md">
+      <textarea rows="1" cols="1" name="text" [(ngModel)]="newUpdateContent" placeholder="{{ comment.content }}">
 
-  <!-- Reply button for the comment -->
-  <button (click)="toggleReplyInput()">Reply</button>
+      </textarea>
+    </div>
+    <div class="usertext-buttons">
+      <button (click)="submitEdit()">Save</button>
+    </div>
+  </div>
 
-  <!-- Input field for entering reply content (initially hidden) -->
-  <div *ngIf="showReplyInput">
-    <input [(ngModel)]="newReplyContent" placeholder="Enter your reply...">
-    <button (click)="replyToComment(comment)">Submit</button>
+  <div class="usertext-edit md-container" *ngIf="showReplyInput">
+    <div class="md">
+      <textarea rows="1" cols="1" name="text" [(ngModel)]="newReplyContent" placeholder="Enter your reply...">
+
+      </textarea>
+    </div>
+    <div class="usertext-buttons">
+      <button (click)="replyToComment(comment)">Submit</button>
+    </div>
   </div>
 
   <!-- Recursively render nested replies up to a maximum depth -->

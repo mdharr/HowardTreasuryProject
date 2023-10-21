@@ -80,6 +80,10 @@ export class BlogCommentsComponent {
       }
     }
 
+    loggedIn(): boolean {
+      return this.authService.checkLogin();
+    }
+
     prepareCommentsForRendering(comments: BlogComment[]): BlogComment[] {
       const preparedComments: BlogComment[] = [];
 
