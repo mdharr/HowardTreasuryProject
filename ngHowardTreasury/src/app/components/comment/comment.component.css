@@ -1,13 +1,14 @@
 .comment {
-  border-left: 2px solid var(--red_white); /* Vertical line to indicate comments */
+  /* border-left: 2px solid var(--red_black); */
   margin: 20px 0;
-  padding: 20px;
+  /* padding: 20px; */
   padding-bottom: 0;
 }
 
 .parent-comment {
   background-color: #f0f0f0; /* Example background color */
   border: 1px solid #ccc; /* Example border */
+  padding: 20px;
 }
 
 .replies {
