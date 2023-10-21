@@ -22,9 +22,11 @@ export class BlogCommentsComponent {
     replies: BlogComment[] = [];
     loggedInUser: User = new User;
     maxDepth: number = 5;
-    newCommentContent: string = ''
+    newCommentContent: string = '';
+    displayProperty: string = '';
 
     editingComment: BlogComment | null = null;
+    showCommentNest: boolean = true;
 
     // subscriptions
     private authSubscription: Subscription | undefined;
@@ -187,6 +189,10 @@ export class BlogCommentsComponent {
         console.error('Error replying to comment', error);
       },
     });
+  }
+
+  toggleCommentNestVisibility() {
+    this.showCommentNest = !this.showCommentNest;
   }
 
 }

@@ -50,12 +50,13 @@
 .usertext-edit {
   margin-top: 5px;
   padding: 0 1px;
-  width: 500px;
+  width: 100%;
 }
 
 .md {
   margin-top: 5px;
   margin-bottom: 5px;
+  width: 100%;
 }
 
 .md {
@@ -74,8 +75,8 @@
 }
 
 .usertext-edit textarea {
-  width: 500px;
   height: 100px;
+  width: 100%;
 }
 
 .md textarea {
@@ -94,4 +95,9 @@ button {
 
 .usertext button {
   margin: 5px 5px 10px 0;
+}
+
+textarea {
+  background-color: white;
+  color: black;
 }

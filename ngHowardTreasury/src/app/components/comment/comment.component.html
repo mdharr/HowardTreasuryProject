@@ -1,5 +1,6 @@
 <!-- comment.component.html -->
 <div class="comment" [ngClass]="{'parent-comment': replyDepth === 0}">
+
   <p>{{ comment.user.username }}</p>
   <p>{{ comment.hidden ? 'Comment deleted by user.' : comment.content }}</p>
   <div class="body">
@@ -39,6 +40,7 @@
   <!-- Recursively render nested replies up to a maximum depth -->
   <div *ngFor="let reply of comment.replies" class="reply">
     <app-comment [comment]="reply" [replyDepth]="replyDepth + 1"></app-comment>
+
   </div>
 </div>
 
