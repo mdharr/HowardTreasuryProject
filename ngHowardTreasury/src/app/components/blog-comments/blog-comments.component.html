@@ -22,8 +22,7 @@
       <button (click)="createComment()">Save</button>
     </div>
   </div>
-  <button style="margin-top: 10px;" (click)="toggleCommentNestVisibility()">Toggle Comments</button>
-  <!-- Button to toggle visibility -->
+  <button style="margin-top: 10px;" (click)="toggleCommentNestVisibility()">{{ showCommentNest ? 'Hide' : 'Show' }} Comments</button>
 
   <!-- Nested comments -->
   <div *ngIf="showCommentNest" class="comment-nest">
