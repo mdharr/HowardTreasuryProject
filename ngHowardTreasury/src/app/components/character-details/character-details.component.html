@@ -1,12 +1,13 @@
 <div class="main" *ngIf="isLoaded">
   <div class="character-profile">
     <div class="profile-image">
-      <img
+      <img *ngIf="person.imageUrl"
         class="person-image"
         src="{{ person.imageUrl }}"
         alt="Profile Image"
         (load)="onImageLoad()"
       />
+      <img *ngIf="!person.imageUrl" class="person-image" src="https://img-s2.onedio.com/id-548735fba33375064e6d8177/rev-0/w-635/listing/f-jpg-webp/s-147fc74a6fca6b1a3c974d5c0b1407f542c57afd.webp" alt="">
     </div>
     <div class="profile-details">
       <h1 class="name-text">{{ person.name }}</h1>
@@ -14,22 +15,35 @@
       <p *ngIf="!person.description">This character doesn't seem to have a description yet. Hold tight!</p>
     </div>
   </div>
-  <div>
-    <h3>Appears in the following works:</h3>
-    <ul>
-      <ng-container *ngIf="person.stories && person.stories.length">
-        <li *ngFor="let story of person.stories" [routerLink]="['/stories', story.id]">{{ story.title }}</li>
+  <div class="appearances-wrapper">
+    <div>
+      <h3>Appearances</h3>
+      <ul>
+        <ng-container *ngIf="person.stories && person.stories.length">
+          <li *ngFor="let story of person.stories" [routerLink]="['/stories', story.id]">{{ story.title }}</li>
+        </ng-container>
+        <ng-container *ngIf="person.poems && person.poems.length">
+          <li *ngFor="let poem of person.poems" [routerLink]="['/poems', poem.id]">{{ poem.title }}</li>
+        </ng-container>
+        <ng-container *ngIf="person.miscellaneas && person.miscellaneas.length">
+          <li *ngFor="let miscellanea of person.miscellaneas" [routerLink]="['/miscellanea', miscellanea.id]">{{ miscellanea.title }}</li>
+        </ng-container>
+      </ul>
+      <ng-container *ngIf="!person.stories.length && !person.poems.length && !person.miscellaneas.length">
+        <p class="no-appearance-text">{{ person.name }} likely appears in works not currently in our database. Please check back at a later date.</p>
       </ng-container>
-      <ng-container *ngIf="person.poems && person.poems.length">
-        <li *ngFor="let poem of person.poems" [routerLink]="['/poems', poem.id]">{{ poem.title }}</li>
+    </div>
+    <div>
+      <h3>Collections</h3>
+      <ul>
+        <ng-container *ngIf="person.collections && person.collections.length">
+          <li *ngFor="let collection of person.collections" [routerLink]="['/collections', collection.id]">{{ collection.title }}</li>
+        </ng-container>
+      </ul>
+      <ng-container *ngIf="!person.collections.length">
+        <p class="no-appearance-text">{{ person.name }} likely appears in works not currently in our database. Please check back at a later date.</p>
       </ng-container>
-      <ng-container *ngIf="person.miscellaneas && person.miscellaneas.length">
-        <li *ngFor="let miscellanea of person.miscellaneas" [routerLink]="['/miscellanea', miscellanea.id]">{{ miscellanea.title }}</li>
-      </ng-container>
-    </ul>
-    <ng-container *ngIf="!person.stories.length && !person.poems.length && !person.miscellaneas.length">
-      <p>{{ person.name }} likely appears in works not currently in our database. Please check back at a later date.</p>
-    </ng-container>
+    </div>
   </div>
 </div>
 <div class="spinner-wrapper" *ngIf="!isLoaded">

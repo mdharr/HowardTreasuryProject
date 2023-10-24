@@ -31,6 +31,12 @@
 
 .character-link {
   color: var(--white_red);
+  text-decoration: none;
+}
+
+.character-link:hover {
+  color: var(--white_red);
+  text-decoration: underline;
 }
 
 .contents-list {
@@ -49,7 +55,7 @@
   font-family: Libre Baskerville, Helvetica, Arial, sans-serif;
   font-weight: 700;
   color: var(--white_red);
-  border: 1px solid var(--red_white); /* Optional: Add a border to each item */
+  border: 2px solid var(--white_milk); /* Optional: Add a border to each item */
   padding: 10px; /* Optional: Add padding to each item */
   background-color: var(--red_white);
 }
@@ -58,6 +64,7 @@
 .characters-description {
   flex: 3;
   padding: 50px;
+  padding-left: 0;
 }
 
 .description-text {
