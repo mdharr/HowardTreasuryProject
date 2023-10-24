@@ -29,19 +29,19 @@ public class Person {
 	
 	private String description;
 	
-	@JsonIgnore
+	@JsonManagedReference("person-collection")
 	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 	
-    @JsonIgnore
+	@JsonManagedReference("person-story")
 	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
 	private List<Story> stories;
 	
-    @JsonIgnore
+	@JsonManagedReference("person-poem")
 	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
 	private List<Poem> poems;
 	
-    @JsonIgnore
+	@JsonManagedReference("person-miscellanea")
 	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
 	private List<Miscellanea> miscellaneas;
 

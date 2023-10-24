@@ -70,7 +70,7 @@ export class CharacterDetailsComponent implements OnInit, OnDestroy {
       next: (data) => {
         this.person = data;
         // this.personDescription = this.createIlluminatedInitial(data.description);
-        // this.isLoaded = true;
+        this.isLoaded = true;
       },
       error: (fail) => {
         console.error('Error getting person');

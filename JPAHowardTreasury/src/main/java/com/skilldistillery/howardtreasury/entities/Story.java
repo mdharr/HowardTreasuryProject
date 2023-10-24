@@ -16,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -63,6 +64,7 @@ public class Story {
 			)
 	private List<StoryImage> storyImages;
 	
+	@JsonBackReference("person-story")
 	@ManyToMany
 	@JoinTable(
 			name = "story_has_person",

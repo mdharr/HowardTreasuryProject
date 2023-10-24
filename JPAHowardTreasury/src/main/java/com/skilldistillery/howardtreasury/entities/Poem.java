@@ -40,6 +40,7 @@ public class Poem {
 	@ManyToMany(mappedBy = "poems", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 	
+	@JsonBackReference("person-poem")
 	@ManyToMany
 	@JoinTable(
 			name = "poem_has_person",

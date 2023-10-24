@@ -1,21 +1,31 @@
-<div class="main" [class.hidden]="!isLoaded">
+<div class="main" *ngIf="isLoaded">
   <div class="character-profile">
-    <div class="profile-name">
-      <h1 class="name-text">{{ person.name }}</h1>
-    </div>
     <div class="profile-image">
       <img
         class="person-image"
         src="{{ person.imageUrl }}"
-        alt=""
+        alt="Profile Image"
         (load)="onImageLoad()"
       />
     </div>
-  </div>
-  <div class="character-details">
-    <div class="details-box">
+    <div class="profile-details">
+      <h1 class="name-text">{{ person.name }}</h1>
       <p class="details-text">{{ person.description }}</p>
     </div>
+  </div>
+  <div>
+    <h3>Appeared in the following works:</h3>
+    <ul>
+      <ng-container *ngIf="person.stories && person.stories.length">
+        <li *ngFor="let story of person.stories" [routerLink]="['/stories', story.id]">{{ story.title }}</li>
+      </ng-container>
+      <ng-container *ngIf="person.poems && person.poems.length">
+        <li *ngFor="let poem of person.poems" [routerLink]="['/poems', poem.id]">{{ poem.title }}</li>
+      </ng-container>
+      <ng-container *ngIf="person.miscellaneas && person.miscellaneas.length">
+        <li *ngFor="let miscellanea of person.miscellaneas" [routerLink]="['/miscellanea', miscellanea.id]">{{ miscellanea.title }}</li>
+      </ng-container>
+    </ul>
   </div>
 </div>
 <div class="spinner-wrapper" *ngIf="!isLoaded">
