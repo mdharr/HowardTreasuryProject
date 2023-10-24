@@ -11,10 +11,11 @@
     <div class="profile-details">
       <h1 class="name-text">{{ person.name }}</h1>
       <p class="details-text">{{ person.description }}</p>
+      <p *ngIf="!person.description">This character doesn't seem to have a description yet. Hold tight!</p>
     </div>
   </div>
   <div>
-    <h3>Appeared in the following works:</h3>
+    <h3>Appears in the following works:</h3>
     <ul>
       <ng-container *ngIf="person.stories && person.stories.length">
         <li *ngFor="let story of person.stories" [routerLink]="['/stories', story.id]">{{ story.title }}</li>
@@ -26,6 +27,9 @@
         <li *ngFor="let miscellanea of person.miscellaneas" [routerLink]="['/miscellanea', miscellanea.id]">{{ miscellanea.title }}</li>
       </ng-container>
     </ul>
+    <ng-container *ngIf="!person.stories.length && !person.poems.length && !person.miscellaneas.length">
+      <p>{{ person.name }} likely appears in works not currently in our database. Please check back at a later date.</p>
+    </ng-container>
   </div>
 </div>
 <div class="spinner-wrapper" *ngIf="!isLoaded">
