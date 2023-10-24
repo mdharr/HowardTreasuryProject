@@ -29,19 +29,15 @@ public class Person {
 	
 	private String description;
 	
-	@JsonManagedReference("person-collection")
 	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 	
-	@JsonManagedReference("person-story")
 	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
 	private List<Story> stories;
 	
-	@JsonManagedReference("person-poem")
 	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
 	private List<Poem> poems;
 	
-	@JsonManagedReference("person-miscellanea")
 	@ManyToMany(mappedBy = "persons", cascade = CascadeType.MERGE)
 	private List<Miscellanea> miscellaneas;
 

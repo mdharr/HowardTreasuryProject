@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, of, switchMap, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, concatMap, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserList } from '../models/user-list';
 import { AuthService } from './auth.service';
@@ -128,7 +128,7 @@ export class UserlistService {
             new Error('UserListService.addObjectToUserLists(): error adding object to user lists ' + error)
         );
       }),
-      switchMap(updatedUserLists => {
+      concatMap(updatedUserLists => {
         // After successfully adding the object, update the user lists subject
         this.userListsSubject.next(updatedUserLists);
         return of(updatedUserLists);
@@ -141,7 +141,6 @@ export class UserlistService {
       ...this.getHttpOptions(),
     }).pipe(
       tap((userLists) => {
-        // Emit the updated user lists
         this.userListsSubject.next(userLists);
       }),
       catchError((error: any) => {
@@ -152,7 +151,5 @@ export class UserlistService {
       })
     );
   }
-
-
 
 }

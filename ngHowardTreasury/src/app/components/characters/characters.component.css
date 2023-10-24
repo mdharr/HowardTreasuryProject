@@ -60,6 +60,10 @@
   background-color: var(--red_white);
 }
 
+.contents-list-items-container:hover {
+  background-color: var(--black_milk);
+}
+
 
 .characters-description {
   flex: 3;

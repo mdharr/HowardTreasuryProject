@@ -40,7 +40,7 @@ public class Miscellanea {
 	@ManyToMany(mappedBy = "miscellaneas", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 	
-	@JsonBackReference("person-miscellanea")
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 			name = "miscellanea_has_person",

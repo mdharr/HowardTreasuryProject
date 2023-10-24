@@ -49,17 +49,14 @@
 
 .excerpt-text {
   margin-bottom: 30px;
-  /* border: 1px solid rgb(158 1 1 / 37%);
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  background-color: rgb(158 1 1 / 10%);
-  border-radius: 3px; */
+  color: var(--black_white);
 }
 
 .excerpt-text:first-child:first-letter {
   float: left;
   margin-right: 5px;
   font-size: 50px;
-  color: #3D3529;
+  color: var(--red_milk);
   vertical-align: top;
   line-height: 1;
 }
@@ -95,17 +92,58 @@
 }
 
 .story-title {
+  position: relative;
   font-size: 30px;
-  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
-  font-weight: 700;
-  color: #9e0000;
+  font-family: var(--headerFontFamily);
+  font-weight: var(--superBold);
+  color: var(--red_milk);
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  padding: 0 5%;
+  display: flex;
+  justify-content: center;
+}
+
+.story-title::before,
+.story-title::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  border-top: 2px solid var(--black_white);
+  width: 100%;
+  z-index: -1;
+}
+
+.story-title::before {
+  left: 0;
+}
+
+.story-title::after {
+  right: 0;
+}
+
+.story-title-text {
+  background-color: var(--bkg_color);
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}
+
+@media (max-width: 768px) {
+  .story-title::before,
+  .story-title::after {
+    width: 15%;
+  }
 }
 
 .title-container {
-  padding: 25px;
-  display:flex;
+  padding: 25px 50px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  /* margin-top: 40px; */
+  align-items: center;
 }
 
 .description-text {
@@ -158,7 +196,7 @@
 }
 
 .story-text-link {
-  color:#9e0000;
+  color: var(--red_milk);
   text-decoration: none;
   transition: color 0.2s ease;
   font-family: var(--contentFontFamily);
@@ -166,7 +204,7 @@
 }
 
 .read-online-box:hover .story-text-link {
-  color: #7d0000;
+  text-decoration: underline;
 }
 
 .flair-img {
@@ -283,6 +321,7 @@
   width: 50%;
   padding-top: 30px;
   padding-bottom: 30px;
+  color:var(--black_white);
 }
 
 .collections-list {
@@ -296,9 +335,9 @@
 
 .collection-list-items:hover {
   cursor: pointer;
-  color: #9e0000;
   text-decoration: underline;
   list-style: disc;
+  color: var(--red_white);
 }
 
 @media screen and (max-width: 1073px) {

@@ -3,7 +3,7 @@
     <h1 class="story-title"><span class="story-title-text">{{ post.title }}</span></h1>
   </div>
   <img class="post-image" src="{{ post.imageUrl }}" alt="">
-  <div class="post" [innerHTML]="post.content">
+  <div class="post" [innerHTML]="modifyHTMLContent()">
 
   </div>
 </div>

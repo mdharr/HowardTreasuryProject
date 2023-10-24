@@ -64,7 +64,7 @@ public class Story {
 			)
 	private List<StoryImage> storyImages;
 	
-	@JsonBackReference("person-story")
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 			name = "story_has_person",

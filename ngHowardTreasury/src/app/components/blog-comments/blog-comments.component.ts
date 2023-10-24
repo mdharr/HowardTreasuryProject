@@ -1,5 +1,5 @@
 import { BlogCommentService } from './../../services/blog-comment.service';
-import { Component, inject } from '@angular/core';
+import { AfterViewInit, Component, inject, OnDestroy, OnInit, Renderer2, ElementRef, SecurityContext } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BlogComment } from 'src/app/models/blog-comment';
@@ -7,13 +7,14 @@ import { BlogPost } from 'src/app/models/blog-post';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { BlogPostService } from 'src/app/services/blog-post.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog-comments',
   templateUrl: './blog-comments.component.html',
   styleUrls: ['./blog-comments.component.css']
 })
-export class BlogCommentsComponent {
+export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     // properties
     post: BlogPost = new BlogPost;
@@ -24,6 +25,9 @@ export class BlogCommentsComponent {
     maxDepth: number = 5;
     newCommentContent: string = '';
     displayProperty: string = '';
+    sanitizedContent: SafeHtml | undefined;
+    postContent: string = '';
+
 
     editingComment: BlogComment | null = null;
     showCommentNest: boolean = true;
@@ -37,10 +41,12 @@ export class BlogCommentsComponent {
     blogPostService = inject(BlogPostService);
     activatedRoute = inject(ActivatedRoute);
     blogCommentService = inject(BlogCommentService);
+    renderer = inject(Renderer2);
+    el = inject(ElementRef);
+    sanitizer = inject(DomSanitizer);
 
     ngOnInit() {
       this.subscribeToParams();
-
     }
 
     ngOnDestroy() {
@@ -61,6 +67,7 @@ export class BlogCommentsComponent {
       this.blogPostSubscription = this.blogPostService.find(this.postId).subscribe({
         next: (data) => {
           this.post = data;
+          this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(data.content);
           console.log('Post comments:', this.post.comments);
           this.comments = this.prepareCommentsForRendering(data.comments);
           console.log('Prepared comments:', this.comments);
@@ -194,5 +201,23 @@ export class BlogCommentsComponent {
   toggleCommentNestVisibility() {
     this.showCommentNest = !this.showCommentNest;
   }
+
+  ngAfterViewInit() {
+  }
+
+  modifyHTMLContent(): SafeHtml {
+    // Convert the SafeHtml content to a string and apply styles
+    const sanitizedString = this.sanitizer.sanitize(SecurityContext.HTML, this.sanitizedContent as string);
+
+    // Update 'img' elements
+    const imgModifiedContent = (sanitizedString || '').replace(/<img/g, '<img style="width: 100%; height: auto;"');
+
+    // Update 'iframe' elements
+    const finalModifiedContent = imgModifiedContent.replace(/<iframe/g, '<iframe style="width: 100%; height: auto;"');
+
+    return this.sanitizer.bypassSecurityTrustHtml(finalModifiedContent);
+  }
+
+
 
 }

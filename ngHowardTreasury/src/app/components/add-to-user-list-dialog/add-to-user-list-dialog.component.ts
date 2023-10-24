@@ -59,6 +59,16 @@ export class AddToUserListDialogComponent implements OnInit, OnDestroy {
           console.log(error);
         },
       });
+
+      this.userListService.fetchUserLists().subscribe({
+        next: (data) => {
+          this.userLists = data;
+        },
+        error: (error) => {
+          console.log('Error getting userLists');
+          console.log(error);
+        },
+      })
     }
 
     ngOnDestroy(): void {
@@ -82,46 +92,31 @@ export class AddToUserListDialogComponent implements OnInit, OnDestroy {
       }
     }
 
-
     addToSelectedUserLists() {
       const selectedUserListIds = this.loggedInUser.userLists
         .filter(userList => userList.selected)
         .map(userList => userList.id);
 
+      console.log('Selected User List Ids:', selectedUserListIds);
+
       if (selectedUserListIds.length > 0) {
-        // Fetch all of the user's user lists from your service
-        this.userListService.fetchUserLists().subscribe(allUserLists => {
-          // Update the selected user lists with the added item
-          const updatedUserLists = allUserLists.map(userList => {
-            if (selectedUserListIds.includes(userList.id)) {
-              // Determine the property to update based on `objectType`
-              const propertyToUpdate = this.objectType === 'story'
-                ? 'stories'
-                : this.objectType === 'poem'
-                ? 'poems'
-                : this.objectType === 'miscellanea'
-                ? 'miscellaneas'
-                : null;
+        this.userListService
+          .addObjectToUserLists(this.selectedItem.id, this.objectType, selectedUserListIds)
+          .subscribe(updatedUserLists => {
+            console.log('Updated User Lists:', updatedUserLists);
 
-              if (propertyToUpdate) {
-                // Push the item to the corresponding property in the user list
-                userList[propertyToUpdate].push(this.selectedItem);
-              }
-            }
-            return userList; // Return the modified user list
+            // Fetch all user lists after adding the item to selected user lists
+            this.userListService.getAllUserLists().subscribe(allUserLists => {
+              console.log('All User Lists:', allUserLists);
+
+              // Update the user lists with all user lists
+              this.userListService.userListsSubject.next(allUserLists);
+
+              this.closeDialog();
+            });
           });
-
-          // Update the user lists with the combined data
-          this.userListService.userListsSubject.next(updatedUserLists);
-
-          // Handle the response, e.g., close the dialog
-          this.closeDialog();
-        });
       }
     }
-
-
-
 
     closeDialog() {
       this.dialogRef.close();
