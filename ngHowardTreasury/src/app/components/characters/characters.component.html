@@ -1,13 +1,3 @@
-<!-- <div class="title-box">
-  <div class="description-title-box" *ngIf="!loading">
-    <h2 class="description-title">Characters</h2>
-    <b class="b-element"></b>
-    <div class="flair-wrapper">
-      <img class="flair-img" src="http://www.barbariankeep.com/LSWORD.GIF" alt="">
-    </div>
-  </div>
-</div> -->
-
 <div class="header-wrapper">
   <div class="header">
     <h1 class="main-title">Characters</h1>
@@ -17,13 +7,23 @@
   </div>
 </div>
 
-<div *ngIf="isLoaded">
+<div class="main" *ngIf="isLoaded">
   <div class="contents-wrapper">
-    <ul class="contents-list">
+    <ul class="contents-list grid-list">
       <ng-container *ngFor="let person of persons">
-        <li class="contents-list-items" [routerLink]="['/characters', person.id]">{{ person.name }}</li>
+        <li class="contents-list-items-container">
+          <a class="character-link" [routerLink]="['/characters', person.id]">{{ person.name }}</a>
+        </li>
       </ng-container>
     </ul>
+  </div>
+  <div>
+    <div class="characters-description">
+      <p class="description-text">Robert E. Howard, the prolific American author of pulp fiction, is renowned for creating a diverse and memorable cast of characters that have left an indelible mark on the world of speculative fiction. His characters span a wide spectrum of genres, from the sword-and-sorcery realms of Conan the Cimmerian, Kull the Conqueror, and Solomon Kane to the Western frontier adventures featuring characters like Breckinridge Elkins and Wild Bill Clanton. In the realm of horror, Howard's stories introduced the enigmatic Bran Mak Morn and the eerie occult detective Steve Harrison. Each character, crafted with Howard's distinct flair for vivid storytelling and their own unique set of attributes and moral codes, has resonated with readers for generations, making Robert E. Howard's creations a treasure trove of imaginative worlds and unforgettable personalities.</p>
+    </div>
+    <div class="tail-image-wrapper">
+      <img class="tail-image" src="http://gutenberg.net.au/ebooks06/0600761h-images/JewelsOfGwahlur-2.gif" alt="">
+    </div>
   </div>
 </div>
 
