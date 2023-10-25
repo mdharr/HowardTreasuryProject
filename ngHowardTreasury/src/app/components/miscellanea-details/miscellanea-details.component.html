@@ -12,39 +12,39 @@
     <div>
       <div class="excerpt-box" *ngIf="miscellanea.excerpt">
         <p class="excerpt-text" [innerHTML]="miscellaneaExcerpt"></p><span class="read-online-box" *ngIf="miscellanea.textUrl"><a class="story-text-link" href="{{ miscellanea.textUrl }}">Continue reading</a></span>
-        <!-- <hr> -->
       </div>
       <div class="excerpt-box" style="justify-content:flex-start; margin:20px;" *ngIf="!miscellanea.excerpt">
         <p>Excerpt not yet available.</p><span class="read-online-box" *ngIf="miscellanea.textUrl"><a class="story-text-link" href="{{ miscellanea.textUrl }}">Continue reading</a></span>
-        <!-- <hr> -->
       </div>
     </div>
   </div>
 
   <div class="collection-container">
     <div class="collection-box" *ngIf="miscellaneaCollections">
-      <div class="collection-info-wrapper">
-        <div class="collection-wrapper">
-          <ng-container *ngFor="let collection of miscellaneaCollections">
-            <div class="collection-images-wrapper">
-              <img class="collection-images" src="{{ collection.collectionImages[0].imageUrl }}" alt="" [routerLink]="['/collections', collection.id]">
-            </div>
-          </ng-container>
-        </div>
-        <div class="collection-info">
-          <p>
-            The Del Rey collections use Howard’s original typescripts wherever possible, and are usually
-            accompanied by a lively appendix of unfinished drafts, alternate versions, and commentary
-            from noted Howard scholars.
-          </p>
-          <ul class="collections-list">
-            <ng-container *ngFor="let collection of collections">
-              <li class="collection-list-items" [routerLink]="['/collections', collection.id]">{{ collection.title }}</li>
+      <div class="published-container">
+        <h2 class="published-header">Published in</h2>
+        <div class="collection-info-wrapper">
+          <div class="collection-wrapper">
+            <ng-container *ngFor="let collection of miscellaneaCollections">
+              <div class="collection-images-wrapper">
+                <img class="collection-images" src="{{ collection.collectionImages[0].imageUrl }}" alt="" [routerLink]="['/collections', collection.id]">
+              </div>
             </ng-container>
-          </ul>
+          </div>
+          <div class="collection-info">
+            <p>
+              The Del Rey collections use Howard’s original typescripts wherever possible and are usually accompanied by a lively appendix of unfinished drafts, alternate versions, and commentary from noted Howard scholars.
+            </p>
+            <ul class="collections-list">
+              <ng-container *ngFor="let collection of collections">
+                <li class="collection-list-items" [routerLink]="['/collections', collection.id]">{{ collection.title }}</li>
+              </ng-container>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
+    <app-svg-element></app-svg-element>
   </div>
 
 </div>

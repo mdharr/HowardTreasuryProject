@@ -49,6 +49,7 @@ import { BlogPostsComponent } from './components/blog-posts/blog-posts.component
 import { BlogCommentsComponent } from './components/blog-comments/blog-comments.component';
 import { StopLightTestComponent } from './components/stop-light-test/stop-light-test.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { SvgElementComponent } from './components/svg-element/svg-element.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { CommentComponent } from './components/comment/comment.component';
     BlogCommentsComponent,
     StopLightTestComponent,
     CommentComponent,
+    SvgElementComponent,
   ],
   imports: [
     BrowserModule,

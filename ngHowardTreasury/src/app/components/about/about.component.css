@@ -1,6 +1,7 @@
 .biography-container {
   background-color: var(--bkg_color);
   padding: 20px;
+  padding-top: 50px;
   text-align: center;
   display:flex;
   justify-content: space-between;
@@ -10,6 +11,7 @@
 .home-image {
   width: 200px;
   height: auto;
+  box-shadow: 0 0 0 5px white;
 }
 
 .biography {
@@ -78,6 +80,19 @@
   color: var(--black_color);
 }
 
+.tail-image-wrapper {
+  display:flex;
+  justify-content: center;
+  width:100%;
+  margin-bottom:30px;
+}
+
+.tail-image {
+  width:30%;
+  height:auto;
+  padding-top:30px;
+}
+
 /* .main {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 } */
@@ -85,6 +100,10 @@
 @media screen and (max-width:693px) {
   .biography-container {
     flex-direction: column;
+  }
+
+  .timeline {
+    text-align: center;
   }
 
   .timeline li {

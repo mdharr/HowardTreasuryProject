@@ -357,6 +357,18 @@ ul li {
   color: var(--black_white);
 }
 
+.tail-image-wrapper {
+  display:flex;
+  justify-content: center;
+  width:100%;
+  margin-bottom:30px;
+}
+
+.tail-image {
+  width:30%;
+  height:auto;
+}
+
 @media screen and (max-width: 1050px) {
   .contents-box {
     flex:1;

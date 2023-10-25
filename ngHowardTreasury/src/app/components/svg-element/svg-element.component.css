@@ -1,0 +1,13 @@
+.tail-image-wrapper {
+  display:flex;
+  justify-content: center;
+  width:100%;
+  margin-bottom:100px;
+}
+
+.tail-image {
+  width:30%;
+  height:auto;
+  padding-top:30px;
+}
+

@@ -36,6 +36,7 @@ img.alignleft, .wp-caption.alignleft {
   font-family: var(--headerFontFamily);
   color: var(--title_color);
   margin: 0;
+  line-height: initial;
 }
 
 .subheader {
@@ -129,16 +130,16 @@ img.alignleft, .wp-caption.alignleft {
 }
 
 .tail-image-wrapper {
-display:flex;
-justify-content: center;
-width:100%;
-margin-bottom:100px;
+  display:flex;
+  justify-content: center;
+  width:100%;
+  margin-bottom:100px;
 }
 
 .tail-image {
-width:30%;
-height:auto;
-padding-top:30px;
+  width:30%;
+  height:auto;
+  padding-top:30px;
 }
 
 .excerpt-text:first-child:first-letter {
