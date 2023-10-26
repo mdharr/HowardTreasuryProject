@@ -111,7 +111,7 @@ import { BlogPostCreationComponent } from './components/blog-post-creation/blog-
     EditorModule,
   ],
   providers: [
-    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+    { provide: TINYMCE_SCRIPT_SRC, useValue: '/tinymce/tinymce.min.js' }
   ],
   bootstrap: [AppComponent]
 })

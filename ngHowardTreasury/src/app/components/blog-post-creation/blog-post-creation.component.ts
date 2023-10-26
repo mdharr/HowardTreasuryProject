@@ -11,7 +11,7 @@ export class BlogPostCreationComponent {
   editorConfig = {
     base_url: '/tinymce',
     suffix: '.min',
-    plugins: 'lists link image table wordcount'
+    plugins: 'lists link image table wordcount media searchreplace preview importcss fullscreen anchor autoresize'
   };
 
   domSanitizer = inject(DomSanitizer);
