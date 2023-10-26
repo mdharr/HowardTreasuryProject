@@ -50,6 +50,8 @@ import { BlogCommentsComponent } from './components/blog-comments/blog-comments.
 import { StopLightTestComponent } from './components/stop-light-test/stop-light-test.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { SvgElementComponent } from './components/svg-element/svg-element.component';
+import { EditorModule, TINYMCE_SCRIPT_SRC} from '@tinymce/tinymce-angular';
+import { BlogPostCreationComponent } from './components/blog-post-creation/blog-post-creation.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +87,7 @@ import { SvgElementComponent } from './components/svg-element/svg-element.compon
     StopLightTestComponent,
     CommentComponent,
     SvgElementComponent,
+    BlogPostCreationComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,8 +108,11 @@ import { SvgElementComponent } from './components/svg-element/svg-element.compon
     MatDialogModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
+    EditorModule,
   ],
-  providers: [],
+  providers: [
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
