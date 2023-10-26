@@ -7,7 +7,31 @@ import { Component } from '@angular/core';
 })
 export class ToggleRedModeButtonComponent {
 
-  toggleRedTheme(): void {
-    document.body.classList.toggle('red-theme');
+  isRedTheme!: boolean;
+
+  ngOnInit() {
+    // Check for the theme preference in localStorage when the component initializes.
+    this.isRedTheme = localStorage.getItem('theme') === 'red-theme';
+    this.toggleTheme(this.isRedTheme);
   }
+
+  toggleRedTheme() {
+    this.isRedTheme = !this.isRedTheme;
+    this.toggleTheme(this.isRedTheme);
+
+    // Store the theme preference in localStorage.
+    localStorage.setItem('theme', this.isRedTheme ? 'red-theme' : 'default-theme');
+  }
+
+  private toggleTheme(isRedTheme: boolean) {
+    if (isRedTheme) {
+      document.body.classList.add('red-theme');
+    } else {
+      document.body.classList.remove('red-theme');
+    }
+  }
+
+  // toggleRedTheme(): void {
+  //   document.body.classList.toggle('red-theme');
+  // }
 }

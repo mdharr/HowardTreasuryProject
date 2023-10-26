@@ -344,7 +344,7 @@ h4 {
 }
 
 .mat-mdc-progress-spinner {
-  --mdc-circular-progress-active-indicator-color: #9e0000;
+  --mdc-circular-progress-active-indicator-color: var(--body_color);
 }
 
 .description-title {

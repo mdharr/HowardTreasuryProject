@@ -117,6 +117,10 @@ li:hover {
   color: #9e0000;
 }
 
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: var(--body_color);
+}
+
 .appearances-wrapper {
   display:flex;
   justify-content: space-evenly;
