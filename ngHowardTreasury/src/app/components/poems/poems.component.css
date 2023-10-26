@@ -383,6 +383,9 @@ mat-form-field {
   .header-description {
     text-indent:0;
   }
+  .list-box {
+    padding: 0 15px;
+  }
 }
 
 @media screen and (max-width: 765px) {

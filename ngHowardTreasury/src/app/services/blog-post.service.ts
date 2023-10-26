@@ -48,4 +48,18 @@ export class BlogPostService {
     );
   }
 
+  createPost(post: BlogPost): Observable<BlogPost> {
+    return this.http.post<BlogPost>(this.url, post, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+          new Error(
+            'BlogPostService.createPost(): error creating blog post ' + err
+          )
+        );
+      })
+    );
+  }
+
 }

@@ -27,6 +27,7 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
     displayProperty: string = '';
     sanitizedContent: SafeHtml | undefined;
     postContent: string = '';
+    recentPosts: BlogPost[] = [];
 
 
     editingComment: BlogComment | null = null;
@@ -35,6 +36,7 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
     // subscriptions
     private authSubscription: Subscription | undefined;
     private blogPostSubscription: Subscription | undefined;
+    private recentBlogPostsSubscription: Subscription | undefined;
 
     // service injections
     authService = inject(AuthService);
@@ -47,6 +49,7 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngOnInit() {
       this.subscribeToParams();
+      this.subscribeToRecentBlogPosts();
     }
 
     ngOnDestroy() {
@@ -78,6 +81,18 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
 
         }
       });
+    }
+
+    subscribeToRecentBlogPosts = () => {
+      this.recentBlogPostsSubscription = this.blogPostService.indexAll().subscribe({
+        next: (data) => {
+          this.recentPosts = data;
+        },
+        error: (fail) => {
+          console.error('Error retrieving recent blog posts');
+          console.error(fail);
+        }
+      })
     }
 
     destroyAllSubscriptions = () => {
@@ -217,7 +232,5 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     return this.sanitizer.bypassSecurityTrustHtml(finalModifiedContent);
   }
-
-
 
 }

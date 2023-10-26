@@ -1,13 +1,32 @@
 <div class="blog-post">
-  <div class="title-container">
-    <h1 class="story-title"><span class="story-title-text">{{ post.title }}</span></h1>
+  <div class="post-body">
+    <div class="title-container">
+      <h1 class="story-title"><span class="story-title-text">{{ post.title }}</span></h1>
+    </div>
+    <div class="entry-meta">
+      <span class="posted-on">Posted on </span>
+      <mat-icon style="font-size: 16px; display: flex; justify-content: center;">calendar_month</mat-icon>
+      <span class="date-text"> {{ post.createdAt | date:'longDate' }}&nbsp;</span>
+      <span class="byline"> by <span class="user-meta">{{ post.user.username }}</span></span>
+    </div>
+    <div class="post-image-wrapper">
+      <img class="post-image" src="{{ post.imageUrl }}" alt="">
+    </div>
+    <div class="post" [innerHTML]="modifyHTMLContent()"></div>
   </div>
-  <img class="post-image" src="{{ post.imageUrl }}" alt="">
-  <div class="post" [innerHTML]="modifyHTMLContent()">
-
+  <div class="recent-posts">
+    <h1>Recent Posts</h1>
+    <div class="recent-posts-body">
+      <ng-container *ngFor="let recentPost of recentPosts">
+        <div class="recent-posts-items">
+          <a class="recent-posts-links" [routerLink]="['/posts', recentPost.id, 'comments']">{{ recentPost.title }}</a>
+        </div>
+      </ng-container>
+    </div>
   </div>
 </div>
-<div class="blog-post">
+
+<div class="blog-post-comments">
   <div style="gap: 10px;">
     <h3 style="color: var(--black_white)">Comments</h3>
   </div>
@@ -22,7 +41,9 @@
       <button (click)="createComment()">Save</button>
     </div>
   </div>
-  <button style="margin-top: 10px;" (click)="toggleCommentNestVisibility()">{{ showCommentNest ? 'Hide' : 'Show' }} Comments</button>
+  <div class="toggle-comments-btn">
+    <button (click)="toggleCommentNestVisibility()">{{ showCommentNest ? 'Hide' : 'Show' }} Comments</button>
+  </div>
 
   <!-- Nested comments -->
   <div *ngIf="showCommentNest" class="comment-nest">

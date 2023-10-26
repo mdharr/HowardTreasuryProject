@@ -100,6 +100,13 @@
 @media screen and (max-width:693px) {
   .biography-container {
     flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .timeline-container {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .timeline {

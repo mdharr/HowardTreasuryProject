@@ -410,12 +410,12 @@ ul li {
   }
 
   .amazon-link-text {
-    color:#9e0000;
+    color: var(--red_milk);
     text-decoration:none;
   }
 
   .amazon-link-text:hover {
-    color:#770000;
+    color: var(--black_white);
     text-decoration: underline;
   }
 

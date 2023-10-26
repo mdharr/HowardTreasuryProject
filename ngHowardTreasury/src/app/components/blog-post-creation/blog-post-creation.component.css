@@ -10,7 +10,22 @@
   padding: 1.5rem;
 }
 
-.editor-title {
+.post-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  gap: 3rem;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  display: -webkit-flex;
+}
+
+.post-image {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -50,6 +65,31 @@
   padding-left: 0.75rem;
 }
 
+.image-input {
+  color: #c6ccdc;
+  height: 2.25rem;
+  background: #f9f9fb;
+  border: 1px solid #dfe3ec;
+  border-radius: 0.625rem;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  line-height: 1.125rem;
+  margin-bottom: 1rem;
+  padding-left: 0.75rem;
+}
+
 .editor-body {
   text-align: center;
   background-color: #ffffff;
@@ -58,4 +98,14 @@
   border-radius: 0.5rem;
   overflow: hidden;
   padding: 2rem 0 1rem;
+}
+
+/* Style for valid input */
+.ng-valid {
+  border: 1px solid #dfe3ec;
+}
+
+/* Style for invalid input */
+.ng-invalid {
+  border: 1px solid red;
 }

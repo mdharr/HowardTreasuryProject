@@ -1,8 +1,49 @@
-<div class="editor-wrapper">
-  <div class="editor-title">
+<!-- <div class="editor-wrapper">
+  <div class="post-title">
     <div class="title-input"></div>
+  </div>
+  <div class="post-image">
+    <div class="image-input"></div>
   </div>
   <div class="editor-body">
     <editor [init]="editorConfig"></editor>
   </div>
-</div>
+</div> -->
+
+<form #postForm="ngForm" (ngSubmit)="onSubmit(postForm)">
+  <div class="editor-wrapper">
+    <div class="post-title">
+      <input
+        type="text"
+        class="title-input"
+        placeholder="Title"
+        name="title"
+        [(ngModel)]="post.title"
+        required
+      />
+    </div>
+    <div class="post-image">
+      <input
+        type="text"
+        class="image-input"
+        placeholder="Image URL"
+        name="imageUrl"
+        [(ngModel)]="post.imageUrl"
+        required
+      />
+    </div>
+    <div class="editor-body">
+      <editor [init]="editorConfig" name="content" [(ngModel)]="post.content"></editor>
+    </div>
+  </div>
+  <button
+    type="submit"
+    mat-raised-button
+    color="primary"
+    [disabled]="postForm.invalid || !isEditorContentValid()"
+  >
+    Submit
+  </button>
+</form>
+
+
