@@ -19,6 +19,7 @@ import { StoryDetailsComponent } from './components/story-details/story-details.
 import { UserListsComponent } from './components/user-lists/user-lists.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { BlogCommentsComponent } from './components/blog-comments/blog-comments.component';
+import { BlogPostCreationComponent } from './components/blog-post-creation/blog-post-creation.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'search-results/:results', component: SearchResultsComponent },
   { path: 'posts', component: BlogPostsComponent },
   { path: 'posts/:postId/comments', component: BlogCommentsComponent },
+  { path: 'posts/create', component: BlogPostCreationComponent },
   // { path: 'stories-test', component: StoriesTestComponent },
   // { path: 'stop-light-test', component: StopLightTestComponent },
 ];
