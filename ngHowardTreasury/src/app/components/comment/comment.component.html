@@ -23,8 +23,13 @@
 
         </textarea>
       </div>
-      <div class="usertext-buttons">
-        <button (click)="submitEdit()">Save</button>
+      <div class="buttons-wrapper">
+        <div class="usertext-buttons">
+          <button mat-button (click)="submitEdit()">Save</button>
+        </div>
+        <div class="usertext-buttons">
+          <button mat-button (click)="cancelEdit()">Cancel</button>
+        </div>
       </div>
     </div>
 
@@ -34,8 +39,13 @@
 
         </textarea>
       </div>
-      <div class="usertext-buttons">
-        <button (click)="replyToComment(comment)">Submit</button>
+      <div class="buttons-wrapper">
+        <div class="usertext-buttons">
+          <button mat-button (click)="replyToComment(comment)">Submit</button>
+        </div>
+        <div class="usertext-buttons">
+          <button mat-button (click)="cancelReply()">Cancel</button>
+        </div>
       </div>
     </div>
 

@@ -4,6 +4,7 @@ import { BlogComment } from 'src/app/models/blog-comment';
 import { BlogPost } from 'src/app/models/blog-post';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 
 @Component({
   selector: 'app-comment',
@@ -96,6 +97,11 @@ export class CommentComponent implements OnInit {
     this.showEditInput = true;
   }
 
+  cancelEdit = () => {
+    this.showEditInput = false;
+    this.newUpdateContent = '';
+  }
+
   // Modify the submitEdit method to update the comment's content property:
   submitEdit() {
     // Update the content property of the comment
@@ -127,5 +133,10 @@ export class CommentComponent implements OnInit {
 
       }
     });
+  }
+
+  cancelReply = () => {
+    this.showReplyInput = false;
+    this.newReplyContent = '';
   }
 }

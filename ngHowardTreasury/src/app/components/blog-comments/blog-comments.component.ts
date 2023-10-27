@@ -218,6 +218,7 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
+
   }
 
   modifyHTMLContent(): SafeHtml {

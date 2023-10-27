@@ -38,11 +38,11 @@
       </textarea>
     </div>
     <div class="usertext-buttons">
-      <button (click)="createComment()">Save</button>
+      <button mat-button (click)="createComment()">Save</button>
     </div>
   </div>
   <div class="toggle-comments-btn">
-    <button (click)="toggleCommentNestVisibility()">{{ showCommentNest ? 'Hide' : 'Show' }} Comments</button>
+    <button mat-button (click)="toggleCommentNestVisibility()">{{ showCommentNest ? 'Hide' : 'Show' }} Comments</button>
   </div>
 
   <!-- Nested comments -->

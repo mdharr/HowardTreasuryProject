@@ -15,6 +15,11 @@
   margin-left: 20px; /* Adjust as needed for proper nesting */
 }
 
+.buttons-wrapper {
+  display: flex;
+  gap: 5px;
+}
+
 .buttons-container {
   display: flex;
   gap: 10px;
@@ -27,6 +32,11 @@
 .buttons-container p:hover {
   cursor: pointer;
   color: #922427;
+}
+
+.usertext-buttons button {
+  background-color: var(--red_white);
+  color: var(--white_black);
 }
 
 .form-wrapper {
