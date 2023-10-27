@@ -389,25 +389,6 @@
   justify-content: center;
 }
 
-/* .lightbox-image-container:hover::before {
-  content: '\2190';
-  position: absolute;
-  color:#9e0000;
-  top: 50%;
-  left: 7%;
-  font-size: 30px;
-}
-
-.lightbox-image-container:hover::after {
-  content: '\2192';
-  position: absolute;
-  color:#9e0000;
-  top: 50%;
-  right: 7%;
-  font-size: 30px;
-} */
-
-
 /* lightbox end */
 
 .collection-container {
