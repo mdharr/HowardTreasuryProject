@@ -1,3 +1,5 @@
+import { IllustratorDetailsComponent } from './components/illustrator-details/illustrator-details.component';
+import { IllustratorsComponent } from './components/illustrators/illustrators.component';
 import { StopLightTestComponent } from './components/stop-light-test/stop-light-test.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -42,6 +44,8 @@ const routes: Routes = [
   { path: 'posts', component: BlogPostsComponent },
   { path: 'posts/:postId/comments', component: BlogCommentsComponent },
   { path: 'posts/create', component: BlogPostCreationComponent },
+  { path: 'illustrators', component: IllustratorsComponent },
+  { path: 'illustrators/:illustratorId', component: IllustratorDetailsComponent },
   // { path: 'stories-test', component: StoriesTestComponent },
   // { path: 'stop-light-test', component: StopLightTestComponent },
 ];
