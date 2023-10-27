@@ -1,6 +1,7 @@
 import { IllustratorDetailsComponent } from './components/illustrator-details/illustrator-details.component';
 import { IllustratorsComponent } from './components/illustrators/illustrators.component';
 import { StopLightTestComponent } from './components/stop-light-test/stop-light-test.component';
+import { StoriesTestComponent } from './components/stories-test/stories-test.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
@@ -15,7 +16,6 @@ import { MiscellaneaComponent } from './components/miscellanea/miscellanea.compo
 import { PoemDetailsComponent } from './components/poem-details/poem-details.component';
 import { PoemsComponent } from './components/poems/poems.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
-import { StoriesTestComponent } from './components/stories-test/stories-test.component';
 import { StoriesComponent } from './components/stories/stories.component';
 import { StoryDetailsComponent } from './components/story-details/story-details.component';
 import { UserListsComponent } from './components/user-lists/user-lists.component';
