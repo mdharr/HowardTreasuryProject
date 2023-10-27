@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Fondamento:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Metamorphous&display=swap');
 
 :root {
-  /* --centerOffset: 0px; */
+  --centerOffset: 0px;
 
   /* font families */
   --headerFontFamily: 'Libre Baskerville', Helvetica, Arial, sans-serif;
@@ -31,17 +31,6 @@
   --small: 100%;
   --medium: 120%;
   --large: 150%;
-
-
-  /* colors */
-  /* --bkg_color: #c13438;
-  --dark_color: #262626;
-  --header_color: #230f2b;
-  --subheader_color: #eaead7;
-  --body_color: #fff;
-  --inactivelink_color: #777777;
-  --border_color: #e0e0e0;
-  --quote_color: #9e01011a; */
 
   --bkg_color: ;
   --dark_color: #262626;

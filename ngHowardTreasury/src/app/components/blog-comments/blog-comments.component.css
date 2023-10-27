@@ -187,6 +187,11 @@ div p * {
   color: var(--white_black);
 }
 
+.recent-posts h1 {
+  font-family: var(--contentFontFamily);
+  color: var(--red_milk);
+}
+
 .recent-posts-body {
   display:flex;
   flex-direction: column;
@@ -195,7 +200,7 @@ div p * {
 
 .recent-posts-links {
   text-decoration: none;
-  color: var(--red_milk);
+  color: var(--black_white);
 }
 
 .recent-posts-links:hover {

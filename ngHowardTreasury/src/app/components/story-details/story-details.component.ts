@@ -250,4 +250,37 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     }
 
+    getLightboxBackgroundStyle(): any {
+      if (this.selectedImage) {
+        const backgroundImage = `url(${this.selectedImage.imageUrl})`;
+        const filterProperties = 'blur(20px) brightness(50%)';
+
+        return {
+          'background-image': backgroundImage,
+          'background-size': 'cover', // Set the background size to cover
+          filter: filterProperties,
+          position: 'fixed',
+          top: '-50px',
+          left: '-50px',
+          width: '120%',
+          height: '120%',
+          zIndex: '1',
+          boxShadow: 'inset 0 0 10em 15em rgba(0, 0, 0, 0.5)'
+        };
+      } else {
+        return {};
+      }
+    }
+
+    getLightboxThumbnailStyle(index: number): any {
+      if (this.selectedImage && index === this.selectedThumbnailIndex) {
+        const border = '2px solid var(--red_color)';
+        return {
+          border: border
+        };
+      } else {
+        return {};
+      }
+    }
+
 }

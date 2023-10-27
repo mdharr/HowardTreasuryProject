@@ -32,12 +32,13 @@
 
 
 <div class="lightbox" *ngIf="showLightbox">
+  <div class="lightbox-background" [ngStyle]="getLightboxBackgroundStyle()"></div>
   <div class="lightbox-content">
     <div class="lightbox-image-container">
       <img src="{{ selectedImage.imageUrl }}" class="lightbox-image" (click)="onLightboxImageClick($event)">
     </div>
     <div class="lightbox-controls" (click)="$event.stopPropagation()">
-      <div class="control close-icon" (click)="closeLightbox()">&#10006;</div>
+      <div class="control close-icon" (click)="closeLightbox()"><mat-icon>close</mat-icon></div>
     </div>
     <div class="lightbox-image-count">{{ currentIndex + 1 }} of {{ storyImages.length }}</div>
   </div>
@@ -49,6 +50,7 @@
           class="thumbnail"
           [class.selected]="i === selectedThumbnailIndex"
           (click)="selectImage(i)"
+          [ngStyle]="getLightboxThumbnailStyle(i)"
         >
           <img src="{{ storyImage.imageUrl }}" class="thumbnail-image">
         </div>
