@@ -30,12 +30,10 @@ public class Illustrator {
 	
 	private String description;
 	
-//    @JsonIgnore
-    @JsonBackReference("collection-illustrators")
+    @JsonIgnore
 	@ManyToMany(mappedBy = "illustrators", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 	
-//    @JsonIgnore
     @JsonIgnoreProperties("illustrators")
 	@ManyToMany(mappedBy = "illustrators", cascade = CascadeType.MERGE)
 	private List<StoryImage> storyImages;

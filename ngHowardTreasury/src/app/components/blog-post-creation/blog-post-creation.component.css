@@ -41,7 +41,7 @@
 }
 
 .title-input {
-  color: #c6ccdc;
+  color: #333;
   height: 2.25rem;
   background: #f9f9fb;
   border: 1px solid #dfe3ec;
@@ -66,7 +66,7 @@
 }
 
 .image-input {
-  color: #c6ccdc;
+  color: #333;
   height: 2.25rem;
   background: #f9f9fb;
   border: 1px solid #dfe3ec;
@@ -95,17 +95,17 @@
   background-color: #ffffff;
   background: transparent;
   padding: 0 !important;
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   overflow: hidden;
   padding: 2rem 0 1rem;
 }
 
 /* Style for valid input */
 .ng-valid {
-  border: 1px solid #dfe3ec;
+  /* border: 1px solid #dfe3ec; */
 }
 
 /* Style for invalid input */
 .ng-invalid {
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }

@@ -57,7 +57,6 @@ public class Story {
 	@ManyToMany(mappedBy = "stories", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 	
-	@JsonManagedReference("story-storyimages")
 	@ManyToMany
 	@JoinTable(
 			name = "story_has_story_image",

@@ -32,7 +32,6 @@ public class User {
 	
 	private String email;
 	
-	@JsonManagedReference("user-userlists")
 	@OneToMany(mappedBy = "user")
 	private List<UserList> userLists;
 	

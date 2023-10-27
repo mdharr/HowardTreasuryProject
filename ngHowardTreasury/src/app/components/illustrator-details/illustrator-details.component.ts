@@ -47,6 +47,7 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
   elementRef = inject(ElementRef);
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.subscribeToServices();
   }
 

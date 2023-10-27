@@ -35,15 +35,15 @@
     <div class="editor-body">
       <editor [init]="editorConfig" name="content" [(ngModel)]="post.content"></editor>
     </div>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="postForm.invalid || !isEditorContentValid()"
+    >
+      Submit
+    </button>
   </div>
-  <button
-    type="submit"
-    mat-raised-button
-    color="primary"
-    [disabled]="postForm.invalid || !isEditorContentValid()"
-  >
-    Submit
-  </button>
 </form>
 
 

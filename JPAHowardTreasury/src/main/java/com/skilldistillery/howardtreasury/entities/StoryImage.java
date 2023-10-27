@@ -30,7 +30,7 @@ public class StoryImage {
 	@Column(name = "image_url")
 	private String imageUrl;
 	
-	@JsonBackReference("story-storyimages")
+	@JsonIgnore
 	@ManyToMany(mappedBy = "storyImages", cascade = CascadeType.MERGE)
 	private List<Story> stories;
 	

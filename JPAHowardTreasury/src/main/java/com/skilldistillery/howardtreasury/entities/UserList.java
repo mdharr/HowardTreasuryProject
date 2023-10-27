@@ -27,7 +27,7 @@ public class UserList {
 	
 	private String name;
 	
-	@JsonBackReference("user-userlists")
+	@JsonIgnore
 	@ManyToOne
     @JoinColumn(name = "user_id")
 	private User user;
