@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,11 @@ public class Illustrator {
 	
 	private String name;
 	
+	@Column(name = "image_url")
+	private String imageUrl;
+	
+	private String description;
+	
     @JsonIgnore
 	@ManyToMany(mappedBy = "illustrators", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
@@ -36,10 +42,12 @@ public class Illustrator {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Illustrator(int id, String name, List<Collection> collections, List<StoryImage> storyImages) {
+	public Illustrator(int id, String name, String imageUrl, String description, List<Collection> collections, List<StoryImage> storyImages) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.imageUrl = imageUrl;
+		this.description = description;
 		this.collections = collections;
 		this.storyImages = storyImages;
 	}
@@ -58,6 +66,22 @@ public class Illustrator {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public List<Collection> getCollections() {

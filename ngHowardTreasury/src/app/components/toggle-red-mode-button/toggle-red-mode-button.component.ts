@@ -10,7 +10,6 @@ export class ToggleRedModeButtonComponent {
   isRedTheme!: boolean;
 
   ngOnInit() {
-    // Check for the theme preference in localStorage when the component initializes.
     this.isRedTheme = localStorage.getItem('theme') === 'red-theme';
     this.toggleTheme(this.isRedTheme);
   }
@@ -19,7 +18,6 @@ export class ToggleRedModeButtonComponent {
     this.isRedTheme = !this.isRedTheme;
     this.toggleTheme(this.isRedTheme);
 
-    // Store the theme preference in localStorage.
     localStorage.setItem('theme', this.isRedTheme ? 'red-theme' : 'default-theme');
   }
 

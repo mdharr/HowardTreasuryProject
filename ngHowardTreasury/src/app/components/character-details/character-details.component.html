@@ -12,7 +12,7 @@
     <div class="profile-details">
       <h1 class="name-text">{{ person.name }}</h1>
       <p class="details-text">{{ person.description }}</p>
-      <p *ngIf="!person.description">This character doesn't seem to have a description yet. Hold tight!</p>
+      <p class="details-text" *ngIf="!person.description">This character doesn't seem to have a description yet. Hold tight!</p>
     </div>
   </div>
   <div class="appearances-wrapper">
