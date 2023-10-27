@@ -14,7 +14,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "story_image")
@@ -27,10 +30,11 @@ public class StoryImage {
 	@Column(name = "image_url")
 	private String imageUrl;
 	
-	@JsonIgnore
+	@JsonBackReference("story-storyimages")
 	@ManyToMany(mappedBy = "storyImages", cascade = CascadeType.MERGE)
 	private List<Story> stories;
 	
+	@JsonIgnoreProperties("storyImages")
 	@ManyToMany
 	@JoinTable(
 			name = "story_image_has_illustrator",

@@ -11,8 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Illustrator {
@@ -28,11 +30,13 @@ public class Illustrator {
 	
 	private String description;
 	
-    @JsonIgnore
+//    @JsonIgnore
+    @JsonBackReference("collection-illustrators")
 	@ManyToMany(mappedBy = "illustrators", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
 	
-    @JsonIgnore
+//    @JsonIgnore
+    @JsonIgnoreProperties("illustrators")
 	@ManyToMany(mappedBy = "illustrators", cascade = CascadeType.MERGE)
 	private List<StoryImage> storyImages;
 

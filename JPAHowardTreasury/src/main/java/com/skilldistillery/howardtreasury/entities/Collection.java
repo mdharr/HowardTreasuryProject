@@ -86,6 +86,7 @@ public class Collection {
 			)
 	private List<CollectionImage> collectionImages;
     
+    @JsonManagedReference("collection-illustrators")
     @ManyToMany
     @JoinTable(
         name = "collection_has_illustrator",
