@@ -52,6 +52,7 @@ import { CommentComponent } from './components/comment/comment.component';
 import { SvgElementComponent } from './components/svg-element/svg-element.component';
 import { EditorModule, TINYMCE_SCRIPT_SRC} from '@tinymce/tinymce-angular';
 import { BlogPostCreationComponent } from './components/blog-post-creation/blog-post-creation.component';
+import { IllustratorsComponent } from './components/illustrators/illustrators.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { BlogPostCreationComponent } from './components/blog-post-creation/blog-
     CommentComponent,
     SvgElementComponent,
     BlogPostCreationComponent,
+    IllustratorsComponent,
   ],
   imports: [
     BrowserModule,
