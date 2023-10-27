@@ -1,0 +1,41 @@
+.illustrator-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.header {
+  text-align: center;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header-wrapper {
+  padding-bottom: 0;
+}
+
+.main-title {
+  font-size: 36px;
+  font-family: var(--headerFontFamily);
+  color: var(--red_milk);
+  margin: 0;
+  font-weight: bold;
+}
+
+.subheader {
+  font-size: 20px;
+  font-family: var(--contentFontFamily);
+  color: var(--black_white);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.card-wrapper {
+  display:flex;
+  justify-content: center;
+  padding-bottom: 30px;
+}

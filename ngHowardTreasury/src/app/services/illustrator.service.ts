@@ -26,7 +26,7 @@ export class IllustratorService {
   }
 
   indexAll(): Observable<Illustrator[]> {
-    return this.http.get<Illustrator[]>(`${this.url}`, this.getHttpOptions()).pipe(
+    return this.http.get<Illustrator[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

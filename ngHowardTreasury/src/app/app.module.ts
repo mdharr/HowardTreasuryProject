@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -54,6 +55,7 @@ import { EditorModule, TINYMCE_SCRIPT_SRC} from '@tinymce/tinymce-angular';
 import { BlogPostCreationComponent } from './components/blog-post-creation/blog-post-creation.component';
 import { IllustratorsComponent } from './components/illustrators/illustrators.component';
 import { IllustratorDetailsComponent } from './components/illustrator-details/illustrator-details.component';
+import { IllustratorCardComponent } from './components/illustrator-card/illustrator-card.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +94,7 @@ import { IllustratorDetailsComponent } from './components/illustrator-details/il
     BlogPostCreationComponent,
     IllustratorsComponent,
     IllustratorDetailsComponent,
+    IllustratorCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,6 +116,7 @@ import { IllustratorDetailsComponent } from './components/illustrator-details/il
     MatProgressSpinnerModule,
     MatCheckboxModule,
     EditorModule,
+    MatCardModule
   ],
   providers: [
     { provide: TINYMCE_SCRIPT_SRC, useValue: '/tinymce/tinymce.min.js' }

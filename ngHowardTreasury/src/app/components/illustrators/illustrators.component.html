@@ -1,1 +1,18 @@
-<p>illustrators works!</p>
+<div class="header-wrapper">
+  <div class="header">
+    <h1 class="main-title">Illustrators</h1>
+    <p class="subheader">
+      Meet the wonderful artists behind the illustrations
+    </p>
+  </div>
+</div>
+<div class="card-wrapper">
+  <div class="illustrator-cards">
+    <app-illustrator-card
+      *ngFor="let illustrator of illustrators"
+      [illustrator]="illustrator"
+      [routerLink]="['/illustrators', illustrator.id]"
+    ></app-illustrator-card>
+  </div>
+</div>
+

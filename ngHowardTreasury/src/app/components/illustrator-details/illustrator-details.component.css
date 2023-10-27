@@ -1,0 +1,68 @@
+.illustrator-details {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.name {
+  font-size: 24px;
+  margin: 0;
+  color: var(--red_milk);
+  font-family: var(--headerFontFamily);
+}
+
+.description {
+  font-size: 16px;
+  color: var(--black_white);
+  font-family: var(--contentFontFamily);
+  padding: 10px 5%;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  justify-content: center;
+  width: 100%;
+  z-index: 5;
+  position: absolute;
+  left: 0;
+}
+
+.image-item {
+  height: 200px;
+  cursor: pointer;
+  overflow: hidden; /* Hide overflowing image content */
+}
+
+.image-zoom {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s, filter 0.3s; /* Add transitions for smooth effect */
+
+  filter: grayscale(50%); /* Start with grayscale */
+}
+
+/* Add hover effect */
+.image-item:hover .image-zoom {
+  filter: grayscale(0%); /* Remove grayscale on hover */
+  transform: scale(1.05); /* Slightly zoom in on hover */
+}
+
+.image-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Black semi-transparent background */
+  text-align: center;
+  padding: 5px;
+  color: white;
+  font-size: 14px;
+  display: none; /* Hide the caption by default */
+  height:50px;
+}
+
+/* Add hover effect to show caption */
+.image-item:hover .image-caption {
+  display: block;
+}

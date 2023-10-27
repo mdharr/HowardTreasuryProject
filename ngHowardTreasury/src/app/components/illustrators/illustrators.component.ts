@@ -1,8 +1,6 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Collection } from 'src/app/models/collection';
 import { Illustrator } from 'src/app/models/illustrator';
-import { StoryImage } from 'src/app/models/story-image';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { IllustratorService } from 'src/app/services/illustrator.service';
@@ -16,8 +14,6 @@ export class IllustratorsComponent implements OnInit, OnDestroy {
 
   // properties
   illustrators: Illustrator[] = [];
-  // storyImages: StoryImage[] = [];
-  // collections: Collection[] = [];
   loggedInUser: User = new User();
 
   // subscriptions
@@ -28,11 +24,11 @@ export class IllustratorsComponent implements OnInit, OnDestroy {
   authService = inject(AuthService);
   illustratorService = inject(IllustratorService);
 
-  ngOnInit = () => {
+  ngOnInit() {
     this.subscribeToServices();
   }
 
-  ngOnDestroy = () => {
+  ngOnDestroy() {
     this.destroySubscriptions();
   }
 
@@ -60,12 +56,13 @@ export class IllustratorsComponent implements OnInit, OnDestroy {
     this.illustratorSubscription = this.illustratorService.indexAll().subscribe({
       next: (data) => {
         this.illustrators = data;
+        console.log('Illustrators: ', this.illustrators);
       },
       error: (fail) => {
         console.error('Error retrieving illustrators');
         console.error(fail);
-
       }
     });
   }
+
 }
