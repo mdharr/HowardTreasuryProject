@@ -16,7 +16,7 @@
 }
 
 .userlists-wrapper {
-  /* background-color: #fdfdff; */
+  background-color: var(--milk_white);
   border-radius:6px;
   flex:2;
   font-family: var(--contentFontFamily);

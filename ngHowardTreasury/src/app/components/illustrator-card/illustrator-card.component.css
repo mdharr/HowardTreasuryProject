@@ -24,3 +24,14 @@
 .name {
   margin: 0; /* Remove default margin on h2 element */
 }
+
+@media screen and (max-width: 1028px) {
+  .illustrator-card {
+    width: 150px;
+    height: 225px;
+  }
+  .illustrator-details h2 {
+    font-size: 14px;
+    margin:0;
+  }
+}

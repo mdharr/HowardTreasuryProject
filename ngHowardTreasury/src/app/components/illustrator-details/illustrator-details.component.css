@@ -3,6 +3,30 @@
   text-align: center;
 }
 
+.details-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.profile-image-wrapper {
+  min-width: 200px;
+  height: 200px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border: 5px solid var(--white_color);
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.illustrator-meta {
+
+}
+
 .name {
   font-size: 24px;
   margin: 0;
@@ -11,10 +35,28 @@
 }
 
 .description {
-  font-size: 16px;
+  font-size: 20px;
   color: var(--black_white);
   font-family: var(--contentFontFamily);
   padding: 10px 5%;
+  text-align: justify;
+  line-height: 1.5;
+}
+
+.label-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.label-wrapper h1 {
+  font-family: var(--contentFontFamily);
+  color: var(--red_white);
+}
+
+.image-grid-container {
+  position: relative;
+  margin-bottom: 100px;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; */
 }
 
 .image-grid {
@@ -23,46 +65,193 @@
   justify-content: center;
   width: 100%;
   z-index: 5;
+}
+
+.show-more-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
   position: absolute;
-  left: 0;
+  bottom: -80px;
+}
+
+.show-more-btn {
+  background-color: var(--red_white);
+  color: var(--white_black);
 }
 
 .image-item {
   height: 200px;
   cursor: pointer;
-  overflow: hidden; /* Hide overflowing image content */
+  overflow: hidden;
 }
 
 .image-zoom {
   height: 100%;
   background-size: cover;
   background-position: center;
-  transition: transform 0.3s, filter 0.3s; /* Add transitions for smooth effect */
+  transition: transform 0.3s;
 
-  filter: grayscale(50%); /* Start with grayscale */
+  filter: grayscale(50%);
 }
 
-/* Add hover effect */
 .image-item:hover .image-zoom {
-  filter: grayscale(0%); /* Remove grayscale on hover */
-  transform: scale(1.05); /* Slightly zoom in on hover */
+  filter: grayscale(0%);
+  transform: scale(1.05);
 }
 
-.image-caption {
+/* .image-caption {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Black semi-transparent background */
+  background: rgba(0, 0, 0, 0.5);
   text-align: center;
   padding: 5px;
   color: white;
   font-size: 14px;
-  display: none; /* Hide the caption by default */
+  display: none;
   height:50px;
 }
 
-/* Add hover effect to show caption */
 .image-item:hover .image-caption {
   display: block;
+} */
+
+/* Add CSS for lightbox and thumbnails */
+.lightbox {
+  /* Style for the darkened background */
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow: hidden;
 }
+
+.lightbox-content {
+  /* Style for the container holding the main image and controls */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.lightbox-image {
+  /* Style for the main image */
+  max-width: 90%;
+  max-height: 80vh;
+}
+
+.lightbox-controls {
+  /* Style for the control buttons (close icon and download icon) */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height:50px;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.control {
+  /* Style for the control buttons (close icon and download icon) */
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.lightbox-image-count {
+  /* Style for the image count text */
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  bottom: -35px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.lightbox-thumbnails {
+  /* Style for the thumbnail strip */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  overflow: hidden;
+}
+
+.thumbnails-container {
+  display: flex;
+  justify-content: center;
+  transform: translateX(calc(-50% + var(--centerOffset)px));
+  transition: transform 0.3s ease;
+}
+
+.thumbnail {
+  margin: 0 5px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border: 1px solid white;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail[selected] {
+  transform: scale(1.5);
+}
+
+.thumbnail-image {
+  /* Style for the thumbnail images */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbnail-text {
+  /* Style for the thumbnail text (image count) */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 12px;
+  padding: 2px 5px;
+  border-top-left-radius: 5px;
+}
+
+.lightbox-image-container {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1028px) {
+  .details-wrapper {
+    flex-direction: column;
+  }
+  .illustrator-meta {
+    margin:0;
+  }
+  .profile-image-wrapper {
+    margin-bottom: 20px;
+  }
+  .description {
+    padding: 10px 0;
+    word-break: break-all;
+  }
+}
+
+
