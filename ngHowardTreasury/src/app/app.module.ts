@@ -53,6 +53,7 @@ import { SvgElementComponent } from './components/svg-element/svg-element.compon
 import { EditorModule, TINYMCE_SCRIPT_SRC} from '@tinymce/tinymce-angular';
 import { BlogPostCreationComponent } from './components/blog-post-creation/blog-post-creation.component';
 import { IllustratorsComponent } from './components/illustrators/illustrators.component';
+import { IllustratorDetailsComponent } from './components/illustrator-details/illustrator-details.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { IllustratorsComponent } from './components/illustrators/illustrators.co
     SvgElementComponent,
     BlogPostCreationComponent,
     IllustratorsComponent,
+    IllustratorDetailsComponent,
   ],
   imports: [
     BrowserModule,
