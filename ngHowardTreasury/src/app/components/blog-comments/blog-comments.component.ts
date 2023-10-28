@@ -222,14 +222,11 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   modifyHTMLContent(): SafeHtml {
-    // Convert the SafeHtml content to a string and apply styles
     const sanitizedString = this.sanitizer.sanitize(SecurityContext.HTML, this.sanitizedContent as string);
 
-    // Update 'img' elements
-    const imgModifiedContent = (sanitizedString || '').replace(/<img/g, '<img style="width: 100%; height: auto;"');
+    const imgModifiedContent = (sanitizedString || '').replace(/<img/g, '<img style="max-width: 100%; height: auto;"');
 
-    // Update 'iframe' elements
-    const finalModifiedContent = imgModifiedContent.replace(/<iframe/g, '<iframe style="width: 100%; height: auto;"');
+    const finalModifiedContent = imgModifiedContent.replace(/<iframe/g, '<iframe style="max-width: 100%; height: auto;"');
 
     return this.sanitizer.bypassSecurityTrustHtml(finalModifiedContent);
   }

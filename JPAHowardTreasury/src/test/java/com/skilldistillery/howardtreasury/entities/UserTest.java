@@ -75,7 +75,7 @@ class UserTest {
 	@Test
 	void test_User_BlogPost_one_to_many_mapping() {
 		assertNotNull(user);
-		assertEquals("First blog post", user.getBlogPosts().get(0).getTitle());
+		assertEquals("My Favorite Solomon Kane Tale: “Wings in the Night” by Robert E. Howard", user.getBlogPosts().get(0).getTitle());
 	}
 
 }

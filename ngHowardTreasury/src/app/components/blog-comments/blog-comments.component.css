@@ -13,6 +13,7 @@
 
 .post-body {
   width: 75%;
+  padding: 40px 30px;
 }
 
 .recent-posts {
@@ -20,13 +21,24 @@
   padding: 0 15px;
 }
 
+.posted-on {
+  color: var(--black_white);
+}
+.byline {
+  color: var(--black_white);
+}
+
 .post {
-  background-color: #f9f9f9;
-  padding: 10px;
-  border: 1px solid #ddd;
+  background-color: var(--white_black);
+  padding: 40px 30px;
   margin-bottom: 20px;
-  display:flex;
-  flex-direction: column;
+  color: var(--black_white);
+  font-family: var(--contentFontFamily);
+  font-size:var(--body_font);
+}
+
+.post ::ng-deep p img {
+  background-color: #fff !important;
 }
 
 .comments {
@@ -224,6 +236,10 @@ div p * {
     flex-direction:column;
   }
 
+  .post {
+    padding: 20px 15px;
+  }
+
   .post-body {
     width: 100%;
     padding: 0;
@@ -250,6 +266,15 @@ div p * {
 
   .story-title {
     font-size: 14px;
+    padding:0;
+  }
+
+  .story-title-text {
+    padding:0;
+  }
+
+  .story-title::before {
+    display:none;
   }
 
 }

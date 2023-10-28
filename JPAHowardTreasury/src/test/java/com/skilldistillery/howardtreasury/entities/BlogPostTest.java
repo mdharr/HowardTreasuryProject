@@ -43,7 +43,7 @@ class BlogPostTest {
 	@Test
 	void test_BlogPost_entity_mapping() {
 		assertNotNull(blogPost);
-		assertEquals("First blog post", blogPost.getTitle());
+		assertEquals("My Favorite Solomon Kane Tale: “Wings in the Night” by Robert E. Howard", blogPost.getTitle());
 	}
 	
 	@Test
