@@ -24,6 +24,7 @@
 .posted-on {
   color: var(--black_white);
 }
+
 .byline {
   color: var(--black_white);
 }
@@ -35,10 +36,21 @@
   color: var(--black_white);
   font-family: var(--contentFontFamily);
   font-size:var(--body_font);
+  line-height: 1.5;
 }
 
 .post ::ng-deep p img {
   background-color: #fff !important;
+}
+
+::ng-deep .post-images {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+::ng-deep .post:last-child p {
+  margin-bottom: 30px;
 }
 
 .comments {
@@ -230,6 +242,23 @@ div p * {
   color: var(--white_black);
 }
 
+.img_left_align_margin {
+  margin: 0.5em 1em 0.5em 0;
+}
+
+.img_right_align_margin {
+  margin: 0.5em 0 0.5em 1em;
+}
+
+::ng-deep blockquote {
+  border-left: 2px solid var(--black_red);
+  padding: 10px;
+  margin: 10px 15px;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
 @media screen and (max-width: 992px) {
 
   .blog-post {
@@ -275,6 +304,13 @@ div p * {
 
   .story-title::before {
     display:none;
+  }
+
+  ::ng-deep .post-images {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    width: 50%;
   }
 
 }

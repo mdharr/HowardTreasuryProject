@@ -1,25 +1,43 @@
-.main {
-  display: flex;
-  justify-content: center;
-}
-
 .body {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  max-width: 1200px; /* Adjust as needed */
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 }
 
 .post-wrapper {
-  margin: 10px;
-  /* width: 45%; */
+  padding: 10px;
+  background-color: var(--white_black);
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.post-wrapper:hover {
+  cursor: pointer;
+  transform: scale(1.05) translateY(-10px) rotate(3deg);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.post-wrapper {
+  position: relative;
+}
+
+.date-box {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 20px;
 }
 
 .card {
-  border: 1px solid #ccc;
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  background-color: var(--white_black);
+  border: none;
 }
 
 .post-image {
@@ -27,9 +45,23 @@
   height: auto;
 }
 
+
 .title-text {
   margin-top: 10px;
   font-weight: bold;
+  color: var(--black_white);
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+}
+
+button {
+  background-color: var(--red_white);
+  color: var(--white_black);
 }
 
 .header-wrapper {
@@ -65,4 +97,10 @@
 img {
   width: 100%;
   height: auto;
+}
+
+@media screen and (max-width: 1028px) {
+  .main-title {
+    font-size: 24px;
+  }
 }

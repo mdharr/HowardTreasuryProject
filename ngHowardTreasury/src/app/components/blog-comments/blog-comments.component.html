@@ -12,7 +12,7 @@
     <div class="post-image-wrapper">
       <img class="post-image" src="{{ post.imageUrl }}" alt="">
     </div>
-    <div class="post" [innerHTML]="sanitizedContent"></div>
+    <div class="post" [innerHTML]="modifyHTMLContent()"></div>
   </div>
   <div class="recent-posts">
     <h1>Recent Posts</h1>

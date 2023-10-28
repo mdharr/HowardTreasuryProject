@@ -53,6 +53,7 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngOnDestroy() {
+      window.scrollTo(0, 0);
       this.destroyAllSubscriptions();
     }
 
@@ -223,12 +224,32 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   modifyHTMLContent(): SafeHtml {
-    const sanitizedString = this.sanitizer.sanitize(SecurityContext.HTML, this.sanitizedContent as string);
+    if (!this.sanitizedContent) {
+      // Handle the case where sanitizedContent is null or undefined
+      return '';
+    }
 
-    const imgModifiedContent = (sanitizedString || '').replace(/<img/g, '<img style="max-width: 100%; height: auto;"');
+    const sanitizedString = this.sanitizer.sanitize(SecurityContext.HTML, this.sanitizedContent);
 
-    const finalModifiedContent = imgModifiedContent.replace(/<iframe/g, '<iframe style="max-width: 100%; height: auto;"');
+    if (!sanitizedString) {
+      // Handle the case where sanitizedString is null
+      return '';
+    }
 
+    // Create a DOM element from the sanitized HTML
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(sanitizedString, 'text/html');
+
+    // Find all img elements and add the "post-images" class
+    const imgElements = doc.querySelectorAll('img');
+    imgElements.forEach((imgElement) => {
+      imgElement.classList.add('post-images');
+    });
+
+    // Serialize the modified DOM back to HTML
+    const finalModifiedContent = new XMLSerializer().serializeToString(doc);
+
+    // Return the modified content as SafeHtml
     return this.sanitizer.bypassSecurityTrustHtml(finalModifiedContent);
   }
 
