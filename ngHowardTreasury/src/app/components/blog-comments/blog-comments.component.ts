@@ -28,7 +28,7 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
     sanitizedContent: SafeHtml | undefined;
     postContent: string = '';
     recentPosts: BlogPost[] = [];
-
+    commentCount: number = 0;
 
     editingComment: BlogComment | null = null;
     showCommentNest: boolean = true;
@@ -73,6 +73,7 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
           this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(data.content);
           console.log('Post comments:', this.post.comments);
           this.comments = this.prepareCommentsForRendering(data.comments);
+          this.commentCount = data.comments.length;
           console.log('Prepared comments:', this.comments);
         },
         error: (fail) => {
