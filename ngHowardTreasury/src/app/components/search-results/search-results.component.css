@@ -234,7 +234,9 @@
 .character-image img {
   width: 150px;
   height: auto;
+  min-height: 200px;
   border: 5px solid var(--red_white);
+  color: var(--black_white);
 }
 
 .character-details {
@@ -257,7 +259,9 @@
 .story-image img {
   width: 150px;
   height: auto;
+  min-height: 200px;
   border: 5px solid var(--red_white);
+  color: var(--black_white);
 }
 
 .story-details {
