@@ -19,19 +19,33 @@
     <ng-container *ngFor="let result of searchResults; let lastIndex = last">
       <!-- <h2 class="type-header">{{ result.type === 'Person' ? 'Character' : result.type }}</h2> -->
       <div class="category" *ngIf="result.type === 'Collection'">
-        <h3 class="results-items" [routerLink]="['/collections', result.data.id]">{{ result.data.title }}</h3>
-        <!-- Display other properties specific to the Collection type -->
-        <p class="result-text">{{ result.data.description | slice:0:200 }}...</p>
+        <div class="category-wrapper">
+          <div class="category-image">
+            <img src="{{ result.data.collectionImages[0].imageUrl }}" alt="">
+          </div>
+          <div class="category-details">
+            <h3 class="results-items" [routerLink]="['/collections', result.data.id]">{{ result.data.title }}</h3>
+            <!-- Display other properties specific to the Collection type -->
+            <p class="result-text">{{ result.data.description | slice:0:200 }}...</p>
+          </div>
+        </div>
         <!-- <p class="result-text"><span class="items-name">Published:</span> {{ result.data.publishedAt | date:'longDate' }}</p>
         <p class="result-text"><span class="items-name">Series:</span> {{ result.data.series.title }}</p>
         <p class="result-text"><span class="items-name">Recurring Character:</span> {{ result.data.persons[0].name }}</p> -->
         <!-- Add more properties as needed -->
       </div>
       <div class="category" *ngIf="result.type === 'Story'">
-        <h3 class="results-items" [routerLink]="['/stories', result.data.id]">{{ result.data.title }}</h3>
-        <!-- <h3 *ngIf="result.data.alternateTitle" class="results-items" [routerLink]="['/stories', result.data.id]">Alternate Title: {{ result.data.alternateTitle }}</h3> -->
-        <!-- Display other properties specific to the Story type -->
-        <p class="result-text" *ngIf="result.data.excerpt">{{ result.data.excerpt | slice:0:200 }}...</p>
+        <div class="story-wrapper">
+          <div class="story-image" *ngIf="result.data.storyImages">
+            <img src="{{ result.data.storyImages[0].imageUrl }}" alt="">
+          </div>
+          <div class="story-details">
+            <h3 class="results-items" [routerLink]="['/stories', result.data.id]">{{ result.data.title }}</h3>
+            <!-- <h3 *ngIf="result.data.alternateTitle" class="results-items" [routerLink]="['/stories', result.data.id]">Alternate Title: {{ result.data.alternateTitle }}</h3> -->
+            <!-- Display other properties specific to the Story type -->
+            <p class="result-text" *ngIf="result.data.excerpt">{{ result.data.excerpt | slice:0:200 }}...</p>
+          </div>
+        </div>
         <!-- Add more properties as needed -->
       </div>
       <div class="category" *ngIf="result.type === 'Poem'">
@@ -48,8 +62,15 @@
         <!-- Add more properties as needed -->
       </div>
       <div class="category" *ngIf="result.type === 'Person'">
-        <h3 class="results-items" [routerLink]="['/characters', result.data.id]">{{ result.data.name }}</h3>
-        <p class="result-text" *ngIf="result.data.description">{{ result.data.description | slice:0:200 }}...</p>
+        <div class="character-wrapper">
+          <div class="character-image">
+            <img src="{{ result.data.imageUrl }}" alt="">
+          </div>
+          <div class="character-details">
+            <h3 class="results-items" [routerLink]="['/characters', result.data.id]">{{ result.data.name }}</h3>
+            <p class="result-text" *ngIf="result.data.description">{{ result.data.description | slice:0:200 }}...</p>
+          </div>
+        </div>
         <!-- Display other properties specific to the Person type -->
         <!-- Add more properties as needed -->
       </div>
