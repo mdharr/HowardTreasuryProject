@@ -9,6 +9,6 @@ import com.skilldistillery.howardtreasury.entities.Story;
 
 public interface BlogPostRepository extends JpaRepository<BlogPost, Integer> {
 
-    List<BlogPost> findByTitleContainingOrContentContaining(String query);
+    List<BlogPost> findByTitleContainingOrContentContaining(String title, String content);
 
 }

@@ -140,7 +140,7 @@ public class SearchServiceImpl implements SearchService {
     }
     
     private List<Map<String, Object>> searchBlogPosts(String query, String type) {
-    	return blogPostRepo.findByTitleContainingOrContentContaining(query).stream()
+    	return blogPostRepo.findByTitleContainingOrContentContaining(query, query).stream()
     			.map(post -> createResultMap(post, type))
     			.collect(Collectors.toList());
     }

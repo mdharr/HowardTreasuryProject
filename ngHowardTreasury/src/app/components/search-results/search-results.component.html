@@ -50,6 +50,11 @@
         <!-- Display other properties specific to the Miscellanea type -->
         <!-- Add more properties as needed -->
       </div>
+      <div class="category" *ngIf="result.type === 'Post'">
+        <h3 class="results-items" [routerLink]="['/posts', result.data.id]">{{ result.data.title }}</h3>
+        <!-- Display other properties specific to the Miscellanea type -->
+        <!-- Add more properties as needed -->
+      </div>
       <!-- You can add more conditional blocks for other types -->
       <hr *ngIf="!lastIndex">
     </ng-container>
