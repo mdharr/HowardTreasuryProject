@@ -33,7 +33,7 @@
 .results-items {
   width: fit-content;
   font-weight: 700;
-  color: var(--black_white);
+  color: var(--red_milk);
   transition: transform 0.3s ease-in-out;
   font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
 }
@@ -64,7 +64,7 @@
 .items-name {
   font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
   font-weight: 700;
-  color: #9e0000;
+  color: var(--red_milk);
 }
 
 .placeholder-container {
@@ -171,6 +171,30 @@
 
 .post-content {
   color: var(--black_white);
+}
+
+.post-wrapper {
+  display: flex;
+  gap: 50px;
+}
+
+.post-image {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+.post-image img {
+  width: 200px;
+  height: auto;
+  border: 5px solid var(--red_white);
+}
+
+.post-details {
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 1000px) {
