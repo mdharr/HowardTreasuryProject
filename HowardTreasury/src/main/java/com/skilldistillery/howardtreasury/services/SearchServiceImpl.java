@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.howardtreasury.entities.Story;
+import com.skilldistillery.howardtreasury.repositories.BlogPostRepository;
 import com.skilldistillery.howardtreasury.repositories.CollectionRepository;
 import com.skilldistillery.howardtreasury.repositories.MiscellaneaRepository;
 import com.skilldistillery.howardtreasury.repositories.PersonRepository;
@@ -40,6 +41,9 @@ public class SearchServiceImpl implements SearchService {
 	@Autowired
 	private MiscellaneaRepository miscellaneaRepo;
 	
+	@Autowired
+	private BlogPostRepository blogPostRepo;
+	
     @Override
     public List<Map<String, Object>> search(String query) {
         List<Map<String, Object>> results = new ArrayList<>();
@@ -59,6 +63,9 @@ public class SearchServiceImpl implements SearchService {
         // Search for miscellanea and add to results
         results.addAll(searchMiscellanea(query, "Miscellanea"));
         
+        // Search for blog posts and add to results
+        results.addAll(searchBlogPosts(query, "Post"));
+        
         return results;
     }
     
@@ -73,6 +80,7 @@ public class SearchServiceImpl implements SearchService {
 //                .map(story -> createResultMap(story, type))
 //                .collect(Collectors.toList());
 //    }
+    
     private List<Map<String, Object>> searchStories(String query, String type) {
     	return storyRepo.findByTitleContainingOrAlternateTitleContaining(query, query).stream()
     			.map(story -> createResultMap(story, type))
@@ -129,6 +137,12 @@ public class SearchServiceImpl implements SearchService {
         return miscellaneaRepo.findByTitleContaining(query).stream()
                 .map(miscellanea -> createResultMap(miscellanea, type))
                 .collect(Collectors.toList());
+    }
+    
+    private List<Map<String, Object>> searchBlogPosts(String query, String type) {
+    	return blogPostRepo.findByTitleContainingOrContentContaining(query).stream()
+    			.map(post -> createResultMap(post, type))
+    			.collect(Collectors.toList());
     }
 
     private Map<String, Object> createResultMap(Object entity, String type) {
