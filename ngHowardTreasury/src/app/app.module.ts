@@ -56,6 +56,7 @@ import { BlogPostCreationComponent } from './components/blog-post-creation/blog-
 import { IllustratorsComponent } from './components/illustrators/illustrators.component';
 import { IllustratorDetailsComponent } from './components/illustrator-details/illustrator-details.component';
 import { IllustratorCardComponent } from './components/illustrator-card/illustrator-card.component';
+import { RecentPostsComponent } from './components/recent-posts/recent-posts.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import { IllustratorCardComponent } from './components/illustrator-card/illustra
     IllustratorsComponent,
     IllustratorDetailsComponent,
     IllustratorCardComponent,
+    RecentPostsComponent,
   ],
   imports: [
     BrowserModule,
