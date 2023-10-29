@@ -4,6 +4,10 @@
   </div>
 </div>
 <div *ngIf="isLoaded">
+  <ol class="breadcrumbnav">
+    <li><a [routerLink]="['/home']">Home</a></li>
+    <li><a [routerLink]="['/poems']">Poems</a></li>
+  </ol>
   <div class="title-container">
     <h1 class="story-title"><span class="story-title-text">{{ poem.title }}</span></h1>
   </div>

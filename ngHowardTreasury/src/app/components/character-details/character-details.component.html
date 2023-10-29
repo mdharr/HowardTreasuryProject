@@ -1,4 +1,8 @@
 <div class="main" *ngIf="isLoaded">
+  <ol class="breadcrumbnav">
+    <li><a [routerLink]="['/home']">Home</a></li>
+    <li><a [routerLink]="['/characters']">Characters</a></li>
+  </ol>
   <div class="character-profile">
     <div class="profile-image">
       <img *ngIf="person.imageUrl"
