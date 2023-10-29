@@ -4,6 +4,8 @@
 
 :root {
   --centerOffset: 0px;
+  --timing: 400ms;
+  --rotation: 20deg;
 
   /* font families */
   --headerFontFamily: 'Libre Baskerville', Helvetica, Arial, sans-serif;

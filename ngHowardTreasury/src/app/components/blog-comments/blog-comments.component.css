@@ -93,7 +93,7 @@
 
 .story-title {
   position: relative;
-  font-size: 20px;
+  font-size: 18px;
   font-family: var(--headerFontFamily);
   font-weight: var(--superBold);
   color: var(--red_milk);

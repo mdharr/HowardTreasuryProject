@@ -22,6 +22,7 @@ import { UserListsComponent } from './components/user-lists/user-lists.component
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { BlogCommentsComponent } from './components/blog-comments/blog-comments.component';
 import { BlogPostCreationComponent } from './components/blog-post-creation/blog-post-creation.component';
+import { AnimatedCardComponent } from './components/animated-card/animated-card.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'posts/create', component: BlogPostCreationComponent },
   { path: 'illustrators', component: IllustratorsComponent },
   { path: 'illustrators/:illustratorId', component: IllustratorDetailsComponent },
+  { path: 'conan', component: AnimatedCardComponent },
   // { path: 'stories-test', component: StoriesTestComponent },
   // { path: 'stop-light-test', component: StopLightTestComponent },
 ];
