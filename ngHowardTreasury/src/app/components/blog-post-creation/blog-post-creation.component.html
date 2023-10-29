@@ -1,14 +1,11 @@
-<!-- <div class="editor-wrapper">
-  <div class="post-title">
-    <div class="title-input"></div>
-  </div>
-  <div class="post-image">
-    <div class="image-input"></div>
-  </div>
-  <div class="editor-body">
-    <editor [init]="editorConfig"></editor>
-  </div>
-</div> -->
+<ol class="breadcrumbnav">
+  <li><a [routerLink]="['/home']">Home</a></li>
+  <li><a [routerLink]="['/posts']">Posts</a></li>
+</ol>
+
+<div class="header-wrapper">
+  <h1>New blog post</h1>
+</div>
 
 <form #postForm="ngForm" (ngSubmit)="onSubmit(postForm)">
   <div class="editor-wrapper">
@@ -35,14 +32,16 @@
     <div class="editor-body">
       <editor [init]="editorConfig" name="content" [(ngModel)]="post.content"></editor>
     </div>
-    <button
-      type="submit"
-      mat-raised-button
-      color="primary"
-      [disabled]="postForm.invalid || !isEditorContentValid()"
-    >
-      Submit
-    </button>
+    <div class="submit-button">
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="postForm.invalid || !isEditorContentValid()"
+      >
+        Submit
+      </button>
+    </div>
   </div>
 </form>
 

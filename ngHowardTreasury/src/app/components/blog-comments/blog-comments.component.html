@@ -1,3 +1,8 @@
+<ol class="breadcrumbnav">
+  <li><a [routerLink]="['/home']">Home</a></li>
+  <li><a [routerLink]="['/posts']">Posts</a></li>
+</ol>
+
 <div class="blog-post">
   <div class="post-body">
     <div class="title-container">
@@ -5,7 +10,7 @@
     </div>
     <div class="entry-meta">
       <span class="posted-on">Posted on </span>
-      <mat-icon style="font-size: 16px; display: flex; justify-content: center; color: var(--black_white);">calendar_month</mat-icon>
+      <mat-icon class="calendar-icon" style="font-size: 16px; display: flex; justify-content: center; color: var(--black_white);">calendar_month</mat-icon>
       <span class="date-text"> {{ post.createdAt | date:'longDate' }}&nbsp;</span>
       <span class="byline"> by <span class="user-meta">{{ post.user.username }}</span> | {{ commentCount }} comments</span>
     </div>

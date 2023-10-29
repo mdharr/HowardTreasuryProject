@@ -48,12 +48,12 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
     sanitizer = inject(DomSanitizer);
 
     ngOnInit() {
+      window.scrollTo(0, 0);
       this.subscribeToParams();
       this.subscribeToRecentBlogPosts();
     }
 
     ngOnDestroy() {
-      window.scrollTo(0, 0);
       this.destroyAllSubscriptions();
     }
 

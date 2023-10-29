@@ -340,6 +340,11 @@
   position: relative;
 }
 
+.excerpt-not-available {
+  color: var(--black_white);
+  font-family: var(--contentFontFamily);
+}
+
 .tail-image-wrapper {
   display:flex;
   justify-content: center;

@@ -98,6 +98,27 @@
   border-radius: 0.625rem;
   overflow: hidden;
   padding: 2rem 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.submit-button {
+  width: 100%;
+  display:flex;
+  justify-content: flex-end;
+}
+
+.header-wrapper {
+  display:flex;
+  justify-content: center;
+  color: var(--red_white);
+  padding: 25px 0;
+}
+
+.header-wrapper h1 {
+  font-family: Arial, sans-serif; /* Choose a professional font */
+  font-size: 28px;
+  margin:0;
+  font-weight: 600;
 }
 
 /* Style for valid input */
@@ -108,4 +129,42 @@
 /* Style for invalid input */
 .ng-invalid {
   /* border: 1px solid red; */
+}
+
+/* breadcrumb navigation */
+.breadcrumbnav {
+  list-style: none;
+  padding: 0;
+}
+
+.breadcrumbnav li {
+  display: inline-block;
+}
+
+.breadcrumbnav li:last-child {
+  color: var(--black_white);
+}
+
+.breadcrumbnav li:last-child a {
+  color: var(--red_white);
+  font-weight: bold;
+}
+
+.breadcrumbnav li::after {
+  content: "\00a0  > \00a0";
+  color: var(--red_white);
+}
+
+.breadcrumbnav li:last-child::after {
+  content: "";
+}
+
+.breadcrumbnav a {
+  font-weight: normal;
+  text-decoration: none;
+  color: var(--red_white);
+}
+
+.breadcrumbnav a:hover {
+  text-decoration: underline;
 }

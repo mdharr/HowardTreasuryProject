@@ -14,7 +14,7 @@
         <p class="excerpt-text" [innerHTML]="miscellaneaExcerpt"></p><span class="read-online-box" *ngIf="miscellanea.textUrl"><a class="story-text-link" href="{{ miscellanea.textUrl }}">Continue reading</a></span>
       </div>
       <div class="excerpt-box" style="justify-content:flex-start; margin:20px;" *ngIf="!miscellanea.excerpt">
-        <p>Excerpt not yet available.</p><span class="read-online-box" *ngIf="miscellanea.textUrl"><a class="story-text-link" href="{{ miscellanea.textUrl }}">Continue reading</a></span>
+        <p class="excerpt-not-available">Excerpt not yet available.</p><span class="read-online-box" *ngIf="miscellanea.textUrl"><a class="story-text-link" href="{{ miscellanea.textUrl }}">Continue reading</a></span>
       </div>
     </div>
   </div>

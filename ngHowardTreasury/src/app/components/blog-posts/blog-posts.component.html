@@ -1,3 +1,8 @@
+<ol class="breadcrumbnav">
+  <li><a [routerLink]="['/home']">Home</a></li>
+  <!-- <li>Posts</li> -->
+</ol>
+
 <div class="header-wrapper">
   <div class="header">
     <h1 class="main-title">Sword and Sorcery Blog</h1>
@@ -5,14 +10,26 @@
       Where steel meets sorcery and adventure knows no bounds
     </p>
   </div>
+  <div class="buttons-wrapper">
+    <div class="toggle-container" (click)="toggleShowAll()">
+      <span class="toggle-label">{{ showAll ? 'Show By Year' : 'Show All' }}</span>
+      <i class="toggle-icon" [ngClass]="{ 'active': showByYear }"></i>
+    </div>
+    <div class="new-post">
+      <span class="toggle-label" [routerLink]="['/posts/create']">Create New Post</span>
+    </div>
+  </div>
 </div>
 
-<div class="main">
+<div class="main" *ngIf="showAll">
+  <div class="posts-header">
+    <h2>Explore Our Posts</h2>
+  </div>
   <div class="body">
     <ng-container *ngFor="let post of posts">
       <div [routerLink]="['/posts', post.id, 'comments']" class="post-wrapper">
         <div class="card">
-          <div class="date-box">{{ post.createdAt | date:'MMM' }}<br>{{ post.createdAt | date:'dd' }}</div>
+          <div class="date-box"><span class="month-text">{{ post.createdAt | date:'MMM' }}</span><br><span class="day-text">{{ post.createdAt | date:'dd' }}</span></div>
           <img class="post-image" src="{{ post.imageUrl }}" alt="">
           <div class="title-text">{{ post.title }}</div>
         </div>
@@ -21,6 +38,27 @@
   </div>
 </div>
 
-<div class="button-container">
-  <button mat-button [routerLink]="['/posts/create']">Create New Post</button>
+
+<div class="main" *ngIf="showByYear">
+  <div class="body-wrapper">
+    <ng-container *ngFor="let year of getSortedYears(); let first = first">
+      <details class="year-details" [open]="showByYear && first">
+        <summary class="year-summary">
+          <h2>{{ year }}</h2>
+        </summary>
+        <div class="body">
+          <ng-container *ngFor="let post of groupedPosts[year]">
+            <!-- Render the blog post here -->
+            <div [routerLink]="['/posts', post.id, 'comments']" class="post-wrapper">
+              <div class="card">
+                <div class="date-box"><span class="month-text">{{ post.createdAt | date:'MMM' }}</span><br><span class="day-text">{{ post.createdAt | date:'dd' }}</span></div>
+                <img class="post-image" src="{{ post.imageUrl }}" alt="">
+                <div class="title-text">{{ post.title }}</div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </details>
+    </ng-container>
+  </div>
 </div>

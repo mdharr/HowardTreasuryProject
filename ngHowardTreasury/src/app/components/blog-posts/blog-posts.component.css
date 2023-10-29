@@ -2,6 +2,108 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
+  margin-bottom: 30px;
+}
+
+details .body {
+  margin-top: 30px;
+}
+
+.body-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 5px;
+}
+
+.toggle-container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.toggle-label {
+  transition: color 0.2s ease-in-out;
+  color: var(--red_white);
+}
+
+.new-post {
+  cursor: pointer;
+}
+
+.posts-header {
+  text-align: left;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 30px;
+  background-color: var(--red_black);
+  color: var(--white_color);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.posts-header h2 {
+  margin: 0;
+  font-family: var(--contentFontFamily);
+}
+
+.year-header {
+  text-align: left;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 30px;
+  background-color: var(--red_black);
+  color: var(--white_color);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.year-header h2 {
+  margin: 0;
+  font-family: var(--contentFontFamily);
+}
+
+.year-details {
+  color: var(--white_color);
+  margin-bottom: 30px;
+}
+
+.year-summary {
+  cursor: pointer;
+  padding: 10px;
+  outline: none;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--red_black);
+}
+
+.year-summary::marker {
+  color: var(--white_color);
+  font-size: 20px;
+}
+
+.year-summary h2 {
+  margin: 0;
+  font-family: var(--contentFontFamily);
+}
+
+.year-summary::-webkit-details-marker {
+  display: none;
+}
+
+.year-summary::after {
+  content: '▼';
+  margin-right: 10px;
+  font-size: 12px;
+}
+
+.year-details[open] .year-summary::after {
+  content: '▲';
 }
 
 .post-wrapper {
@@ -17,6 +119,10 @@
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
+.post-wrapper:hover .card .title-text {
+  color: var(--red_white);
+}
+
 .post-wrapper {
   position: relative;
 }
@@ -27,8 +133,17 @@
   left: 10px;
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
-  font-size: 14px;
+  /* font-size: 14px; */
   padding: 10px 20px;
+}
+
+.month-text {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.day-text {
+  font-size: 24px;
 }
 
 .card {
@@ -49,7 +164,8 @@
 .title-text {
   margin-top: 10px;
   font-weight: bold;
-  color: var(--black_white);
+  color: var(--card_font_color);
+  font-family: var(--contentFontFamily);
 }
 
 .button-container {
@@ -61,7 +177,7 @@
 
 button {
   background-color: var(--red_white);
-  color: var(--white_black);
+  color: var(--white_black) !important;
 }
 
 .header-wrapper {
@@ -99,8 +215,54 @@ img {
   height: auto;
 }
 
-@media screen and (max-width: 1028px) {
+/* breadcrumb navigation */
+.breadcrumbnav {
+  list-style: none;
+  padding: 0;
+}
+
+.breadcrumbnav li {
+  display: inline-block;
+}
+
+.breadcrumbnav li:last-child {
+  color: var(--black_white);
+}
+
+.breadcrumbnav li:last-child a {
+  color: var(--red_white);
+  font-weight: bold;
+}
+
+.breadcrumbnav li::after {
+  content: "\00a0  > \00a0";
+  color: var(--red_white);
+}
+
+.breadcrumbnav li:last-child::after {
+  content: "";
+}
+
+.breadcrumbnav a {
+  font-weight: normal;
+  text-decoration: none;
+  color: var(--red_white);
+}
+
+.breadcrumbnav a:hover {
+  text-decoration: underline;
+}
+
+/* media queries */
+@media screen and (max-width: px) {
   .main-title {
     font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .year-header {
+    text-align: center;
+    width: 100%;
   }
 }

@@ -15,7 +15,7 @@ export class BlogPostCreationComponent {
     base_url: '/tinymce',
     suffix: '.min',
     plugins: 'lists link image table wordcount media searchreplace preview importcss fullscreen anchor autoresize pagebreak nonbreaking insertdatetime help emoticons directionality advlist accordion',
-    toolbar: 'lists link image table wordcount media searchreplace preview importcss fullscreen anchor autoresize pagebreak nonbreaking insertdatetime help emoticons directionality advlist accordion undo blockquote',
+    toolbar: 'lists link image table wordcount media searchreplace preview importcss fullscreen anchor autoresize pagebreak nonbreaking insertdatetime help emoticons directionality advlist accordion undo blockquote align',
     image_advtab: true
   };
 

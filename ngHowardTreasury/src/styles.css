@@ -76,6 +76,7 @@ body {
     --red_milk: #c13438;
     --milk_white: #eaead7;
     --border_color: #262626;
+    --card_font_color: #262626;
 }
 
 body.red-theme {
@@ -104,6 +105,7 @@ body.red-theme {
   --red_milk: #eaead7;
   --milk_white: #fff;
   --border_color: #ccc;
+  --card_font_color: #CCCCCC;
 }
 
 /* media query breakpoints */
