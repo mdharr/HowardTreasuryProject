@@ -57,6 +57,7 @@ import { IllustratorsComponent } from './components/illustrators/illustrators.co
 import { IllustratorDetailsComponent } from './components/illustrator-details/illustrator-details.component';
 import { IllustratorCardComponent } from './components/illustrator-card/illustrator-card.component';
 import { RecentPostsComponent } from './components/recent-posts/recent-posts.component';
+import { StripHtmlPipe } from './pipes/strip-html.pipe';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { RecentPostsComponent } from './components/recent-posts/recent-posts.com
     IllustratorDetailsComponent,
     IllustratorCardComponent,
     RecentPostsComponent,
+    StripHtmlPipe,
   ],
   imports: [
     BrowserModule,
