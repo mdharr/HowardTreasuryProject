@@ -75,7 +75,7 @@ img.alignleft, .wp-caption.alignleft {
 .quote-content {
   padding: 20px;
   background-color: var(--quote_color);
-  color: var(--active_color);
+  color: var(--black_white);
 }
 
 .quote-content p {
@@ -177,7 +177,7 @@ img.alignleft, .wp-caption.alignleft {
 
 .home-image {
   max-width: 125px;
-  border: 10px solid var(--border_color);
+  border: 10px solid var(--red_white);
   border-radius: 0;
 }
 
@@ -256,6 +256,8 @@ img.alignleft, .wp-caption.alignleft {
 
   .quote-content .quote {
     font-size: var(--body_font);
+    border-left: 2px solid var(--black_white);
+    color: var(--black_white);
   }
 }
 

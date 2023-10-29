@@ -297,6 +297,24 @@ div p * {
   text-decoration: underline;
 }
 
+.recent-posts-wrapper {
+  display:flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.toggle-container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.toggle-label {
+  transition: color 0.2s ease-in-out;
+  color: var(--red_white);
+}
+
 @media screen and (max-width: 992px) {
 
   .blog-post {
@@ -353,7 +371,7 @@ div p * {
 
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 768px) {
 
   .entry-meta {
     font-size: 12px;
@@ -362,6 +380,11 @@ div p * {
   .calendar-icon {
     font-size: 12px;
     padding-top:2px;
+  }
+
+  .recent-posts-wrapper {
+    flex-direction: column;
+
   }
 
 }

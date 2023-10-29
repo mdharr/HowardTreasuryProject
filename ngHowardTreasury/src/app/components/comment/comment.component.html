@@ -1,58 +1,59 @@
-<!-- comment.component.html -->
-<div class="comment" [ngClass]="{'parent-comment': replyDepth === 0}">
+<div class="comment-section">
+  <div class="comment" [ngClass]="{'parent-comment': replyDepth === 0}">
 
-  <p>{{ comment.user.username }} said</p>
-  <div style="border-left: 2px solid var(--red_color);
-  padding-left: 20px;">
-    <p>{{ comment.hidden ? 'Comment deleted by user.' : comment.content }}</p>
-    <div class="body">
-      <div class="buttons-container">
+    <p>{{ comment.user.username }} said</p>
+    <div style="border-left: 2px solid var(--red_color);
+    padding-left: 20px;">
+      <p>{{ comment.hidden ? 'Comment deleted by user.' : comment.content }}</p>
+      <div class="body">
+        <div class="buttons-container">
 
-        <p *ngIf="comment.user.id == loggedInUser.id && loggedIn()" (click)="toggleEditInput()">Edit</p>
+          <p *ngIf="comment.user.id == loggedInUser.id && loggedIn()" (click)="toggleEditInput()">Edit</p>
 
-        <p *ngIf="comment.user.id == loggedInUser.id && loggedIn()" (click)="deleteComment()">Delete</p>
+          <p *ngIf="comment.user.id == loggedInUser.id && loggedIn()" (click)="deleteComment()">Delete</p>
 
-        <p *ngIf="loggedIn()" (click)="toggleReplyInput()">Reply</p>
+          <p *ngIf="loggedIn()" (click)="toggleReplyInput()">Reply</p>
 
-      </div>
-    </div>
-
-    <div class="usertext-edit md-container" *ngIf="showEditInput">
-      <div class="md">
-        <textarea rows="1" cols="1" name="text" [(ngModel)]="newUpdateContent" placeholder="{{ comment.content }}">
-
-        </textarea>
-      </div>
-      <div class="buttons-wrapper">
-        <div class="usertext-buttons">
-          <button mat-button (click)="submitEdit()">Save</button>
-        </div>
-        <div class="usertext-buttons">
-          <button mat-button (click)="cancelEdit()">Cancel</button>
         </div>
       </div>
-    </div>
 
-    <div class="usertext-edit md-container" *ngIf="showReplyInput">
-      <div class="md">
-        <textarea rows="1" cols="1" name="text" [(ngModel)]="newReplyContent" placeholder="Enter your reply...">
+      <div class="usertext-edit md-container" *ngIf="showEditInput">
+        <div class="md">
+          <textarea rows="1" cols="1" name="text" [(ngModel)]="newUpdateContent" placeholder="{{ comment.content }}">
 
-        </textarea>
-      </div>
-      <div class="buttons-wrapper">
-        <div class="usertext-buttons">
-          <button mat-button (click)="replyToComment(comment)">Submit</button>
+          </textarea>
         </div>
-        <div class="usertext-buttons">
-          <button mat-button (click)="cancelReply()">Cancel</button>
+        <div class="buttons-wrapper">
+          <div class="usertext-buttons">
+            <button mat-button (click)="submitEdit()">Save</button>
+          </div>
+          <div class="usertext-buttons">
+            <button mat-button (click)="cancelEdit()">Cancel</button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Recursively render nested replies up to a maximum depth -->
-    <div *ngFor="let reply of comment.replies" class="reply">
-      <app-comment [comment]="reply" [replyDepth]="replyDepth + 1"></app-comment>
+      <div class="usertext-edit md-container" *ngIf="showReplyInput">
+        <div class="md">
+          <textarea rows="1" cols="1" name="text" [(ngModel)]="newReplyContent" placeholder="Enter your reply...">
 
+          </textarea>
+        </div>
+        <div class="buttons-wrapper">
+          <div class="usertext-buttons">
+            <button mat-button (click)="replyToComment(comment)">Submit</button>
+          </div>
+          <div class="usertext-buttons">
+            <button mat-button (click)="cancelReply()">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recursively render nested replies up to a maximum depth -->
+      <div *ngFor="let reply of comment.replies" class="reply">
+        <app-comment [comment]="reply" [replyDepth]="replyDepth + 1"></app-comment>
+
+      </div>
     </div>
   </div>
 </div>

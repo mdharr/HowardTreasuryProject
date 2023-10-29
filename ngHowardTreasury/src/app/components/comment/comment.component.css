@@ -1,13 +1,14 @@
 .comment {
   /* border-left: 2px solid var(--red_black); */
-  margin: 20px 0;
+  margin:0;
+  margin-bottom: 20px;
   /* padding: 20px; */
   padding-bottom: 0;
 }
 
 .parent-comment {
   background-color: #f0f0f0; /* Example background color */
-  border: 1px solid #ccc; /* Example border */
+  border: 1px solid #ccc;
   padding: 20px;
 }
 
@@ -18,6 +19,8 @@
 .buttons-wrapper {
   display: flex;
   gap: 5px;
+  margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 .buttons-container {
@@ -35,8 +38,8 @@
 }
 
 .usertext-buttons button {
-  background-color: var(--red_white);
-  color: var(--white_black);
+  background-color: var(--red_color);
+  color: var(--white_color);
 }
 
 .form-wrapper {

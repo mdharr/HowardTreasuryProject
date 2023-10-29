@@ -33,7 +33,7 @@
 
 <div class="blog-post-comments">
   <div style="gap: 10px;">
-    <h3 style="color: var(--black_white)">Comments</h3>
+    <h3 style="color: var(--black_white)">Comment</h3>
   </div>
 
   <div class="usertext-edit md-container" *ngIf="loggedIn()">
@@ -46,13 +46,17 @@
       <button mat-button (click)="createComment()">Save</button>
     </div>
   </div>
-  <div class="toggle-comments-btn">
-    <button mat-button (click)="toggleCommentNestVisibility()">{{ showCommentNest ? 'Hide' : 'Show' }} Comments</button>
+
+  <div class="toggle-container" (click)="toggleCommentNestVisibility()">
+    <span class="toggle-label">{{ showCommentNest ? 'Hide' : commentCount }} Comments</span>
   </div>
 
   <!-- Nested comments -->
   <div *ngIf="showCommentNest" class="comment-nest">
     <app-comment *ngFor="let comment of comments" [comment]="comment" [replyDepth]="0" [maxDepth]="maxDepth"></app-comment>
   </div>
+</div>
+<div class="recent-posts-wrapper">
+  <app-recent-posts></app-recent-posts>
 </div>
 
