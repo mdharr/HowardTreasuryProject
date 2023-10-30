@@ -60,6 +60,7 @@ import { RecentPostsComponent } from './components/recent-posts/recent-posts.com
 import { StripHtmlPipe } from './pipes/strip-html.pipe';
 import { AnimatedCardComponent } from './components/animated-card/animated-card.component';
 import { TestCardsComponent } from './components/test-cards/test-cards.component';
+import { ImageZoomComponent } from './components/image-zoom/image-zoom.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { TestCardsComponent } from './components/test-cards/test-cards.component
     RecentPostsComponent,
     StripHtmlPipe,
     AnimatedCardComponent,
-    TestCardsComponent
+    TestCardsComponent,
+    ImageZoomComponent
   ],
   imports: [
     BrowserModule,
