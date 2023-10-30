@@ -217,7 +217,32 @@ img.alignleft, .wp-caption.alignleft {
   margin-left: -1px;
 }
 
+.card-container {
+  margin: 6px 25px 25px 0px;
+}
+
+@media screen and (max-width: 1028px) {
+
+}
+
 @media screen and (max-width: 600px) {
+  .wrapper {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 30px;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+  .card-container {
+    margin: 60px 25px 50px 25px;
+  }
+
+  .content p {
+    order: 1;
+  }
   .wrapper {
     padding-left: 0;
     padding-right: 0;
@@ -258,6 +283,7 @@ img.alignleft, .wp-caption.alignleft {
     font-size: var(--body_font);
     border-left: 2px solid var(--black_white);
     color: var(--black_white);
+    padding-left: 15px;
   }
 }
 

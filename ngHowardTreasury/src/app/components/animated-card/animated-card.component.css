@@ -1,9 +1,7 @@
 .main {
   display: grid;
   place-content: center;
-  /* min-height: 100vh; */
   perspective: 1000px;
-  /* background-color: #262626; */
 }
 
 img {
@@ -13,7 +11,6 @@ img {
 .conan {
   width: 350px;
   aspect-ratio: 9 / 12;
-  /* background-image: url("https://sagaofaelorad.files.wordpress.com/2019/10/frank-frazetta-artwork-concept-art-fantasy-art-wallpaper-preview.jpg"); */
   position: relative;
   transform-style: preserve-3d;
   transition: rotate var(--timing) ease;
@@ -70,7 +67,6 @@ img {
 
 .logo {
   z-index: 1000;
-  /* filter: invert(1); */
   width: 65%;
   margin-inline: auto;
   inset: auto 0 2rem;
@@ -99,4 +95,39 @@ img {
   opacity: 1;
   transform: translateY(-1rem) translateZ(-10px);
   rotate: x calc(var(--rotation) * -1);
+}
+
+@media (max-width: 1028px) {
+  .bg-image {
+    position: absolute;
+    z-index: 10;
+    height: 100%;
+    object-fit: cover;
+    object-position: -388px center;
+  }
+
+  .front-image {
+    scale: 1.05;
+    transform-origin: bottom;
+    opacity: 0;
+    z-index: 100;
+    transition: var(--timing);
+  }
+
+  .logo {
+    z-index: 1000;
+    width: 50%;
+    margin-inline: auto;
+    inset: auto 0 2rem;
+    transform: translateY(0rem) translateZ(20px);
+    transition: var(--timing);
+  }
+
+  .conan {
+    width: 290px;
+    aspect-ratio: 3 / 4;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: rotate var(--timing) ease;
+  }
 }

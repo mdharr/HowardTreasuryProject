@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-animated-card',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./animated-card.component.css']
 })
 export class AnimatedCardComponent {
-
+  @Input() logoSrc: string = '';
+  @Input() frontImageSrc: string = '';
+  @Input() bgImageSrc: string = '';
 }
