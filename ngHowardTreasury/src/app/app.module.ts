@@ -63,6 +63,7 @@ import { TestCardsComponent } from './components/test-cards/test-cards.component
 import { ImageTooltipComponent } from './components/image-tooltip/image-tooltip.component';
 import { ImageZoomDirective } from './directives/image-zoom.directive';
 import { ExcerptLoopComponent } from './components/excerpt-loop/excerpt-loop.component';
+import { PostRecommendationComponent } from './components/post-recommendation/post-recommendation.component';
 
 @NgModule({
   declarations: [
@@ -109,6 +110,7 @@ import { ExcerptLoopComponent } from './components/excerpt-loop/excerpt-loop.com
     ImageTooltipComponent,
     ImageZoomDirective,
     ExcerptLoopComponent,
+    PostRecommendationComponent,
   ],
   imports: [
     BrowserModule,
