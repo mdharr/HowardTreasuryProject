@@ -24,6 +24,7 @@ import { BlogCommentsComponent } from './components/blog-comments/blog-comments.
 import { BlogPostCreationComponent } from './components/blog-post-creation/blog-post-creation.component';
 import { AnimatedCardComponent } from './components/animated-card/animated-card.component';
 import { TestCardsComponent } from './components/test-cards/test-cards.component';
+import { ExcerptLoopComponent } from './components/excerpt-loop/excerpt-loop.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -50,6 +51,7 @@ const routes: Routes = [
   { path: 'illustrators/:illustratorId', component: IllustratorDetailsComponent },
   { path: 'conan', component: AnimatedCardComponent },
   { path: 'test', component: TestCardsComponent },
+  { path: 'excerpt', component: ExcerptLoopComponent },
   // { path: 'stories-test', component: StoriesTestComponent },
   // { path: 'stop-light-test', component: StopLightTestComponent },
 ];

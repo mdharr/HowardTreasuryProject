@@ -221,6 +221,20 @@ img.alignleft, .wp-caption.alignleft {
   margin: 6px 25px 25px 0px;
 }
 
+.custom-container {
+  padding: 20px; /* Add your desired padding */
+  position: relative; /* Enable positioning */
+}
+
+app-excerpt-loop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+
 @media screen and (max-width: 1028px) {
 
 }

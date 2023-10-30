@@ -7,6 +7,12 @@
   --timing: 400ms;
   --rotation: 20deg;
 
+  --marquee-scroll-start: 0;
+  --marquee-scroll-end: calc(-100% - 20px);
+  --marquee-gap: 20px;
+  --marquee-duration: 40s;
+  --marquee-transition: 300ms linear;
+
   /* font families */
   --headerFontFamily: 'Libre Baskerville', Helvetica, Arial, sans-serif;
   --contentFontFamily: 'Lora', serif;
