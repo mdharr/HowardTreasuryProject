@@ -37,7 +37,7 @@
       <div class="category" *ngIf="result.type === 'Story'">
         <div class="story-wrapper">
           <div class="story-image" *ngIf="result.data.storyImages">
-            <img src="{{ result.data.storyImages[0].imageUrl }}" alt="{{ result.data.title | slice:0:15 }} image">
+            <img src="{{ result.data.storyImages[0].imageUrl }}" alt="{{ result.data.title | slice:0:15 }} image" [@zoomAnimation]="zoomState" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
           </div>
           <div class="story-details">
             <h3 class="results-items" [routerLink]="['/stories', result.data.id]">{{ result.data.title }}</h3>
