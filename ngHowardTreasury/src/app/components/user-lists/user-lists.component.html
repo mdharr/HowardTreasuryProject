@@ -8,8 +8,11 @@
       </button>
     </span>
   </div>
-  <ng-container *ngIf="(userLists$ | async)?.length">
-    <div class="lists-wrapper">
+  <ng-container [ngSwitch]="(userLists$ | async)?.length">
+    <div class="lists-wrapper" *ngSwitchCase="0">
+      <p>Create a new list to start building your own collections!</p>
+    </div>
+    <div class="lists-wrapper" *ngSwitchDefault>
       <ng-container *ngFor="let userList of userLists$ | async">
         <mat-expansion-panel class="expansion-panels">
           <mat-expansion-panel-header>
@@ -89,9 +92,6 @@
       </ng-container>
     </div>
   </ng-container>
-  <div class="lists-wrapper" *ngIf="!(userLists$ | async)?.length">
-    <p>Create a new list to start building your own collections!</p>
-  </div>
 </div>
 
 
