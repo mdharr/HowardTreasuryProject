@@ -158,6 +158,8 @@ details .body {
 .post-image {
   max-width: 100%;
   height: auto;
+  max-height: 160.06px;
+  overflow: hidden;
 }
 
 .title-text {
