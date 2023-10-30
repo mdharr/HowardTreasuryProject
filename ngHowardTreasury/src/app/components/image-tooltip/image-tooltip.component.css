@@ -1,0 +1,12 @@
+.image-tooltip {
+  position: absolute;
+  z-index: 999;
+  transform: translateY(-125%) translateX(-40%);
+  border: 1px solid #ccc;
+}
+
+.image-tooltip img {
+  max-width: 500px;
+  height: auto;
+}
+

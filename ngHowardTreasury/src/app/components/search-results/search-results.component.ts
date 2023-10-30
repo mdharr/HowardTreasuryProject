@@ -1,3 +1,4 @@
+import { ImageZoomDirective } from './../../directives/image-zoom.directive';
 import { SearchResultsService } from './../../services/search-results.service';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -6,7 +7,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
-  styleUrls: ['./search-results.component.css']
+  styleUrls: ['./search-results.component.css'],
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
   searchResults: any[] = [];

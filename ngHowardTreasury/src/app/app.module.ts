@@ -60,7 +60,9 @@ import { RecentPostsComponent } from './components/recent-posts/recent-posts.com
 import { StripHtmlPipe } from './pipes/strip-html.pipe';
 import { AnimatedCardComponent } from './components/animated-card/animated-card.component';
 import { TestCardsComponent } from './components/test-cards/test-cards.component';
-import { ImageZoomComponent } from './components/image-zoom/image-zoom.component';
+import { ImageTooltipComponent } from './components/image-tooltip/image-tooltip.component';
+import { ImageZoomDirective } from './directives/image-zoom.directive';
+import { ExcerptLoopComponent } from './components/excerpt-loop/excerpt-loop.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +106,9 @@ import { ImageZoomComponent } from './components/image-zoom/image-zoom.component
     StripHtmlPipe,
     AnimatedCardComponent,
     TestCardsComponent,
-    ImageZoomComponent
+    ImageTooltipComponent,
+    ImageZoomDirective,
+    ExcerptLoopComponent,
   ],
   imports: [
     BrowserModule,

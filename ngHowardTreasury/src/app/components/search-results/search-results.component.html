@@ -36,12 +36,13 @@
       </div>
       <div class="category" *ngIf="result.type === 'Story'">
         <div class="story-wrapper">
-          <div class="story-image" *ngIf="result.data.storyImages">
-            <img src="{{ result.data.storyImages[0].imageUrl }}" alt="{{ result.data.title | slice:0:15 }} image" [@zoomAnimation]="zoomState" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
-          </div>
+          <ng-container *ngIf="result.data.storyImages.length;">
+            <div class="story-image">
+              <img src="{{ result.data.storyImages[0].imageUrl }}" alt="{{ result.data.title | slice:0:15 }} image" appImageZoom [imageSrc]="result.data.storyImages[0].imageUrl">
+            </div>
+          </ng-container>
           <div class="story-details">
             <h3 class="results-items" [routerLink]="['/stories', result.data.id]">{{ result.data.title }}</h3>
-            <!-- <h3 *ngIf="result.data.alternateTitle" class="results-items" [routerLink]="['/stories', result.data.id]">Alternate Title: {{ result.data.alternateTitle }}</h3> -->
             <!-- Display other properties specific to the Story type -->
             <p class="result-text" *ngIf="result.data.excerpt">{{ result.data.excerpt | slice:0:200 }}...</p>
           </div>
@@ -71,14 +72,17 @@
             <p class="result-text" *ngIf="result.data.description">{{ result.data.description | slice:0:200 }}...</p>
           </div>
         </div>
+
         <!-- Display other properties specific to the Person type -->
         <!-- Add more properties as needed -->
       </div>
       <div class="category" *ngIf="result.type === 'Post'">
         <div class="post-wrapper">
-          <div class="post-image">
-            <img src="{{ result.data.imageUrl }}" alt="">
-          </div>
+          <ng-container *ngIf="result.data.imageUrl;">
+            <div class="post-image">
+              <img src="{{ result.data.imageUrl }}" alt="{{ result.data.title | slice:0:15 }} image" appImageZoom [imageSrc]="result.data.imageUrl">
+            </div>
+          </ng-container>
           <div class="post-details">
             <h3 class="results-items" [routerLink]="['/posts', result.data.id, 'comments']">{{ result.data.title }}</h3>
             <p class="post-content">{{ result.data.content | stripHtml | slice:0:500 }}...</p>
