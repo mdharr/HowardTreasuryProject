@@ -57,7 +57,7 @@ img {
   z-index: 10;
   height: 100%;
   object-fit: cover;
-  object-position: -470px center;
+  /* object-position: -470px center; */
 }
 
 .logo,
@@ -103,7 +103,7 @@ img {
     z-index: 10;
     height: 100%;
     object-fit: cover;
-    object-position: -388px center;
+    /* object-position: -388px center; */
   }
 
   .front-image {

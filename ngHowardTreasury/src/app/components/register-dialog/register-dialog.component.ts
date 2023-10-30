@@ -1,3 +1,4 @@
+import { UserlistService } from 'src/app/services/userlist.service';
 import { Subscription } from 'rxjs';
 import { Component, inject, OnDestroy } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -21,6 +22,7 @@ export class RegisterDialogComponent implements OnDestroy {
   router = inject(Router);
   dialogRef = inject(MatDialogRef<RegisterDialogComponent>);
   snackBar = inject(MatSnackBar);
+  userListService = inject(UserlistService);
 
   register(newUser: User): void {
     console.log('Registering user:');
@@ -55,6 +57,7 @@ export class RegisterDialogComponent implements OnDestroy {
       next: (registeredUser) => {
         this.auth.login(this.newUser.username, this.newUser.password).subscribe({
           next: (loggedInUser) => {
+            this.userListService.loadUserLists();
             this.dialogRef.close();
             this.router.navigateByUrl('/');
             this.snackBar.open('Success! Welcome ' + this.capitalizeFirstLetter(this.newUser.username), 'Dismiss', {

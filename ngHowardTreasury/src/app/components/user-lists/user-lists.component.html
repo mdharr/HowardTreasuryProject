@@ -8,84 +8,89 @@
       </button>
     </span>
   </div>
-  <div class="lists-wrapper" *ngIf="userLists$">
-    <ng-container *ngFor="let userList of userLists$ | async">
-      <mat-expansion-panel class="expansion-panels">
-        <mat-expansion-panel-header>
-          {{ userList.name }}
-        </mat-expansion-panel-header>
-        <div class="category-wrapper">
-          <h3>Stories</h3>
-          <mat-selection-list *ngIf="userList.stories.length">
-            <mat-list-option class="list-options" [disableRipple]="true"
-              *ngFor="let story of userList.stories"
-              [value]="story"
-            >
-              <span class="content-titles" [routerLink]="['/stories', story.id]">{{ story.title }}</span>
-              <mat-checkbox [(ngModel)]="story.selected"></mat-checkbox>
-            </mat-list-option>
-          </mat-selection-list>
-          <div class="no-items-wrapper">
-            <p class="no-items-text" [routerLink]="['/stories']">Add stories to your list</p>
-            <span class="add-button">
-              <button mat-button [routerLink]="['/stories']">
-                <mat-icon>add</mat-icon>
-              </button>
-            </span>
+  <ng-container *ngIf="(userLists$ | async)?.length">
+    <div class="lists-wrapper">
+      <ng-container *ngFor="let userList of userLists$ | async">
+        <mat-expansion-panel class="expansion-panels">
+          <mat-expansion-panel-header>
+            {{ userList.name }}
+          </mat-expansion-panel-header>
+          <div class="category-wrapper">
+            <h3>Stories</h3>
+            <mat-selection-list *ngIf="userList.stories.length">
+              <mat-list-option class="list-options" [disableRipple]="true"
+                *ngFor="let story of userList.stories"
+                [value]="story"
+              >
+                <span class="content-titles" [routerLink]="['/stories', story.id]">{{ story.title }}</span>
+                <mat-checkbox [(ngModel)]="story.selected"></mat-checkbox>
+              </mat-list-option>
+            </mat-selection-list>
+            <div class="no-items-wrapper">
+              <p class="no-items-text" [routerLink]="['/stories']">Add stories to your list</p>
+              <span class="add-button">
+                <button mat-button [routerLink]="['/stories']">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </span>
+            </div>
           </div>
-        </div>
-        <!-- <hr> -->
-        <div class="category-wrapper">
-          <h3>Poems</h3>
-          <mat-selection-list *ngIf="userList.poems.length">
-            <mat-list-option [disableRipple]="true"
-              *ngFor="let poem of userList.poems"
-              [value]="poem"
-            >
-              <span class="content-titles" [routerLink]="['/poems', poem.id]">{{ poem.title }}</span>
-              <mat-checkbox [(ngModel)]="poem.selected"></mat-checkbox>
-            </mat-list-option>
-          </mat-selection-list>
-          <div class="no-items-wrapper">
-            <p class="no-items-text" [routerLink]="['/poems']">Add poems to your list</p>
-            <span class="add-button">
-              <button mat-button [routerLink]="['/poems']">
-                <mat-icon>add</mat-icon>
-              </button>
-            </span>
+          <!-- <hr> -->
+          <div class="category-wrapper">
+            <h3>Poems</h3>
+            <mat-selection-list *ngIf="userList.poems.length">
+              <mat-list-option [disableRipple]="true"
+                *ngFor="let poem of userList.poems"
+                [value]="poem"
+              >
+                <span class="content-titles" [routerLink]="['/poems', poem.id]">{{ poem.title }}</span>
+                <mat-checkbox [(ngModel)]="poem.selected"></mat-checkbox>
+              </mat-list-option>
+            </mat-selection-list>
+            <div class="no-items-wrapper">
+              <p class="no-items-text" [routerLink]="['/poems']">Add poems to your list</p>
+              <span class="add-button">
+                <button mat-button [routerLink]="['/poems']">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </span>
+            </div>
           </div>
-        </div>
-        <!-- <hr> -->
-        <div class="category-wrapper">
-          <h3>Miscellanea</h3>
-          <mat-selection-list *ngIf="userList.miscellaneas.length">
-            <mat-list-option [disableRipple]="true"
-              *ngFor="let miscellanea of userList.miscellaneas"
-              [value]="miscellanea"
-            >
-              <span class="content-titles" [routerLink]="['/miscellanea', miscellanea.id]">{{ miscellanea.title }}</span>
-              <mat-checkbox [(ngModel)]="miscellanea.selected"></mat-checkbox>
-            </mat-list-option>
-          </mat-selection-list>
-          <div class="no-items-wrapper">
-            <p class="no-items-text" [routerLink]="['/miscellanea']">Add miscellanea to your list</p>
-            <span class="add-button">
-              <button mat-button [routerLink]="['/miscellanea']">
-                <mat-icon>add</mat-icon>
-              </button>
-            </span>
+          <!-- <hr> -->
+          <div class="category-wrapper">
+            <h3>Miscellanea</h3>
+            <mat-selection-list *ngIf="userList.miscellaneas.length">
+              <mat-list-option [disableRipple]="true"
+                *ngFor="let miscellanea of userList.miscellaneas"
+                [value]="miscellanea"
+              >
+                <span class="content-titles" [routerLink]="['/miscellanea', miscellanea.id]">{{ miscellanea.title }}</span>
+                <mat-checkbox [(ngModel)]="miscellanea.selected"></mat-checkbox>
+              </mat-list-option>
+            </mat-selection-list>
+            <div class="no-items-wrapper">
+              <p class="no-items-text" [routerLink]="['/miscellanea']">Add miscellanea to your list</p>
+              <span class="add-button">
+                <button mat-button [routerLink]="['/miscellanea']">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </span>
+            </div>
           </div>
-        </div>
-        <div class="buttons-container">
-          <div>
-            <button mat-button (click)="deleteUserList(userList)" class="remove-button">Delete List</button>
+          <div class="buttons-container">
+            <div>
+              <button mat-button (click)="deleteUserList(userList)" class="remove-button">Delete List</button>
+            </div>
+            <div>
+              <button mat-button (click)="removeSelectedItems(userList)" class="remove-button">Remove Selected</button>
+            </div>
           </div>
-          <div>
-            <button mat-button (click)="removeSelectedItems(userList)" class="remove-button">Remove Selected</button>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </ng-container>
+        </mat-expansion-panel>
+      </ng-container>
+    </div>
+  </ng-container>
+  <div class="lists-wrapper" *ngIf="!(userLists$ | async)?.length">
+    <p>Create a new list to start building your own collections!</p>
   </div>
 </div>
 

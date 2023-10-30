@@ -59,6 +59,7 @@ import { IllustratorCardComponent } from './components/illustrator-card/illustra
 import { RecentPostsComponent } from './components/recent-posts/recent-posts.component';
 import { StripHtmlPipe } from './pipes/strip-html.pipe';
 import { AnimatedCardComponent } from './components/animated-card/animated-card.component';
+import { TestCardsComponent } from './components/test-cards/test-cards.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { AnimatedCardComponent } from './components/animated-card/animated-card.
     IllustratorCardComponent,
     RecentPostsComponent,
     StripHtmlPipe,
-    AnimatedCardComponent
+    AnimatedCardComponent,
+    TestCardsComponent
   ],
   imports: [
     BrowserModule,

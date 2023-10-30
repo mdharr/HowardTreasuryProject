@@ -9,4 +9,5 @@ export class AnimatedCardComponent {
   @Input() logoSrc: string = '';
   @Input() frontImageSrc: string = '';
   @Input() bgImageSrc: string = '';
+  @Input() objectPosition: string = 'center';
 }
