@@ -1,5 +1,6 @@
+import { ImageZoomService } from './../../services/image-zoom.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 @Component({
   selector: 'app-image-zoom',
@@ -17,11 +18,15 @@ import { Component } from '@angular/core';
 export class ImageZoomComponent {
   zoomState = 'initial';
 
+  imageZoomService = inject(ImageZoomService);
+
   onMouseEnter() {
     this.zoomState = 'zoomed';
+    this.imageZoomService.setZoomState(true);
   }
 
   onMouseLeave() {
     this.zoomState = 'initial';
+    this.imageZoomService.setZoomState(false);
   }
 }
