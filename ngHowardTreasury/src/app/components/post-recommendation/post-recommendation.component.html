@@ -1,1 +1,9 @@
-<p>post-recommendation works!</p>
+<div class="body">
+  <div [routerLink]="['/posts', post.id, 'comments']" class="post-wrapper">
+    <div class="card">
+      <div class="date-box"><span class="month-text">{{ post.createdAt | date:'MMM' }}</span><br><span class="day-text">{{ post.createdAt | date:'dd' }}</span></div>
+      <img class="post-image" src="{{ post.imageUrl }}" alt="">
+      <div class="title-text">{{ post.title }}</div>
+    </div>
+  </div>
+</div>
