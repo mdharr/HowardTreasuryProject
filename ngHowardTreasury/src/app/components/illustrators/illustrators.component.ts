@@ -33,7 +33,6 @@ export class IllustratorsComponent implements OnInit, OnDestroy {
   }
 
   subscribeToServices = () => {
-    this.subscribeToAuth();
     this.subscribeToIllustrators();
   }
 

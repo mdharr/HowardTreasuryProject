@@ -80,8 +80,8 @@
               </span>
             </div>
           </div>
-          <div class="buttons-container">
-            <div>
+          <div class="buttons-container" [style.justify-content]="userList.name === 'Favorites' ? 'flex-end' : 'space-between'">
+            <div *ngIf="userList.name != 'Favorites'">
               <button mat-button (click)="deleteUserList(userList)" class="remove-button">Delete List</button>
             </div>
             <div>

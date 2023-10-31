@@ -27,7 +27,7 @@ export class BlogCommentService {
   }
 
   indexAll(): Observable<BlogComment[]> {
-    return this.http.get<BlogComment[]>(`${this.url}`, this.getHttpOptions()).pipe(
+    return this.http.get<BlogComment[]>(`${this.url}`).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -39,7 +39,7 @@ export class BlogCommentService {
   }
 
   find(id: number): Observable<BlogComment> {
-    return this.http.get<BlogComment>(`${this.url}/${id}`, this.getHttpOptions()).pipe(
+    return this.http.get<BlogComment>(`${this.url}/${id}`).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

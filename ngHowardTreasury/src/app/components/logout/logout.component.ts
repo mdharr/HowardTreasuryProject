@@ -19,13 +19,13 @@ export class LogoutComponent {
 
   logout() {
     console.log("Logging out");
+    this.userListService.clearUserLists();
     this.auth.logout();
-
     this.router.navigateByUrl('home');
     this.snackBar.open('Logout Successful!', 'Dismiss', {
-      duration: 3000, // Duration in milliseconds for which the snackbar will be shown
-      panelClass: ['mat-toolbar', 'mat-primary'], // CSS class for custom styling
-      verticalPosition: 'bottom' // Position of the snackbar on the screen
+      duration: 3000,
+      panelClass: ['mat-toolbar', 'mat-primary'],
+      verticalPosition: 'bottom'
     });
   }
 }

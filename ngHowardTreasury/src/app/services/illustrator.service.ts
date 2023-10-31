@@ -26,7 +26,7 @@ export class IllustratorService {
   }
 
   indexAll(): Observable<Illustrator[]> {
-    return this.http.get<Illustrator[]>(this.url, this.getHttpOptions()).pipe(
+    return this.http.get<Illustrator[]>(this.url).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -38,7 +38,7 @@ export class IllustratorService {
   }
 
   find(id: number): Observable<Illustrator> {
-    return this.http.get<Illustrator>(`${this.url}/${id}`, this.getHttpOptions()).pipe(
+    return this.http.get<Illustrator>(`${this.url}/${id}`).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

@@ -22,6 +22,7 @@ export class LoginDialogComponent {
     this.auth.login(this.loginUser.username, this.loginUser.password).subscribe({
       next: (loggedInUser) => {
         console.log("Login success");
+        // this.loginUser = loggedInUser;
         this.userListService.loadUserLists();
         this.dialogRef.close();
         this.snackBar.open('Login Success!', 'Dismiss', {

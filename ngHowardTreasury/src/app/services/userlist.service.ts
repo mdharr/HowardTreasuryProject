@@ -19,7 +19,7 @@ export class UserlistService {
   authService = inject(AuthService);
 
   constructor() {
-    this.loadUserLists();
+
   }
 
   getHttpOptions() {
@@ -44,16 +44,23 @@ export class UserlistService {
     );
   }
 
-  loadUserLists() {
-    this.http.get<UserList[]>(this.url, this.getHttpOptions()).subscribe(
-      (userLists) => {
-        this.userListsSubject.next(userLists);
-      },
-      (error) => {
+loadUserLists() {
+  this.http.get<UserList[]>(this.url, this.getHttpOptions()).pipe(
+    catchError((error) => {
+      if (error.status === 404) {
+        // Handle 404 error by returning an empty list
+        return of([]);
+      } else {
+        // Handle other errors
         console.error('Error loading user lists:', error);
+        // You can choose to re-throw the error here if needed.
+        return throwError('Error loading user lists');
       }
-    );
-  }
+    })
+  ).subscribe((userLists) => {
+    this.userListsSubject.next(userLists);
+  });
+}
 
   clearUserLists() {
     this.userListsSubject.next([]); // Clear the user lists by emitting an empty array

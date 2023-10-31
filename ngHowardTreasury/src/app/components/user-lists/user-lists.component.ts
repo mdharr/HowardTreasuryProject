@@ -38,6 +38,7 @@ export class UserListsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscribeToAuth();
+    this.userListService.loadUserLists();
     this.userLists$ = this.userListService.userLists$;
   }
 
@@ -70,7 +71,6 @@ export class UserListsComponent implements OnInit, OnDestroy {
       next: (user) => {
         this.loggedInUser = user;
         this.userLists = user.userLists;
-
       },
       error: (error) => {
         console.log('Error getting loggedInUser');

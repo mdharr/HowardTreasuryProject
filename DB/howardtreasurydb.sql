@@ -141,6 +141,7 @@ CREATE TABLE IF NOT EXISTS `user_list` (
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_list_user_idx` (`user_id` ASC),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC, `user_id` ASC),
   CONSTRAINT `fk_user_list_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
@@ -977,10 +978,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (1, 'King Kull Poems', 2);
-INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (2, 'King Kull Stories', 2);
-INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (3, 'King Kull Miscellanea', 2);
-INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (4, 'King Kull Favorites', 2);
+INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (1, 'Favorites', 1);
+INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (2, 'Favorites', 2);
+INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (3, 'King Kull Poems', 2);
+INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (4, 'King Kull Stories', 2);
+INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (5, 'King Kull Miscellanea', 2);
+INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (6, 'King Kull Favorites', 2);
 
 COMMIT;
 
@@ -1502,6 +1505,7 @@ INSERT INTO `illustrator` (`id`, `name`, `image_url`, `description`) VALUES (6, 
 INSERT INTO `illustrator` (`id`, `name`, `image_url`, `description`) VALUES (7, 'Greg Staples', 'https://static.wikia.nocookie.net/tales-from-the-tower/images/7/78/Greg_Staples_-_International_Comic_Expo_-_2015.jpg', 'Greg Staples (born May 27, 1970 in Sheffield) is a British comic book artist and illustrator, credited as illustrating The Horror Stories of Robert E. Howard, a collection of Howard\'s weird fiction, including many of his contributions to the Cthulhu Mythos, published by Del Rey/Ballantine in 2008.');
 INSERT INTO `illustrator` (`id`, `name`, `image_url`, `description`) VALUES (8, 'Tim Bradstreet', 'https://upload.wikimedia.org/wikipedia/commons/1/10/10.18.09TimBradstreetByLuigiNovi.jpg', 'Timothy \"Tim\" Bradstreet is an artist and illustrator, best known for his work on comic books, book covers, movie posters, roleplaying games, and trading cards. He is credited as the illustrator for the collection of Robert E. Howard’s El Borak and Other Desert Adventures. This book focuses on Howard’s Central Asian stories featuring eleven stories for which Bradstreet contributed 70 pen and ink drawings.');
 INSERT INTO `illustrator` (`id`, `name`, `image_url`, `description`) VALUES (9, 'John Watkiss', 'https://upload.wikimedia.org/wikipedia/commons/3/31/John-Watkiss_rkw4387.gif', 'John Watkiss (28 July 1961 – 20 January 2017) was a British artist, known for his painting and his work in comics and film production. His career led him from artist for graphic novels to storyboard artist and character designer. He is arguably best known for his visual development work on Tarzan. He is credited as the illustrator for the collection of Robert E. Howard’s Sword Woman and Other Historical Adventures.');
+INSERT INTO `illustrator` (`id`, `name`, `image_url`, `description`) VALUES (DEFAULT, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -1535,18 +1539,18 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 1);
-INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 2);
-INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 3);
-INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 4);
-INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 5);
-INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 6);
-INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 7);
-INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 8);
-INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 9);
-INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 10);
-INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (2, 11);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (4, 1);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (4, 2);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (4, 3);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (4, 4);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (4, 5);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (4, 6);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (4, 7);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (4, 8);
 INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (4, 9);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (4, 10);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (4, 11);
+INSERT INTO `user_list_has_story` (`user_list_id`, `story_id`) VALUES (6, 9);
 
 COMMIT;
 
@@ -1556,10 +1560,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `user_list_has_poem` (`user_list_id`, `poem_id`) VALUES (1, 1);
-INSERT INTO `user_list_has_poem` (`user_list_id`, `poem_id`) VALUES (1, 2);
-INSERT INTO `user_list_has_poem` (`user_list_id`, `poem_id`) VALUES (1, 3);
-INSERT INTO `user_list_has_poem` (`user_list_id`, `poem_id`) VALUES (4, 1);
+INSERT INTO `user_list_has_poem` (`user_list_id`, `poem_id`) VALUES (3, 1);
+INSERT INTO `user_list_has_poem` (`user_list_id`, `poem_id`) VALUES (3, 2);
+INSERT INTO `user_list_has_poem` (`user_list_id`, `poem_id`) VALUES (3, 3);
+INSERT INTO `user_list_has_poem` (`user_list_id`, `poem_id`) VALUES (6, 1);
 
 COMMIT;
 
@@ -1569,12 +1573,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (3, 1);
-INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (3, 2);
-INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (3, 3);
-INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (3, 4);
-INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (3, 5);
-INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (4, 1);
+INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (5, 1);
+INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (5, 2);
+INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (5, 3);
+INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (5, 4);
+INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (5, 5);
+INSERT INTO `user_list_has_miscellanea` (`user_list_id`, `miscellanea_id`) VALUES (6, 1);
 
 COMMIT;
 

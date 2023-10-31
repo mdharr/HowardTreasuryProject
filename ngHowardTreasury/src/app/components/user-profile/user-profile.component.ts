@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserlistService } from 'src/app/services/userlist.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -25,6 +26,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     route = inject(ActivatedRoute);
     router = inject(Router);
     authService = inject(AuthService);
+    userListService = inject(UserlistService);
 
     ngOnInit(): void {
 

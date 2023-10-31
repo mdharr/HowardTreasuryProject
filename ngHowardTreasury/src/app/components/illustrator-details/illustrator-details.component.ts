@@ -61,7 +61,6 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
 
   subscribeToServices = () => {
     this.getRouteParams();
-    this.subscribeToAuth();
     this.subscribeToIllustrators();
   }
 

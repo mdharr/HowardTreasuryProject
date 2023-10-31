@@ -25,7 +25,7 @@ export class BlogPostService {
   }
 
   indexAll(): Observable<BlogPost[]> {
-    return this.http.get<BlogPost[]>(`${this.url}`, this.getHttpOptions()).pipe(
+    return this.http.get<BlogPost[]>(`${this.url}`).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -37,7 +37,7 @@ export class BlogPostService {
   }
 
   find(id: number): Observable<BlogPost> {
-    return this.http.get<BlogPost>(`${this.url}/${id}`, this.getHttpOptions()).pipe(
+    return this.http.get<BlogPost>(`${this.url}/${id}`).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

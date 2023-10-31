@@ -64,7 +64,6 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit(): void {
     this.authService.getCurrentLoggedInUser().subscribe((user: User) => {
       this.loggedInUser = user;
-
     });
 
     this.authService.getLoggedInUser().subscribe({
@@ -88,9 +87,11 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
       },
     });
   }
+
   ngOnDestroy(): void {
 
   }
+
   ngAfterViewInit(): void {
 
   }
