@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.updateObjectPosition();
     setTimeout(() => {
       this.isLoaded = true;
     }, 250);

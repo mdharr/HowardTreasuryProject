@@ -43,8 +43,8 @@ img {
   background:black;
   filter: blur(1rem);
   z-index: 1;
-    transition: rotate var(--timing),
-    translate var(--timing);
+  transition: rotate var(--timing),
+  translate var(--timing);
 }
 
 .conan:hover::after {
