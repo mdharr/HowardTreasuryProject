@@ -64,6 +64,7 @@ import { ImageTooltipComponent } from './components/image-tooltip/image-tooltip.
 import { ImageZoomDirective } from './directives/image-zoom.directive';
 import { ExcerptLoopComponent } from './components/excerpt-loop/excerpt-loop.component';
 import { PostRecommendationComponent } from './components/post-recommendation/post-recommendation.component';
+import { BlogPostEditComponent } from './components/blog-post-edit/blog-post-edit.component';
 
 @NgModule({
   declarations: [
@@ -111,6 +112,7 @@ import { PostRecommendationComponent } from './components/post-recommendation/po
     ImageZoomDirective,
     ExcerptLoopComponent,
     PostRecommendationComponent,
+    BlogPostEditComponent,
   ],
   imports: [
     BrowserModule,
