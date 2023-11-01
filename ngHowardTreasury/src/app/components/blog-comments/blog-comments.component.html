@@ -18,6 +18,9 @@
       <img class="post-image" src="{{ post.imageUrl }}" alt="">
     </div>
     <div class="post" [innerHTML]="modifyHTMLContent()"></div>
+    <div class="edit-wrapper">
+      <span class="edit-post" [routerLink]="['/posts', post.id, 'edit']">Edit Post</span>
+    </div>
   </div>
   <div class="recent-posts">
     <h1>Recent Posts</h1>

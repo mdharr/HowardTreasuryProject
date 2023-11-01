@@ -32,7 +32,7 @@
 .post {
   background-color: var(--white_black);
   padding: 40px 30px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: var(--black_white);
   font-family: var(--contentFontFamily);
   font-size:var(--body_font);
@@ -315,6 +315,21 @@ div p * {
   color: var(--red_white);
 }
 
+.edit-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.edit-post {
+  color:var(--red_white);
+  font-size: 14px;
+}
+
+.edit-post:hover {
+  cursor:pointer;
+}
+
 @media screen and (max-width: 992px) {
 
   .blog-post {
@@ -328,6 +343,7 @@ div p * {
   .post-body {
     width: 100%;
     padding: 0;
+    padding-bottom: 20px;
   }
 
   .recent-posts {

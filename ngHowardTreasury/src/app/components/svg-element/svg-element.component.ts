@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-svg-element',
@@ -7,4 +7,5 @@ import { Component, AfterViewInit } from '@angular/core';
 })
 export class SvgElementComponent {
 
+  @Input() marginBottom: string = '';
 }

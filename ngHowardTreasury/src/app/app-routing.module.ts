@@ -1,3 +1,4 @@
+import { BlogPostEditComponent } from './components/blog-post-edit/blog-post-edit.component';
 import { IllustratorDetailsComponent } from './components/illustrator-details/illustrator-details.component';
 import { IllustratorsComponent } from './components/illustrators/illustrators.component';
 import { StopLightTestComponent } from './components/stop-light-test/stop-light-test.component';
@@ -52,6 +53,7 @@ const routes: Routes = [
   { path: 'conan', component: AnimatedCardComponent },
   { path: 'test', component: TestCardsComponent },
   { path: 'excerpt', component: ExcerptLoopComponent },
+  { path: 'posts/:postId/edit', component: BlogPostEditComponent },
   // { path: 'stories-test', component: StoriesTestComponent },
   // { path: 'stop-light-test', component: StopLightTestComponent },
 ];
