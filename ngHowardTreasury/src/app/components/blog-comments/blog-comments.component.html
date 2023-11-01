@@ -18,7 +18,7 @@
       <img class="post-image" src="{{ post.imageUrl }}" alt="">
     </div>
     <div class="post" [innerHTML]="modifyHTMLContent()"></div>
-    <div class="edit-wrapper">
+    <div class="edit-wrapper" *ngIf="loggedInUser.id == post.user.id">
       <span class="edit-post" [routerLink]="['/posts', post.id, 'edit']">Edit Post</span>
     </div>
   </div>

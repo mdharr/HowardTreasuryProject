@@ -1,5 +1,5 @@
 import { UserlistService } from 'src/app/services/userlist.service';
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/models/user';
@@ -17,12 +17,13 @@ export class LoginDialogComponent {
   auth = inject(AuthService);
   snackBar = inject(MatSnackBar);
   userListService = inject(UserlistService);
+  cdr = inject(ChangeDetectorRef);
 
   login(loginUser: User) {
     this.auth.login(this.loginUser.username, this.loginUser.password).subscribe({
       next: (loggedInUser) => {
         console.log("Login success");
-        // this.loginUser = loggedInUser;
+        this.loginUser = loggedInUser;
         this.userListService.loadUserLists();
         this.dialogRef.close();
         this.snackBar.open('Login Success!', 'Dismiss', {
@@ -45,5 +46,9 @@ export class LoginDialogComponent {
 
   dismissDialog() {
     this.dialogRef.close();
+  }
+
+  refreshPage() {
+    window.location.reload();
   }
 }

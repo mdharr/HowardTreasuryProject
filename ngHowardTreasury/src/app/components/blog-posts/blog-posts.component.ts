@@ -30,6 +30,7 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
   blogPostService = inject(BlogPostService);
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.subscribeToBlogPostIndexAll();
   }
 

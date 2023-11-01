@@ -46,7 +46,7 @@ export class StoriesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    // this.subscribeToAuthService();
+    this.subscribeToAuthService();
     this.subscribeToStoryService();
   }
 

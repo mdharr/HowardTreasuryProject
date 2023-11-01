@@ -49,6 +49,7 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngOnInit() {
       window.scrollTo(0, 0);
+      this.subscribeToAuth();
       this.subscribeToParams();
       this.subscribeToRecentBlogPosts();
     }
@@ -64,6 +65,19 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
           this.postId = +idString;
           this.subscribeToBlogPost();
         }
+      });
+    }
+
+    subscribeToAuth = () => {
+      this.authSubscription = this.authService.getLoggedInUser().subscribe({
+        next: (user) => {
+          this.loggedInUser = user;
+          console.log(this.loggedInUser);
+        },
+        error: (error) => {
+          console.log('Error getting loggedInUser');
+          console.log(error);
+        },
       });
     }
 

@@ -9,7 +9,7 @@ export class AboutComponent implements OnInit {
 
   isLoaded: boolean = true;
 
-  ngOnInit = () => {
+  ngOnInit() {
     window.scrollTo(0, 0);
   }
 
