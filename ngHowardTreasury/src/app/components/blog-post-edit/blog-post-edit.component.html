@@ -1,1 +1,27 @@
-<p>blog-post-edit works!</p>
+<ol class="breadcrumbnav">
+  <li><a [routerLink]="['/home']">Home</a></li>
+  <li><a [routerLink]="['/posts']">Posts</a></li>
+</ol>
+
+<div class="header-wrapper">
+  <h1>Edit Post</h1>
+</div>
+
+<form #postForm="ngForm" (ngSubmit)="onSubmit(postForm)">
+  <div class="editor-wrapper">
+    <div class="post-title">
+      <input type="text" class="title-input" placeholder="Title" name="title" [(ngModel)]="post.title" required />
+    </div>
+    <div class="post-image">
+      <input type="text" class="image-input" placeholder="Image URL" name="imageUrl" [(ngModel)]="post.imageUrl" required />
+    </div>
+    <div class="editor-body">
+      <editor [init]="editorConfig" name="content" [(ngModel)]="post.content"></editor>
+    </div>
+    <div class="submit-button">
+      <button type="submit" mat-raised-button color="primary" [disabled]="postForm.invalid || !isEditorContentValid()">Submit</button>
+    </div>
+  </div>
+</form>
+
+

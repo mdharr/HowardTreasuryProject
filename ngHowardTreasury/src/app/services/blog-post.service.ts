@@ -62,4 +62,16 @@ export class BlogPostService {
     );
   }
 
+  updatePost(id: number, post: BlogPost): Observable<BlogPost> {
+    return this.http.put<BlogPost>(`${this.url}/${id}`, post, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+          new Error('BlogPostService.updatePost(): error updating blog post: ' + err)
+        );
+      })
+    );
+  }
+
 }
