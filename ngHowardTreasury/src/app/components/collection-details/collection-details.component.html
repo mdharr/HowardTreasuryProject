@@ -18,7 +18,7 @@
     <div class="collection-subheader">
       <p>Del Rey, {{ collection.publishedAt | date:'yyyy' }}. Illustrated by
         <ng-container *ngFor="let illustrator of collection.illustrators; let lastIndex = last; let firstIndex = first;">
-          <span>
+          <span class="illustrator-link" [routerLink]="['/illustrators', illustrator.id]">
             {{ firstIndex && !lastIndex ? (illustrator.name + ' and ') : firstIndex && lastIndex ? (illustrator.name + '.') : !firstIndex && !lastIndex ? (illustrator.name + ', ') : (illustrator.name) + '.' }}
           </span>
         </ng-container>

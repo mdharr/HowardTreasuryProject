@@ -407,6 +407,16 @@ ul li {
   text-decoration: underline;
 }
 
+.illustrator-link {
+  color: var(--red_milk);
+  font-weight:bold;
+}
+
+.illustrator-link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1050px) {
   .contents-box {
     flex:1;
