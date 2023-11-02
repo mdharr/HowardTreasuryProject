@@ -117,10 +117,10 @@ textarea {
 }
 
 .confirmation-text {
-  color: var(--red_white);
+  color: var(--black_color);
 }
 
 .confirmation-text:hover {
-  text-decoration: underline;
   cursor: pointer;
+  color: var(--red_color);
 }
