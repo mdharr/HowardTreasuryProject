@@ -22,12 +22,10 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.subscribeToSubscriptions();
-
   }
 
   ngOnDestroy(): void {
     this.destroySubscriptions();
-
   }
 
   delay(ms: number): Promise<void> {
@@ -38,41 +36,32 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     });
   }
 
-  async loadImages(): Promise<void> {
-    // Create a promise for each collection image
-    const imagePromises = this.collections.map((collection) => {
-      const image = new Image();
-      image.src = collection.collectionImages[0].imageUrl;
+  // async loadImages(): Promise<void> {
+  //   const imagePromises = this.collections.map((collection) => {
+  //     const image = new Image();
+  //     image.src = collection.collectionImages[0].thumbnailUrl;
 
-      return new Promise<void>((resolve) => {
-        image.onload = () => {
-          // When the image is loaded, set the isLoadingImage flag to false
-          collection.isLoadingImage = false;
-          resolve();
-        };
-      });
-    });
-
-    // Wait for all image promises to resolve
-    await Promise.all(imagePromises);
-  }
+  //     return new Promise<void>((resolve) => {
+  //       image.onload = () => {
+  //         collection.isLoadingImage = false;
+  //         resolve();
+  //       };
+  //     });
+  //   });
+  //   await Promise.all(imagePromises);
+  // }
 
   subscribeToSubscriptions = () => {
     this.delay(250).then(() => {
       this.collectionSubscription = this.collectionService.indexAll().subscribe({
         next: (data) => {
           this.collections = data;
-          this.loading = false; // Set loading to false when data is available
-
-                  // Wait for images to load
-        this.loadImages().then(() => {
-          console.log('All images loaded.');
-        });
+          this.loading = false;
         },
         error: (fail) => {
           console.error('Error retrieving collections');
           console.error(fail);
-          this.loading = false; // Set loading to false in case of an error
+          this.loading = false;
         }
       });
     });

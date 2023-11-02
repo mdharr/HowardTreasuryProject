@@ -31,7 +31,7 @@
           <div class="collection-wrapper">
             <ng-container *ngFor="let collection of miscellaneaCollections">
               <div class="collection-images-wrapper">
-                <img class="collection-images" src="{{ collection.collectionImages[0].imageUrl }}" alt="" [routerLink]="['/collections', collection.id]">
+                <img class="collection-images" src="{{ collection.collectionImages[0].thumbnailUrl }}" alt="" [routerLink]="['/collections', collection.id]">
               </div>
             </ng-container>
           </div>

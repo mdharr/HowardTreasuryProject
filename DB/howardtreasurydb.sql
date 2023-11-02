@@ -406,6 +406,7 @@ DROP TABLE IF EXISTS `collection_image` ;
 CREATE TABLE IF NOT EXISTS `collection_image` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `image_url` VARCHAR(1000) NULL,
+  `thumbnail_url` VARCHAR(1000) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -1456,17 +1457,17 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `collection_image` (`id`, `image_url`) VALUES (1, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/the-coming-of-conan-the-cimmerian.png');
-INSERT INTO `collection_image` (`id`, `image_url`) VALUES (2, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/the-bloody-crown-of-conan.png');
-INSERT INTO `collection_image` (`id`, `image_url`) VALUES (3, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/the-conquering-sword-of-conan.png');
-INSERT INTO `collection_image` (`id`, `image_url`) VALUES (4, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/bran-mak-morn-the-last-king.png');
-INSERT INTO `collection_image` (`id`, `image_url`) VALUES (5, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/the-savage-tales-of-solomon-kane.png');
-INSERT INTO `collection_image` (`id`, `image_url`) VALUES (6, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/kull-exile-of-atlantis.png');
-INSERT INTO `collection_image` (`id`, `image_url`) VALUES (7, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/the-best-of-robert-e-howard-volume-1-crimson-shadows.png');
-INSERT INTO `collection_image` (`id`, `image_url`) VALUES (8, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/the-best-of-robert-e-howard-volume-2-grim-lands.png');
-INSERT INTO `collection_image` (`id`, `image_url`) VALUES (9, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/the-horror-stories-of-robert-e-howard.png');
-INSERT INTO `collection_image` (`id`, `image_url`) VALUES (10, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/el-borak-and-other-desert-adventures.png');
-INSERT INTO `collection_image` (`id`, `image_url`) VALUES (11, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/sword-woman-and-other-historical-adventures.png');
+INSERT INTO `collection_image` (`id`, `image_url`, `thumbnail_url`) VALUES (1, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/the-coming-of-conan-the-cimmerian.png', 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/the-coming-of-conan-the-cimmerian-thumbnail.png');
+INSERT INTO `collection_image` (`id`, `image_url`, `thumbnail_url`) VALUES (2, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/the-bloody-crown-of-conan.png', 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/the-bloody-crown-of-conan-thumbnail.png');
+INSERT INTO `collection_image` (`id`, `image_url`, `thumbnail_url`) VALUES (3, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/the-conquering-sword-of-conan.png', 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/the-conquering-sword-of-conan-thumbnail.png');
+INSERT INTO `collection_image` (`id`, `image_url`, `thumbnail_url`) VALUES (4, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/bran-mak-morn-the-last-king.png', 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/bran-mak-morn-the-last-king-thumbnail.png');
+INSERT INTO `collection_image` (`id`, `image_url`, `thumbnail_url`) VALUES (5, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/the-savage-tales-of-solomon-kane.png', 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/the-savage-tales-of-solomon-kane-thumbnail.png');
+INSERT INTO `collection_image` (`id`, `image_url`, `thumbnail_url`) VALUES (6, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/kull-exile-of-atlantis.png', 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/kull-exile-of-atlantis-thumbnail.png');
+INSERT INTO `collection_image` (`id`, `image_url`, `thumbnail_url`) VALUES (7, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/the-best-of-robert-e-howard-volume-1-crimson-shadows.png', 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/the-best-of-robert-e-howard-volume-1-crimson-shadows-thumbnail.png');
+INSERT INTO `collection_image` (`id`, `image_url`, `thumbnail_url`) VALUES (8, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/the-best-of-robert-e-howard-volume-2-grim-lands.png', 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/the-best-of-robert-e-howard-volume-2-grim-lands-thumbnail.png');
+INSERT INTO `collection_image` (`id`, `image_url`, `thumbnail_url`) VALUES (9, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/the-horror-stories-of-robert-e-howard.png', 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/the-horror-stories-of-robert-e-howard-thumbnail.png');
+INSERT INTO `collection_image` (`id`, `image_url`, `thumbnail_url`) VALUES (10, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/el-borak-and-other-desert-adventures.png', 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/el-borak-and-other-desert-adventures-thumbnail.png');
+INSERT INTO `collection_image` (`id`, `image_url`, `thumbnail_url`) VALUES (11, 'https://howardtreasury.s3.amazonaws.com/assets/collections/images/sword-woman-and-other-historical-adventures.png', 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/sword-woman-and-other-historical-adventures-thumbnail.png');
 
 COMMIT;
 

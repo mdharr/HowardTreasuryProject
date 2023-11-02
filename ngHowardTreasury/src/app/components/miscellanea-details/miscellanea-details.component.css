@@ -260,7 +260,7 @@
 
 .collection-images {
   width:150px;
-  height: auto;
+  height: 223.8px;
   transition: box-shadow .3s, transform .3s, opacity .3s;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   opacity: 0.8;
@@ -449,7 +449,7 @@
 
   .collection-images {
     width:115px;
-    height: auto;
+    height: 171px;
     border-radius:0px;
     opacity: 1;
   }

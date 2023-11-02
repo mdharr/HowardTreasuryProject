@@ -27,6 +27,9 @@ public class CollectionImage {
 	@Column(name = "image_url")
 	private String imageUrl;
 	
+	@Column(name = "thumbnail_url")
+	private String thumbnailUrl;
+	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "collectionImages", cascade = CascadeType.MERGE)
 	private List<Collection> collections;
@@ -36,10 +39,11 @@ public class CollectionImage {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CollectionImage(int id, String imageUrl, List<Collection> collections) {
+	public CollectionImage(int id, String imageUrl, String thumbnailUrl, List<Collection> collections) {
 		super();
 		this.id = id;
 		this.imageUrl = imageUrl;
+		this.thumbnailUrl = thumbnailUrl;
 		this.collections = collections;
 	}
 
@@ -57,6 +61,14 @@ public class CollectionImage {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public String getThumbnailUrl() {
+		return thumbnailUrl;
+	}
+
+	public void setThumbnailUrl(String thumbnailUrl) {
+		this.thumbnailUrl = thumbnailUrl;
 	}
 
 	public List<Collection> getCollections() {
