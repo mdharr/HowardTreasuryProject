@@ -14,7 +14,7 @@
       <span class="toggle-label">{{ showAll ? 'Show By Year' : 'Show All' }}</span>
       <i class="toggle-icon" [ngClass]="{ 'active': showByYear }"></i>
     </div>
-    <div class="new-post">
+    <div class="new-post" *ngIf="loggedIn()">
       <span class="toggle-label" [routerLink]="['/posts/create']">Create New Post</span>
     </div>
   </div>

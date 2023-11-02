@@ -28,6 +28,7 @@ export class UserListsComponent implements OnInit, OnDestroy {
   private removeItemsSubscription: Subscription | undefined;
   private createListSubscription: Subscription | undefined;
   private userListsSubscription: Subscription | undefined;
+  private loggedInSubscription: Subscription | undefined;
 
   // service injection
   route = inject(ActivatedRoute);
@@ -37,7 +38,7 @@ export class UserListsComponent implements OnInit, OnDestroy {
   dialogService = inject(DialogService);
 
   ngOnInit(): void {
-    this.subscribeToAuth();
+    this.subscribeToLoggedInObservable();
     this.userListService.loadUserLists();
     this.userLists$ = this.userListService.userLists$;
   }
@@ -47,35 +48,24 @@ export class UserListsComponent implements OnInit, OnDestroy {
   }
 
   destroySubscriptions = () => {
-    console.log('DESTROYED');
-
-    if(this.authSubscription) {
-      this.authSubscription.unsubscribe();
-
-    }
     if(this.removeItemsSubscription) {
       this.removeItemsSubscription.unsubscribe();
-
     }
     if(this.createListSubscription) {
       this.createListSubscription.unsubscribe();
-
     }
     if (this.userListsSubscription) {
       this.userListsSubscription.unsubscribe();
     }
+    if (this.loggedInSubscription) {
+      this.loggedInSubscription.unsubscribe();
+    }
   }
 
-  subscribeToAuth = () => {
-    this.authSubscription = this.authService.getLoggedInUser().subscribe({
-      next: (user) => {
-        this.loggedInUser = user;
-        this.userLists = user.userLists;
-      },
-      error: (error) => {
-        console.log('Error getting loggedInUser');
-        console.log(error);
-      },
+  subscribeToLoggedInObservable() {
+    this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
+      this.loggedInUser = user;
+      this.userLists = user.userLists;
     });
   }
 
@@ -89,7 +79,6 @@ export class UserListsComponent implements OnInit, OnDestroy {
       poem: selectedPoems.map(poem => poem.id),
       miscellanea: selectedMiscellaneas.map(miscellanea => miscellanea.id)
     };
-
     // Call the service method to remove selected items
     this.removeItemsSubscription = this.userListService.removeItemsFromUserList(userList.id, itemsToRemove).subscribe({
       next: updatedUserList => {
@@ -97,11 +86,8 @@ export class UserListsComponent implements OnInit, OnDestroy {
         userList.stories = updatedUserList.stories;
         userList.poems = updatedUserList.poems;
         userList.miscellaneas = updatedUserList.miscellaneas;
-
-        // Optionally, you can perform additional UI updates or actions here
       },
       error: error => {
-        // Handle any errors that occurred during the request (if needed).
         console.error('Error removing items from user list:', error);
       }
     });
@@ -115,7 +101,6 @@ export class UserListsComponent implements OnInit, OnDestroy {
     this.createListSubscription = this.userListService.deleteUserList(userList.id).subscribe({
       next: (success) => {
         console.log('User list successfully deleted');
-
       },
       error: (fail) => {
         console.error(fail);

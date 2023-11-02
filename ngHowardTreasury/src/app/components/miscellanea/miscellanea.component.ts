@@ -33,7 +33,7 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
 
     // subscriptions declarations
     private miscellaneaSubscription: Subscription | undefined;
-    private authSubscription: Subscription | undefined;
+    private loggedInSubscription: Subscription | undefined;
 
     // service injections
     miscellaneaService = inject(MiscellaneaService);
@@ -45,7 +45,7 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
       window.scrollTo(0, 0);
-      this.subscribeToAuthService();
+      this.subscribeToLoggedInObservable();
       this.subscribeToMiscellaneaService();
     }
 
@@ -53,8 +53,8 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
       this.destroySubscriptions();
     }
 
-    subscribeToAuthService = () => {
-      this.authSubscription = this.authService.getLoggedInUser().subscribe((user: User) => {
+    subscribeToLoggedInObservable() {
+      this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
         this.loggedInUser = user;
       });
     }
@@ -85,8 +85,8 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
       if (this.miscellaneaSubscription) {
         this.miscellaneaSubscription.unsubscribe();
       }
-      if (this.authSubscription) {
-        this.authSubscription.unsubscribe();
+      if (this.loggedInSubscription) {
+        this.loggedInSubscription.unsubscribe();
       }
     }
 

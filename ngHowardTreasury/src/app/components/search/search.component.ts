@@ -29,23 +29,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.destroySubscriptions();
   }
 
-  // search = () => {
-  //   this.loading = true;
-  //   this.error = null;
-
-  //   this.searchSubscription = this.searchService.search(this.query)
-  //     .subscribe(
-  //       (results: any[]) => {
-  //         this.searchResults = results;
-  //         this.loading = false;
-  //       },
-  //       (error) => {
-  //         this.error = 'An error occurred while searching.';
-  //         this.loading = false;
-  //       }
-  //     );
-  // }
-
   // refined search function
   search = () => {
     this.loading = true;

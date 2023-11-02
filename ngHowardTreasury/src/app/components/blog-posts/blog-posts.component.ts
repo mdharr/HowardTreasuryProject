@@ -24,6 +24,7 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
   // subscriptions
   private authSubscription: Subscription | undefined;
   private blogPostSubscription: Subscription | undefined;
+  private loggedInSubscription: Subscription | undefined;
 
   // service injections
   authService = inject(AuthService);
@@ -31,11 +32,20 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.subscribeToLoggedInObservable();
     this.subscribeToBlogPostIndexAll();
   }
 
   ngOnDestroy() {
     this.destroyAllSubscriptions();
+  }
+
+  subscribeToLoggedInObservable() {
+    this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
+      this.loggedInUser = user;
+      // Now, this.loggedInUser contains the current logged-in user data
+      // You can use this data in your component's template or logic
+    });
   }
 
   subscribeToBlogPostIndexAll = () => {
@@ -58,6 +68,9 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
     }
     if(this.blogPostSubscription) {
       this.blogPostSubscription.unsubscribe();
+    }
+    if(this.loggedInSubscription) {
+      this.loggedInSubscription.unsubscribe();
     }
   }
 
@@ -90,6 +103,10 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
       this.showAll = true;
       this.showByYear = false;
     }
+  }
+
+  loggedIn(): boolean {
+    return this.authService.checkLogin();
   }
 
 }

@@ -33,7 +33,7 @@ export class PoemsComponent implements OnInit, OnDestroy {
 
   // subscriptions declarations
   private poemSubscription: Subscription | undefined;
-  private authSubscription: Subscription | undefined;
+  private loggedInSubscription: Subscription | undefined;
 
   // service injections
   router = inject(Router);
@@ -45,17 +45,16 @@ export class PoemsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    this.subscribeToAuthService();
+    this.subscribeToLoggedInObservable();
     this.subscribeToPoemService();
-
   }
 
   ngOnDestroy(): void {
     this.destroySubscriptions();
   }
 
-  subscribeToAuthService = () => {
-    this.authSubscription = this.authService.getLoggedInUser().subscribe((user: User) => {
+  subscribeToLoggedInObservable() {
+    this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
       this.loggedInUser = user;
     });
   }
@@ -86,8 +85,8 @@ export class PoemsComponent implements OnInit, OnDestroy {
     if (this.poemSubscription) {
       this.poemSubscription.unsubscribe();
     }
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
+    if (this.loggedInSubscription) {
+      this.loggedInSubscription.unsubscribe();
     }
   }
 

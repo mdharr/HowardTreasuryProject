@@ -37,6 +37,7 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
     private authSubscription: Subscription | undefined;
     private blogPostSubscription: Subscription | undefined;
     private recentBlogPostsSubscription: Subscription | undefined;
+    private loggedInSubscription: Subscription | undefined;
 
     // service injections
     authService = inject(AuthService);
@@ -49,7 +50,8 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngOnInit() {
       window.scrollTo(0, 0);
-      this.subscribeToAuth();
+      // this.subscribeToAuth();
+      this.subscribeToLoggedInObservable();
       this.subscribeToParams();
       this.subscribeToRecentBlogPosts();
     }
@@ -78,6 +80,12 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
           console.log('Error getting loggedInUser');
           console.log(error);
         },
+      });
+    }
+
+    subscribeToLoggedInObservable() {
+      this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
+        this.loggedInUser = user;
       });
     }
 
@@ -117,6 +125,9 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
       }
       if(this.blogPostSubscription) {
         this.blogPostSubscription.unsubscribe();
+      }
+      if(this.loggedInSubscription) {
+        this.loggedInSubscription.unsubscribe();
       }
     }
 

@@ -18,10 +18,6 @@ export class UserlistService {
   http = inject(HttpClient);
   authService = inject(AuthService);
 
-  constructor() {
-
-  }
-
   getHttpOptions() {
     let options = {
       headers: {
@@ -44,26 +40,26 @@ export class UserlistService {
     );
   }
 
-loadUserLists() {
-  this.http.get<UserList[]>(this.url, this.getHttpOptions()).pipe(
-    catchError((error) => {
-      if (error.status === 404) {
-        // Handle 404 error by returning an empty list
-        return of([]);
-      } else {
-        // Handle other errors
-        console.error('Error loading user lists:', error);
-        // You can choose to re-throw the error here if needed.
-        return throwError('Error loading user lists');
-      }
-    })
-  ).subscribe((userLists) => {
-    this.userListsSubject.next(userLists);
-  });
-}
+  loadUserLists() {
+    this.http.get<UserList[]>(this.url, this.getHttpOptions()).pipe(
+      catchError((error) => {
+        if (error.status === 404) {
+          // Handle 404 error by returning an empty list
+          return of([]);
+        } else {
+          // Handle other errors
+          console.error('Error loading user lists:', error);
+          // You can choose to re-throw the error here if needed.
+          return throwError('Error loading user lists');
+        }
+      })
+    ).subscribe((userLists) => {
+      this.userListsSubject.next(userLists);
+    });
+  }
 
   clearUserLists() {
-    this.userListsSubject.next([]); // Clear the user lists by emitting an empty array
+    this.userListsSubject.next([]);
   }
 
   createUserList(userList: UserList): Observable<UserList> {
@@ -158,5 +154,4 @@ loadUserLists() {
       })
     );
   }
-
 }

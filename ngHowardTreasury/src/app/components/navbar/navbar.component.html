@@ -10,9 +10,6 @@
         <!-- Centered Flex Container -->
         <div class="logo-box" [routerLink]="['/home']" (click)="menuState === 'expanded' ? toggleMenu() : null">
           <div style="display:flex;">
-            <!-- <div class="logo-img">
-              <img style="width: 43px; height: 41px;" src="https://cafans.b-cdn.net/images/Category_2871/subcat_124271/gianni_solomonkane.jpg" alt="">
-            </div> -->
             <h1 class="app-logo">The Robert E. Howard Treasury</h1>
             <h1 class="small-app-logo">Howard Treasury</h1>
           </div>
@@ -62,9 +59,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-
 <div class="menu" [@expandMenu]="menuState">
-  <!-- Menu content goes here -->
   <div class="auth-menu-row" (click)="toggleMenu()">
       <button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openLoginDialog()">
         <span class="login-text">Log in</span>
@@ -87,7 +82,6 @@
   <div class="menu-row" (click)="toggleMenu()" [routerLink]="['/illustrators']">Illustrators</div>
   <div class="menu-row" (click)="toggleMenu()" [routerLink]="['/posts']">Blog</div>
   <div class="menu-row">
-    <!-- Inside navbar.component.html -->
     <div class="search-container">
       <input class="search-input-field" [(ngModel)]="searchQuery" (keyup.enter)="performSearch()" placeholder="Search ...">
       <button class="search-button" (click)="performSearch()"><mat-icon class="search-icon">search</mat-icon></button>
@@ -95,7 +89,6 @@
   </div>
 </div>
 
-<!-- Define the menu -->
 <mat-menu #menu="matMenu" class="menu-dropdown-btn">
   <button mat-menu-item routerLink="/about">About</button>
   <button mat-menu-item routerLink="/collections">Collections</button>

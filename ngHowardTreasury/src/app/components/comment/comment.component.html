@@ -7,21 +7,20 @@
       <p>{{ comment.hidden ? 'Comment deleted by user.' : comment.content }}</p>
       <div class="body">
         <div class="buttons-container">
+          <p *ngIf="comment.user.id == loggedInUser.id && loggedIn() && !comment.hidden && !showDeleteConfirmation" (click)="toggleEditInput()">Edit</p>
+          <p *ngIf="comment.user.id == loggedInUser.id && loggedIn() && !comment.hidden && !showDeleteConfirmation" (click)="toggleDeleteConfirmation()">Delete</p>
+          <p *ngIf="loggedIn() && !comment.hidden && !showDeleteConfirmation" (click)="toggleReplyInput()">Reply</p>
+        </div>
 
-          <p *ngIf="comment.user.id == loggedInUser.id && loggedIn()" (click)="toggleEditInput()">Edit</p>
-
-          <p *ngIf="comment.user.id == loggedInUser.id && loggedIn()" (click)="deleteComment()">Delete</p>
-
-          <p *ngIf="loggedIn()" (click)="toggleReplyInput()">Reply</p>
-
+        <!-- Add a delete confirmation dialog -->
+        <div class="delete-confirmation" *ngIf="showDeleteConfirmation">
+          <p>Are you sure? <span class="confirmation-text" (click)="confirmDelete()">Yes</span> / <span class="confirmation-text" (click)="cancelDelete()">No</span></p>
         </div>
       </div>
 
       <div class="usertext-edit md-container" *ngIf="showEditInput">
         <div class="md">
-          <textarea rows="1" cols="1" name="text" [(ngModel)]="newUpdateContent" placeholder="{{ comment.content }}">
-
-          </textarea>
+          <textarea rows="1" cols="1" name="text" [(ngModel)]="newUpdateContent"></textarea>
         </div>
         <div class="buttons-wrapper">
           <div class="usertext-buttons">

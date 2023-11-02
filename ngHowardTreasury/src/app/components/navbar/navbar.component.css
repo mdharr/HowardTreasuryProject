@@ -143,9 +143,6 @@
 }
 
 .logo-box {
-  /* position: absolute;
-  left: 50%;
-  transform: translateX(-50%); */
   display: flex;
   align-items: center;
 }
@@ -178,12 +175,12 @@
 
 /* Darken the input field background on hover */
 .search-input-field:hover {
-  background-color: #e0e0e0; /* Adjust the desired hover background color */
+  background-color: #e0e0e0;
 }
 
 /* Styles for the search button */
 .search-button {
-  background-color: var(--black_red); /* Change this to your desired button color */
+  background-color: var(--black_red);
   color: #fff;
   border: none;
   border-radius: 0px 4px 4px 0px;
@@ -195,8 +192,7 @@
 
 /* Add box shadow to the search button on hover */
 .search-button:hover {
-  /* background-color: #0056b3; */
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Adjust the box shadow as needed */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 .auth-container {
@@ -335,10 +331,6 @@
     justify-content: flex-end;
   }
 
-  .navbar .mat-toolbar-row:first-child {
-    /* border-bottom: 1px solid #b5b5b5; */
-  }
-
   .navbar {
     border-bottom: none;
     padding: 0;
@@ -355,23 +347,17 @@
   }
 
   #nav-menu-btn {
-    /* font-size: 1.3rem; */
     margin-left: 15px;
     padding: 0;
     padding-right: 8px;
     padding-left: 8px;
     height: 40px;
     line-height: 28px;
-    /* background: #fff; */
     border: 1px solid var(--white_color);
     font-family: var(--contentFontFamily);
     font-size: var(--contentFontSize);
     font-weight: var(--superBold);
     background-color:var(--red_black);
-  }
-
-  .menu {
-    /* display: none; */
   }
 
 }

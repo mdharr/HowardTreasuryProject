@@ -115,3 +115,12 @@ textarea {
   background-color: white;
   color: black;
 }
+
+.confirmation-text {
+  color: var(--red_white);
+}
+
+.confirmation-text:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

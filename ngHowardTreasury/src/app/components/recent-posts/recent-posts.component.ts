@@ -20,11 +20,9 @@ export class RecentPostsComponent implements OnInit, OnDestroy {
   showByYear: boolean = false;
 
   // subscriptions
-  private authSubscription: Subscription | undefined;
   private blogPostSubscription: Subscription | undefined;
 
   // service injections
-  authService = inject(AuthService);
   blogPostService = inject(BlogPostService);
 
   ngOnInit() {
@@ -49,9 +47,6 @@ export class RecentPostsComponent implements OnInit, OnDestroy {
   }
 
   destroyAllSubscriptions = () => {
-    if(this.authSubscription) {
-      this.authSubscription.unsubscribe();
-    }
     if(this.blogPostSubscription) {
       this.blogPostSubscription.unsubscribe();
     }

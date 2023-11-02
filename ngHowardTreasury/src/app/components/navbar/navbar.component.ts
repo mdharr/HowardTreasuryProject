@@ -42,7 +42,7 @@ import { SearchResultsService } from 'src/app/services/search-results.service';
     ]),
   ],
 })
-export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
   menuState: 'collapsed' | 'expanded' = 'collapsed';
   isMenuOpen: boolean = false;
@@ -51,6 +51,7 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   loggedInUser: User = new User();
 
   private loggedInUserSubscription: Subscription | undefined;
+  private loggedInSubscription: Subscription | undefined;
 
   route = inject(ActivatedRoute);
   router = inject(Router);
@@ -62,19 +63,22 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   searchResultsService = inject(SearchResultsService);
 
   ngOnInit(): void {
-    this.authService.getCurrentLoggedInUser().subscribe((user: User) => {
-      this.loggedInUser = user;
-    });
+    this.subscribeToLoggedInObservable();
 
-    this.authService.getLoggedInUser().subscribe({
-      next: (user) => {
-        this.loggedInUser = user;
-      },
-      error: (error) => {
-        console.log('Error getting loggedInUser');
-        console.log(error);
-      },
-    });
+    // potentially unnecessary code, clean up later
+    // this.authService.getCurrentLoggedInUser().subscribe((user: User) => {
+    //   this.loggedInUser = user;
+    // });
+
+    // this.authService.getLoggedInUser().subscribe({
+    //   next: (user) => {
+    //     this.loggedInUser = user;
+    //   },
+    //   error: (error) => {
+    //     console.log('Error getting loggedInUser');
+    //     console.log(error);
+    //   },
+    // });
 
     this.loggedInUserSubscription = this.authService.getLoggedInUser().pipe(
       tap(user => {
@@ -89,20 +93,20 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy(): void {
-
+    if(this.loggedInSubscription) {
+      this.loggedInSubscription.unsubscribe();
+    }
   }
 
-  ngAfterViewInit(): void {
-
+  subscribeToLoggedInObservable() {
+    this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
+      this.loggedInUser = user;
+    });
   }
 
   loggedIn(): boolean {
     return this.authService.checkLogin();
   }
-
-  // toggleMenu() {
-  //   this.menuState = this.menuState === 'collapsed' ? 'expanded' : 'collapsed';
-  // }
 
   toggleMenu() {
     this.menuState = this.menuState === 'collapsed' ? 'expanded' : 'collapsed';

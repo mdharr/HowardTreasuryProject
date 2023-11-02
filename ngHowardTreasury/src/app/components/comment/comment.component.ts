@@ -1,17 +1,18 @@
 import { BlogCommentService } from './../../services/blog-comment.service';
-import { Component, EventEmitter, inject, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, OnInit, OnDestroy } from '@angular/core';
 import { BlogComment } from 'src/app/models/blog-comment';
 import { BlogPost } from 'src/app/models/blog-post';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css'],
 })
-export class CommentComponent implements OnInit {
+export class CommentComponent implements OnInit, OnDestroy {
   @Input() comment!: BlogComment;
   @Input() replyDepth: number = 0;
   @Input() maxDepth: number = 5;
@@ -22,9 +23,13 @@ export class CommentComponent implements OnInit {
   showEditInput: boolean = false;
   newUpdateContent: string = '';
 
+  showDeleteConfirmation = false;
+
   post: BlogPost = new BlogPost();
   postId: number = 0;
   loggedInUser: User = new User();
+
+  private loggedInSubscription: Subscription | undefined;
 
   blogCommentService = inject(BlogCommentService);
   authService = inject(AuthService);
@@ -35,6 +40,7 @@ export class CommentComponent implements OnInit {
   @Output() reply = new EventEmitter<BlogComment>();
 
   ngOnInit() {
+    this.subscribeToLoggedInObservable();
     this.authService.getLoggedInUser().subscribe({
       next: (user) => {
         this.loggedInUser = user;
@@ -44,6 +50,18 @@ export class CommentComponent implements OnInit {
         console.log('Error getting loggedInUser');
         console.log(error);
       },
+    });
+  }
+
+  ngOnDestroy() {
+      if(this.loggedInSubscription) {
+        this.loggedInSubscription.unsubscribe();
+      }
+  }
+
+  subscribeToLoggedInObservable() {
+    this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
+      this.loggedInUser = user;
     });
   }
 
@@ -58,6 +76,7 @@ export class CommentComponent implements OnInit {
 
   toggleEditInput() {
     this.showEditInput = !this.showEditInput;
+    this.newUpdateContent = this.comment.content;
     this.showReplyInput = false;
   }
 
@@ -104,7 +123,6 @@ export class CommentComponent implements OnInit {
 
   // Modify the submitEdit method to update the comment's content property:
   submitEdit() {
-    // Update the content property of the comment
     this.comment.content = this.newUpdateContent;
 
     // Call the updateComment service method
@@ -112,7 +130,6 @@ export class CommentComponent implements OnInit {
       .updateComment(this.comment.id, this.comment)
       .subscribe({
         next: (updatedComment) => {
-          // Optionally, you can hide the edit input field and clear newUpdateContent
           this.showEditInput = false;
           this.newUpdateContent = '';
         },
@@ -122,15 +139,15 @@ export class CommentComponent implements OnInit {
       });
   }
 
+
   deleteComment() {
     this.blogCommentService.deleteComment(this.comment.id).subscribe({
       next: (data) => {
         console.log('Comment deleted!');
-
+        this.comment.hidden = true;
       },
       error: (fail) => {
         console.error('Comment deletion unsuccessful: ' + fail);
-
       }
     });
   }
@@ -138,5 +155,18 @@ export class CommentComponent implements OnInit {
   cancelReply = () => {
     this.showReplyInput = false;
     this.newReplyContent = '';
+  }
+
+  toggleDeleteConfirmation() {
+    this.showDeleteConfirmation = !this.showDeleteConfirmation;
+  }
+
+  confirmDelete() {
+    this.deleteComment();
+    this.showDeleteConfirmation = false;
+  }
+
+  cancelDelete() {
+    this.showDeleteConfirmation = false;
   }
 }
