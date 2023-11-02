@@ -79,13 +79,19 @@
 }
 
 /* CSS */
-.description-text:first-child:first-letter {
+/* .description-text:first-child:first-letter {
   float: left;
   margin-right: 5px;
   font-size: 50px;
   color: var(--red_milk);
-  vertical-align: top; /* Align the first letter with the top of the line */
+  vertical-align: top;
   line-height: 1;
+} */
+
+.description-text:first-child::first-letter {
+  margin-right: 5px;
+  color: var(--red_milk);
+  initial-letter: 2;
 }
 
 .description-box {
@@ -141,40 +147,6 @@
   font-family: var(--contentFontFamily);
   margin:0;
 }
-
-/* ::ng-deep .first-letter {
-  font-size: 50px;
-  font-family: Libre Baskerville, Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  color: #9e0000;
-  line-height: 1;
-  float: left;
-  margin-right: 10px;
-} */
-
-/* ::ng-deep .first-letter {
-  font-size: 50px;
-  font-family: var(--headerFontFamily);
-  font-weight: 700;
-  color: #9e0000;
-  line-height: 1.2;
-  float: left;
-  margin-right: 18px;
-  font-style: normal;
-  border: 3px dotted #9e0000;
-  padding-left: 10px;
-  padding-right: 10px;
-  outline: 3px dashed #9e0000;
-  margin-left: 18px;
-} */
-
-/* ::ng-deep .first-letter {
-  float:left;
-  margin-top:7px;
-  font-size:70px;
-  margin-right:5px;
-  color:#3D3529;
-  } */
 
 /* Styles for the overlay */
 .overlay {

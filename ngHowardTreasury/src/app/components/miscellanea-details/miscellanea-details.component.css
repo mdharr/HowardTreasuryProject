@@ -321,13 +321,10 @@
   color: var(--black_white);
 }
 
-.excerpt-text:first-child:first-letter {
-  float: left;
+.excerpt-text:first-child::first-letter {
   margin-right: 5px;
-  font-size: 50px;
   color: var(--red_milk);
-  vertical-align: top;
-  line-height: 1;
+  initial-letter: 2;
 }
 
 .excerpt-box {

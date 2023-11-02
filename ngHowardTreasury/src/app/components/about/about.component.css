@@ -5,7 +5,13 @@
   text-align: center;
   display:flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 30px;
+}
+
+.biography p:nth-child(1)::first-letter {
+  margin-right: 5px;
+  color: var(--red_milk);
+  initial-letter: 2;
 }
 
 .home-image {
@@ -35,16 +41,14 @@
   }
 }
 
-/* Add a loading indicator style */
 .is-loading {
-  opacity: 0.5; /* Dim the card when loading */
-  /* You can add more styles or animations for loading here */
+  opacity: 0.5;
 }
 
 .biography {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 .biography h1 {
