@@ -1,15 +1,16 @@
-<div *ngIf="!isLoaded" class="spinner-wrapper">
+<!-- <div *ngIf="!isLoaded" class="spinner-wrapper">
   <div class="spinner-box">
     <mat-spinner></mat-spinner>
   </div>
-</div>
-<div class="main" *ngIf="isLoaded">
+</div> -->
+<div class="main">
   <ol class="breadcrumbnav">
     <li><a [routerLink]="['/home']">Home</a></li>
   </ol>
   <div class="biography-container">
     <section class="bio-section">
-      <img class="home-image" src="https://goodman-games.com/wp-content/uploads/2021/01/REH-colofon.jpg" alt="">
+      <img *ngIf="isLoaded" class="home-image" src="https://goodman-games.com/wp-content/uploads/2021/01/REH-colofon.jpg" alt="">
+      <div *ngIf="!isLoaded" class="placeholder"></div>
     </section>
     <section class="biography">
       <h1>Robert E. Howard</h1>
