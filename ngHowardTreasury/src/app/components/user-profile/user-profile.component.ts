@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, tap } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserlistService } from 'src/app/services/userlist.service';
@@ -20,16 +20,24 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
     // subscriptions
     private loggedInSubscription: Subscription | undefined;
+    private loggedInUserSubscription: Subscription | undefined;
 
     // service injection
-    route = inject(ActivatedRoute);
-    router = inject(Router);
     authService = inject(AuthService);
-    userListService = inject(UserlistService);
 
     ngOnInit(): void {
       window.scrollTo(0, 0);
       this.subscribeToLoggedInObservable();
+      this.loggedInUserSubscription = this.authService.getLoggedInUser().pipe(
+        tap(user => {
+          this.loggedInUser = user;
+        })
+      ).subscribe({
+        error: (error) => {
+          console.log('Error getting loggedInUser Profile Component');
+          console.log(error);
+        },
+      });
     }
 
     ngOnDestroy(): void {
@@ -40,11 +48,16 @@ export class UserProfileComponent implements OnInit, OnDestroy {
       if(this.loggedInSubscription) {
         this.loggedInSubscription.unsubscribe();
       }
+      if(this.loggedInUserSubscription) {
+        this.loggedInUserSubscription.unsubscribe();
+      }
     }
 
     subscribeToLoggedInObservable() {
       this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
         this.loggedInUser = user;
+        console.log('Logged in user:', this.loggedInUser);
+
       });
     }
 }

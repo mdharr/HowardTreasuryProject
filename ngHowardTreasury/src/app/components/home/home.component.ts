@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, OnDestroy, OnInit, ViewChild, Renderer2 } from '@angular/core';
+import { Component, HostListener, inject, OnDestroy, OnInit, ViewChild, Renderer2, ViewChildren, QueryList } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { AnimatedCardComponent } from '../animated-card/animated-card.component';
 
@@ -8,6 +8,7 @@ import { AnimatedCardComponent } from '../animated-card/animated-card.component'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  @ViewChildren(AnimatedCardComponent) animatedCards!: QueryList<AnimatedCardComponent>;
 
   objectPosition: string = '-470px center';
 
@@ -42,6 +43,37 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.updateObjectPosition();
   }
 
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit in CharactersComponent');
+    this.checkImagesLoaded(); // Call this after the view is initialized
+    console.log(this.isLoaded);
+  }
+
+  checkImagesLoaded() {
+    // Initialize total and loaded counts
+    let totalImages = 0;
+    let loadedImages = 0;
+
+    // Iterate through each AnimatedCardComponent
+    this.animatedCards.forEach((card) => {
+      // Update the totalImages count
+      totalImages += 2; // You have 3 images in each card
+
+      // Listen for the imagesLoaded event in each AnimatedCardComponent
+      card.imagesLoaded.subscribe(() => {
+        // Increment the loadedImages count
+        loadedImages++;
+
+        // Check if all images are loaded
+        if (loadedImages === totalImages) {
+          // All images are loaded, and you can take action here, e.g., update the UI
+          // This is the point where you can display your cards
+          console.log('All images are loaded');
+          this.isLoaded = true;
+        }
+      });
+    });
+  }
 
 
 }

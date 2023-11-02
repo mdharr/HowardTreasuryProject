@@ -95,31 +95,6 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
       this.sortTitleActive = true;
     }
 
-    // original filter miscellaneas function
-    // filterMiscellaneas(): void {
-    //   if (this.searchQuery.trim() === '') {
-    //     if(this.sortTitleActive) {
-    //       this.filteredMiscellaneas = [...this.originalData];
-    //       this.sortMiscellaneasByTitle();
-    //     }
-    //     else {
-    //       this.filteredMiscellaneas = [...this.originalData];
-    //     }
-    //   } else {
-    //     if(this.sortTitleActive) {
-    //       this.filteredMiscellaneas = this.originalData.filter(miscellanea =>
-    //         miscellanea.title.toLowerCase().includes(this.searchQuery.toLowerCase())
-    //       );
-    //       this.sortMiscellaneasByTitle();
-    //     }
-    //     else {
-    //       this.filteredMiscellaneas = this.originalData.filter(miscellanea =>
-    //         miscellanea.title.toLowerCase().includes(this.searchQuery.toLowerCase())
-    //       );
-    //     }
-    //   }
-    // }
-
     filterMiscellaneas(): void {
       this.noMatches = false;
       console.log(this.noMatches);
@@ -127,10 +102,6 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
       if (this.searchQuery.trim() === '') {
         // If the search query is empty, reset to the current filtered data
         this.filteredMiscellaneas = [...this.originalData];
-        // Reapply filters if active
-        // if (this.filterCopyrightedActive) {
-        //   this.filteredStories = this.filteredStories.filter(story => !story.isCopyrighted);
-        // }
       } else {
         // Filter based on the current search query
         this.filteredMiscellaneas = this.originalData.filter(miscellanea =>
@@ -139,10 +110,6 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
         if (this.filteredMiscellaneas.length === 0) {
           this.noMatches = true;
         }
-        // Reapply filters if active
-        // if (this.filterCopyrightedActive) {
-        //   this.filteredPoems = this.filteredPoems.filter(poem => !poem.isCopyrighted);
-        // }
       }
     }
 
@@ -162,8 +129,6 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
           // Update the search results in the shared service
           this.searchResultsService.updateSearchResults(results);
           this.router.navigate(['/search-results']);
-
-          // this.searchQuery = '';
         });
       }
     }

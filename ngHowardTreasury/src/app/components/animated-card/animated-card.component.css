@@ -97,6 +97,52 @@ img {
   rotate: x calc(var(--rotation) * -1);
 }
 
+.spinner-wrapper {
+  width: 100%;
+  height: 88vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-box {
+  width: 50px;
+  height: 50px;
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: var(--body_color);
+}
+
+
+.placeholder {
+  width: 350px;
+  aspect-ratio: 9 / 12;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  background-size: 200% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: sheen 1.5s infinite;
+}
+
+@keyframes sheen {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Add a loading indicator style */
+.is-loading {
+  opacity: 0.5; /* Dim the card when loading */
+  /* You can add more styles or animations for loading here */
+}
+
+
+
 @media (max-width: 1028px) {
   .bg-image {
     position: absolute;
@@ -129,5 +175,10 @@ img {
     position: relative;
     transform-style: preserve-3d;
     transition: rotate var(--timing) ease;
+  }
+
+  .placeholder {
+    width: 290px;
+    aspect-ratio: 3 / 4;
   }
 }

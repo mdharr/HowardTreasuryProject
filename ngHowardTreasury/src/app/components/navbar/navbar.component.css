@@ -71,7 +71,6 @@
 }
 
 .navbar {
-  /* border-bottom: 1px solid var(--black_white); */
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   position: relative;
   padding: 0;
@@ -355,7 +354,7 @@
     line-height: 28px;
     border: 1px solid var(--white_color);
     font-family: var(--contentFontFamily);
-    font-size: var(--contentFontSize);
+    font-size: var(--body_font);
     font-weight: var(--superBold);
     background-color:var(--red_black);
   }

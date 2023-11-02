@@ -95,33 +95,6 @@ export class PoemsComponent implements OnInit, OnDestroy {
     this.sortTitleActive = true;
   }
 
-  // original filter poems function
-  // filterPoems(): void {
-  //   this.noMatches = false;
-  //   console.log(this.noMatches);
-  //   if (this.searchQuery.trim() === '') {
-  //     if(this.sortTitleActive) {
-  //       this.filteredPoems = [...this.originalData];
-  //       this.sortPoemsByTitle();
-  //     }
-  //     else {
-  //       this.filteredPoems = [...this.originalData];
-  //     }
-  //   } else {
-  //     if(this.sortTitleActive) {
-  //       this.filteredPoems = this.originalData.filter(poem =>
-  //         poem.title.toLowerCase().includes(this.searchQuery.toLowerCase())
-  //       );
-  //       this.sortPoemsByTitle();
-  //     }
-  //     else {
-  //       this.filteredPoems = this.originalData.filter(poem =>
-  //         poem.title.toLowerCase().includes(this.searchQuery.toLowerCase())
-  //       );
-  //     }
-  //   }
-  // }
-
   filterPoems(): void {
     this.noMatches = false;
     console.log(this.noMatches);
@@ -129,10 +102,6 @@ export class PoemsComponent implements OnInit, OnDestroy {
     if (this.searchQuery.trim() === '') {
       // If the search query is empty, reset to the current filtered data
       this.filteredPoems = [...this.originalData];
-      // Reapply filters if active
-      // if (this.filterCopyrightedActive) {
-      //   this.filteredStories = this.filteredStories.filter(story => !story.isCopyrighted);
-      // }
     } else {
       // Filter based on the current search query
       this.filteredPoems = this.originalData.filter(poem =>
@@ -141,10 +110,6 @@ export class PoemsComponent implements OnInit, OnDestroy {
       if (this.filteredPoems.length === 0) {
         this.noMatches = true;
       }
-      // Reapply filters if active
-      // if (this.filterCopyrightedActive) {
-      //   this.filteredPoems = this.filteredPoems.filter(poem => !poem.isCopyrighted);
-      // }
     }
   }
 
@@ -164,8 +129,6 @@ export class PoemsComponent implements OnInit, OnDestroy {
         // Update the search results in the shared service
         this.searchResultsService.updateSearchResults(results);
         this.router.navigate(['/search-results']);
-
-        // this.searchQuery = '';
       });
     }
   }
