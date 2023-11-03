@@ -116,6 +116,10 @@ body.red-theme {
   --card_font_color: #CCCCCC;
 }
 
+body.disable-scrolling {
+  overflow: hidden;
+}
+
 /* media query breakpoints */
 
 /* 768px min-width */

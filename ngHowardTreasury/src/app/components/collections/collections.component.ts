@@ -36,21 +36,6 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     });
   }
 
-  // async loadImages(): Promise<void> {
-  //   const imagePromises = this.collections.map((collection) => {
-  //     const image = new Image();
-  //     image.src = collection.collectionImages[0].thumbnailUrl;
-
-  //     return new Promise<void>((resolve) => {
-  //       image.onload = () => {
-  //         collection.isLoadingImage = false;
-  //         resolve();
-  //       };
-  //     });
-  //   });
-  //   await Promise.all(imagePromises);
-  // }
-
   subscribeToSubscriptions = () => {
     this.delay(250).then(() => {
       this.collectionSubscription = this.collectionService.indexAll().subscribe({

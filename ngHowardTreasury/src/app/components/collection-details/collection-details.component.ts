@@ -1,10 +1,11 @@
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, Inject, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { CollectionService } from 'src/app/services/collection.service';
 import { CollectionImage } from 'src/app/models/collection-image';
 import { CollectionWithStoriesDTO } from 'src/app/models/collection-with-stories-dto';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-collection-details',
@@ -29,6 +30,9 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   collectionService = inject(CollectionService);
   activatedRoute = inject(ActivatedRoute);
   renderer = inject(Renderer2);
+  constructor(@Inject(DOCUMENT) private document: Document) {
+
+  }
 
   // subscription declaration
   private paramsSubscription: Subscription | undefined;
@@ -54,8 +58,6 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   }
 
   subscribeToCollectionService = () => {
-
-    // subscription using DTO implementation to retrieve page numbers
     this.delay(250).then(() => {
       this.collectionSubscription = this.collectionService.findCollectionWithStoriesById((this.collectionId)).subscribe({
         next: (data) => {
@@ -97,6 +99,12 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
 
   toggleFullScreenImage(): void {
     this.isFullScreenImageVisible = !this.isFullScreenImageVisible;
+
+    if (this.isFullScreenImageVisible) {
+      this.renderer.addClass(this.document.body, 'disable-scrolling');
+    } else {
+      this.renderer.removeClass(this.document.body, 'disable-scrolling');
+    }
   }
 
   delay(ms: number): Promise<void> {
