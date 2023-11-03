@@ -1,5 +1,5 @@
 import { CollectionImage } from './../../models/collection-image';
-import { Component, inject, OnDestroy, OnInit, Renderer2, AfterViewInit, HostListener, ElementRef } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, Renderer2, AfterViewInit, HostListener, ElementRef, Inject } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Collection } from 'src/app/models/collection';
@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { StoryService } from 'src/app/services/story.service';
 import { StoryImage } from 'src/app/models/story-image';
 import { CollectionService } from 'src/app/services/collection.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-story-details',
@@ -43,6 +44,8 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
     activatedRoute = inject(ActivatedRoute);
     renderer = inject(Renderer2);
     elementRef = inject(ElementRef);
+
+    constructor(@Inject(DOCUMENT) private document: Document) {}
 
     // subscription declaration
     private paramsSubscription: Subscription | undefined;
@@ -158,6 +161,9 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.selectedImage = this.storyImages[index];
       this.selectedThumbnailIndex = index;
       this.currentIndex = index;
+      if (this.showLightbox) {
+        this.renderer.addClass(this.document.body, 'disable-scrolling');
+      }
 
       setTimeout(() => {
         this.selectImage(this.currentIndex);
@@ -189,6 +195,7 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     closeLightbox() {
       this.showLightbox = false;
+      this.renderer.removeClass(this.document.body, 'disable-scrolling');
     }
 
     nextImage() {

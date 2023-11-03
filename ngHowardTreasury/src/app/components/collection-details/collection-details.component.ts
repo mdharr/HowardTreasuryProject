@@ -30,9 +30,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   collectionService = inject(CollectionService);
   activatedRoute = inject(ActivatedRoute);
   renderer = inject(Renderer2);
-  constructor(@Inject(DOCUMENT) private document: Document) {
-
-  }
+  constructor(@Inject(DOCUMENT) private document: Document) {}
 
   // subscription declaration
   private paramsSubscription: Subscription | undefined;
