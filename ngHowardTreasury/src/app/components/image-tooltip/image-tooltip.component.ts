@@ -8,4 +8,19 @@ import { Component, Input } from '@angular/core';
 export class ImageTooltipComponent {
   @Input() imageSrc: string = '';
   zoomState: string = 'initial';
+  tooltipWidth: number = 0;
+  tooltipHeight: number = 0;
+
+  ngOnInit() {
+    this.loadImageDimensions();
+  }
+
+  private loadImageDimensions() {
+    const img = new Image();
+    img.src = this.imageSrc;
+    img.onload = () => {
+      this.tooltipWidth = img.width;
+      this.tooltipHeight = img.height;
+    };
+  }
 }
