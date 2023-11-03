@@ -8,7 +8,14 @@ export class TruncatePipe implements PipeTransform {
     if (value.length <= maxLength) {
       return value;
     } else {
-      return value.slice(0, maxLength) + '...';
+      const truncatedText = value.substring(0, maxLength);
+      const lastSpaceIndex = truncatedText.lastIndexOf(' ');
+
+      if (lastSpaceIndex !== -1) {
+        return truncatedText.substring(0, lastSpaceIndex) + '...';
+      } else {
+        return truncatedText + '...';
+      }
     }
   }
 }
