@@ -21,7 +21,7 @@
       <div class="category" *ngIf="result.type === 'Collection'">
         <div class="category-wrapper">
           <div class="category-image">
-            <img src="{{ result.data.collectionImages[0].thumbnailUrl }}" alt="{{ result.data.title | slice:0:15 }} image" appImageZoom [imageSrc]="result.data.collectionImages[0].thumbnailUrl">
+            <img src="{{ result.data.collectionImages[0].thumbnailUrl }}" alt="{{ result.data.title | slice:0:15 }} image">
           </div>
           <div class="category-details">
             <h3 class="results-items" [routerLink]="['/collections', result.data.id]">{{ result.data.title }}</h3>
@@ -38,7 +38,7 @@
         <div class="story-wrapper">
           <ng-container *ngIf="result.data.storyImages.length;">
             <div class="story-image">
-              <img src="{{ result.data.storyImages[0].imageUrl }}" alt="{{ result.data.title | slice:0:15 }} image" appImageZoom [imageSrc]="result.data.storyImages[0].imageUrl">
+              <img src="{{ result.data.storyImages[0].imageUrl }}" alt="{{ result.data.title | slice:0:15 }} image">
             </div>
           </ng-container>
           <div class="story-details">
@@ -65,7 +65,7 @@
       <div class="category" *ngIf="result.type === 'Person'">
         <div class="character-wrapper">
           <div class="character-image">
-            <img src="{{ result.data.imageUrl }}" alt="{{ result.data.name | slice:0:15 }} image" appImageZoom [imageSrc]="result.data.imageUrl">
+            <img src="{{ result.data.imageUrl }}" alt="{{ result.data.name | slice:0:15 }} image">
           </div>
           <div class="character-details">
             <h3 class="results-items" [routerLink]="['/characters', result.data.id]">{{ result.data.name }}</h3>

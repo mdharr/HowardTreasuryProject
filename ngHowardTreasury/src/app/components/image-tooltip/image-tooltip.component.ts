@@ -21,6 +21,9 @@ export class ImageTooltipComponent {
     img.onload = () => {
       this.tooltipWidth = img.width;
       this.tooltipHeight = img.height;
+      console.log(this.tooltipHeight);
+      console.log(this.tooltipWidth);
+
     };
   }
 }

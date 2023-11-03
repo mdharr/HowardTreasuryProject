@@ -25,14 +25,9 @@ export class ImageZoomDirective {
 
         // Set the left position to align with the left side of the image
         tooltipElement.style.left = imageRect.left + 'px';
-        console.log('ImageRect left: ' + imageRect.left);
-        console.log('tooltip left: ' + tooltipElement.style.left);
-
 
         // Set the top position to display directly above the image
         tooltipElement.style.top = imageRect.top - tooltipElement.clientHeight + 'px';
-        console.log('ImageRect top: ' + imageRect.top);
-        console.log('tooltip top: ' + tooltipElement.style.top);
       }
     }
   }
