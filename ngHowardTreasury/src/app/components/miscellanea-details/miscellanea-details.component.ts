@@ -1,5 +1,5 @@
 import { CollectionService } from './../../services/collection.service';
-import { AfterViewInit, Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, Inject, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Collection } from 'src/app/models/collection';
@@ -7,6 +7,7 @@ import { CollectionImage } from 'src/app/models/collection-image';
 import { Miscellanea } from 'src/app/models/miscellanea';
 import { AuthService } from 'src/app/services/auth.service';
 import { MiscellaneaService } from 'src/app/services/miscellanea.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-miscellanea-details',
@@ -31,6 +32,8 @@ export class MiscellaneaDetailsComponent implements OnInit, OnDestroy, AfterView
     activatedRoute = inject(ActivatedRoute);
     renderer = inject(Renderer2);
     collectionService = inject(CollectionService);
+
+    constructor(@Inject(DOCUMENT) private document: Document) {}
 
     // subscription declaration
     private paramsSubscription: Subscription | undefined;

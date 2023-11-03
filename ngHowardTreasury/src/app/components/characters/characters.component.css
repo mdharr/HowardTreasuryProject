@@ -267,13 +267,10 @@
   flex: 1;
 }
 
-.excerpt-text:first-child:first-letter {
-  float: left;
+.excerpt-text:first-child::first-letter {
   margin-right: 5px;
-  font-size: var(--header_font);
   color: var(--red_milk);
-  vertical-align: top;
-  line-height: 1;
+  initial-letter: 2;
 }
 
 .excerpt-text {
@@ -334,6 +331,7 @@
   .description-wrapper {
     flex-direction: column;
     padding-top:0;
+    padding-right:0;
   }
   .animated-card-wrapper {
     width: 100%;

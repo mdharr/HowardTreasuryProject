@@ -1,4 +1,5 @@
-import { Component, inject, OnInit, OnDestroy, AfterViewInit, HostListener, Renderer2, ElementRef } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, inject, OnInit, OnDestroy, AfterViewInit, HostListener, Renderer2, ElementRef, Inject } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Illustrator } from 'src/app/models/illustrator';
@@ -45,6 +46,7 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
   activatedRoute = inject(ActivatedRoute);
   renderer = inject(Renderer2);
   elementRef = inject(ElementRef);
+  constructor(@Inject(DOCUMENT) private document: Document) {}
 
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -117,6 +119,9 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
     this.selectedImage = this.storyImages[index];
     this.selectedThumbnailIndex = index;
     this.currentIndex = index;
+    if (this.showLightbox) {
+      this.renderer.addClass(this.document.body, 'disable-scrolling');
+    }
 
     setTimeout(() => {
       this.selectImage(this.currentIndex);
@@ -148,6 +153,7 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
 
   closeLightbox() {
     this.showLightbox = false;
+    this.renderer.removeClass(this.document.body, 'disable-scrolling');
   }
 
   nextImage() {

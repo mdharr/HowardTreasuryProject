@@ -11,3 +11,13 @@
   padding-top:30px;
 }
 
+@media screen and (max-width: 1087px) {
+
+  .tail-image-wrapper {
+    margin-bottom: 20px;
+  }
+  .tail-image {
+    width: 20%;
+  }
+}
+

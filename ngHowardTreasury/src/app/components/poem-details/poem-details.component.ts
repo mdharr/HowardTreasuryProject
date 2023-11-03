@@ -1,5 +1,5 @@
 import { CollectionService } from './../../services/collection.service';
-import { AfterViewInit, Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, Inject, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Collection } from 'src/app/models/collection';
@@ -7,6 +7,7 @@ import { CollectionImage } from 'src/app/models/collection-image';
 import { Poem } from 'src/app/models/poem';
 import { AuthService } from 'src/app/services/auth.service';
 import { PoemService } from 'src/app/services/poem.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-poem-details',
@@ -31,6 +32,8 @@ export class PoemDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
     activatedRoute = inject(ActivatedRoute);
     renderer = inject(Renderer2);
     collectionService = inject(CollectionService);
+
+    constructor(@Inject(DOCUMENT) private document: Document) {}
 
     // subscription declaration
     private paramsSubscription: Subscription | undefined;

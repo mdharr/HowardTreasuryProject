@@ -377,6 +377,7 @@ mat-form-field {
 @media screen and (max-width:1087px) {
   .body-wrapper {
     flex-direction: column;
+    padding-top:0;
   }
   .header-wrapper {
     width:100%;

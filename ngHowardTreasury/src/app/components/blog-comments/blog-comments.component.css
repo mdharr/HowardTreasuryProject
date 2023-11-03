@@ -30,13 +30,14 @@
 }
 
 .post {
-  background-color: var(--white_black);
+  background-color: var(--bkg_color);
   padding: 40px 30px;
   margin-bottom: 10px;
   color: var(--black_white);
   font-family: var(--contentFontFamily);
   font-size:var(--body_font);
   line-height: 1.5;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .post ::ng-deep p img {
@@ -47,6 +48,7 @@
   max-width: 100% !important;
   height: auto !important;
   display: block !important;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px !important;
 }
 
 ::ng-deep .post:last-child p {
@@ -165,6 +167,10 @@
 .md textarea {
   font-size: 1em;
   line-height: 1.4285714285714286em;
+  background-color: var(--white_color);
+  color: var(--black_color);
+  font-family: var(--contentFontFamily);
+  font-weight: 500;
 }
 
 button {
@@ -251,12 +257,17 @@ div p * {
 }
 
 ::ng-deep blockquote {
-  border-left: 2px solid var(--black_red);
+  border-left: 2px solid var(--red_milk);
   padding: 10px;
+  padding-left: 20px;
   margin: 10px 15px;
   font-style: italic;
   font-size: 16px;
   line-height: 1.2;
+}
+
+::ng-deep blockquote p {
+  margin: 0 !important;
 }
 
 /* breadcrumb navigation */

@@ -22,7 +22,8 @@ export class AnimatedCardComponent implements AfterViewInit {
 
   checkImagesLoaded() {
     // Create an array of Image objects for the images you want to load
-    const imagesToLoad = [this.logoSrc, this.frontImageSrc, this.bgImageSrc];
+    // const imagesToLoad = [this.logoSrc, this.frontImageSrc, this.bgImageSrc];
+    const imagesToLoad = [this.frontImageSrc, this.bgImageSrc];
     let loadedImages = 0;
 
     imagesToLoad.forEach((imageSrc) => {

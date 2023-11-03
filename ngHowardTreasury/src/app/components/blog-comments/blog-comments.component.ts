@@ -269,6 +269,7 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
     const imgElements = doc.querySelectorAll('img');
     imgElements.forEach((imgElement) => {
       imgElement.classList.add('post-images');
+      imgElement.setAttribute('loading', 'lazy');
     });
 
     // Serialize the modified DOM back to HTML

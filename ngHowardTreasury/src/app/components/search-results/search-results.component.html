@@ -26,7 +26,7 @@
           <div class="category-details">
             <h3 class="results-items" [routerLink]="['/collections', result.data.id]">{{ result.data.title }}</h3>
             <!-- Display other properties specific to the Collection type -->
-            <p class="result-text">{{ result.data.description | slice:0:200 }}...</p>
+            <p class="result-text" [innerHtml]="result.data.description | slice:0:500"></p>
           </div>
         </div>
         <!-- <p class="result-text"><span class="items-name">Published:</span> {{ result.data.publishedAt | date:'longDate' }}</p>
