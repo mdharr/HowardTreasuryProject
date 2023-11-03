@@ -7,6 +7,7 @@
 
 .image-tooltip img {
   max-width: 500px;
-  height: auto;
+  height:auto;
+  max-height: 350px;
 }
 
