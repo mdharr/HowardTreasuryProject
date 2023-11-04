@@ -1,3 +1,4 @@
+import { DialogService } from 'src/app/services/dialog.service';
 import { BlogCommentService } from './../../services/blog-comment.service';
 import { AfterViewInit, Component, inject, OnDestroy, OnInit, Renderer2, ElementRef, SecurityContext } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -47,10 +48,10 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
     renderer = inject(Renderer2);
     el = inject(ElementRef);
     sanitizer = inject(DomSanitizer);
+    dialogService = inject(DialogService);
 
     ngOnInit() {
       window.scrollTo(0, 0);
-      // this.subscribeToAuth();
       this.subscribeToLoggedInObservable();
       this.subscribeToParams();
       this.subscribeToRecentBlogPosts();
@@ -138,6 +139,10 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     loggedIn(): boolean {
       return this.authService.checkLogin();
+    }
+
+    openLoginDialog() {
+      this.dialogService.openLoginDialog();
     }
 
     prepareCommentsForRendering(comments: BlogComment[]): BlogComment[] {

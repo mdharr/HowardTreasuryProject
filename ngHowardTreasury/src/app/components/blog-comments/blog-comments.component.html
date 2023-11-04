@@ -49,9 +49,12 @@
       <button mat-button (click)="createComment()">Save</button>
     </div>
   </div>
+  <div class="" *ngIf="!loggedIn()">
+    <p style="color: var(--black_white);"><span style="cursor:pointer; color: var(--red_milk);" (click)="openLoginDialog()">Login </span>to leave a comment.</p>
+  </div>
 
   <div class="toggle-container" (click)="toggleCommentNestVisibility()">
-    <span class="toggle-label">{{ showCommentNest ? 'Hide' : commentCount }} Comments</span>
+    <span class="toggle-label">{{ showCommentNest ? 'Hide Conversation' : commentCount + ' Comments' }}</span>
   </div>
 
   <!-- Nested comments -->
