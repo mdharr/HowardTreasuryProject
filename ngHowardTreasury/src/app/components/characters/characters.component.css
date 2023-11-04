@@ -336,7 +336,6 @@
 }
 
 .recommended-post {
-  flex: 0 0 calc(33.33% - 30px); /* Adjust this percentage to control the width of each post */
   padding: 15px;
   box-sizing: border-box;
 }
