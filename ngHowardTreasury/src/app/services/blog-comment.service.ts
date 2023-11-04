@@ -19,7 +19,7 @@ export class BlogCommentService {
   getHttpOptions() {
     let options = {
       headers: {
-        Authorization: 'Basic ' + this.authService.getCredentials(),
+        Authorization: 'Basic ' + this.authService.getLoggedInUser(),
         'X-Requested-With': 'XMLHttpRequest',
       },
     };

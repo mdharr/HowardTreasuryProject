@@ -308,6 +308,15 @@
   width: 50%;
 }
 
+.posts-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 30px;
+  gap: 30px;
+}
+
 .recommended-wrapper {
   width: 100%;
   display: flex;
@@ -316,31 +325,11 @@
   align-items: center;
 }
 
-.posts-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 .recommended-title-wrapper h3 {
   font-family: var(--contentFontFamily);
   font-size: var(--headerFontSize);
   color: var(--red_milk);
 }
-
-.post-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.recommended-post {
-  padding: 15px;
-  box-sizing: border-box;
-}
-
-
 
 @media screen and (max-width: 1028px) {
   .main {

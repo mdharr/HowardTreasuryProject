@@ -110,13 +110,18 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
     subscribeToRecentBlogPosts = () => {
       this.recentBlogPostsSubscription = this.blogPostService.indexAll().subscribe({
         next: (data) => {
-          this.recentPosts = data;
+          this.recentPosts = this.sortRecentPosts(data);
         },
         error: (fail) => {
           console.error('Error retrieving recent blog posts');
           console.error(fail);
         }
       })
+    }
+
+    sortRecentPosts = (posts: BlogPost[]) => {
+      let sortedPosts = posts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      return sortedPosts.slice(0, 10);
     }
 
     destroyAllSubscriptions = () => {

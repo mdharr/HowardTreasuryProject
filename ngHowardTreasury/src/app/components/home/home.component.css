@@ -231,6 +231,13 @@ app-excerpt-loop {
   bottom: 0;
 }
 
+.recommended-post-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+}
+
 
 @media screen and (max-width: 1028px) {
 

@@ -43,8 +43,6 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
   subscribeToLoggedInObservable() {
     this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
       this.loggedInUser = user;
-      // Now, this.loggedInUser contains the current logged-in user data
-      // You can use this data in your component's template or logic
     });
   }
 

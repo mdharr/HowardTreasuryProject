@@ -13,6 +13,7 @@ import { BlogPostService } from 'src/app/services/blog-post.service';
 export class RecentPostsComponent implements OnInit, OnDestroy {
   // properties
   posts: BlogPost[] = [];
+  recentPosts: BlogPost[] = [];
   loggedInUser: User = new User();
 
   // booleans
@@ -37,11 +38,11 @@ export class RecentPostsComponent implements OnInit, OnDestroy {
     this.blogPostSubscription = this.blogPostService.indexAll().subscribe({
       next: (data) => {
         this.posts = data;
+        this.recentPosts = this.sliceRecentPosts(this.posts);
       },
       error: (fail) => {
         console.error('Error retrieving blog posts');
         console.error(fail);
-
       }
     });
   }
@@ -52,7 +53,9 @@ export class RecentPostsComponent implements OnInit, OnDestroy {
     }
   }
 
-  sortPosts(posts: BlogPost[]) {
-
+  sliceRecentPosts(posts: BlogPost[]) {
+    let originalPosts = posts;
+    let slicedPosts =  originalPosts.slice(originalPosts.length-4, originalPosts.length);
+    return slicedPosts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   }
 }

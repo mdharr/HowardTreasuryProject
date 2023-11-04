@@ -141,8 +141,6 @@ img {
   /* You can add more styles or animations for loading here */
 }
 
-
-
 @media (max-width: 1028px) {
   .bg-image {
     position: absolute;
