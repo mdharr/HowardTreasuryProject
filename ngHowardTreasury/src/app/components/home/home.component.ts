@@ -31,10 +31,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   updateObjectPosition() {
-    if (window.innerWidth < 1028) {
-      this.objectPosition = '-388px center'; // Update to the desired value
-    } else {
-      this.objectPosition = '-470px center'; // Update to the desired value
+    if (window.innerWidth < 442) {
+      this.objectPosition = '-265px center';
+    }
+    else if (window.innerWidth < 1028) {
+      this.objectPosition = '-388px center';
+    }
+    else {
+      this.objectPosition = '-470px center';
     }
   }
 
