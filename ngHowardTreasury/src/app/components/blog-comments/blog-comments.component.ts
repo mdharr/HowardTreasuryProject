@@ -135,6 +135,9 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
       if(this.loggedInSubscription) {
         this.loggedInSubscription.unsubscribe();
       }
+      if(this.recentBlogPostsSubscription) {
+        this.recentBlogPostsSubscription.unsubscribe();
+      }
     }
 
     loggedIn(): boolean {

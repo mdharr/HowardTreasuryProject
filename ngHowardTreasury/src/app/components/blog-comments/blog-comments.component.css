@@ -236,7 +236,7 @@ div p * {
 .recent-posts-links:hover {
   text-decoration: underline;
   cursor: pointer;
-  color: var(--black_white);
+  color: var(--red_milk);
 }
 
 .recent-posts-items {
