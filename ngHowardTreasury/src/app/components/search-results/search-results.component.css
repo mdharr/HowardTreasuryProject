@@ -9,20 +9,20 @@
 .title-container {
   display: flex;
   justify-content: center;
+  border-bottom: 1px solid #3c4043;
 }
 
 .title-text {
   font-size: 30px;
-  font-family: Libre Baskerville,Helvetica,Arial,sans-serif;
-  font-weight: 700;
+  font-family: var(--contentFontFamily);
+  font-weight: 500;
   color: var(--red_milk);
+  margin: 5px;
 }
 
 .results-wrapper {
   padding-left: 100px;
   margin-bottom: 100px;
-  /* border-top: 1px solid; */
-  padding-top: 20px;
   padding-right: 100px;
 }
 
@@ -100,6 +100,7 @@
   font-family: var(--contentFontFamily);
   font-size: var(--contentFontSize);
   color: var(--black_white);
+  margin-bottom: 25px;
 }
 
 .spinner-wrapper {

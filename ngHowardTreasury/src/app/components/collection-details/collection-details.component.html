@@ -86,7 +86,7 @@
           class="collection-image"
           *ngIf="collectionImages && collectionImages.length > 0"
           src="{{ collectionImages[0].imageUrl }}"
-          alt=""
+          alt="{{ collection.title | slice:0:15 }}"
           (click)="toggleFullScreenImage()"
         >
       </div>

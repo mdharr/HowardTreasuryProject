@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output, AfterViewInit, ViewChild, ElementRef, AfterContentInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BlogPost } from 'src/app/models/blog-post';
 import { BlogPostService } from 'src/app/services/blog-post.service';
@@ -8,15 +8,14 @@ import { BlogPostService } from 'src/app/services/blog-post.service';
   templateUrl: './post-recommendation.component.html',
   styleUrls: ['./post-recommendation.component.css']
 })
-export class PostRecommendationComponent implements OnInit, OnDestroy {
+export class PostRecommendationComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() postId: number = 0;
+
+  isLoaded: boolean = false;
+  @Output() imageLoaded: EventEmitter<void> = new EventEmitter<void>();
 
   // properties
   post: BlogPost = new BlogPost();
-
-  // booleans
-  showAll: boolean = true;
-  showByYear: boolean = false;
 
   // subscriptions
   private blogPostSubscription: Subscription | undefined;
@@ -32,10 +31,25 @@ export class PostRecommendationComponent implements OnInit, OnDestroy {
     this.destroyAllSubscriptions();
   }
 
+  ngAfterViewInit() {
+    console.log('ngAfterViewInit in PostRecommendationComponent');
+    this.checkImageLoaded();
+  }
+
+  checkImageLoaded() {
+    const imgElement = new Image();
+    imgElement.onload = () => {
+      this.isLoaded = true;
+      this.imageLoaded.emit();
+    };
+    imgElement.src = this.post.imageUrl;
+  }
+
   subscribeToBlogPostIndexAll = () => {
     this.blogPostSubscription = this.blogPostService.find(this.postId).subscribe({
       next: (data: BlogPost) => {
         this.post = data;
+        this.checkImageLoaded();
       },
       error: (fail) => {
         console.error('Error retrieving blog post');

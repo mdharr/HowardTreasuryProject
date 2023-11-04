@@ -1,9 +1,12 @@
-<div class="body">
+<div class="post-body" *ngIf="isLoaded">
   <div [routerLink]="['/posts', post.id, 'comments']" class="post-wrapper">
     <div class="card">
       <div class="date-box"><span class="month-text">{{ post.createdAt | date:'MMM' }}</span><br><span class="day-text">{{ post.createdAt | date:'dd' }}</span></div>
-      <img class="post-image" src="{{ post.imageUrl }}" alt="">
+      <div class="post-image" style="background-image: url('{{ post.imageUrl }}');"></div>
       <div class="title-text">{{ post.title }}</div>
     </div>
   </div>
+</div>
+<div class="placeholder-wrapper" *ngIf="!isLoaded">
+  <div class="placeholder"></div>
 </div>

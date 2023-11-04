@@ -308,6 +308,41 @@
   width: 50%;
 }
 
+.recommended-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.posts-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.recommended-title-wrapper h3 {
+  font-family: var(--contentFontFamily);
+  font-size: var(--headerFontSize);
+  color: var(--red_milk);
+}
+
+.post-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.recommended-post {
+  flex: 0 0 calc(33.33% - 30px); /* Adjust this percentage to control the width of each post */
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+
+
 @media screen and (max-width: 1028px) {
   .main {
     flex-direction: column;
