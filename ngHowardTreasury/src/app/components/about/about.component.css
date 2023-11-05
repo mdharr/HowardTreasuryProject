@@ -17,7 +17,7 @@
 .home-image {
   width: 200px;
   height: auto;
-  box-shadow: 0 0 0 5px white;
+  box-shadow: 0 0 0 5px var(--red_milk);
 }
 
 .placeholder {

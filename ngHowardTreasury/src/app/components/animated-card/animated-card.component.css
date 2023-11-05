@@ -14,6 +14,7 @@ img {
   position: relative;
   transform-style: preserve-3d;
   transition: rotate var(--timing) ease;
+  border: 5px solid var(--red_milk);
 }
 
 .conan:hover {

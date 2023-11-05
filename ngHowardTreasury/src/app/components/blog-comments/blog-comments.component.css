@@ -70,12 +70,12 @@
 }
 
 .post-image-wrapper {
-  /* width: fit-content; */
   max-height: 300px;
   overflow: hidden;
   display:flex;
   align-items: center;
   justify-content: center;
+  border: 3px solid var(--red_milk);
 }
 
 .post-image {
@@ -171,6 +171,7 @@
   color: var(--black_color);
   font-family: var(--contentFontFamily);
   font-weight: 500;
+  border: 3px solid var(--red_milk);
 }
 
 button {
@@ -220,6 +221,7 @@ div p * {
 .recent-posts h1 {
   font-family: var(--contentFontFamily);
   color: var(--red_milk);
+  border-bottom: 1px solid var(--black_white);
 }
 
 .recent-posts-body {
