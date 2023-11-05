@@ -12,11 +12,32 @@
     <div class="title-container">
       <h1 class="title-text">Search Results</h1>
     </div>
+    <!-- PAGINATION START -->
+    <div class="pagination-wrapper" *ngIf="searchResultsCount > 0">
+      <div class="page-navigation">
+        <a class="pageNav-prev pageNav" *ngIf="currentPage > 1" (click)="goToPreviousPage()">Prev</a>
+        <a
+          class="pageNav-pages pageNav"
+          [ngClass]="{
+            'isCurrentPage': page === currentPage,
+            'notCurrentPage': page !== currentPage,
+            'custom-border': first
+          }"
+          *ngFor="let page of pages; let first = first"
+          (click)="page === -1 ? onJumpToPageDialog() : goToPage(page)"
+        >
+          <ng-container *ngIf="page === -1">...</ng-container>
+          <ng-container *ngIf="page !== -1">{{ page }}</ng-container>
+        </a>
+        <a class="pageNav-next pageNav" *ngIf="currentPage < totalPages" (click)="goToNextPage()">Next</a>
+      </div>
+    </div>
+    <!-- PAGINATION END -->
   </div>
 
   <div class="results-wrapper" *ngIf="hasResults">
-    <p class="results-count">{{ searchResultsCount > 1 ? 'About ' + searchResultsCount + ' results' : searchResultsCount === 1 ? searchResultsCount + ' result' : searchResultsCount + ' results match your query.' }}</p>
-    <ng-container *ngFor="let result of searchResults; let lastIndex = last">
+    <p class="results-count">{{ searchResultsCount > 1 ? 'About ' + searchResultsCount + ' results (viewing ' + viewingRangeStart + ' to ' + viewingRangeEnd + ')': searchResultsCount == 1 ? searchResultsCount + ' result' : searchResultsCount + ' results match your query.' }} </p>
+    <ng-container *ngFor="let result of searchResultsForPage; let lastIndex = last">
       <!-- <h2 class="type-header">{{ result.type === 'Person' ? 'Character' : result.type }}</h2> -->
       <div class="category" *ngIf="result.type === 'Collection'">
         <div class="category-wrapper">
@@ -44,7 +65,7 @@
           <div class="story-details">
             <h3 class="results-items" [routerLink]="['/stories', result.data.id]">{{ result.data.title }}</h3>
             <!-- Display other properties specific to the Story type -->
-            <p class="result-text" *ngIf="result.data.excerpt" [innerHtml]="result.data.description | truncate:300"></p>
+            <p class="result-text" *ngIf="result.data.excerpt" [innerHtml]="result.data.excerpt | truncate:300"></p>
           </div>
         </div>
         <!-- Add more properties as needed -->
@@ -99,8 +120,28 @@
   <div *ngIf="!hasResults">
     <p class="no-results-text">No results match your search query.</p>
   </div>
-  <div class="placeholder-container">
-
+  <div class="placeholder-container" *ngIf="searchResultsCount > 2">
+        <!-- PAGINATION START -->
+        <div class="pagination-wrapper">
+          <div class="page-navigation">
+            <a class="pageNav-prev pageNav" *ngIf="currentPage > 1" (click)="goToPreviousPage()">Prev</a>
+            <a
+              class="pageNav-pages pageNav"
+              [ngClass]="{
+                'isCurrentPage': page === currentPage,
+                'notCurrentPage': page !== currentPage,
+                'custom-border': first
+              }"
+              *ngFor="let page of pages; let first = first"
+              (click)="page === -1 ? onJumpToPageDialog() : goToPage(page)"
+            >
+              <ng-container *ngIf="page === -1">...</ng-container>
+              <ng-container *ngIf="page !== -1">{{ page }}</ng-container>
+            </a>
+            <a class="pageNav-next pageNav" *ngIf="currentPage < totalPages" (click)="goToNextPage()">Next</a>
+          </div>
+        </div>
+        <!-- PAGINATION END -->
   </div>
 </div>
 

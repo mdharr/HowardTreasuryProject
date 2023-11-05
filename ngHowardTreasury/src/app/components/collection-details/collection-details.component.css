@@ -422,6 +422,7 @@ ul li {
 }
 
 @media screen and (max-width: 969px) {
+
   .main {
     flex-direction: column;
     padding: 25px;
@@ -449,8 +450,9 @@ ul li {
     width: 100%;
   }
 
-  .amazon-link-wrapper {
-
+  .placeholder {
+    max-width: 200px;
+    max-height:302px;
   }
 
   .amazon-link-text {
@@ -545,7 +547,7 @@ ul li {
 
   .description-box {
     padding:10px;
-    padding-top: 30px;
+    padding-top: 5px;
   }
 
   .flair-img {

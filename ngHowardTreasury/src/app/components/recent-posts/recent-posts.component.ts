@@ -58,4 +58,8 @@ export class RecentPostsComponent implements OnInit, OnDestroy {
     let slicedPosts =  originalPosts.slice(originalPosts.length-4, originalPosts.length);
     return slicedPosts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   }
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
 }

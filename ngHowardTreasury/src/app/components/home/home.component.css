@@ -90,6 +90,8 @@ img.alignleft, .wp-caption.alignleft {
   font-style: italic;
   margin: 0;
   line-height: 1.2;
+  border-left: 2px solid var(--red_milk);
+  padding-left: 15px;
 }
 
 .quote-content .highlight {
@@ -299,7 +301,7 @@ app-excerpt-loop {
 
   .quote-content .quote {
     font-size: var(--body_font);
-    border-left: 2px solid var(--black_white);
+    border-left: 2px solid var(--red_milk);
     color: var(--black_white);
     padding-left: 15px;
   }

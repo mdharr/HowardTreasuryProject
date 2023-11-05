@@ -1,0 +1,39 @@
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: var(--bkg_color);
+  color: var(--black_white);
+}
+
+::ng-deep .mdc-text-field--no-label:not(.mdc-text-field--textarea) .mat-mdc-form-field-input-control.mdc-text-field__input, .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
+  color: var(--black_white);
+}
+
+::ng-deep .mat-dialog-content {
+  background-color: var(--bkg_color);
+  color: var(--black_white);
+}
+
+.jump-to-dialog-background {
+  background-color: var(--bkg_color);
+  color: var(--black_white);
+}
+
+.mat-mdc-dialog-title {
+  color: var(--black_white);
+}
+
+.mat-mdc-button {
+  color: var(--black_white);
+}
+
+p {
+  color: var(--black_white);
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: var(--bkg_color);
+  color: var(--black_white);
+}
+
+.mat-mdc-form-field:not(.mat-form-field-no-animations) .mdc-text-field__input {
+  color: var(--black_white);
+}

@@ -27,7 +27,7 @@
     <div class="recent-posts-body">
       <ng-container *ngFor="let post of recentPosts">
         <div class="recent-posts-items">
-          <a class="recent-posts-links" [routerLink]="['/posts', post.id, 'comments']">{{ post.title }}</a>
+          <a class="recent-posts-links" [routerLink]="['/posts', post.id, 'comments']" (click)="scrollToTop()">{{ post.title }}</a>
         </div>
       </ng-container>
     </div>

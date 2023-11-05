@@ -66,6 +66,7 @@ import { ExcerptLoopComponent } from './components/excerpt-loop/excerpt-loop.com
 import { PostRecommendationComponent } from './components/post-recommendation/post-recommendation.component';
 import { BlogPostEditComponent } from './components/blog-post-edit/blog-post-edit.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { JumpToPageDialogComponent } from './components/jump-to-page-dialog/jump-to-page-dialog.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +116,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     PostRecommendationComponent,
     BlogPostEditComponent,
     TruncatePipe,
+    JumpToPageDialogComponent,
   ],
   imports: [
     BrowserModule,

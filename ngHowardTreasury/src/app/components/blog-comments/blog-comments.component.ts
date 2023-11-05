@@ -293,4 +293,8 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
     return this.sanitizer.bypassSecurityTrustHtml(finalModifiedContent);
   }
 
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
 }

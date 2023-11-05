@@ -85,6 +85,7 @@ body {
   --milk_white: #eaead7;
   --border_color: #262626;
   --card_font_color: #262626;
+  --pagination_border: #26262672;
 }
 
 body.red-theme {
@@ -114,6 +115,7 @@ body.red-theme {
   --milk_white: #fff;
   --border_color: #ccc;
   --card_font_color: #CCCCCC;
+  --pagination_border: rgba(255, 255, 255, 0.492);
 }
 
 body.disable-scrolling {

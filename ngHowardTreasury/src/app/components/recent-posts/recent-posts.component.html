@@ -1,6 +1,6 @@
 <div class="body">
   <ng-container *ngFor="let post of recentPosts;">
-    <div [routerLink]="['/posts', post.id, 'comments']" class="post-wrapper">
+    <div [routerLink]="['/posts', post.id, 'comments']" class="post-wrapper" (click)="scrollToTop()">
       <div class="card">
         <div class="date-box"><span class="month-text">{{ post.createdAt | date:'MMM' }}</span><br><span class="day-text">{{ post.createdAt | date:'dd' }}</span></div>
         <div class="post-image" [style.background-image]="'url(' + post.imageUrl + ')'" [style.background-position]="'center'" [style.background-size]="'cover'"></div>
