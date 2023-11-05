@@ -52,6 +52,7 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngOnInit() {
       window.scrollTo(0, 0);
+      this.subscribeToAuth();
       this.subscribeToLoggedInObservable();
       this.subscribeToParams();
       this.subscribeToRecentBlogPosts();

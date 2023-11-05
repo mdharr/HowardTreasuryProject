@@ -386,6 +386,33 @@ ul li {
   cursor: pointer;
 }
 
+.placeholder {
+  width: 300px;
+  height: 453px;
+  aspect-ratio: 9 / 12;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  background-size: 200% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: sheen 1.5s infinite;
+}
+
+@keyframes sheen {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Add a loading indicator style */
+.is-loading {
+  opacity: 0.5; /* Dim the card when loading */
+  /* You can add more styles or animations for loading here */
+}
+
 @media screen and (max-width: 1050px) {
   .contents-box {
     flex:1;

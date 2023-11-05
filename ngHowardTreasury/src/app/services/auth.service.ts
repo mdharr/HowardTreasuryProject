@@ -79,11 +79,11 @@ export class AuthService {
   }
 
   getLoggedInUser(): Observable<User> {
-    if (!this.checkLogin()) {
-      return throwError(() => {
-        new Error('Not logged in.');
-      });
-    }
+    // if (!this.checkLogin()) {
+    //   return throwError(() => {
+    //     new Error('Not logged in.');
+    //   });
+    // }
     let httpOptions = {
       headers: {
         Authorization: 'Basic ' + this.getCredentials(),

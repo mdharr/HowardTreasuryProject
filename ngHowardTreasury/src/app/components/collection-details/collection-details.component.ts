@@ -16,14 +16,14 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
 
   // property initialization
   collectionId: number = 0;
-  // collection: Collection = new Collection();
   collection: CollectionWithStoriesDTO = new CollectionWithStoriesDTO();
   collectionImages!: CollectionImage[];
   collectionDescription: string = '';
 
   // booleans
-  isFullScreenImageVisible = false;
-  isLoaded = false;
+  isFullScreenImageVisible:boolean = false;
+  isLoaded:boolean = false;
+  loaded:boolean = false;
 
   // service injection
   auth = inject(AuthService);
@@ -64,6 +64,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
           this.collectionImages = data.collectionImages;
           this.collectionDescription = data.description;
           this.isLoaded = true;
+          this.checkImageLoaded();
         },
         error: (fail) => {
           console.error('Error getting collection');
@@ -82,6 +83,27 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
       this.collectionSubscription.unsubscribe();
     }
   }
+
+  ngAfterViewInit() {
+    console.log('ngAfterViewInit in PostRecommendationComponent');
+    this.checkImageLoaded();
+  }
+
+  checkImageLoaded() {
+    if (this.collectionImages && this.collectionImages.length > 0) {
+      const imgElement = new Image();
+      imgElement.onload = () => {
+        this.loaded = true;
+      };
+      imgElement.onerror = () => {
+        this.loaded = false;
+      };
+
+      // Set the src property of the Image object to the image URL
+      imgElement.src = this.collectionImages[0].imageUrl;
+    }
+  }
+
 
   createIlluminatedInitial = (text: string): string => {
     if (text.length === 0) {

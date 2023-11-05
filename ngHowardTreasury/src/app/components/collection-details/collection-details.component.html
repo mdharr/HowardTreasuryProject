@@ -81,14 +81,15 @@
     </div>
     <!-- Your Angular template -->
     <div class="collection-details-wrapper">
-      <div class="img-wrapper box with-drop-shadow">
+      <div class="img-wrapper">
         <img
           class="collection-image"
-          *ngIf="collectionImages && collectionImages.length > 0"
+          *ngIf="collectionImages && collectionImages.length > 0 && loaded"
           src="{{ collectionImages[0].imageUrl }}"
           alt="{{ collection.title | slice:0:15 }}"
           (click)="toggleFullScreenImage()"
         >
+        <div class="placeholder" *ngIf="!loaded"></div>
       </div>
       <div class="collection-details-box">
         <div>
