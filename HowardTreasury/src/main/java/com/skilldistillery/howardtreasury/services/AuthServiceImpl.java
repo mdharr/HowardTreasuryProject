@@ -1,6 +1,7 @@
 package com.skilldistillery.howardtreasury.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -48,13 +49,43 @@ public class AuthServiceImpl implements AuthService {
 	}
 
 	@Override
-	public User updateUser(User user) {
-		return null;
+	public User updateUser(User updatedUser, String username) {
+	    User user = userRepo.findByUsername(username);
+
+	    if (user != null) {
+	        user.setEmail(updatedUser.getEmail());
+	        user.setPassword(encoder.encode(user.getPassword()));
+	        user.setImageUrl(updatedUser.getImageUrl());
+
+	         userRepo.save(user);
+
+	        return user;
+	    } else {
+	        return null;
+	    }
+	}
+	
+	@Override
+	public User enable(User userToEnable) {
+	    if (userToEnable != null) {
+	        userToEnable.setEnabled(true);
+	        userRepo.save(userToEnable);
+	        return userToEnable;
+	    } else {
+	        return null;
+	    }
 	}
 
 	@Override
-	public User softDeleteUser(User user) {
-		return null;
+	public User disable(User userToDisable) {
+	    if (userToDisable != null) {
+	        userToDisable.setEnabled(false);
+	        userRepo.save(userToDisable);
+	        return userToDisable;
+	    } else {
+	    	return null;
+	    }
 	}
+
 
 }
