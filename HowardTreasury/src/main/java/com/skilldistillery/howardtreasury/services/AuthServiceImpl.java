@@ -24,8 +24,9 @@ public class AuthServiceImpl implements AuthService {
 	public User register(User user) {
 	    user.setPassword(encoder.encode(user.getPassword()));
 	    user.setEnabled(true);
-	    user.setRole("standard");
+	    user.setRole("STANDARD");
 	    user.setEmail(user.getEmail());
+	    user.setImageUrl(user.getImageUrl());
 	    
 	    // Save the user first to generate a user ID
 	    user = userRepo.saveAndFlush(user);

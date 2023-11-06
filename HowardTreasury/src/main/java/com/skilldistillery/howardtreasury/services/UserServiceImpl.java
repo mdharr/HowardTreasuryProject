@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService {
     	dto.setEnabled(user.getEnabled());
     	dto.setRole(user.getRole());
     	dto.setEmail(user.getEmail());
+    	dto.setImageUrl(user.getImageUrl());
         return dto;
     }
 }

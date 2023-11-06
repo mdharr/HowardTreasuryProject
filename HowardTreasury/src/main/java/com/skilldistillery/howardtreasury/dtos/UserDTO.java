@@ -8,16 +8,18 @@ public class UserDTO {
     private Boolean enabled;
     private String role;
     private String email;
+    private String imageUrl;
 	public UserDTO() {
 		super();
 	}
-	public UserDTO(int id, String username, Boolean enabled, String role, String email) {
+	public UserDTO(int id, String username, Boolean enabled, String role, String email, String imageUrl) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.enabled = enabled;
 		this.role = role;
 		this.email = email;
+		this.imageUrl = imageUrl;
 	}
 	public int getId() {
 		return id;
@@ -48,6 +50,12 @@ public class UserDTO {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 	@Override
 	public int hashCode() {
