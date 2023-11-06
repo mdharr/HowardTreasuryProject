@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginDialogComponent } from '../components/login-dialog/login-dialog.component';
 import { RegisterDialogComponent } from '../components/register-dialog/register-dialog.component';
 import { UserList } from '../models/user-list';
+import { User } from '../models/user';
+import { UpdateUserDialogComponent } from '../components/update-user-dialog/update-user-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +38,12 @@ export class DialogService {
     this.dialog.open(CreateUserListDialogComponent,{
       width: '400px',
       data: { userList: UserList }
+    });
+  }
+  openUserUpdateDialog(user: User) {
+    this.dialog.open(UpdateUserDialogComponent,{
+      width: '400px',
+      data: { user: User }
     });
   }
 }

@@ -1,3 +1,4 @@
+import { DialogService } from 'src/app/services/dialog.service';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, tap } from 'rxjs';
@@ -24,6 +25,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
     // service injection
     authService = inject(AuthService);
+    dialogService = inject(DialogService);
 
     ngOnInit(): void {
       window.scrollTo(0, 0);
@@ -59,5 +61,9 @@ export class UserProfileComponent implements OnInit, OnDestroy {
         console.log('Logged in user:', this.loggedInUser);
 
       });
+    }
+
+    openUpdateUserDialog(user: User) {
+      this.dialogService.openUserUpdateDialog(user);
     }
 }
