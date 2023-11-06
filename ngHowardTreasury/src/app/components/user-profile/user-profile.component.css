@@ -9,9 +9,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* background-color: var(--milk_white); */
-  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  border-radius: 6px; */
 }
 
 .profile-body {
@@ -244,4 +241,35 @@
 
 .breadcrumbnav a:hover {
   text-decoration: underline;
+}
+
+.placeholder {
+  min-width: 125px;
+  min-height: 125px;
+  height: 125px;
+  max-width: 150px;
+  max-height: 150px;
+  aspect-ratio: 9 / 12;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  background-size: 200% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: sheen 1.5s infinite;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+@keyframes sheen {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Add a loading indicator style */
+.is-loading {
+  opacity: 0.5; /* Dim the card when loading */
+  /* You can add more styles or animations for loading here */
 }

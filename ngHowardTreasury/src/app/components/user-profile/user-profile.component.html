@@ -12,17 +12,17 @@
         <div class="image-wrapper">
           <!-- <img *ngIf="loggedInUser.imageUrl" class="image-element" src="{{ loggedInUser.imageUrl }}" alt="{{ loggedInUser.username }} Pic">
           <img *ngIf="!loggedInUser.imageUrl" class="image-element" src="https://static.vecteezy.com/system/resources/thumbnails/010/260/479/small/default-avatar-profile-icon-of-social-media-user-in-clipart-style-vector.jpg" alt="{{ loggedInUser.username }} Pic"> -->
-          <div
-          *ngIf="loggedInUser.imageUrl"
-          class="image-element"
-          [style.background-image]="'url(' + loggedInUser.imageUrl + ')'"
-        >
-        </div>
-        <div
-          *ngIf="!loggedInUser.imageUrl"
-          class="image-element"
-          [style.background-image]="'url(https://static.vecteezy.com/system/resources/thumbnails/010/260/479/small/default-avatar-profile-icon-of-social-media-user-in-clipart-style-vector.jpg)'"
-        >
+          <div *ngIf="loggedInUser.imageUrl" style="display:none;">
+            <img
+              [src]="loggedInUser.imageUrl"
+              (load)="setImageUrl($event)"
+              style="display: none;"
+            >
+          </div>
+          <ng-container *ngIf="isLoaded">
+            <div class="image-element" [style.backgroundImage]="'url(' + loggedInUserImageUrl + ')'"></div>
+          </ng-container>
+          <div class="placeholder" *ngIf="!isLoaded"></div>
         </div>
         <div class="intro-wrapper">
           <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error eum quam natus officiis sit omnis velit quos, placeat quidem adipisci exercitationem? Quos laboriosam culpa natus quibusdam minima! Laudantium, neque distinctio.</p>

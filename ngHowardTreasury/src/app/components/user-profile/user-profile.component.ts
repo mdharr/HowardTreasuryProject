@@ -16,9 +16,11 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
     // property initialization
     loggedInUser: User = new User();
+    loggedInUserImageUrl: string = '';
 
     // booleans
     isLoggedIn: boolean = false;
+    isLoaded: boolean = false;
 
     // subscriptions
     private loggedInSubscription: Subscription | undefined;
@@ -70,4 +72,13 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     openUpdateUserDialog(user: User) {
       this.dialogService.openUserUpdateDialog(user);
     }
+
+    setImageUrl(event: Event) {
+      const imageElement = event.target as HTMLImageElement;
+      if (imageElement) {
+        this.loggedInUserImageUrl = imageElement.src;
+        this.isLoaded = true;
+      }
+    }
+
 }
