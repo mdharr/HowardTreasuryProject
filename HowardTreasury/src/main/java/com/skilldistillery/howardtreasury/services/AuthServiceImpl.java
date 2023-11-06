@@ -1,5 +1,7 @@
 package com.skilldistillery.howardtreasury.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -49,21 +51,35 @@ public class AuthServiceImpl implements AuthService {
 	}
 
 	@Override
-	public User updateUser(User updatedUser, String username) {
-	    User user = userRepo.findByUsername(username);
+	public User updateUser(User user, String username) {
+	    User userUpdate = userRepo.findByUsername(username);
 
-	    if (user != null) {
-	        user.setEmail(updatedUser.getEmail());
-	        user.setPassword(encoder.encode(user.getPassword()));
-	        user.setImageUrl(updatedUser.getImageUrl());
+	    if (userUpdate != null) {
+	    	if (user.getUsername() != null) {
+	    		userUpdate.setUsername(user.getUsername());
+	    	}
+	        if (user.getPassword() != null) {
+	            userUpdate.setPassword(encoder.encode(user.getPassword()));
+	        }
+	        if (user.getEnabled() != null) {
+	            userUpdate.setEnabled(user.getEnabled());
+	        }
+	        if (user.getRole() != null) {
+	        	userUpdate.setRole(user.getRole());
+	        }
+	        if (user.getEmail() != null) {
+	        	userUpdate.setEmail(user.getEmail());
+	        }
+	        if (user.getImageUrl() != null) {
+	        	userUpdate.setImageUrl(user.getImageUrl());
+	        }
 
-	         userRepo.save(user);
-
-	        return user;
+	        return userRepo.save(userUpdate);
 	    } else {
 	        return null;
 	    }
 	}
+
 	
 	@Override
 	public User enable(User userToEnable) {
@@ -77,14 +93,14 @@ public class AuthServiceImpl implements AuthService {
 	}
 
 	@Override
-	public User disable(User userToDisable) {
-	    if (userToDisable != null) {
-	        userToDisable.setEnabled(false);
-	        userRepo.save(userToDisable);
-	        return userToDisable;
-	    } else {
-	    	return null;
-	    }
+	public boolean disable(int id) {
+		Optional<User> userOpt = userRepo.findById(id);
+		if(userOpt.isPresent()) {
+			User user = userOpt.get();
+			user.setEnabled(false);
+			userRepo.saveAndFlush(user);		
+		}
+		return true;
 	}
 
 

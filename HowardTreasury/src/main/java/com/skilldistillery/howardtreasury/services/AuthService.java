@@ -8,6 +8,6 @@ public interface AuthService {
 	public User getUserByUsername(String username);
 	public User updateUser(User updatedUser, String username);
 	public User enable(User userToEnable);
-	public User disable(User userToDisable);
+	public boolean disable(int id);
 
 }
