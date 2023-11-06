@@ -131,3 +131,14 @@ textarea {
   cursor: pointer;
   color: var(--red_color);
 }
+
+.user-meta {
+  display:flex;
+  gap: 10px;
+}
+
+.user-image {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}

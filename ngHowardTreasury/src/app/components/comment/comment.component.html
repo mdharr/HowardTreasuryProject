@@ -1,7 +1,9 @@
 <div class="comment-section">
   <div class="comment" [ngClass]="{'parent-comment': replyDepth === 0}">
-
-    <p>{{ comment.user.username }} said</p>
+    <div class="user-meta">
+      <img class="user-image" src="{{ comment.user.imageUrl }}" alt="">
+      <p>{{ comment.user.username }} said</p>
+    </div>
     <div style="border-left: 2px solid var(--red_color);
     padding-left: 20px;">
       <p>{{ comment.hidden ? 'Comment deleted by user.' : comment.content }}</p>
