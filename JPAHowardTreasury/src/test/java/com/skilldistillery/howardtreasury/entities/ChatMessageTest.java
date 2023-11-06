@@ -55,7 +55,7 @@ class ChatMessageTest {
 	@Test
 	void test_ChatMessage_User_many_to_one_mapping() {
 		assertNotNull(chatMessage);
-		assertEquals("admin", chatMessage.getUser().getUsername());
+		assertEquals("Conan", chatMessage.getUser().getUsername());
 	}
 
 }

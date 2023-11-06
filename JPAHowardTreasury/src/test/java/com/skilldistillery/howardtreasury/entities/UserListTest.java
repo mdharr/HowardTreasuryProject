@@ -49,19 +49,19 @@ class UserListTest {
 	@Test
 	void test_UserList_entity_mapping() {
 		assertNotNull(userList);
-		assertEquals("King Kull Poems", userList.getName());
+		assertEquals("Favorites", userList.getName());
 	}
 	
 	@Test
 	void test_UserList_User_many_to_one_mapping() {
 		assertNotNull(userList);
-		assertEquals("Kull", userList.getUser().getUsername());
+		assertEquals("Conan", userList.getUser().getUsername());
 	}
 	
 	@Test
 	void test_UserList_Story_many_to_many_mapping() {
 		assertNotNull(userList2);
-		assertEquals("The Shadow Kingdom", userList2.getStories().get(0).getTitle());
+		assertEquals("The Altar and the Scorpion", userList2.getStories().get(0).getTitle());
 	}
 	
 	@Test
