@@ -4,7 +4,7 @@
     <span class="add-button">
       <button class="create-button" mat-button (click)="openCreateUserListDialog(newUserList)">
         <mat-icon class="create-icon">add_circle</mat-icon>
-        Create New List
+        Create
       </button>
     </span>
   </div>
@@ -82,7 +82,7 @@
           </div>
           <div class="buttons-container" [style.justify-content]="userList.name === 'Favorites' ? 'flex-end' : 'space-between'">
             <div *ngIf="userList.name != 'Favorites'">
-              <button mat-button (click)="deleteUserList(userList)" class="remove-button">Delete List</button>
+              <button mat-button (click)="deleteUserList(userList)" class="remove-button">Delete</button>
             </div>
             <div>
               <button mat-button (click)="removeSelectedItems(userList)" class="remove-button">Remove Selected</button>

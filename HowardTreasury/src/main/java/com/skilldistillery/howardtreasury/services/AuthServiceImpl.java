@@ -47,4 +47,14 @@ public class AuthServiceImpl implements AuthService {
 		return userRepo.findByUsername(username);
 	}
 
+	@Override
+	public User updateUser(User user) {
+		return null;
+	}
+
+	@Override
+	public User softDeleteUser(User user) {
+		return null;
+	}
+
 }
