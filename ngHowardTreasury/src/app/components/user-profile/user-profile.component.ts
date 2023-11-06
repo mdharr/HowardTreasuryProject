@@ -5,6 +5,7 @@ import { Subscription, tap } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserlistService } from 'src/app/services/userlist.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -25,6 +26,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
     // service injection
     authService = inject(AuthService);
+    userService = inject(UserService);
     dialogService = inject(DialogService);
 
     ngOnInit(): void {
@@ -39,6 +41,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
           console.log('Error getting loggedInUser Profile Component');
           console.log(error);
         },
+      });
+
+      this.userService.userUpdated$.subscribe(user => {
+        this.loggedInUser = user;
       });
     }
 
@@ -58,8 +64,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     subscribeToLoggedInObservable() {
       this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
         this.loggedInUser = user;
-        console.log('Logged in user:', this.loggedInUser);
-
       });
     }
 

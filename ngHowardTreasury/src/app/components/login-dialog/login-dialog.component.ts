@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { UserlistService } from 'src/app/services/userlist.service';
 import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -15,6 +16,7 @@ export class LoginDialogComponent {
 
   dialogRef = inject(MatDialogRef<LoginDialogComponent>);
   auth = inject(AuthService);
+  userService = inject(UserService);
   snackBar = inject(MatSnackBar);
   userListService = inject(UserlistService);
   cdr = inject(ChangeDetectorRef);
@@ -31,6 +33,8 @@ export class LoginDialogComponent {
           panelClass: ['mat-toolbar', 'mat-primary'],
           verticalPosition: 'bottom'
         });
+        // Notify the UserService about the successful login
+        this.userService.updateUser(loggedInUser);
       },
       error: (fail) => {
         console.error('Login fail');

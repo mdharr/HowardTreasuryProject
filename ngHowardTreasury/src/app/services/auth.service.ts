@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   updateUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.url}users/update`, user, this.getHttpOptions()).pipe(
+    return this.http.put<User>(`${this.url}users/update`, user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -69,11 +69,11 @@ export class AuthService {
     };
 
     return this.http.get<User>(`${this.url}authenticate`, httpOptions).pipe(
-      tap((newUser) => {
+      tap((user) => {
         localStorage.setItem('credentials', credentials);
         this.loggedIn.next(true);
-        this.loggedInUser = newUser;
-        this.loggedInUserSubject.next(newUser);
+        this.loggedInUser = user;
+        this.loggedInUserSubject.next(user);
       })
     );
   }

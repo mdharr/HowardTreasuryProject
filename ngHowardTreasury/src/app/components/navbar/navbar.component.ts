@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { AfterViewInit, Component, HostListener, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 
 import {
@@ -59,36 +60,29 @@ export class NavbarComponent implements OnInit, OnDestroy {
   modalService = inject(NgbModal);
   renderer = inject(Renderer2);
   dialogService = inject(DialogService);
+  userService = inject(UserService);
   searchService = inject(SearchService);
   searchResultsService = inject(SearchResultsService);
 
   ngOnInit(): void {
-    this.subscribeToLoggedInObservable();
+    if (this.loggedIn()) {
+      this.subscribeToLoggedInObservable();
 
-    // potentially unnecessary code, clean up later
-    // this.authService.getCurrentLoggedInUser().subscribe((user: User) => {
-    //   this.loggedInUser = user;
-    // });
+      this.loggedInUserSubscription = this.authService.getLoggedInUser().pipe(
+        tap(user => {
+          this.loggedInUser = user;
+        })
+      ).subscribe({
+        error: (error) => {
+          console.log('Error getting loggedInUser Profile Component');
+          console.log(error);
+        },
+      });
+    }
 
-    // this.authService.getLoggedInUser().subscribe({
-    //   next: (user) => {
-    //     this.loggedInUser = user;
-    //   },
-    //   error: (error) => {
-    //     console.log('Error getting loggedInUser');
-    //     console.log(error);
-    //   },
-    // });
-
-    this.loggedInUserSubscription = this.authService.getLoggedInUser().pipe(
-      tap(user => {
-        this.loggedInUser = user;
-      })
-    ).subscribe({
-      error: (error) => {
-        console.log('Error getting loggedInUser Profile Component');
-        console.log(error);
-      },
+    // Subscribe to userUpdated$ from the UserService to update the user in the NavbarComponent
+    this.userService.userUpdated$.subscribe(user => {
+      this.loggedInUser = user;
     });
   }
 
