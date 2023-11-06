@@ -9,6 +9,7 @@ export class User {
   enabled: boolean;
   role: string;
   email: string;
+  imageUrl: string;
   userLists: UserList[];
 
   constructor(
@@ -19,6 +20,7 @@ export class User {
     enabled: boolean = false,
     role: string = '',
     email: string = '',
+    imageUrl: string = '',
     userLists: UserList[] = []
   ) {
     this.id = id;
@@ -28,6 +30,7 @@ export class User {
     this.enabled = enabled;
     this.role = role;
     this.email = email;
+    this.imageUrl = imageUrl;
     this.userLists = userLists;
   }
 }
