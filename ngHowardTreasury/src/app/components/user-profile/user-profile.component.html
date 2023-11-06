@@ -3,31 +3,60 @@
 </ol>
 
 <div class="main">
-  <div class="account-info-wrapper">
-    <div class="title-wrapper">
-      <p class="title-text">ACCOUNT DETAILS</p>
-    </div>
-    <div class="details-wrapper">
-      <div class="details-text">
-        <p><strong>Username:</strong> {{ loggedInUser.username }}</p>
-        <p><strong>Email:</strong> {{ loggedInUser.email }}</p>
-        <p><strong>Role:</strong> {{ loggedInUser.role }}</p>
+  <div class="profile-image">
+    <div class="profile-body">
+      <div class="title-wrapper">
+        <p class="title-text">ABOUT ME</p>
+      </div>
+      <div class="description-wrapper">
+        <div class="image-wrapper">
+          <!-- <img *ngIf="loggedInUser.imageUrl" class="image-element" src="{{ loggedInUser.imageUrl }}" alt="{{ loggedInUser.username }} Pic">
+          <img *ngIf="!loggedInUser.imageUrl" class="image-element" src="https://static.vecteezy.com/system/resources/thumbnails/010/260/479/small/default-avatar-profile-icon-of-social-media-user-in-clipart-style-vector.jpg" alt="{{ loggedInUser.username }} Pic"> -->
+          <div
+          *ngIf="loggedInUser.imageUrl"
+          class="image-element"
+          [style.background-image]="'url(' + loggedInUser.imageUrl + ')'"
+        >
+        </div>
+        <div
+          *ngIf="!loggedInUser.imageUrl"
+          class="image-element"
+          [style.background-image]="'url(https://static.vecteezy.com/system/resources/thumbnails/010/260/479/small/default-avatar-profile-icon-of-social-media-user-in-clipart-style-vector.jpg)'"
+        >
+        </div>
+        <div class="intro-wrapper">
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error eum quam natus officiis sit omnis velit quos, placeat quidem adipisci exercitationem? Quos laboriosam culpa natus quibusdam minima! Laudantium, neque distinctio.</p>
+        </div>
       </div>
     </div>
-    <div class="edit-account-wrapper">
-      <p class="title-text">EDIT ACCOUNT</p>
-    </div>
-    <div class="edit-wrapper">
-      <button mat-button class="edit-button">Edit</button>
-    </div>
-    <div class="delete-account-wrapper">
-      <p class="title-text">TERMINATE ACCOUNT</p>
-    </div>
-    <div class="delete-wrapper">
-      <button mat-button class="delete-button">Delete</button>
-    </div>
   </div>
-  <div class="userlists-wrapper">
-    <app-user-lists></app-user-lists>
+  <div class="account-userlists">
+    <div class="account-info-wrapper">
+      <div class="title-wrapper">
+        <p class="title-text">ACCOUNT DETAILS</p>
+      </div>
+      <div class="details-wrapper">
+        <div class="details-text">
+          <p><strong>Username:</strong> {{ loggedInUser.username }}</p>
+          <p><strong>Email:</strong> {{ loggedInUser.email }}</p>
+          <p><strong>Role:</strong> {{ loggedInUser.role }}</p>
+        </div>
+      </div>
+      <div class="edit-account-wrapper">
+        <p class="title-text">EDIT ACCOUNT</p>
+      </div>
+      <div class="edit-wrapper">
+        <button mat-button class="edit-button">Edit</button>
+      </div>
+      <div class="delete-account-wrapper">
+        <p class="title-text">TERMINATE ACCOUNT</p>
+      </div>
+      <div class="delete-wrapper">
+        <button mat-button class="delete-button">Delete</button>
+      </div>
+    </div>
+    <div class="userlists-wrapper">
+      <app-user-lists></app-user-lists>
+    </div>
   </div>
 </div>
