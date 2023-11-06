@@ -14,30 +14,13 @@
         <input type="email" class="text" name="email" [(ngModel)]="newUser.email" placeholder="Email" tabindex="1" required />
       </label>
     </div>
-    <div class="form-group">
-      <label class="label-email">
-        <span class="required">Username</span>
-        <input type="text" class="text" name="username" [(ngModel)]="newUser.username" placeholder="Username" tabindex="1" required />
-      </label>
-    </div>
-    <div class="form-group">
-      <label class="label-password">
-        <span class="required">Password</span>
-        <input type="password" id="password" class="text" name="password" [(ngModel)]="newUser.password" placeholder="Password" tabindex="2" required />
-      </label>
-    </div>
-    <div class="form-group">
-      <label class="label-password">
-        <span class="required">Confirm Password</span>
-        <input type="password" id="confirmPassword" class="text" name="confirmPassword" [(ngModel)]="newUser.confirmPassword" placeholder="Confirm Password" tabindex="3" required />
-      </label>
-    </div>
+
     <div class="form-group">
       <label class="label-image">
         <span class="required">Profile Image</span>
         <input type="text" class="text" name="imageUrl" [(ngModel)]="newUser.imageUrl" placeholder="Profile Image Url" tabindex="1" required />
       </label>
     </div>
-    <button id="registerFormBtn" type="button" (click)="register(newUser)">Register</button>
+    <button id="registerFormBtn" type="button" (click)="update(newUser)">Update</button>
   </form>
 </div>

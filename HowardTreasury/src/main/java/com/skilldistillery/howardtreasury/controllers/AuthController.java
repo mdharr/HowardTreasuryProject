@@ -45,7 +45,7 @@ public class AuthController {
 	  return authService.getUserByUsername(principal.getName());
 	}
 	
-	@PutMapping("users")
+	@PutMapping("users/update")
 	public ResponseEntity<User> updateUser(@RequestBody User user, Principal principal, HttpServletResponse res) {
 	    if (user == null) {
 	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

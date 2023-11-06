@@ -48,8 +48,8 @@ export class AuthService {
     return this.http.post<User>(`${this.url}register`, user);
   }
 
-  update(user: User): Observable<User> {
-    return this.http.post<User>(`${this.url}users`, user, this.getHttpOptions()).pipe(
+  updateUser(user: User): Observable<User> {
+    return this.http.post<User>(`${this.url}users/update`, user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

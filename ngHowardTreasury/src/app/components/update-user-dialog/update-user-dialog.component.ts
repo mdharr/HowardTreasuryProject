@@ -23,23 +23,6 @@ export class UpdateUserDialogComponent {
   router = inject(Router);
   dialogRef = inject(MatDialogRef<RegisterDialogComponent>);
   snackBar = inject(MatSnackBar);
-  userListService = inject(UserlistService);
-
-  register(newUser: User): void {
-    console.log('Registering user:');
-    console.log(newUser);
-    if (newUser.password !== newUser.confirmPassword) {
-      // Password and confirmPassword do not match
-      console.log("Passwords do not match");
-      this.snackBar.open('Passwords do not match', 'Dismiss', {
-        duration: 4000,
-        panelClass: ['mat-toolbar', 'mat-primary'],
-        verticalPosition: 'bottom'
-      });
-      return;
-    }
-    this.subscribeToAuth();
-  }
 
   dismissDialog() {
     this.dialogRef.close();
@@ -53,34 +36,23 @@ export class UpdateUserDialogComponent {
     this.destroySubscriptions();
   }
 
-  subscribeToAuth = () => {
-    this.authSubscription = this.auth.register(this.newUser).subscribe({
-      next: (registeredUser) => {
-        this.auth.login(this.newUser.username, this.newUser.password).subscribe({
-          next: (loggedInUser) => {
-            this.userListService.loadUserLists();
-            this.dialogRef.close();
-            this.router.navigateByUrl('/');
-            this.snackBar.open('Success! Welcome ' + this.capitalizeFirstLetter(this.newUser.username), 'Dismiss', {
-              duration: 4000,
-              panelClass: ['mat-toolbar', 'mat-primary'],
-              verticalPosition: 'bottom'
-            });
-          },
-          error: (problem) => {
-            console.error('RegisterComponent.register(): Error logging in user:');
-            console.error(problem);
-            this.snackBar.open('Signup unsuccessful', 'Dismiss', {
-              duration: 4000,
-              panelClass: ['mat-toolbar', 'mat-primary'],
-              verticalPosition: 'bottom'
-            });
-          }
+  update(user: User) {
+    this.authSubscription = this.auth.updateUser(user).subscribe({
+      next: (data) => {
+        this.dialogRef.close();
+        this.snackBar.open('Update successful', 'Dismiss', {
+          duration: 4000,
+          panelClass: ['mat-toolbar', 'mat-primary'],
+          verticalPosition: 'bottom'
         });
       },
-      error: (fail) => {
-        console.error('RegisterComponent.register(): Error registering account');
-        console.error(fail);
+      error: (err) => {
+        console.error(err);
+        this.snackBar.open('Update unsuccessful', 'Dismiss', {
+          duration: 4000,
+          panelClass: ['mat-toolbar', 'mat-primary'],
+          verticalPosition: 'bottom'
+        });
       }
     });
   }
