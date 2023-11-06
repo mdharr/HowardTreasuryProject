@@ -26,6 +26,16 @@ export class AuthService {
     this.checkLoggedInStatus();
   }
 
+  getHttpOptions() {
+    let options = {
+      headers: {
+        Authorization: 'Basic ' + this.getCredentials(),
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    };
+    return options;
+  }
+
   private checkLoggedInStatus() {
     const credentials = localStorage.getItem('credentials');
     if (credentials) {
@@ -34,20 +44,19 @@ export class AuthService {
     }
   }
 
-  // private fetchLoggedInUser() {
-  //   return this.http.get<User>(`${this.url}authenticate`).subscribe({
-  //     next: (newUser) => {
-  //       this.loggedInUser = newUser;
-  //       this.loggedInUserSubject.next(newUser);
-  //     },
-  //     error: (error) => {
-  //       console.log(error);
-  //     }
-  //   });
-  // }
-
   register(user: User): Observable<User> {
     return this.http.post<User>(`${this.url}register`, user);
+  }
+
+  update(user: User): Observable<User> {
+    return this.http.post<User>(`${this.url}users`, user, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error( 'AuthService.update(): error updating user: ' + err )
+        );
+      })
+    );
   }
 
   login(username: string, password: string): Observable<User> {
@@ -79,11 +88,6 @@ export class AuthService {
   }
 
   getLoggedInUser(): Observable<User> {
-    // if (!this.checkLogin()) {
-    //   return throwError(() => {
-    //     new Error('Not logged in.');
-    //   });
-    // }
     let httpOptions = {
       headers: {
         Authorization: 'Basic ' + this.getCredentials(),
