@@ -3,6 +3,7 @@ package com.skilldistillery.howardtreasury.entities;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +32,9 @@ public class User {
 	private String role;
 	
 	private String email;
+	
+	@Column(name = "image_url")
+	private String imageUrl;
 	
 	@OneToMany(mappedBy = "user")
 	private List<UserList> userLists;
@@ -65,7 +69,7 @@ public class User {
 	}
 	
 	public User(int id, String username, String password, Boolean enabled, String role, String email,
-			List<UserList> userLists, List<BlogPost> blogPosts, List<BlogComment> comments,
+			String imageUrl, List<UserList> userLists, List<BlogPost> blogPosts, List<BlogComment> comments,
 			List<ChatMessage> chatMessages, List<ChatRoom> ownedChatRooms, List<ChatRoom> chatRooms) {
 		super();
 		this.id = id;
@@ -74,6 +78,7 @@ public class User {
 		this.enabled = enabled;
 		this.role = role;
 		this.email = email;
+		this.imageUrl = imageUrl;
 		this.userLists = userLists;
 		this.blogPosts = blogPosts;
 		this.comments = comments;
@@ -128,6 +133,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public List<UserList> getUserLists() {
