@@ -5,6 +5,7 @@ export class BlogComment {
   id: number;
   content: string;
   createdAt: string;
+  updatedAt: string;
   user: User;
   blogPost: BlogPost;
   parentComment?: BlogComment | null;
@@ -15,6 +16,7 @@ export class BlogComment {
     id: number = 0,
     content: string = '',
     createdAt: string = '',
+    updatedAt: string = '',
     user: User = new User(),
     blogPost: BlogPost = new BlogPost(),
     parentComment: BlogComment = new BlogComment(),
@@ -24,6 +26,7 @@ export class BlogComment {
     this.id = id;
     this.content = content;
     this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
     this.user = user;
     this.blogPost = blogPost;
     this.parentComment = parentComment;

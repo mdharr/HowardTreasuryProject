@@ -7,6 +7,7 @@ export class BlogPost {
   title: string;
   content: string;
   createdAt: string;
+  updatedAt: string;
   user: User;
   comments: BlogComment[];
   hidden: boolean;
@@ -17,6 +18,7 @@ export class BlogPost {
     title: string = '',
     content: string = '',
     createdAt: string = '',
+    updatedAt: string = '',
     user: User = new User(),
     comments: BlogComment[] = [],
     hidden: boolean = false,
@@ -26,6 +28,7 @@ export class BlogPost {
     this.title = title;
     this.content = content;
     this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
     this.user = user;
     this.comments = comments;
     this.hidden = hidden;
