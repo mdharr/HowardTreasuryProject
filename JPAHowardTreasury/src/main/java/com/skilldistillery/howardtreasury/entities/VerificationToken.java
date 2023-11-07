@@ -21,6 +21,7 @@ public class VerificationToken {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "token", unique = true)
     private String token;
 
     @Column(name="expiry_date")
@@ -77,6 +78,10 @@ public class VerificationToken {
 
 	public static int getExpiration() {
 		return EXPIRATION;
+	}
+	
+	public boolean isExpired() {
+	    return LocalDateTime.now().isAfter(expiryDate);
 	}
 
 	@Override

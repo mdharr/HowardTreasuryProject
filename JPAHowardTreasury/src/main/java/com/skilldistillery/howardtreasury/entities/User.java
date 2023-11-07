@@ -3,8 +3,10 @@ package com.skilldistillery.howardtreasury.entities;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,9 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class User {
@@ -63,6 +65,9 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "chat_room_id")
     )
     private List<ChatRoom> chatRooms;
+	
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private VerificationToken verificationToken;
 
 	public User() {
 		super();
@@ -70,7 +75,8 @@ public class User {
 	
 	public User(int id, String username, String password, Boolean enabled, String role, String email,
 			String imageUrl, List<UserList> userLists, List<BlogPost> blogPosts, List<BlogComment> comments,
-			List<ChatMessage> chatMessages, List<ChatRoom> ownedChatRooms, List<ChatRoom> chatRooms) {
+			List<ChatMessage> chatMessages, List<ChatRoom> ownedChatRooms, List<ChatRoom> chatRooms,
+			VerificationToken verificationToken) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -85,6 +91,7 @@ public class User {
 		this.chatMessages = chatMessages;
 		this.ownedChatRooms = ownedChatRooms;
 		this.chatRooms = chatRooms;
+		this.verificationToken = verificationToken;
 	}
 
 	public int getId() {
@@ -189,6 +196,14 @@ public class User {
 
 	public void setChatRooms(List<ChatRoom> chatRooms) {
 		this.chatRooms = chatRooms;
+	}
+
+	public VerificationToken getVerificationToken() {
+		return verificationToken;
+	}
+
+	public void setVerificationToken(VerificationToken verificationToken) {
+		this.verificationToken = verificationToken;
 	}
 
 	@Override
