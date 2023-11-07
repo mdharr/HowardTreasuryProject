@@ -1,7 +1,9 @@
 package com.skilldistillery.howardtreasury.entities;
 
-import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,18 +27,23 @@ public class VerificationToken {
     private String token;
 
     @Column(name="expiry_date")
-    private LocalDateTime expiryDate;
+    private Date expiryDate;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
-
+	
 	public VerificationToken() {
-		super();
-		// TODO Auto-generated constructor stub
+        this.token = UUID.randomUUID().toString();
+        this.expiryDate = calculateExpiryDate(EXPIRATION);
 	}
+	
+    public VerificationToken(User user) {
+        this();
+        this.user = user;
+    }
 
-	public VerificationToken(Long id, String token, LocalDateTime expiryDate, User user) {
+	public VerificationToken(Long id, String token, Date expiryDate, User user) {
 		super();
 		this.id = id;
 		this.token = token;
@@ -60,11 +67,11 @@ public class VerificationToken {
 		this.token = token;
 	}
 
-	public LocalDateTime getExpiryDate() {
+	public Date getExpiryDate() {
 		return expiryDate;
 	}
 
-	public void setExpiryDate(LocalDateTime expiryDate) {
+	public void setExpiryDate(Date expiryDate) {
 		this.expiryDate = expiryDate;
 	}
 
@@ -80,8 +87,10 @@ public class VerificationToken {
 		return EXPIRATION;
 	}
 	
-	public boolean isExpired() {
-	    return LocalDateTime.now().isAfter(expiryDate);
+	private Date calculateExpiryDate(int expiryTimeInMinutes) {
+	    Calendar cal = Calendar.getInstance();
+	    cal.add(Calendar.MINUTE, expiryTimeInMinutes);
+	    return cal.getTime();
 	}
 
 	@Override

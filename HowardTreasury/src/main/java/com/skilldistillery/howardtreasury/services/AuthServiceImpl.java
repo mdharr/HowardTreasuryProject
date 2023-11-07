@@ -23,6 +23,9 @@ public class AuthServiceImpl implements AuthService {
 	@Autowired
 	private UserListService userListService;
 	
+	@Autowired
+	private EmailService emailService;
+	
 	@Override
 	public User register(User user) {
 	    user.setPassword(encoder.encode(user.getPassword()));
@@ -41,6 +44,18 @@ public class AuthServiceImpl implements AuthService {
 	    
 	    // Save the user list
 	    userListService.create(user.getUsername(), userList);
+	    
+	    // Generate verification token after saving the user
+	    String token = tokenService.createVerificationToken(user);
+
+	    // Construct the verification email
+	    String recipientAddress = user.getEmail();
+	    String subject = "Registration Confirmation";
+	    String confirmationUrl = "http://yourfrontendapp.com/verify?token=" + token;
+	    String message = "To confirm your e-mail address, please click the link below:\n" + confirmationUrl;
+
+	    // Send the verification email
+	    emailService.sendVerificationEmail(recipientAddress, subject, message);
 	    
 	    return user;
 	}
