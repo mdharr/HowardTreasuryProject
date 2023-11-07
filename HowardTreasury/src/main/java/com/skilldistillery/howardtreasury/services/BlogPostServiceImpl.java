@@ -1,5 +1,6 @@
 package com.skilldistillery.howardtreasury.services;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -73,7 +74,10 @@ public class BlogPostServiceImpl implements BlogPostService {
 
 			if (existingBlogPost.getUser().getUsername().equals(username)) {
 				existingBlogPost.setTitle(blogPost.getTitle());
-				existingBlogPost.setContent(blogPost.getContent());
+				if(!existingBlogPost.getContent().equals(blogPost.getContent())) {
+					existingBlogPost.setContent(blogPost.getContent());
+					existingBlogPost.setUpdatedAt(LocalDateTime.now());
+				}
 				existingBlogPost.setImageUrl(blogPost.getImageUrl());
 				return blogPostRepo.save(existingBlogPost);
 			} else {
