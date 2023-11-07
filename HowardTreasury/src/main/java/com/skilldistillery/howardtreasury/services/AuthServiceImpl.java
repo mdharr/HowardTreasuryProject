@@ -26,10 +26,13 @@ public class AuthServiceImpl implements AuthService {
 	@Autowired
 	private EmailService emailService;
 	
+	@Autowired
+	private VerificationTokenService tokenService;
+	
 	@Override
 	public User register(User user) {
 	    user.setPassword(encoder.encode(user.getPassword()));
-	    user.setEnabled(true);
+	    user.setEnabled(false);
 	    user.setRole("STANDARD");
 	    user.setEmail(user.getEmail());
 	    user.setImageUrl(user.getImageUrl());
@@ -51,7 +54,7 @@ public class AuthServiceImpl implements AuthService {
 	    // Construct the verification email
 	    String recipientAddress = user.getEmail();
 	    String subject = "Registration Confirmation";
-	    String confirmationUrl = "http://yourfrontendapp.com/verify?token=" + token;
+	    String confirmationUrl = "http://localhost:8093/verify?token=" + token;
 	    String message = "To confirm your e-mail address, please click the link below:\n" + confirmationUrl;
 
 	    // Send the verification email

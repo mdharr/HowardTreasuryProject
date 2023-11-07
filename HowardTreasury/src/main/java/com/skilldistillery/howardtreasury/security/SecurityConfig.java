@@ -50,6 +50,7 @@ public class SecurityConfig {
         .antMatchers(HttpMethod.GET, "/api/posts/*/comments").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/illustrators").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/illustrators/*").permitAll()     // will hit the OPTIONS on the route
+        .antMatchers("/register").permitAll()
         .antMatchers("/api/**").authenticated() // Requests for our REST API must be authorized.
         .anyRequest().permitAll()               // All other requests are allowed without authentication.
         .and()

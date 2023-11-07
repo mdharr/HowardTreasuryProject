@@ -1,6 +1,7 @@
 package com.skilldistillery.howardtreasury.controllers;
 
 import java.security.Principal;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,10 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.howardtreasury.entities.User;
+import com.skilldistillery.howardtreasury.entities.VerificationToken;
 import com.skilldistillery.howardtreasury.services.AuthService;
+import com.skilldistillery.howardtreasury.services.VerificationTokenService;
 
 @RestController
 @CrossOrigin({"*", "http://localhost"})
@@ -24,6 +28,9 @@ public class AuthController {
 	
   @Autowired
   private AuthService authService;
+  
+  @Autowired
+  private VerificationTokenService verificationTokenService;
   
 	@PostMapping("register")
 	public User register(@RequestBody User user, HttpServletResponse res) {
@@ -57,6 +64,21 @@ public class AuthController {
 	    } catch (Exception e) {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 	    }
+	}
+	
+	// Add the following endpoint to handle email verification
+	@GetMapping("verify")
+	public ResponseEntity<String> verifyAccount(@RequestParam("token") String token) {
+	    VerificationToken verificationToken = verificationTokenService.getVerificationToken(token);
+	    if (verificationToken == null || verificationToken.getExpiryDate().before(new Date())) {
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Token is invalid or expired");
+	    }
+	    User user = verificationToken.getUser();
+	    if (user == null) {
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No user associated with this token");
+	    }
+	    authService.enable(user);
+	    return ResponseEntity.ok("Account verified successfully!");
 	}
 
 }
