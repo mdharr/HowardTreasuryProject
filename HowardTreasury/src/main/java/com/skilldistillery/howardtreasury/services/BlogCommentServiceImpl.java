@@ -85,11 +85,7 @@ public class BlogCommentServiceImpl implements BlogCommentService {
             BlogComment existingBlogComment = blogCommentOpt.get();
             
             if (existingBlogComment.getUser().getUsername().equals(username)) {
-            	if(!existingBlogComment.getContent().equals(updatedComment.getContent())) {
-        			existingBlogComment.setContent(updatedComment.getContent());
-        			existingBlogComment.setUpdatedAt(LocalDateTime.now());
-            	}
-//                existingBlogComment.setContent(updatedComment.getContent()); // Update the content of the existing comment.
+            	existingBlogComment.setContent(updatedComment.getContent());
                 return blogCommentRepo.save(existingBlogComment); // Save the existing comment with updated content.
             } else {
                 return null;
@@ -153,6 +149,7 @@ public class BlogCommentServiceImpl implements BlogCommentService {
         dto.setId(blogComment.getId());
         dto.setContent(blogComment.getContent());
         dto.setCreatedAt(blogComment.getCreatedAt());
+        dto.setUpdatedAt(blogComment.getUpdatedAt());
         dto.setUser(userService.mapUserToDTO(blogComment.getUser()));
         dto.setHidden(blogComment.isHidden());
 
@@ -175,6 +172,7 @@ public class BlogCommentServiceImpl implements BlogCommentService {
         commentDTO.setId(comment.getId());
         commentDTO.setContent(comment.getContent());
         commentDTO.setCreatedAt(comment.getCreatedAt());
+        commentDTO.setUpdatedAt(comment.getUpdatedAt());
         commentDTO.setUser(userService.mapUserToDTO(comment.getUser()));
         commentDTO.setHidden(comment.isHidden());
 
@@ -199,6 +197,7 @@ public class BlogCommentServiceImpl implements BlogCommentService {
         commentDTO.setId(comment.getId());
         commentDTO.setContent(comment.getContent());
         commentDTO.setCreatedAt(comment.getCreatedAt());
+        commentDTO.setUpdatedAt(comment.getUpdatedAt());
         commentDTO.setUser(userService.mapUserToDTO(comment.getUser()));
         commentDTO.setHidden(comment.isHidden());
         return commentDTO;

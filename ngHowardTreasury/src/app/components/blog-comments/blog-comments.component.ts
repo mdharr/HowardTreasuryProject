@@ -299,4 +299,15 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
     window.scrollTo(0, 0);
   }
 
+  scrollToNestedComments() {
+    const element = document.getElementById('comment-section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  scrollToElementButtonClicked() {
+    this.scrollToNestedComments(); // Call the scroll method
+  }
+
 }

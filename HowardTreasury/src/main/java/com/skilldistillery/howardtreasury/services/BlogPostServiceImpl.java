@@ -74,10 +74,7 @@ public class BlogPostServiceImpl implements BlogPostService {
 
 			if (existingBlogPost.getUser().getUsername().equals(username)) {
 				existingBlogPost.setTitle(blogPost.getTitle());
-				if(!existingBlogPost.getContent().equals(blogPost.getContent())) {
-					existingBlogPost.setContent(blogPost.getContent());
-					existingBlogPost.setUpdatedAt(LocalDateTime.now());
-				}
+				existingBlogPost.setContent(blogPost.getContent());
 				existingBlogPost.setImageUrl(blogPost.getImageUrl());
 				return blogPostRepo.save(existingBlogPost);
 			} else {
@@ -135,6 +132,7 @@ public class BlogPostServiceImpl implements BlogPostService {
 		dto.setTitle(blogPost.getTitle());
 		dto.setContent(blogPost.getContent());
 		dto.setCreatedAt(blogPost.getCreatedAt());
+		dto.setUpdatedAt(blogPost.getUpdatedAt());
 		dto.setHidden(blogPost.getHidden());
 		dto.setImageUrl(blogPost.getImageUrl());
 
@@ -159,6 +157,7 @@ public class BlogPostServiceImpl implements BlogPostService {
 		commentDTO.setId(comment.getId());
 		commentDTO.setContent(comment.getContent());
 		commentDTO.setCreatedAt(comment.getCreatedAt());
+		commentDTO.setUpdatedAt(comment.getUpdatedAt());
 		commentDTO.setUser(userService.mapUserToDTO(comment.getUser()));
 		commentDTO.setHidden(comment.isHidden());
 	    if (comment.getParentComment() != null) {
@@ -174,6 +173,7 @@ public class BlogPostServiceImpl implements BlogPostService {
 			replyDTO.setId(reply.getId());
 			replyDTO.setContent(reply.getContent());
 			replyDTO.setCreatedAt(reply.getCreatedAt());
+			replyDTO.setUpdatedAt(reply.getUpdatedAt());
 			replyDTO.setUser(userService.mapUserToDTO(reply.getUser()));
 			replyDTO.setHidden(reply.isHidden());
 			replyDTO.setParentComment(blogCommentService.mapToDTO(reply.getParentComment()));

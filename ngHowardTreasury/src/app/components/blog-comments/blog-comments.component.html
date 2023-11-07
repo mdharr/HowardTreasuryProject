@@ -11,8 +11,10 @@
     <div class="entry-meta">
       <span class="posted-on">Posted on </span>
       <mat-icon class="calendar-icon" style="font-size: 16px; display: flex; justify-content: center; color: var(--black_white);">calendar_month</mat-icon>
-      <span class="date-text"> {{ post.createdAt | date:'longDate' }}&nbsp;</span>
-      <span class="byline"> by <span class="user-meta">{{ post.user.username }}</span> | {{ commentCount }} comments</span>
+      <span class="date-text"> {{ post.createdAt | timeAgo }}&nbsp;</span>
+        <!-- add edit ago logic here using ng-container -->
+        <span class="byline"> by <span class="user-meta">{{ post.user.username }}</span> | <span class="comment-meta" (click)="scrollToElementButtonClicked()">{{ commentCount }} comments&nbsp;</span></span>
+        <span *ngIf="post.updatedAt && post.updatedAt != post.createdAt"><span class="updated-meta">| Edited </span><span class="updated-meta" style="text-transform:lowercase;">{{ post.updatedAt | timeAgo | slice:0:1 }}</span><span class="updated-meta">{{ post.updatedAt | timeAgo | slice: 1:post.updatedAt.length }}</span></span>
     </div>
     <div class="post-image-wrapper">
       <img class="post-image" src="{{ post.imageUrl }}" alt="">
@@ -53,7 +55,7 @@
     <p style="color: var(--black_white);"><span style="cursor:pointer; color: var(--red_milk);" (click)="openLoginDialog()">Login </span>to leave a comment.</p>
   </div>
 
-  <div class="toggle-container" (click)="toggleCommentNestVisibility()">
+  <div class="toggle-container" (click)="toggleCommentNestVisibility()" id="comment-section">
     <span class="toggle-label">{{ showCommentNest ? 'Hide Conversation' : commentCount + ' Comments' }}</span>
   </div>
 

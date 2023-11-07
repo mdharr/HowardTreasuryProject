@@ -142,3 +142,26 @@ textarea {
   width: 25px;
   border-radius: 50%;
 }
+
+.reply-wrapper {
+  border-left: 2px solid var(--red_color);
+  padding-left: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .comment {
+    padding-bottom: 0;
+  }
+
+  .parent-comment {
+    padding: 10px;
+  }
+
+  .reply-wrapper {
+    padding-left: 10px;
+  }
+
+  .replies {
+    margin-left: 10px;
+  }
+}

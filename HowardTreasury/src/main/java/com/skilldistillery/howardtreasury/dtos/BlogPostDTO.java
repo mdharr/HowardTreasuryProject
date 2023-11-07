@@ -8,6 +8,7 @@ public class BlogPostDTO {
     private String title;
     private String content;
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private UserDTO user;
     private List<BlogCommentDTO> comments;
     private Boolean hidden;
@@ -17,11 +18,12 @@ public class BlogPostDTO {
         // Default constructor
     }
 
-    public BlogPostDTO(int id, String title, String content, LocalDateTime createdAt, UserDTO user, List<BlogCommentDTO> comments, Boolean hidden, String imageUrl) {
+    public BlogPostDTO(int id, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt, UserDTO user, List<BlogCommentDTO> comments, Boolean hidden, String imageUrl) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
         this.user = user;
         this.comments = comments;
         this.hidden = hidden;
@@ -62,7 +64,15 @@ public class BlogPostDTO {
         this.createdAt = createdAt;
     }
 
-    public UserDTO getUser() {
+    public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public UserDTO getUser() {
         return user;
     }
 

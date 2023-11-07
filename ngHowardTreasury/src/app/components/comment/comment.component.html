@@ -5,10 +5,13 @@
       <p><ng-container *ngIf="!comment.user.enabled"><span style="text-decoration:line-through;">deleted</span></ng-container>
         <ng-container *ngIf="comment.user.enabled">{{ comment.user.username }}</ng-container><span> &#183; </span>{{ comment.createdAt | timeAgo }}
         <!-- add edit ago logic here using ng-container -->
+        <ng-container *ngIf="comment.updatedAt && comment.updatedAt != comment.createdAt"><span> &#183; </span>Edited <span style="text-transform:lowercase;">{{ comment.updatedAt | timeAgo | slice:0:1 }}</span><span>{{ comment.updatedAt | timeAgo | slice: 1:comment.updatedAt.length }}</span></ng-container>
       </p>
+      <!-- Debug output -->
+      <!-- <p>UpdatedAt: {{ comment.updatedAt }}</p>
+      <p>CreatedAt: {{ comment.createdAt }}</p> -->
     </div>
-    <div style="border-left: 2px solid var(--red_color);
-    padding-left: 20px;">
+    <div class="reply-wrapper">
       <p>{{ comment.hidden ? 'Comment deleted by user.' : comment.content }}</p>
       <div class="body">
         <div class="buttons-container">

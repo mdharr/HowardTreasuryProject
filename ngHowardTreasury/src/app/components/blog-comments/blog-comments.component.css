@@ -341,6 +341,20 @@ div p * {
   cursor:pointer;
 }
 
+.updated-meta {
+  color: var(--black_white);
+}
+
+.comment-meta {
+  color: var(--red_milk);
+}
+
+.comment-meta:hover {
+  color: var(--red_milk);
+  text-decoration:underline;
+  cursor:pointer;
+}
+
 @media screen and (max-width: 992px) {
 
   .blog-post {
@@ -402,6 +416,8 @@ div p * {
 
   .entry-meta {
     font-size: 12px;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .calendar-icon {
