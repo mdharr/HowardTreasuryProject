@@ -17,7 +17,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class VerificationToken {
 
-    private static final int EXPIRATION = 60 * 24;
+    private static final int EXPIRATION_TIME_IN_MINUTES = 60 * 24;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +35,7 @@ public class VerificationToken {
 	
 	public VerificationToken() {
         this.token = UUID.randomUUID().toString();
-        this.expiryDate = calculateExpiryDate(EXPIRATION);
+        this.expiryDate = calculateExpiryDate(EXPIRATION_TIME_IN_MINUTES);
 	}
 	
     public VerificationToken(User user) {
@@ -84,7 +84,7 @@ public class VerificationToken {
 	}
 
 	public static int getExpiration() {
-		return EXPIRATION;
+		return EXPIRATION_TIME_IN_MINUTES;
 	}
 	
 	private Date calculateExpiryDate(int expiryTimeInMinutes) {
