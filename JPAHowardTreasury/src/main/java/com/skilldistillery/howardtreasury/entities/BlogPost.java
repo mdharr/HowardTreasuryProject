@@ -60,13 +60,14 @@ public class BlogPost {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BlogPost(int id, String title, String content, LocalDateTime createdAt, User user,
+	public BlogPost(int id, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt, User user,
 			List<BlogComment> comments, Boolean hidden, String imageUrl) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
 		this.user = user;
 		this.comments = comments;
 		this.hidden = hidden;
@@ -105,13 +106,13 @@ public class BlogPost {
 		this.createdAt = createdAt;
 	}
 
-//	public Blog getBlog() {
-//		return blog;
-//	}
-//
-//	public void setBlog(Blog blog) {
-//		this.blog = blog;
-//	}
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 
 	public User getUser() {
 		return user;
