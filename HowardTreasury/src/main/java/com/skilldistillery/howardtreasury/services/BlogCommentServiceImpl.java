@@ -1,5 +1,6 @@
 package com.skilldistillery.howardtreasury.services;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -84,7 +85,11 @@ public class BlogCommentServiceImpl implements BlogCommentService {
             BlogComment existingBlogComment = blogCommentOpt.get();
             
             if (existingBlogComment.getUser().getUsername().equals(username)) {
-                existingBlogComment.setContent(updatedComment.getContent()); // Update the content of the existing comment.
+            	if(!existingBlogComment.getContent().equals(updatedComment.getContent())) {
+        			existingBlogComment.setContent(updatedComment.getContent());
+        			existingBlogComment.setUpdatedAt(LocalDateTime.now());
+            	}
+//                existingBlogComment.setContent(updatedComment.getContent()); // Update the content of the existing comment.
                 return blogCommentRepo.save(existingBlogComment); // Save the existing comment with updated content.
             } else {
                 return null;
