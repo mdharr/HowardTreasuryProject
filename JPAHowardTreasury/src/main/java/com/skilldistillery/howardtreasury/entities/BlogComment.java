@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,6 +35,10 @@ public class BlogComment {
 	@CreationTimestamp
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
+	
+	@UpdateTimestamp
+	@Column(name = "updated_at")
+	private LocalDateTime updatedAt;
 	
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -60,12 +65,13 @@ public class BlogComment {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BlogComment(int id, String content, LocalDateTime createdAt, User user, BlogPost blogPost,
+	public BlogComment(int id, String content, LocalDateTime createdAt, LocalDateTime updatedAt, User user, BlogPost blogPost,
 			BlogComment parentComment, List<BlogComment> replies, Boolean hidden) {
 		super();
 		this.id = id;
 		this.content = content;
 		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
 		this.user = user;
 		this.blogPost = blogPost;
 		this.parentComment = parentComment;
@@ -95,6 +101,14 @@ public class BlogComment {
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 
 	public User getUser() {
