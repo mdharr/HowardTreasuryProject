@@ -665,6 +665,26 @@ CREATE TABLE IF NOT EXISTS `blog_comment` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `verification_token`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `verification_token` ;
+
+CREATE TABLE IF NOT EXISTS `verification_token` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `token` VARCHAR(1000) NULL,
+  `expiry_date` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_verification_token_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_verification_token_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS howardtreasury@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
