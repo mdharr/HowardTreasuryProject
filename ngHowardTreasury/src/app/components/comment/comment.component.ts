@@ -85,6 +85,7 @@ export class CommentComponent implements OnInit, OnDestroy {
       content: this.newReplyContent,
       id: 0,
       createdAt: '',
+      updatedAt: '',
       user: this.loggedInUser,
       blogPost: this.post,
       replies: [],
