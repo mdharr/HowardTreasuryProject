@@ -2,7 +2,10 @@
   <div class="comment" [ngClass]="{'parent-comment': replyDepth === 0}">
     <div class="user-meta">
       <img class="user-image" src="{{ comment.user.imageUrl }}" alt="">
-      <p>{{ comment.user.username }} said</p>
+      <p><ng-container *ngIf="!comment.user.enabled"><span style="text-decoration:line-through;">deleted</span></ng-container>
+        <ng-container *ngIf="comment.user.enabled">{{ comment.user.username }}</ng-container><span> &#183; </span>{{ comment.createdAt | timeAgo }}
+        <!-- add edit ago logic here using ng-container -->
+      </p>
     </div>
     <div style="border-left: 2px solid var(--red_color);
     padding-left: 20px;">
