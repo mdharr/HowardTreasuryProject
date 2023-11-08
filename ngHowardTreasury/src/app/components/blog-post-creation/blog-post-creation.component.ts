@@ -13,7 +13,6 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class BlogPostCreationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   editorConfig: any;
-  showEditor: boolean = true;
 
   post: BlogPost = new BlogPost();
   private mutationObserver!: MutationObserver;
@@ -26,13 +25,8 @@ export class BlogPostCreationComponent implements OnInit, AfterViewInit, OnDestr
   el = inject(ElementRef);
 
   ngOnInit() {
-    // Set initial configuration based on current window size
-    this.breakpointObserver.isMatched('(max-width: 600px)')
-    ? this.applyMobileEditorConfig()
-    : this.setDefaultEditorConfig();
     this.applyEditorConfiguration();
 
-    this.observeBreakpoints();
   }
 
   ngAfterViewInit() {
@@ -40,11 +34,8 @@ export class BlogPostCreationComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   applyEditorConfiguration() {
-    if (this.breakpointObserver.isMatched(Breakpoints.Handset)) {
-      this.applyMobileEditorConfig();
-    } else {
       this.setDefaultEditorConfig();
-    }
+
   }
 
   setUpMutationObserver() {
@@ -82,52 +73,25 @@ export class BlogPostCreationComponent implements OnInit, AfterViewInit, OnDestr
     });
   }
 
-  observeBreakpoints() {
-    this.breakpointObserver.observe(['(max-width: 600px)']).subscribe((result) => {
-      if (result.matches) {
-        this.applyMobileEditorConfig();
-      } else {
-        this.setDefaultEditorConfig();
-      }
-      this.reloadEditor();
-    });
-  }
-
-  reloadEditor() {
-    // Additional log to trace editor reloading
-    console.log("Reloading editor");
-
-    this.showEditor = false;
-    setTimeout(() => {
-      this.showEditor = true;
-      this.cdr.detectChanges(); // Ensure change detection is triggered after setting showEditor
-    }, 0);
-  }
-
   setDefaultEditorConfig() {
     console.log("set default editor config");
     this.editorConfig = {
       base_url: '/tinymce',
       suffix: '.min',
-      plugins: 'lists link image table wordcount media searchreplace preview importcss fullscreen anchor autoresize pagebreak nonbreaking insertdatetime help emoticons directionality advlist accordion',
-      toolbar: 'lists link image table wordcount media searchreplace preview importcss fullscreen anchor autoresize pagebreak nonbreaking insertdatetime help emoticons directionality advlist accordion undo blockquote align',
+      // Add or remove plugins as per your need
+      plugins: [
+        'advlist autolink lists link image charmap preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table code help wordcount',
+        'emoticons'
+      ].join(' '), // Join the plugins with space to make it a string list
+      toolbar: 'undo redo | styleselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | print preview fullpage | emoticons',
+      menubar: 'file edit view insert format tools table help',
+      toolbar_sticky: true,
       image_advtab: true,
-      menubar: true
+      toolbar_mode: 'sliding',
+      // ... other configuration options
     };
-    this.reloadEditor();
-  }
-
-  applyMobileEditorConfig() {
-    console.log("set mobile editor config");
-    this.editorConfig = {
-      selector: 'textarea',
-      theme: 'silver',
-      mobile: {
-        theme: 'mobile',
-        plugins: 'autosave lists autolink'
-      }
-    };
-    this.reloadEditor();
   }
 
 

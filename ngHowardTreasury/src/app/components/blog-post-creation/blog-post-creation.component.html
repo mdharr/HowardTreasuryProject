@@ -29,7 +29,7 @@
         required
       />
     </div>
-    <div class="editor-body" *ngIf="showEditor">
+    <div class="editor-body">
       <editor [init]="editorConfig" name="content" [(ngModel)]="post.content"></editor>
     </div>
     <div class="submit-button">
