@@ -28,14 +28,14 @@
   <div class="search-auth-wrapper">
     <!-- Auth Buttons Container -->
     <div class="auth-container">
-      <button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openLoginDialog()">
+      <button mat-raised-button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openLoginDialog()">
         <span class="login-text">Log in</span>
       </button>
-      <button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openSignupDialog()">
+      <button mat-raised-button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openSignupDialog()">
         <span class="register-text">Register</span>
       </button>
 
-      <button class="navbar-btn-group" mat-button *ngIf="loggedIn()" [routerLink]="['/profile']">
+      <button mat-raised-button class="navbar-btn-group" mat-button *ngIf="loggedIn()" [routerLink]="['/profile']">
         <span class="profile-text">
           {{ loggedInUser.username }}
         </span>
@@ -61,14 +61,14 @@
 
 <div class="menu" [@expandMenu]="menuState">
   <div class="auth-menu-row" (click)="toggleMenu()">
-      <button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openLoginDialog()">
+      <button mat-raised-button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openLoginDialog()">
         <span class="login-text">Log in</span>
       </button>
-      <button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openSignupDialog()">
+      <button mat-raised-button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openSignupDialog()">
         <span class="register-text">Register</span>
       </button>
 
-      <button class="profile-button" mat-button *ngIf="loggedIn()" [routerLink]="['/profile']"><span class="profile-text">{{ loggedInUser.username }}</span></button>
+      <button mat-raised-button class="profile-button" mat-button *ngIf="loggedIn()" [routerLink]="['/profile']"><span class="profile-text">{{ loggedInUser.username }}</span></button>
       <div *ngIf="loggedIn()" style="flex:1; padding-right:10px;">
         <app-logout></app-logout>
       </div>
@@ -84,7 +84,7 @@
   <div class="menu-row">
     <div class="search-container">
       <input class="search-input-field" [(ngModel)]="searchQuery" (keyup.enter)="performSearch()" placeholder="Search ...">
-      <button class="search-button" (click)="performSearch()"><mat-icon class="search-icon">search</mat-icon></button>
+      <button mat-raised-button class="search-button" (click)="performSearch()"><mat-icon class="search-icon">search</mat-icon></button>
     </div>
   </div>
 </div>

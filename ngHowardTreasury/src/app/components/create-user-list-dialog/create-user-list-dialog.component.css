@@ -8,15 +8,14 @@ h2[mat-dialog-title] {
   background-color: var(--red_black);
   color: white;
   padding: 15px;
-  font-family: var(--contentFontFamily);
+  font-family: var(--inter);
 }
 
 button[mat-button] {
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 5px;
-  font-family: var(--contentFontFamily);
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  font-family: var(--inter);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
@@ -42,13 +41,13 @@ button[mat-button] {
 .create-button {
   background-color: var(--red_color);
   color: white;
-  font-family: var(--contentFontFamily);
+  font-family: var(--inter);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .create-button:hover {
-  background-color: var(--black_color);
+  background-color: var(--red_hover);
 }
 
 ::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
@@ -57,7 +56,7 @@ button[mat-button] {
 
 ::ng-deep .mat-mdc-checkbox label {
   cursor: pointer;
-  font-family: var(--contentFontFamily);
+  font-family: var(--inter);
   font-size: var(--medium);
 }
 

@@ -107,6 +107,17 @@
   justify-content: flex-end;
 }
 
+.submit-button button {
+  background-color: var(--red_color);
+  color: var(--white_color);
+}
+
+.submit-button button:hover {
+  background-color: var(--red_hover);
+  cursor:pointer;
+  color: var(--white_color);
+}
+
 .header-wrapper {
   display:flex;
   justify-content: center;
@@ -168,3 +179,16 @@
 .breadcrumbnav a:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 600px) {
+  .editor-wrapper {
+    margin:0;
+    padding:0.75rem;
+  }
+}
+
+/* default color */
+/* #4758b8 */
+
+/* hover color */
+/* #3f51b5 */

@@ -33,7 +33,7 @@ button[mat-button] {
 }
 
 /* Primary button style */
-button[color="primary"] {
+button[mat-button] {
   background-color: var(--red_color);
   color: white;
   font-family: var(--inter);
@@ -41,7 +41,7 @@ button[color="primary"] {
   font-size: 16px;
 }
 
-button[color="primary"]:hover {
+button[mat-button]:hover {
   background-color: #a12d32;
   color: var(--white_color);
 }

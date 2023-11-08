@@ -79,7 +79,7 @@ button#loginFormBtn {
 }
 
 button#loginFormBtn:hover {
-  background-color: #a12d32;
+  background-color: var(--red_hover);
 }
 
 @media (max-width: 480px) {
@@ -88,17 +88,4 @@ button#loginFormBtn:hover {
     padding: 15px;
   }
 }
-
-/* .cancel-box {
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.3s ease, color 0.3s ease;
-} */
-
-/* .cancel-box:hover {
-  background-color: crimson;
-} */
 

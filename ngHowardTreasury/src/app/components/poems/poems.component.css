@@ -85,6 +85,13 @@
   display:flex;
   justify-content: space-between;
   width:100%;
+  background-color: var(--red_black);
+}
+
+.buttons button {
+  background-color: var(--red_black);
+  font-family: var(--inter);
+  font-weight: 500;
 }
 
 .mat-button {

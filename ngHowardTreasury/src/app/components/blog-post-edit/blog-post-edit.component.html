@@ -19,7 +19,7 @@
       <editor [init]="editorConfig" name="content" [(ngModel)]="post.content"></editor>
     </div>
     <div class="submit-button">
-      <button type="submit" mat-raised-button color="primary" [disabled]="postForm.invalid || !isEditorContentValid()">Submit</button>
+      <button type="submit" mat-raised-button [disabled]="postForm.invalid || !isEditorContentValid()">Submit</button>
     </div>
   </div>
 </form>

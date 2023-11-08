@@ -65,7 +65,7 @@
           <div class="story-details">
             <h3 class="results-items" [routerLink]="['/stories', result.data.id]">{{ result.data.title }}</h3>
             <!-- Display other properties specific to the Story type -->
-            <p class="result-text" *ngIf="result.data.excerpt" [innerHtml]="result.data.excerpt | truncate:300"></p>
+            <p class="result-text" *ngIf="result.data.excerpt || result.data.description" [innerHtml]="result.data.description ? (result.data.description | truncate:300) : (result.data.excerpt | truncate:300)"></p>
           </div>
         </div>
         <!-- Add more properties as needed -->

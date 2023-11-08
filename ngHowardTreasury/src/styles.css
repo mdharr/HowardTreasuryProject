@@ -89,6 +89,7 @@ body {
   --card_font_color: #262626;
   --pagination_border: #26262672;
   --red_white_hover: #a12d32;
+  --red_hover:#a12d32;
 }
 
 body.red-theme {
@@ -120,6 +121,7 @@ body.red-theme {
   --card_font_color: #CCCCCC;
   --pagination_border: rgba(255, 255, 255, 0.492);
   --red_white_hover: #e5e3e3;
+  --red_hover:#a12d32;
 }
 
 body.disable-scrolling {
