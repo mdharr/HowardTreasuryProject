@@ -12,14 +12,16 @@
   padding: 0 !important;
   padding-left: 10px !important;
   padding-right: 10px !important;
-  font-family: var(--contentFontFamily);
+  font-family: var(--inter);
   font-size: var(--header_font);
+  font-weight: 300;
 }
 
 ::ng-deep .mat-mdc-menu-item .mdc-list-item__primary-text {
-  font-family: var(--contentFontFamily) !important;
+  font-family: var(--inter) !important;
   font-size: var(--body_font) !important;
   font-weight: var(--superBold) !important;
+  color: var(--black_white);
 }
 
 ::ng-deep .mat-mdc-menu-content .mat-mdc-menu-item:hover {
@@ -30,8 +32,12 @@
   color:var(--white_color) !important;
 }
 
+::ng-deep .mat-mdc-menu-panel.mat-mdc-menu-panel {
+  background-color: var(--white_black);
+}
+
 .menu {
-  background-color: #ffffff;
+  background-color: var(--white_black);
   max-height: 100%;
   overflow: hidden;
   opacity: 0;
@@ -39,22 +45,32 @@
 }
 
 .navbar-btn-group {
-  font-family: var(--contentFontFamily);
+  font-family: var(--inter);
   font-size: var(--body_font);
-  font-weight: var(--superBold);
+  color: var(--black_white);
   margin-left: 10px;
   padding: 0;
   padding-right: 8px;
   padding-left: 8px;
   height: 40px;
   line-height: 28px;
-  border: 1px solid var(--white_color);
+  border: 1px solid #e0e0e0;
+  flex: 1;
+}
+
+.auth-menu-row .navbar-btn-group span {
+  color:var(--black_white);
+}
+
+.auth-menu-row .profile-button {
+  color: var(--black_white);
+  height: 40px;
+  padding: 5px;
 }
 
 .profile-text {
-  font-family: var(--contentFontFamily);
+  font-family: var(--inter);
   font-size: var(--body_font);
-  font-weight: var(--superBold);
 }
 
 .logo-img {
@@ -65,9 +81,10 @@
   padding: 10px;
   border-bottom: 1px solid #ccc;
   text-align: center;
-  font-family: var(--contentFontFamily) !important;
+  font-family: var(--inter) !important;
   text-transform: capitalize;
   font-size: var(--body_font);
+  color: var(--black_white);
 }
 
 .navbar {
@@ -167,9 +184,8 @@
   background-color: #f5f5f5;
   color: #333;
   transition: background-color 0.3s ease;
-  font-family: var(--contentFontFamily);
+  font-family: var(--inter);
   font-size: var(--contentFontSize);
-  font-weight: var(--superBold);
 }
 
 /* Darken the input field background on hover */
@@ -186,12 +202,13 @@
   height: 40px;
   padding: 8px;
   cursor: pointer;
-  transition: box-shadow 0.3s ease;
+  /* transition: box-shadow 0.3s ease; */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Add box shadow to the search button on hover */
 .search-button:hover {
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); */
 }
 
 .auth-container {
@@ -202,6 +219,8 @@
 .auth-container .navbar-btn-group {
   background-color: var(--red_black);
   color: var(--title_color);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  min-width: 97px;
 }
 
 .auth-menu-row {
@@ -353,10 +372,11 @@
     height: 40px;
     line-height: 28px;
     border: 1px solid var(--white_color);
-    font-family: var(--contentFontFamily);
+    font-family: var(--inter);
     font-size: var(--body_font);
-    font-weight: var(--superBold);
     background-color:var(--red_black);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    min-width: 97px;
   }
 
 }
@@ -368,7 +388,7 @@
     padding: 10px;
     border-bottom: 1px solid #ccc;
     text-align: center;
-    font-family: var(--contentFontFamily);
+    font-family: var(--inter);
     text-transform: uppercase;
   }
 

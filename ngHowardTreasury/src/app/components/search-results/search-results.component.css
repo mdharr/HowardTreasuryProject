@@ -194,6 +194,8 @@
 
 .post-content {
   color: var(--black_white);
+  font-family: var(--contentFontFamily);
+  font-size: 1rem;
 }
 
 .post-wrapper {

@@ -10,9 +10,11 @@
   background-color: var(--red_black);
   color: var(--title_color);
   width:100%;
-  font-family: var(--contentFontFamily);
+  font-family: var(--inter);
   font-size: var(--body_font);
-  font-weight: var(--superBold);
+  /* font-weight: var(--superBold); */
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  min-width: 97px;
 }
 
 

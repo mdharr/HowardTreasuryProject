@@ -245,6 +245,32 @@ app-excerpt-loop {
 
 }
 
+@media screen and (max-width: 768px) {
+  .main-title {
+    font-size: 24px;
+  }
+  .subheader {
+    font-size: 18px;
+  }
+  .wrapper {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 30px;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .main-title {
+    font-size: 18px;
+  }
+  .subheader {
+    font-size: 16px;
+  }
+  .quote-content {
+    font-size: 1rem;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .wrapper {
     padding-left: 0;
@@ -305,6 +331,16 @@ app-excerpt-loop {
     color: var(--black_white);
     padding-left: 15px;
   }
+
+  .header {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .mat-typography p {
+    margin: 0 0 0px;
+  }
+
 }
 
 h2 {

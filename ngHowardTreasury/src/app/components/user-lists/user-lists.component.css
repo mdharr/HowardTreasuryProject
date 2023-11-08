@@ -86,8 +86,8 @@ p {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
-  font-family: var(--contentFontFamily);
-  /* font-size: var(--headerFontSize); */
+  font-family: var(--inter);
+  font-size: 1rem;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
@@ -108,9 +108,9 @@ p {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
   transition: background-color 0.3s;
-  font-family: var(--contentFontFamily);
+  font-family: var(--inter);
+  font-size: 1rem;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
