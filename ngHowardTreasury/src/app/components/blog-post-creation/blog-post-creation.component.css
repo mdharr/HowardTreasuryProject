@@ -168,3 +168,33 @@
 .breadcrumbnav a:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 600px) {
+  .tox .tox-toolbar-overlord {
+    flex-wrap: nowrap;
+  }
+  .tox .tox-toolbar {
+    flex-wrap: nowrap !important; /* Override to display in a single line */
+  }
+
+  .tox .tox-toolbar__group {
+    flex-grow: 1; /* Allow each group to take equal space */
+    flex-basis: auto; /* Adjust basis to auto for auto-sizing */
+  }
+  .post-title, .post-image {
+    flex-direction: column; /* Stack title and image inputs */
+    gap: 1rem; /* Reduce gap for smaller screens */
+  }
+  .title-input, .image-input {
+    flex-basis: auto; /* Let input take the necessary space */
+  }
+  ::ng-deep .tox :not(svg):not(rect) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .editor-wrapper {
+    margin:0;
+    padding:0.75rem;
+  }
+}
+

@@ -92,7 +92,7 @@ p {
 }
 
 .remove-button:hover {
-  background-color: var(--red_color); /* Hover color */
+  background-color: #a12d32;
 }
 
 .buttons-container {
@@ -115,7 +115,7 @@ p {
 }
 
 .create-button:hover {
-  background-color: var(--red_color);
+  background-color: #a12d32;
 }
 
 .create-icon {

@@ -166,10 +166,11 @@
 }
 
 .collection-link {
-  color: #9e0000;
+  color: var(--red_color);
 }
 
 .collection-link:hover {
+cursor: pointer;
  text-decoration: underline;
 }
 
@@ -220,7 +221,6 @@
 }
 
 .read-online-box:hover .story-text-link {
-  color: var(--black_color);
   text-decoration:underline;
 }
 
@@ -480,7 +480,6 @@
 }
 
 .illustrator-name:hover {
-  color: var(--black_color);
   text-decoration: underline;
   cursor: pointer;
 }
@@ -590,6 +589,7 @@
 
 .breadcrumbnav a:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1073px) {

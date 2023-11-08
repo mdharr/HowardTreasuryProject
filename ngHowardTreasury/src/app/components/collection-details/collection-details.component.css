@@ -124,9 +124,7 @@
 }
 
 .amazon-link-text:hover {
-  color:#770000;
   text-decoration: underline;
-  color: var(--black_white)
 }
 
 .publication-date {

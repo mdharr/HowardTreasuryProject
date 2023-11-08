@@ -15,6 +15,7 @@
   font-family: var(--inter);
   font-size: var(--header_font);
   font-weight: 300;
+  color: var(--black_white);
 }
 
 ::ng-deep .mat-mdc-menu-item .mdc-list-item__primary-text {

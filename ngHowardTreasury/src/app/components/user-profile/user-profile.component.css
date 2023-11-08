@@ -213,7 +213,7 @@
 }
 
 .delete-button:hover {
-  background-color: var(--red_color); /* Hover color */
+  background-color: #a12d32;
 }
 
 .edit-button {
@@ -230,7 +230,7 @@
 }
 
 .edit-button:hover {
-  background-color: var(--red_color); /* Hover color */
+  background-color: #a12d32;
 }
 
 /* breadcrumb navigation */

@@ -79,7 +79,7 @@ button#registerFormBtn {
 }
 
 button#registerFormBtn:hover {
-  background-color: #600018;
+  background-color: #a12d32;
 }
 
 @media (max-width: 480px) {
