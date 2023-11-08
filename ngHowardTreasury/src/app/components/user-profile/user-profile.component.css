@@ -301,3 +301,8 @@
   opacity: 0.5; /* Dim the card when loading */
   /* You can add more styles or animations for loading here */
 }
+
+.is-holographic {
+  opacity: 0.2; /* Dim the card when loading */
+  /* You can add more styles or animations for loading here */
+}
