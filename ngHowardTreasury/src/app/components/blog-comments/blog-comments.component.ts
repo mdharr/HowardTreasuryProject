@@ -288,6 +288,14 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
       imgElement.setAttribute('loading', 'lazy');
     });
 
+    const headerElements = doc.querySelectorAll('span');
+    headerElements.forEach((headerElement) => {
+      if(headerElement.getAttribute('style')?.includes('color: rgb(186, 55, 42)')) {
+        headerElement.removeAttribute('style');
+        headerElement.firstElementChild?.classList.add('header-font');
+      }
+    });
+
     // Serialize the modified DOM back to HTML
     const finalModifiedContent = new XMLSerializer().serializeToString(doc);
 

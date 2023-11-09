@@ -259,6 +259,11 @@ div p * {
   margin: 0.5em 0 0.5em 1em;
 }
 
+::ng-deep .header-font {
+  color: var(--red_milk) !important;
+  font-family: 'book antiqua', palatino, serif;
+}
+
 ::ng-deep blockquote {
   border-left: 2px solid var(--red_milk);
   padding: 10px;
