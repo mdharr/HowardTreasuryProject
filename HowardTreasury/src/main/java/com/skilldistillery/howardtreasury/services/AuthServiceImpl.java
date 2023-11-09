@@ -54,7 +54,8 @@ public class AuthServiceImpl implements AuthService {
 	    // Construct the verification email
 	    String recipientAddress = user.getEmail();
 	    String subject = "Registration Confirmation";
-	    String confirmationUrl = "http://localhost:8093/verify?token=" + token;
+//	    String confirmationUrl = "http://localhost:8093/verify?token=" + token;
+	    String confirmationUrl = "http://localhost:4302/#/verify?token=" + token;
 	    String message = "To confirm your e-mail address, please click the link below:\n" + confirmationUrl;
 
 	    // Send the verification email

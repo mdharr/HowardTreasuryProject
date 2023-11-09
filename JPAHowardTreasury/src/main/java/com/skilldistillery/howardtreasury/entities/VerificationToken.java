@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class VerificationToken {
 
@@ -29,6 +31,7 @@ public class VerificationToken {
     @Column(name="expiry_date")
     private Date expiryDate;
 
+    @JsonBackReference
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
     private User user;

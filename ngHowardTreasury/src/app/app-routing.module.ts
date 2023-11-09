@@ -26,10 +26,12 @@ import { BlogPostCreationComponent } from './components/blog-post-creation/blog-
 import { AnimatedCardComponent } from './components/animated-card/animated-card.component';
 import { TestCardsComponent } from './components/test-cards/test-cards.component';
 import { ExcerptLoopComponent } from './components/excerpt-loop/excerpt-loop.component';
+import { VerificationComponent } from './components/verification/verification.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
+  { path: 'verify', component: VerificationComponent },
   { path: 'about', component: AboutComponent },
   { path: 'lists', component: UserListsComponent },
   { path: 'profile', component: UserProfileComponent },

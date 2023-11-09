@@ -123,4 +123,8 @@ export class AuthService {
     return this.loggedInUserSubject;
   }
 
+  verifyAccount(token: string): Observable<any> {
+    return this.http.get(`${this.url}verify?token=${token}`, { responseType: 'text' });
+  }
+
 }

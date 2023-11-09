@@ -1,0 +1,9 @@
+<div *ngIf="!verifying && !error" class="alert alert-info">
+  {{ verificationMessage }}
+</div>
+<div *ngIf="verifying" class="alert alert-info">
+  Verifying account...
+</div>
+<div *ngIf="error" class="alert alert-danger">
+  {{ verificationMessage }}
+</div>
