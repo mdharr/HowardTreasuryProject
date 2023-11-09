@@ -69,6 +69,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { JumpToPageDialogComponent } from './components/jump-to-page-dialog/jump-to-page-dialog.component';
 import { UpdateUserDialogComponent } from './components/update-user-dialog/update-user-dialog.component';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
+import { VerifyComponent } from './components/verify/verify.component';
 
 @NgModule({
   declarations: [
@@ -121,6 +122,7 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
     JumpToPageDialogComponent,
     UpdateUserDialogComponent,
     TimeAgoPipe,
+    VerifyComponent,
   ],
   imports: [
     BrowserModule,
