@@ -1,5 +1,8 @@
 <div *ngIf="!verifying && !error" class="alert alert-info">
   {{ verificationMessage }}
+  <div>
+    Redirecting in {{ countdown }} seconds...
+  </div>
 </div>
 <div *ngIf="verifying" class="alert alert-info">
   Verifying account...

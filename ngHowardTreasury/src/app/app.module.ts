@@ -22,7 +22,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { RegisterDialogComponent } from './components/register-dialog/register-dialog.component';
@@ -70,13 +69,13 @@ import { JumpToPageDialogComponent } from './components/jump-to-page-dialog/jump
 import { UpdateUserDialogComponent } from './components/update-user-dialog/update-user-dialog.component';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { VerificationComponent } from './components/verification/verification.component';
+import { CustomSnackbarComponent } from './components/custom-snackbar/custom-snackbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    LoginComponent,
     LogoutComponent,
     LoginDialogComponent,
     RegisterDialogComponent,
@@ -123,6 +122,7 @@ import { VerificationComponent } from './components/verification/verification.co
     UpdateUserDialogComponent,
     TimeAgoPipe,
     VerificationComponent,
+    CustomSnackbarComponent,
   ],
   imports: [
     BrowserModule,

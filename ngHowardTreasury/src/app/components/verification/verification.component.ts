@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -7,17 +8,19 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './verification.component.html',
   styleUrls: ['./verification.component.css']
 })
-export class VerificationComponent implements OnInit {
+export class VerificationComponent implements OnInit, OnDestroy {
   error: boolean = false;
   verifying: boolean = false;
   verificationMessage: string = '';
+  countdown: number = 5;
+
+  private countdownSubscription: Subscription | null = null;
 
   constructor(
-
-
-private route: ActivatedRoute,
+    private route: ActivatedRoute,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +35,7 @@ private route: ActivatedRoute,
           this.verifying = false;
           this.error = false;
           this.verificationMessage = 'Your account has been verified successfully! You can now log in.';
+          this.startCountdown();
         },
         error: (err) => {
           this.verifying = false;
@@ -48,4 +52,22 @@ private route: ActivatedRoute,
     }
   }
 
+  startCountdown() {
+    this.countdown = 5;
+    const intervalId = setInterval(() => {
+      this.countdown -= 1;
+      this.cdr.detectChanges(); // Trigger change detection manually
+
+      if (this.countdown < 0) {
+        clearInterval(intervalId);
+        this.router.navigateByUrl('/');
+      }
+    }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.countdownSubscription) {
+      this.countdownSubscription.unsubscribe();
+    }
+  }
 }
