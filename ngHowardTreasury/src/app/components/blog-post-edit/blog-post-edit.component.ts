@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Component, inject, OnInit, OnDestroy, AfterViewInit, ChangeDetectorRef, ElementRef, Renderer2 } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -24,6 +24,7 @@ export class BlogPostEditComponent implements OnInit, OnDestroy, AfterViewInit {
 
   auth = inject(AuthService);
   activatedRoute = inject(ActivatedRoute);
+  router = inject(Router);
   domSanitizer = inject(DomSanitizer);
   blogPostService = inject(BlogPostService);
   renderer = inject(Renderer2);
@@ -77,6 +78,7 @@ export class BlogPostEditComponent implements OnInit, OnDestroy, AfterViewInit {
     this.blogPostService.updatePost(post.id, post).subscribe({
       next: (updatedPost) => {
         this.post = updatedPost;
+        this.router.navigateByUrl(`posts/${this.post.id}/comments`);
       },
       error: (error) => {
         console.error('Error updating comment', error);
