@@ -32,7 +32,7 @@ export class LoginDialogComponent {
         this.dialogRef.close();
         // Open the snackbar with an action handler
         this.snackBar.openFromComponent(CustomSnackbarComponent, {
-          data: { message: 'Login Success!', action: 'Dismiss' },
+          data: { message: 'Login Success', action: 'Dismiss' },
           duration: 4000
         }).onAction().subscribe(() => {
           this.dismissSnackbar();
@@ -43,10 +43,11 @@ export class LoginDialogComponent {
       error: (fail) => {
         console.error('Login fail');
         console.error(fail);
-        this.snackBar.open('Incorrect username or password', 'Dismiss', {
-          duration: 4000,
-          panelClass: ['mat-toolbar', 'mat-warn'],
-          verticalPosition: 'bottom'
+        this.snackBar.openFromComponent(CustomSnackbarComponent, {
+          data: { message: 'Login Failed', action: 'Dismiss' },
+          duration: 4000
+        }).onAction().subscribe(() => {
+          this.dismissSnackbar();
         });
       }
     });
