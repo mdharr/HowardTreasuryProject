@@ -38,6 +38,13 @@
         <input type="text" class="text" name="imageUrl" [(ngModel)]="newUser.imageUrl" placeholder="Image URL" tabindex="1" required />
       </label>
     </div>
-    <button id="registerFormBtn" type="button" (click)="register(newUser)">Register</button>
+    <button mat-button-raised id="registerFormBtn" type="button" (click)="register(newUser)" [disabled]="isProcessing">
+      Register
+    </button>
   </form>
 </div>
+<div *ngIf="isProcessing" class="spinner-overlay">
+  <mat-spinner class="spinner"></mat-spinner>
+</div>
+
+

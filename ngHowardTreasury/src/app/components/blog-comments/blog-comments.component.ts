@@ -1,3 +1,4 @@
+import { style } from '@angular/animations';
 import { DialogService } from 'src/app/services/dialog.service';
 import { BlogCommentService } from './../../services/blog-comment.service';
 import { AfterViewInit, Component, inject, OnDestroy, OnInit, Renderer2, ElementRef, SecurityContext } from '@angular/core';
@@ -286,7 +287,26 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
     imgElements.forEach((imgElement) => {
       imgElement.classList.add('post-images');
       imgElement.setAttribute('loading', 'lazy');
+      let style = imgElement.getAttribute('style');
+      if (style && style.includes('float: left')) {
+        style = style.replace('margin: 8px 16px;', 'margin: 8px 16px 8px 0;');
+        imgElement.setAttribute('style', style);
+        imgElement.classList.add('remove-left-margin');
+      }
+      if (style && style.includes('float: right')) {
+        style = style.replace('margin: 8px 16px;', 'margin: 8px 0 8px 16px;');
+        imgElement.setAttribute('style', style);
+        imgElement.classList.add('remove-right-margin');
+      }
     });
+
+    const anchorElements = doc.querySelectorAll('a');
+    anchorElements.forEach((anchorElement) => {
+      anchorElement.style.color = 'var(--red_milk)';
+      anchorElement.style.textDecoration = 'none';
+      anchorElement.classList.add('hover-effect');
+    });
+
 
     const headerElements = doc.querySelectorAll('span');
     headerElements.forEach((headerElement) => {

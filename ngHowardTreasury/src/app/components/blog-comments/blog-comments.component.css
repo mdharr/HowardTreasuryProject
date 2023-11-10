@@ -48,7 +48,7 @@
   max-width: 100% !important;
   height: auto !important;
   display: block !important;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px !important;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
 ::ng-deep .post:last-child p {
@@ -259,9 +259,25 @@ div p * {
   margin: 0.5em 0 0.5em 1em;
 }
 
+::ng-deep a.hover-effect {
+  text-decoration: none !important;
+}
+
+::ng-deep a.hover-effect:hover {
+  text-decoration: underline !important;
+}
+
 ::ng-deep .header-font {
   color: var(--red_milk) !important;
   font-family: 'book antiqua', palatino, serif;
+}
+
+::ng-deep .remove-left-margin {
+  margin-left:0 !important;
+}
+
+::ng-deep .remove-right-margin {
+  margin-right:0 !important;
 }
 
 ::ng-deep blockquote {

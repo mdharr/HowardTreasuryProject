@@ -14,6 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterDialogComponent implements OnDestroy {
   newUser: User = new User();
+  isProcessing:boolean = false;
 
   // subscription declarations
   private authSubscription: Subscription | undefined;
@@ -37,6 +38,7 @@ export class RegisterDialogComponent implements OnDestroy {
       });
       return;
     }
+    this.isProcessing = true;
     this.subscribeToAuth();
   }
 
@@ -52,42 +54,10 @@ export class RegisterDialogComponent implements OnDestroy {
     this.destroySubscriptions();
   }
 
-  // subscribeToAuth = () => {
-  //   this.authSubscription = this.auth.register(this.newUser).subscribe({
-  //     next: (registeredUser) => {
-  //       this.auth.login(this.newUser.username, this.newUser.password).subscribe({
-  //         next: (loggedInUser) => {
-  //           this.userListService.loadUserLists();
-  //           this.dialogRef.close();
-  //           this.router.navigateByUrl('/');
-  //           this.snackBar.open('Success! Welcome ' + this.capitalizeFirstLetter(this.newUser.username), 'Dismiss', {
-  //             duration: 4000,
-  //             panelClass: ['mat-toolbar', 'mat-primary'],
-  //             verticalPosition: 'bottom'
-  //           });
-  //         },
-  //         error: (problem) => {
-  //           console.error('RegisterComponent.register(): Error logging in user:');
-  //           console.error(problem);
-  //           this.snackBar.open('Signup unsuccessful', 'Dismiss', {
-  //             duration: 4000,
-  //             panelClass: ['mat-toolbar', 'mat-primary'],
-  //             verticalPosition: 'bottom'
-  //           });
-  //         }
-  //       });
-  //     },
-  //     error: (fail) => {
-  //       console.error('RegisterComponent.register(): Error registering account');
-  //       console.error(fail);
-  //     }
-  //   });
-  // }
   subscribeToAuth = () => {
     this.authSubscription = this.auth.register(this.newUser).subscribe({
       next: (registeredUser) => {
-        // User registration successful
-        // Instead of logging in, display a message and/or redirect
+        this.isProcessing = false;
         this.dialogRef.close(); // Close the registration dialog
         this.snackBar.open('Registration successful! Please check your email to verify your account.', 'Dismiss', {
           duration: 6000,
@@ -99,6 +69,8 @@ export class RegisterDialogComponent implements OnDestroy {
         // Handle registration error
         console.error('RegisterComponent.register(): Error registering account');
         console.error(fail);
+        this.isProcessing = false;
+        this.dialogRef.close();
         this.snackBar.open('Registration unsuccessful', 'Dismiss', {
           duration: 4000,
           panelClass: ['mat-toolbar', 'mat-warn'],
