@@ -1,3 +1,4 @@
+import { SnackbarService } from './../../services/snackbar.service';
 import { UserService } from './../../services/user.service';
 import { UserlistService } from 'src/app/services/userlist.service';
 import { Component, inject, ChangeDetectorRef } from '@angular/core';
@@ -18,10 +19,9 @@ export class LoginDialogComponent {
   dialogRef = inject(MatDialogRef<LoginDialogComponent>);
   auth = inject(AuthService);
   userService = inject(UserService);
-  snackBar = inject(MatSnackBar);
   userListService = inject(UserlistService);
   cdr = inject(ChangeDetectorRef);
-  snackbarRef = inject(MatDialogRef<CustomSnackbarComponent>);
+  snackbarService = inject(SnackbarService);
 
   login(loginUser: User) {
     this.auth.login(this.loginUser.username, this.loginUser.password).subscribe({
@@ -30,25 +30,14 @@ export class LoginDialogComponent {
         this.loginUser = loggedInUser;
         this.userListService.loadUserLists();
         this.dialogRef.close();
-        // Open the snackbar with an action handler
-        this.snackBar.openFromComponent(CustomSnackbarComponent, {
-          data: { message: 'Login Success', action: 'Dismiss' },
-          duration: 4000
-        }).onAction().subscribe(() => {
-          this.dismissSnackbar();
-        });
+        this.openSnackbar('Login Success!', 'Dismiss');
         // Notify the UserService about the successful login
         this.userService.updateUser(loggedInUser);
       },
       error: (fail) => {
         console.error('Login fail');
         console.error(fail);
-        this.snackBar.openFromComponent(CustomSnackbarComponent, {
-          data: { message: 'Login Failed', action: 'Dismiss' },
-          duration: 4000
-        }).onAction().subscribe(() => {
-          this.dismissSnackbar();
-        });
+        this.openSnackbar('Login Failed.', 'Dismiss');
       }
     });
   }
@@ -61,19 +50,7 @@ export class LoginDialogComponent {
     window.location.reload();
   }
 
-  showCustomSnackbar(message: string, action?: string, actionHandler?: Function) {
-    const snackBarRef = this.snackBar.openFromComponent(CustomSnackbarComponent, {
-      data: { message, action, actionHandler },
-      duration: 4000
-    });
-
-    if (action && actionHandler) {
-      snackBarRef.onAction().subscribe(() => actionHandler());
-    }
-  }
-
-  // Define an action handler
-  dismissSnackbar() {
-    // Perform additional actions here if necessary
+  openSnackbar(message: string, action: string) {
+    this.snackbarService.openSnackbar(message, action);
   }
 }
