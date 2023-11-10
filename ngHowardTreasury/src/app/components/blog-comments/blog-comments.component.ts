@@ -307,12 +307,18 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
       anchorElement.classList.add('hover-effect');
     });
 
-
     const headerElements = doc.querySelectorAll('span');
     headerElements.forEach((headerElement) => {
       if(headerElement.getAttribute('style')?.includes('color: rgb(186, 55, 42)')) {
         headerElement.removeAttribute('style');
         headerElement.firstElementChild?.classList.add('header-font');
+      }
+    });
+
+    const paragraphElements = doc.querySelectorAll('p');
+    paragraphElements.forEach((paragraphElement) => {
+      if(paragraphElement.getAttribute('style')?.includes('text-align: justify')) {
+        paragraphElement.classList.add('formatted-text');
       }
     });
 

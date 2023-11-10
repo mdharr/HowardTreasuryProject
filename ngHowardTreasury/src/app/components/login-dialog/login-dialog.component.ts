@@ -5,6 +5,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { CustomSnackbarComponent } from '../custom-snackbar/custom-snackbar.component';
 
 @Component({
   selector: 'app-login-dialog',
@@ -20,6 +21,7 @@ export class LoginDialogComponent {
   snackBar = inject(MatSnackBar);
   userListService = inject(UserlistService);
   cdr = inject(ChangeDetectorRef);
+  snackbarRef = inject(MatDialogRef<CustomSnackbarComponent>);
 
   login(loginUser: User) {
     this.auth.login(this.loginUser.username, this.loginUser.password).subscribe({
@@ -28,10 +30,12 @@ export class LoginDialogComponent {
         this.loginUser = loggedInUser;
         this.userListService.loadUserLists();
         this.dialogRef.close();
-        this.snackBar.open('Login Success!', 'Dismiss', {
-          duration: 4000,
-          panelClass: ['mat-toolbar', 'mat-primary'],
-          verticalPosition: 'bottom'
+        // Open the snackbar with an action handler
+        this.snackBar.openFromComponent(CustomSnackbarComponent, {
+          data: { message: 'Login Success!', action: 'Dismiss' },
+          duration: 4000
+        }).onAction().subscribe(() => {
+          this.dismissSnackbar();
         });
         // Notify the UserService about the successful login
         this.userService.updateUser(loggedInUser);
@@ -54,5 +58,21 @@ export class LoginDialogComponent {
 
   refreshPage() {
     window.location.reload();
+  }
+
+  showCustomSnackbar(message: string, action?: string, actionHandler?: Function) {
+    const snackBarRef = this.snackBar.openFromComponent(CustomSnackbarComponent, {
+      data: { message, action, actionHandler },
+      duration: 4000
+    });
+
+    if (action && actionHandler) {
+      snackBarRef.onAction().subscribe(() => actionHandler());
+    }
+  }
+
+  // Define an action handler
+  dismissSnackbar() {
+    // Perform additional actions here if necessary
   }
 }
