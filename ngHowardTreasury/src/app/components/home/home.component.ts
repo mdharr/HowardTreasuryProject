@@ -10,7 +10,7 @@ import { AnimatedCardComponent } from '../animated-card/animated-card.component'
 export class HomeComponent implements OnInit, OnDestroy {
   @ViewChildren(AnimatedCardComponent) animatedCards!: QueryList<AnimatedCardComponent>;
 
-  objectPosition: string = '-470px center';
+  objectPosition: string = '-420px center';
 
   // booleans
   isLoaded = false;
@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.objectPosition = '-388px center';
     }
     else {
-      this.objectPosition = '-470px center';
+      this.objectPosition = '-420px center';
     }
   }
 
