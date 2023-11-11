@@ -7,4 +7,5 @@ import com.skilldistillery.howardtreasury.entities.ChatRoom;
 public interface ChatRoomService {
 
 	public List<ChatRoom> findAllChatRooms();
+	public ChatRoom find(int id);
 }

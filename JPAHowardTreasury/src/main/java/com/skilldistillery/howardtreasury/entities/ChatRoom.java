@@ -40,6 +40,10 @@ public class ChatRoom {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+    public ChatRoom(int id) {
+        this.id = id;
+    }
 
 	public ChatRoom(int id, String name, String description, User user, List<ChatMessage> chatMessages) {
 		super();

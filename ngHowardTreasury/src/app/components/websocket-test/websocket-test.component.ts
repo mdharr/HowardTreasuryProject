@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChatMessage } from 'src/app/models/chat-message';
@@ -10,48 +11,89 @@ import { ChatRoom } from 'src/app/models/chat-room';
   templateUrl: './websocket-test.component.html',
   styleUrls: ['./websocket-test.component.css'],
 })
-export class WebsocketTestComponent implements OnInit {
+export class WebsocketTestComponent implements OnInit, OnDestroy {
   newMessage: string = '';
   messages: ChatMessage[] = [];
+  loggedInUser: User = new User();
 
-  constructor(private webSocketService: WebSocketService) {}
+  private loggedInSubscription: Subscription | undefined;
+  private webSocketSubscription: Subscription | undefined;
+  private authSubscription: Subscription | undefined;
+
+  constructor(private webSocketService: WebSocketService, private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.webSocketService.getMessages().subscribe((messages: ChatMessage[]) => {
+    this.authService.getLoggedInUser().subscribe({
+      next: (user) => {
+        this.loggedInUser = user;
+        console.log('LOGGED IN USER: ' + this.loggedInUser.id);
+
+      },
+      error: (error) => {
+        console.log('Error getting loggedInUser');
+        console.log(error);
+      },
+    });
+    // this.subscribeToLoggedInObservable();
+    // this.subscribeToLoggedInObservable();
+
+    this.webSocketSubscription = this.webSocketService.getMessages().subscribe((messages: ChatMessage[]) => {
       this.messages = messages;
     });
   }
 
+  ngOnDestroy(): void {
+    if(this.loggedInSubscription) {
+      this.loggedInSubscription.unsubscribe();
+    }
+    if(this.webSocketSubscription) {
+      this.webSocketSubscription.unsubscribe();
+    }
+    if(this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
+  }
+
   sendMessage(): void {
     if (this.newMessage.trim() !== '') {
-      // Assuming you have all necessary data to create a ChatRoom and User object.
-      // If you don't have a ChatRoom or User object, you'll need to obtain them
-      // or create placeholders as per your application's logic.
+      // Assuming you have a method to get the current logged-in user's ID
+      // and your chat room ID is already known and fixed as '1' for the public chat room.
 
-      // Create a placeholder ChatRoom object
-      // You need to replace this with actual room data or get it from the application state
-      const placeholderChatRoom = new ChatRoom(
-        1, // Room ID - assuming it's already known
-        'Public', // Room name
-        'This is the public chat room.' // Room description
-      );
-
-      // Create a placeholder User object
-      // You need to replace this with actual user data or get it from the application state
-      const placeholderUser = 'Username'; // Replace with the actual username
-
-      // Create a ChatMessage object using the new keyword
+      // Create a new ChatMessage object with the current message content
+      // and other required properties like chatRoom ID and user ID.
       const chatMessage = new ChatMessage(
-        undefined, // No ID before creation
-        this.newMessage, // The message content
-        new Date().toISOString(), // Current timestamp
-        placeholderChatRoom, // The associated chat room
-        placeholderUser // The username of the sender
+        undefined, // No need to set an ID for a new message
+        this.newMessage, // The message content from input
+        new Date().toISOString(), // Current timestamp for createdAt
+        1, // The ID for the public chat room
+        this.loggedInUser.id // The ID of the logged-in user
       );
 
-      // Send the chat message using the service
+      // Send the chat message using the WebSocket service
       this.webSocketService.sendChatMessage(chatMessage);
-      this.newMessage = ''; // Clear the input field
+      this.newMessage = ''; // Clear the input field after sending the message
     }
+  }
+
+  subscribeToAuth = () => {
+    this.authSubscription = this.authService.getLoggedInUser().subscribe({
+      next: (user) => {
+        this.loggedInUser = user;
+        console.log(this.loggedInUser);
+      },
+      error: (error) => {
+        console.log('Error getting loggedInUser');
+        console.log(error);
+      },
+    });
+  }
+
+
+  subscribeToLoggedInObservable() {
+    this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
+      this.loggedInUser = user;
+      console.log('LOGGED IN USER: ' + this.loggedInUser);
+
+    });
   }
 }

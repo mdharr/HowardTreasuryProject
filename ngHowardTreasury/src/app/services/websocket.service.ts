@@ -33,7 +33,7 @@ export class WebSocketService {
 
   public sendChatMessage(chatMessage: ChatMessage): void {
     console.log('Sending message:', JSON.stringify(chatMessage)); // Add this line
-    this.stompClient.send('/app/chat.sendMessage', {}, JSON.stringify(chatMessage));
+    this.stompClient.send('/app/chat.sendMessage', JSON.stringify(chatMessage));
   }
 
   private onMessageReceived(sdkEvent: any): void {

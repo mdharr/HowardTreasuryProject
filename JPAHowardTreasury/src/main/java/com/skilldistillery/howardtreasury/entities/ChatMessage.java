@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "chat_message")
@@ -93,6 +94,16 @@ public class ChatMessage {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+    @JsonProperty("chatRoom")
+    public void setChatRoomById(int chatRoomId) {
+        this.chatRoom = new ChatRoom(chatRoomId); // Stub for ChatRoom with ID only
+    }
+
+    @JsonProperty("user")
+    public void setUserById(int userId) {
+        this.user = new User(userId); // Stub for User with ID only
+    }
 
 	@Override
 	public int hashCode() {

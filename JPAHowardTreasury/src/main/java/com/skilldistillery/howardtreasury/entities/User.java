@@ -41,6 +41,8 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private List<UserList> userLists;
+//	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+//	private List<UserList> userLists;
 	
 	@JsonIgnore
     @OneToMany(mappedBy = "user")
@@ -65,6 +67,10 @@ public class User {
 	public User() {
 		super();
 	}
+	
+    public User(int id) {
+        this.id = id;
+    }
 	
 	public User(int id, String username, String password, Boolean enabled, String role, String email,
 			String imageUrl, List<UserList> userLists, List<BlogPost> blogPosts, List<BlogComment> comments,
