@@ -70,6 +70,9 @@ import { UpdateUserDialogComponent } from './components/update-user-dialog/updat
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { VerificationComponent } from './components/verification/verification.component';
 import { CustomSnackbarComponent } from './components/custom-snackbar/custom-snackbar.component';
+import { WebsocketTestComponent } from './components/websocket-test/websocket-test.component';
+import { WebSocketService } from './services/websocket.service';
+
 
 @NgModule({
   declarations: [
@@ -123,6 +126,7 @@ import { CustomSnackbarComponent } from './components/custom-snackbar/custom-sna
     TimeAgoPipe,
     VerificationComponent,
     CustomSnackbarComponent,
+    WebsocketTestComponent,
   ],
   imports: [
     BrowserModule,
@@ -147,6 +151,7 @@ import { CustomSnackbarComponent } from './components/custom-snackbar/custom-sna
     MatCardModule
   ],
   providers: [
+    WebSocketService,
     { provide: TINYMCE_SCRIPT_SRC, useValue: '/tinymce/tinymce.min.js' }
   ],
   bootstrap: [AppComponent]

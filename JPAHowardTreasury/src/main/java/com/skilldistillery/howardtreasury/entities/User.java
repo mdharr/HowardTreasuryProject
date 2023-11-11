@@ -55,16 +55,7 @@ public class User {
 	private List<ChatMessage> chatMessages;
 	
 	@JsonIgnore
-    @OneToMany(mappedBy = "owner")
-    private List<ChatRoom> ownedChatRooms;
-
-	@JsonIgnore
-    @ManyToMany
-    @JoinTable(
-        name = "user_has_chat_room",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "chat_room_id")
-    )
+    @OneToMany(mappedBy = "user")
     private List<ChatRoom> chatRooms;
 	
     @JsonManagedReference
@@ -77,8 +68,7 @@ public class User {
 	
 	public User(int id, String username, String password, Boolean enabled, String role, String email,
 			String imageUrl, List<UserList> userLists, List<BlogPost> blogPosts, List<BlogComment> comments,
-			List<ChatMessage> chatMessages, List<ChatRoom> ownedChatRooms, List<ChatRoom> chatRooms,
-			VerificationToken verificationToken) {
+			List<ChatMessage> chatMessages, List<ChatRoom> chatRooms, VerificationToken verificationToken) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -91,7 +81,6 @@ public class User {
 		this.blogPosts = blogPosts;
 		this.comments = comments;
 		this.chatMessages = chatMessages;
-		this.ownedChatRooms = ownedChatRooms;
 		this.chatRooms = chatRooms;
 		this.verificationToken = verificationToken;
 	}
@@ -182,14 +171,6 @@ public class User {
 
 	public void setChatMessages(List<ChatMessage> chatMessages) {
 		this.chatMessages = chatMessages;
-	}
-
-	public List<ChatRoom> getOwnedChatRooms() {
-		return ownedChatRooms;
-	}
-
-	public void setOwnedChatRooms(List<ChatRoom> ownedChatRooms) {
-		this.ownedChatRooms = ownedChatRooms;
 	}
 
 	public List<ChatRoom> getChatRooms() {

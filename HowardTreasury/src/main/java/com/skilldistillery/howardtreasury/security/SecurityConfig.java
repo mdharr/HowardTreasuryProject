@@ -51,7 +51,10 @@ public class SecurityConfig {
         .antMatchers(HttpMethod.GET, "/api/illustrators").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/illustrators/*").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/verify").permitAll()     // will hit the OPTIONS on the route
+        .antMatchers(HttpMethod.GET, "/ws/**").permitAll()     // will hit the OPTIONS on the route
         .antMatchers("/register").permitAll()
+        .antMatchers("/ws/**").permitAll()
+        .antMatchers("/ws/info").permitAll()
         .antMatchers("/verify").permitAll()
         .antMatchers("/api/**").authenticated() // Requests for our REST API must be authorized.
         .anyRequest().permitAll()               // All other requests are allowed without authentication.

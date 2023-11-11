@@ -20,39 +20,33 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "chat_room")
 public class ChatRoom {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
-	private String name;
-	
-	private String description;
-	
-	@JsonIgnore
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String name;
+
+    private String description;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User owner;
-    
-    @JsonIgnore
-    @ManyToMany(mappedBy = "chatRooms")
-    private List<User> users;
-	
-    @JsonIgnore
-	@OneToMany(mappedBy = "chatRoom")
-	private List<ChatMessage> chatMessages;
+    private User user;
+
+    @OneToMany(mappedBy = "chatRoom")
+    private List<ChatMessage> chatMessages; // Add this field
 
 	public ChatRoom() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ChatRoom(int id, String name, String description, User owner, List<User> users, List<ChatMessage> chatMessages) {
+	public ChatRoom(int id, String name, String description, User user, List<ChatMessage> chatMessages) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.owner = owner;
-		this.users = users;
+		this.user = user;
 		this.chatMessages = chatMessages;
 	}
 
@@ -80,20 +74,12 @@ public class ChatRoom {
 		this.description = description;
 	}
 
-	public User getOwner() {
-		return owner;
+	public User getUser() {
+		return user;
 	}
 	
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
-	
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public List<ChatMessage> getChatMessages() {
@@ -103,21 +89,19 @@ public class ChatRoom {
 	public void setChatMessages(List<ChatMessage> chatMessages) {
 		this.chatMessages = chatMessages;
 	}
-	
-    // Add a user to the chat room
-    public void addUser(User user) {
-        if (users == null) {
-            users = new ArrayList<>();
+    
+    public void addChatMessage(ChatMessage chatMessage) {
+        if (chatMessages == null) {
+            chatMessages = new ArrayList<>();
         }
-        users.add(user);
-        user.getChatRooms().add(this); // Bidirectional relationship
+        chatMessages.add(chatMessage);
+        chatMessage.setChatRoom(this);
     }
 
-    // Remove a user from the chat room
-    public void removeUser(User user) {
-        if (users != null) {
-            users.remove(user);
-            user.getChatRooms().remove(this); // Bidirectional relationship
+    public void removeChatMessage(ChatMessage chatMessage) {
+        if (chatMessages != null) {
+            chatMessages.remove(chatMessage);
+            chatMessage.setChatRoom(null);
         }
     }
 
@@ -140,8 +124,8 @@ public class ChatRoom {
 
 	@Override
 	public String toString() {
-		return "ChatRoom [id=" + id + ", name=" + name + ", description=" + description + ", owner=" + owner
-				+ ", users=" + users + ", chatMessages=" + chatMessages + "]";
+		return "ChatRoom [id=" + id + ", name=" + name + ", description=" + description + ", user=" + user
+				+ ", chatMessages=" + chatMessages + "]";
 	}
 
 }

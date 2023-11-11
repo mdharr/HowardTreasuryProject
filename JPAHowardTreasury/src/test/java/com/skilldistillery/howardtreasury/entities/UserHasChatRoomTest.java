@@ -51,11 +51,5 @@ class UserHasChatRoomTest {
 		assertNotNull(userHasChatRoom);
 		assertEquals("Welcome to the Robert E. Howard Treasury chat room!", userHasChatRoom.getChatRoom().getChatMessages().get(0).getMessageContent());
 	}
-	
-	@Test
-	void test_UserHasChatRoom_User_many_to_one_mapping() {
-		assertNotNull(userHasChatRoom);
-		assertTrue(userHasChatRoom.getChatRoom().getUsers().size() > 0);
-	}
 
 }

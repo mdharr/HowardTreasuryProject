@@ -1,7 +1,8 @@
+import { ChatMessage } from "./chat-message";
+import { ChatRoom } from "./chat-room";
 import { UserList } from "./user-list";
 
 export class User {
-
   id: number;
   username: string;
   password: string;
@@ -11,6 +12,8 @@ export class User {
   email: string;
   imageUrl: string;
   userLists: UserList[];
+  chatRooms?: ChatRoom[];
+  chatMessages?: ChatMessage[];
 
   constructor(
     id: number = 0,

@@ -20,25 +20,25 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "chat_message")
 public class ChatMessage {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
-	@Column(name = "message_content")
-	private String messageContent;
-	
-	@CreationTimestamp
-	@Column(name = "created_at")
-	private LocalDateTime createdAt;
-	
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "chat_room_id")
-	private ChatRoom chatRoom;
-	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "message_content")
+    private String messageContent;
+
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @JsonIgnore // Add this annotation to avoid circular references
+    @ManyToOne
+    @JoinColumn(name = "chat_room_id")
+    private ChatRoom chatRoom;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 	public ChatMessage() {
 		super();
