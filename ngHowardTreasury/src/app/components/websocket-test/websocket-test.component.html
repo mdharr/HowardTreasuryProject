@@ -2,7 +2,7 @@
 <div class="chat-display">
   <div *ngFor="let message of messages" class="message">
     <div class="message-header">
-      <span class="message-sender">{{ message.user || 'Anonymous' }}</span>
+      <span class="message-sender">{{ loggedInUser.username || 'Anonymous' }}</span>
       <span class="message-timestamp">{{ message.createdAt | date: 'short' }}</span>
     </div>
     <div class="message-content">{{ message.messageContent }}</div>

@@ -1,5 +1,7 @@
 package com.skilldistillery.howardtreasury.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,4 +30,9 @@ public class ChatMessageServiceImpl implements ChatMessageService {
                 chatMessage.getUser().getId()
         );
     }
+
+	@Override
+	public List<ChatMessage> findMessagesByChatRoom(int roomId) {
+		return chatMessageRepo.findByChatRoomIdOrderByCreatedAtDesc(roomId);
+	}
 }

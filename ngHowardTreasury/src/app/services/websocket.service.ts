@@ -1,15 +1,22 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ChatMessage } from '../models/chat-message';
 import * as Stomp from 'webstomp-client';
 import SockJS from 'sockjs-client';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebSocketService {
+
+  private url = environment.baseUrl;
+
   private stompClient: any;
   private messages: BehaviorSubject<ChatMessage[]>;
+
+  httpClient = inject(HttpClient);
 
   constructor() {
     this.messages = new BehaviorSubject<ChatMessage[]>([]);
@@ -50,4 +57,11 @@ export class WebSocketService {
   public getMessages(): Observable<ChatMessage[]> {
     return this.messages.asObservable();
   }
+
+  public fetchChatHistory(chatRoomId: number): Observable<ChatMessage[]> {
+    // Implement an HTTP GET request to fetch the chat history
+    // Replace `http://api.yourdomain.com/chatroom/${chatRoomId}/history` with your actual API endpoint
+    return this.httpClient.get<ChatMessage[]>(`${this.url}/chatroom/${chatRoomId}/history`);
+  }
+
 }
