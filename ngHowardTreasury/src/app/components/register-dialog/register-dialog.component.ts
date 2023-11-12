@@ -1,3 +1,4 @@
+import { SnackbarService } from './../../services/snackbar.service';
 import { UserlistService } from 'src/app/services/userlist.service';
 import { Subscription } from 'rxjs';
 import { Component, inject, OnDestroy } from '@angular/core';
@@ -24,6 +25,7 @@ export class RegisterDialogComponent implements OnDestroy {
   dialogRef = inject(MatDialogRef<RegisterDialogComponent>);
   snackBar = inject(MatSnackBar);
   userListService = inject(UserlistService);
+  snackbarService = inject(SnackbarService);
 
   register(newUser: User): void {
     console.log('Registering user:');
@@ -31,11 +33,7 @@ export class RegisterDialogComponent implements OnDestroy {
     if (newUser.password !== newUser.confirmPassword) {
       // Password and confirmPassword do not match
       console.log("Passwords do not match");
-      this.snackBar.open('Passwords do not match', 'Dismiss', {
-        duration: 4000,
-        panelClass: ['mat-toolbar', 'mat-primary'],
-        verticalPosition: 'bottom'
-      });
+      this.openSnackbar('Passwords do not match', 'Dismiss');
       return;
     }
     this.isProcessing = true;
@@ -59,11 +57,7 @@ export class RegisterDialogComponent implements OnDestroy {
       next: (registeredUser) => {
         this.isProcessing = false;
         this.dialogRef.close(); // Close the registration dialog
-        this.snackBar.open('Registration successful! Please check your email to verify your account.', 'Dismiss', {
-          duration: 6000,
-          panelClass: ['mat-toolbar', 'mat-primary'],
-          verticalPosition: 'bottom'
-        });
+        this.openSnackbar('Registration successful! Please check your email to verify your account', 'Dismiss');
       },
       error: (fail) => {
         // Handle registration error
@@ -71,19 +65,18 @@ export class RegisterDialogComponent implements OnDestroy {
         console.error(fail);
         this.isProcessing = false;
         this.dialogRef.close();
-        this.snackBar.open('Registration unsuccessful', 'Dismiss', {
-          duration: 4000,
-          panelClass: ['mat-toolbar', 'mat-warn'],
-          verticalPosition: 'bottom'
-        });
+        this.openSnackbar('Registration unsuccessful', 'Dismiss');
       }
     });
   }
-
 
   destroySubscriptions = () => {
     if(this.authSubscription) {
       this.authSubscription.unsubscribe();
     }
+  }
+
+  openSnackbar(message: string, action: string) {
+    this.snackbarService.openSnackbar(message, action);
   }
 }

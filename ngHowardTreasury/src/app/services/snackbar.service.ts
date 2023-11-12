@@ -9,7 +9,7 @@ export class SnackbarService {
 
   constructor(private snackBar: MatSnackBar) {}
 
-  openSnackbar(message: string, action?: string, duration: number = 4000) {
+  openSnackbar(message: string, action?: string, duration: number = 6000) {
     this.snackBar.openFromComponent(CustomSnackbarComponent, {
       duration: duration,
       data: { message: message, action: action }

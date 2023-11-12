@@ -59,8 +59,8 @@ mat-expansion-panel-header {
 }
 
 ::ng-deep .mat-content {
-  font-family: var(--headerFontFamily);
-  font-size: var(--contentFontSize);
+  font-family: var(--inter);
+  font-size: 1.1rem;
 }
 
 ::ng-deep .mat-mdc-checkbox {
@@ -130,7 +130,7 @@ p {
 }
 
 .content-titles {
-  font-family: var(--contentFontFamily);
+  font-family: var(--inter);
   font-size: 1.1rem;
 }
 
@@ -144,7 +144,7 @@ p {
 
 .no-items-text {
   margin:0;
-  font-family: var(--contentFontFamily);
+  font-family: var(--inter);
   font-size: 1.1rem;
 }
 

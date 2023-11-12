@@ -29,10 +29,10 @@
     <!-- Auth Buttons Container -->
     <div class="auth-container">
       <button mat-raised-button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openLoginDialog()">
-        <span class="login-text">Log in</span>
+        <span class="login-text">Sign in</span>
       </button>
       <button mat-raised-button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openSignupDialog()">
-        <span class="register-text">Register</span>
+        <span class="register-text">Sign up</span>
       </button>
 
       <button mat-raised-button class="navbar-btn-group" mat-button *ngIf="loggedIn()" [routerLink]="['/profile']">
@@ -40,7 +40,7 @@
           {{ loggedInUser.username }}
         </span>
       </button>
-      <div *ngIf="loggedIn()">
+      <div *ngIf="loggedIn()" style="margin-left: 10px;">
         <app-logout></app-logout>
       </div>
     </div>

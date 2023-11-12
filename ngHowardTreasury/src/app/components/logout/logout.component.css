@@ -1,12 +1,10 @@
 .logout-button {
-  margin-left: 10px;
   padding: 0;
   padding-right: 8px;
   padding-left: 8px;
   height: 40px;
   line-height: 28px;
   border: 1px solid var(--white_color);
-  flex:1;
   background-color: var(--red_black);
   color: var(--title_color);
   width:100%;
@@ -14,7 +12,9 @@
   font-size: var(--body_font);
   /* font-weight: var(--superBold); */
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  min-width: 97px;
+  min-width: 107px;
+  border-radius: 28px;
+  font-size: 1rem;
 }
 
 

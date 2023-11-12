@@ -62,6 +62,7 @@ body {
 body {
   /* colors */
   --bkg_color: #eaead7;
+  /* --bkg_color: #e9eef6; */
   --dark_color: #262626;
   --header_color: #230f2b;
   --subheader_color: #eaead7;
