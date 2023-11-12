@@ -70,7 +70,7 @@ import { UpdateUserDialogComponent } from './components/update-user-dialog/updat
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { VerificationComponent } from './components/verification/verification.component';
 import { CustomSnackbarComponent } from './components/custom-snackbar/custom-snackbar.component';
-import { WebsocketTestComponent } from './components/websocket-test/websocket-test.component';
+import { ChatComponent } from './components/chat/chat.component';
 import { WebSocketService } from './services/websocket.service';
 
 
@@ -126,7 +126,7 @@ import { WebSocketService } from './services/websocket.service';
     TimeAgoPipe,
     VerificationComponent,
     CustomSnackbarComponent,
-    WebsocketTestComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

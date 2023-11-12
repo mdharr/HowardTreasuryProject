@@ -454,6 +454,14 @@ div p * {
 
 }
 
+@media screen and (max-width: 500px) {
+  .post {
+    box-shadow: none;
+    padding: 20px 5px;
+  }
+
+}
+
 @media screen and (max-width: 420px) {
 
   ::ng-deep .post-images {
@@ -464,3 +472,5 @@ div p * {
   }
 
 }
+
+

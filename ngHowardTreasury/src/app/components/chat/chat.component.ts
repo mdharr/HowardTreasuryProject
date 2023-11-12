@@ -1,4 +1,4 @@
-import { AuthService } from './../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy, inject, ChangeDetectorRef, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { ChatMessage } from 'src/app/models/chat-message';
@@ -9,10 +9,10 @@ import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-websocket-test',
-  templateUrl: './websocket-test.component.html',
-  styleUrls: ['./websocket-test.component.css'],
+  templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.css'],
 })
-export class WebsocketTestComponent implements OnInit, OnDestroy {
+export class ChatComponent implements OnInit, OnDestroy {
   @ViewChild('chatDisplay') private chatDisplayContainer!: ElementRef;
 
   newMessage: string = '';
@@ -21,6 +21,7 @@ export class WebsocketTestComponent implements OnInit, OnDestroy {
   groupedMessages: { date: string; messages: ChatMessage[] }[] = [];
   loggedInUser: User = new User();
   chatRoomId: number = 0;
+  waveText: string | undefined;
 
   private loggedInSubscription: Subscription | undefined;
   private webSocketSubscription: Subscription | undefined;
@@ -157,4 +158,36 @@ export class WebsocketTestComponent implements OnInit, OnDestroy {
       messages: groups[date].sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
     }));
   }
+
+  animateText() {
+    // It's best to not use 'DOMContentLoaded' inside Angular lifecycle because Angular takes care of when the DOM is ready. Instead, use Angular's lifecycle hooks like 'ngOnInit'.
+
+    // Ensure waveText is not null before proceeding
+    const waveText = document.querySelector('.wave');
+    if (waveText) {
+        // Since textContent is always a string, the null-conditional operator is not required here.
+        // If textContent is null or undefined, it will not proceed to replace operation.
+        const textContent = waveText.textContent || ''; // Fallback to empty string if null
+        waveText.innerHTML = textContent.replace(/\S/g, "<span>$&</span>");
+
+        // Add a hover event listener to the 'wave' class element
+        waveText.addEventListener('mouseover', () => {
+            // Ensure waveText is not null and querySelectorAll is called on a non-null value
+            let spans = waveText.querySelectorAll('span');
+            // Apply the animation delay to each span
+            spans.forEach((span, index) => {
+                span.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Remove the animation when not hovering
+        waveText.addEventListener('mouseout', () => {
+            let spans = waveText.querySelectorAll('span');
+            spans.forEach((span) => {
+                span.style.animationDelay = '0s';
+            });
+        });
+    }
+}
+
 }

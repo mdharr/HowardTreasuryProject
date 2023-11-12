@@ -27,7 +27,7 @@ import { AnimatedCardComponent } from './components/animated-card/animated-card.
 import { TestCardsComponent } from './components/test-cards/test-cards.component';
 import { ExcerptLoopComponent } from './components/excerpt-loop/excerpt-loop.component';
 import { VerificationComponent } from './components/verification/verification.component';
-import { WebsocketTestComponent } from './components/websocket-test/websocket-test.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -57,7 +57,7 @@ const routes: Routes = [
   { path: 'test', component: TestCardsComponent },
   { path: 'excerpt', component: ExcerptLoopComponent },
   { path: 'posts/:postId/edit', component: BlogPostEditComponent },
-  { path: 'chat', component: WebsocketTestComponent },
+  { path: 'chat', component: ChatComponent },
   // { path: 'stories-test', component: StoriesTestComponent },
   // { path: 'stop-light-test', component: StopLightTestComponent },
 ];

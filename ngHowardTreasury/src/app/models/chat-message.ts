@@ -6,14 +6,14 @@ export class ChatMessage {
   messageContent: string;
   createdAt: string;
   chatRoom: number;
-  user: Partial<User>;
+  user: { id: number; username?: string };
 
   constructor(
     id: number = 0,
     messageContent: string = '',
     createdAt: string = '',
     chatRoom: number = 0,
-    user: Partial<User> = new User()
+    user: { id: number; username?: string } = { id: 0, username: '' }
   ) {
     if (id) this.id = id;
     this.messageContent = messageContent;

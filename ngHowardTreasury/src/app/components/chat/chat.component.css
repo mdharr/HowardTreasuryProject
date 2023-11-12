@@ -85,7 +85,8 @@
 .date-separator {
   width: 100%;
   text-align: center;
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
+  border-bottom: 1px solid #cccccc7a;
   line-height: 0.1em;
   margin: 20px 0 20px;
 }
@@ -119,3 +120,8 @@
   font-size: 1.1rem;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
