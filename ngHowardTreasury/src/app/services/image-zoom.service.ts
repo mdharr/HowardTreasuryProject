@@ -11,19 +11,30 @@ export class ImageZoomService {
     this.renderer = rendererFactory.createRenderer(null, null);
   }
 
-  addZoomEffect(image: HTMLImageElement) {
-    this.renderer.listen(image, 'mouseenter', () => this.zoomIn(image));
-    this.renderer.listen(image, 'mouseleave', () => this.zoomOut(image));
+  initializeImageZoom(parentElement: HTMLElement) {
+    this.renderer.listen(parentElement, 'mouseover', (event) => {
+      const target = event.target as HTMLElement;
+      if (target.tagName.toLowerCase() === 'img') {
+        this.zoomIn(target as HTMLImageElement);
+      }
+    });
+
+    this.renderer.listen(parentElement, 'mouseout', (event) => {
+      const target = event.target as HTMLElement;
+      if (target.tagName.toLowerCase() === 'img') {
+        this.zoomOut(target as HTMLImageElement);
+      }
+    });
   }
 
   private zoomIn(image: HTMLImageElement) {
-    // Implement zoom in logic, e.g., increase size, add shadow, etc.
+    // Zoom in logic
     this.renderer.setStyle(image, 'transform', 'scale(1.1)');
     this.renderer.setStyle(image, 'transition', 'transform 0.5s ease');
   }
 
   private zoomOut(image: HTMLImageElement) {
-    // Reset zoom on mouse leave
-    this.renderer.setStyle(image, 'transform', 'scale(1)');
+    // Zoom out logic
+    this.renderer.setStyle(image, 'transform', '');
   }
 }

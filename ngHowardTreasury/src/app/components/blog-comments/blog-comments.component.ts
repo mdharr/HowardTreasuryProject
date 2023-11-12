@@ -1,4 +1,3 @@
-import { style } from '@angular/animations';
 import { DialogService } from 'src/app/services/dialog.service';
 import { BlogCommentService } from './../../services/blog-comment.service';
 import { AfterViewInit, Component, inject, OnDestroy, OnInit, Renderer2, ElementRef, SecurityContext } from '@angular/core';
@@ -261,9 +260,7 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.showCommentNest = !this.showCommentNest;
   }
 
-  ngAfterViewInit() {
-
-  }
+  ngAfterViewInit() {}
 
   modifyHTMLContent(): SafeHtml {
     if (!this.sanitizedContent) {
