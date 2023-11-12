@@ -101,8 +101,8 @@ public class ChatMessage {
     }
 
     @JsonProperty("user")
-    public void setUserById(int userId) {
-        this.user = new User(userId); // Stub for User with ID only
+    public void setUserByIdAndUsername(int userId, String username) {
+        this.user = new User(userId, username); // Stub for User with ID only
     }
 
 	@Override

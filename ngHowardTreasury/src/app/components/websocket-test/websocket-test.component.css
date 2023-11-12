@@ -1,10 +1,14 @@
 /* Chat display styles */
 .chat-display {
-  max-height: 400px;
+  max-height: 520px;
   overflow-y: auto;
   border: 1px solid #ccc;
   margin-bottom: 10px;
+  border-radius: 4px;
   padding: 10px;
+  min-height:520px;
+  background-color: var(--white_black);
+  box-shadow: inset 0 4px 8px 3px rgba(0,0,0,.15), inset 0 1px 3px rgba(0,0,0,.3);
 }
 
 .message {
@@ -13,24 +17,43 @@
 
 .message-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   font-size: 0.9em;
   margin-bottom: 5px;
+  gap: 0.5rem;
 }
 
 .message-sender {
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.375rem;
+  color: var(--red_milk);
 }
 
 .message-content {
-  background-color: #f4f4f4;
+  /* background-color: #f4f4f4; */
   padding: 10px;
+  padding-left: 0;
   border-radius: 5px;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  white-space: pre-wrap;
+  white-space: break-spaces;
+  word-wrap: break-word;
+  color: var(--black_white);
+}
+
+.message-timestamp {
+  font-size: .75rem;
+  line-height: 1.375rem;
+  color: var(--black_white);
+  font-weight: 500;
 }
 
 /* Message input area styles */
 .message-input-area {
   display: flex;
+  align-items: baseline;
 }
 
 .message-input {
@@ -39,17 +62,60 @@
   margin-right: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: var(--white_black);
+  color: var(--black_white);
+  box-shadow: inset 0 4px 8px 3px rgba(0,0,0,.15), inset 0 1px 3px rgba(0,0,0,.3);
 }
 
-button {
+.send-button {
   padding: 10px;
-  background-color: #007bff;
-  color: white;
+  background-color: var(--red_milk);
+  color: var(--white_black);
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  box-shadow: 0 4px 8px 3px rgba(0,0,0,.15), 0 1px 3px rgba(0,0,0,.3);
 }
 
-button:hover {
-  background-color: #0056b3;
+.send-button:hover {
+  background-color: var(--red_milk);
+  color: var(--white_black);
 }
+
+.date-separator {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  line-height: 0.1em;
+  margin: 20px 0 20px;
+}
+
+.date-separator:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 10px;
+  background: #fff; /* same as chat display background */
+}
+
+.date-marker {
+  background-color: var(--white_black);
+  padding: 0 10px;
+  color: var(--red_milk);
+  font-size: .75rem;
+  font-weight: 500;
+}
+
+.chat-room-title {
+  display: flex;
+  justify-content: center;
+  color: var(--black_white);
+  padding-top: 30px;
+}
+
+.chat-room-title h1 {
+  font-family: var(--inter);
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+

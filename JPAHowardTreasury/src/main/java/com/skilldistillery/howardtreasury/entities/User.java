@@ -71,6 +71,11 @@ public class User {
     public User(int id) {
         this.id = id;
     }
+    
+    public User(int id, String username) {
+    	this.id = id;
+    	this.username = username;
+    }
 	
 	public User(int id, String username, String password, Boolean enabled, String role, String email,
 			String imageUrl, List<UserList> userLists, List<BlogPost> blogPosts, List<BlogComment> comments,

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.howardtreasury.dtos.ChatMessageDTO;
+import com.skilldistillery.howardtreasury.dtos.SimpleUserDTO;
 import com.skilldistillery.howardtreasury.entities.ChatMessage;
 import com.skilldistillery.howardtreasury.repositories.ChatMessageRepository;
 
@@ -22,12 +23,13 @@ public class ChatMessageServiceImpl implements ChatMessageService {
 	
 	@Override
     public ChatMessageDTO convertToDTO(ChatMessage chatMessage) {
+		SimpleUserDTO userDTO = new SimpleUserDTO(chatMessage.getUser().getId(), chatMessage.getUser().getUsername());
         return new ChatMessageDTO(
                 chatMessage.getId(),
                 chatMessage.getMessageContent(),
                 chatMessage.getCreatedAt(),
                 chatMessage.getChatRoom().getId(),
-                chatMessage.getUser().getId()
+                userDTO
         );
     }
 

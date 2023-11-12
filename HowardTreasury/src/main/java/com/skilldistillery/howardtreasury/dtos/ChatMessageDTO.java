@@ -8,18 +8,18 @@ public class ChatMessageDTO {
     private String messageContent;
     private LocalDateTime createdAt;
     private int chatRoomId;
-    private int userId;
+    private SimpleUserDTO user;
 
     // Constructors, getters, and setters
 
     public ChatMessageDTO() {}
 
-    public ChatMessageDTO(int id, String messageContent, LocalDateTime createdAt, int chatRoomId, int userId) {
+    public ChatMessageDTO(int id, String messageContent, LocalDateTime createdAt, int chatRoomId, SimpleUserDTO user) {
         this.id = id;
         this.messageContent = messageContent;
         this.createdAt = createdAt;
         this.chatRoomId = chatRoomId;
-        this.userId = userId;
+        this.user = user;
     }
 
 	public int getId() {
@@ -54,12 +54,12 @@ public class ChatMessageDTO {
 		this.chatRoomId = chatRoomId;
 	}
 
-	public int getUserId() {
-		return userId;
+	public SimpleUserDTO getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(SimpleUserDTO user) {
+		this.user = user;
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class ChatMessageDTO {
 	@Override
 	public String toString() {
 		return "ChatMessageDTO [id=" + id + ", messageContent=" + messageContent + ", createdAt=" + createdAt
-				+ ", chatRoomId=" + chatRoomId + ", userId=" + userId + "]";
+				+ ", chatRoomId=" + chatRoomId + ", user=" + user + "]";
 	}
     
 }

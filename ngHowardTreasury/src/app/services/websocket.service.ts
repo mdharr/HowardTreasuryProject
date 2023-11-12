@@ -38,8 +38,7 @@ export class WebSocketService {
     }, this.onError);
   }
 
-  public sendChatMessage(chatMessage: ChatMessage): void {
-    console.log('Sending message:', JSON.stringify(chatMessage)); // Add this line
+  sendChatMessage(chatMessage: ChatMessage): void {
     this.stompClient.send('/app/chat.sendMessage', JSON.stringify(chatMessage));
   }
 
@@ -58,10 +57,10 @@ export class WebSocketService {
     return this.messages.asObservable();
   }
 
-  public fetchChatHistory(chatRoomId: number): Observable<ChatMessage[]> {
-    // Implement an HTTP GET request to fetch the chat history
-    // Replace `http://api.yourdomain.com/chatroom/${chatRoomId}/history` with your actual API endpoint
-    return this.httpClient.get<ChatMessage[]>(`${this.url}/chatroom/${chatRoomId}/history`);
-  }
+  // public fetchChatHistory(chatRoomId: number): Observable<ChatMessage[]> {
+  //   // Implement an HTTP GET request to fetch the chat history
+  //   // Replace `http://api.yourdomain.com/chatroom/${chatRoomId}/history` with your actual API endpoint
+  //   return this.httpClient.get<ChatMessage[]>(`${this.url}/chatroom/${chatRoomId}/history`);
+  // }
 
 }

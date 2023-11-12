@@ -57,7 +57,7 @@ const routes: Routes = [
   { path: 'test', component: TestCardsComponent },
   { path: 'excerpt', component: ExcerptLoopComponent },
   { path: 'posts/:postId/edit', component: BlogPostEditComponent },
-  { path: 'live-chat', component: WebsocketTestComponent },
+  { path: 'chat', component: WebsocketTestComponent },
   // { path: 'stories-test', component: StoriesTestComponent },
   // { path: 'stop-light-test', component: StopLightTestComponent },
 ];

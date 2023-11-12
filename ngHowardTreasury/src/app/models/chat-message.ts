@@ -1,3 +1,4 @@
+import { User } from "./user";
 
 export class ChatMessage {
 
@@ -5,14 +6,14 @@ export class ChatMessage {
   messageContent: string;
   createdAt: string;
   chatRoom: number;
-  user: number;
+  user: Partial<User>;
 
   constructor(
     id: number = 0,
     messageContent: string = '',
     createdAt: string = '',
     chatRoom: number = 0,
-    user: number = 0
+    user: Partial<User> = new User()
   ) {
     if (id) this.id = id;
     this.messageContent = messageContent;

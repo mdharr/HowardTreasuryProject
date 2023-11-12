@@ -21,7 +21,7 @@ public class ChatHistoryController {
     @Autowired
     private ChatMessageService chatMessageService;
     
-    @GetMapping("rooms/{roomId}/history")
+    @GetMapping("chat-rooms/{roomId}/history")
     public ResponseEntity<List<ChatMessage>> getChatHistory(@PathVariable("roomId") int roomId) {
         List<ChatMessage> chatHistory = chatMessageService.findMessagesByChatRoom(roomId);
         return ResponseEntity.ok(chatHistory);
