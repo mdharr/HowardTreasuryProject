@@ -10,7 +10,7 @@
     </p>
   </div>
 </div>
-<div class="card-wrapper">
+<div class="card-wrapper" *ngIf="showAll" @customEasingAnimation>
   <div class="illustrator-cards">
     <app-illustrator-card
       *ngFor="let illustrator of illustrators"

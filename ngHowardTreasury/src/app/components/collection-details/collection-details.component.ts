@@ -6,11 +6,36 @@ import { CollectionService } from 'src/app/services/collection.service';
 import { CollectionImage } from 'src/app/models/collection-image';
 import { CollectionWithStoriesDTO } from 'src/app/models/collection-with-stories-dto';
 import { DOCUMENT } from '@angular/common';
+import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-collection-details',
   templateUrl: './collection-details.component.html',
-  styleUrls: ['./collection-details.component.css']
+  styleUrls: ['./collection-details.component.css'],
+  animations: [
+    trigger('customEasingAnimation', [
+      transition(':enter', [
+        query('.story-contents', [
+          style({ opacity: 0, transform: 'translateY(20px)' }),
+          stagger(100, [
+            animate('0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)', style({ opacity: 1, transform: 'none' })),
+          ]),
+        ], { optional: true }),
+        query('.poem-contents', [
+          style({ opacity: 0, transform: 'translateY(20px)' }),
+          stagger(100, [
+            animate('0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)', style({ opacity: 1, transform: 'none' })),
+          ]),
+        ], { optional: true }),
+        query('.miscellanea-contents', [
+          style({ opacity: 0, transform: 'translateY(20px)' }),
+          stagger(100, [
+            animate('0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)', style({ opacity: 1, transform: 'none' })),
+          ]),
+        ], { optional: true }),
+      ]),
+    ]),
+  ]
 })
 export class CollectionDetailsComponent implements OnInit, OnDestroy {
 
@@ -21,9 +46,10 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   collectionDescription: string = '';
 
   // booleans
-  isFullScreenImageVisible:boolean = false;
-  isLoaded:boolean = false;
-  loaded:boolean = false;
+  isFullScreenImageVisible: boolean = false;
+  isLoaded: boolean = false;
+  loaded: boolean = false;
+  showAll: boolean = false;
 
   // service injection
   auth = inject(AuthService);
@@ -40,6 +66,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
     window.scrollTo(0, 0);
     this.getRouteParams();
     this.subscribeToCollectionService();
+    this.triggerCustomEasingAnimation();
   }
 
   ngOnDestroy(): void {
@@ -140,5 +167,12 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
     this.collection.stories.sort((a, b) => a.pageNumber - b.pageNumber);
     this.collection.poems.sort((a, b) => a.pageNumber - b.pageNumber);
     this.collection.miscellaneas.sort((a, b) => a.pageNumber - b.pageNumber);
+  }
+
+  triggerCustomEasingAnimation() {
+    // You can use a timeout to trigger the animation after a short delay
+    setTimeout(() => {
+      this.showAll = true; // Set the showAll to true to trigger the animation
+    }, 100);
   }
 }

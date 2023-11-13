@@ -1,3 +1,4 @@
+import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Collection } from 'src/app/models/collection';
@@ -7,12 +8,25 @@ import { CollectionService } from 'src/app/services/collection.service';
 @Component({
   selector: 'app-collections',
   templateUrl: './collections.component.html',
-  styleUrls: ['./collections.component.css']
+  styleUrls: ['./collections.component.css'],
+  animations: [
+    trigger('customEasingAnimation', [
+      transition(':enter', [
+        query('.book', [
+          style({ opacity: 0, transform: 'translateY(20px)' }),
+          stagger(100, [
+            animate('0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)', style({ opacity: 1, transform: 'none' })),
+          ]),
+        ], { optional: true }),
+      ]),
+    ]),
+  ]
 })
 export class CollectionsComponent implements OnInit, OnDestroy {
 
   collections: Collection[] = [];
   loading: boolean = true;
+  showAll: boolean = false;
 
   private collectionSubscription: Subscription | undefined;
 
@@ -22,6 +36,8 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.subscribeToSubscriptions();
+
+    this.triggerCustomEasingAnimation();
   }
 
   ngOnDestroy(): void {
@@ -56,6 +72,13 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     if (this.collectionSubscription) {
       this.collectionSubscription.unsubscribe();
     }
+  }
+
+  triggerCustomEasingAnimation() {
+    // You can use a timeout to trigger the animation after a short delay
+    setTimeout(() => {
+      this.showAll = true; // Set the showAll to true to trigger the animation
+    }, 100);
   }
 
 }

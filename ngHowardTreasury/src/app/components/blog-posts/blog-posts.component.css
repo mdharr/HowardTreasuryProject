@@ -184,10 +184,10 @@ details .body {
   padding: 25px;
 }
 
-button {
+/* button {
   background-color: var(--red_white);
   color: var(--white_black) !important;
-}
+} */
 
 .header-wrapper {
   width: 100%;
@@ -288,4 +288,43 @@ img {
   .main-title {
     font-size: 24px;
   }
+}
+
+::ng-deep .mat-mdc-menu-content {
+  margin: 0;
+  padding: 0 !important;
+  min-width: 240px;
+  max-width: 320px;
+  border-radius: 6px;
+  min-height:fit-content;
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12), 0 3px 5px 0 rgba(0,0,0,.2);
+}
+
+::ng-deep .mat-mdc-menu-content > .mat-mdc-menu-item {
+  padding: 0 !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  font-family: var(--inter);
+  font-size: var(--header_font);
+  font-weight: 300;
+  color: var(--black_white);
+}
+
+::ng-deep .mat-mdc-menu-item .mdc-list-item__primary-text {
+  font-family: var(--inter) !important;
+  font-size: var(--body_font) !important;
+  font-weight: var(--superBold) !important;
+  color: var(--black_white);
+}
+
+::ng-deep .mat-mdc-menu-content .mat-mdc-menu-item:hover {
+  background-color: var(--red_color);
+}
+
+::ng-deep .mat-mdc-menu-item:hover .mdc-list-item__primary-text {
+  color:var(--white_color) !important;
+}
+
+::ng-deep .mat-mdc-menu-panel.mat-mdc-menu-panel {
+  background-color: var(--white_black);
 }

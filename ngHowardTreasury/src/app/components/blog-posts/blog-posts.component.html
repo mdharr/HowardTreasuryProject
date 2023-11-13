@@ -10,17 +10,24 @@
     </p>
   </div>
   <div class="buttons-wrapper">
-    <div class="toggle-container" (click)="toggleShowAll()">
-      <span class="toggle-label">{{ showAll ? 'Show By Year' : 'Show All' }}</span>
-      <i class="toggle-icon" [ngClass]="{ 'active': showByYear }"></i>
+    <div class="toggle-container">
+      <span class="toggle-label" [matMenuTriggerFor]="menu">Options</span>
     </div>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="toggleDisplayOption('all')">Show All</button>
+      <button mat-menu-item (click)="toggleDisplayOption('year')">Show By Year</button>
+      <button mat-menu-item (click)="toggleDisplayOption('created_asc')">Show By Date Asc</button>
+      <button mat-menu-item (click)="toggleDisplayOption('created_desc')">Show By Date Desc</button>
+      <button mat-menu-item (click)="toggleDisplayOption('title_asc')">Show By Title Asc</button>
+      <button mat-menu-item (click)="toggleDisplayOption('title_desc')">Show By Title Desc</button>
+    </mat-menu>
     <div class="new-post" *ngIf="loggedIn()">
       <span class="toggle-label" [routerLink]="['/posts/create']">Create New Post</span>
     </div>
   </div>
 </div>
 
-<div class="main" *ngIf="showAll">
+<div class="main" *ngIf="showAll" @customEasingAnimation>
   <div class="posts-header">
     <h2>Explore Our Posts</h2>
   </div>
@@ -38,7 +45,7 @@
 </div>
 
 
-<div class="main" *ngIf="showByYear">
+<div class="main" *ngIf="showByYear" @customEasingAnimation>
   <div class="body-wrapper">
     <ng-container *ngFor="let year of getSortedYears(); let first = first">
       <details class="year-details" [open]="showByYear && first">
@@ -58,6 +65,74 @@
           </ng-container>
         </div>
       </details>
+    </ng-container>
+  </div>
+</div>
+
+<div class="main" *ngIf="showByCreatedAsc" @customEasingAnimation>
+  <div class="posts-header">
+    <h2>Explore Our Posts</h2>
+  </div>
+  <div class="body">
+    <ng-container *ngFor="let post of postsCreatedAsc">
+      <div [routerLink]="['/posts', post.id, 'comments']" class="post-wrapper">
+        <div class="card">
+          <div class="date-box"><span class="month-text">{{ post.createdAt | date:'MMM' }}</span><br><span class="day-text">{{ post.createdAt | date:'dd' }}</span></div>
+          <img class="post-image" src="{{ post.imageUrl }}" alt="">
+          <div class="title-text">{{ post.title }}</div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<div class="main" *ngIf="showByCreatedDesc" @customEasingAnimation>
+  <div class="posts-header">
+    <h2>Explore Our Posts</h2>
+  </div>
+  <div class="body">
+    <ng-container *ngFor="let post of postsCreatedDesc">
+      <div [routerLink]="['/posts', post.id, 'comments']" class="post-wrapper">
+        <div class="card">
+          <div class="date-box"><span class="month-text">{{ post.createdAt | date:'MMM' }}</span><br><span class="day-text">{{ post.createdAt | date:'dd' }}</span></div>
+          <img class="post-image" src="{{ post.imageUrl }}" alt="">
+          <div class="title-text">{{ post.title }}</div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<div class="main" *ngIf="showByTitleAsc" @customEasingAnimation>
+  <div class="posts-header">
+    <h2>Explore Our Posts</h2>
+  </div>
+  <div class="body">
+    <ng-container *ngFor="let post of postsTitleAsc">
+      <div [routerLink]="['/posts', post.id, 'comments']" class="post-wrapper">
+        <div class="card">
+          <div class="date-box"><span class="month-text">{{ post.createdAt | date:'MMM' }}</span><br><span class="day-text">{{ post.createdAt | date:'dd' }}</span></div>
+          <img class="post-image" src="{{ post.imageUrl }}" alt="">
+          <div class="title-text">{{ post.title }}</div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<div class="main" *ngIf="showByTitleDesc" @customEasingAnimation>
+  <div class="posts-header">
+    <h2>Explore Our Posts</h2>
+  </div>
+  <div class="body">
+    <ng-container *ngFor="let post of postsTitleDesc">
+      <div [routerLink]="['/posts', post.id, 'comments']" class="post-wrapper">
+        <div class="card">
+          <div class="date-box"><span class="month-text">{{ post.createdAt | date:'MMM' }}</span><br><span class="day-text">{{ post.createdAt | date:'dd' }}</span></div>
+          <img class="post-image" src="{{ post.imageUrl }}" alt="">
+          <div class="title-text">{{ post.title }}</div>
+        </div>
+      </div>
     </ng-container>
   </div>
 </div>

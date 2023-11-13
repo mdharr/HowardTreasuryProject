@@ -16,6 +16,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -72,6 +73,8 @@ import { VerificationComponent } from './components/verification/verification.co
 import { CustomSnackbarComponent } from './components/custom-snackbar/custom-snackbar.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { WebSocketService } from './services/websocket.service';
+import { MatOptionModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -148,7 +151,10 @@ import { WebSocketService } from './services/websocket.service';
     MatProgressSpinnerModule,
     MatCheckboxModule,
     EditorModule,
-    MatCardModule
+    MatCardModule,
+    MatOptionModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [
     WebSocketService,

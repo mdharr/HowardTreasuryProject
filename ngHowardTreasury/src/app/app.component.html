@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
-<div class="container-fluid">
-  <router-outlet></router-outlet>
+<div class="container-fluid" [@routeAnimations]="o && o.activatedRouteData && o.activatedRouteData['animation']">
+  <router-outlet #o="outlet"></router-outlet>
 </div>
 <app-toggle-red-mode-button></app-toggle-red-mode-button>
 <app-scroll-to-top-button></app-scroll-to-top-button>
