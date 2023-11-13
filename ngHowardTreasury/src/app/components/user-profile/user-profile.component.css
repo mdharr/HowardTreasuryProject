@@ -13,7 +13,7 @@
 
 .profile-body {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  border-radius: 6px;
+  border-radius: 28px 28px;
   background-color: var(--milk_white);
 }
 
@@ -30,7 +30,8 @@
   overflow:hidden;
   width: 125px;
   height: 125px;
-  border: 2px solid var(--red_color);
+  border-radius: 4px 4px 4px 28px;
+  /* border: 5px solid var(--red_color); */
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
@@ -76,7 +77,7 @@
   color: var(--black_color);
   margin: 0;
   padding: 15px;
-  font-family: var(--contentFontFamily);
+  font-family: var(--inter);
   font-size: 1.1rem;
   line-height: 1.2;
   padding-left: 30px;
@@ -92,7 +93,7 @@
 .account-info-wrapper {
   background-color: var(--milk_white);
   /* border: 1px solid var(--white_black); */
-  border-radius:6px;
+  border-radius: 28px 28px;
   flex:1;
   height:fit-content;
   font-family: var(--contentFontFamily);
@@ -101,7 +102,7 @@
 
 .userlists-wrapper {
   background-color: var(--milk_white);
-  border-radius:6px;
+  border-radius: 28px;
   flex:2;
   font-family: var(--contentFontFamily);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -109,11 +110,10 @@
 
 .title-wrapper {
   background-color:var(--white_black);
-  /* border: 1px solid #f1f0f4; */
   display:flex;
   justify-content: center;
   padding:10px;
-  border-radius: 6px 6px 0 0;
+  border-radius: 28px 28px 0 0;
 }
 .edit-account-wrapper {
   background-color:var(--white_black);
@@ -133,7 +133,7 @@
 .title-text {
   margin: 0;
   font-weight:bold;
-  font-family:var(--contentFontFamily);
+  font-family:var(--inter);
   font-size:var(--headerFontSize);
   color: var(--red_white);
   margin:0;
@@ -165,6 +165,7 @@
 .details-text {
   display:flex;
   flex-direction: column;
+  font-family: var(--inter);
 }
 
 ::ng-deep mat-content {
@@ -189,6 +190,7 @@
     flex-direction: column;
     align-items: center;
     text-align: justify;
+    border-radius: 4px 4px 4px 4px;
   }
   .image-element {
     display:flex;
@@ -204,12 +206,12 @@
   color: #fff;
   border: none;
   padding: 8px 16px;
-  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: var(--inter);
   font-size: 1rem;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border-radius: 28px;
 }
 
 .delete-button:hover {
@@ -221,12 +223,12 @@
   color: #fff;
   border: none;
   padding: 8px 16px;
-  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: var(--inter);
   font-size: 1rem;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border-radius: 28px;
 }
 
 .edit-button:hover {

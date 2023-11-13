@@ -65,9 +65,10 @@
 }
 
 .auth-menu-row .profile-button {
-  color: var(--black_white);
+  color: var(--black_color);
   height: 40px;
   padding: 5px;
+  border-radius: 28px;
 }
 
 .profile-text {
@@ -110,7 +111,6 @@
 }
 
 .profile-button {
-  margin-left: 10px;
   padding: 0;
   padding-right: 8px;
   padding-left: 8px;
@@ -180,7 +180,7 @@
   flex-grow: 1;
   padding: 10px;
   border: 1px solid #e0e0e0;
-  border-radius: 4px 0px 0px 4px;
+  border-radius: 28px 0 0 28px;
   height: 40px;
   outline: none;
   background-color: #f5f5f5;
@@ -198,14 +198,13 @@
 
 /* Styles for the search button */
 .search-button {
-  background-color: var(--black_red);
-  color: #fff;
+  background-color: var(--black_red) !important;
+  color: #fff !important;
   border: none;
-  border-radius: 0px 4px 4px 0px;
+  border-radius: 0px 28px 28px 0px;
   height: 40px;
   padding: 8px;
   cursor: pointer;
-  /* transition: box-shadow 0.3s ease; */
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 

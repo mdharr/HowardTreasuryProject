@@ -11,14 +11,14 @@
   padding: 10px;
   padding-left: 25px;
   padding-right: 25px;
-  font-family: var(--contentFontFamily);
-  border-radius: 6px 6px 0 0;
+  font-family: var(--inter);
+  border-radius: 28px 28px 0 0;
 }
 
 .title-text {
   margin: 0;
   font-weight:bold;
-  font-family:var(--contentFontFamily);
+  font-family:var(--inter);
   font-size:var(--headerFontSize);
   color:var(--red_white);
   margin:0;
@@ -31,11 +31,13 @@
 .lists-wrapper {
   padding: 25px;
   background-color: var(--milk_white);
-  border-radius: 6px;
+  border-radius: 28px;
+  font-family: var(--inter);
 }
 
 .category-wrapper {
   padding: 25px 0;
+  font-family: var(--inter);
 }
 
 ::ng-deep .mat-mdc-list-option.mat-accent .mdc-list-item__end {
@@ -68,7 +70,7 @@ mat-expansion-panel-header {
 }
 
 h3 {
-  font-family:var(--headerFontFamily);
+  font-family:var(--inter);
   font-size:var(--headerFontSize);
   color:#9d0101;
   margin:0;
@@ -83,7 +85,7 @@ p {
   color: #fff;
   border: none;
   padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: 28px;
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: var(--inter);
@@ -106,7 +108,7 @@ p {
   color: #fff;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 28px;
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: var(--inter);
@@ -126,7 +128,9 @@ p {
 .mdc-list-item.mdc-list-item--with-one-line {
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   margin-bottom:5px;
-  font-family: var(--contentFontFamily);
+  font-family: var(--inter);
+  border-radius: 28px;
+  font-size: 1.1rem;
 }
 
 .content-titles {
@@ -140,6 +144,7 @@ p {
   height:48px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   align-items: center;
+  border-radius: 28px;
 }
 
 .no-items-text {
@@ -172,5 +177,24 @@ p {
   .no-items-text {
     font-size: .75rem;
   }
+  .lists-wrapper {
+    padding: 25px 15px;
+  }
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 0 15px 16px !important;
+  }
+}
+
+
+.mat-expansion-panel {
+  border-radius: 28px;
+}
+
+::ng-deep .add-buttons:hover {
+  background: none !important;
+}
+
+::ng-deep .add-buttons:hover {
+  background: none !important;
 }
 

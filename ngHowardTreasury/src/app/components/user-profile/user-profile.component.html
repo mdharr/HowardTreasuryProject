@@ -10,8 +10,6 @@
       </div>
       <div class="description-wrapper">
         <div class="image-wrapper">
-          <!-- <img *ngIf="loggedInUser.imageUrl" class="image-element" src="{{ loggedInUser.imageUrl }}" alt="{{ loggedInUser.username }} Pic">
-          <img *ngIf="!loggedInUser.imageUrl" class="image-element" src="https://static.vecteezy.com/system/resources/thumbnails/010/260/479/small/default-avatar-profile-icon-of-social-media-user-in-clipart-style-vector.jpg" alt="{{ loggedInUser.username }} Pic"> -->
           <div *ngIf="loggedInUser.imageUrl" style="display:none;">
             <img
               [src]="loggedInUser.imageUrl"

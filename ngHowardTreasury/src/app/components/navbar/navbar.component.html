@@ -69,7 +69,7 @@
       </button>
 
       <button mat-raised-button class="profile-button" mat-button *ngIf="loggedIn()" [routerLink]="['/profile']"><span class="profile-text">{{ loggedInUser.username }}</span></button>
-      <div *ngIf="loggedIn()" style="flex:1; padding-right:10px;">
+      <div *ngIf="loggedIn()" style="flex:1;">
         <app-logout></app-logout>
       </div>
   </div>
