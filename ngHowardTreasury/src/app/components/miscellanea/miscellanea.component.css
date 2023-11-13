@@ -48,9 +48,11 @@
 
 .story-list {
   text-align: center;
+  background-color: var(--red_black);
   margin-top: 25px;
   font-family: 'Lora', Helvetica, Arial, sans-serif !important;
-  border-radius: 10px 10px 0 0;
+  border-radius: 28px;
+  padding: 10px 10px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
@@ -67,18 +69,19 @@
   display:flex;
   justify-content: flex-start;
   text-align: left;
+  font-family: var(--inter);
 }
 
 .buttons-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  padding: 10px;
+  /* gap: 10px; */
+  padding: 10px 0;
   flex-wrap: wrap;
   background-color: var(--red_black);
-  border-radius: 9px 9px 0 0;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  border-radius: 28px 28px 0 0;
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset; */
 }
 
 .buttons {
@@ -150,6 +153,14 @@ mat-form-field {
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
+.story-box:first-child {
+  border-radius: 28px 28px 0 0;
+}
+
+.story-box:last-child {
+  border-radius: 0 0 28px 28px;
+}
+
 .story-item {
   font-size: 20px;
   margin: 10px 0;
@@ -169,10 +180,12 @@ mat-form-field {
 }
 
 .list-box {
-  padding: 0 25px;
+  padding: 0 15px;
   overflow-y: scroll;
   height: 60vh;
   background-color: var(--white_milk);
+  border-radius: 4px 4px 28px 28px;
+  box-shadow: inset 0 4px 8px 3px rgba(0,0,0,.15), inset 0 1px 3px rgba(0,0,0,.3);
 }
 
 /* Custom sword icon */
@@ -312,9 +325,8 @@ mat-form-field {
   background-color: #f5f5f5;
   color: #333;
   transition: background-color 0.3s ease;
-  font-family: var(--contentFontFamily);
+  font-family: var(--inter);
   font-size: var(--contentFontSize);
-  font-weight: var(--superBold);
 }
 
 /* Darken the input field background on hover */
