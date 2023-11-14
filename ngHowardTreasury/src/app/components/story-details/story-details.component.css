@@ -301,13 +301,14 @@ cursor: pointer;
   /* Style for the main image */
   max-width: 90%;
   max-height: 80vh;
-  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  transition: box-shadow 0.2s;
+  transition: filter 0.3s;
+  filter: drop-shadow(2px 4px 6px black);
 }
 
 .lightbox-image:hover {
   /* Spread the box-shadow evenly in all directions */
-  box-shadow: rgba(0, 0, 0, 0.56) 0px 0px 500px 500px;
+  filter: drop-shadow(4px 4px 70px black);
+  cursor:pointer;
 }
 
 .lightbox-controls {

@@ -42,7 +42,7 @@
 .category-image img {
   width: 150px;
   height: auto;
-  border: 5px solid var(--red_white);
+  border: 3px solid var(--red_white);
 }
 
 .category-details {
@@ -213,7 +213,7 @@
 .post-image img {
   width: 200px;
   height: auto;
-  border: 5px solid var(--red_white);
+  border: 3px solid var(--red_white);
 }
 
 .post-details {
@@ -237,7 +237,7 @@
   width: 150px;
   height: auto;
   min-height: 200px;
-  border: 5px solid var(--red_white);
+  border: 3px solid var(--red_white);
   color: var(--black_white);
 }
 
@@ -262,7 +262,7 @@
   width: 200px;
   height: auto;
   min-height: 100px;
-  border: 5px solid var(--red_white);
+  border: 3px solid var(--red_white);
   color: var(--black_white);
 }
 
