@@ -295,6 +295,19 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
         imgElement.setAttribute('style', style);
         imgElement.classList.add('remove-right-margin');
       }
+      // Check screen width and apply styles
+      const screenWidth = window.innerWidth;
+      if (style && style.includes('margin-left: auto') && screenWidth <= 420) {
+        imgElement.style.marginLeft = '5px';
+        imgElement.style.marginRight = '5px';
+        imgElement.style.width = '100%';
+      }
+
+      // Add event listener for window resize
+      // window.addEventListener('resize', applyStyles);
+
+      // Initial styles
+      // applyStyles();
     });
 
     const anchorElements = doc.querySelectorAll('a');
