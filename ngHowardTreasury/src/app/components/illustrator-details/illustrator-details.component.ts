@@ -58,7 +58,9 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
   }
 
   ngAfterViewInit(): void {
-    this.selectImage(this.currentIndex);
+    if (this.storyImages && this.storyImages.length > 0) {
+      this.selectImage(this.currentIndex);
+    }
   }
 
   subscribeToServices = () => {
@@ -128,28 +130,126 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
     }, 0);
   }
 
-  selectImage(index: number) {
-    this.currentIndex = index;
-    this.selectedImage = this.storyImages[index];
-    this.selectedThumbnailIndex = index;
 
-    // Calculate the transform based on the selectedThumbnailIndex
+  async selectImage(index: number, isInitialLoad: boolean = false) {
+    const currentImageElement = this.document.querySelector('.lightbox-image') as HTMLElement;
+    // Immediately set opacity to 1 for initial load
+    if (isInitialLoad) {
+      currentImageElement.style.opacity = '1';
+    } else if (currentImageElement) {
+      currentImageElement.style.opacity = '0';
+    }
+
+    // Wait for the new image size calculation
+    const newImageSize = await this.calculateNewImageSize(this.storyImages[index].imageUrl);
+
+    setTimeout(() => {
+      // Update the selected image
+      this.currentIndex = index;
+      this.selectedImage = this.storyImages[index];
+      this.selectedThumbnailIndex = index;
+      this.updateThumbnailPosition();
+
+      // Apply the new size to the container
+      const container = this.document.querySelector('.lightbox-image-container') as HTMLElement;
+      if (container) {
+        if (isInitialLoad) {
+          // For initial load, remove the transition class after setting the size
+          container.style.width = `${newImageSize.width}px`;
+          container.style.height = `${newImageSize.height}px`;
+          container.classList.remove('no-transition');
+        } else {
+          // For subsequent loads, ensure the transition class is not present
+          container.style.width = `${newImageSize.width}px`;
+          container.style.height = `${newImageSize.height}px`;
+        }
+      }
+
+      // Fade in the new image after the container resizing
+      setTimeout(() => {
+        if (currentImageElement) {
+          currentImageElement.style.opacity = '1';
+        }
+      }, 500);
+    }, 500);
+  }
+
+
+
+  private calculateNewImageSize(imageUrl: string): Promise<{ width: number, height: number }> {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+
+      img.onload = () => {
+        const maxWidth = window.innerWidth * 0.9; // 90% of the window width
+        const maxHeight = window.innerHeight * 0.7; // 80% of the window height
+
+        // Original dimensions
+        const originalWidth = img.naturalWidth;
+        const originalHeight = img.naturalHeight;
+
+        // Check if the image needs resizing
+        if (originalWidth <= maxWidth && originalHeight <= maxHeight) {
+          resolve({ width: originalWidth, height: originalHeight });
+          return;
+        }
+
+        // Calculate aspect ratio
+        const aspectRatio = originalWidth / originalHeight;
+
+        // Calculate new dimensions while maintaining aspect ratio
+        let newWidth = maxWidth;
+        let newHeight = newWidth / aspectRatio;
+
+        if (newHeight > maxHeight) {
+          newHeight = maxHeight;
+          newWidth = newHeight * aspectRatio;
+        }
+
+        resolve({ width: newWidth, height: newHeight });
+      };
+
+      img.onerror = () => {
+        reject('Could not load image');
+      };
+
+      img.src = imageUrl; // Set the source of the image
+    });
+  }
+
+  getThumbnailTransform(): string {
+    if (!this.storyImages.length) return '';
+
+    const thumbnailWidth = 50; // Width of each thumbnail
+    const gapBetweenThumbnails = 10; // Adjust if there's a gap between thumbnails
+    const effectiveThumbnailWidth = thumbnailWidth + gapBetweenThumbnails; // Total space taken by each thumbnail including gap
+
+    // Calculate the position of the center of the selected thumbnail
+    const selectedThumbnailCenter = this.selectedThumbnailIndex * effectiveThumbnailWidth + thumbnailWidth / 2;
+
+    // Calculate the center of the thumbnails container
+    const containerCenter = window.innerWidth / 2;
+
+    // Calculate the transform value
+    const transformValue = containerCenter - selectedThumbnailCenter;
+
+    return `translateX(${transformValue}px)`;
+  }
+
+
+  private updateThumbnailPosition() {
     const thumbnailWidth = 50; // Adjust as needed
     const thumbnailsCount = this.storyImages.length;
     const containerWidth = thumbnailsCount * thumbnailWidth;
     const transform = containerWidth / 2 - this.selectedThumbnailIndex * thumbnailWidth;
 
-    // Set the transform directly on the element
     const thumbnailsContainer = this.elementRef.nativeElement.querySelector('.thumbnails-container') as HTMLElement;
     if (thumbnailsContainer) {
       thumbnailsContainer.style.transform = `translateX(${transform}px)`;
     }
   }
 
-  getThumbnailTransform(): string {
-    // Return an empty string here since the transform is set in selectImage
-    return '';
-  }
+
 
   closeLightbox() {
     this.showLightbox = false;
@@ -157,14 +257,29 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
   }
 
   nextImage() {
-    this.currentIndex = (this.currentIndex + 1) % this.storyImages.length;
-    this.selectedImage = this.storyImages[this.currentIndex];
+    const currentImageElement = this.document.querySelector('.lightbox-image') as HTMLElement;
+    if (currentImageElement) {
+      currentImageElement.style.opacity = '0';
+    }
+
+    setTimeout(() => {
+      this.currentIndex = (this.currentIndex + 1) % this.storyImages.length;
+      this.selectImage(this.currentIndex);
+    }, 0); // Match the duration of the fade-out transition
   }
 
   prevImage() {
-    this.currentIndex = (this.currentIndex - 1 + this.storyImages.length) % this.storyImages.length;
-    this.selectedImage = this.storyImages[this.currentIndex];
+    const currentImageElement = this.document.querySelector('.lightbox-image') as HTMLElement;
+    if (currentImageElement) {
+      currentImageElement.style.opacity = '0';
+    }
+
+    setTimeout(() => {
+      this.currentIndex = (this.currentIndex - 1 + this.storyImages.length) % this.storyImages.length;
+      this.selectImage(this.currentIndex);
+    }, 0); // Match the duration of the fade-out transition
   }
+
 
   downloadImage(image: any) {
     // Replace 'image.blobUrl' with the actual property that stores the image URL.
@@ -178,18 +293,27 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
 
   onLightboxImageClick(event: MouseEvent) {
     const clickX = event.clientX;
-    const lightboxWidth = window.innerWidth;
+    const lightboxImageElement = event.target as HTMLElement;
+    const lightboxImageRect = lightboxImageElement.getBoundingClientRect();
+    const lightboxImageWidth = lightboxImageRect.width;
 
-    if (clickX < lightboxWidth / 2) {
-      // Clicked on the left half
-      this.prevImage();
-    } else {
-      // Clicked on the right half
-      this.nextImage();
+    const currentImageElement = this.document.querySelector('.lightbox-image') as HTMLElement;
+    if (currentImageElement) {
+      currentImageElement.style.opacity = '0';
     }
-    this.selectImage(this.currentIndex);
 
+    setTimeout(() => {
+      if (clickX < lightboxImageRect.left + lightboxImageWidth / 2) {
+        // Clicked on the left half
+        this.prevImage();
+      } else {
+        // Clicked on the right half
+        this.nextImage();
+      }
+    }, 0); // Match the duration of the fade-out transition
   }
+
+
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
@@ -223,7 +347,6 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
     if (this.selectedImage) {
       const backgroundImage = `url(${this.selectedImage.imageUrl})`;
       const filterProperties = 'blur(20px) brightness(50%)';
-
       return {
         'background-image': backgroundImage,
         'background-size': 'cover', // Set the background size to cover

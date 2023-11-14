@@ -271,7 +271,7 @@ cursor: pointer;
 /* Add CSS for lightbox and thumbnails */
 .lightbox {
   /* Style for the darkened background */
-  background: rgba(0, 0, 0, 0.8);
+  /* background: rgba(0, 0, 0, 0.8); */
   position: fixed;
   top: 0;
   left: 0;
@@ -297,18 +297,18 @@ cursor: pointer;
   z-index: 2;
 }
 
-.lightbox-image {
-  /* Style for the main image */
-  max-width: 90%;
-  max-height: 80vh;
-  transition: filter 0.3s;
-  filter: drop-shadow(2px 4px 6px black);
+.lightbox-image-container {
+  display: flex;
+  justify-content:center;
+  background-color: #fff;
+  transition: all 0.5s ease; /* Add transition for resizing the container */
 }
 
-.lightbox-image:hover {
-  /* Spread the box-shadow evenly in all directions */
-  filter: drop-shadow(4px 4px 70px black);
-  cursor:pointer;
+.lightbox-image {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  max-width: 100%;
+  max-height: 80vh;
 }
 
 .lightbox-controls {
@@ -394,11 +394,6 @@ cursor: pointer;
   font-size: 12px;
   padding: 2px 5px;
   border-top-left-radius: 5px;
-}
-
-.lightbox-image-container {
-  display: flex;
-  justify-content: center;
 }
 
 /* lightbox end */
