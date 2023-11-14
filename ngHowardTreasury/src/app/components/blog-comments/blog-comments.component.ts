@@ -279,6 +279,9 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
     const parser = new DOMParser();
     const doc = parser.parseFromString(sanitizedString, 'text/html');
 
+    // Check screen width and apply styles
+    const screenWidth = window.innerWidth;
+
     // Find all img elements and add the "post-images" class
     const imgElements = doc.querySelectorAll('img');
     imgElements.forEach((imgElement) => {
@@ -295,8 +298,6 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
         imgElement.setAttribute('style', style);
         imgElement.classList.add('remove-right-margin');
       }
-      // Check screen width and apply styles
-      const screenWidth = window.innerWidth;
       if (style && style.includes('margin-left: auto') && screenWidth <= 420) {
         imgElement.style.marginLeft = '5px';
         imgElement.style.marginRight = '5px';
@@ -323,6 +324,25 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
         headerElement.removeAttribute('style');
         headerElement.firstElementChild?.classList.add('header-font');
       }
+    });
+
+    const blockquoteElements = doc.querySelectorAll('blockquote');
+    blockquoteElements.forEach((blockquoteElement) => {
+      blockquoteElement.style.background = 'rgba(0, 0, 0, 0.05)';
+      blockquoteElement.style.display = 'flex';
+      blockquoteElement.style.flexDirection = 'column';
+      blockquoteElement.style.textAlign = 'justify';
+      blockquoteElement.style.gap = '10px';
+      if(screenWidth <= 500) {
+        blockquoteElement.style.marginLeft = '0';
+        blockquoteElement.style.marginRight = '0';
+      }
+    });
+
+    const citeElements = doc.querySelectorAll('cite');
+    citeElements.forEach((citeElement) => {
+      citeElement.style.alignSelf = 'flex-end';
+      citeElement.style.textAlign = 'flex-end';
     });
 
     const paragraphElements = doc.querySelectorAll('p');
