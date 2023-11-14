@@ -9,11 +9,24 @@ import { StoryService } from 'src/app/services/story.service';
 import { StoryImage } from 'src/app/models/story-image';
 import { CollectionService } from 'src/app/services/collection.service';
 import { DOCUMENT } from '@angular/common';
+import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-story-details',
   templateUrl: './story-details.component.html',
-  styleUrls: ['./story-details.component.css']
+  styleUrls: ['./story-details.component.css'],
+  animations: [
+    trigger('customEasingAnimation', [
+      transition(':enter', [
+        query('.story-image', [
+          style({ opacity: 0, transform: 'translateY(20px)' }),
+          stagger(100, [
+            animate('0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)', style({ opacity: 1, transform: 'none' })),
+          ]),
+        ], { optional: true }),
+      ]),
+    ]),
+  ]
 })
 export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
 
@@ -34,8 +47,9 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
     centerOffset: number = 0;
 
     // booleans
-    isLoaded = false;
-    imagesLoaded = false;
+    isLoaded: boolean = false;
+    imagesLoaded: boolean = false;
+    showAll: boolean = false;
 
     // service injection
     auth = inject(AuthService);
@@ -54,13 +68,14 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngOnInit(): void {
       window.scrollTo(0, 0);
+      this.showAll = false;
+      console.log('ngOnInit called'); // Log when ngOnInit is called
       setTimeout(() => {
         this.getRouteParams();
 
         this.subscribeToStoryServiceById();
         this.subscribeToCollectionsService();
       }, 200);
-
     }
 
     ngOnDestroy(): void {
