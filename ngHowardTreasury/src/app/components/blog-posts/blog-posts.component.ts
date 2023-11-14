@@ -203,5 +203,4 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
     }, 200);
   }
 
-
 }

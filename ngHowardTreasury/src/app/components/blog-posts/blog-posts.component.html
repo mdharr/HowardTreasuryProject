@@ -14,12 +14,12 @@
       <span class="toggle-label" [matMenuTriggerFor]="menu">Options</span>
     </div>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="toggleDisplayOption('all')">Show All</button>
-      <button mat-menu-item (click)="toggleDisplayOption('year')">Show By Year</button>
-      <button mat-menu-item (click)="toggleDisplayOption('created_asc')">Show By Date Asc</button>
-      <button mat-menu-item (click)="toggleDisplayOption('created_desc')">Show By Date Desc</button>
-      <button mat-menu-item (click)="toggleDisplayOption('title_asc')">Show By Title Asc</button>
-      <button mat-menu-item (click)="toggleDisplayOption('title_desc')">Show By Title Desc</button>
+      <button class="custom-button" [ngClass]="{'with-icon': showAll}" mat-menu-item (click)="toggleDisplayOption('all')">Show All <mat-icon class="checkmark-icon" *ngIf="showAll">check</mat-icon></button>
+      <button class="custom-button" [ngClass]="{'with-icon': showByYear}" mat-menu-item (click)="toggleDisplayOption('year')">Show By Year <mat-icon class="checkmark-icon" *ngIf="showByYear">check</mat-icon></button>
+      <button class="custom-button" [ngClass]="{'with-icon': showByCreatedAsc}" mat-menu-item (click)="toggleDisplayOption('created_asc')">Show By Date Asc <mat-icon class="checkmark-icon" *ngIf="showByCreatedAsc">check</mat-icon></button>
+      <button class="custom-button" [ngClass]="{'with-icon': showByCreatedDesc}" mat-menu-item (click)="toggleDisplayOption('created_desc')">Show By Date Desc <mat-icon class="checkmark-icon" *ngIf="showByCreatedDesc">check</mat-icon></button>
+      <button class="custom-button" [ngClass]="{'with-icon': showByTitleAsc}" mat-menu-item (click)="toggleDisplayOption('title_asc')">Show By Title Asc <mat-icon class="checkmark-icon" *ngIf="showByTitleAsc">check</mat-icon></button>
+      <button class="custom-button" [ngClass]="{'with-icon': showByTitleDesc}" mat-menu-item (click)="toggleDisplayOption('title_desc')">Show By Title Desc <mat-icon class="checkmark-icon" *ngIf="showByTitleDesc">check</mat-icon></button>
     </mat-menu>
     <div class="new-post" *ngIf="loggedIn()">
       <span class="toggle-label" [routerLink]="['/posts/create']">Create New Post</span>
