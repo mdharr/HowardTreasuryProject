@@ -9,16 +9,26 @@
   padding: 10px;
   width: 350px;
   background-color: var(--bkg_color);
-  transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  transition: transform 0.3s, filter 0.6s, border 0.3s;
   border: 3px solid transparent;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5));
 }
 
 .post-wrapper:hover {
   cursor: pointer;
   transform: scale(1.05) translateY(-10px) rotate(3deg);
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   border: 3px solid var(--red_milk);
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.1);
+}
+
+.img-wrapper {
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5));
+  transition: filter 0.6s, transform 0.3s;
+}
+
+.img-wrapper:hover {
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.1);
+  transform: translateY(-5px);
 }
 
 .post-wrapper:hover .card .title-text {
