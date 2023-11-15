@@ -8,11 +8,24 @@ import { User } from 'src/app/models/user';
 import { SearchService } from 'src/app/services/search.service';
 import { SearchResultsService } from 'src/app/services/search-results.service';
 import { Router } from '@angular/router';
+import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-stories',
   templateUrl: './stories.component.html',
-  styleUrls: ['./stories.component.css']
+  styleUrls: ['./stories.component.css'],
+  animations: [
+    trigger('customEasingAnimation', [
+      transition(':enter', [
+        query('.story-line', [
+          style({ opacity: 0, transform: 'translateY(20px)' }),
+          stagger(70, [
+            animate('0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)', style({ opacity: 1, transform: 'none' })),
+          ]),
+        ], { optional: true }),
+      ]),
+    ]),
+  ]
 })
 export class StoriesComponent implements OnInit, OnDestroy {
 
@@ -31,6 +44,7 @@ export class StoriesComponent implements OnInit, OnDestroy {
   sortFirstPublishedActive: boolean = false;
   filterCopyrightedActive: boolean = false;
   noMatches: boolean = false;
+  showAll: boolean = false;
 
   // subscriptions declarations
   private storySubscription: Subscription | undefined;
@@ -48,6 +62,7 @@ export class StoriesComponent implements OnInit, OnDestroy {
     window.scrollTo(0, 0);
     this.subscribeToLoggedInObservable();
     this.subscribeToStoryService();
+    this.triggerCustomEasingAnimation();
   }
 
   subscribeToLoggedInObservable() {
@@ -199,6 +214,13 @@ export class StoriesComponent implements OnInit, OnDestroy {
       }
     }
     return copy;
+  }
+
+  triggerCustomEasingAnimation() {
+    // You can use a timeout to trigger the animation after a short delay
+    setTimeout(() => {
+      this.showAll = true; // Set the showAll to true to trigger the animation
+    }, 100);
   }
 
 }

@@ -29,10 +29,10 @@
       </div>
       <div class="list-box">
         <ul class="story-items">
-          <ng-container *ngFor="let story of filteredStories" class="cascade-animation" [style.animation-delay.ms]="cascadeDelay">
-            <div class="story-box">
+          <ng-container *ngFor="let story of filteredStories" class="cascade-animation">
+            <div class="story-box" *ngIf="showAll" @customEasingAnimation>
               <li class="story-item">
-                <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                <div class="story-line" style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
                   <div style="display:flex; gap:15px;">
                     <span class="sword-icon">🗡️</span>
                     <span [routerLink]="['/stories', story.id]" class="story-title">{{ story.title }}</span>
