@@ -36,7 +36,7 @@
               <li class="contents-items" [routerLink]="['/stories', story.id]">
                 <div style="display: flex;">
                   <span class="story-text">{{ story.title }}</span>
-                  <span class="page-number">{{ story.pageNumber }}</span>
+                  <span *ngIf="story.pageNumber" class="page-number">{{ story.pageNumber }}</span>
                 </div>
               </li>
             </ng-container>
@@ -92,14 +92,14 @@
         <div class="placeholder" *ngIf="!loaded"></div>
       </div>
       <div class="collection-details-box">
-        <div>
+        <div *ngIf="collection.series">
           <p class="series-text">Series: {{ collection.series.title }}</p>
         </div>
         <div>
           <p class="publication-date">Published: {{ collection.publishedAt | date:'mediumDate' }}</p>
         </div>
         <div class="amazon-link-wrapper">
-          <a class="amazon-link-text" href="{{ collection.amazonUrl }}" target="_blank">View on Amazon!</a>
+          <a class="amazon-link-text" href="{{ collection.amazonUrl }}" target="_blank">Purchase Online!</a>
         </div>
       </div>
     </div>

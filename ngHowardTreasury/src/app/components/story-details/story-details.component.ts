@@ -196,37 +196,39 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
       }
 
       // Wait for the new image size calculation
-      const newImageSize = await this.calculateNewImageSize(this.storyImages[index].imageUrl);
+      if(this.storyImages.length) {
+        const newImageSize = await this.calculateNewImageSize(this.storyImages[index].imageUrl);
 
-      setTimeout(() => {
-        // Update the selected image
-        this.currentIndex = index;
-        this.selectedImage = this.storyImages[index];
-        this.selectedThumbnailIndex = index;
-        this.updateThumbnailPosition();
-
-        // Apply the new size to the container
-        const container = this.document.querySelector('.lightbox-image-container') as HTMLElement;
-        if (container) {
-          if (isInitialLoad) {
-            // For initial load, remove the transition class after setting the size
-            container.style.width = `${newImageSize.width}px`;
-            container.style.height = `${newImageSize.height}px`;
-            container.classList.remove('no-transition');
-          } else {
-            // For subsequent loads, ensure the transition class is not present
-            container.style.width = `${newImageSize.width}px`;
-            container.style.height = `${newImageSize.height}px`;
-          }
-        }
-
-        // Fade in the new image after the container resizing
         setTimeout(() => {
-          if (currentImageElement) {
-            currentImageElement.style.opacity = '1';
+          // Update the selected image
+          this.currentIndex = index;
+          this.selectedImage = this.storyImages[index];
+          this.selectedThumbnailIndex = index;
+          this.updateThumbnailPosition();
+
+          // Apply the new size to the container
+          const container = this.document.querySelector('.lightbox-image-container') as HTMLElement;
+          if (container) {
+            if (isInitialLoad) {
+              // For initial load, remove the transition class after setting the size
+              container.style.width = `${newImageSize.width}px`;
+              container.style.height = `${newImageSize.height}px`;
+              container.classList.remove('no-transition');
+            } else {
+              // For subsequent loads, ensure the transition class is not present
+              container.style.width = `${newImageSize.width}px`;
+              container.style.height = `${newImageSize.height}px`;
+            }
           }
+
+          // Fade in the new image after the container resizing
+          setTimeout(() => {
+            if (currentImageElement) {
+              currentImageElement.style.opacity = '1';
+            }
+          }, 500);
         }, 500);
-      }, 500);
+      }
     }
 
 
