@@ -37,7 +37,6 @@ export class StoriesComponent implements OnInit, OnDestroy {
   filteredStories: Story[] = [];
   cascadeDelay: number = 0;
 
-
   // booleans
   loading: boolean = false;
   sortTitleActive: boolean = false;
