@@ -1,3 +1,4 @@
+import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -12,7 +13,19 @@ import { SearchService } from 'src/app/services/search.service';
 @Component({
   selector: 'app-miscellanea',
   templateUrl: './miscellanea.component.html',
-  styleUrls: ['./miscellanea.component.css']
+  styleUrls: ['./miscellanea.component.css'],
+  animations: [
+    trigger('customEasingAnimation', [
+      transition(':enter', [
+        query('.story-line', [
+          style({ opacity: 0, transform: 'translateY(20px)' }),
+          stagger(70, [
+            animate('0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)', style({ opacity: 1, transform: 'none' })),
+          ]),
+        ], { optional: true }),
+      ]),
+    ]),
+  ]
 })
 export class MiscellaneaComponent implements OnInit, OnDestroy {
 
@@ -30,6 +43,7 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
     sortFirstPublishedActive: boolean = false;
     filterCopyrightedActive: boolean = false;
     noMatches: boolean = false;
+    showAll: boolean = false;
 
     // subscriptions declarations
     private miscellaneaSubscription: Subscription | undefined;
@@ -47,6 +61,7 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
       window.scrollTo(0, 0);
       this.subscribeToLoggedInObservable();
       this.subscribeToMiscellaneaService();
+      this.triggerCustomEasingAnimation();
     }
 
     ngOnDestroy(): void {
@@ -177,5 +192,12 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
           }
         }
         return copy;
+      }
+
+      triggerCustomEasingAnimation() {
+        // You can use a timeout to trigger the animation after a short delay
+        setTimeout(() => {
+          this.showAll = true; // Set the showAll to true to trigger the animation
+        }, 100);
       }
 }

@@ -75,6 +75,7 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
 
         this.subscribeToStoryServiceById();
         this.subscribeToCollectionsService();
+        this.triggerCustomEasingAnimation();
       }, 200);
     }
 
@@ -429,5 +430,11 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
       } else {
         return {};
       }
+    }
+
+    triggerCustomEasingAnimation() {
+      setTimeout(() => {
+        this.showAll = true;
+      }, 100);
     }
 }
