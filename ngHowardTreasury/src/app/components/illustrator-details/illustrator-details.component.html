@@ -10,21 +10,22 @@
       [routerLink]="['/illustrators', illustrator.id]"
     ></app-illustrator-card>
     <div class="illustrator-meta">
-      <!-- <h1 class="name">{{ illustrator.name }}</h1> -->
       <p class="description">{{ illustrator.description }}</p>
     </div>
   </div>
 
   <!-- Image Grid Container -->
   <div class="image-grid-container">
-    <div class="image-grid">
-      <div *ngFor="let image of storyImages.slice(0, maxImagesToShow); let i = index" class="image-item">
-        <div class="image-zoom" [style.background-image]="'url(' + image.imageUrl + ')'" (click)="openLightbox(i, $event)">
-          <div class="image-caption">
+    <div class="image-grid" *ngIf="showAll" @customEasingAnimation>
+      <ng-container *ngFor="let image of displayedImages; let i = index">
+        <div class="image-item" *ngIf="image.ready" [attr.data-id]="image.id">
+          <div class="image-zoom" [style.background-image]="'url(' + image.imageUrl + ')'" (click)="openLightbox(i, $event)">
+            <div class="image-caption">
 
+            </div>
           </div>
         </div>
-      </div>
+      </ng-container>
     </div>
 
     <!-- "Show More" button outside of the image-grid -->

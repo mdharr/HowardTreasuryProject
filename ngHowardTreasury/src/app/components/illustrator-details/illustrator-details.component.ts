@@ -1,3 +1,4 @@
+import { trigger, transition, query, style, stagger, animate, AnimationBuilder } from '@angular/animations';
 import { DOCUMENT } from '@angular/common';
 import { Component, inject, OnInit, OnDestroy, AfterViewInit, HostListener, Renderer2, ElementRef, Inject } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -11,12 +12,25 @@ import { IllustratorService } from 'src/app/services/illustrator.service';
 @Component({
   selector: 'app-illustrator-details',
   templateUrl: './illustrator-details.component.html',
-  styleUrls: ['./illustrator-details.component.css']
+  styleUrls: ['./illustrator-details.component.css'],
+  animations: [
+    trigger('customEasingAnimation', [
+      transition(':enter', [
+        query('.image-item', [
+          style({ opacity: 0, transform: 'translateY(20px)' }),
+          stagger(50, [
+            animate('0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)', style({ opacity: 1, transform: 'none' })),
+          ]),
+        ], { optional: true }),
+      ]),
+    ]),
+  ]
 })
 export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
   // properties
   illustrator: Illustrator = new Illustrator();
   storyImages: StoryImage[] = [];
+  displayedImages: StoryImage[] = [];
   loggedInUser: User = new User();
   illustratorId: number = 0;
 
@@ -32,8 +46,9 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
   centerOffset: number = 0;
 
   // booleans
-  isLoaded = false;
-  imagesLoaded = false;
+  isLoaded: boolean = false;
+  imagesLoaded: boolean = false;
+  showAll: boolean = false;
 
   // subscriptions
   private authSubscription: Subscription | undefined;
@@ -46,11 +61,14 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
   activatedRoute = inject(ActivatedRoute);
   renderer = inject(Renderer2);
   elementRef = inject(ElementRef);
+  animationBuilder = inject(AnimationBuilder);
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
   ngOnInit() {
     window.scrollTo(0, 0);
     this.subscribeToServices();
+    this.triggerCustomEasingAnimation();
+
   }
 
   ngOnDestroy() {
@@ -61,6 +79,11 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
     if (this.storyImages && this.storyImages.length > 0) {
       this.selectImage(this.currentIndex);
     }
+    // Mark initial images as animated
+    const initialImageElements = this.elementRef.nativeElement.querySelectorAll('.image-item');
+    initialImageElements.forEach((el: Element) => {
+      el.classList.add('animated');
+    });
   }
 
   subscribeToServices = () => {
@@ -100,6 +123,8 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
       next: (data) => {
         this.illustrator = data;
         this.storyImages = data.storyImages;
+        this.displayedImages = this.storyImages.slice(0, this.maxImagesToShow).map(image => ({ ...image, ready: true }));
+
       },
       error: (fail) => {
         console.error('Error retrieving illustrators');
@@ -249,8 +274,6 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
     }
   }
 
-
-
   closeLightbox() {
     this.showLightbox = false;
     this.renderer.removeClass(this.document.body, 'disable-scrolling');
@@ -313,8 +336,6 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
     }, 0); // Match the duration of the fade-out transition
   }
 
-
-
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent) {
     if (this.showLightbox) {
@@ -337,10 +358,6 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
         }
       }
     }
-  }
-
-  showMore() {
-    this.maxImagesToShow += this.step;
   }
 
   getLightboxBackgroundStyle(): any {
@@ -373,6 +390,46 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
       };
     } else {
       return {};
+    }
+  }
+
+  triggerCustomEasingAnimation() {
+    setTimeout(() => {
+      this.showAll = true;
+    }, 100);
+  }
+
+  showMore() {
+    const newMax = this.maxImagesToShow + this.step;
+    const newImages = this.storyImages.slice(this.maxImagesToShow, newMax);
+
+    newImages.forEach(image => image.ready = false); // Mark new images as not ready
+    this.displayedImages = [...this.displayedImages, ...newImages]; // Add new images to the displayed array
+    this.maxImagesToShow = newMax; // Update max images to show
+
+    // Animate new images
+    setTimeout(() => this.animateNewImages(newImages), 0);
+  }
+
+  animateNewImages(newImages: StoryImage[]) {
+    newImages.forEach((image, index) => {
+      setTimeout(() => {
+        image.ready = true;
+        this.animateImage(image.id);
+      }, index * 50); // Use the same 50ms stagger as in customEasingAnimation
+    });
+  }
+
+  animateImage(imageId: number) {
+    const imageElement = this.elementRef.nativeElement.querySelector(`.image-item[data-id="${imageId}"]`);
+    if (imageElement && !imageElement.classList.contains('animated')) {
+      const animation = this.animationBuilder.build([
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)', style({ opacity: 1, transform: 'none' }))
+      ]);
+      const player = animation.create(imageElement);
+      player.play();
+      imageElement.classList.add('animated');
     }
   }
 

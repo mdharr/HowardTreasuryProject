@@ -287,6 +287,10 @@
   text-decoration: underline;
 }
 
+.animated {
+  /* This class is used to mark elements that have been animated */
+}
+
 @media screen and (max-width: 1028px) {
   .details-wrapper {
     flex-direction: column;
