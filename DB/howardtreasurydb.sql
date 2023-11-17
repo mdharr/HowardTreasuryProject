@@ -686,6 +686,21 @@ CREATE TABLE IF NOT EXISTS `verification_token` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `weird_tales`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `weird_tales` ;
+
+CREATE TABLE IF NOT EXISTS `weird_tales` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NULL,
+  `description` TEXT NULL,
+  `published_at` TIMESTAMP NULL,
+  `page_count` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS howardtreasury@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
