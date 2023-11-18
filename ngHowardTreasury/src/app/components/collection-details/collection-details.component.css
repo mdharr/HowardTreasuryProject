@@ -571,6 +571,11 @@ ul li {
     line-height: 1.5;
   }
 
+  .collection-subheader {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
 }
 
 @media screen and (max-width: 375px) {

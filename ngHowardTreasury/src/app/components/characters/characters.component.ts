@@ -1,3 +1,4 @@
+import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
 import { Component, ElementRef, inject, OnDestroy, OnInit, ViewChild, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Person } from 'src/app/models/person';
@@ -8,7 +9,19 @@ import { AnimatedCardComponent } from '../animated-card/animated-card.component'
 @Component({
   selector: 'app-characters',
   templateUrl: './characters.component.html',
-  styleUrls: ['./characters.component.css']
+  styleUrls: ['./characters.component.css'],
+  animations: [
+    trigger('customEasingAnimation', [
+      transition(':enter', [
+        query('app-illustrator-card', [
+          style({ opacity: 0, transform: 'translateY(20px)' }),
+          stagger(100, [
+            animate('0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)', style({ opacity: 1, transform: 'none' })),
+          ]),
+        ], { optional: true }),
+      ]),
+    ]),
+  ]
 })
 export class CharactersComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChildren(AnimatedCardComponent) animatedCards!: QueryList<AnimatedCardComponent>;
