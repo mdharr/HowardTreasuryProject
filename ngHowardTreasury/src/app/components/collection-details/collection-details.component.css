@@ -510,7 +510,6 @@ ul li {
     min-width: 200px;
   }
 
-
 }
 
 @media screen and (max-width: 520px) {
@@ -548,8 +547,7 @@ ul li {
   }
 
   .description-box {
-    padding:10px;
-    padding-top: 5px;
+    padding:0;
   }
 
   .flair-img {
