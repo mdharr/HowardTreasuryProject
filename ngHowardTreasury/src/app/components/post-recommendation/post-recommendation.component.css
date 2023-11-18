@@ -18,7 +18,15 @@
   cursor: pointer;
   transform: scale(1.05) translateY(-10px) rotate(3deg);
   border: 3px solid var(--red_milk);
-  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.1);
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5));
+}
+
+.post-wrapper .post-image {
+  transition: filter 0.6s ease-in;
+}
+
+.post-wrapper:hover .post-image {
+ filter: brightness(1.1);
 }
 
 .img-wrapper {
