@@ -83,7 +83,7 @@ export class IllustratorsComponent implements OnInit, OnDestroy {
     // You can use a timeout to trigger the animation after a short delay
     setTimeout(() => {
       this.showAll = true; // Set the showAll to true to trigger the animation
-    }, 100);
+    }, 200);
   }
 
 }
