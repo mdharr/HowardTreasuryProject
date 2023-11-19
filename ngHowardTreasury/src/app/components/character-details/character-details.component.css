@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   gap: 30px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 /* Profile image styles */
@@ -31,6 +31,17 @@
   background-size: cover; */
   background-color: var(--red_milk);
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.characters-img {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 3px;
+  padding: 5px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  border:5px solid var(--red_milk);
 }
 
 .profile-details {
@@ -158,6 +169,11 @@ li:hover {
   }
 
   .person-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .characters-img {
     width: 150px;
     height: 150px;
   }

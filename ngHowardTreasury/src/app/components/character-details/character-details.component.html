@@ -5,12 +5,16 @@
   </ol>
   <div class="character-profile">
     <div class="profile-image">
-      <img *ngIf="person.imageUrl"
+      <!-- <img *ngIf="person.imageUrl"
         class="person-image"
         src="{{ person.imageUrl }}"
         alt="Profile Image"
         (load)="onImageLoad()"
-      />
+      /> -->
+      <div class="characters-img"
+      style="background-image: url('{{person.imageUrl}}');
+             background-position: center center;
+             background-size: cover;"></div>
       <img *ngIf="!person.imageUrl" class="person-image" src="https://img-s2.onedio.com/id-548735fba33375064e6d8177/rev-0/w-635/listing/f-jpg-webp/s-147fc74a6fca6b1a3c974d5c0b1407f542c57afd.webp" alt="">
     </div>
     <div class="profile-details">
