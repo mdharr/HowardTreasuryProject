@@ -45,16 +45,15 @@
 </div>
 
 
-<div class="main" *ngIf="showByYear" @customEasingAnimation>
+<!-- <div class="main" *ngIf="showByYear" @customEasingAnimation>
   <div class="body-wrapper">
     <ng-container *ngFor="let year of getSortedYears(); let first = first">
-      <details class="year-details" [open]="showByYear && first">
+      <details class="year-details" [open]="showByYear && first" @panelAnimation>
         <summary class="year-summary">
           <h2>{{ year }}</h2>
         </summary>
         <div class="body">
           <ng-container *ngFor="let post of groupedPosts[year]">
-            <!-- Render the blog post here -->
             <div [routerLink]="['/posts', post.id, 'comments']" class="post-wrapper">
               <div class="card">
                 <div class="date-box"><span class="month-text">{{ post.createdAt | date:'MMM' }}</span><br><span class="day-text">{{ post.createdAt | date:'dd' }}</span></div>
@@ -67,7 +66,34 @@
       </details>
     </ng-container>
   </div>
+</div> -->
+<div class="main" *ngIf="showByYear" @customEasingAnimation>
+  <div class="body-wrapper">
+    <mat-accordion>
+      <ng-container *ngFor="let year of getSortedYears(); let first = first">
+        <mat-expansion-panel [expanded]="first">
+          <mat-expansion-panel-header class="custom-expansion-header">
+            <mat-panel-title>
+              {{ year }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="body">
+            <ng-container *ngFor="let post of groupedPosts[year]">
+              <div [routerLink]="['/posts', post.id, 'comments']" class="post-wrapper">
+                <div class="card">
+                  <div class="date-box"><span class="month-text">{{ post.createdAt | date:'MMM' }}</span><br><span class="day-text">{{ post.createdAt | date:'dd' }}</span></div>
+                  <img class="post-image" src="{{ post.imageUrl }}" alt="">
+                  <div class="title-text">{{ post.title }}</div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </mat-expansion-panel>
+      </ng-container>
+    </mat-accordion>
+  </div>
 </div>
+
 
 <div class="main" *ngIf="showByCreatedAsc" @customEasingAnimation>
   <div class="posts-header">

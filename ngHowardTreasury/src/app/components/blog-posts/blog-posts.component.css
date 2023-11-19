@@ -374,4 +374,17 @@ img {
   color: var(--black_white);
 }
 
+.mat-expansion-panel {
+  background-color: transparent;
+}
+
+.custom-expansion-header .mat-expansion-indicator svg {
+  fill: var(--black_white) !important;
+}
+
+.mat-expansion-panel-header-title {
+  color: var(--black_white);
+  font-family: var(--contentFontFamily);
+  font-size: 1.2rem;
+}
 

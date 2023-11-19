@@ -1,6 +1,6 @@
 import { BlogPostService } from './../../services/blog-post.service';
 import { AuthService } from './../../services/auth.service';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BlogPost } from 'src/app/models/blog-post';
 import { User } from 'src/app/models/user';
@@ -23,7 +23,7 @@ import { trigger, state, style, transition, animate, keyframes, query, stagger }
     ]),
   ]
 })
-export class BlogPostsComponent implements OnInit, OnDestroy {
+export class BlogPostsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // properties
   posts: BlogPost[] = [];
@@ -51,6 +51,8 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
   // service injections
   authService = inject(AuthService);
   blogPostService = inject(BlogPostService);
+  el = inject(ElementRef);
+  renderer = inject(Renderer2);
 
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -58,10 +60,25 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
     this.subscribeToBlogPostIndexAll();
 
     this.triggerCustomEasingAnimation();
+    this.addCustomStyles();
   }
 
   ngOnDestroy() {
     this.destroyAllSubscriptions();
+  }
+
+  ngAfterViewInit() {
+
+  }
+
+  addCustomStyles() {
+    const style = document.createElement('style');
+    style.innerHTML = `
+      .custom-expansion-header .mat-expansion-indicator::after {
+        color: var(--black_white) !important;
+      }
+    `;
+    document.head.appendChild(style);
   }
 
   subscribeToLoggedInObservable() {
