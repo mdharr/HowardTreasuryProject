@@ -33,6 +33,7 @@ export class CharactersComponent implements OnInit, OnDestroy, AfterViewInit {
   // booleans
   isLoaded: boolean = false;
   loading: boolean = false;
+  showAll: boolean = false;
 
   // subscriptions declarations
   private personSubscription: Subscription | undefined;
@@ -49,7 +50,7 @@ export class CharactersComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.subscribeToSubscriptions();
-
+    this.triggerCustomEasingAnimation();
   }
 
   ngOnDestroy(): void {
@@ -105,5 +106,12 @@ export class CharactersComponent implements OnInit, OnDestroy, AfterViewInit {
         }
       });
     });
+  }
+
+  triggerCustomEasingAnimation() {
+    // You can use a timeout to trigger the animation after a short delay
+    setTimeout(() => {
+      this.showAll = true; // Set the showAll to true to trigger the animation
+    }, 100);
   }
 }
