@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 50px;
+  padding: 20px;
   background-color: var(--white_black);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
@@ -294,6 +295,7 @@
 @media screen and (max-width: 1028px) {
   .details-wrapper {
     flex-direction: column;
+    padding: 10px;
   }
   .illustrator-meta {
     margin:0;
@@ -303,7 +305,11 @@
   }
   .description {
     padding: 10px 0;
-    word-break: break-all;
+    word-break: break-word;
+    hyphens: auto;
+    word-spacing: 0;
+    letter-spacing: 0;
+    text-indent: 1rem;
   }
 }
 

@@ -82,19 +82,17 @@
   font-size: var(--headerFontSize);
 }
 
-/* CSS */
-/* .description-text:first-child::first-letter {
-  margin-right: 5px;
-  color: var(--red_milk);
-  initial-letter: 2;
-} */
-
 .description-box {
   text-align: justify;
-  padding-left: 10%;
-  padding-right: 10%;
-  line-height: 1.4; /* Adjust as needed to control the line height of the rest of the text */
+  padding-left: 5%;
+  padding-right: 5%;
+  line-height: 1.4;
   margin-bottom: 70px;
+  word-spacing: 0;
+  letter-spacing: 0;
+  text-indent: 1rem;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 
