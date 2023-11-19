@@ -1,4 +1,5 @@
 import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
+import { ThisReceiver } from '@angular/compiler';
 import { Component, ElementRef, inject, OnDestroy, OnInit, ViewChild, AfterViewInit, ViewChildren, QueryList } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Person } from 'src/app/models/person';
@@ -13,7 +14,7 @@ import { AnimatedCardComponent } from '../animated-card/animated-card.component'
   animations: [
     trigger('customEasingAnimation', [
       transition(':enter', [
-        query('app-illustrator-card', [
+        query('.char-card', [
           style({ opacity: 0, transform: 'translateY(20px)' }),
           stagger(100, [
             animate('0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55)', style({ opacity: 1, transform: 'none' })),
@@ -109,9 +110,8 @@ export class CharactersComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   triggerCustomEasingAnimation() {
-    // You can use a timeout to trigger the animation after a short delay
     setTimeout(() => {
-      this.showAll = true; // Set the showAll to true to trigger the animation
+      this.showAll = true;
     }, 100);
   }
 }

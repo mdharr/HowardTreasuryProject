@@ -36,17 +36,18 @@
       </ul>
     </div> -->
     <div class="char-wrapper">
-      <div class="char-container">
-          <ng-container *ngFor="let person of persons">
-              <div class="char-card" [routerLink]="['/characters', person.id]">
-                  <div class="char-image" [ngStyle]="{'background-image': 'url(' + person.imageUrl + ')'}"></div>
-                  <div class="char-content">
-                      <p class="char-name">{{ person.name }}</p>
-                  </div>
-              </div>
-          </ng-container>
+      <div class="char-container" *ngIf="showAll" @customEasingAnimation>
+        <ng-container *ngFor="let person of persons">
+          <div class="char-card" [routerLink]="['/characters', person.id]">
+            <div class="char-image" [ngStyle]="{'background-image': 'url(' + person.imageUrl + ')'}"></div>
+            <div class="char-content">
+              <p class="char-name">{{ person.name }}</p>
+            </div>
+          </div>
+        </ng-container>
       </div>
     </div>
+
 
     <!-- <p class="alignleft card-container">
       <app-animated-card
