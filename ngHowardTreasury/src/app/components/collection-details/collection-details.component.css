@@ -200,10 +200,11 @@ body.disable-scrolling {
 
 .story-text {
   flex-grow: 1;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   text-overflow: ellipsis;
   font-family: var(--contentFontFamily);
   font-size: var(--contentFontSize);
+  white-space: normal;
 }
 
 .dots {
@@ -417,7 +418,6 @@ ul li {
 
 @media screen and (max-width: 1050px) {
   .contents-box {
-    flex:1;
     max-width:100%;
     min-width: 200px;
   }
@@ -505,7 +505,6 @@ ul li {
   }
 
   .contents-box {
-    flex:1;
     max-width:100%;
     min-width: 200px;
   }
