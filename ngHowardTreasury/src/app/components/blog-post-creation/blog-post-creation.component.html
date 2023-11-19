@@ -3,12 +3,12 @@
   <li><a [routerLink]="['/posts']">Posts</a></li>
 </ol>
 
-<div class="header-wrapper">
-  <h1>New Post</h1>
-</div>
 
 <form #postForm="ngForm" (ngSubmit)="onSubmit(postForm)">
   <div class="editor-wrapper">
+    <div class="header-wrapper">
+      <h1>New Post</h1>
+    </div>
     <div class="post-title">
       <input
         type="text"

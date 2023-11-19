@@ -1,13 +1,15 @@
 .editor-wrapper {
   display: block;
   background: white;
-  box-shadow: 0 0.5rem 1.5rem 0 rgba(12,19,44,0.13);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   height: 100%;
   max-width: 100%;
   margin: 0rem 0 0.5rem 0;
   margin: 1.5rem 1.5rem;
+  margin-top: 50px;
   border-radius: 0.5rem;
   padding: 1.5rem;
+  background-color: transparent;
 }
 
 .post-title {
@@ -123,6 +125,7 @@
   justify-content: center;
   color: var(--red_white);
   padding: 25px 0;
+  padding-top: 0;
 }
 
 .header-wrapper h1 {
