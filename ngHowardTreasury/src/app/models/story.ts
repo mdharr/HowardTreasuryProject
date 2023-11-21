@@ -2,6 +2,7 @@ import { StoryImage } from './story-image';
 import { Collection } from "./collection";
 import { Person } from './person';
 import { UserList } from './user-list';
+import { WeirdTales } from './weird-tales';
 
 export class Story {
 
@@ -18,6 +19,7 @@ export class Story {
   collections: Collection[];
   storyImages: StoryImage[];
   persons: Person[];
+  weirdTales: WeirdTales[];
   selected: boolean = false;
 
   constructor(
@@ -33,7 +35,8 @@ export class Story {
     userLists: UserList[] = [],
     collections: Collection[] = [],
     storyImages: StoryImage[] = [],
-    persons: Person[] = []
+    persons: Person[] = [],
+    weirdTales: WeirdTales[] = []
   ) {
     this.id = id;
     this.title = title;
@@ -48,5 +51,6 @@ export class Story {
     this.collections = collections;
     this.storyImages = storyImages;
     this.persons = persons;
+    this.weirdTales = weirdTales;
   }
 }
