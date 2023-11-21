@@ -1,1 +1,12 @@
-<p>weird-tales works!</p>
+<div class="main">
+  <div class="wrapper">
+    <div class="magazine" *ngFor="let weirdTale of weirdTales">
+      <div class="magazine-thumbnail">
+        <img class="thumbnail-element" src="{{ weirdTale.thumbnailUrl }}" alt="">
+      </div>
+      <div class="magazine-title">
+        <h6 class="title-text">{{ weirdTale.title }}</h6>
+      </div>
+    </div>
+  </div>
+</div>

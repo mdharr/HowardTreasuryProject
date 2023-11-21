@@ -1,0 +1,44 @@
+.main .wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+.magazine {
+  text-align: center;
+}
+
+.magazine-thumbnail {
+  max-width: 370px;
+  max-height: 340px;
+  overflow: hidden;
+}
+
+.thumbnail-element {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.title-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--black_white);
+  font-family: var(--inter);
+  letter-spacing: 0.05em;
+  text-rendering: optimizeSpeed;
+  margin-bottom: 0;
+  text-transform:uppercase;
+}
+
+.magazine img {
+  transition: filter .6s,opacity .6s,transform .6s,box-shadow .3s;
+}
+
+.magazine:hover img {
+  filter: grayscale(100) drop-shadow(1px 2px 3px #262626);
+}
+
+.magazine:hover {
+  cursor: pointer;
+}
