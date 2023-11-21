@@ -696,9 +696,36 @@ CREATE TABLE IF NOT EXISTS `weird_tales` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NULL,
   `description` TEXT NULL,
-  `published_at` TIMESTAMP NULL,
+  `published_at` DATETIME NULL,
   `page_count` VARCHAR(45) NULL,
+  `thumbnail_url` VARCHAR(1000) NULL,
+  `image_url` VARCHAR(1000) NULL,
+  `file_url` VARCHAR(1000) NULL,
   PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `weird_tales_has_story`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `weird_tales_has_story` ;
+
+CREATE TABLE IF NOT EXISTS `weird_tales_has_story` (
+  `weird_tales_id` INT NOT NULL,
+  `story_id` INT NOT NULL,
+  PRIMARY KEY (`weird_tales_id`, `story_id`),
+  INDEX `fk_weird_tales_has_story_story1_idx` (`story_id` ASC),
+  INDEX `fk_weird_tales_has_story_weird_tales1_idx` (`weird_tales_id` ASC),
+  CONSTRAINT `fk_weird_tales_has_story_weird_tales1`
+    FOREIGN KEY (`weird_tales_id`)
+    REFERENCES `weird_tales` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_weird_tales_has_story_story1`
+    FOREIGN KEY (`story_id`)
+    REFERENCES `story` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
@@ -2553,6 +2580,48 @@ START TRANSACTION;
 USE `howardtreasurydb`;
 INSERT INTO `blog_comment` (`id`, `content`, `created_at`, `blog_post_id`, `parent_comment_id`, `user_id`, `hidden`, `updated_at`) VALUES (1, 'Great first post!', '2023-03-05T12:35:22', 1, NULL, 2, 0, '2023-03-05T12:35:22');
 INSERT INTO `blog_comment` (`id`, `content`, `created_at`, `blog_post_id`, `parent_comment_id`, `user_id`, `hidden`, `updated_at`) VALUES (2, 'Great first comment!', '2023-03-06T12:35:22', 1, 1, 1, 0, '2023-03-06T12:35:22');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `weird_tales`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (1, 'Weird Tales 1925 July', 'After years of rejection slips Howard finally sold a short caveman tale titled “Spear and Fang”, which netted him the sum of $16 and introduced him to the readers of a struggling pulp called Weird Tales. Spear and Fang is a story of conflict between Cro-Magnons and Neanderthals.', '1925-07-01T00:00:00', '144', 'https://reh.world/wp-content/uploads/2021/01/WT-1925-07-Mockup-733x800.png', 'https://reh.world/wp-content/uploads/2021/01/WT-1925-07-_Side_001-560x800.jpg', 'https://reh.world/wp-content/uploads/2021/01/WT-1925-07-edited.pdf');
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (2, 'Weird Tales 1925 August', '“In the Forest of Villefere”, is a very short story, barely 4 pages long. But, the story is tight in that it; introduces the main character de Montour of Normandy, puts him on a dark road at night that is known for strange happenings, and strange creatures. de Montour meets a mysterious traveler along the way, who tells him a legend about werewolves.', '1925-08-01T00:00:00', '148', 'https://reh.world/wp-content/uploads/2021/01/WT-1925-08-Mockup-733x800.png', 'https://reh.world/wp-content/uploads/2021/01/WT-1925-08-_Side_001_new.jpg', 'https://reh.world/wp-content/uploads/2021/01/WT-1925-08.pdf');
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (3, 'Weird Tales 1926 February', 'Contains Robert E. Howard’s very first letter to Weird Tales.\n\n', '1926-02-01T00:00:00', '144', 'https://reh.world/wp-content/uploads/2021/10/WT-1926-02-Mockup-740x800.png', 'https://howardtreasury.s3.amazonaws.com/assets/weirdtales/WT-1926-02-p001-986x1536.png', 'https://reh.world/wp-content/uploads/2021/10/WT-1926-02-large.pdf');
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (4, 'Weird Tales 1926 April', 'Weird Tales from April 1926, Robert E. Howards first cover. Contains the first publication of Howard’s ‘Wolfshead’ plus the story ‘The Outsider’ by H. P. Lovecraft.', '1926-04-01T00:00:00', '144', 'https://reh.world/wp-content/uploads/2021/01/WT-1926-04-Mockup-733x800.png', 'https://reh.world/wp-content/uploads/2021/01/Wolfshead-full-size-Edit-548x800.jpg', 'https://reh.world/wp-content/uploads/2021/01/WT_1926_04.pdf');
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (5, 'Weird Tales 1926 May\n', 'Contains an extract from a letter from Robert E. Howard to Weird Tales, ca. March 1926,\n“. . . while told in plain, almost homely language, . . .”. No Howard stories in this one.', '1926-05-01T00:00:00', '144', 'https://reh.world/wp-content/uploads/2021/01/WT-1926-05-Mockup-733x800.png', 'https://reh.world/wp-content/uploads/2021/01/WT-1926-05-_Side_001-537x800.jpg', 'https://reh.world/wp-content/uploads/2021/01/WT-1926-05.pdf');
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (6, 'Weird Tales 1927 January ', '‘The Lost Race’ is a story in the Bran Mak Morn series and is set during the Roman invasion of Britain. Related to, but does not feature, Bran; Sold for $30;', '1927-01-01T00:00:00', '144', 'https://reh.world/wp-content/uploads/2021/01/WT-1927-01-Mockup-733x800.png', 'https://reh.world/wp-content/uploads/2021/01/WT_1927_01_L-527x800.jpg', 'https://reh.world/wp-content/uploads/2021/01/WT_1927_01.pdf');
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (7, 'Weird Tales 1927 May\n', 'Contains the poem ‘The Song of the Bats’ by Howard.', '1927-05-01T00:00:00', '144', 'https://reh.world/wp-content/uploads/2021/06/WT-1927-05-Mockup-740x800.png', 'https://howardtreasury.s3.amazonaws.com/assets/weirdtales/WT-1927-05-p001-986x1536.png', 'https://reh.world/wp-content/uploads/2021/06/WT-1927-05-edited.pdf');
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (8, 'Weird Tales 1927 June\n', 'Contains an extract from a letter from Robert E. Howard to Weird Tales, ca. March 1926,\n“Your last three issues . . .”. No Howard stories in this one.', '1927-06-01T00:00:00', '144', 'https://reh.world/wp-content/uploads/2021/10/WT-1927-06-Mockup-740x800.png', 'https://reh.world/wp-content/uploads/2021/10/WT-1927-06-p001-scaled.jpg', 'https://reh.world/wp-content/uploads/2021/10/WT-1927-06.pdf');
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (9, 'Weird Tales 1927 October\n', 'Contains the verse ‘The Ride of Falume’ by Howard.\n\n', '1927-10-01T00:00:00', '144', 'https://reh.world/wp-content/uploads/2021/06/WT-1927-10-Mockup.png', 'https://reh.world/wp-content/uploads/2021/06/WeirdTales-1927-10-p001-989x1536.jpg', 'https://reh.world/wp-content/uploads/2021/06/WT-1927-10-edited.pdf');
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (10, 'Weird Tales 1928 January\n', 'Contains the verse ‘Riders from Babylon’ by Howard.\n\n', '1928-01-01T00:00:00', '144', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-01-Mockup.png', 'https://reh.world/wp-content/uploads/2021/01/Weird-Tales-1928-01-p001.jpg', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-01.pdf');
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (11, 'Weird Tales 1928 February\n', 'The Dream Snake is a terrifying tale of a man who has had a recurring dream about being pursued by a sinister, unseen giant snake which gets nearer and nearer to him every night….\n\nAlso in this issue, the famous ‘The Call of Cthulhu’ by H. P. Lovecraft.', '1928-02-01T00:00:00', '144', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-02-Mockup.png', 'https://reh.world/wp-content/uploads/2021/01/001-WT-v11n02-1928-02-001.jpg', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-02.pdf');
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (12, 'Weird Tales 1928 March\n', 'In this story, first published in the March 1928 edition of Weird Tales Magazine, a fetish-man, on the grasslands of South Africa, conceals an unusual ability.', '1928-03-01T00:00:00', '144', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-03-Mockup.png', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-03-p001.jpg', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-03.pdf');
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (13, 'Weird Tales 1928 April\n', 'Contains the poem ‘Rememberance’ by Robert E. Howard. Not illustrated. Editor: Farnsworth Wright.\n\n', '1928-04-01T00:00:00', '144', 'https://reh.world/wp-content/uploads/2021/10/WT-1928-04-Mockup-740x800.png', 'https://reh.world/wp-content/uploads/2021/10/WeirdTales-1928-04-p001-515x800.jpg', 'https://reh.world/wp-content/uploads/2021/10/WT-1928-04.pdf');
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (14, 'Weird Tales 1928 May\n', 'Contains the story Sea Curse, a tale which starts with a village tragedy. A local girl who lives with her elderly aunt has been seduced and deflowered by a swaggering, drunk sailor.\n\nIn despair she drowns herself in the ocean. The sailor mocks her aunt over the girl’s washed-up body on the beach. The old aunt retaliates by putting an awful, terrible curse upon the sailor and his mate…and from that moment, the wheels of awful destiny are put into motion.', '1928-05-01T00:00:00', '144', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-05-Mockup2.png', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-05-p001.jpg', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-05.pdf');
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (15, 'Weird Tales 1928 July\n', 'Contains the poem ‘The Gates of Nineveh’.\n\n', '1928-07-01T00:00:00', '144', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-07-Mockup.png', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-07-p001.jpg', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-07.pdf');
+INSERT INTO `weird_tales` (`id`, `title`, `description`, `published_at`, `page_count`, `thumbnail_url`, `image_url`, `file_url`) VALUES (16, 'Weird Tales 1928 August\n', '“Red Shadows” was REH’s first published Solomon Kane story (Howard’s original title was “Solomon Kane”). It tells a tale of wide scope, one which takes place over many years and many countries. It’s a tale of unrelenting dogged persistence as Kane spends years of his life seeking to avenge the death of a complete stranger.', '1928-08-01T00:00:00', '144', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-08-Mockup.png', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-08-p001.jpg', 'https://reh.world/wp-content/uploads/2021/01/WT-1928-08.pdf');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `weird_tales_has_story`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `weird_tales_has_story` (`weird_tales_id`, `story_id`) VALUES (1, 119);
+INSERT INTO `weird_tales_has_story` (`weird_tales_id`, `story_id`) VALUES (2, 91);
+INSERT INTO `weird_tales_has_story` (`weird_tales_id`, `story_id`) VALUES (4, 106);
+INSERT INTO `weird_tales_has_story` (`weird_tales_id`, `story_id`) VALUES (6, 40);
+INSERT INTO `weird_tales_has_story` (`weird_tales_id`, `story_id`) VALUES (11, 83);
+INSERT INTO `weird_tales_has_story` (`weird_tales_id`, `story_id`) VALUES (12, 127);
+INSERT INTO `weird_tales_has_story` (`weird_tales_id`, `story_id`) VALUES (14, 100);
+INSERT INTO `weird_tales_has_story` (`weird_tales_id`, `story_id`) VALUES (16, 30);
 
 COMMIT;
 
