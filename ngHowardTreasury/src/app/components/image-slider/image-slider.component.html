@@ -3,6 +3,12 @@
   <mat-card-content>
     <img [src]="currentImage" alt="Image slider">
   </mat-card-content>
+  <button (click)="previousImage()">Previous</button>
+  <button (click)="nextImage()">Next</button>
 </mat-card>
-<mat-slider min="0" max="images.length - 1" step="1" [(ngModel)]="currentImageIndex">
+<mat-slider name="imageIndex" min="0" max="images.length - 1" step="1" [(ngModel)]="currentImageIndex">
 </mat-slider>
+<!-- <mat-slider min="0" max="images.length - 1" step="1" [value]="currentImageIndex" (input)="onSliderChange($event)">
+</mat-slider> -->
+
+

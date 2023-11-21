@@ -17,6 +17,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -73,10 +77,9 @@ import { VerificationComponent } from './components/verification/verification.co
 import { CustomSnackbarComponent } from './components/custom-snackbar/custom-snackbar.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { WebSocketService } from './services/websocket.service';
-import { MatOptionModule } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { WeirdTalesComponent } from './components/weird-tales/weird-tales.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
+import { ImageCarouselComponent } from './components/image-carousel/image-carousel.component';
 
 
 @NgModule({
@@ -134,6 +137,7 @@ import { ImageSliderComponent } from './components/image-slider/image-slider.com
     ChatComponent,
     WeirdTalesComponent,
     ImageSliderComponent,
+    ImageCarouselComponent,
   ],
   imports: [
     BrowserModule,
@@ -158,7 +162,8 @@ import { ImageSliderComponent } from './components/image-slider/image-slider.com
     MatCardModule,
     MatOptionModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSliderModule
   ],
   providers: [
     WebSocketService,
