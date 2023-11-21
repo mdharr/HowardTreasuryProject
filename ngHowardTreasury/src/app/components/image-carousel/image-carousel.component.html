@@ -1,5 +1,5 @@
 <div class="carousel-container">
-  <img [src]="images[currentImageIndex]" alt="Carousel Image">
+  <div class="carousel-image" [style.backgroundImage]="'url(' + images[currentImageIndex] + ')'"></div>
 
   <button mat-icon-button (click)="showPreviousImage()">
     <mat-icon>chevron_left</mat-icon>

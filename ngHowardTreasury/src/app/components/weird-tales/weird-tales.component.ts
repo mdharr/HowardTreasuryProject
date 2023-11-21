@@ -36,7 +36,7 @@ export class WeirdTalesComponent implements OnInit, OnDestroy {
     this.weirdTalesSubscription = this.weirdTalesService.indexAll().subscribe({
       next: (data) => {
         this.weirdTales = data;
-        this.weirdTalesImages = data.map(tale => tale.imageUrl);
+        this.weirdTalesImages = data.slice(7).map(tale => tale.imageUrl);
       },
       error: (fail) => {
         console.error('Failed to index weird tales magazine objects');
