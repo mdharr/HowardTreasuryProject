@@ -1,1 +1,11 @@
-<p>image-carousel works!</p>
+<div class="carousel-container">
+  <img [src]="images[currentImageIndex]" alt="Carousel Image">
+
+  <button mat-icon-button (click)="showPreviousImage()">
+    <mat-icon>chevron_left</mat-icon>
+  </button>
+
+  <button mat-icon-button (click)="showNextImage()">
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+</div>
