@@ -75,6 +75,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { WebSocketService } from './services/websocket.service';
 import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { WeirdTalesComponent } from './components/weird-tales/weird-tales.component';
 
 
 @NgModule({
@@ -130,6 +131,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     VerificationComponent,
     CustomSnackbarComponent,
     ChatComponent,
+    WeirdTalesComponent,
   ],
   imports: [
     BrowserModule,
