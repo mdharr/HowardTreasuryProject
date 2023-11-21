@@ -1,14 +1,19 @@
 package com.skilldistillery.howardtreasury.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "weird_tales")
@@ -18,7 +23,7 @@ public class WeirdTales {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String name;
+	private String title;
 	
 	private String description;
 	
@@ -36,23 +41,27 @@ public class WeirdTales {
 	
 	@Column(name = "file_url")
 	private String fileUrl;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "weirdTales", cascade = CascadeType.MERGE)
+	private List<Story> stories;
 
 	public WeirdTales() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public WeirdTales(int id, String name, String description, LocalDateTime publishedAt, int pageCount,
-			String thumbnailUrl, String imageUrl, String fileUrl) {
+	public WeirdTales(int id, String title, String description, LocalDateTime publishedAt, int pageCount,
+			String thumbnailUrl, String imageUrl, String fileUrl, List<Story> stories) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.title = title;
 		this.description = description;
 		this.publishedAt = publishedAt;
 		this.pageCount = pageCount;
 		this.thumbnailUrl = thumbnailUrl;
 		this.imageUrl = imageUrl;
 		this.fileUrl = fileUrl;
+		this.stories = stories;
 	}
 
 	public int getId() {
@@ -63,12 +72,12 @@ public class WeirdTales {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getDescription() {
@@ -119,6 +128,14 @@ public class WeirdTales {
 		this.fileUrl = fileUrl;
 	}
 
+	public List<Story> getStories() {
+		return stories;
+	}
+
+	public void setStories(List<Story> stories) {
+		this.stories = stories;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -138,7 +155,7 @@ public class WeirdTales {
 
 	@Override
 	public String toString() {
-		return "WeirdTales [id=" + id + ", name=" + name + ", description=" + description + ", publishedAt="
+		return "WeirdTales [id=" + id + ", title=" + title + ", description=" + description + ", publishedAt="
 				+ publishedAt + ", pageCount=" + pageCount + ", thumbnailUrl=" + thumbnailUrl + ", imageUrl=" + imageUrl
 				+ ", fileUrl=" + fileUrl + "]";
 	}

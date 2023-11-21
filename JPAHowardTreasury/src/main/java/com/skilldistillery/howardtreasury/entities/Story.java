@@ -74,6 +74,14 @@ public class Story {
 			)
 	private List<Person> persons;
 	
+	@ManyToMany
+	@JoinTable(
+			name = "weird_tales_has_story",
+			joinColumns = @JoinColumn(name = "story_id"),
+			inverseJoinColumns = @JoinColumn(name = "weird_tales_id")
+			)
+	private List<WeirdTales> weirdTales;
+	
 //	@JsonIgnore
 //	@OneToMany(mappedBy = "story", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //	private List<CollectionHasStory> collectionHasStories;
@@ -86,7 +94,7 @@ public class Story {
 	public Story(int id, String title, String textUrl, LocalDateTime firstPublished, String alternateTitle,
 			Boolean isCopyrighted, LocalDateTime copyrightExpiresAt, String excerpt, String description, 
 			List<UserList> userLists, List<Collection> collections, List<StoryImage> storyImages, 
-			List<Person> persons) {
+			List<Person> persons, List<WeirdTales> weirdTales) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -101,6 +109,7 @@ public class Story {
 		this.collections = collections;
 		this.storyImages = storyImages;
 		this.persons = persons;
+		this.weirdTales = weirdTales;
 	}
 
 	public int getId() {
@@ -214,6 +223,14 @@ public class Story {
 //	public void setCollectionHasStories(List<CollectionHasStory> collectionHasStories) {
 //		this.collectionHasStories = collectionHasStories;
 //	}
+
+	public List<WeirdTales> getWeirdTales() {
+		return weirdTales;
+	}
+
+	public void setWeirdTales(List<WeirdTales> weirdTales) {
+		this.weirdTales = weirdTales;
+	}
 
 	@Override
 	public int hashCode() {
