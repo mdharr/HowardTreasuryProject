@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-image-slider',
@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class ImageSliderComponent {
 
+  @Input() images: any[] = [];
+  currentImageIndex = 0;
+
+  get currentImage() {
+    return this.images[this.currentImageIndex];
+  }
 }

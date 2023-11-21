@@ -1,1 +1,8 @@
-<p>image-slider works!</p>
+<!-- image-slider.component.html -->
+<mat-card>
+  <mat-card-content>
+    <img [src]="currentImage" alt="Image slider">
+  </mat-card-content>
+</mat-card>
+<mat-slider min="0" max="images.length - 1" step="1" [(ngModel)]="currentImageIndex">
+</mat-slider>
