@@ -45,5 +45,11 @@ class WeirdTalesTest {
 		assertNotNull(weirdTales);
 		assertEquals("Weird Tales 1925 July", weirdTales.getTitle());
 	}
+	
+	@Test
+	void test_WeirdTales_Story_many_to_many_mapping() {
+		assertNotNull(weirdTales);
+		assertEquals("Spear and Fang", weirdTales.getStories().get(0).getTitle());
+	}
 
 }

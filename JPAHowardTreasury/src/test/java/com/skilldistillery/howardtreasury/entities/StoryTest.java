@@ -17,6 +17,7 @@ class StoryTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	private Story story;
+	private Story story2;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,18 +33,26 @@ class StoryTest {
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		story = em.find(Story.class, 1);
+		story2 = em.find(Story.class, 119);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
 		story = null;
+		story2 = null;
 	}
 
 	@Test
 	void test_Story_entity_mapping() {
 		assertNotNull(story);
 		assertEquals("The Altar and the Scorpion", story.getTitle());
+	}
+	
+	@Test
+	void test_Story_WeirdTales_many_to_many_mapping() {
+		assertNotNull(story2);
+		assertEquals("Weird Tales 1925 July", story2.getWeirdTales().get(0).getTitle());
 	}
 	
 //	@Test
