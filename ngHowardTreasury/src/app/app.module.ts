@@ -76,6 +76,7 @@ import { WebSocketService } from './services/websocket.service';
 import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { WeirdTalesComponent } from './components/weird-tales/weird-tales.component';
+import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 
 
 @NgModule({
@@ -132,6 +133,7 @@ import { WeirdTalesComponent } from './components/weird-tales/weird-tales.compon
     CustomSnackbarComponent,
     ChatComponent,
     WeirdTalesComponent,
+    ImageSliderComponent,
   ],
   imports: [
     BrowserModule,
