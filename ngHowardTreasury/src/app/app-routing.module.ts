@@ -29,6 +29,7 @@ import { ExcerptLoopComponent } from './components/excerpt-loop/excerpt-loop.com
 import { VerificationComponent } from './components/verification/verification.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { WeirdTalesComponent } from './components/weird-tales/weird-tales.component';
+import { WeirdTalesDetailsComponent } from './components/weird-tales-details/weird-tales-details.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -55,6 +56,7 @@ const routes: Routes = [
   { path: 'illustrators', component: IllustratorsComponent, data: { animation: 'IllustratorsPage' } },
   { path: 'illustrators/:illustratorId', component: IllustratorDetailsComponent, data: { animation: 'IllustratorDetailsPage' } },
   { path: 'weird-tales', component: WeirdTalesComponent, data: { animation: 'WeirdTalesPage' } },
+  { path: 'weird-tales/:weirdTalesId', component: WeirdTalesDetailsComponent, data: { animation: 'WeirdTalesDetailsPage' } },
   { path: 'conan', component: AnimatedCardComponent, data: { animation: 'ConanPage' } },
   { path: 'test', component: TestCardsComponent, data: { animation: 'TestCardsPage' } },
   { path: 'excerpt', component: ExcerptLoopComponent, data: { animation: 'ExcerptPage' } },
