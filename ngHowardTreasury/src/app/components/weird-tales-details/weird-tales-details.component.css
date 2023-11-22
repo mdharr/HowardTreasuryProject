@@ -1,0 +1,32 @@
+.main {
+  display:flex;
+}
+
+.magazine-wrapper {
+  display:flex;
+  flex-direction: column;
+}
+
+.magazine-image-wrapper {
+
+}
+
+.magazine-image {
+  width: 350px;
+  height: 500px;
+}
+
+.magazine-title-wrapper {
+
+}
+
+.magazine-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--black_white);
+  font-family: var(--inter);
+  letter-spacing: 0.05em;
+  text-rendering: optimizeSpeed;
+  margin-bottom: 0;
+  text-transform:uppercase;
+}
