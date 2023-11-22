@@ -28,7 +28,6 @@ export class WeirdTalesComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     this.subscribeToWeirdTalesService();
-
   }
 
   ngOnDestroy(): void {
