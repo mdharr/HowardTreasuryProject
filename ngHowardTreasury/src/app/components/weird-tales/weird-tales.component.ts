@@ -8,19 +8,7 @@ import { trigger, transition, query, style, stagger, animate } from '@angular/an
 @Component({
   selector: 'app-weird-tales',
   templateUrl: './weird-tales.component.html',
-  styleUrls: ['./weird-tales.component.css'],
-  animations: [
-    trigger('listAnimation', [
-      transition('* => *', [
-        query('.magazine', [
-          style({ opacity: 0, transform: 'translateX(-100px)' }),
-          stagger(100, [
-            animate('0.5s ease-out', style({ opacity: 1, transform: 'translateX(0px)' })),
-          ]),
-        ], { optional: true }),
-      ]),
-    ]),
-  ],
+  styleUrls: ['./weird-tales.component.css']
 })
 export class WeirdTalesComponent implements OnInit, OnDestroy, AfterViewInit {
 
@@ -55,7 +43,7 @@ export class WeirdTalesComponent implements OnInit, OnDestroy, AfterViewInit {
         if (entry.isIntersecting) {
           setTimeout(() => {
             this.renderer.addClass(entry.target, 'visible');
-          }, 500);
+          }, 1000);
         }
       });
     }, { threshold: 0.1 });

@@ -1,5 +1,7 @@
 <div class="carousel-container">
-  <div class="carousel-image" [style.backgroundImage]="'url(' + images[currentImageIndex] + ')'"></div>
+  <div class="carousel-image" [ngStyle]="{'background-image': images[currentImageIndex] ? 'url(' + images[currentImageIndex] + ')' : ''}">
+    <div class="overlay-image"></div>
+  </div>
 
   <button mat-icon-button (click)="showPreviousImage()">
     <mat-icon>chevron_left</mat-icon>
