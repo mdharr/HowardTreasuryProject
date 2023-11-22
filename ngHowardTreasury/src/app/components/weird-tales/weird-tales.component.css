@@ -1,12 +1,40 @@
+.main {
+  padding-bottom: 50px;
+}
+
 .main .wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
 }
 
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  75% {
+    transform: translateX(20px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .magazine {
   text-align: center;
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: opacity 0.5s ease-out;
+  height: 320px;
 }
+
+.magazine.visible {
+  animation: slideIn 0.6s ease-out forwards;
+}
+
 
 .magazine-thumbnail {
   max-width: 370px;
@@ -43,11 +71,18 @@
   cursor: pointer;
 }
 
+.magazine:not(.visible) {
+  visibility: hidden;
+}
+
 @media screen and (max-width: 850px) {
   .main .wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
+  }
+  .magazine {
+    height: 320px;
   }
 }
 
@@ -57,11 +92,17 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
   }
+  .magazine {
+    height: 320px;
+  }
 }
 
 @media screen and (max-width: 400px) {
   .title-text {
     text-align: end;
     font-size: 0.8rem;
+  }
+  .magazine {
+    height: 200px;
   }
 }
