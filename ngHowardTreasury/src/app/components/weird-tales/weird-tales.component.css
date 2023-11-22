@@ -42,3 +42,26 @@
 .magazine:hover {
   cursor: pointer;
 }
+
+@media screen and (max-width: 850px) {
+  .main .wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .main .wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .title-text {
+    text-align: end;
+    font-size: 0.8rem;
+  }
+}
