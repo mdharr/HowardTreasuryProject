@@ -1,7 +1,7 @@
 <app-image-carousel [images]="weirdTalesImages"></app-image-carousel>
 <div class="main">
   <div class="wrapper">
-    <div class="magazine" *ngFor="let weirdTale of weirdTales; let i = index" #magazine>
+    <div class="magazine" *ngFor="let weirdTale of weirdTales; let i = index" #magazine [routerLink]="['/weird-tales', weirdTale.id]">
       <div class="magazine-thumbnail">
         <img class="thumbnail-element" src="{{ weirdTale.thumbnailUrl }}" alt="">
       </div>
