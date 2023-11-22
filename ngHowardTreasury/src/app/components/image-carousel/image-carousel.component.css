@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--white_milk);
-  border-top: 1px solid var(--white_milk);
+  /* border-top: 1px solid var(--white_milk); */
 }
 
 .carousel-image {

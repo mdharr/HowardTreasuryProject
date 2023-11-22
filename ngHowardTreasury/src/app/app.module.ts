@@ -80,6 +80,7 @@ import { WebSocketService } from './services/websocket.service';
 import { WeirdTalesComponent } from './components/weird-tales/weird-tales.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import { ImageCarouselComponent } from './components/image-carousel/image-carousel.component';
+import { WeirdTalesDetailsComponent } from './components/weird-tales-details/weird-tales-details.component';
 
 
 @NgModule({
@@ -138,6 +139,7 @@ import { ImageCarouselComponent } from './components/image-carousel/image-carous
     WeirdTalesComponent,
     ImageSliderComponent,
     ImageCarouselComponent,
+    WeirdTalesDetailsComponent,
   ],
   imports: [
     BrowserModule,
