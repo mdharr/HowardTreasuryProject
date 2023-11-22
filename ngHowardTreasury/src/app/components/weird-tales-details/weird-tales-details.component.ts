@@ -30,6 +30,9 @@ export class WeirdTalesDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if(this.paramsSubscription) {
+      this.paramsSubscription.unsubscribe();
+    }
     if(this.weirdTalesSubscription) {
       this.weirdTalesSubscription.unsubscribe();
     }
