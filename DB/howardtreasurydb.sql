@@ -728,6 +728,103 @@ CREATE TABLE IF NOT EXISTS `weird_tales_has_story` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `weird_tales_contents`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `weird_tales_contents` ;
+
+CREATE TABLE IF NOT EXISTS `weird_tales_contents` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NULL,
+  `publishing_format` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `weird_tales_authors`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `weird_tales_authors` ;
+
+CREATE TABLE IF NOT EXISTS `weird_tales_authors` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `weird_tales_has_contents`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `weird_tales_has_contents` ;
+
+CREATE TABLE IF NOT EXISTS `weird_tales_has_contents` (
+  `weird_tales_id` INT NOT NULL,
+  `weird_tales_contents_id` INT NOT NULL,
+  PRIMARY KEY (`weird_tales_id`, `weird_tales_contents_id`),
+  INDEX `fk_weird_tales_has_weird_tales_contents_weird_tales_content_idx` (`weird_tales_contents_id` ASC),
+  INDEX `fk_weird_tales_has_weird_tales_contents_weird_tales1_idx` (`weird_tales_id` ASC),
+  CONSTRAINT `fk_weird_tales_has_weird_tales_contents_weird_tales1`
+    FOREIGN KEY (`weird_tales_id`)
+    REFERENCES `weird_tales` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_weird_tales_has_weird_tales_contents_weird_tales_contents1`
+    FOREIGN KEY (`weird_tales_contents_id`)
+    REFERENCES `weird_tales_contents` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `weird_tales_has_authors`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `weird_tales_has_authors` ;
+
+CREATE TABLE IF NOT EXISTS `weird_tales_has_authors` (
+  `weird_tales_id` INT NOT NULL,
+  `weird_tales_authors_id` INT NOT NULL,
+  PRIMARY KEY (`weird_tales_id`, `weird_tales_authors_id`),
+  INDEX `fk_weird_tales_has_weird_tales_authors_weird_tales_authors1_idx` (`weird_tales_authors_id` ASC),
+  INDEX `fk_weird_tales_has_weird_tales_authors_weird_tales1_idx` (`weird_tales_id` ASC),
+  CONSTRAINT `fk_weird_tales_has_weird_tales_authors_weird_tales1`
+    FOREIGN KEY (`weird_tales_id`)
+    REFERENCES `weird_tales` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_weird_tales_has_weird_tales_authors_weird_tales_authors1`
+    FOREIGN KEY (`weird_tales_authors_id`)
+    REFERENCES `weird_tales_authors` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `weird_tales_contents_has_authors`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `weird_tales_contents_has_authors` ;
+
+CREATE TABLE IF NOT EXISTS `weird_tales_contents_has_authors` (
+  `weird_tales_contents_id` INT NOT NULL,
+  `weird_tales_authors_id` INT NOT NULL,
+  PRIMARY KEY (`weird_tales_contents_id`, `weird_tales_authors_id`),
+  INDEX `fk_weird_tales_contents_has_weird_tales_authors_weird_tales_idx` (`weird_tales_authors_id` ASC),
+  INDEX `fk_weird_tales_contents_has_weird_tales_authors_weird_tales_idx1` (`weird_tales_contents_id` ASC),
+  CONSTRAINT `fk_weird_tales_contents_has_weird_tales_authors_weird_tales_c1`
+    FOREIGN KEY (`weird_tales_contents_id`)
+    REFERENCES `weird_tales_contents` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_weird_tales_contents_has_weird_tales_authors_weird_tales_a1`
+    FOREIGN KEY (`weird_tales_authors_id`)
+    REFERENCES `weird_tales_authors` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS howardtreasury@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';

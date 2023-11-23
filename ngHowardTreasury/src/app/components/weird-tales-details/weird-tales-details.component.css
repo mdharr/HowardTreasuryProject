@@ -1,5 +1,30 @@
 .main {
   display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-title {
+  max-width: 1010px;
+  background-color: rgba(0, 0, 0, 0.32);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  min-height: 60px;
+  padding: 20px 0;
+}
+
+.content-title-text {
+  font-size: 2rem;
+  color: #fff;
+  font-weight: 500;
+  font-family: var(--inter);
+}
+
+.content-wrapper {
+  display: flex;
+  max-width: 1010px;
 }
 
 .magazine-wrapper {
@@ -29,4 +54,17 @@
   text-rendering: optimizeSpeed;
   margin-bottom: 0;
   text-transform:uppercase;
+}
+
+.magazine-thumbnail {
+  width: 365px;
+  height: 400px;
+}
+
+.magazine-meta {
+
+}
+
+.description-text {
+  color: var(--black_white);
 }
