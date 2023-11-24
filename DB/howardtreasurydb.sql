@@ -738,6 +738,7 @@ CREATE TABLE IF NOT EXISTS `weird_tales_contents` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NULL,
   `publishing_format` VARCHAR(100) NULL,
+  `series_name` VARCHAR(100) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -2719,6 +2720,56 @@ INSERT INTO `weird_tales_has_story` (`weird_tales_id`, `story_id`) VALUES (11, 8
 INSERT INTO `weird_tales_has_story` (`weird_tales_id`, `story_id`) VALUES (12, 127);
 INSERT INTO `weird_tales_has_story` (`weird_tales_id`, `story_id`) VALUES (14, 100);
 INSERT INTO `weird_tales_has_story` (`weird_tales_id`, `story_id`) VALUES (16, 30);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `weird_tales_contents`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `weird_tales_contents` (`id`, `title`, `publishing_format`, `series_name`) VALUES (1, 'The Werewolf of Ponkert', 'novelette', 'Tales of the Werewolf Clan');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `weird_tales_authors`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `weird_tales_authors` (`id`, `name`) VALUES (1, 'H. Warner Munn');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `weird_tales_has_contents`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `weird_tales_has_contents` (`weird_tales_id`, `weird_tales_contents_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `weird_tales_has_authors`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `weird_tales_has_authors` (`weird_tales_id`, `weird_tales_authors_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `weird_tales_contents_has_authors`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `weird_tales_contents_has_authors` (`weird_tales_contents_id`, `weird_tales_authors_id`) VALUES (1, 1);
 
 COMMIT;
 
