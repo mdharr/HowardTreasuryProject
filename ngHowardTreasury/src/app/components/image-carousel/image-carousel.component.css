@@ -1,3 +1,12 @@
+@keyframes scrollImage {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .carousel-container {
   margin-top: -16px;
   margin-left: -16px;
@@ -9,7 +18,20 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--white_milk);
-  /* border-top: 1px solid var(--white_milk); */
+  position: relative;
+  overflow: hidden;
+}
+
+.scrolling-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 200%;
+  background:
+    url('https://i0.wp.com/boingboing.net/wp-content/uploads/2014/07/weird1.jpg') repeat-x;
+  background-size: 50% 100%;
+  animation: scrollImage 50s linear infinite;
 }
 
 .carousel-image {
@@ -18,9 +40,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center 40%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   box-shadow: inset 0 0 50px 20px rgba(0, 0, 0, 0.7);
+  filter: drop-shadow(2px 4px 6px black);
 }
 
 .overlay-image {
@@ -33,6 +57,7 @@
   background-image: url('https://lankhmar.co.uk/wp-content/uploads/2014/04/WeirdT.png');
   background-size: contain;
   background-repeat: no-repeat;
+  filter: drop-shadow(2px 4px 6px black);
 }
 
 
@@ -65,9 +90,13 @@ button:last-child {
     height: 300px;
   }
 
+  .carousel-image {
+    box-shadow: inset 0 0 15px 10px rgba(0, 0, 0, 0.7);
+  }
+
   .overlay-image {
-    width: 250px;
-    height: 110px;
+    width: 150px;
+    height: 70px;
     bottom: 0;
     right: 0;
     top:unset;
