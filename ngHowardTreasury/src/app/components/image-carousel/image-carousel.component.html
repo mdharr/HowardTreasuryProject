@@ -1,8 +1,17 @@
 <div class="carousel-container">
-  <div class="scrolling-image"></div>
-  <div class="carousel-image" [ngStyle]="{'background-image': images[currentImageIndex] ? 'url(' + images[currentImageIndex] + ')' : ''}">
-    <div class="overlay-image"></div>
+  <div class="scrolling-image-wrapper">
+    <div class="scrolling-image"></div>
   </div>
+  <div class="box-shadow">
+    <ng-container *ngFor="let image of images; let i = index">
+      <div *ngIf="i === currentImageIndex"
+           [@slideAnimation]="animationDirection"
+           class="carousel-image"
+           [ngStyle]="{'background-image': 'url(' + image + ')'}">
+      </div>
+    </ng-container>
+  </div>
+  <div class="overlay-image"></div>
 
   <button mat-icon-button (click)="showPreviousImage()">
     <mat-icon>chevron_left</mat-icon>
