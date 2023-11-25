@@ -50,6 +50,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   isLoaded: boolean = false;
   loaded: boolean = false;
   showAll: boolean = false;
+  fullImageLoaded: boolean = false;
 
   // service injection
   auth = inject(AuthService);
@@ -127,10 +128,9 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
       };
 
       // Set the src property of the Image object to the image URL
-      imgElement.src = this.collectionImages[0].imageUrl;
+      imgElement.src = this.collectionImages[0].thumbnailUrl;
     }
   }
-
 
   createIlluminatedInitial = (text: string): string => {
     if (text.length === 0) {
@@ -174,5 +174,9 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.showAll = true; // Set the showAll to true to trigger the animation
     }, 100);
+  }
+
+  onImageLoad() {
+    this.fullImageLoaded = true;
   }
 }

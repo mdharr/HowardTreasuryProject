@@ -6,7 +6,7 @@
 .main .wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
+  grid-gap: 50px;
 }
 
 @keyframes slideIn {
@@ -32,10 +32,13 @@
   height: 320px;
 }
 
+.magazine:hover .title-text {
+  color: var(--red_milk);
+}
+
 .magazine.visible {
   animation: slideIn 0.6s ease-out forwards;
 }
-
 
 .magazine-thumbnail {
   max-width: 370px;

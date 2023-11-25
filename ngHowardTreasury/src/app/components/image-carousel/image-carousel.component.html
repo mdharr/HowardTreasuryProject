@@ -5,7 +5,6 @@
   <div class="box-shadow">
     <ng-container *ngFor="let image of images; let i = index">
       <div *ngIf="i === currentImageIndex"
-           [@slideAnimation]="animationDirection"
            class="carousel-image"
            [ngStyle]="{'background-image': 'url(' + image + ')'}">
       </div>

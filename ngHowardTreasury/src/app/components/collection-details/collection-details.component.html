@@ -85,7 +85,7 @@
         <img
           class="collection-image"
           *ngIf="collectionImages && collectionImages.length > 0 && loaded"
-          src="{{ collectionImages[0].imageUrl }}"
+          src="{{ collectionImages[0].thumbnailUrl }}"
           alt="{{ collection.title | slice:0:15 }}"
           (click)="toggleFullScreenImage()"
         >
@@ -113,7 +113,9 @@
         *ngIf="isFullScreenImageVisible"
         src="{{ collectionImages[0].imageUrl }}"
         alt=""
+        (load)="onImageLoad()"
       >
+      <mat-progress-spinner *ngIf="!fullImageLoaded"></mat-progress-spinner>
     </div>
 
   </div>

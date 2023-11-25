@@ -23,6 +23,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   chatRoomId: number = 0;
   waveText: string | undefined;
 
+  private loggedInUserSubscription: Subscription | undefined;
   private loggedInSubscription: Subscription | undefined;
   private webSocketSubscription: Subscription | undefined;
   private authSubscription: Subscription | undefined;
@@ -31,10 +32,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   private webSocketService = inject(WebSocketService);
   private authService = inject(AuthService);
   private chatService = inject(ChatService);
-  private cdr = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
-    this.authService.getLoggedInUser().subscribe({
+    this.loggedInUserSubscription = this.authService.getLoggedInUser().subscribe({
       next: (user) => {
         this.loggedInUser = user;
         console.log('LOGGED IN USER: ' + this.loggedInUser.id);
@@ -50,18 +50,22 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     // Subscribe to new messages via WebSocket
     this.webSocketSubscription = this.webSocketService.getMessages().subscribe((newMessages: ChatMessage[]) => {
-      // Merge new messages with the existing messages
-      this.messages = [...this.messages, ...newMessages];
+      // Filter out messages that are already present
+      const uniqueNewMessages = newMessages.filter(newMsg =>
+        !this.messages.some(existingMsg => existingMsg.id === newMsg.id));
+
+      // Merge unique new messages with the existing messages
+      this.messages = [...this.messages, ...uniqueNewMessages];
       this.groupMessagesByDate(this.messages);
-      this.cdr.detectChanges();
       setTimeout(() => this.scrollToBottom(), 0);
     });
 
-    // this.subscribeToLoggedInObservable();
-    // this.subscribeToLoggedInObservable();
   }
 
   ngOnDestroy(): void {
+    if(this.loggedInUserSubscription) {
+      this.loggedInUserSubscription.unsubscribe();
+    }
     if(this.loggedInSubscription) {
       this.loggedInSubscription.unsubscribe();
     }
@@ -97,7 +101,6 @@ export class ChatComponent implements OnInit, OnDestroy {
       // Send the chat message
       this.webSocketService.sendChatMessage(chatMessage);
       this.newMessage = ''; // Clear input field
-      this.cdr.detectChanges();
       setTimeout(() => this.scrollToBottom(), 0);
     }
   }
@@ -129,7 +132,6 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.messages = data;
         this.sortChatHistory(this.messages);
         this.groupMessagesByDate(data);
-        this.cdr.detectChanges();
         setTimeout(() => this.scrollToBottom(), 0);
       },
       error: (fail) => {
@@ -188,6 +190,6 @@ export class ChatComponent implements OnInit, OnDestroy {
             });
         });
     }
-}
+  }
 
 }
