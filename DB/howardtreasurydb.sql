@@ -730,11 +730,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `weird_tales_contents`
+-- Table `weird_tales_content`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `weird_tales_contents` ;
+DROP TABLE IF EXISTS `weird_tales_content` ;
 
-CREATE TABLE IF NOT EXISTS `weird_tales_contents` (
+CREATE TABLE IF NOT EXISTS `weird_tales_content` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NULL,
   `publishing_format` VARCHAR(100) NULL,
@@ -744,11 +744,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `weird_tales_authors`
+-- Table `weird_tales_author`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `weird_tales_authors` ;
+DROP TABLE IF EXISTS `weird_tales_author` ;
 
-CREATE TABLE IF NOT EXISTS `weird_tales_authors` (
+CREATE TABLE IF NOT EXISTS `weird_tales_author` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
   PRIMARY KEY (`id`))
@@ -756,72 +756,48 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `weird_tales_has_contents`
+-- Table `weird_tales_has_content`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `weird_tales_has_contents` ;
+DROP TABLE IF EXISTS `weird_tales_has_content` ;
 
-CREATE TABLE IF NOT EXISTS `weird_tales_has_contents` (
+CREATE TABLE IF NOT EXISTS `weird_tales_has_content` (
   `weird_tales_id` INT NOT NULL,
-  `weird_tales_contents_id` INT NOT NULL,
-  PRIMARY KEY (`weird_tales_id`, `weird_tales_contents_id`),
-  INDEX `fk_weird_tales_has_weird_tales_contents_weird_tales_content_idx` (`weird_tales_contents_id` ASC),
-  INDEX `fk_weird_tales_has_weird_tales_contents_weird_tales1_idx` (`weird_tales_id` ASC),
-  CONSTRAINT `fk_weird_tales_has_weird_tales_contents_weird_tales1`
+  `weird_tales_content_id` INT NOT NULL,
+  PRIMARY KEY (`weird_tales_id`, `weird_tales_content_id`),
+  INDEX `fk_weird_tales_has_weird_tales_content_weird_tales_content1_idx` (`weird_tales_content_id` ASC),
+  INDEX `fk_weird_tales_has_weird_tales_content_weird_tales1_idx` (`weird_tales_id` ASC),
+  CONSTRAINT `fk_weird_tales_has_weird_tales_content_weird_tales1`
     FOREIGN KEY (`weird_tales_id`)
     REFERENCES `weird_tales` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_weird_tales_has_weird_tales_contents_weird_tales_contents1`
-    FOREIGN KEY (`weird_tales_contents_id`)
-    REFERENCES `weird_tales_contents` (`id`)
+  CONSTRAINT `fk_weird_tales_has_weird_tales_content_weird_tales_content1`
+    FOREIGN KEY (`weird_tales_content_id`)
+    REFERENCES `weird_tales_content` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `weird_tales_has_authors`
+-- Table `weird_tales_content_has_author`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `weird_tales_has_authors` ;
+DROP TABLE IF EXISTS `weird_tales_content_has_author` ;
 
-CREATE TABLE IF NOT EXISTS `weird_tales_has_authors` (
-  `weird_tales_id` INT NOT NULL,
-  `weird_tales_authors_id` INT NOT NULL,
-  PRIMARY KEY (`weird_tales_id`, `weird_tales_authors_id`),
-  INDEX `fk_weird_tales_has_weird_tales_authors_weird_tales_authors1_idx` (`weird_tales_authors_id` ASC),
-  INDEX `fk_weird_tales_has_weird_tales_authors_weird_tales1_idx` (`weird_tales_id` ASC),
-  CONSTRAINT `fk_weird_tales_has_weird_tales_authors_weird_tales1`
-    FOREIGN KEY (`weird_tales_id`)
-    REFERENCES `weird_tales` (`id`)
+CREATE TABLE IF NOT EXISTS `weird_tales_content_has_author` (
+  `weird_tales_content_id` INT NOT NULL,
+  `weird_tales_author_id` INT NOT NULL,
+  PRIMARY KEY (`weird_tales_content_id`, `weird_tales_author_id`),
+  INDEX `fk_weird_tales_content_has_weird_tales_author_weird_tales_a_idx` (`weird_tales_author_id` ASC),
+  INDEX `fk_weird_tales_content_has_weird_tales_author_weird_tales_c_idx` (`weird_tales_content_id` ASC),
+  CONSTRAINT `fk_weird_tales_content_has_weird_tales_author_weird_tales_con1`
+    FOREIGN KEY (`weird_tales_content_id`)
+    REFERENCES `weird_tales_content` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_weird_tales_has_weird_tales_authors_weird_tales_authors1`
-    FOREIGN KEY (`weird_tales_authors_id`)
-    REFERENCES `weird_tales_authors` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `weird_tales_contents_has_authors`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `weird_tales_contents_has_authors` ;
-
-CREATE TABLE IF NOT EXISTS `weird_tales_contents_has_authors` (
-  `weird_tales_contents_id` INT NOT NULL,
-  `weird_tales_authors_id` INT NOT NULL,
-  PRIMARY KEY (`weird_tales_contents_id`, `weird_tales_authors_id`),
-  INDEX `fk_weird_tales_contents_has_weird_tales_authors_weird_tales_idx` (`weird_tales_authors_id` ASC),
-  INDEX `fk_weird_tales_contents_has_weird_tales_authors_weird_tales_idx1` (`weird_tales_contents_id` ASC),
-  CONSTRAINT `fk_weird_tales_contents_has_weird_tales_authors_weird_tales_c1`
-    FOREIGN KEY (`weird_tales_contents_id`)
-    REFERENCES `weird_tales_contents` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_weird_tales_contents_has_weird_tales_authors_weird_tales_a1`
-    FOREIGN KEY (`weird_tales_authors_id`)
-    REFERENCES `weird_tales_authors` (`id`)
+  CONSTRAINT `fk_weird_tales_content_has_weird_tales_author_weird_tales_aut1`
+    FOREIGN KEY (`weird_tales_author_id`)
+    REFERENCES `weird_tales_author` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -2748,51 +2724,41 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `weird_tales_contents`
+-- Data for table `weird_tales_content`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `weird_tales_contents` (`id`, `title`, `publishing_format`, `series_name`) VALUES (1, 'The Werewolf of Ponkert', 'novelette', 'Tales of the Werewolf Clan');
+INSERT INTO `weird_tales_content` (`id`, `title`, `publishing_format`, `series_name`) VALUES (1, 'The Werewolf of Ponkert', 'novelette', 'Tales of the Werewolf Clan');
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `weird_tales_authors`
+-- Data for table `weird_tales_author`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `weird_tales_authors` (`id`, `name`) VALUES (1, 'H. Warner Munn');
+INSERT INTO `weird_tales_author` (`id`, `name`) VALUES (1, 'H. Warner Munn');
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `weird_tales_has_contents`
+-- Data for table `weird_tales_has_content`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `weird_tales_has_contents` (`weird_tales_id`, `weird_tales_contents_id`) VALUES (1, 1);
+INSERT INTO `weird_tales_has_content` (`weird_tales_id`, `weird_tales_content_id`) VALUES (1, 1);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `weird_tales_has_authors`
+-- Data for table `weird_tales_content_has_author`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `weird_tales_has_authors` (`weird_tales_id`, `weird_tales_authors_id`) VALUES (1, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `weird_tales_contents_has_authors`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `howardtreasurydb`;
-INSERT INTO `weird_tales_contents_has_authors` (`weird_tales_contents_id`, `weird_tales_authors_id`) VALUES (1, 1);
+INSERT INTO `weird_tales_content_has_author` (`weird_tales_content_id`, `weird_tales_author_id`) VALUES (1, 1);
 
 COMMIT;
 
