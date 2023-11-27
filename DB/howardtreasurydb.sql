@@ -818,7 +818,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`) VALUES (1, 'Conan', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'ADMIN', 'conan@howardtreasury.com', 'https://storage.proboards.com/6439519/avatar/rkoatbvKFjxaoISHwcbr.jpg');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`) VALUES (1, 'Conan', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'ADMIN', 'conan@howardtreasury.com', 'https://reh.world/wp-content/gallery/ken-kelly/Conan-holding-sword-Forbedret.jpg');
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`) VALUES (2, 'Kull', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'MODERATOR', 'kull@howardtreasury.com', 'https://pbs.twimg.com/media/EC_Wbe6W4AEtl65.jpg');
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`) VALUES (3, 'Solomon', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD', 'solomonkane@howardtreasury.com', 'https://storage.proboards.com/6439519/avatar/z9k5Dao0qaaJX9LKgT9J.jpg');
 
