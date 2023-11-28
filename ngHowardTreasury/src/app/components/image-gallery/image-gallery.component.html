@@ -1,6 +1,12 @@
 <div class="image-gallery">
-  <img *ngFor="let image of kenKellyImages; let i = index;" src="{{ image }}" alt="" (click)="openLightbox(i, $event)">
+  <img *ngFor="let image of kenKellyImages; let i = index;" src="{{ image }}" alt="" (click)="openLightbox(i, $event)" loading="lazy">
 </div>
+<!-- <div class="image-gallery">
+  <picture *ngFor="let image of kenKellyImages; let i = index;">
+    <source type="image/webp">
+    <img src="{{ image }}" alt="" (click)="openLightbox(i, $event)" loading="lazy">
+  </picture>
+</div> -->
 
 <div class="lightbox" *ngIf="showLightbox">
   <div class="lightbox-background" [ngStyle]="getLightboxBackgroundStyle()"></div>
