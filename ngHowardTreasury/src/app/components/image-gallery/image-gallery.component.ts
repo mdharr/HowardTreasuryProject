@@ -76,7 +76,6 @@ export class ImageGalleryComponent {
     "https://reh.world/wp-content/gallery/ken-kelly/Giant-octopus.jpg"
   ];
 
-
   // lightbox properties
   centerOffset: number = 0;
   showLightbox = false;
