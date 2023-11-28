@@ -1,3 +1,31 @@
 <div class="image-gallery">
-  <img *ngFor="let image of kenKellyImages" src="{{ image }}" alt="">
+  <img *ngFor="let image of kenKellyImages; let i = index;" src="{{ image }}" alt="" (click)="openLightbox(i, $event)">
+</div>
+
+<div class="lightbox" *ngIf="showLightbox">
+  <div class="lightbox-background" [ngStyle]="getLightboxBackgroundStyle()"></div>
+  <div class="lightbox-content">
+    <div class="lightbox-image-container">
+      <img src="{{ selectedImage }}" class="lightbox-image" (click)="onLightboxImageClick($event)">
+    </div>
+    <div class="lightbox-controls" (click)="$event.stopPropagation()">
+      <div class="control close-icon" (click)="closeLightbox()"><mat-icon>close</mat-icon></div>
+    </div>
+    <div class="lightbox-image-count">{{ currentIndex + 1 }} of {{ kenKellyImages.length }}</div>
+  </div>
+  <div class="lightbox-thumbnails" (click)="$event.stopPropagation()">
+    <div class="thumbnails-container" [style.transform]="'translateX(' + getThumbnailTransform() + 'px)'">
+      <ng-container *ngFor="let image of kenKellyImages; let i = index">
+        <div class="thumbnail-text">{{ i + 1 }}</div>
+        <div
+          class="thumbnail"
+          [class.selected]="i === selectedThumbnailIndex"
+          (click)="selectImage(i)"
+          [ngStyle]="getLightboxThumbnailStyle(i)"
+        >
+          <img src="{{ image }}" class="thumbnail-image">
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </div>
