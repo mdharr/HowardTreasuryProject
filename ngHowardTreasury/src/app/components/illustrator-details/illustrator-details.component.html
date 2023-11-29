@@ -15,7 +15,6 @@
     </div>
   </div>
 
-  <!-- Image Grid Container -->
   <div class="image-grid-container">
     <div class="image-grid" *ngIf="showAll" @customEasingAnimation>
       <ng-container *ngFor="let image of displayedImages; let i = index">
@@ -29,11 +28,11 @@
       </ng-container>
     </div>
 
-    <!-- "Show More" button outside of the image-grid -->
     <div class="show-more-btn-wrapper">
       <button mat-button class="show-more-btn" *ngIf="maxImagesToShow < storyImages.length" (click)="showMore()">Show More</button>
     </div>
   </div>
+  <!-- <app-image-gallery [images]="imageUrls"></app-image-gallery> -->
 </div>
 
 <div class="lightbox" *ngIf="showLightbox">

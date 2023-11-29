@@ -30,6 +30,7 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
   // properties
   illustrator: Illustrator = new Illustrator();
   storyImages: StoryImage[] = [];
+  imageUrls: string[] = [];
   displayedImages: StoryImage[] = [];
   loggedInUser: User = new User();
   illustratorId: number = 0;
@@ -123,6 +124,7 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
       next: (data) => {
         this.illustrator = data;
         this.storyImages = data.storyImages;
+        this.imageUrls = data.storyImages.map(item => item.imageUrl);
         this.displayedImages = this.storyImages.slice(0, this.maxImagesToShow).map(image => ({ ...image, ready: true }));
 
       },

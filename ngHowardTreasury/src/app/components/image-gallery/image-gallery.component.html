@@ -1,5 +1,5 @@
 <div class="image-gallery">
-  <img *ngFor="let image of kenKellyImages; let i = index;" src="{{ image }}" alt="" (click)="openLightbox(i, $event)" loading="lazy">
+  <img *ngFor="let image of images; let i = index;" src="{{ image }}" alt="" (click)="openLightbox(i, $event)" loading="lazy">
 </div>
 
 <div class="lightbox" *ngIf="showLightbox">
@@ -11,11 +11,11 @@
     <div class="lightbox-controls" (click)="$event.stopPropagation()">
       <div class="control close-icon" (click)="closeLightbox()"><mat-icon>close</mat-icon></div>
     </div>
-    <div class="lightbox-image-count">{{ currentIndex + 1 }} of {{ kenKellyImages.length }}</div>
+    <div class="lightbox-image-count">{{ currentIndex + 1 }} of {{ images.length }}</div>
   </div>
   <div class="lightbox-thumbnails" (click)="$event.stopPropagation()">
     <div class="thumbnails-container" [style.transform]="'translateX(' + getThumbnailTransform() + 'px)'">
-      <ng-container *ngFor="let image of kenKellyImages; let i = index">
+      <ng-container *ngFor="let image of images; let i = index">
         <div class="thumbnail-text">{{ i + 1 }}</div>
         <div
           class="thumbnail"

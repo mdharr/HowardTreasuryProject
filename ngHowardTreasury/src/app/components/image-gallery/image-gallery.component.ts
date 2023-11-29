@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, ElementRef, HostListener, Inject, inject, Renderer2 } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, inject, Input, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-image-gallery',
@@ -8,73 +8,74 @@ import { Component, ElementRef, HostListener, Inject, inject, Renderer2 } from '
 })
 export class ImageGalleryComponent {
 
-  kenKellyImages: string[] = [
-    "https://reh.world/wp-content/gallery/ken-kelly/Escape-From-Khan.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Fantasy-Painting-Original-Art-1978-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Ylana-of-Callisto.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/The-Mighty-King-1991.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Conan-by-Ken-Kelly2-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Red-Nails-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/The-Hour-of-the-Dragon-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-The-Clan-of-the-Cats-Paperback-Cover-Original-Art.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15150056-scaled.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15202413.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15173625-scaled.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15314953-scaled.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15512706-1-scaled.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15471234-scaled.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15454247-scaled.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15244952-scaled.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15233407-scaled.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15221112-scaled.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Fantasy-art-Fantasy-ero-%D0%A0%D0%B5%D1%82%D1%80%D0%BE-%D1%84%D1%8D%D0%BD%D1%82%D0%B5%D0%B7%D0%B8-7223991.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/%D0%9A%D0%B8%D0%BD%D0%B3-%D0%9A%D0%BE%D0%BD%D0%B3-%D0%A4%D0%B8%D0%BB%D1%8C%D0%BC%D1%8B-ken-kelly-artist-7230019.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/two-against-tyre.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/The-Daughter-of-Erlik-Khan-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Solomon-Kane-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Skull-Face-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Conan-with-a-stone-axe-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Conan-and-the-Queen-of-the-Black-Coast-Gurps-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Black-Vulmeas-vengeance-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Conan-Painting-Demon-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Conan-the-Formidable-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Cormac-Mac-Art-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Sea-Venom.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Black-Canaan-Cover-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Monstrous.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Entrapped-Conan.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Conan-vs.-Cyclops-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Conan-and-the-Emerald-Lotus-Cover-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Trails-in-Darkness.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Conan_snake.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/1_Conan-with-a-stone-axe-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/21551856573_1607e18053_o-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/MDJ_KenKelly_4-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/marchers.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/comment_z2PKohtUiLHvyyOFTvhf5TZx5VeNRzds-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Almuric.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/14_REH_thelastride_kenkelly.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Looming-Menace.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/ken_kelly_revenge_of_the_viking.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/10_REH_thewhitewolf_kenkelly.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/05_REH_lostvalleyofiskander_kenkelly.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/red-blades-from-black-cathay-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/two-against-tyre-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Conan-by-Ken-Kelly.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/KEN-KELLY-American-b.1946.-Eons-of-the-Night-1995.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Conan-with-an-axe-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/CONAN-THE-CONQUEROR.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Conan-The-Bold-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Warriors-of-the-Way.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Conan.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Conan-holding-sword-Forbedret.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/EDUGefQXYAE0MW-.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Conan-the-Savage.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Pit-fighter-Edit.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Conan-get-back.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Conan-running-with-girl2.jpg",
-    "https://reh.world/wp-content/gallery/ken-kelly/Giant-octopus.jpg"
-  ];
+  @Input() images: string[] = [];
+  // kenKellyImages: string[] = [
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Escape-From-Khan.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Fantasy-Painting-Original-Art-1978-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Ylana-of-Callisto.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/The-Mighty-King-1991.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Conan-by-Ken-Kelly2-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Red-Nails-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/The-Hour-of-the-Dragon-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-The-Clan-of-the-Cats-Paperback-Cover-Original-Art.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15150056-scaled.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15202413.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15173625-scaled.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15314953-scaled.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15512706-1-scaled.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15471234-scaled.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15454247-scaled.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15244952-scaled.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15233407-scaled.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/img20201108_15221112-scaled.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Fantasy-art-Fantasy-ero-%D0%A0%D0%B5%D1%82%D1%80%D0%BE-%D1%84%D1%8D%D0%BD%D1%82%D0%B5%D0%B7%D0%B8-7223991.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/%D0%9A%D0%B8%D0%BD%D0%B3-%D0%9A%D0%BE%D0%BD%D0%B3-%D0%A4%D0%B8%D0%BB%D1%8C%D0%BC%D1%8B-ken-kelly-artist-7230019.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/two-against-tyre.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/The-Daughter-of-Erlik-Khan-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Solomon-Kane-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Skull-Face-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Conan-with-a-stone-axe-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Conan-and-the-Queen-of-the-Black-Coast-Gurps-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Black-Vulmeas-vengeance-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Conan-Painting-Demon-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Conan-the-Formidable-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Cormac-Mac-Art-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Sea-Venom.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Black-Canaan-Cover-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Monstrous.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Entrapped-Conan.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Conan-vs.-Cyclops-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Conan-and-the-Emerald-Lotus-Cover-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Trails-in-Darkness.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Conan_snake.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/1_Conan-with-a-stone-axe-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/21551856573_1607e18053_o-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/MDJ_KenKelly_4-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/marchers.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/comment_z2PKohtUiLHvyyOFTvhf5TZx5VeNRzds-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Almuric.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/14_REH_thelastride_kenkelly.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Ken-Kelly-Looming-Menace.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/ken_kelly_revenge_of_the_viking.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/10_REH_thewhitewolf_kenkelly.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/05_REH_lostvalleyofiskander_kenkelly.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/red-blades-from-black-cathay-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/two-against-tyre-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Conan-by-Ken-Kelly.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/KEN-KELLY-American-b.1946.-Eons-of-the-Night-1995.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Conan-with-an-axe-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/CONAN-THE-CONQUEROR.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Conan-The-Bold-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Warriors-of-the-Way.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Conan.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Conan-holding-sword-Forbedret.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/EDUGefQXYAE0MW-.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Conan-the-Savage.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Pit-fighter-Edit.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Conan-get-back.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Conan-running-with-girl2.jpg",
+  //   "https://reh.world/wp-content/gallery/ken-kelly/Giant-octopus.jpg"
+  // ];
 
   // lightbox properties
   centerOffset: number = 0;
@@ -92,7 +93,8 @@ export class ImageGalleryComponent {
   openLightbox(index: number, event: MouseEvent) {
     event.stopPropagation();
     this.showLightbox = true;
-    this.selectedImage = this.kenKellyImages[index];
+    // this.selectedImage = this.kenKellyImages[index];
+    this.selectedImage = this.images[index];
     this.selectedThumbnailIndex = index;
     this.currentIndex = index;
     if (this.showLightbox) {
@@ -115,12 +117,14 @@ export class ImageGalleryComponent {
     }
 
     // Wait for the new image size calculation
-    const newImageSize = await this.calculateNewImageSize(this.kenKellyImages[index]);
+    // const newImageSize = await this.calculateNewImageSize(this.kenKellyImages[index]);
+    const newImageSize = await this.calculateNewImageSize(this.images[index]);
 
     setTimeout(() => {
       // Update the selected image
       this.currentIndex = index;
-      this.selectedImage = this.kenKellyImages[index];
+      // this.selectedImage = this.kenKellyImages[index];
+      this.selectedImage = this.images[index];
       this.selectedThumbnailIndex = index;
       this.updateThumbnailPosition();
 
@@ -192,7 +196,8 @@ export class ImageGalleryComponent {
   }
 
   getThumbnailTransform(): string {
-    if (!this.kenKellyImages.length) return '';
+    // if (!this.kenKellyImages.length) return '';
+    if (!this.images.length) return '';
 
     const thumbnailWidth = 50; // Width of each thumbnail
     const gapBetweenThumbnails = 10; // Adjust if there's a gap between thumbnails
@@ -213,7 +218,8 @@ export class ImageGalleryComponent {
 
   private updateThumbnailPosition() {
     const thumbnailWidth = 50; // Adjust as needed
-    const thumbnailsCount = this.kenKellyImages.length;
+    // const thumbnailsCount = this.kenKellyImages.length;
+    const thumbnailsCount = this.images.length;
     const containerWidth = thumbnailsCount * thumbnailWidth;
     const transform = containerWidth / 2 - this.selectedThumbnailIndex * thumbnailWidth;
 
@@ -235,7 +241,8 @@ export class ImageGalleryComponent {
     }
 
     setTimeout(() => {
-      this.currentIndex = (this.currentIndex + 1) % this.kenKellyImages.length;
+      // this.currentIndex = (this.currentIndex + 1) % this.kenKellyImages.length;
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
       this.selectImage(this.currentIndex);
     }, 0); // Match the duration of the fade-out transition
   }
@@ -247,7 +254,8 @@ export class ImageGalleryComponent {
     }
 
     setTimeout(() => {
-      this.currentIndex = (this.currentIndex - 1 + this.kenKellyImages.length) % this.kenKellyImages.length;
+      // this.currentIndex = (this.currentIndex - 1 + this.kenKellyImages.length) % this.kenKellyImages.length;
+      this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
       this.selectImage(this.currentIndex);
     }, 0); // Match the duration of the fade-out transition
   }
