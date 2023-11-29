@@ -1,14 +1,14 @@
+<ol class="breadcrumbnav">
+  <li><a [routerLink]="['/home']">Home</a></li>
+</ol>
+
 <div  *ngIf="loading" class="spinner-wrapper">
   <div class="spinner-box">
     <mat-spinner></mat-spinner>
   </div>
 </div>
 
-<ol class="breadcrumbnav">
-  <li><a [routerLink]="['/home']">Home</a></li>
-</ol>
-
-<div class="header-wrapper">
+<div class="header-wrapper" *ngIf="!loading">
   <div class="header">
     <h1 class="main-title">Collections</h1>
     <p class="subheader">Robert E. Howard's writings in Del Rey published collections.</p>
@@ -34,7 +34,7 @@
     </div>
   </ng-container>
 </div>
-<app-svg-element></app-svg-element>
+<app-svg-element *ngIf="!loading"></app-svg-element>
 
 
 

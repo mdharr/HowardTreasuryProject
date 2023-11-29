@@ -24,6 +24,7 @@
   position: relative;
   overflow: hidden;
   perspective: 1000px;
+  background: #3f371f url(//www.blogblog.com/1kt/awesomeinc/body_background_dark.png) repeat scroll top left;
 }
 
 .carousel-container::before,
@@ -82,7 +83,6 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-
   filter: drop-shadow(2px 4px 6px black);
   z-index: 3;
 }
