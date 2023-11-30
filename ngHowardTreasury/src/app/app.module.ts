@@ -83,6 +83,7 @@ import { ImageSliderComponent } from './components/image-slider/image-slider.com
 import { ImageCarouselComponent } from './components/image-carousel/image-carousel.component';
 import { WeirdTalesDetailsComponent } from './components/weird-tales-details/weird-tales-details.component';
 import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
+import { DrumSoundboardComponent } from './components/drum-soundboard/drum-soundboard.component';
 
 
 @NgModule({
@@ -143,6 +144,7 @@ import { ImageGalleryComponent } from './components/image-gallery/image-gallery.
     ImageCarouselComponent,
     WeirdTalesDetailsComponent,
     ImageGalleryComponent,
+    DrumSoundboardComponent,
   ],
   imports: [
     BrowserModule,

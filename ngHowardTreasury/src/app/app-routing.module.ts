@@ -1,3 +1,4 @@
+import { DrumSoundboardComponent } from './components/drum-soundboard/drum-soundboard.component';
 import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
 import { BlogPostEditComponent } from './components/blog-post-edit/blog-post-edit.component';
 import { IllustratorDetailsComponent } from './components/illustrator-details/illustrator-details.component';
@@ -64,6 +65,7 @@ const routes: Routes = [
   { path: 'posts/:postId/edit', component: BlogPostEditComponent, data: { animation: 'EditPostPage' } },
   { path: 'chat', component: ChatComponent, data: { animation: 'ChatPage' } },
   { path: 'gallery', component: ImageGalleryComponent, data: { animation: 'ImageGalleryPage' } },
+  { path: 'drum-soundboard', component: DrumSoundboardComponent, data: { animation: 'DrumSoundboardPage' } },
   // { path: 'stories-test', component: StoriesTestComponent },
   // { path: 'stop-light-test', component: StopLightTestComponent },
 ];
