@@ -97,7 +97,7 @@
     grid-gap: 20px;
   }
   .magazine {
-    height: 320px;
+    height: 280px;
   }
 }
 
@@ -107,6 +107,6 @@
     font-size: 0.8rem;
   }
   .magazine {
-    height: 200px;
+    height: 210px;
   }
 }

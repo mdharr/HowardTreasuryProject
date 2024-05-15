@@ -403,6 +403,10 @@
   .auth-container {
     display:none;
   }
+
+  .login-text, .register-text {
+    color: var(--black_color) !important;
+  }
 }
 
 @media screen and (max-width: 560px) {
