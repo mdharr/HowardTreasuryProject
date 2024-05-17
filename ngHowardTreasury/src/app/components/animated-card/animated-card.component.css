@@ -14,7 +14,9 @@ img {
   position: relative;
   transform-style: preserve-3d;
   transition: rotate var(--timing) ease;
-  border: 5px solid var(--red_milk);
+  /* border: 5px solid var(--red_milk); */
+  border: 6px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
 }
 
 .conan:hover {

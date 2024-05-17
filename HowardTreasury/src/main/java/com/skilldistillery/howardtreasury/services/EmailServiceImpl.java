@@ -17,8 +17,6 @@ public class EmailServiceImpl implements EmailService {
 //
 //    @Override
 //    public void sendVerificationEmail(String to, String subject, String emailBody) {
-//    	System.out.println("MAIL_USERNAME: " + System.getenv("MAIL_USERNAME"));
-//    	System.out.println("MAIL_PASSWORD: " + System.getenv("MAIL_PASSWORD"));
 //        SimpleMailMessage message = new SimpleMailMessage();
 //        message.setFrom(fromEmail);
 //        message.setTo(to);
@@ -30,7 +28,7 @@ public class EmailServiceImpl implements EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
-    @Value("${spring.mail.username}")
+    @Value("${MAIL_USERNAME:default_value}")
     private String fromEmail;
     
     @Override

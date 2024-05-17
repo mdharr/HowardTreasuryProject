@@ -19,10 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skilldistillery.howardtreasury.entities.User;
 import com.skilldistillery.howardtreasury.entities.VerificationToken;
 import com.skilldistillery.howardtreasury.services.AuthService;
+import com.skilldistillery.howardtreasury.services.EmailService;
 import com.skilldistillery.howardtreasury.services.VerificationTokenService;
 
 @RestController
-@CrossOrigin({"*", "http://localhost"})
+@CrossOrigin({"*", "http://localhost", "http://34.193.101.27:8080"})
 public class AuthController {
 	
   @Autowired
@@ -30,6 +31,9 @@ public class AuthController {
   
   @Autowired
   private VerificationTokenService verificationTokenService;
+  
+  @Autowired
+  private EmailService emailService;
   
 	@PostMapping("register")
 	public User register(@RequestBody User user, HttpServletResponse res) {
@@ -79,5 +83,16 @@ public class AuthController {
 	    authService.enable(user);
 	    return ResponseEntity.ok("Account verified successfully!");
 	}
+	
+    @GetMapping("test-email")
+    public ResponseEntity<String> testEmail() {
+        try {
+            emailService.sendVerificationEmail("your-email@example.com", "Test Subject", "Test Body");
+            return ResponseEntity.ok("Email sent successfully!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Email sending failed!");
+        }
+    }
 
 }
