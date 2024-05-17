@@ -83,16 +83,5 @@ public class AuthController {
 	    authService.enable(user);
 	    return ResponseEntity.ok("Account verified successfully!");
 	}
-	
-    @GetMapping("test-email")
-    public ResponseEntity<String> testEmail() {
-        try {
-            emailService.sendVerificationEmail("your-email@example.com", "Test Subject", "Test Body");
-            return ResponseEntity.ok("Email sent successfully!");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Email sending failed!");
-        }
-    }
 
 }
