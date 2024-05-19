@@ -198,3 +198,19 @@ p {
   background: none !important;
 }
 
+.spinner-wrapper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-box {
+  width: 25px;
+  height: 25px;
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: var(--body_color);
+}

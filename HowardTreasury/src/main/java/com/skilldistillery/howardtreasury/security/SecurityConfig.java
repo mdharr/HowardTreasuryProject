@@ -61,8 +61,10 @@ public class SecurityConfig {
         .antMatchers("/api/**").authenticated() // Requests for our REST API must be authorized.
         .anyRequest().permitAll()               // All other requests are allowed without authentication.
         .and()
-        .httpBasic();                           // Use HTTP Basic Authentication
-
+        .httpBasic()                           // Use HTTP Basic Authentication
+        .and()
+        .cors();
+        
         http
         .sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

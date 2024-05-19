@@ -1,5 +1,6 @@
 import { UserlistService } from './../../services/userlist.service';
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, QueryList, ViewChildren, AfterViewInit } from '@angular/core';
+import { MatExpansionPanel } from '@angular/material/expansion';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/user';
@@ -12,13 +13,14 @@ import { DialogService } from 'src/app/services/dialog.service';
   templateUrl: './user-lists.component.html',
   styleUrls: ['./user-lists.component.css']
 })
-export class UserListsComponent implements OnInit, OnDestroy {
+export class UserListsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // property initialization
   loggedInUser: User = new User();
   userLists: UserList[] = [];
   newUserList: UserList = new UserList();
   userLists$: Observable<UserList[]> | undefined;
+  isLoading: boolean = true;
 
   // booleans
   isLoggedIn: boolean = false;
@@ -37,14 +39,23 @@ export class UserListsComponent implements OnInit, OnDestroy {
   userListService = inject(UserlistService);
   dialogService = inject(DialogService);
 
+  @ViewChildren('expansionPanel') expansionPanels!: QueryList<MatExpansionPanel>;
+
   ngOnInit(): void {
     this.subscribeToLoggedInObservable();
     this.userListService.loadUserLists();
     this.userLists$ = this.userListService.userLists$;
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 50);
   }
 
   ngOnDestroy(): void {
     this.destroySubscriptions();
+  }
+
+  ngAfterViewInit() {
+    this.expansionPanels.forEach(panel => panel.expanded = false);
   }
 
   destroySubscriptions = () => {

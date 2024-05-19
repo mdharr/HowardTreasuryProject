@@ -36,11 +36,24 @@ export class AuthService {
     return options;
   }
 
+  // private checkLoggedInStatus() {
+  //   const credentials = localStorage.getItem('credentials');
+  //   if (credentials) {
+  //     this.loggedIn.next(true);
+  //     this.getLoggedInUser();
+  //   }
+  // }
+
   private checkLoggedInStatus() {
     const credentials = localStorage.getItem('credentials');
     if (credentials) {
       this.loggedIn.next(true);
-      this.getLoggedInUser();
+      this.getLoggedInUser().subscribe((user) => {
+        if (user && user.username) {
+          this.loggedInUserSubject.next(user);
+          console.log('AuthService: User set in checkLoggedInStatus:', user); // Debugging
+        }
+      });
     }
   }
 
@@ -74,6 +87,7 @@ export class AuthService {
         this.loggedIn.next(true);
         this.loggedInUser = user;
         this.loggedInUserSubject.next(user);
+        console.log('AuthService: User logged in:', user);
       })
     );
   }
@@ -83,9 +97,26 @@ export class AuthService {
     this.loggedIn.next(false);
     this.loggedInUser = new User();
     this.loggedInUserSubject.next(this.loggedInUser);
-
+    console.log('AuthService: User logged out');
     return this.http.post<void>(`${this.url}logout`, {});
   }
+
+  // getLoggedInUser(): Observable<User> {
+  //   let httpOptions = {
+  //     headers: {
+  //       Authorization: 'Basic ' + this.getCredentials(),
+  //       'X-Requested-with': 'XMLHttpRequest',
+  //     },
+  //   };
+  //   return this.http.get<User>(this.url + 'authenticate', httpOptions).pipe(
+  //     catchError((err: any) => {
+  //       console.log(err);
+  //       return throwError(
+  //         () => new Error( 'AuthService.getUserById(): error retrieving user: ' + err )
+  //       );
+  //     })
+  //   );
+  // }
 
   getLoggedInUser(): Observable<User> {
     let httpOptions = {
@@ -95,10 +126,16 @@ export class AuthService {
       },
     };
     return this.http.get<User>(this.url + 'authenticate', httpOptions).pipe(
+      tap((user) => {
+        if (user && user.username) {
+          this.loggedInUserSubject.next(user);
+          console.log('AuthService: Fetched loggedInUser:', user); // Debugging
+        }
+      }),
       catchError((err: any) => {
         console.log(err);
         return throwError(
-          () => new Error( 'AuthService.getUserById(): error retrieving user: ' + err )
+          () => new Error('AuthService.getUserById(): error retrieving user: ' + err)
         );
       })
     );

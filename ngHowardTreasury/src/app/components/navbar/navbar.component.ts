@@ -71,6 +71,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.loggedInUserSubscription = this.authService.getLoggedInUser().pipe(
         tap(user => {
           this.loggedInUser = user;
+          console.log('NavbarComponent ngOnInit loggedInUser:', this.loggedInUser);
         })
       ).subscribe({
         error: (error) => {
@@ -83,6 +84,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     // Subscribe to userUpdated$ from the UserService to update the user in the NavbarComponent
     this.userService.userUpdated$.subscribe(user => {
       this.loggedInUser = user;
+      console.log('NavbarComponent userUpdated:', this.loggedInUser);
     });
   }
 
@@ -90,11 +92,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if(this.loggedInSubscription) {
       this.loggedInSubscription.unsubscribe();
     }
+    if(this.loggedInUserSubscription) {
+      this.loggedInUserSubscription.unsubscribe();
+    }
   }
 
   subscribeToLoggedInObservable() {
     this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
       this.loggedInUser = user;
+      console.log('NavbarComponent loggedInUser$:', this.loggedInUser); // Debugging
     });
   }
 
@@ -153,6 +159,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   if (window.innerWidth > 1087) {
     this.closeMenu();
   }
-}
+  }
 
 }
