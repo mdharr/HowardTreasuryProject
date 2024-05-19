@@ -36,6 +36,7 @@
       </button>
 
       <button mat-raised-button class="navbar-btn-group" mat-button *ngIf="loggedIn()" [routerLink]="['/profile']">
+        <!-- I BELIEVE THE USERNAME BUG IS HERE -->
         <span class="profile-text">
           {{ loggedInUser.username }}
         </span>
