@@ -15,14 +15,12 @@ import io.github.cdimascio.dotenv.Dotenv;
 public class HowardTreasuryApplication {
 
 	public static void main(String[] args) {
-        Dotenv dotenv;
-        if (Files.exists(Paths.get("/home/ec2-user/.env"))) {
-            dotenv = Dotenv.configure().directory("/home/ec2-user").load();
-        } else {
-            dotenv = Dotenv.configure().load();
+        if (Files.exists(Paths.get(".env"))) {
+            Dotenv dotenv = Dotenv.configure().load();
+            System.setProperty("MAIL_USERNAME", dotenv.get("MAIL_USERNAME"));
+            System.setProperty("MAIL_PASSWORD", dotenv.get("MAIL_PASSWORD"));
         }
-        System.setProperty("MAIL_USERNAME", dotenv.get("MAIL_USERNAME"));
-        System.setProperty("MAIL_PASSWORD", dotenv.get("MAIL_PASSWORD"));
+        
 		SpringApplication.run(HowardTreasuryApplication.class, args);
 	}
 	
