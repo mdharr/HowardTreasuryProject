@@ -37,12 +37,14 @@
   justify-content: center;
   align-items: center;
   height: auto;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
 }
 
 .category-image img {
   width: 150px;
   height: auto;
-  border: 3px solid var(--red_white);
+  /* border: 3px solid var(--red_white); */
 }
 
 .category-details {

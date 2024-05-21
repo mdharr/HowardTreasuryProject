@@ -17,15 +17,17 @@
   background-size: cover;
   background-position: center;
   overflow: hidden;
+  border: 5px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
 }
 
 .illustrator-details {
   position: absolute;
-  bottom: 0; /* Position at the bottom of the card */
-  width: 100%;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 7px;
+  bottom: 5px;
+  width: 95%;
 }
 
 .name {

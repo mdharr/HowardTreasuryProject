@@ -278,14 +278,17 @@
   width: 325px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   transition: transform 0.3s, box-shadow 0.6s, border 0.2s;
-  border: 3px solid transparent;
+  /* border: 3px solid transparent; */
+  border: 5px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
   background: #3f371f url(//www.blogblog.com/1kt/awesomeinc/body_background_dark.png) repeat scroll top left;
 }
 
 .char-card:hover {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   transform: translateY(-5px);
-  border: 3px solid var(--white_milk);
+  border: 5px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
   cursor: pointer;
 }
 

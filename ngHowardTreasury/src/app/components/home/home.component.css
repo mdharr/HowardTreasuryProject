@@ -159,6 +159,7 @@ img.alignleft, .wp-caption.alignleft {
   line-height: 1.4;
   font-family: var(--contentFontFamily);
   position: relative;
+  pointer-events: none;
 }
 
 .spinner-wrapper {

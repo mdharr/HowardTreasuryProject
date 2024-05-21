@@ -93,7 +93,9 @@
   display:flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid var(--red_milk);
+  /* border: 3px solid var(--red_milk); */
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
 }
 
 .post-image {
@@ -189,7 +191,9 @@
   color: var(--black_color);
   font-family: var(--contentFontFamily);
   font-weight: 500;
-  border: 3px solid var(--red_milk);
+  /* border: 3px solid var(--red_milk); */
+  border: 3px solid transparent;
+    border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
 }
 
 button {

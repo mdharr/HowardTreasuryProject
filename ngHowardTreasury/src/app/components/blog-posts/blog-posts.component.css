@@ -132,7 +132,9 @@ details .body {
   padding: 10px;
   background-color: var(--bkg_color);
   transition: transform 0.3s, filter 0.6s, border 0.2s;
-  border: 3px solid transparent;
+  /* border: 3px solid transparent; */
+  border: 5px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
   filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5));
   min-height:200px;
 }
@@ -140,7 +142,9 @@ details .body {
 .post-wrapper:hover {
   cursor: pointer;
   transform: translateY(-10px);
-  border: 3px solid var(--red_milk);
+  /* border: 3px solid var(--red_milk); */
+  border: 5px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
   filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5)) brightness(1.1);
 }
 

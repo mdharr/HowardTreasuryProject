@@ -12,7 +12,7 @@
   padding-left: 25px;
   padding-right: 25px;
   font-family: var(--inter);
-  border-radius: 28px 28px 0 0;
+  /* border-radius: 28px 28px 0 0; */
 }
 
 .title-text {

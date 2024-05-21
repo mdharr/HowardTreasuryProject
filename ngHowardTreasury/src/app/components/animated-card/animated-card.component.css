@@ -15,6 +15,7 @@ img {
   transform-style: preserve-3d;
   transition: rotate var(--timing) ease;
   /* border: 5px solid var(--red_milk); */
+  background-color: black;
   border: 6px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
 }
@@ -117,9 +118,8 @@ img {
   --mdc-circular-progress-active-indicator-color: var(--body_color);
 }
 
-
 .placeholder {
-  width: 350px;
+  width: 320px;
   aspect-ratio: 9 / 12;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
   background-size: 200% 100%;
@@ -127,6 +127,8 @@ img {
   align-items: center;
   justify-content: center;
   animation: sheen 1.5s infinite;
+  border: 6px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
 }
 
 @keyframes sheen {

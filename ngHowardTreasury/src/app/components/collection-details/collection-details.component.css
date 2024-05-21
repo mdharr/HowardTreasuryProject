@@ -17,8 +17,12 @@
 .img-wrapper {
   width:fit-content;
   height:fit-content;
+  min-width: 261.11px;
+  min-height: 383px;
   filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5));
   transition: filter 0.6s, transform 0.3s;
+  border: 6px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
 }
 
 .img-wrapper:hover {
@@ -388,8 +392,8 @@ ul li {
 }
 
 .placeholder {
-  width: 300px;
-  height: 453px;
+  width: 250px;
+  height: 371.89px;
   aspect-ratio: 9 / 12;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
   background-size: 200% 100%;

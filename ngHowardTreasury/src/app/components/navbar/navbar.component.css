@@ -58,6 +58,7 @@
   border: 1px solid #e0e0e0;
   flex: 1;
   border-radius: 28px;
+  border: 2px solid;
 }
 
 .auth-menu-row .navbar-btn-group span {
@@ -381,6 +382,7 @@
     min-width: 107px;
     border-radius: 28px;
     font-size: 1rem;
+    border: 2px solid;
   }
 
 }
