@@ -197,16 +197,6 @@ export class BlogPostsComponent implements OnInit, OnDestroy, AfterViewInit {
         this.showAll = true;
         break;
     }
-
-    // Log the current state for debugging
-    console.log({
-      'showAll': this.showAll,
-      'showByYear': this.showByYear,
-      'showByCreatedAsc': this.showByCreatedAsc,
-      'showByCreatedDesc': this.showByCreatedDesc,
-      'showByTitleAsc': this.showByTitleAsc,
-      'showByTitleDesc': this.showByTitleDesc
-    });
   }
 
   loggedIn(): boolean {

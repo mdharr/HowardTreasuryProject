@@ -106,7 +106,6 @@ export class ImageGalleryComponent {
     }, 0);
   }
 
-
   async selectImage(index: number, isInitialLoad: boolean = false) {
     const currentImageElement = this.document.querySelector('.lightbox-image') as HTMLElement;
     // Immediately set opacity to 1 for initial load
@@ -152,8 +151,6 @@ export class ImageGalleryComponent {
     }, 500);
   }
 
-
-
   private calculateNewImageSize(imageUrl: string): Promise<{ width: number, height: number }> {
     return new Promise((resolve, reject) => {
       const img = new Image();
@@ -191,12 +188,11 @@ export class ImageGalleryComponent {
         reject('Could not load image');
       };
 
-      img.src = imageUrl; // Set the source of the image
+      img.src = imageUrl;
     });
   }
 
   getThumbnailTransform(): string {
-    // if (!this.kenKellyImages.length) return '';
     if (!this.images.length) return '';
 
     const thumbnailWidth = 50; // Width of each thumbnail
@@ -215,10 +211,8 @@ export class ImageGalleryComponent {
     return `translateX(${transformValue}px)`;
   }
 
-
   private updateThumbnailPosition() {
     const thumbnailWidth = 50; // Adjust as needed
-    // const thumbnailsCount = this.kenKellyImages.length;
     const thumbnailsCount = this.images.length;
     const containerWidth = thumbnailsCount * thumbnailWidth;
     const transform = containerWidth / 2 - this.selectedThumbnailIndex * thumbnailWidth;
@@ -241,7 +235,6 @@ export class ImageGalleryComponent {
     }
 
     setTimeout(() => {
-      // this.currentIndex = (this.currentIndex + 1) % this.kenKellyImages.length;
       this.currentIndex = (this.currentIndex + 1) % this.images.length;
       this.selectImage(this.currentIndex);
     }, 0); // Match the duration of the fade-out transition
@@ -254,7 +247,6 @@ export class ImageGalleryComponent {
     }
 
     setTimeout(() => {
-      // this.currentIndex = (this.currentIndex - 1 + this.kenKellyImages.length) % this.kenKellyImages.length;
       this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
       this.selectImage(this.currentIndex);
     }, 0); // Match the duration of the fade-out transition

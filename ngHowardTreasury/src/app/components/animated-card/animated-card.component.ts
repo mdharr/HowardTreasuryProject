@@ -16,7 +16,6 @@ export class AnimatedCardComponent implements AfterViewInit {
   isLoaded: boolean = false;
 
   ngAfterViewInit() {
-    console.log('ngAfterViewInit in AnimatedCardComponent');
     this.checkImagesLoaded();
   }
 

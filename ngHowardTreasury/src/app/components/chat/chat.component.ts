@@ -37,12 +37,11 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.loggedInUserSubscription = this.authService.getLoggedInUser().subscribe({
       next: (user) => {
         this.loggedInUser = user;
-        console.log('LOGGED IN USER: ' + this.loggedInUser.id);
 
       },
       error: (error) => {
-        console.log('Error getting loggedInUser');
-        console.log(error);
+        console.error('Error getting loggedInUser');
+        console.error(error);
       },
     });
     this.chatRoomId = 1;
@@ -109,11 +108,10 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.authSubscription = this.authService.getLoggedInUser().subscribe({
       next: (user) => {
         this.loggedInUser = user;
-        console.log(this.loggedInUser);
       },
       error: (error) => {
-        console.log('Error getting loggedInUser');
-        console.log(error);
+        console.error('Error getting loggedInUser');
+        console.error(error);
       },
     });
   }
@@ -121,8 +119,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   subscribeToLoggedInObservable() {
     this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
       this.loggedInUser = user;
-      console.log('LOGGED IN USER: ' + this.loggedInUser);
-
     });
   }
 

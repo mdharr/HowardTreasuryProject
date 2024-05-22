@@ -97,17 +97,13 @@ export class AddToUserListDialogComponent implements OnInit, OnDestroy {
         .filter(userList => userList.selected)
         .map(userList => userList.id);
 
-      console.log('Selected User List Ids:', selectedUserListIds);
-
       if (selectedUserListIds.length > 0) {
         this.userListService
           .addObjectToUserLists(this.selectedItem.id, this.objectType, selectedUserListIds)
           .subscribe(updatedUserLists => {
-            console.log('Updated User Lists:', updatedUserLists);
 
             // Fetch all user lists after adding the item to selected user lists
             this.userListService.getAllUserLists().subscribe(allUserLists => {
-              console.log('All User Lists:', allUserLists);
 
               // Update the user lists with all user lists
               this.userListService.userListsSubject.next(allUserLists);
@@ -132,8 +128,6 @@ export class AddToUserListDialogComponent implements OnInit, OnDestroy {
 
       this.userListsSubscription = this.userLists$.subscribe({
         next: (userLists) => {
-          // Log the userLists data
-          console.log('Received user lists:', userLists);
           // Handle the updated user lists
           this.userLists = userLists;
 

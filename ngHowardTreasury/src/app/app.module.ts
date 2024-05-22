@@ -67,7 +67,6 @@ import { AnimatedCardComponent } from './components/animated-card/animated-card.
 import { TestCardsComponent } from './components/test-cards/test-cards.component';
 import { ImageTooltipComponent } from './components/image-tooltip/image-tooltip.component';
 import { ImageZoomDirective } from './directives/image-zoom.directive';
-import { ExcerptLoopComponent } from './components/excerpt-loop/excerpt-loop.component';
 import { PostRecommendationComponent } from './components/post-recommendation/post-recommendation.component';
 import { BlogPostEditComponent } from './components/blog-post-edit/blog-post-edit.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
@@ -129,7 +128,6 @@ import { StripNonAlphanumericPipe } from './pipes/strip-non-alphanumeric.pipe';
     TestCardsComponent,
     ImageTooltipComponent,
     ImageZoomDirective,
-    ExcerptLoopComponent,
     PostRecommendationComponent,
     BlogPostEditComponent,
     TruncatePipe,

@@ -113,7 +113,6 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    console.log('ngAfterViewInit in PostRecommendationComponent');
     this.checkImageLoaded();
   }
 

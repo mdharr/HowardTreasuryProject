@@ -37,8 +37,8 @@ export class CreateUserListDialogComponent implements OnInit, OnDestroy {
         this.loggedInUser = user;
       },
       error: (error) => {
-        console.log('Error getting loggedInUser');
-        console.log(error);
+        console.error('Error getting loggedInUser');
+        console.error(error);
       },
     });
   }
@@ -66,8 +66,7 @@ export class CreateUserListDialogComponent implements OnInit, OnDestroy {
 
     this.userListSubscription = this.userListService.createUserList(userList).subscribe({
       next: (data) => {
-        console.log('User list created:', data);
-        this.dialogRef.close(); // Close the dialog
+        this.dialogRef.close();
       },
       error: (fail) => {
         console.error('Error creating user list:', fail);

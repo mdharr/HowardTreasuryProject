@@ -27,6 +27,9 @@
         <span class="required">About Me</span>
         <input type="text" class="text" name="profileDescription" [(ngModel)]="tempUser.profileDescription" placeholder="Profile Description" tabindex="1" required />
       </label>
+      <div *ngIf="profileDescriptionError" class="error">
+        Description must be no more than 300 characters.
+      </div>
     </div>
     <button id="registerFormBtn" type="button" (click)="update()">Update</button>
   </form>

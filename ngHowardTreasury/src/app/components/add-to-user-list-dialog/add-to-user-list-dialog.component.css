@@ -36,9 +36,12 @@ button[mat-button] {
 button[mat-button] {
   background-color: var(--red_color);
   color: white;
+  font-size: 16px;
+  margin-right: 10px;
+  margin-bottom: 5px;
   font-family: var(--inter);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  font-size: 16px;
+  border-radius: 28px;
 }
 
 button[mat-button]:hover {
@@ -68,4 +71,8 @@ button[mat-button]:hover {
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   padding:5px;
   margin-bottom: 5px;
+}
+
+::ng-deep .mat-mdc-dialog-actions {
+  justify-content: space-between !important;
 }

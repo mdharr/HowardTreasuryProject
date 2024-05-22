@@ -78,9 +78,7 @@ export class CharactersComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log('ngAfterViewInit in CharactersComponent');
-    this.checkImagesLoaded(); // Call this after the view is initialized
-    console.log(this.isLoaded);
+    this.checkImagesLoaded();
   }
 
   checkImagesLoaded() {
@@ -100,9 +98,6 @@ export class CharactersComponent implements OnInit, OnDestroy, AfterViewInit {
 
         // Check if all images are loaded
         if (loadedImages === totalImages) {
-          // All images are loaded, and you can take action here, e.g., update the UI
-          // This is the point where you can display your cards
-          console.log('All images are loaded');
           this.isLoaded = true;
         }
       });

@@ -47,8 +47,8 @@ export class CommentComponent implements OnInit, OnDestroy {
 
       },
       error: (error) => {
-        console.log('Error getting loggedInUser');
-        console.log(error);
+        console.error('Error getting loggedInUser');
+        console.error(error);
       },
     });
   }
@@ -144,7 +144,6 @@ export class CommentComponent implements OnInit, OnDestroy {
   deleteComment() {
     this.blogCommentService.deleteComment(this.comment.id).subscribe({
       next: (data) => {
-        console.log('Comment deleted!');
         this.comment.hidden = true;
       },
       error: (fail) => {

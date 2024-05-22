@@ -76,7 +76,6 @@ export class BlogPostCreationComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   setDefaultEditorConfig() {
-    console.log("set default editor config");
     this.editorConfig = {
       base_url: '/tinymce',
       suffix: '.min',
@@ -101,20 +100,10 @@ export class BlogPostCreationComponent implements OnInit, AfterViewInit, OnDestr
     return !!(this.post.content && this.post.content.trim().length > 0);
   }
 
-  // onSubmit(form: NgForm) {
-  //   if (form.valid && this.isEditorContentValid()) {
-  //     this.blogPostService.createPost(this.post).subscribe((createdPost) => {
-  //       console.log('Post created:', createdPost);
-  //       form.resetForm();
-  //     });
-  //   }
-  // }
-
   onSubmit(form: NgForm) {
     if (form.valid && this.isEditorContentValid()) {
       this.blogPostService.createPost(this.post).subscribe({
         next: (createdPost) => {
-          console.log('Post created:', createdPost);
           this.post = createdPost;
           form.resetForm(); // Clear the form
           this.router.navigateByUrl(`posts/${this.post.id}/comments`);

@@ -126,7 +126,6 @@ export class BlogPostEditComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   setDefaultEditorConfig() {
-    console.log("set default editor config");
     this.editorConfig = {
       base_url: '/tinymce',
       suffix: '.min',

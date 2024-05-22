@@ -146,12 +146,15 @@
   }
 
   .home-image {
-    width: 150px;
-    height: 205.3275px;
+    /* width: 150px;
+    height: 205.3275px; */
+    width: 200px;
+    height: 250px;
   }
 
   .bio-section {
-    height: 217.3275px;
+    height: 262.3275px;
+    /* height: 217.3275px; */
   }
 
   .placeholder {
@@ -191,7 +194,8 @@
   }
 
   .bio-section {
-    height: 217.3275px;
+    height: 216.3275px;
+    /* height: 262.3275px; */
   }
 
   .placeholder {

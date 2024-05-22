@@ -26,7 +26,6 @@ import { BlogCommentsComponent } from './components/blog-comments/blog-comments.
 import { BlogPostCreationComponent } from './components/blog-post-creation/blog-post-creation.component';
 import { AnimatedCardComponent } from './components/animated-card/animated-card.component';
 import { TestCardsComponent } from './components/test-cards/test-cards.component';
-import { ExcerptLoopComponent } from './components/excerpt-loop/excerpt-loop.component';
 import { VerificationComponent } from './components/verification/verification.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { WeirdTalesComponent } from './components/weird-tales/weird-tales.component';
@@ -60,7 +59,6 @@ const routes: Routes = [
   { path: 'weird-tales/:weirdTalesId', component: WeirdTalesDetailsComponent, data: { animation: 'WeirdTalesDetailsPage' } },
   { path: 'conan', component: AnimatedCardComponent, data: { animation: 'ConanPage' } },
   { path: 'test', component: TestCardsComponent, data: { animation: 'TestCardsPage' } },
-  { path: 'excerpt', component: ExcerptLoopComponent, data: { animation: 'ExcerptPage' } },
   { path: 'posts/:postId/edit', component: BlogPostEditComponent, data: { animation: 'EditPostPage' } },
   { path: 'chat', component: ChatComponent, data: { animation: 'ChatPage' } },
   { path: 'gallery', component: ImageGalleryComponent, data: { animation: 'ImageGalleryPage' } },

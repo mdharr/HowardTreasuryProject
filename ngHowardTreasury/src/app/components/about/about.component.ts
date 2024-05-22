@@ -14,7 +14,6 @@ export class AboutComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log('ngAfterViewInit in AnimatedCardComponent');
     this.checkImageLoaded();
   }
 

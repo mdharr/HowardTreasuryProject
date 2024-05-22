@@ -76,11 +76,10 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.authSubscription = this.authService.getLoggedInUser().subscribe({
         next: (user) => {
           this.loggedInUser = user;
-          console.log(this.loggedInUser);
         },
         error: (error) => {
-          console.log('Error getting loggedInUser');
-          console.log(error);
+          console.error('Error getting loggedInUser');
+          console.error(error);
         },
       });
     }
@@ -96,10 +95,8 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
         next: (data) => {
           this.post = data;
           this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(data.content);
-          console.log('Post comments:', this.post.comments);
           this.comments = this.prepareCommentsForRendering(data.comments);
           this.commentCount = data.comments.length;
-          console.log('Prepared comments:', this.comments);
         },
         error: (fail) => {
           console.error('Error retrieving blog post');

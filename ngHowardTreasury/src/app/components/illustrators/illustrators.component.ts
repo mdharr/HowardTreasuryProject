@@ -70,7 +70,6 @@ export class IllustratorsComponent implements OnInit, OnDestroy {
     this.illustratorSubscription = this.illustratorService.indexAll().subscribe({
       next: (data) => {
         this.illustrators = data;
-        console.log('Illustrators: ', this.illustrators);
       },
       error: (fail) => {
         console.error('Error retrieving illustrators');
