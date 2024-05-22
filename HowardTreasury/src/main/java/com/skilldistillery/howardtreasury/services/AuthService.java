@@ -9,5 +9,5 @@ public interface AuthService {
 	public User updateUser(User updatedUser, String username);
 	public User enable(User userToEnable);
 	public boolean disable(int id);
-
+	public boolean disableUser(String username);
 }

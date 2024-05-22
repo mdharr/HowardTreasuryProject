@@ -44,8 +44,6 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private List<UserList> userLists;
-//	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-//	private List<UserList> userLists;
 	
 	@JsonIgnore
     @OneToMany(mappedBy = "user")

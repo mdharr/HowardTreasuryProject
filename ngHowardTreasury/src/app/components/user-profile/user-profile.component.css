@@ -80,9 +80,11 @@
   margin: 0;
   padding: 15px;
   font-family: var(--inter);
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   line-height: 1.2;
   padding-left: 30px;
+  text-align: left;
+  hyphens: auto;
 }
 
 .account-userlists {
@@ -204,6 +206,7 @@
   }
   .intro-wrapper p {
     padding-left: 15px;
+    text-align: center;
   }
 }
 
