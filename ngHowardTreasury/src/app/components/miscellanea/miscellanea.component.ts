@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Miscellanea } from 'src/app/models/miscellanea';
 import { User } from 'src/app/models/user';
+import { StripNonAlphanumericPipe } from 'src/app/pipes/strip-non-alphanumeric.pipe';
 import { AuthService } from 'src/app/services/auth.service';
 import { DialogService } from 'src/app/services/dialog.service';
 import { MiscellaneaService } from 'src/app/services/miscellanea.service';
@@ -106,7 +107,7 @@ export class MiscellaneaComponent implements OnInit, OnDestroy {
     }
 
     sortMiscellaneasByTitle(): void {
-      this.filteredMiscellaneas = this.filteredMiscellaneas.sort((a, b) => a.title.localeCompare(b.title));
+      this.filteredMiscellaneas = this.filteredMiscellaneas.sort((a, b) => new StripNonAlphanumericPipe().transform(a.title).localeCompare(new StripNonAlphanumericPipe().transform(b.title)));
       this.sortTitleActive = true;
     }
 

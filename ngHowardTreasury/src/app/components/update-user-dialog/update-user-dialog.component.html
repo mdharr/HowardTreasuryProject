@@ -11,21 +11,21 @@
     <div class="form-group">
       <label class="label-email" for="email">
         <span class="required">Email</span>
-        <input type="email" class="text" name="email" [(ngModel)]="loggedInUser.email" placeholder="Email" tabindex="1" required />
+        <input type="email" class="text" name="email" [(ngModel)]="tempUser.email" placeholder="Email" tabindex="1" required />
       </label>
     </div>
 
     <div class="form-group">
       <label class="label-image">
         <span class="required">Profile Image</span>
-        <input type="text" class="text" name="imageUrl" [(ngModel)]="loggedInUser.imageUrl" placeholder="Profile Image Url" tabindex="1" required />
+        <input type="text" class="text" name="imageUrl" [(ngModel)]="tempUser.imageUrl" placeholder="Profile Image Url" tabindex="1" required />
       </label>
     </div>
-    
+
     <div class="form-group">
       <label class="label-image">
-        <span class="required">Profile Image</span>
-        <input type="text" class="text" name="imageUrl" [(ngModel)]="loggedInUser.imageUrl" placeholder="Profile Image Url" tabindex="1" required />
+        <span class="required">About Me</span>
+        <input type="text" class="text" name="profileDescription" [(ngModel)]="tempUser.profileDescription" placeholder="Profile Description" tabindex="1" required />
       </label>
     </div>
     <button id="registerFormBtn" type="button" (click)="update()">Update</button>

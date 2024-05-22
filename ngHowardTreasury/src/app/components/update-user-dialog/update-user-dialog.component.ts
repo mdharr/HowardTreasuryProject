@@ -8,6 +8,7 @@ import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserlistService } from 'src/app/services/userlist.service';
 import { RegisterDialogComponent } from '../register-dialog/register-dialog.component';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-update-user-dialog',
@@ -15,8 +16,9 @@ import { RegisterDialogComponent } from '../register-dialog/register-dialog.comp
   styleUrls: ['./update-user-dialog.component.css']
 })
 export class UpdateUserDialogComponent implements OnInit, OnDestroy {
-  newUser: User = new User();
+  tempUser: User = new User();
   loggedInUser: User = new User();
+  profileDescriptionError: boolean = false;
 
   // subscription declarations
   private authSubscription: Subscription | undefined;
@@ -28,6 +30,7 @@ export class UpdateUserDialogComponent implements OnInit, OnDestroy {
   dialogRef = inject(MatDialogRef<RegisterDialogComponent>);
   snackBar = inject(MatSnackBar);
   userService = inject(UserService);
+  snackbarService = inject(SnackbarService);
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
@@ -35,6 +38,7 @@ export class UpdateUserDialogComponent implements OnInit, OnDestroy {
     this.loggedInUserSubscription = this.auth.getLoggedInUser().pipe(
       tap(user => {
         this.loggedInUser = user;
+        this.tempUser = { ...this.loggedInUser };
       })
     ).subscribe({
       error: (error) => {
@@ -47,6 +51,7 @@ export class UpdateUserDialogComponent implements OnInit, OnDestroy {
   subscribeToLoggedInObservable() {
     this.loggedInSubscription = this.auth.loggedInUser$.subscribe((user) => {
       this.loggedInUser = user;
+      this.tempUser = { ...this.loggedInUser };
     });
   }
 
@@ -63,23 +68,25 @@ export class UpdateUserDialogComponent implements OnInit, OnDestroy {
   }
 
   update() {
-    this.authSubscription = this.auth.updateUser(this.loggedInUser).subscribe({
+    // Validate profileDescription length
+    if (this.tempUser.profileDescription.length > 300) {
+      this.profileDescriptionError = true;
+      this.openSnackbar('Profile Description must be no more than 300 characters.', 'Dismiss');
+      return;
+    }
+
+    // Clear the error if validation passes
+    this.profileDescriptionError = false;
+
+    this.authSubscription = this.auth.updateUser(this.tempUser).subscribe({
       next: (data) => {
         this.dialogRef.close();
-        this.snackBar.open('Update successful', 'Dismiss', {
-          duration: 4000,
-          panelClass: ['mat-toolbar', 'mat-primary'],
-          verticalPosition: 'bottom'
-        });
-        this.userService.updateUser(this.loggedInUser);
+        this.openSnackbar('Update successful', 'Dismiss');
+        this.userService.updateUser(this.tempUser);
       },
       error: (err) => {
         console.error(err);
-        this.snackBar.open('Update unsuccessful', 'Dismiss', {
-          duration: 4000,
-          panelClass: ['mat-toolbar', 'mat-primary'],
-          verticalPosition: 'bottom'
-        });
+        this.openSnackbar('Update unsuccessful', 'Dismiss');
       }
     });
   }
@@ -94,5 +101,9 @@ export class UpdateUserDialogComponent implements OnInit, OnDestroy {
     if(this.loggedInUserSubscription) {
       this.loggedInUserSubscription.unsubscribe();
     }
+  }
+
+  openSnackbar(message: string, action: string) {
+    this.snackbarService.openSnackbar(message, action);
   }
 }

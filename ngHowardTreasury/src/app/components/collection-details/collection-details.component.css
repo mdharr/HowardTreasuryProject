@@ -186,18 +186,39 @@ body.disable-scrolling {
 .contents-items {
   transition:color 0.2s ease;
   color: var(--black_milk);
+  position: relative;
 }
 
 .contents-items:hover {
   cursor: pointer;
   color: var(--red_white);
-  list-style:disc;
-  transition: list-style 0.2s ease;
+  /* list-style:disc;
+  transition: list-style 0.2s ease; */
   text-decoration:underline;
 }
 
 .contents-items:hover .story-text {
   transition: text-decoration 0.2s ease;
+}
+
+/* experiment */
+
+.contents-items::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  width: 14px;
+  height: 12px;
+  background-image: url(https://www.4gamer.net/img/sp_dragonscrown/img_dc_chara_point_list.png);
+  background-size: contain;
+  transform: translateY(-50%);
+}
+
+ul {
+  list-style: none !important;
+  /* padding-left: 0 !important; */
+  /* margin: 0 !important; */
 }
 
 .story-text {

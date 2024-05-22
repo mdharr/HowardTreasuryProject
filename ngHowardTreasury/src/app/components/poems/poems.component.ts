@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Poem } from 'src/app/models/poem';
 import { User } from 'src/app/models/user';
+import { StripNonAlphanumericPipe } from 'src/app/pipes/strip-non-alphanumeric.pipe';
 import { AuthService } from 'src/app/services/auth.service';
 import { DialogService } from 'src/app/services/dialog.service';
 import { PoemService } from 'src/app/services/poem.service';
@@ -106,7 +107,7 @@ export class PoemsComponent implements OnInit, OnDestroy {
   }
 
   sortPoemsByTitle(): void {
-    this.filteredPoems = this.filteredPoems.sort((a, b) => a.title.localeCompare(b.title));
+    this.filteredPoems = this.filteredPoems.sort((a, b) => new StripNonAlphanumericPipe().transform(a.title).localeCompare(new StripNonAlphanumericPipe().transform(b.title)));
     this.sortTitleActive = true;
   }
 

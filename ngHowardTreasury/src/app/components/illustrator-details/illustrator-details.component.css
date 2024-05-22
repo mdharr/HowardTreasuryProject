@@ -8,8 +8,8 @@
   align-items: center;
   margin-bottom: 50px;
   padding: 20px;
-  border: 5px solid transparent;
-  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
   background-color: var(--white_black);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
@@ -146,6 +146,8 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+  border: 10px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .lightbox-content,
@@ -225,8 +227,10 @@
   cursor: pointer;
   width: 50px;
   height: 50px;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   transition: transform 0.3s ease;
+  border: 2.5px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .thumbnail[selected] {

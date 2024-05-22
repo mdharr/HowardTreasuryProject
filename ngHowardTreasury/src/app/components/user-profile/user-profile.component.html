@@ -23,7 +23,7 @@
           <div class="placeholder" *ngIf="!isLoaded"></div>
         </div>
         <div class="intro-wrapper">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error eum quam natus officiis sit omnis velit quos, placeat quidem adipisci exercitationem? Quos laboriosam culpa natus quibusdam minima! Laudantium, neque distinctio.</p>
+          <p>{{ loggedInUser.profileDescription ? loggedInUser.profileDescription : 'Introduce yourself.' }}</p>
         </div>
       </div>
     </div>

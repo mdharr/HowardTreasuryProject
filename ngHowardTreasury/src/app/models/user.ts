@@ -11,6 +11,7 @@ export class User {
   role: string;
   email: string;
   imageUrl: string;
+  profileDescription: string;
   userLists: UserList[];
   chatRooms?: ChatRoom[];
   chatMessages?: ChatMessage[];
@@ -24,6 +25,7 @@ export class User {
     role: string = '',
     email: string = '',
     imageUrl: string = '',
+    profileDescription: string = '',
     userLists: UserList[] = []
   ) {
     this.id = id;
@@ -34,6 +36,7 @@ export class User {
     this.role = role;
     this.email = email;
     this.imageUrl = imageUrl;
+    this.profileDescription = profileDescription;
     this.userLists = userLists;
   }
 }

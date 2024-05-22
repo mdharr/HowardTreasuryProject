@@ -9,6 +9,7 @@ import { SearchService } from 'src/app/services/search.service';
 import { SearchResultsService } from 'src/app/services/search-results.service';
 import { Router } from '@angular/router';
 import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
+import { StripNonAlphanumericPipe } from 'src/app/pipes/strip-non-alphanumeric.pipe';
 
 @Component({
   selector: 'app-stories',
@@ -102,7 +103,7 @@ export class StoriesComponent implements OnInit, OnDestroy {
   }
 
   sortStoriesByTitle(): void {
-    this.filteredStories = this.filteredStories.sort((a, b) => a.title.localeCompare(b.title));
+    this.filteredStories = this.filteredStories.sort((a, b) => new StripNonAlphanumericPipe().transform(a.title).localeCompare(new StripNonAlphanumericPipe().transform(b.title)));
     this.sortTitleActive = true;
     this.sortFirstPublishedActive = false;
   }
@@ -117,7 +118,6 @@ export class StoriesComponent implements OnInit, OnDestroy {
     this.filteredStories = this.filteredStories.filter(story => !story.isCopyrighted);
     this.filterCopyrightedActive = true;
   }
-
 
   filterStories(): void {
     this.noMatches = false;

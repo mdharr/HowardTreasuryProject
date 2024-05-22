@@ -39,6 +39,9 @@ public class User {
 	@Column(name = "image_url")
 	private String imageUrl;
 	
+	@Column(name = "profile_description")
+	private String profileDescription;
+	
 	@OneToMany(mappedBy = "user")
 	private List<UserList> userLists;
 //	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
@@ -78,7 +81,7 @@ public class User {
     }
 	
 	public User(int id, String username, String password, Boolean enabled, String role, String email,
-			String imageUrl, List<UserList> userLists, List<BlogPost> blogPosts, List<BlogComment> comments,
+			String imageUrl, String profileDescription, List<UserList> userLists, List<BlogPost> blogPosts, List<BlogComment> comments,
 			List<ChatMessage> chatMessages, List<ChatRoom> chatRooms, VerificationToken verificationToken) {
 		super();
 		this.id = id;
@@ -88,6 +91,7 @@ public class User {
 		this.role = role;
 		this.email = email;
 		this.imageUrl = imageUrl;
+		this.profileDescription = profileDescription;
 		this.userLists = userLists;
 		this.blogPosts = blogPosts;
 		this.comments = comments;
@@ -150,6 +154,14 @@ public class User {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public String getProfileDescription() {
+		return profileDescription;
+	}
+
+	public void setProfileDescription(String profileDescription) {
+		this.profileDescription = profileDescription;
 	}
 
 	public List<UserList> getUserLists() {
