@@ -28,7 +28,7 @@ export class WeirdTalesService {
   indexAll(): Observable<WeirdTales[]> {
     return this.http.get<WeirdTales[]>(this.url).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error('WeirdTalesService.indexAll(): error retrieving list of weird tales objects ' + err)
@@ -40,7 +40,7 @@ export class WeirdTalesService {
   find(id: number): Observable<WeirdTales> {
     return this.http.get<WeirdTales>(`${this.url}/${id}`).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error('WeirdTalesService.find(): error retrieving weird tales object: ' + err)

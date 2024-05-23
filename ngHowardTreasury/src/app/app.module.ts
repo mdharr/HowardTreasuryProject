@@ -46,14 +46,12 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { AboutComponent } from './components/about/about.component';
 import { UserListsComponent } from './components/user-lists/user-lists.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { StoriesTestComponent } from './components/stories-test/stories-test.component';
 import { AddToUserListDialogComponent } from './components/add-to-user-list-dialog/add-to-user-list-dialog.component';
 import { ScrollToTopButtonComponent } from './components/scroll-to-top-button/scroll-to-top-button.component';
 import { CreateUserListDialogComponent } from './components/create-user-list-dialog/create-user-list-dialog.component';
 import { ToggleRedModeButtonComponent } from './components/toggle-red-mode-button/toggle-red-mode-button.component';
 import { BlogPostsComponent } from './components/blog-posts/blog-posts.component';
 import { BlogCommentsComponent } from './components/blog-comments/blog-comments.component';
-import { StopLightTestComponent } from './components/stop-light-test/stop-light-test.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { SvgElementComponent } from './components/svg-element/svg-element.component';
 import { EditorModule, TINYMCE_SCRIPT_SRC} from '@tinymce/tinymce-angular';
@@ -64,7 +62,6 @@ import { IllustratorCardComponent } from './components/illustrator-card/illustra
 import { RecentPostsComponent } from './components/recent-posts/recent-posts.component';
 import { StripHtmlPipe } from './pipes/strip-html.pipe';
 import { AnimatedCardComponent } from './components/animated-card/animated-card.component';
-import { TestCardsComponent } from './components/test-cards/test-cards.component';
 import { ImageTooltipComponent } from './components/image-tooltip/image-tooltip.component';
 import { ImageZoomDirective } from './directives/image-zoom.directive';
 import { PostRecommendationComponent } from './components/post-recommendation/post-recommendation.component';
@@ -108,14 +105,12 @@ import { StripNonAlphanumericPipe } from './pipes/strip-non-alphanumeric.pipe';
     AboutComponent,
     UserListsComponent,
     UserProfileComponent,
-    StoriesTestComponent,
     AddToUserListDialogComponent,
     ScrollToTopButtonComponent,
     CreateUserListDialogComponent,
     ToggleRedModeButtonComponent,
     BlogPostsComponent,
     BlogCommentsComponent,
-    StopLightTestComponent,
     CommentComponent,
     SvgElementComponent,
     BlogPostCreationComponent,
@@ -125,7 +120,6 @@ import { StripNonAlphanumericPipe } from './pipes/strip-non-alphanumeric.pipe';
     RecentPostsComponent,
     StripHtmlPipe,
     AnimatedCardComponent,
-    TestCardsComponent,
     ImageTooltipComponent,
     ImageZoomDirective,
     PostRecommendationComponent,

@@ -31,7 +31,7 @@ export class UserlistService {
   getAllUserLists(): Observable<UserList[]> {
     return this.http.get<UserList[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error('UserListService.getAllUserLists(): error retrieving userlists ' + err)
@@ -65,7 +65,7 @@ export class UserlistService {
   createUserList(userList: UserList): Observable<UserList> {
     return this.http.post<UserList>(this.url, userList, this.getHttpOptions()).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error(

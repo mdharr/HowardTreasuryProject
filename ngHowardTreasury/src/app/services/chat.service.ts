@@ -28,7 +28,7 @@ export class ChatService {
   getChatHistory(id: number): Observable<ChatMessage[]> {
     return this.http.get<ChatMessage[]>(`${this.url}/${id}/history`, this.getHttpOptions()).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
           new Error('ChatService.getChatHistory(): error retrieving chat history: ' + err)

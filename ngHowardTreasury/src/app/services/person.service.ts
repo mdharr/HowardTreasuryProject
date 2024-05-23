@@ -28,7 +28,7 @@ export class PersonService {
   indexAll(): Observable<Person[]> {
     return this.http.get<Person[]>(this.url).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error('PersonService.indexAll(): error retrieving list of persons ' + err)
@@ -40,7 +40,7 @@ export class PersonService {
   find(id: number): Observable<Person> {
     return this.http.get<Person>(`${this.url}/${id}`).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error('PersonService.find(): error retrieving person: ' + err)

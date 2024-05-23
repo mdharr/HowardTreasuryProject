@@ -28,7 +28,7 @@ export class IllustratorService {
   indexAll(): Observable<Illustrator[]> {
     return this.http.get<Illustrator[]>(this.url).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
           new Error('IllustratorService.indexAll(): error retrieving list of illustrators' + err)
@@ -40,7 +40,7 @@ export class IllustratorService {
   find(id: number): Observable<Illustrator> {
     return this.http.get<Illustrator>(`${this.url}/${id}`).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
           new Error('IllustratorService.find(): error retrieving illustrator: ' + err)

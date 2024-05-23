@@ -28,7 +28,7 @@ export class StoryService {
   indexAll(): Observable<Story[]> {
     return this.http.get<Story[]>(this.url).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error('StoryService.indexAll(): error retrieving list of stories ' + err)
@@ -40,7 +40,7 @@ export class StoryService {
   find(id: number): Observable<Story> {
     return this.http.get<Story>(`${this.url}/${id}`).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error('StoryService.find(): error retrieving story: ' + err)

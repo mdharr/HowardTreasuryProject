@@ -28,7 +28,6 @@ export class VerificationComponent implements OnInit, OnDestroy {
 
     if (token) {
       this.verifying = true;
-      console.log(token);
 
       this.authService.verifyAccount(token).subscribe({
         next: (response) => {

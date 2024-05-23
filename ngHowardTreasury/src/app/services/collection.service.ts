@@ -28,7 +28,7 @@ export class CollectionService {
   indexAll(): Observable<Collection[]> {
     return this.http.get<Collection[]>(this.url).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error('CollectionService.indexAll(): error retrieving list of collections ' + err)
@@ -40,7 +40,7 @@ export class CollectionService {
   find(id: number): Observable<Collection> {
     return this.http.get<Collection>(`${this.url}/${id}`).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error('CollectionService.find(): error retrieving collection: ' + err)

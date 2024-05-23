@@ -504,6 +504,11 @@ ul li {
     /* min-width:200px; */
   }
 
+  .img-wrapper {
+    min-width: 211.11px;
+    min-height: 308px;
+  }
+
   .contents-box {
     /* Additional styles for contents-box */
   }

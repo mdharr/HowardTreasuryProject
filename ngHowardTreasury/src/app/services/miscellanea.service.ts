@@ -29,7 +29,7 @@ export class MiscellaneaService {
   indexAll(): Observable<Miscellanea[]> {
     return this.http.get<Miscellanea[]>(this.url).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error('MiscellaneaService.indexAll(): error retrieving list of miscellanea ' + err)
@@ -41,7 +41,7 @@ export class MiscellaneaService {
   find(id: number): Observable<Miscellanea> {
     return this.http.get<Miscellanea>(`${this.url}/${id}`).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error('MiscellaneaService.find(): error retrieving miscellanea: ' + err)
@@ -53,7 +53,7 @@ export class MiscellaneaService {
   findCollectionsByMiscellaneaId(id: number): Observable<Collection[]> {
     return this.http.get<Collection[]>(`${this.url}/${id}/collection`).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error('MiscellaneaService.findCollectionsByMiscellaneaId(): error retrieving collections: ' + err)

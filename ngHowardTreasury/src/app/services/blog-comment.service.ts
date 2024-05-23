@@ -29,7 +29,7 @@ export class BlogCommentService {
   indexAll(): Observable<BlogComment[]> {
     return this.http.get<BlogComment[]>(`${this.url}`).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
           new Error('BlogCommentService.indexAll(): error retrieving list of blog comments' + err)
@@ -41,7 +41,7 @@ export class BlogCommentService {
   find(id: number): Observable<BlogComment> {
     return this.http.get<BlogComment>(`${this.url}/${id}`).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
           new Error('BlogCommentService.find(): error retrieving blog comment: ' + err)
@@ -53,7 +53,7 @@ export class BlogCommentService {
   createComment(id: number, blogComment: BlogComment): Observable<BlogComment> {
     return this.http.post<BlogComment>(`${this.otherUrl}/${id}/comments`, blogComment, this.getHttpOptions()).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
           new Error('BlogCommentService.createComment(): error creating blog comment: ' + err)
@@ -65,7 +65,7 @@ export class BlogCommentService {
   updateComment(id: number, blogComment: BlogComment): Observable<BlogComment> {
     return this.http.put<BlogComment>(`${this.url}/${id}`, blogComment, this.getHttpOptions()).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
           new Error('BlogCommentService.updateComment(): error updating blog comment: ' + err)
@@ -77,7 +77,7 @@ export class BlogCommentService {
   deleteComment(id: number): Observable<boolean> {
     return this.http.delete<boolean>(`${this.url}/${id}`, this.getHttpOptions()).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
           new Error('BlogCommentService.deleteComment(): error deleting blog comment: ' + err)
@@ -89,7 +89,7 @@ export class BlogCommentService {
   replyToComment(id: number, blogComment: BlogComment): Observable<BlogComment> {
     return this.http.post<BlogComment>(`${this.url}/${id}/replies`, blogComment, this.getHttpOptions()).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
           new Error('BlogCommentService.replyToComment(): error replying to blog comment: ' + err)

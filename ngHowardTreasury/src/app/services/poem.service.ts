@@ -29,7 +29,7 @@ export class PoemService {
   indexAll(): Observable<Poem[]> {
     return this.http.get<Poem[]>(this.url).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error('PoemService.indexAll(): error retrieving list of poems ' + err)
@@ -41,7 +41,7 @@ export class PoemService {
   find(id: number): Observable<Poem> {
     return this.http.get<Poem>(`${this.url}/${id}`).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error('PoemService.find(): error retrieving poem: ' + err)
@@ -53,7 +53,7 @@ export class PoemService {
   findCollectionsByPoemId(id: number): Observable<Collection[]> {
     return this.http.get<Collection[]>(`${this.url}/${id}/collection`).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
             new Error('PoemService.findCollectionsByPoemId(): error retrieving collections: ' + err)

@@ -2,8 +2,6 @@ import { ImageGalleryComponent } from './components/image-gallery/image-gallery.
 import { BlogPostEditComponent } from './components/blog-post-edit/blog-post-edit.component';
 import { IllustratorDetailsComponent } from './components/illustrator-details/illustrator-details.component';
 import { IllustratorsComponent } from './components/illustrators/illustrators.component';
-import { StopLightTestComponent } from './components/stop-light-test/stop-light-test.component';
-import { StoriesTestComponent } from './components/stories-test/stories-test.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
@@ -25,7 +23,6 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { BlogCommentsComponent } from './components/blog-comments/blog-comments.component';
 import { BlogPostCreationComponent } from './components/blog-post-creation/blog-post-creation.component';
 import { AnimatedCardComponent } from './components/animated-card/animated-card.component';
-import { TestCardsComponent } from './components/test-cards/test-cards.component';
 import { VerificationComponent } from './components/verification/verification.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { WeirdTalesComponent } from './components/weird-tales/weird-tales.component';
@@ -58,12 +55,9 @@ const routes: Routes = [
   { path: 'weird-tales', component: WeirdTalesComponent, data: { animation: 'WeirdTalesPage' } },
   { path: 'weird-tales/:weirdTalesId', component: WeirdTalesDetailsComponent, data: { animation: 'WeirdTalesDetailsPage' } },
   { path: 'conan', component: AnimatedCardComponent, data: { animation: 'ConanPage' } },
-  { path: 'test', component: TestCardsComponent, data: { animation: 'TestCardsPage' } },
   { path: 'posts/:postId/edit', component: BlogPostEditComponent, data: { animation: 'EditPostPage' } },
   { path: 'chat', component: ChatComponent, data: { animation: 'ChatPage' } },
   { path: 'gallery', component: ImageGalleryComponent, data: { animation: 'ImageGalleryPage' } },
-  // { path: 'stories-test', component: StoriesTestComponent },
-  // { path: 'stop-light-test', component: StopLightTestComponent },
 ];
 
 @NgModule({

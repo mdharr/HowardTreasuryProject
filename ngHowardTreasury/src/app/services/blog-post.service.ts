@@ -27,7 +27,7 @@ export class BlogPostService {
   indexAll(): Observable<BlogPost[]> {
     return this.http.get<BlogPost[]>(`${this.url}`).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
           new Error('BlogPostService.indexAll(): error retrieving list of blog posts' + err)
@@ -39,7 +39,7 @@ export class BlogPostService {
   find(id: number): Observable<BlogPost> {
     return this.http.get<BlogPost>(`${this.url}/${id}`).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
           new Error('BlogPostService.find(): error retrieving blog post: ' + err)
@@ -51,7 +51,7 @@ export class BlogPostService {
   createPost(post: BlogPost): Observable<BlogPost> {
     return this.http.post<BlogPost>(this.url, post, this.getHttpOptions()).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
           new Error(
@@ -65,7 +65,7 @@ export class BlogPostService {
   updatePost(id: number, post: BlogPost): Observable<BlogPost> {
     return this.http.put<BlogPost>(`${this.url}/${id}`, post, this.getHttpOptions()).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () =>
           new Error('BlogPostService.updatePost(): error updating blog post: ' + err)

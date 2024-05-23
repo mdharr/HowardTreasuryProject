@@ -53,6 +53,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   private loggedInUserSubscription: Subscription | undefined;
   private loggedInSubscription: Subscription | undefined;
+  private userUpdateSubscription: Subscription | undefined;
 
   route = inject(ActivatedRoute);
   router = inject(Router);
@@ -68,23 +69,22 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (this.loggedIn()) {
       this.subscribeToLoggedInObservable();
 
-      this.loggedInUserSubscription = this.authService.getLoggedInUser().pipe(
-        tap(user => {
-          this.loggedInUser = user;
-          console.log('NavbarComponent ngOnInit loggedInUser:', this.loggedInUser);
-        })
-      ).subscribe({
-        error: (error) => {
-          console.log('Error getting loggedInUser Profile Component');
-          console.log(error);
-        },
-      });
+      // this.loggedInUserSubscription = this.authService.getLoggedInUser().pipe(
+      //   tap(user => {
+      //     this.loggedInUser = user;
+      //     console.log('NavbarComponent ngOnInit loggedInUser:', this.loggedInUser);
+      //   })
+      // ).subscribe({
+      //   error: (error) => {
+      //     console.log('Error getting loggedInUser Profile Component');
+      //     console.log(error);
+      //   },
+      // });
     }
 
     // Subscribe to userUpdated$ from the UserService to update the user in the NavbarComponent
-    this.userService.userUpdated$.subscribe(user => {
+    this.userUpdateSubscription = this.userService.userUpdated$.subscribe(user => {
       this.loggedInUser = user;
-      console.log('NavbarComponent userUpdated:', this.loggedInUser);
     });
   }
 
@@ -95,12 +95,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if(this.loggedInUserSubscription) {
       this.loggedInUserSubscription.unsubscribe();
     }
+    if(this.userUpdateSubscription) {
+      this.userUpdateSubscription.unsubscribe();
+    }
   }
 
   subscribeToLoggedInObservable() {
     this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
       this.loggedInUser = user;
-      console.log('NavbarComponent loggedInUser$:', this.loggedInUser); // Debugging
     });
   }
 
@@ -124,7 +126,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   performSearch() {
     if (this.searchQuery) {
       this.searchService.search(this.searchQuery).subscribe((results) => {
-        console.log('Search results from service:', results);
         // Update the search results in the shared service
         this.searchResultsService.updateSearchResults(results);
         this.router.navigate(['/search-results']);
@@ -138,7 +139,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   performSearchNoMenu() {
     if (this.searchQuery) {
       this.searchService.search(this.searchQuery).subscribe((results) => {
-        console.log('Search results from service:', results);
         // Update the search results in the shared service
         this.searchResultsService.updateSearchResults(results);
         this.router.navigate(['/search-results']);

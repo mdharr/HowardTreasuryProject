@@ -111,7 +111,7 @@ export class UserListsComponent implements OnInit, OnDestroy, AfterViewInit {
   deleteUserList = (userList: UserList):void => {
     this.createListSubscription = this.userListService.deleteUserList(userList.id).subscribe({
       next: (success) => {
-        console.log('User list successfully deleted');
+
       },
       error: (fail) => {
         console.error(fail);

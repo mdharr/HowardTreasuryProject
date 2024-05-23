@@ -51,7 +51,6 @@ export class AuthService {
       this.getLoggedInUser().subscribe((user) => {
         if (user && user.username) {
           this.loggedInUserSubject.next(user);
-          console.log('AuthService: User set in checkLoggedInStatus:', user); // Debugging
         }
       });
     }
@@ -64,7 +63,7 @@ export class AuthService {
   updateUser(user: User): Observable<User> {
     return this.http.put<User>(`${this.url}users/update`, user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
           () => new Error( 'AuthService.update(): error updating user: ' + err )
         );
@@ -87,7 +86,6 @@ export class AuthService {
         this.loggedIn.next(true);
         this.loggedInUser = user;
         this.loggedInUserSubject.next(user);
-        console.log('AuthService: User logged in:', user);
       })
     );
   }
@@ -97,7 +95,6 @@ export class AuthService {
     this.loggedIn.next(false);
     this.loggedInUser = new User();
     this.loggedInUserSubject.next(this.loggedInUser);
-    console.log('AuthService: User logged out');
     return this.http.post<void>(`${this.url}logout`, {});
   }
 
@@ -129,13 +126,12 @@ export class AuthService {
       tap((user) => {
         if (user && user.username) {
           this.loggedInUserSubject.next(user);
-          console.log('AuthService: Fetched loggedInUser:', user); // Debugging
         }
       }),
       catchError((err: any) => {
-        console.log(err);
+        console.error(err);
         return throwError(
-          () => new Error('AuthService.getUserById(): error retrieving user: ' + err)
+          () => new Error('AuthService.getLoggedInUser(): error retrieving user: ' + err)
         );
       })
     );
