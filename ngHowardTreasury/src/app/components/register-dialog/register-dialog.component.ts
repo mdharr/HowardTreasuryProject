@@ -28,11 +28,8 @@ export class RegisterDialogComponent implements OnDestroy {
   snackbarService = inject(SnackbarService);
 
   register(newUser: User): void {
-    console.log('Registering user:');
-    console.log(newUser);
     if (newUser.password !== newUser.confirmPassword) {
       // Password and confirmPassword do not match
-      console.log("Passwords do not match");
       this.openSnackbar('Passwords do not match', 'Dismiss');
       return;
     }
