@@ -91,6 +91,7 @@
 
 .post-image-wrapper {
   max-height: 300px;
+  height: 300px;
   overflow: hidden;
   display:flex;
   align-items: center;
