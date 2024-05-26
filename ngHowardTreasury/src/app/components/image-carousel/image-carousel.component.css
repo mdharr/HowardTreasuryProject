@@ -25,6 +25,8 @@
   overflow: hidden;
   perspective: 1000px;
   background: #3f371f url(//www.blogblog.com/1kt/awesomeinc/body_background_dark.png) repeat scroll top left;
+  border: 6px solid transparent;
+    border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .carousel-container::before,
