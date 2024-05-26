@@ -80,6 +80,7 @@ import { ImageCarouselComponent } from './components/image-carousel/image-carous
 import { WeirdTalesDetailsComponent } from './components/weird-tales-details/weird-tales-details.component';
 import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
 import { StripNonAlphanumericPipe } from './pipes/strip-non-alphanumeric.pipe';
+import { StoryRecommendationComponent } from './components/story-recommendation/story-recommendation.component';
 
 
 @NgModule({
@@ -137,6 +138,7 @@ import { StripNonAlphanumericPipe } from './pipes/strip-non-alphanumeric.pipe';
     WeirdTalesDetailsComponent,
     ImageGalleryComponent,
     StripNonAlphanumericPipe,
+    StoryRecommendationComponent,
   ],
   imports: [
     BrowserModule,
