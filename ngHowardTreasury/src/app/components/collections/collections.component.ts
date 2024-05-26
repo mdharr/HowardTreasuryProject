@@ -1,5 +1,5 @@
 import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, OnDestroy, OnInit, QueryList, Renderer2, ViewChildren } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Collection } from 'src/app/models/collection';
 import { AuthService } from 'src/app/services/auth.service';
@@ -24,14 +24,20 @@ import { CollectionService, Page } from 'src/app/services/collection.service';
 })
 export class CollectionsComponent implements OnInit, OnDestroy {
 
+  @ViewChildren('collection') collectionElements!: QueryList<ElementRef>;
+
   collections: Collection[] = [];
   loading: boolean = true;
   showAll: boolean = false;
 
   private collectionSubscription: Subscription | undefined;
 
+  // observer
+  private observer!: IntersectionObserver;
+
   auth = inject(AuthService);
   collectionService = inject(CollectionService);
+  renderer = inject(Renderer2);
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
@@ -42,6 +48,28 @@ export class CollectionsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.destroySubscriptions();
+
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
+  ngAfterViewInit() {
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            this.renderer.addClass(entry.target, 'visible');
+          }, 1000);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    this.collectionElements.changes.subscribe((comps: QueryList<ElementRef>) => {
+      comps.forEach(el => {
+        this.observer.observe(el.nativeElement);
+      });
+    });
   }
 
   delay(ms: number): Promise<void> {

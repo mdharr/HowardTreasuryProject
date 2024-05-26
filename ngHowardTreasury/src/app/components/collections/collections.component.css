@@ -1,7 +1,35 @@
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  75% {
+    transform: translateX(20px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.collection {
+  opacity: 0;
+  /* transform: translateX(-100px); */
+  transition: opacity 0.5s ease-out;
+  height: 320px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.collection.visible {
+  animation: slideIn 0.6s ease-out forwards;
+}
+
 .collection-card:hover {
   box-shadow: rgba(8, 8, 32, 0.8) 0px 0px 6px 2px;
-    transition: box-shadow 0.1s ease 0s;
-    cursor:pointer;
+  transition: box-shadow 0.1s ease 0s;
+  cursor:pointer;
 }
 
 .thumbnail-img {

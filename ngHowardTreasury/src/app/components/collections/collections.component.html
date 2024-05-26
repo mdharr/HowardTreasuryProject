@@ -16,7 +16,7 @@
 </div>
 
 <div class="collection-container" *ngIf="showAll && !loading" @customEasingAnimation>
-  <ng-container *ngFor="let collection of collections; let i = index">
+  <div class="collection" *ngFor="let collection of collections; let i = index" #collection>
     <div class="book" [routerLink]="['/collections', collection.id]">
       <a>
         <ul>
@@ -32,7 +32,7 @@
         </a>
       </div>
     </div>
-  </ng-container>
+  </div>
 </div>
 
 <div id="sentinel"></div>

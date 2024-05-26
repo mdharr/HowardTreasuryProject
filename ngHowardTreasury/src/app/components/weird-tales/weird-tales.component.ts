@@ -21,6 +21,9 @@ export class WeirdTalesComponent implements OnInit, OnDestroy, AfterViewInit {
   // subscriptions declarations
   private weirdTalesSubscription: Subscription | undefined;
 
+  // observer
+  private observer!: IntersectionObserver;
+
   // injections
   router = inject(Router);
   renderer = inject(Renderer2);
@@ -34,10 +37,13 @@ export class WeirdTalesComponent implements OnInit, OnDestroy, AfterViewInit {
     if(this.weirdTalesSubscription) {
       this.weirdTalesSubscription.unsubscribe();
     }
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   }
 
   ngAfterViewInit() {
-    const observer = new IntersectionObserver((entries) => {
+    this.observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setTimeout(() => {
@@ -49,7 +55,7 @@ export class WeirdTalesComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.magazineElements.changes.subscribe((comps: QueryList<ElementRef>) => {
       comps.forEach(el => {
-        observer.observe(el.nativeElement);
+        this.observer.observe(el.nativeElement);
       });
     });
   }
