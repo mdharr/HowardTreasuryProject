@@ -1,4 +1,4 @@
-import { CollectionService } from './../../services/collection.service';
+import { CollectionService, Page } from './../../services/collection.service';
 import { AfterViewInit, Component, Inject, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -104,7 +104,11 @@ export class PoemDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.collectionsSubscription = this.collectionService.indexAll().subscribe({
         next: (data) => {
-          this.collections = data;
+          if (isPage<Collection>(data)) {
+            this.collections = data.content;
+          } else {
+            this.collections = data;
+          }
         },
         error: (fail) => {
           console.error('Error getting collections');
@@ -139,4 +143,8 @@ export class PoemDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
 
       return illuminatedInitial + restOfString;
     }
+}
+
+function isPage<T>(data: any): data is Page<T> {
+  return (data as Page<T>).content !== undefined;
 }

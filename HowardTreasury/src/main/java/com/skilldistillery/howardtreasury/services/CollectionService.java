@@ -2,6 +2,9 @@ package com.skilldistillery.howardtreasury.services;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
 import com.skilldistillery.howardtreasury.dtos.CollectionWithStoriesDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
@@ -10,6 +13,8 @@ import com.skilldistillery.howardtreasury.entities.CollectionHasStory;
 public interface CollectionService {
 
 	public List<Collection> findAll();
+	
+	public Page<Collection> findAll(Pageable pageable);
 	
 	public Collection find(int collectionId);
 	

@@ -7,7 +7,7 @@ import { Story } from 'src/app/models/story';
 import { AuthService } from 'src/app/services/auth.service';
 import { StoryService } from 'src/app/services/story.service';
 import { StoryImage } from 'src/app/models/story-image';
-import { CollectionService } from 'src/app/services/collection.service';
+import { CollectionService, Page } from 'src/app/services/collection.service';
 import { DOCUMENT } from '@angular/common';
 import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
 
@@ -69,7 +69,6 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
     ngOnInit(): void {
       window.scrollTo(0, 0);
       this.showAll = false;
-      console.log('ngOnInit called'); // Log when ngOnInit is called
       setTimeout(() => {
         this.getRouteParams();
 
@@ -87,7 +86,6 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.selectImage(this.currentIndex);
     }
-
 
     getRouteParams = () => {
 
@@ -128,7 +126,11 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.collectionsSubscription = this.collectionService.indexAll().subscribe({
         next: (data) => {
-          this.collections = data;
+          if (isPage<Collection>(data)) {
+            this.collections = data.content;
+          } else {
+            this.collections = data;
+          }
         },
         error: (fail) => {
           console.error('Error getting collections');
@@ -437,4 +439,8 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
         this.showAll = true;
       }, 100);
     }
+}
+
+function isPage<T>(data: any): data is Page<T> {
+  return (data as Page<T>).content !== undefined;
 }

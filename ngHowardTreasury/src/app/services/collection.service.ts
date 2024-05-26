@@ -25,14 +25,27 @@ export class CollectionService {
     return options;
   }
 
-  indexAll(): Observable<Collection[]> {
-    return this.http.get<Collection[]>(this.url).pipe(
+  // indexAll(): Observable<Collection[]> {
+  //   return this.http.get<Collection[]>(this.url).pipe(
+  //     catchError((err: any) => {
+  //       console.error(err);
+  //       return throwError(
+  //         () =>
+  //           new Error('CollectionService.indexAll(): error retrieving list of collections ' + err)
+  //       );
+  //     })
+  //   );
+  // }
+
+  indexAll(page?: number, size?: number, paged?: boolean): Observable<Page<Collection> | Collection[]> {
+    const url = paged ?
+      `${this.url}?paged=${paged}&page=${page}&size=${size}` :
+      `${this.url}`;
+
+    return this.http.get<Page<Collection> | Collection[]>(url).pipe(
       catchError((err: any) => {
         console.error(err);
-        return throwError(
-          () =>
-            new Error('CollectionService.indexAll(): error retrieving list of collections ' + err)
-        );
+        return throwError(() => new Error(`CollectionService.indexAll(): error retrieving collections: ${err}`));
       })
     );
   }
@@ -62,3 +75,33 @@ export class CollectionService {
   }
 
 }
+
+export interface Page<T> {
+  content: T[];
+  pageable: {
+    sort: {
+      sorted: boolean;
+      unsorted: boolean;
+      empty: boolean;
+    };
+    pageNumber: number;
+    pageSize: number;
+    offset: number;
+    paged: boolean;
+    unpaged: boolean;
+  };
+  last: boolean;
+  totalPages: number;
+  totalElements: number;
+  first: boolean;
+  numberOfElements: number;
+  sort: {
+    sorted: boolean;
+    unsorted: boolean;
+    empty: boolean;
+  };
+  size: number;
+  number: number;
+  empty: boolean;
+}
+

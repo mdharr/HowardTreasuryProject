@@ -3,7 +3,7 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Collection } from 'src/app/models/collection';
 import { AuthService } from 'src/app/services/auth.service';
-import { CollectionService } from 'src/app/services/collection.service';
+import { CollectionService, Page } from 'src/app/services/collection.service';
 
 @Component({
   selector: 'app-collections',
@@ -56,7 +56,12 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     this.delay(250).then(() => {
       this.collectionSubscription = this.collectionService.indexAll().subscribe({
         next: (data) => {
-          this.collections = data;
+          // this.collections = data;
+          if (isPage<Collection>(data)) {
+            this.collections = data.content;
+          } else {
+            this.collections = data;
+          }
           this.loading = false;
         },
         error: (fail) => {
@@ -81,4 +86,8 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     }, 100);
   }
 
+}
+
+function isPage<T>(data: any): data is Page<T> {
+  return (data as Page<T>).content !== undefined;
 }
