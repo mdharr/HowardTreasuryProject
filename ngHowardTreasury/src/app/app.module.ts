@@ -81,6 +81,7 @@ import { WeirdTalesDetailsComponent } from './components/weird-tales-details/wei
 import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
 import { StripNonAlphanumericPipe } from './pipes/strip-non-alphanumeric.pipe';
 import { StoryRecommendationComponent } from './components/story-recommendation/story-recommendation.component';
+import { MarqueeComponent } from './components/marquee/marquee.component';
 
 
 @NgModule({
@@ -139,6 +140,7 @@ import { StoryRecommendationComponent } from './components/story-recommendation/
     ImageGalleryComponent,
     StripNonAlphanumericPipe,
     StoryRecommendationComponent,
+    MarqueeComponent,
   ],
   imports: [
     BrowserModule,
