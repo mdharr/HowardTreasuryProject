@@ -1,0 +1,3 @@
+<div class="overlay" [ngClass]="{ 'active': isVisible }" (click)="close()">
+  <img class="full-screen-image" *ngIf="isVisible" [src]="imageUrl" alt="Full Screen Image">
+</div>

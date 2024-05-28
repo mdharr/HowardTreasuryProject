@@ -7,6 +7,7 @@ import { CollectionImage } from 'src/app/models/collection-image';
 import { CollectionWithStoriesDTO } from 'src/app/models/collection-with-stories-dto';
 import { DOCUMENT } from '@angular/common';
 import { trigger, transition, query, style, stagger, animate } from '@angular/animations';
+import { FullscreenImageService } from 'src/app/services/fullscreen-image.service';
 
 @Component({
   selector: 'app-collection-details',
@@ -57,6 +58,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   collectionService = inject(CollectionService);
   activatedRoute = inject(ActivatedRoute);
   renderer = inject(Renderer2);
+  fullscreenImageService = inject(FullscreenImageService);
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
   // subscription declaration
@@ -177,5 +179,9 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
 
   onImageLoad() {
     this.fullImageLoaded = true;
+  }
+
+  openFullScreenImage(imageUrl: string) {
+    this.fullscreenImageService.open(imageUrl);
   }
 }

@@ -1,0 +1,38 @@
+/* Styles for the overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Use viewport width */
+  height: 100vh; /* Use viewport height */
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent gray background */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999; /* Ensure the overlay is on top of other content */
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Styles for the full-screen image */
+.full-screen-image {
+  border: 5px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  max-width: 90vw; /* Ensure the image doesn't exceed viewport width */
+  max-height: 90vh; /* Ensure the image doesn't exceed viewport height */
+}
+
+.full-screen-image:hover {
+  cursor: zoom-out;
+}
+
+/* Styles to disable body scrolling when overlay is active */
+body.disable-scrolling {
+  overflow: hidden;
+}

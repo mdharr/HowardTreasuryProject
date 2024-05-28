@@ -287,12 +287,13 @@ cursor: pointer;
 
 .lightbox-content {
   /* Style for the container holding the main image and controls */
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  border: 10px solid transparent;
-    border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  border: 5px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .lightbox-content,

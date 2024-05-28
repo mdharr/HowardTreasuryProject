@@ -87,8 +87,15 @@
           *ngIf="collectionImages && collectionImages.length > 0 && loaded"
           src="{{ collectionImages[0].thumbnailUrl }}"
           alt="{{ collection.title | slice:0:15 }}"
-          (click)="toggleFullScreenImage()"
+          (click)="openFullScreenImage(collectionImages[0].imageUrl)"
         >
+        <!-- <img
+          class="collection-image"
+          *ngIf="collectionImages && collectionImages.length > 0 && loaded"
+          src="{{ collectionImages[0].thumbnailUrl }}"
+          alt="{{ collection.title | slice:0:15 }}"
+          (click)="toggleFullScreenImage()"
+        > -->
         <div class="placeholder" *ngIf="!loaded"></div>
       </div>
       <div class="collection-details-box">
@@ -103,7 +110,7 @@
         </div>
       </div>
     </div>
-    <div
+    <!-- <div
       class="overlay"
       [ngClass]="{ 'active': isFullScreenImageVisible }"
       (click)="toggleFullScreenImage()"
@@ -116,7 +123,7 @@
         (load)="onImageLoad()"
       >
       <mat-progress-spinner *ngIf="!fullImageLoaded"></mat-progress-spinner>
-    </div>
+    </div> -->
 
   </div>
   <div class="description-container">
