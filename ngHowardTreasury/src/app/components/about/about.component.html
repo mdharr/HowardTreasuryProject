@@ -7,32 +7,32 @@
   <ol class="breadcrumbnav">
     <li><a [routerLink]="['/home']">Home</a></li>
   </ol>
-  <div class="biography-container">
+  <div class="content">
     <section class="bio-section">
-      <img *ngIf="isLoaded" class="home-image" src="https://goodman-games.com/wp-content/uploads/2021/01/REH-colofon.jpg" alt="">
+      <!-- <img *ngIf="isLoaded" class="home-image" src="https://goodman-games.com/wp-content/uploads/2021/01/REH-colofon.jpg" alt=""> -->
+      <img *ngIf="isLoaded" class="home-image" src="https://conan.com/wp-content/uploads/2023/06/reh-small-1024x602.jpg" alt="">
       <div *ngIf="!isLoaded" class="placeholder"></div>
     </section>
-    <section class="biography">
-      <!-- <h1>Robert E. Howard</h1> -->
-      <p>
-        Robert Ervin Howard (1906-1936) was an American author best known for his contributions to the
-        pulp fiction genre. He is the creator of iconic characters such as Conan the Barbarian, Solomon Kane,
-        and Bran Mak Morn.
-      </p>
-      <p>
-        Howard's works span multiple genres, including adventure, fantasy, horror, and historical fiction.
-        His vivid storytelling and richly detailed worlds have left a lasting legacy in the world of literature.
-      </p>
-      <p>
-        This application serves as a reference tool for quickly looking up any of Howard's many pulp yarns,
-        and also as a way to get more people interested in reading these increasingly overlooked characters
-        and stories.
-      </p>
-      <p>
-        My preferred way to enjoy Howard's stories, is to browse the opening lines of each one until I find
-        one that hooks me (which doesn't take very long).
-      </p>
-    </section>
+    <p>
+      Robert Ervin Howard (1906-1936) was an American author best known for his contributions to the
+      pulp fiction genre. He is the creator of iconic characters such as Conan the Barbarian, Solomon Kane,
+      and Bran Mak Morn.
+    </p>
+    <p>
+      Howard's works span multiple genres, including adventure, fantasy, horror, and historical fiction.
+      His vivid storytelling and richly detailed worlds have left a lasting legacy in the world of literature.
+    </p>
+    <p>
+      This application serves as a reference tool for quickly looking up any of Howard's many pulp yarns,
+      and also as a way to get more people interested in reading these increasingly overlooked characters
+      and stories.
+    </p>
+    <p>
+      My preferred way to enjoy Howard's stories, is to browse the opening lines of each one until I find
+      one that hooks me (which doesn't take very long).
+    </p>
+    <!-- <section class="biography">
+    </section> -->
   </div>
 
   <div class="timeline-container">

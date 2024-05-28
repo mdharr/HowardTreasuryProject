@@ -4,19 +4,24 @@
   </div>
   <div class="box-shadow">
     <ng-container *ngFor="let image of images; let i = index">
-      <div *ngIf="i === currentImageIndex"
+      <div *ngIf="i === currentImageIndex && !loading"
            class="carousel-image"
            [ngStyle]="{'background-image': 'url(' + image + ')'}">
       </div>
     </ng-container>
+    <div *ngIf="loading" class="loader-container">
+      <div class="placeholder">
+        <div class="loader"></div>
+      </div>
+    </div>
   </div>
   <div class="overlay-image"></div>
 
-  <button mat-icon-button (click)="showPreviousImage()">
+  <button mat-icon-button (click)="showPreviousImage()" [disabled]="loading">
     <mat-icon>chevron_left</mat-icon>
   </button>
 
-  <button mat-icon-button (click)="showNextImage()">
+  <button mat-icon-button (click)="showNextImage()" [disabled]="loading">
     <mat-icon>chevron_right</mat-icon>
   </button>
 </div>
