@@ -1,10 +1,9 @@
 import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy, inject, ChangeDetectorRef, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { ChatMessage } from 'src/app/models/chat-message';
 import { WebSocketService } from 'src/app/services/websocket.service';
 import { User } from 'src/app/models/user';
-import { ChatRoom } from 'src/app/models/chat-room';
 import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
@@ -17,72 +16,58 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   newMessage: string = '';
   messages: ChatMessage[] = [];
-  chatHistory: ChatMessage[] = [];
   groupedMessages: { date: string; messages: ChatMessage[] }[] = [];
   loggedInUser: User = new User();
   chatRoomId: number = 0;
-  waveText: string | undefined;
 
-  private loggedInUserSubscription: Subscription | undefined;
-  private loggedInSubscription: Subscription | undefined;
-  private webSocketSubscription: Subscription | undefined;
-  private authSubscription: Subscription | undefined;
-  private chatHistorySubscription: Subscription | undefined;
+  private subscriptions: Subscription[] = [];
 
-  private webSocketService = inject(WebSocketService);
-  private authService = inject(AuthService);
-  private chatService = inject(ChatService);
+  constructor(
+    private webSocketService: WebSocketService,
+    private authService: AuthService,
+    private chatService: ChatService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
-    this.loggedInUserSubscription = this.authService.getLoggedInUser().subscribe({
-      next: (user) => {
-        this.loggedInUser = user;
+    this.subscriptions.push(
+      this.authService.getLoggedInUser().subscribe({
+        next: (user) => {
+          this.loggedInUser = user;
+        },
+        error: (error) => {
+          console.error('Error getting loggedInUser', error);
+        },
+      })
+    );
 
-      },
-      error: (error) => {
-        console.error('Error getting loggedInUser');
-        console.error(error);
-      },
-    });
     this.chatRoomId = 1;
     this.fetchChatHistory(this.chatRoomId);
 
-    // Subscribe to new messages via WebSocket
-    this.webSocketSubscription = this.webSocketService.getMessages().subscribe((newMessages: ChatMessage[]) => {
-      // Filter out messages that are already present
-      const uniqueNewMessages = newMessages.filter(newMsg =>
-        !this.messages.some(existingMsg => existingMsg.id === newMsg.id));
+    this.subscriptions.push(
+      this.webSocketService.getMessages().subscribe((newMessages: ChatMessage[]) => {
+        console.log('New messages received from WebSocket:', newMessages); // Debugging log
+        const uniqueNewMessages = newMessages.filter(newMsg =>
+          !this.messages.some(existingMsg => existingMsg.id === newMsg.id)
+        );
 
-      // Merge unique new messages with the existing messages
-      this.messages = [...this.messages, ...uniqueNewMessages];
-      this.groupMessagesByDate(this.messages);
-      setTimeout(() => this.scrollToBottom(), 0);
-    });
-
+        this.messages = [...this.messages, ...uniqueNewMessages];
+        console.log('Updated messages:', this.messages); // Debugging log
+        this.groupMessagesByDate(this.messages);
+        this.cdr.detectChanges(); // Ensure change detection is triggered
+        setTimeout(() => this.scrollToBottom(), 0);
+      })
+    );
   }
 
   ngOnDestroy(): void {
-    if(this.loggedInUserSubscription) {
-      this.loggedInUserSubscription.unsubscribe();
-    }
-    if(this.loggedInSubscription) {
-      this.loggedInSubscription.unsubscribe();
-    }
-    if(this.webSocketSubscription) {
-      this.webSocketSubscription.unsubscribe();
-    }
-    if(this.authSubscription) {
-      this.authSubscription.unsubscribe();
-    }
-    if(this.chatHistorySubscription) {
-      this.chatHistorySubscription.unsubscribe();
-    }
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   private scrollToBottom(): void {
     try {
       this.chatDisplayContainer.nativeElement.scrollTop = this.chatDisplayContainer.nativeElement.scrollHeight;
-    } catch(err) { }
+    } catch (err) { }
   }
 
   sendMessage(): void {
@@ -99,49 +84,37 @@ export class ChatComponent implements OnInit, OnDestroy {
 
       // Send the chat message
       this.webSocketService.sendChatMessage(chatMessage);
+      console.log('Message sent:', chatMessage); // Debugging log
       this.newMessage = ''; // Clear input field
       setTimeout(() => this.scrollToBottom(), 0);
     }
   }
 
-  subscribeToAuth = () => {
-    this.authSubscription = this.authService.getLoggedInUser().subscribe({
-      next: (user) => {
-        this.loggedInUser = user;
-      },
-      error: (error) => {
-        console.error('Error getting loggedInUser');
-        console.error(error);
-      },
-    });
+  fetchChatHistory(chatRoomId: number): void {
+    this.subscriptions.push(
+      this.chatService.getChatHistory(chatRoomId).subscribe({
+        next: (data) => {
+          this.messages = data;
+          console.log('Chat history fetched:', data); // Debugging log
+          this.sortChatHistory(this.messages);
+          this.groupMessagesByDate(this.messages);
+          this.cdr.detectChanges();
+          setTimeout(() => this.scrollToBottom(), 0);
+        },
+        error: (fail) => {
+          console.error('ChatService.getChatHistory: failed to fetch chat history', fail);
+        }
+      })
+    );
   }
 
-  subscribeToLoggedInObservable() {
-    this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
-      this.loggedInUser = user;
-    });
-  }
-
-  fetchChatHistory(chatRoomId: number) {
-    this.chatHistorySubscription = this.chatService.getChatHistory(chatRoomId).subscribe({
-      next: (data) => {
-        this.messages = data;
-        this.sortChatHistory(this.messages);
-        this.groupMessagesByDate(data);
-        setTimeout(() => this.scrollToBottom(), 0);
-      },
-      error: (fail) => {
-        console.error('ChatService.getChatHistory: failed to fetch chat history', fail);
-      }
-    });
-  }
   sortChatHistory = (messages: ChatMessage[]) => {
     let sortedMessages = messages.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
     return sortedMessages;
   }
-  groupMessagesByDate(messages: ChatMessage[]) {
+
+  groupMessagesByDate(messages: ChatMessage[]): void {
     const groups = messages.reduce((acc, message) => {
-      // Extract just the date part of the 'createdAt' field
       const date = new Date(message.createdAt).toDateString();
       if (!acc[date]) {
         acc[date] = [];
@@ -150,42 +123,9 @@ export class ChatComponent implements OnInit, OnDestroy {
       return acc;
     }, {} as { [date: string]: ChatMessage[] });
 
-    // Convert the 'groups' object to an array for Angular's *ngFor
     this.groupedMessages = Object.keys(groups).map(date => ({
       date: date,
       messages: groups[date].sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
     }));
   }
-
-  animateText() {
-    // It's best to not use 'DOMContentLoaded' inside Angular lifecycle because Angular takes care of when the DOM is ready. Instead, use Angular's lifecycle hooks like 'ngOnInit'.
-
-    // Ensure waveText is not null before proceeding
-    const waveText = document.querySelector('.wave');
-    if (waveText) {
-        // Since textContent is always a string, the null-conditional operator is not required here.
-        // If textContent is null or undefined, it will not proceed to replace operation.
-        const textContent = waveText.textContent || ''; // Fallback to empty string if null
-        waveText.innerHTML = textContent.replace(/\S/g, "<span>$&</span>");
-
-        // Add a hover event listener to the 'wave' class element
-        waveText.addEventListener('mouseover', () => {
-            // Ensure waveText is not null and querySelectorAll is called on a non-null value
-            let spans = waveText.querySelectorAll('span');
-            // Apply the animation delay to each span
-            spans.forEach((span, index) => {
-                span.style.animationDelay = `${index * 0.1}s`;
-            });
-        });
-
-        // Remove the animation when not hovering
-        waveText.addEventListener('mouseout', () => {
-            let spans = waveText.querySelectorAll('span');
-            spans.forEach((span) => {
-                span.style.animationDelay = '0s';
-            });
-        });
-    }
-  }
-
 }

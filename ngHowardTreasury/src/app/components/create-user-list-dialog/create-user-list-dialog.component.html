@@ -1,13 +1,15 @@
-<h2 mat-dialog-title class="dialog-title">Create a User List</h2>
+<div class="modal-wrapper">
+  <h2 mat-dialog-title class="dialog-title">Create a User List</h2>
 
-<div mat-dialog-content class="dialog-content">
-  <span class="label-name">List Name</span>
-  <mat-form-field class="dialog-input">
-    <input matInput [(ngModel)]="newUserListName" placeholder="">
-  </mat-form-field>
-</div>
+  <div mat-dialog-content class="dialog-content">
+    <span class="label-name">List Name</span>
+    <mat-form-field class="dialog-input">
+      <input matInput [(ngModel)]="newUserListName" placeholder="">
+    </mat-form-field>
+  </div>
 
-<div mat-dialog-actions class="dialog-actions">
-  <button mat-raised-button mat-button (click)="closeDialog()" class="cancel-button">Cancel</button>
-  <button mat-raised-button mat-button (click)="createUserList()" class="create-button">Create</button>
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button mat-button (click)="closeDialog()" class="cancel-button">Cancel</button>
+    <button mat-raised-button mat-button (click)="createUserList()" class="create-button">Create</button>
+  </div>
 </div>

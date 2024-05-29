@@ -32,7 +32,6 @@ export class PostRecommendationComponent implements OnInit, OnDestroy, AfterView
   }
 
   ngAfterViewInit() {
-    console.log('ngAfterViewInit in PostRecommendationComponent');
     this.checkImageLoaded();
   }
 

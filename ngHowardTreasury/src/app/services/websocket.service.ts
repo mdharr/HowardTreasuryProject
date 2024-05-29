@@ -10,28 +10,22 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class WebSocketService {
-
-  private url = environment.baseUrl;
-
+  private url = environment.baseUrl + 'ws';
   private stompClient: any;
-  private messages: BehaviorSubject<ChatMessage[]>;
+  private messages = new BehaviorSubject<ChatMessage[]>([]);
 
   httpClient = inject(HttpClient);
 
   constructor() {
-    this.messages = new BehaviorSubject<ChatMessage[]>([]);
     this.initializeWebSocketConnection();
   }
 
   private initializeWebSocketConnection(): void {
-    // Create a new SockJS instance with the endpoint defined in Spring Boot
-    const socket = new SockJS('http://localhost:8093/ws');
-    // Create a STOMP client over the SockJS instance
-    this.stompClient = Stomp.over(socket);
+    const socket = new SockJS(this.url);
+    this.stompClient = Stomp.over(socket, { protocols: ['v12.stomp'] });
 
-    // Connect to the STOMP client
     this.stompClient.connect({}, (frame: any) => {
-      // Subscribe to the public chat room
+      console.log('Connected to WebSocket server:', frame); // Debugging log
       this.stompClient.subscribe('/topic/publicChatRoom', (sdkEvent: any) => {
         this.onMessageReceived(sdkEvent);
       });
@@ -40,16 +34,17 @@ export class WebSocketService {
 
   sendChatMessage(chatMessage: ChatMessage): void {
     this.stompClient.send('/app/chat.sendMessage', JSON.stringify(chatMessage));
+    console.log('Chat message sent:', chatMessage); // Debugging log
   }
 
   private onMessageReceived(sdkEvent: any): void {
-    // Parse the incoming message and update the messages BehaviorSubject
     const message: ChatMessage = JSON.parse(sdkEvent.body);
-    this.messages.next([...this.messages.getValue(), message]);
+    console.log('Message received from WebSocket:', message); // Debugging log
+    const currentMessages = this.messages.getValue();
+    this.messages.next([...currentMessages, message]);
   }
 
   private onError(error: string): void {
-    // Handle connection error
     console.error(`WebSocket Error: ${error}`);
   }
 
@@ -57,10 +52,7 @@ export class WebSocketService {
     return this.messages.asObservable();
   }
 
-  // public fetchChatHistory(chatRoomId: number): Observable<ChatMessage[]> {
-  //   // Implement an HTTP GET request to fetch the chat history
-  //   // Replace `http://api.yourdomain.com/chatroom/${chatRoomId}/history` with your actual API endpoint
-  //   return this.httpClient.get<ChatMessage[]>(`${this.url}/chatroom/${chatRoomId}/history`);
-  // }
-
+  public setInitialMessages(messages: ChatMessage[]): void {
+    this.messages.next(messages);
+  }
 }

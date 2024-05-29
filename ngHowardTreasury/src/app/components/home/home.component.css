@@ -27,7 +27,10 @@ img.alignleft, .wp-caption.alignleft {
   display: flex;
   flex-direction: column;
   gap: 20px;
-
+  position: relative;
+  overflow: hidden;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .main-title {
@@ -37,6 +40,12 @@ img.alignleft, .wp-caption.alignleft {
   color: var(--title_color);
   margin: 0;
   line-height: initial;
+  z-index: 1;
+  /* font-weight: bold; */
+  background: url(https://www.dragonsdogma.com/2/assets/images/common/site_pattern.jpg) no-repeat;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: cover;
 }
 
 .subheader {
@@ -45,6 +54,7 @@ img.alignleft, .wp-caption.alignleft {
   color: var(--subheader_color);
   margin: 0;
   line-height: 1.1;
+  z-index: 1;
 }
 
 .content {
@@ -78,7 +88,9 @@ img.alignleft, .wp-caption.alignleft {
 
 .quote-content {
   padding: 20px;
-  background-color: var(--quote_color);
+  border: 1px solid #1f000029;
+  border-top: none;
+  background-color: #26262630;
   color: var(--black_white);
 }
 
@@ -380,3 +392,16 @@ span {
   background-color: var(--white_color);
 }
 
+.header::before {
+  content: "";
+  background-image: url(https://www.dragonsdogma.com/2/assets/images/common/texture_common.png);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-repeat: repeat;
+  filter: brightness(1.3);
+}

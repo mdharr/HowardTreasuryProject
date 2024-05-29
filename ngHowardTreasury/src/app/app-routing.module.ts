@@ -27,14 +27,15 @@ import { VerificationComponent } from './components/verification/verification.co
 import { ChatComponent } from './components/chat/chat.component';
 import { WeirdTalesComponent } from './components/weird-tales/weird-tales.component';
 import { WeirdTalesDetailsComponent } from './components/weird-tales-details/weird-tales-details.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent, data: { animation: 'HomePage' } },
   { path: 'verify', component: VerificationComponent, data: { animation: 'VerifyPage' } },
   { path: 'about', component: AboutComponent, data: { animation: 'AboutPage' } },
-  { path: 'lists', component: UserListsComponent, data: { animation: 'ListsPage' } },
-  { path: 'profile', component: UserProfileComponent, data: { animation: 'ProfilePage' } },
+  { path: 'lists', component: UserListsComponent, canActivate: [authGuard], data: { animation: 'ListsPage' } },
+  { path: 'profile', component: UserProfileComponent, canActivate: [authGuard], data: { animation: 'ProfilePage' } },
   { path: 'collections', component: CollectionsComponent, data: { animation: 'CollectionsPage' } },
   { path: 'collections/:collectionId', component: CollectionDetailsComponent, data: { animation: 'CollectionDetailsPage' } },
   { path: 'stories', component: StoriesComponent, data: { animation: 'StoriesPage' } },
@@ -49,14 +50,14 @@ const routes: Routes = [
   { path: 'search-results/:results', component: SearchResultsComponent, data: { animation: 'SearchResultsDetailsPage' } },
   { path: 'posts', component: BlogPostsComponent, data: { animation: 'PostsPage' } },
   { path: 'posts/:postId/comments', component: BlogCommentsComponent, data: { animation: 'CommentsPage' } },
-  { path: 'posts/create', component: BlogPostCreationComponent, data: { animation: 'CreatePostPage' } },
+  { path: 'posts/create', component: BlogPostCreationComponent, canActivate: [authGuard], data: { animation: 'CreatePostPage' } },
   { path: 'illustrators', component: IllustratorsComponent, data: { animation: 'IllustratorsPage' } },
   { path: 'illustrators/:illustratorId', component: IllustratorDetailsComponent, data: { animation: 'IllustratorDetailsPage' } },
   { path: 'weird-tales', component: WeirdTalesComponent, data: { animation: 'WeirdTalesPage' } },
   { path: 'weird-tales/:weirdTalesId', component: WeirdTalesDetailsComponent, data: { animation: 'WeirdTalesDetailsPage' } },
   { path: 'conan', component: AnimatedCardComponent, data: { animation: 'ConanPage' } },
   { path: 'posts/:postId/edit', component: BlogPostEditComponent, data: { animation: 'EditPostPage' } },
-  { path: 'chat', component: ChatComponent, data: { animation: 'ChatPage' } },
+  { path: 'chat', component: ChatComponent, canActivate: [authGuard], data: { animation: 'ChatPage' } },
   { path: 'gallery', component: ImageGalleryComponent, data: { animation: 'ImageGalleryPage' } },
 ];
 

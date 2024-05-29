@@ -42,8 +42,8 @@ export class UpdateUserDialogComponent implements OnInit, OnDestroy {
       })
     ).subscribe({
       error: (error) => {
-        console.log('Error getting loggedInUser Profile Component');
-        console.log(error);
+        console.error('Error getting loggedInUser Profile Component');
+        console.error(error);
       },
     });
   }

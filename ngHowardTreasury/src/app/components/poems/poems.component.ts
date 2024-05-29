@@ -113,7 +113,6 @@ export class PoemsComponent implements OnInit, OnDestroy {
 
   filterPoems(): void {
     this.noMatches = false;
-    console.log(this.noMatches);
 
     if (this.searchQuery.trim() === '') {
       // If the search query is empty, reset to the current filtered data
@@ -141,7 +140,6 @@ export class PoemsComponent implements OnInit, OnDestroy {
   performSearch() {
     if (this.searchQuery) {
       this.searchService.search(this.searchQuery).subscribe((results) => {
-        console.log('Search results from service:', results);
         // Update the search results in the shared service
         this.searchResultsService.updateSearchResults(results);
         this.router.navigate(['/search-results']);

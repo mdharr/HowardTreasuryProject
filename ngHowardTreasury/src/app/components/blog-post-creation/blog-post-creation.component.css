@@ -7,9 +7,12 @@
   margin: 0rem 0 0.5rem 0;
   margin: 1.5rem 1.5rem;
   margin-top: 50px;
-  border-radius: 0.5rem;
+  /* border-radius: 0.5rem; */
   padding: 1.5rem;
-  background-color: transparent;
+  /* background-color: transparent; */
+  border: 3px solid transparent !important;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30 !important;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
 }
 
 .post-title {
@@ -123,7 +126,6 @@
 .header-wrapper {
   display:flex;
   justify-content: center;
-  color: var(--red_white);
   padding: 25px 0;
   padding-top: 0;
 }

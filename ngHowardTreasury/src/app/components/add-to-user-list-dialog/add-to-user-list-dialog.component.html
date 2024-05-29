@@ -1,17 +1,21 @@
-<h2 mat-dialog-title>Add to User List</h2>
+<div class="modal-wrapper">
+  <h2 mat-dialog-title>Add to User List</h2>
 
-<mat-dialog-content class="dialog-wrapper">
-  <div *ngFor="let userList of loggedInUser.userLists">
-    <mat-checkbox
-      [(ngModel)]="userList.selected"
-      [disabled]="userListContainsObject(userList, selectedItem, objectType)">
-      {{ userList.name }}
-    </mat-checkbox>
+  <div class="list-box">
+    <mat-dialog-content class="dialog-wrapper">
+      <div *ngFor="let userList of loggedInUser.userLists">
+        <mat-checkbox
+          [(ngModel)]="userList.selected"
+          [disabled]="userListContainsObject(userList, selectedItem, objectType)">
+          {{ userList.name }}
+        </mat-checkbox>
+      </div>
+    </mat-dialog-content>
   </div>
-</mat-dialog-content>
 
-<mat-dialog-actions>
-  <button mat-raised-button mat-button color="primary" (click)="addToSelectedUserLists()">Add</button>
-  <button mat-raised-button mat-button mat-dialog-close>Cancel</button>
-</mat-dialog-actions>
+  <mat-dialog-actions>
+    <button mat-raised-button mat-button color="primary" (click)="addToSelectedUserLists()">Add</button>
+    <button mat-raised-button mat-button mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+</div>
 

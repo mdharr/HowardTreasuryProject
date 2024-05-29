@@ -108,12 +108,15 @@ p {
   color: #fff;
   padding: 10px 20px;
   border: none;
-  border-radius: 28px;
+  /* border-radius: 28px; */
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: var(--inter);
   font-size: 1rem;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border-radius: 0;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .create-button:hover {
@@ -144,7 +147,7 @@ p {
   height:48px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   align-items: center;
-  border-radius: 28px;
+  /* border-radius: 28px; */
 }
 
 .no-items-text {
@@ -187,7 +190,7 @@ p {
 
 
 .mat-expansion-panel {
-  border-radius: 28px;
+  /* border-radius: 28px; */
 }
 
 ::ng-deep .add-buttons:hover {

@@ -1,3 +1,7 @@
+.modal-wrapper {
+  background-color: var(--black_color);
+}
+
 .dialog-title {
   font-size: 24px;
   font-weight: bold;
@@ -5,7 +9,6 @@
 }
 
 h2[mat-dialog-title] {
-  background-color: var(--red_black);
   color: white;
   padding: 15px;
   font-family: var(--inter);
@@ -17,7 +20,9 @@ button[mat-button] {
   margin-bottom: 5px;
   font-family: var(--inter);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  border-radius: 28px;
+  border-radius: 0;
+  border: 3px solid transparent;
+    border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .dialog-content {
@@ -68,9 +73,15 @@ button[mat-button] {
   margin-bottom: 5px;
 }
 ::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
-  border-radius: 28px !important;
+  border-radius: 0 !important;
 }
 
 .label-name {
-  color: #333;
+  color: #fff;
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
+  border-radius: 0 !important;
 }

@@ -1,10 +1,25 @@
+.modal-wrapper {
+  background-color: var(--black_color);
+}
+
+.list-box {
+  padding: 0 15px;
+  overflow-y: scroll;
+  height: 30vh;
+  background-color: var(--white_milk);
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
+  box-shadow: inset 0 4px 8px 3px rgba(0, 0, 0, .15), inset 0 1px 3px rgba(0, 0, 0, .3);
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
 /* Styles for the mat-dialog */
 .mat-dialog-container {
   max-width: 400px;
 }
 
 h2[mat-dialog-title] {
-  background-color: var(--red_black);
   color: white;
   padding: 15px;
   font-family: var(--inter);
@@ -12,6 +27,7 @@ h2[mat-dialog-title] {
 
 .mat-dialog-content {
   padding: 15px;
+  color: #fff;
 }
 
 .mat-dialog-actions {
@@ -41,7 +57,9 @@ button[mat-button] {
   margin-bottom: 5px;
   font-family: var(--inter);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  border-radius: 28px;
+  border-radius: 0;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 button[mat-button]:hover {
@@ -53,11 +71,12 @@ button[mat-button]:hover {
   max-height: 300px;
   min-height: 200px;
   overflow-y: scroll;
+  color: #fff;
 }
 
 ::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
   background-color: var(--white_color);
-  border-radius: 28px !important;
+  border-radius: 0 !important;
 }
 
 ::ng-deep .mat-mdc-checkbox label {
@@ -75,4 +94,19 @@ button[mat-button]:hover {
 
 ::ng-deep .mat-mdc-dialog-actions {
   justify-content: space-between !important;
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
+  border-radius: 0 !important;
+}
+
+::ng-deep .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background {
+  border-color: var(--red_color) !important;
+  background-color: var(--red_color) !important;
+}
+
+::ng-deep .mat-mdc-checkbox.mat-accent .mdc-checkbox--selected~.mdc-checkbox__ripple {
+  background: var(--red_color) !important;
 }

@@ -192,7 +192,6 @@ export class SearchResultsComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   onJumpToPageDialog() {
-    console.log('onJumpToPageDialog called');
 
     const dialogRef = this.dialog.open(JumpToPageDialogComponent, {
       width: '250px',

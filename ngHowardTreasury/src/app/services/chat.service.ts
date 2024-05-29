@@ -9,7 +9,6 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class ChatService {
-
   private url = environment.baseUrl + 'api/chat-rooms';
 
   http = inject(HttpClient);
@@ -30,11 +29,9 @@ export class ChatService {
       catchError((err: any) => {
         console.error(err);
         return throwError(
-          () =>
-          new Error('ChatService.getChatHistory(): error retrieving chat history: ' + err)
+          () => new Error('ChatService.getChatHistory(): error retrieving chat history: ' + err)
         );
       })
     );
   }
-
 }
