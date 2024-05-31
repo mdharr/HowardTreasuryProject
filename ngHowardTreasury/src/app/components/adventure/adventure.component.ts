@@ -15,21 +15,6 @@ export class AdventureComponent {
 
   constructor(private openAiService: OpenAiService) {}
 
-  // sendMessage() {
-  //   if (this.userMessage.trim()) {
-  //     this.chatHistory.push({ user: 'You', response: this.userMessage });
-  //     this.openAiService.getAdventureResponse(this.userMessage).subscribe(
-  //       (responseMessage) => {
-  //         this.chatHistory.push({ user: 'AI', response: responseMessage });
-  //         this.userMessage = '';
-  //       },
-  //       (error) => {
-  //         console.error('Error:', error);
-  //       }
-  //     );
-  //   }
-  // }
-
   sendMessage() {
     if (this.userMessage.trim()) {
       this.chatHistory.push({ role: 'user', content: this.userMessage });
