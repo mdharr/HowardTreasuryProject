@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,7 +12,15 @@ export class OpenAiService {
 
   constructor(private http: HttpClient) {}
 
-  getAdventureResponse(message: string): Observable<any> {
-    return this.http.post<any>(this.url, { message });
+  // getAdventureResponse(message: string): Observable<string> {
+  //   return this.http.post<any>(this.url, { message }).pipe(
+  //     map(response => response.choices[0].message.content)
+  //   );
+  // }
+
+  getAdventureResponse(messages: { role: string, content: string }[]): Observable<string> {
+    return this.http.post<any>(this.url, messages).pipe(
+      map(response => response.content)
+    );
   }
 }

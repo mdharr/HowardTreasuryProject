@@ -1,5 +1,6 @@
 package com.skilldistillery.howardtreasury.controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,18 @@ public class AdventureController {
         this.openAIService = openAIService;
     }
 
+//    @PostMapping("adventure/response")
+//    public Mono<ResponseEntity<String>> getAdventureResponse(@RequestBody Map<String, String> request) {
+//        String userMessage = request.get("message");
+//        return openAIService.getAdventureResponse(userMessage)
+//            .map(ResponseEntity::ok)
+//            .defaultIfEmpty(ResponseEntity.status(500).body("Error retrieving response"));
+//    }
+    
     @PostMapping("adventure/response")
-    public Mono<ResponseEntity<String>> getAdventureResponse(@RequestBody Map<String, String> request) {
-        String userMessage = request.get("message");
-        return openAIService.getAdventureResponse(userMessage)
+    public Mono<ResponseEntity<Map<String, String>>> getAdventureResponse(@RequestBody List<Map<String, String>> messages) {
+        return openAIService.getAdventureResponse(messages)
             .map(ResponseEntity::ok)
-            .defaultIfEmpty(ResponseEntity.status(500).body("Error retrieving response"));
+            .defaultIfEmpty(ResponseEntity.status(500).body(null));
     }
 }

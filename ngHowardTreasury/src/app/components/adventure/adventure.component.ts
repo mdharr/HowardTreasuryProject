@@ -7,17 +7,35 @@ import { OpenAiService } from 'src/app/services/open-ai.service';
   styleUrls: ['./adventure.component.css']
 })
 export class AdventureComponent {
+  // userMessage: string = '';
+  // chatHistory: { user: string, response: string }[] = [];
+
   userMessage: string = '';
-  chatHistory: { user: string, response: string }[] = [];
+  chatHistory: { role: string, content: string }[] = [];
 
   constructor(private openAiService: OpenAiService) {}
 
+  // sendMessage() {
+  //   if (this.userMessage.trim()) {
+  //     this.chatHistory.push({ user: 'You', response: this.userMessage });
+  //     this.openAiService.getAdventureResponse(this.userMessage).subscribe(
+  //       (responseMessage) => {
+  //         this.chatHistory.push({ user: 'AI', response: responseMessage });
+  //         this.userMessage = '';
+  //       },
+  //       (error) => {
+  //         console.error('Error:', error);
+  //       }
+  //     );
+  //   }
+  // }
+
   sendMessage() {
     if (this.userMessage.trim()) {
-      this.chatHistory.push({ user: 'You', response: this.userMessage });
-      this.openAiService.getAdventureResponse(this.userMessage).subscribe(
-        (data) => {
-          this.chatHistory.push({ user: 'AI', response: data });
+      this.chatHistory.push({ role: 'user', content: this.userMessage });
+      this.openAiService.getAdventureResponse(this.chatHistory).subscribe(
+        (responseMessage) => {
+          this.chatHistory.push({ role: 'assistant', content: responseMessage });
           this.userMessage = '';
         },
         (error) => {

@@ -28,6 +28,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { WeirdTalesComponent } from './components/weird-tales/weird-tales.component';
 import { WeirdTalesDetailsComponent } from './components/weird-tales-details/weird-tales-details.component';
 import { authGuard } from './guards/auth.guard';
+import { AdventureComponent } from './components/adventure/adventure.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -59,6 +60,7 @@ const routes: Routes = [
   { path: 'posts/:postId/edit', component: BlogPostEditComponent, data: { animation: 'EditPostPage' } },
   { path: 'chat', component: ChatComponent, canActivate: [authGuard], data: { animation: 'ChatPage' } },
   { path: 'gallery', component: ImageGalleryComponent, data: { animation: 'ImageGalleryPage' } },
+  { path: 'adventure', component: AdventureComponent },
 ];
 
 @NgModule({
