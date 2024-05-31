@@ -83,6 +83,7 @@ import { StripNonAlphanumericPipe } from './pipes/strip-non-alphanumeric.pipe';
 import { StoryRecommendationComponent } from './components/story-recommendation/story-recommendation.component';
 import { MarqueeComponent } from './components/marquee/marquee.component';
 import { FullscreenImageComponent } from './components/fullscreen-image/fullscreen-image.component';
+import { AdventureComponent } from './components/adventure/adventure.component';
 
 
 @NgModule({
@@ -143,6 +144,7 @@ import { FullscreenImageComponent } from './components/fullscreen-image/fullscre
     StoryRecommendationComponent,
     MarqueeComponent,
     FullscreenImageComponent,
+    AdventureComponent,
   ],
   imports: [
     BrowserModule,
