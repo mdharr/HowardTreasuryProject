@@ -19,6 +19,7 @@ public class HowardTreasuryApplication {
             Dotenv dotenv = Dotenv.configure().load();
             System.setProperty("MAIL_USERNAME", dotenv.get("MAIL_USERNAME"));
             System.setProperty("MAIL_PASSWORD", dotenv.get("MAIL_PASSWORD"));
+            System.setProperty("OPENAI_API_KEY", dotenv.get("OPENAI_API_KEY"));
         }
         
 		SpringApplication.run(HowardTreasuryApplication.class, args);
