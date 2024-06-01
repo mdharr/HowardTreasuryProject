@@ -1,18 +1,17 @@
 <div class="chat-container">
   <div class="chat-history">
     <div>
-      <p><strong>AI</strong>: You find yourself in the dimly lit interior of the Dusky Coil Inn, a bustling hub for exiles in Sepermeru, a city dominated by Relic Hunters.<br><br>
+      <p><strong class="role">AI</strong>: You find yourself in the dimly lit interior of the Dusky Coil Inn, a bustling hub for exiles in Sepermeru, a city dominated by Relic Hunters.<br><br>
 
         The tavern is bustling with many mercenaries and adventurers from different walks of life drinking, playing games, and sharing hushed tales of their endeavors in these treacherous Exile Lands, all while, in another corner, a minstrel's lute and haunting melody fill the air.<br><br>
 
-        To your left, at the end of a long, weathered wooden bar, a wiry Stygian man with darting eyes tends to patrons beneath a sign reading "Ale: 1 Silver."<br><br>
-
-        What would you like to do?</p>
+        To your left, at the end of a long, weathered wooden bar, a wiry Stygian man with darting eyes tends to patrons beneath a sign reading "Ale: 1 Silver."</p>
     </div>
     <div *ngFor="let chat of chatHistory">
-      <p><strong>{{ chat.role === 'user' ? 'You' : 'AI' }}:</strong> {{ chat.content }}</p>
+      <p><strong class="role">{{ chat.role === 'user' ? 'You' : 'AI' }}:</strong> {{ chat.content }}</p>
     </div>
+    <div *ngIf="loading">Loading...</div>
   </div>
-  <textarea [(ngModel)]="userMessage" placeholder="Type your message..."></textarea>
-  <button (click)="sendMessage()">Send</button>
+  <textarea [(ngModel)]="userMessage" placeholder="What would you like to do?"></textarea>
+  <button mat-button (click)="sendMessage()">Send</button>
 </div>
