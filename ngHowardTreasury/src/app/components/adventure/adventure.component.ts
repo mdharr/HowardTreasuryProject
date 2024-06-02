@@ -1,42 +1,54 @@
-import { Component } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { OpenAiService } from 'src/app/services/open-ai.service';
+import { typeText } from 'src/app/utils/typing-util';
 
 @Component({
   selector: 'app-adventure',
   templateUrl: './adventure.component.html',
   styleUrls: ['./adventure.component.css']
 })
-export class AdventureComponent {
+export class AdventureComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   userMessage: string = '';
   chatHistory: { role: string, content: string }[] = [];
   loading: boolean = false;
+  typingIndex: number = -1;
+  typingText: string = '';
+  introText: string = `You find yourself in the dimly lit interior of the Dusky Coil Inn, a bustling hub for exiles in Sepermeru, a city dominated by Relic Hunters. The tavern is bustling with many mercenaries and adventurers from different walks of life drinking, playing games, and sharing hushed tales of their endeavors in these treacherous Exile Lands, all while, in another corner, a minstrel's lute and haunting melody fill the air. To your left, at the end of a long, weathered wooden bar, a wiry Stygian man with darting eyes tends to patrons beneath a sign reading "Ale: 1 Silver."`;
 
-  constructor(private openAiService: OpenAiService) {}
+  @ViewChild('chatHistoryContainer') private chatHistoryContainer!: ElementRef;
 
-  // sendMessage() {
-  //   if (this.userMessage.trim()) {
-  //     this.chatHistory.push({ role: 'user', content: this.userMessage });
-  //     this.openAiService.getAdventureResponse(this.chatHistory).subscribe(
-  //       (responseMessage) => {
-  //         this.chatHistory.push({ role: 'assistant', content: responseMessage });
-  //         this.userMessage = '';
-  //       },
-  //       (error) => {
-  //         console.error('Error:', error);
-  //       }
-  //     );
-  //   }
-  // }
+  private openAiService = inject(OpenAiService);
+
+  ngOnInit(): void {
+    this.chatHistory.push({ role: 'AI', content: '' });
+    this.startTypingEffect(this.introText, this.chatHistory.length - 1);
+  }
+
+  ngAfterViewInit() {
+    this.scrollToBottom();
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
 
   sendMessage() {
     if (this.userMessage.trim()) {
       this.chatHistory.push({ role: 'user', content: this.userMessage });
       this.loading = true;
 
-      this.openAiService.getAdventureResponse(this.chatHistory).subscribe(
+      // Filter out only user messages
+      const userMessages = this.chatHistory.filter(chat => chat.role === 'user');
+
+      // Log messages for debugging
+      console.log('Sending messages:', JSON.stringify(userMessages));
+      this.userMessage = '';
+      this.openAiService.getAdventureResponse(userMessages).subscribe(
         (responseMessage: string) => {
-          this.chatHistory.push({ role: 'assistant', content: responseMessage });
+          this.chatHistory.push({ role: 'assistant', content: '' });
+          const lastIndex = this.chatHistory.length - 1;
+          this.startTypingEffect(responseMessage, lastIndex);
           this.userMessage = '';
           this.loading = false;
         },
@@ -50,4 +62,32 @@ export class AdventureComponent {
       );
     }
   }
+
+  private scrollToBottom(): void {
+    try {
+      this.chatHistoryContainer.nativeElement.scrollTop = this.chatHistoryContainer.nativeElement.scrollHeight;
+    } catch (err) {
+      console.error('Could not scroll to bottom:', err);
+    }
+  }
+
+  private startTypingEffect(text: string, index: number): void {
+    this.typingIndex = index;
+    this.chatHistory[index].content = '';
+    let charIndex = 0;
+
+    const typeCharacter = () => {
+      if (charIndex < text.length) {
+        this.chatHistory[index].content += text.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeCharacter, 5);
+      } else {
+        this.typingIndex = -1;
+        this.scrollToBottom();
+      }
+    };
+
+    typeCharacter();
+  }
+
 }

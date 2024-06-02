@@ -33,4 +33,5 @@ public class AdventureController {
             .map(ResponseEntity::ok)
             .defaultIfEmpty(ResponseEntity.status(500).body(null));
     }
+
 }

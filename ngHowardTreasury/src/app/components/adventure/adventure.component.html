@@ -1,17 +1,23 @@
-<div class="chat-container">
-  <div class="chat-history">
-    <div>
-      <p><strong class="role">AI</strong>: You find yourself in the dimly lit interior of the Dusky Coil Inn, a bustling hub for exiles in Sepermeru, a city dominated by Relic Hunters.<br><br>
+<!-- <div class="background-image">
+  <h1 id="title">TAVERN OF TREACHERY</h1>
+</div> -->
+<div id="intro-text">
+  <h1>TAVERN OF TREACHERY</h1>
 
-        The tavern is bustling with many mercenaries and adventurers from different walks of life drinking, playing games, and sharing hushed tales of their endeavors in these treacherous Exile Lands, all while, in another corner, a minstrel's lute and haunting melody fill the air.<br><br>
-
-        To your left, at the end of a long, weathered wooden bar, a wiry Stygian man with darting eyes tends to patrons beneath a sign reading "Ale: 1 Silver."</p>
-    </div>
-    <div *ngFor="let chat of chatHistory">
-      <p><strong class="role">{{ chat.role === 'user' ? 'You' : 'AI' }}:</strong> {{ chat.content }}</p>
-    </div>
-    <div *ngIf="loading">Loading...</div>
-  </div>
-  <textarea [(ngModel)]="userMessage" placeholder="What would you like to do?"></textarea>
-  <button mat-button (click)="sendMessage()">Send</button>
+  <h1>Embark on the quest now for an AI adventure you’ll never forget. By Crom!</h1>
 </div>
+<section class="sns-chat-wrapper">
+  <div class="chat-container">
+    <div class="chat-body">
+      <div class="chat-history" #chatHistoryContainer>
+        <div *ngFor="let chat of chatHistory" class="chat-item" [ngClass]="{'user': chat.role === 'user', 'bot': chat.role !== 'user'}">
+          <img [src]="chat.role === 'user' ? 'https://conan.com/wp-content/uploads/2023/09/Conan-Icon_AI_Opt.gif' : 'https://images.nightcafe.studio/jobs/qyODZTnGz06p7BUa44b5/qyODZTnGz06p7BUa44b5--1--68d16.jpg'" alt="">
+          <p> {{ chat.content }}</p>
+        </div>
+        <div *ngIf="loading">Loading...</div>
+      </div>
+    </div>
+    <textarea [(ngModel)]="userMessage" placeholder="What would you like to do?" [disabled]="loading" [ngStyle]="{ 'background-color': loading ? '#fff' : '#fff' }"></textarea>
+    <button mat-button (click)="sendMessage()" [disabled]="loading">Send</button>
+  </div>
+</section>
