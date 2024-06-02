@@ -1,4 +1,5 @@
-import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { OpenAiService } from 'src/app/services/open-ai.service';
 import { typeText } from 'src/app/utils/typing-util';
 
@@ -7,7 +8,7 @@ import { typeText } from 'src/app/utils/typing-util';
   templateUrl: './adventure.component.html',
   styleUrls: ['./adventure.component.css']
 })
-export class AdventureComponent implements OnInit, AfterViewInit, AfterViewChecked {
+export class AdventureComponent implements OnInit, AfterViewInit, AfterViewChecked, OnDestroy {
 
   userMessage: string = '';
   chatHistory: { role: string, content: string }[] = [];
@@ -15,6 +16,8 @@ export class AdventureComponent implements OnInit, AfterViewInit, AfterViewCheck
   typingIndex: number = -1;
   typingText: string = '';
   introText: string = `You find yourself in the dimly lit interior of the Dusky Coil Inn, a bustling hub for exiles in Sepermeru, a city dominated by Relic Hunters. The tavern is bustling with many mercenaries and adventurers from different walks of life drinking, playing games, and sharing hushed tales of their endeavors in these treacherous Exile Lands, all while, in another corner, a minstrel's lute and haunting melody fill the air. To your left, at the end of a long, weathered wooden bar, a wiry Stygian man with darting eyes tends to patrons beneath a sign reading "Ale: 1 Silver."`;
+
+  private subscriptions: Subscription[] | undefined;
 
   @ViewChild('chatHistoryContainer') private chatHistoryContainer!: ElementRef;
 
@@ -33,6 +36,12 @@ export class AdventureComponent implements OnInit, AfterViewInit, AfterViewCheck
     this.scrollToBottom();
   }
 
+  ngOnDestroy() {
+    if(this.subscriptions && this.subscriptions.length > 0) {
+      this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    }
+  }
+
   sendMessage() {
     if (this.userMessage.trim()) {
       this.chatHistory.push({ role: 'user', content: this.userMessage });
@@ -44,7 +53,7 @@ export class AdventureComponent implements OnInit, AfterViewInit, AfterViewCheck
       // Log messages for debugging
       console.log('Sending messages:', JSON.stringify(userMessages));
       this.userMessage = '';
-      this.openAiService.getAdventureResponse(userMessages).subscribe(
+      this.subscriptions?.push(this.openAiService.getAdventureResponse(userMessages).subscribe(
         (responseMessage: string) => {
           this.chatHistory.push({ role: 'assistant', content: '' });
           const lastIndex = this.chatHistory.length - 1;
@@ -59,7 +68,7 @@ export class AdventureComponent implements OnInit, AfterViewInit, AfterViewCheck
         () => {
           console.log('Chat message processed.');
         }
-      );
+      ));
     }
   }
 

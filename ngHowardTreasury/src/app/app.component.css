@@ -11,6 +11,9 @@
   width: 100%;
   text-align: center;
   color: var(--black_white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container-fluid {
