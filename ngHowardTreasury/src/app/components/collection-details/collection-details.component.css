@@ -18,7 +18,7 @@
   width:fit-content;
   height:fit-content;
   min-width: 261.11px;
-  min-height: 383px;
+  min-height: 350px;
   filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5));
   transition: filter 0.6s, transform 0.3s;
   border: 6px solid transparent;
@@ -506,7 +506,7 @@ ul li {
 
   .img-wrapper {
     min-width: 211.11px;
-    min-height: 308px;
+    min-height: 280px;
   }
 
   .contents-box {
