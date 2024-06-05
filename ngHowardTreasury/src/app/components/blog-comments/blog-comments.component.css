@@ -59,7 +59,7 @@
   max-width: 100% !important;
   height: auto !important;
   display: block !important;
-  border: 6px solid transparent;
+  border: 4px solid transparent;
     border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }

@@ -371,7 +371,18 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
       }, 0); // Match the duration of the fade-out transition
     }
 
-
+    @HostListener('document:keydown', ['$event'])
+    handleKeyboardEvent(event: KeyboardEvent) {
+      if (this.showLightbox) {
+        if (event.code === 'ArrowRight') {
+          this.nextImage();
+        } else if (event.code === 'ArrowLeft') {
+          this.prevImage();
+        } else if (event.code === 'Escape') {
+          this.closeLightbox();
+        }
+      }
+    }
 
     @HostListener('document:click', ['$event'])
     onDocumentClick(event: MouseEvent) {

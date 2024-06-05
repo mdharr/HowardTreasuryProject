@@ -292,7 +292,7 @@ cursor: pointer;
   flex-direction: column;
   align-items: center;
   position: relative;
-  border: 5px solid transparent;
+  border: 3px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
