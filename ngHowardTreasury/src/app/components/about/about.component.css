@@ -41,6 +41,7 @@
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
   margin-right: 20px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  animation: 0.3s slideRight forwards ease-out;
 }
 
 @keyframes sheen {
@@ -78,6 +79,7 @@
 .timeline-container {
   background-color: var(--bkg_color);
   padding: 20px;
+  animation: 0.3s slideUp forwards ease-out;
 }
 
 .timeline h2 {
@@ -94,7 +96,7 @@
 
 .timeline li {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
   font-family:var(--contentFontFamily);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   border: 3px solid transparent;
@@ -313,5 +315,50 @@ p {
   hyphens: auto;
   word-break: break-word;
   white-space: pre-line;
+  animation: 0.3s slideLeft forwards ease-out;
   /* word-spacing: -0.5px; */
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

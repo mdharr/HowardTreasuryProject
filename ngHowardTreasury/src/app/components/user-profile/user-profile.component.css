@@ -17,6 +17,7 @@
   background-color: var(--milk_white);
   border: 5px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
+  animation: 0.3s slideUp forwards ease-out;
 }
 
 .description-wrapper {
@@ -104,6 +105,7 @@
   height:fit-content;
   font-family: var(--contentFontFamily);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  animation: 0.3s slideRight forwards ease-out;
 }
 
 .userlists-wrapper {
@@ -114,6 +116,7 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   border: 5px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
+  animation: 0.3s slideLeft forwards ease-out;
 }
 
 .title-wrapper {
@@ -322,4 +325,48 @@
 .is-holographic {
   opacity: 0.2; /* Dim the card when loading */
   /* You can add more styles or animations for loading here */
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

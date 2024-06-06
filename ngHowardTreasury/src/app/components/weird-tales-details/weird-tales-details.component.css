@@ -55,11 +55,8 @@
   color: var(--title_color);
   padding-left: 25px;
   margin: 0;
-  line-height: 1.1;
+  line-height: 1.5;
   padding: 15px;
-  background-color: #262626;
-  border: 3px solid transparent;
-  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
 }
 
 .magazine-image {
@@ -99,7 +96,7 @@
   margin: 0;
   font-family: var(--contentFontFamily);
   font-size: 20px;
-  text-align: center;
+  text-align: left;
 }
 
 @media screen and (max-width: 920px) {

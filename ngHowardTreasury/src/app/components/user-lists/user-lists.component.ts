@@ -21,6 +21,7 @@ export class UserListsComponent implements OnInit, OnDestroy, AfterViewInit {
   newUserList: UserList = new UserList();
   userLists$: Observable<UserList[]> | undefined;
   isLoading: boolean = true;
+  userListsLength: number = 0;
 
   // booleans
   isLoggedIn: boolean = false;
@@ -45,6 +46,13 @@ export class UserListsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscribeToLoggedInObservable();
     this.userListService.loadUserLists();
     this.userLists$ = this.userListService.userLists$;
+
+    if (this.userLists$) {
+      this.userListsSubscription = this.userLists$.subscribe(userLists => {
+        this.userListsLength = userLists.length;
+      });
+    }
+
     setTimeout(() => {
       this.isLoading = false;
     }, 50);
@@ -105,13 +113,19 @@ export class UserListsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   openCreateUserListDialog(newUserList: UserList) {
-    this.dialogService.openCreateUserListDialog(newUserList);
+    if (this.userListsLength < 10) {
+      console.log(this.userListsLength);
+      this.dialogService.openCreateUserListDialog(newUserList);
+    } else {
+      alert('You need to delete a list before creating a new one.');
+      return;
+    }
   }
 
   deleteUserList = (userList: UserList):void => {
     this.createListSubscription = this.userListService.deleteUserList(userList.id).subscribe({
       next: (success) => {
-
+        console.log(this.userListsLength);
       },
       error: (fail) => {
         console.error(fail);
