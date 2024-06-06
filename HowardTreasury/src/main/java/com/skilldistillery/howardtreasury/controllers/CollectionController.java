@@ -45,39 +45,39 @@ public class CollectionController {
 	@Autowired
 	private MiscellaneaRepository miscellaneaRepo;
 	
-//	@GetMapping("collections")
-//	public ResponseEntity<List<Collection>> getAllCollections() {
-//		List<Collection> collections = collectionService.findAll();
-//		if (collections.isEmpty()) {
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		}
-//		else {
-//			return new ResponseEntity<>(collections, HttpStatus.OK);
-//		}
-//	}
+	@GetMapping("collections")
+	public ResponseEntity<List<Collection>> getAllCollections() {
+		List<Collection> collections = collectionService.findAll();
+		if (collections.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		else {
+			return new ResponseEntity<>(collections, HttpStatus.OK);
+		}
+	}
 	
-    @GetMapping("collections")
-    public ResponseEntity<?> getAllCollections(
-            @RequestParam(defaultValue = "false") boolean paged,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        if (paged) {
-            Pageable pageable = PageRequest.of(page, size);
-            Page<Collection> collections = collectionService.findAll(pageable);
-            if (collections.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            } else {
-                return new ResponseEntity<>(collections, HttpStatus.OK);
-            }
-        } else {
-            List<Collection> collections = collectionService.findAll();
-            if (collections.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            } else {
-                return new ResponseEntity<>(collections, HttpStatus.OK);
-            }
-        }
-    }
+//    @GetMapping("collections")
+//    public ResponseEntity<?> getAllCollections(
+//            @RequestParam(defaultValue = "false") boolean paged,
+//            @RequestParam(defaultValue = "0") int page,
+//            @RequestParam(defaultValue = "10") int size) {
+//        if (paged) {
+//            Pageable pageable = PageRequest.of(page, size);
+//            Page<Collection> collections = collectionService.findAll(pageable);
+//            if (collections.isEmpty()) {
+//                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//            } else {
+//                return new ResponseEntity<>(collections, HttpStatus.OK);
+//            }
+//        } else {
+//            List<Collection> collections = collectionService.findAll();
+//            if (collections.isEmpty()) {
+//                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//            } else {
+//                return new ResponseEntity<>(collections, HttpStatus.OK);
+//            }
+//        }
+//    }
 	
 	@GetMapping("collections/{cid}")
 	public ResponseEntity<Collection> getCollectionById(@PathVariable("cid") int collectionId) {

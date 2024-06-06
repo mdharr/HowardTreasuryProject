@@ -29,54 +29,54 @@
   <div class="main" *ngIf="isLoaded">
     <div class="contents-wrapper">
       <div class="contents-box">
-        <h2 class="contents-title">Stories</h2>
-        <div class="story-contents">
-          <ul class="contents-lists" *ngIf="collection.stories.length">
-            <ng-container *ngFor="let story of collection.stories">
-              <li class="contents-items" [routerLink]="['/stories', story.id]">
-                <div style="display: flex;">
-                  <span class="story-text">{{ story.title }}</span>
-                  <span *ngIf="story.pageNumber" class="page-number">{{ story.pageNumber }}</span>
-                </div>
-              </li>
-            </ng-container>
-          </ul>
-          <ul class="no-contents-lists" *ngIf="!collection.stories.length">
-            <li>No content</li>
-          </ul>
-        </div>
-        <h2 class="contents-title">Poems</h2>
-        <div class="poem-contents">
-          <ul class="contents-lists" *ngIf="collection.poems.length">
-            <ng-container *ngFor="let poem of collection.poems">
-              <li class="contents-items" [routerLink]="['/poems', poem.id]">
-                <div style="display: flex;">
-                  <span class="story-text">{{ poem.title }}</span>
-                  <span class="page-number">{{ poem.pageNumber }}</span>
-                </div>
-              </li>
-            </ng-container>
-          </ul>
-          <ul class="no-contents-lists" *ngIf="!collection.poems.length">
-            <li>No content</li>
-          </ul>
-        </div>
-        <h2 class="contents-title">Miscellanea</h2>
-        <div class="miscellanea-contents">
-          <ul class="contents-lists" *ngIf="collection.miscellaneas.length">
-            <ng-container *ngFor="let miscellanea of collection.miscellaneas">
-              <li class="contents-items" [routerLink]="['/miscellanea', miscellanea.id]">
-                <div style="display: flex;">
-                  <span class="story-text">{{ miscellanea.title }}</span>
-                  <span class="page-number">{{ miscellanea.pageNumber }}</span>
-                </div>
-              </li>
-            </ng-container>
-          </ul>
-          <ul class="no-contents-lists" *ngIf="!collection.miscellaneas.length">
-            <li>No content</li>
-          </ul>
-        </div>
+        <ng-container *ngIf="collection.stories.length">
+
+          <h2 class="contents-title">Stories</h2>
+          <div class="story-contents">
+            <ul class="contents-lists">
+              <ng-container *ngFor="let story of collection.stories">
+                <li class="contents-items" [routerLink]="['/stories', story.id]">
+                  <div style="display: flex;">
+                    <span class="story-text">{{ story.title }}</span>
+                    <span *ngIf="story.pageNumber" class="page-number">{{ story.pageNumber }}</span>
+                  </div>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="collection.poems.length">
+
+          <h2 class="contents-title">Poems</h2>
+          <div class="poem-contents">
+            <ul class="contents-lists">
+              <ng-container *ngFor="let poem of collection.poems">
+                <li class="contents-items" [routerLink]="['/poems', poem.id]">
+                  <div style="display: flex;">
+                    <span class="story-text">{{ poem.title }}</span>
+                    <span class="page-number">{{ poem.pageNumber }}</span>
+                  </div>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="collection.miscellaneas.length">
+
+          <h2 class="contents-title">Miscellanea</h2>
+          <div class="miscellanea-contents">
+            <ul class="contents-lists">
+              <ng-container *ngFor="let miscellanea of collection.miscellaneas">
+                <li class="contents-items" [routerLink]="['/miscellanea', miscellanea.id]">
+                  <div style="display: flex;">
+                    <span class="story-text">{{ miscellanea.title }}</span>
+                    <span class="page-number">{{ miscellanea.pageNumber }}</span>
+                  </div>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+        </ng-container>
       </div>
     </div>
     <!-- Your Angular template -->

@@ -25,30 +25,30 @@ export class CollectionService {
     return options;
   }
 
-  // indexAll(): Observable<Collection[]> {
-  //   return this.http.get<Collection[]>(this.url).pipe(
-  //     catchError((err: any) => {
-  //       console.error(err);
-  //       return throwError(
-  //         () =>
-  //           new Error('CollectionService.indexAll(): error retrieving list of collections ' + err)
-  //       );
-  //     })
-  //   );
-  // }
-
-  indexAll(page?: number, size?: number, paged?: boolean): Observable<Page<Collection> | Collection[]> {
-    const url = paged ?
-      `${this.url}?paged=${paged}&page=${page}&size=${size}` :
-      `${this.url}`;
-
-    return this.http.get<Page<Collection> | Collection[]>(url).pipe(
+  indexAll(): Observable<Collection[]> {
+    return this.http.get<Collection[]>(this.url).pipe(
       catchError((err: any) => {
         console.error(err);
-        return throwError(() => new Error(`CollectionService.indexAll(): error retrieving collections: ${err}`));
+        return throwError(
+          () =>
+            new Error('CollectionService.indexAll(): error retrieving list of collections ' + err)
+        );
       })
     );
   }
+
+  // indexAll(page?: number, size?: number, paged?: boolean): Observable<Page<Collection> | Collection[]> {
+  //   const url = paged ?
+  //     `${this.url}?paged=${paged}&page=${page}&size=${size}` :
+  //     `${this.url}`;
+
+  //   return this.http.get<Page<Collection> | Collection[]>(url).pipe(
+  //     catchError((err: any) => {
+  //       console.error(err);
+  //       return throwError(() => new Error(`CollectionService.indexAll(): error retrieving collections: ${err}`));
+  //     })
+  //   );
+  // }
 
   find(id: number): Observable<Collection> {
     return this.http.get<Collection>(`${this.url}/${id}`).pipe(
