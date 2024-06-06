@@ -18,13 +18,13 @@
       <span class="toggle-label" [matMenuTriggerFor]="menu">Options</span>
     </div>
     <mat-menu #menu="matMenu">
-      <button class="custom-button" [ngClass]="{'with-icon': showAll}" mat-menu-item>Show All <mat-icon class="checkmark-icon" *ngIf="showAll">check</mat-icon></button>
-      <!-- <button class="custom-button" [ngClass]="{'with-icon': showAll}" mat-menu-item (click)="toggleDisplayOption('all')">Show All <mat-icon class="checkmark-icon" *ngIf="showAll">check</mat-icon></button> -->
-      <!-- <button class="custom-button" [ngClass]="{'with-icon': showByYear}" mat-menu-item (click)="toggleDisplayOption('year')">Show By Year <mat-icon class="checkmark-icon" *ngIf="showByYear">check</mat-icon></button>
+      <!-- <button class="custom-button" [ngClass]="{'with-icon': showAll}" mat-menu-item>Show All <mat-icon class="checkmark-icon" *ngIf="showAll">check</mat-icon></button> -->
+      <button class="custom-button" [ngClass]="{'with-icon': showAll}" mat-menu-item (click)="toggleDisplayOption('all')">Show All <mat-icon class="checkmark-icon" *ngIf="showAll">check</mat-icon></button>
       <button class="custom-button" [ngClass]="{'with-icon': showByCreatedAsc}" mat-menu-item (click)="toggleDisplayOption('created_asc')">Show By Date Asc <mat-icon class="checkmark-icon" *ngIf="showByCreatedAsc">check</mat-icon></button>
       <button class="custom-button" [ngClass]="{'with-icon': showByCreatedDesc}" mat-menu-item (click)="toggleDisplayOption('created_desc')">Show By Date Desc <mat-icon class="checkmark-icon" *ngIf="showByCreatedDesc">check</mat-icon></button>
       <button class="custom-button" [ngClass]="{'with-icon': showByTitleAsc}" mat-menu-item (click)="toggleDisplayOption('title_asc')">Show By Title Asc <mat-icon class="checkmark-icon" *ngIf="showByTitleAsc">check</mat-icon></button>
-      <button class="custom-button" [ngClass]="{'with-icon': showByTitleDesc}" mat-menu-item (click)="toggleDisplayOption('title_desc')">Show By Title Desc <mat-icon class="checkmark-icon" *ngIf="showByTitleDesc">check</mat-icon></button> -->
+      <button class="custom-button" [ngClass]="{'with-icon': showByTitleDesc}" mat-menu-item (click)="toggleDisplayOption('title_desc')">Show By Title Desc <mat-icon class="checkmark-icon" *ngIf="showByTitleDesc">check</mat-icon></button>
+      <button class="custom-button" [ngClass]="{'with-icon': showByRecommended}" mat-menu-item (click)="toggleDisplayOption('recommended')">Show By Recommended <mat-icon class="checkmark-icon" *ngIf="showByRecommended">check</mat-icon></button>
     </mat-menu>
   </div>
 </div>
@@ -35,6 +35,106 @@
 
 <div class="collection-container" *ngIf="showAll && !loading" @customEasingAnimation>
   <div class="collection" *ngFor="let collection of collections; let i = index" #collection>
+    <div class="book" [routerLink]="['/collections', collection.id]">
+      <a>
+        <ul>
+          <li class="page page3"></li>
+          <li class="page page2"></li>
+          <li class="page page1"></li>
+          <img class="cover image-glow" src="{{ collection.collectionImages[0].thumbnailUrl }}" alt="Book Cover" loading="lazy">
+        </ul>
+      </a>
+      <div class="collection-title">
+        <a [routerLink]="['/collections', collection.id]">
+          <h4 class="collection-title-text">{{ collection.title }}</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="collection-container" *ngIf="showByCreatedAsc && !loading" @customEasingAnimation>
+  <div class="collection" *ngFor="let collection of collectionsByDatePublishedAsc; let i = index" #collection>
+    <div class="book" [routerLink]="['/collections', collection.id]">
+      <a>
+        <ul>
+          <li class="page page3"></li>
+          <li class="page page2"></li>
+          <li class="page page1"></li>
+          <img class="cover image-glow" src="{{ collection.collectionImages[0].thumbnailUrl }}" alt="Book Cover" loading="lazy">
+        </ul>
+      </a>
+      <div class="collection-title">
+        <a [routerLink]="['/collections', collection.id]">
+          <h4 class="collection-title-text">{{ collection.title }}</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="collection-container" *ngIf="showByCreatedDesc && !loading" @customEasingAnimation>
+  <div class="collection" *ngFor="let collection of collectionsByDatePublishedDesc; let i = index" #collection>
+    <div class="book" [routerLink]="['/collections', collection.id]">
+      <a>
+        <ul>
+          <li class="page page3"></li>
+          <li class="page page2"></li>
+          <li class="page page1"></li>
+          <img class="cover image-glow" src="{{ collection.collectionImages[0].thumbnailUrl }}" alt="Book Cover" loading="lazy">
+        </ul>
+      </a>
+      <div class="collection-title">
+        <a [routerLink]="['/collections', collection.id]">
+          <h4 class="collection-title-text">{{ collection.title }}</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="collection-container" *ngIf="showByTitleAsc && !loading" @customEasingAnimation>
+  <div class="collection" *ngFor="let collection of collectionsByTitleAsc; let i = index" #collection>
+    <div class="book" [routerLink]="['/collections', collection.id]">
+      <a>
+        <ul>
+          <li class="page page3"></li>
+          <li class="page page2"></li>
+          <li class="page page1"></li>
+          <img class="cover image-glow" src="{{ collection.collectionImages[0].thumbnailUrl }}" alt="Book Cover" loading="lazy">
+        </ul>
+      </a>
+      <div class="collection-title">
+        <a [routerLink]="['/collections', collection.id]">
+          <h4 class="collection-title-text">{{ collection.title }}</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="collection-container" *ngIf="showByTitleDesc && !loading" @customEasingAnimation>
+  <div class="collection" *ngFor="let collection of collectionsByTitleDesc; let i = index" #collection>
+    <div class="book" [routerLink]="['/collections', collection.id]">
+      <a>
+        <ul>
+          <li class="page page3"></li>
+          <li class="page page2"></li>
+          <li class="page page1"></li>
+          <img class="cover image-glow" src="{{ collection.collectionImages[0].thumbnailUrl }}" alt="Book Cover" loading="lazy">
+        </ul>
+      </a>
+      <div class="collection-title">
+        <a [routerLink]="['/collections', collection.id]">
+          <h4 class="collection-title-text">{{ collection.title }}</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="collection-container" *ngIf="showByRecommended && !loading" @customEasingAnimation>
+  <div class="collection" *ngFor="let collection of collectionsByRecommended; let i = index" #collection>
     <div class="book" [routerLink]="['/collections', collection.id]">
       <a>
         <ul>

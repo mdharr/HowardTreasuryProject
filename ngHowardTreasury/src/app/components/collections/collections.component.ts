@@ -27,8 +27,18 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   @ViewChildren('collection') collectionElements!: QueryList<ElementRef>;
 
   collections: Collection[] = [];
+  collectionsByTitleAsc: Collection[] = [];
+  collectionsByTitleDesc: Collection[] = [];
+  collectionsByDatePublishedAsc: Collection[] = [];
+  collectionsByDatePublishedDesc: Collection[] = [];
+  collectionsByRecommended: Collection[] = [];
   loading: boolean = true;
   showAll: boolean = false;
+  showByCreatedAsc: boolean = false;
+  showByCreatedDesc: boolean = false;
+  showByTitleAsc: boolean = false;
+  showByTitleDesc: boolean = false;
+  showByRecommended: boolean = false;
 
   private collectionSubscription: Subscription | undefined;
 
@@ -83,13 +93,18 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   subscribeToSubscriptions = () => {
     this.delay(250).then(() => {
       this.collectionSubscription = this.collectionService.indexAll().subscribe({
-        next: (data) => {
+        next: (data: Collection[]) => {
           // this.collections = data;
           if (isPage<Collection>(data)) {
             this.collections = data.content;
           } else {
             this.collections = data;
-            console.log(this.collections);
+            this.collectionsByDatePublishedAsc = this.sortByCreatedAsc(data);
+            this.collectionsByDatePublishedDesc = this.sortByCreatedDesc(data);
+            this.collectionsByTitleAsc = this.sortByTitleAsc(data);
+            this.collectionsByTitleDesc = this.sortByTitleDesc(data);
+            this.collectionsByRecommended = this.sortByRecommended(data);
+            // console.log(this.collectionsByRecommended);
           }
           this.loading = false;
         },
@@ -111,8 +126,73 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   triggerCustomEasingAnimation() {
     // You can use a timeout to trigger the animation after a short delay
     setTimeout(() => {
-      this.showAll = true; // Set the showAll to true to trigger the animation
+      this.showAll = false; // Set the showAll to true to trigger the animation
+      this.showByRecommended = true;
     }, 100);
+  }
+
+  sortByCreatedAsc(collections: Collection[]) {
+    return [...collections].sort((a, b) => new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime());
+  }
+
+  sortByCreatedDesc(collections: Collection[]) {
+    return [...collections].sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
+  }
+
+  sortByTitleAsc(collections: Collection[]) {
+    return [...collections].sort((a, b) => a.title.localeCompare(b.title));
+  }
+
+  sortByTitleDesc(collections: Collection[]) {
+    return [...collections].sort((a, b) => b.title.localeCompare(a.title));
+  }
+
+  sortByRecommended(collections: Collection[]) {
+    return [...collections].filter(collection => collection.series);
+  }
+
+  toggleShowAll() {
+    if(this.showAll) {
+      this.showAll = false;
+    }
+    else {
+      this.showAll = true;
+    }
+  }
+
+  toggleDisplayOption(selectedOption: string) {
+    // Reset all options to false
+    this.showAll = false;
+    this.showByCreatedAsc = false;
+    this.showByCreatedDesc = false;
+    this.showByTitleAsc = false;
+    this.showByTitleDesc = false;
+    this.showByRecommended = false;
+
+    // Set the selected option to true
+    switch (selectedOption) {
+      case 'all':
+        this.showAll = true;
+        break;
+      case 'created_asc':
+        this.showByCreatedAsc = true;
+        break;
+      case 'created_desc':
+        this.showByCreatedDesc = true;
+        break;
+      case 'title_asc':
+        this.showByTitleAsc = true;
+        break;
+      case 'title_desc':
+        this.showByTitleDesc = true;
+        break;
+      case 'recommended':
+        this.showByRecommended = true;
+        break;
+      default:
+        this.showAll = true;
+        break;
+    }
   }
 
 }

@@ -74,7 +74,7 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     subscribeToAuth = () => {
       this.authSubscription = this.authService.getLoggedInUser().subscribe({
-        next: (user) => {
+        next: (user: User) => {
           this.loggedInUser = user;
         },
         error: (error) => {
@@ -85,14 +85,14 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     subscribeToLoggedInObservable() {
-      this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user) => {
+      this.loggedInSubscription = this.authService.loggedInUser$.subscribe((user: User) => {
         this.loggedInUser = user;
       });
     }
 
     subscribeToBlogPost = () => {
       this.blogPostSubscription = this.blogPostService.find(this.postId).subscribe({
-        next: (data) => {
+        next: (data: BlogPost) => {
           this.post = data;
           this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(data.content);
           this.comments = this.prepareCommentsForRendering(data.comments);
@@ -108,7 +108,7 @@ export class BlogCommentsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     subscribeToRecentBlogPosts = () => {
       this.recentBlogPostsSubscription = this.blogPostService.indexAll().subscribe({
-        next: (data) => {
+        next: (data: BlogPost[]) => {
           this.recentPosts = this.sortRecentPosts(data);
         },
         error: (fail) => {

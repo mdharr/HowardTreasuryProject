@@ -89,7 +89,7 @@ export class BlogPostsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   subscribeToBlogPostIndexAll = () => {
     this.blogPostSubscription = this.blogPostService.indexAll().subscribe({
-      next: (data) => {
+      next: (data: BlogPost[]) => {
         this.posts = data;
         this.groupedPosts = this.groupBlogPostsByYear(data);
         this.postsCreatedAsc = this.sortByCreatedAsc(data);
