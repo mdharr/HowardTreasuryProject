@@ -140,3 +140,21 @@ body.disable-scrolling {
 
 /* 1200px min-width */
 /* 130% */
+
+div::selection,
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
+h6::selection,
+span::selection,
+p::selection,
+a::selection,
+footer::selection,
+strong::selection,
+img::selection,
+li::selection {
+  color: var(--red_color) !important;
+  background-color: var(--white_color) !important;
+}

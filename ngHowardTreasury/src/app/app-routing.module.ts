@@ -29,6 +29,7 @@ import { WeirdTalesComponent } from './components/weird-tales/weird-tales.compon
 import { WeirdTalesDetailsComponent } from './components/weird-tales-details/weird-tales-details.component';
 import { authGuard } from './guards/auth.guard';
 import { AdventureComponent } from './components/adventure/adventure.component';
+import { RxjsPracticeComponent } from './components/rxjs-practice/rxjs-practice.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -61,6 +62,7 @@ const routes: Routes = [
   { path: 'chat', component: ChatComponent, canActivate: [authGuard], data: { animation: 'ChatPage' } },
   { path: 'gallery', component: ImageGalleryComponent, data: { animation: 'ImageGalleryPage' } },
   { path: 'adventure', component: AdventureComponent },
+  { path: 'rxjs', component: RxjsPracticeComponent },
 ];
 
 @NgModule({

@@ -217,3 +217,10 @@ p {
 .mat-mdc-progress-spinner {
   --mdc-circular-progress-active-indicator-color: var(--body_color);
 }
+
+.delete-btn {
+  position: absolute;
+  top: 0;
+  right: 50px;
+  color: red;
+}

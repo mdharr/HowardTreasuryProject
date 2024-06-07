@@ -64,6 +64,11 @@ export class CreateUserListDialogComponent implements OnInit, OnDestroy {
       selected: false,
     };
 
+    if (this.newUserListName.toLowerCase() === "favorites") {
+      this.dialogRef.close();
+      return;
+    }
+
     this.userListSubscription = this.userListService.createUserList(userList).subscribe({
       next: (data) => {
         this.dialogRef.close();

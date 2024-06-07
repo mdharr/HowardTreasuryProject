@@ -17,8 +17,11 @@
 
         <ng-container *ngFor="let userList of userLists$ | async">
           <mat-expansion-panel class="expansion-panels" #expansionPanel>
-            <mat-expansion-panel-header>
+            <mat-expansion-panel-header style="position: relative;" (mouseover)="userList.name.toLowerCase() !== 'favorites' ? onMouseOver($event, expansionPanel, userList) : ''" (mouseleave)="onMouseLeave($event, expansionPanel)">
               {{ userList.name }}
+              <button class="delete-btn" *ngIf="currentPanel === expansionPanel" mat-icon-button (click)="onDeleteButtonClick($event, userList)">
+                <mat-icon>delete</mat-icon>
+              </button>
             </mat-expansion-panel-header>
             <div class="category-wrapper">
               <h3>Stories</h3>

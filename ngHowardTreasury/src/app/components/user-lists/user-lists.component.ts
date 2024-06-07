@@ -1,5 +1,5 @@
 import { UserlistService } from './../../services/userlist.service';
-import { Component, OnInit, OnDestroy, inject, QueryList, ViewChildren, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, QueryList, ViewChildren, AfterViewInit, HostListener } from '@angular/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
@@ -7,6 +7,7 @@ import { User } from 'src/app/models/user';
 import { UserList } from 'src/app/models/user-list';
 import { AuthService } from 'src/app/services/auth.service';
 import { DialogService } from 'src/app/services/dialog.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-user-lists',
@@ -15,6 +16,8 @@ import { DialogService } from 'src/app/services/dialog.service';
 })
 export class UserListsComponent implements OnInit, OnDestroy, AfterViewInit {
 
+  @ViewChildren(MatExpansionPanel) panels!: QueryList<MatExpansionPanel>;
+
   // property initialization
   loggedInUser: User = new User();
   userLists: UserList[] = [];
@@ -22,6 +25,10 @@ export class UserListsComponent implements OnInit, OnDestroy, AfterViewInit {
   userLists$: Observable<UserList[]> | undefined;
   isLoading: boolean = true;
   userListsLength: number = 0;
+
+    // right click context
+    currentPanel: MatExpansionPanel | null = null;
+    currentUserList: UserList | null = null;
 
   // booleans
   isLoggedIn: boolean = false;
@@ -39,6 +46,7 @@ export class UserListsComponent implements OnInit, OnDestroy, AfterViewInit {
   authService = inject(AuthService);
   userListService = inject(UserlistService);
   dialogService = inject(DialogService);
+  snackbarService = inject(SnackbarService);
 
   @ViewChildren('expansionPanel') expansionPanels!: QueryList<MatExpansionPanel>;
 
@@ -134,4 +142,34 @@ export class UserListsComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
+  onMouseOver(event: MouseEvent, panel: MatExpansionPanel, userList: UserList) {
+    this.currentPanel = panel;
+    this.currentUserList = userList;
+  }
+
+  onMouseLeave(e: MouseEvent, panel: MatExpansionPanel) {
+    if (this.currentPanel === panel) {
+      this.currentPanel = null;
+      this.currentUserList = null;
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(e: MouseEvent) {
+    this.currentPanel = null;
+  }
+
+  onDeleteButtonClick(e: MouseEvent, userList: UserList) {
+    e.stopPropagation();
+    if (userList.name.toLowerCase() !== 'favorites') {
+      this.deleteUserList(userList);
+      this.openSnackbar('List Deleted!', 'Dismiss');
+    } else if (userList.name.toLowerCase() === 'favorites') {
+      this.openSnackbar('Cannot Delete Favorites', 'Dismiss');
+    }
+  }
+
+  openSnackbar(message: string, action: string) {
+    this.snackbarService.openSnackbar(message, action);
+  }
 }

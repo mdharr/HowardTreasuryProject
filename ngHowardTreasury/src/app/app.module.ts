@@ -84,6 +84,7 @@ import { StoryRecommendationComponent } from './components/story-recommendation/
 import { MarqueeComponent } from './components/marquee/marquee.component';
 import { FullscreenImageComponent } from './components/fullscreen-image/fullscreen-image.component';
 import { AdventureComponent } from './components/adventure/adventure.component';
+import { RxjsPracticeComponent } from './components/rxjs-practice/rxjs-practice.component';
 
 
 @NgModule({
@@ -145,6 +146,7 @@ import { AdventureComponent } from './components/adventure/adventure.component';
     MarqueeComponent,
     FullscreenImageComponent,
     AdventureComponent,
+    RxjsPracticeComponent,
   ],
   imports: [
     BrowserModule,
