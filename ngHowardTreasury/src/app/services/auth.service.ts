@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable, catchError, throwError, tap } from 'rxjs';
 import { Buffer } from "buffer";
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
-import { UserlistService } from './userlist.service';
 
 @Injectable({
   providedIn: 'root'
@@ -158,6 +157,14 @@ export class AuthService {
 
   verifyAccount(token: string): Observable<any> {
     return this.http.get(`${this.url}verify?token=${token}`, { responseType: 'text' });
+  }
+
+  requestPasswordReset(email: string): Observable<any> {
+    return this.http.post(`${this.url}/password-reset-request`, { email });
+  }
+
+  resetPassword(token: string, password: string): Observable<any> {
+    return this.http.post(`${this.url}/reset-password`, { token, password });
   }
 
 }
