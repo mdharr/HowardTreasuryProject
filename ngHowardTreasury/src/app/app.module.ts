@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -177,7 +177,8 @@ import { PasswordResetComponent } from './components/password-reset/password-res
     MatFormFieldModule,
     MatSelectModule,
     MatSliderModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    ReactiveFormsModule
   ],
   providers: [
     WebSocketService,
