@@ -29,7 +29,7 @@ public class EmailServiceImpl implements EmailService {
 	    mailSender.send(message);
 	}
 
-    @Override
+	@Override
     public void sendResetPasswordEmail(String to, String subject, String emailBody) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(fromEmail);

@@ -2,6 +2,7 @@ package com.skilldistillery.howardtreasury.controllers;
 
 import java.security.Principal;
 import java.util.Date;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -100,7 +101,8 @@ public class AuthController {
     }
     
     @PostMapping("password-reset-request")
-    public ResponseEntity<String> requestPasswordReset(@RequestParam("email") String email) {
+    public ResponseEntity<String> requestPasswordReset(@RequestBody Map<String, String> request) {
+    	String email = request.get("email");
         authService.requestPasswordReset(email);
         return ResponseEntity.ok("Password reset email sent.");
     }

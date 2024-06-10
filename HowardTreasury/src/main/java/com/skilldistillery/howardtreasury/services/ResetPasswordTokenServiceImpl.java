@@ -3,12 +3,13 @@ package com.skilldistillery.howardtreasury.services;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.howardtreasury.entities.ResetPasswordToken;
 import com.skilldistillery.howardtreasury.entities.User;
-import com.skilldistillery.howardtreasury.entities.VerificationToken;
 import com.skilldistillery.howardtreasury.repositories.ResetPasswordTokenRepository;
 
+@Service
 public class ResetPasswordTokenServiceImpl implements ResetPasswordTokenService {
 	
 	@Autowired

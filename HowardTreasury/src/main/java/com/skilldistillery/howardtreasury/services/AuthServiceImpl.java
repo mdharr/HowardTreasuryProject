@@ -160,12 +160,21 @@ public class AuthServiceImpl implements AuthService {
     public void requestPasswordReset(String email) {
         User user = userRepo.findByEmail(email);
         if (user != null) {
-        	String recipientAddress = user.getEmail();
+        	String recipientAddress = email;
+        	String subject = "Reset password instructions\n";
             String token = resetPasswordTokenService.createPasswordResetToken(user);
             String resetUrl = "http://localhost:4304/#/verify?token=" + token;
 //            String resetUrl = "http://34.193.101.27:8080/HowardTreasury/#/verify?token=" + token;
-            String message = "Hello" + recipientAddress + "!" + "\n" + "Someone has requested a link to change your password. You can do this through the link below." + "\n" + resetUrl + "\n" + "If you didn't request this, please ignore this email." + "\n" + "Your password won't change until you access the link above and create a new one." + "\n";
-            emailService.sendResetPasswordEmail(recipientAddress, "Password Reset Request", message);
+            String message = "Hello " + recipientAddress + "!" + "\n" + "\n" + "Someone has requested a link to change your password. You can do this through the link below." + "\n" + "\n" + resetUrl + "\n" + "\n" + "If you didn't request this, please ignore this email." + "\n" + "\n" + "Your password won't change until you access the link above and create a new one." + "\n";
+    	    // Send the verification email
+    	    try {
+                emailService.sendResetPasswordEmail(recipientAddress, subject, message);
+    	        System.out.println("Password reset email sent to: " + recipientAddress);
+    	    } catch (Exception e) {
+    	        System.err.println("Error sending password reset email: " + e.getMessage());
+    	        e.printStackTrace();
+    	        throw e;
+    	    }
         }
     }
 
