@@ -53,6 +53,7 @@
 		<class>com.skilldistillery.howardtreasury.entities.BlogPost</class>
 		<class>com.skilldistillery.howardtreasury.entities.BlogComment</class>
 		<class>com.skilldistillery.howardtreasury.entities.VerificationToken</class>
+		<class>com.skilldistillery.howardtreasury.entities.ResetPasswordToken</class>
 		<class>com.skilldistillery.howardtreasury.entities.WeirdTales</class>
 
 		<!-- end entities -->

@@ -803,6 +803,26 @@ CREATE TABLE IF NOT EXISTS `weird_tales_content_has_author` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `password_reset_token`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `password_reset_token` ;
+
+CREATE TABLE IF NOT EXISTS `password_reset_token` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `token` TEXT NULL,
+  `user_id` INT NOT NULL,
+  `expiry_date` DATETIME NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_password_reset_token_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_password_reset_token_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS howardtreasury@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
