@@ -98,5 +98,21 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
     }
+    
+    @PostMapping("password-reset-request")
+    public ResponseEntity<String> requestPasswordReset(@RequestParam("email") String email) {
+        authService.requestPasswordReset(email);
+        return ResponseEntity.ok("Password reset email sent.");
+    }
+
+    @PostMapping("reset-password")
+    public ResponseEntity<String> resetPassword(@RequestParam("token") String token, @RequestParam("password") String password) {
+        boolean result = authService.resetPassword(token, password);
+        if (result) {
+            return ResponseEntity.ok("Password reset successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or expired token.");
+        }
+    }
 
 }
