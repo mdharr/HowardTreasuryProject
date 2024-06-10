@@ -10,4 +10,6 @@ public interface AuthService {
 	public User enable(User userToEnable);
 	public boolean disable(int id);
 	public boolean disableUser(String username);
+	void requestPasswordReset(String email);
+	boolean resetPassword(String token, String newPassword);
 }

@@ -1,11 +1,13 @@
 package com.skilldistillery.howardtreasury.services;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.howardtreasury.entities.ResetPasswordToken;
 import com.skilldistillery.howardtreasury.entities.User;
 import com.skilldistillery.howardtreasury.entities.UserList;
 import com.skilldistillery.howardtreasury.repositories.UserRepository;
@@ -27,6 +29,9 @@ public class AuthServiceImpl implements AuthService {
 	
 	@Autowired
 	private VerificationTokenService tokenService;
+	
+	@Autowired
+    private ResetPasswordTokenService resetPasswordTokenService;
 	
 	@Override
 	public User register(User user) {
@@ -151,4 +156,31 @@ public class AuthServiceImpl implements AuthService {
         return false;
     }
 
+    @Override
+    public void requestPasswordReset(String email) {
+        User user = userRepo.findByEmail(email);
+        if (user != null) {
+        	String recipientAddress = user.getEmail();
+            String token = resetPasswordTokenService.createPasswordResetToken(user);
+            String resetUrl = "http://localhost:4304/#/verify?token=" + token;
+//            String resetUrl = "http://34.193.101.27:8080/HowardTreasury/#/verify?token=" + token;
+            String message = "Hello" + recipientAddress + "!" + "\n" + "Someone has requested a link to change your password. You can do this through the link below." + "\n" + resetUrl + "\n" + "If you didn't request this, please ignore this email." + "\n" + "Your password won't change until you access the link above and create a new one." + "\n";
+            emailService.sendResetPasswordEmail(recipientAddress, "Password Reset Request", message);
+        }
+    }
+
+    @Override
+    public boolean resetPassword(String token, String newPassword) {
+        ResetPasswordToken resetToken = resetPasswordTokenService.getResetPasswordToken(token);
+        if (resetToken == null || resetToken.getExpiryDate().before(new Date())) {
+            return false; // Token is invalid or expired
+        }
+        User user = resetToken.getUser();
+        if (user != null) {
+            user.setPassword(encoder.encode(newPassword));
+            userRepo.save(user);
+            return true;
+        }
+        return false;
+    }
 }

@@ -47,6 +47,12 @@ public class ResetPasswordToken {
         this();
         this.user = user;
     }
+    
+    public ResetPasswordToken(User user, String token) {
+        this.user = user;
+        this.token = token;
+        this.expiryDate = calculateExpiryDate(EXPIRATION_TIME_IN_MINUTES);
+    }
 
 	public ResetPasswordToken(Long id, String token, Date expiryDate, User user) {
 		super();

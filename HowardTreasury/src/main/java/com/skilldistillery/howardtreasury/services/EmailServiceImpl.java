@@ -29,5 +29,14 @@ public class EmailServiceImpl implements EmailService {
 	    mailSender.send(message);
 	}
 
+    @Override
+    public void sendResetPasswordEmail(String to, String subject, String emailBody) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(fromEmail);
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(emailBody);
+        mailSender.send(message);
+    }
 
 }
