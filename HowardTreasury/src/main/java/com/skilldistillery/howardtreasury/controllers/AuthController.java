@@ -2,12 +2,15 @@ package com.skilldistillery.howardtreasury.controllers;
 
 import java.security.Principal;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -101,21 +104,28 @@ public class AuthController {
     }
     
     @PostMapping("password-reset-request")
-    public ResponseEntity<String> requestPasswordReset(@RequestBody Map<String, String> request) {
-    	String email = request.get("email");
+    public ResponseEntity<Map<String, String>> requestPasswordReset(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
         authService.requestPasswordReset(email);
-        return ResponseEntity.ok("Password reset email sent.");
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Password reset email sent.");
+        return ResponseEntity.ok()
+            .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+            .body(response);
     }
-
+    
     @PostMapping("reset-password")
-    public ResponseEntity<String> resetPassword(@RequestBody Map<String, String> request) {
+    public ResponseEntity<Map<String, String>> resetPassword(@RequestBody Map<String, String> request) {
         String token = request.get("token");
         String password = request.get("password");
         boolean result = authService.resetPassword(token, password);
+        Map<String, String> response = new HashMap<>();
         if (result) {
-            return ResponseEntity.ok("Password reset successfully.");
+            response.put("message", "Password reset successfully.");
+            return ResponseEntity.ok(response);
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or expired token.");
+            response.put("message", "Invalid or expired token.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
     }
 

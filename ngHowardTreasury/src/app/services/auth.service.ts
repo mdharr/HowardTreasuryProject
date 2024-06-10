@@ -147,6 +147,7 @@ export class AuthService {
   }
 
   resetPassword(token: string, password: string): Observable<any> {
+    console.log(token, password)
     return this.http.post(`${this.url}reset-password`, { token, password });
   }
 

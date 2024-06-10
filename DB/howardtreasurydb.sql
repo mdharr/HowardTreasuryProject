@@ -680,6 +680,7 @@ CREATE TABLE IF NOT EXISTS `verification_token` (
   `expiry_date` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_verification_token_user1_idx` (`user_id` ASC),
+  UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
   CONSTRAINT `fk_verification_token_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)

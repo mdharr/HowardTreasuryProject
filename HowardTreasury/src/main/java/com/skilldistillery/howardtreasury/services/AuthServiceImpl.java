@@ -180,7 +180,7 @@ public class AuthServiceImpl implements AuthService {
     	    try {
 //                emailService.sendResetPasswordEmail(recipientAddress, subject, message);
                 emailService.sendHtmlEmail(recipientAddress, subject, message);
-    	        System.out.println("Password reset email sent to: " + recipientAddress);
+//    	        System.out.println("Password reset email sent to: " + recipientAddress);
     	    } catch (Exception e) {
     	        System.err.println("Error sending password reset email: " + e.getMessage());
     	        e.printStackTrace();
@@ -199,6 +199,7 @@ public class AuthServiceImpl implements AuthService {
         if (user != null) {
             user.setPassword(encoder.encode(newPassword));
             userRepo.save(user);
+            resetPasswordTokenService.deleteResetPasswordToken(token); // Delete the token after resetting the password
             return true;
         }
         return false;
