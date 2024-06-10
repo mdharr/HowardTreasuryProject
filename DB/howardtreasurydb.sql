@@ -1275,6 +1275,7 @@ INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (4, 'King Kull Stories'
 INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (5, 'King Kull Miscellanea', 2);
 INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (6, 'King Kull Favorites', 2);
 INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (7, 'Favorites', 3);
+INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (8, 'Favorites', 4);
 
 COMMIT;
 

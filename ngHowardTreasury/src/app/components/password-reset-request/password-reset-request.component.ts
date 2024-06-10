@@ -16,7 +16,6 @@ export class PasswordResetRequestComponent implements OnDestroy {
   countdown: number = 5;
   countdownStarted: boolean = false;
 
-  private countdownSubscription: Subscription | null = null;
   private passwordResetSub: Subscription | null = null;
 
   private authService = inject(AuthService);
@@ -34,7 +33,7 @@ export class PasswordResetRequestComponent implements OnDestroy {
     this.passwordResetSub = this.authService.requestPasswordReset(this.email).subscribe({
       next: (response) => {
         console.log(response);
-        this.statusMessage = 'Email sent. Please check your inbox.';
+        this.statusMessage = 'You should receive an email in a few moments. Please be sure to check your spam folder.';
         this.cdr.detectChanges();
         this.sending = false;
         this.error = false;
