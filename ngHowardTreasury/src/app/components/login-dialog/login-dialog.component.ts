@@ -53,4 +53,5 @@ export class LoginDialogComponent {
   openSnackbar(message: string, action: string) {
     this.snackbarService.openSnackbar(message, action);
   }
+
 }

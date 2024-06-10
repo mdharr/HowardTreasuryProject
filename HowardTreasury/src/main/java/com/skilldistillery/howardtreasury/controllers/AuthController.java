@@ -108,7 +108,9 @@ public class AuthController {
     }
 
     @PostMapping("reset-password")
-    public ResponseEntity<String> resetPassword(@RequestParam("token") String token, @RequestParam("password") String password) {
+    public ResponseEntity<String> resetPassword(@RequestBody Map<String, String> request) {
+        String token = request.get("token");
+        String password = request.get("password");
         boolean result = authService.resetPassword(token, password);
         if (result) {
             return ResponseEntity.ok("Password reset successfully.");

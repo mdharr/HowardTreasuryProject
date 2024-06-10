@@ -97,23 +97,6 @@ export class AuthService {
     return this.http.post<void>(`${this.url}logout`, {});
   }
 
-  // getLoggedInUser(): Observable<User> {
-  //   let httpOptions = {
-  //     headers: {
-  //       Authorization: 'Basic ' + this.getCredentials(),
-  //       'X-Requested-with': 'XMLHttpRequest',
-  //     },
-  //   };
-  //   return this.http.get<User>(this.url + 'authenticate', httpOptions).pipe(
-  //     catchError((err: any) => {
-  //       console.log(err);
-  //       return throwError(
-  //         () => new Error( 'AuthService.getUserById(): error retrieving user: ' + err )
-  //       );
-  //     })
-  //   );
-  // }
-
   getLoggedInUser(): Observable<User> {
     let httpOptions = {
       headers: {
@@ -160,11 +143,11 @@ export class AuthService {
   }
 
   requestPasswordReset(email: string): Observable<any> {
-    return this.http.post(`${this.url}/password-reset-request`, { email });
+    return this.http.post(`${this.url}password-reset-request`, { email });
   }
 
   resetPassword(token: string, password: string): Observable<any> {
-    return this.http.post(`${this.url}/reset-password`, { token, password });
+    return this.http.post(`${this.url}reset-password`, { token, password });
   }
 
 }

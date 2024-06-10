@@ -163,7 +163,8 @@ public class AuthServiceImpl implements AuthService {
         	String recipientAddress = email;
         	String subject = "Reset password instructions\n";
             String token = resetPasswordTokenService.createPasswordResetToken(user);
-            String resetUrl = "http://localhost:4304/#/reset?token=" + token;
+            String resetUrl = "http://localhost:4304/#/reset/" + token;
+//            String resetUrl = "http://localhost:4304/#/reset?token=" + token;
 //            String resetUrl = "http://34.193.101.27:8080/HowardTreasury/#/verify?token=" + token;
 //            String message = "Hello " + recipientAddress + "!" + "\n" + "\n" + "Someone has requested a link to change your password. You can do this through the link below." + "\n" + "\n" + resetUrl + "\n" + "\n" + "If you didn't request this, please ignore this email." + "\n" + "\n" + "Your password won't change until you access the link above and create a new one." + "\n";
             

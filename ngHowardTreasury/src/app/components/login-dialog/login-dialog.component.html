@@ -23,4 +23,5 @@
     </div>
     <button mat-raised-button id="loginFormBtn" type="button" (click)="login(loginUser)">Log In</button>
   </form>
+  <a [routerLink]="['/password/new']" (click)="dismissDialog()">Forgot your password?</a>
 </div>

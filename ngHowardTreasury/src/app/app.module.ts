@@ -85,6 +85,8 @@ import { MarqueeComponent } from './components/marquee/marquee.component';
 import { FullscreenImageComponent } from './components/fullscreen-image/fullscreen-image.component';
 import { AdventureComponent } from './components/adventure/adventure.component';
 import { RxjsPracticeComponent } from './components/rxjs-practice/rxjs-practice.component';
+import { PasswordResetRequestComponent } from './components/password-reset-request/password-reset-request.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 
 
 @NgModule({
@@ -147,6 +149,8 @@ import { RxjsPracticeComponent } from './components/rxjs-practice/rxjs-practice.
     FullscreenImageComponent,
     AdventureComponent,
     RxjsPracticeComponent,
+    PasswordResetRequestComponent,
+    PasswordResetComponent,
   ],
   imports: [
     BrowserModule,
