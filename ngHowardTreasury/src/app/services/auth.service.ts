@@ -60,12 +60,11 @@ export class AuthService {
   }
 
   updateUser(user: User): Observable<User> {
+    console.log('User object being sent:', user);  // Log the user object
     return this.http.put<User>(`${this.url}users/update`, user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error(err);
-        return throwError(
-          () => new Error( 'AuthService.update(): error updating user: ' + err )
-        );
+        return throwError(() => new Error('AuthService.update(): error updating user: ' + err));
       })
     );
   }

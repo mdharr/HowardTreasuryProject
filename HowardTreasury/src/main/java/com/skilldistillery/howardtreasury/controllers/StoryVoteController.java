@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,24 +60,48 @@ public class StoryVoteController {
     }
 
     @PostMapping("votes")
-    public ResponseEntity<StoryVote> createVote(@RequestBody StoryVoteDTO storyVote) {
-        Story story = storyService.find(storyVote.getStoryId());
+    public ResponseEntity<StoryVote> createVote(@RequestBody StoryVoteDTO storyVoteDto) {
+        Story story = storyService.find(storyVoteDto.getStoryId());
         if (story == null) {
             return ResponseEntity.badRequest().body(null);
         }
 
-        User user = userService.find(storyVote.getUserId());
+        User user = userService.find(storyVoteDto.getUserId());
         if (user == null) {
             return ResponseEntity.badRequest().body(null);
         }
 
-        StoryVote newStoryVote = new StoryVote();
-        newStoryVote.setStory(story);
-        newStoryVote.setUser(user);
-        newStoryVote.setVoteType(storyVote.getVoteType());
+        StoryVote existingVote = storyVoteService.getVoteByUserIdAndStoryId(user.getId(), story.getId());
 
-        StoryVote savedStoryVote = storyVoteService.saveVote(newStoryVote);
-        return ResponseEntity.ok(savedStoryVote);
+        if (existingVote != null) {
+            if (existingVote.getVoteType().equals(storyVoteDto.getVoteType())) {
+                storyVoteService.deleteVote(existingVote.getId());
+                return ResponseEntity.ok(null);
+            } else {
+                existingVote.setVoteType(storyVoteDto.getVoteType());
+                StoryVote updatedVote = storyVoteService.saveVote(existingVote);
+                return ResponseEntity.ok(updatedVote);
+            }
+        } else {
+            StoryVote newVote = new StoryVote();
+            newVote.setStory(story);
+            newVote.setUser(user);
+            newVote.setVoteType(storyVoteDto.getVoteType());
+            StoryVote savedVote = storyVoteService.saveVote(newVote);
+            return ResponseEntity.ok(savedVote);
+        }
+    }
+
+    @PutMapping("votes/{id}")
+    public ResponseEntity<StoryVote> updateVote(@PathVariable int id, @RequestBody StoryVoteDTO storyVote) {
+        StoryVote existingVote = storyVoteService.find(id);
+        if (existingVote == null) {
+            return ResponseEntity.notFound().build();
+        }
+        
+        existingVote.setVoteType(storyVote.getVoteType());
+        StoryVote updatedStoryVote = storyVoteService.saveVote(existingVote);
+        return ResponseEntity.ok(updatedStoryVote);
     }
 
     @DeleteMapping("votes/{voteId}")

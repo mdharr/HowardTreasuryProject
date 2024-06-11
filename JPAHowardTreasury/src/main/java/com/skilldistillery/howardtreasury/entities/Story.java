@@ -83,12 +83,8 @@ public class Story {
 	private List<WeirdTales> weirdTales;
 	
     @OneToMany(mappedBy = "story", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("story")
+    @JsonIgnoreProperties({"story", "collections"})
     private List<StoryVote> storyVotes;
-	
-//	@JsonIgnore
-//	@OneToMany(mappedBy = "story", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	private List<CollectionHasStory> collectionHasStories;
 
 	public Story() {
 		super();

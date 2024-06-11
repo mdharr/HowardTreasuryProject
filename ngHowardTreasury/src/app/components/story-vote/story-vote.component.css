@@ -1,0 +1,84 @@
+.wrapper {
+  padding: 50px;
+}
+
+.story-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 15px;
+  border: 3px solid transparent;
+  border-image: url('https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png') 30;
+  background-color: var(--black_color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+}
+
+.story-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.story-card h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.story-card h3:hover {
+  color: var(--subheader_color);
+}
+
+.buttons-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vote-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.vote-button:hover {
+  transform: scale(1.2);
+}
+
+.vote-count {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ccc;
+}
+
+.material-symbols-outlined {
+  font-size: 34px;
+  color: #ccc;
+}
+
+.material-symbols-outlined.voted {
+  color: green;
+}
+
+.material-symbols-outlined.voted.downvoted {
+  color: red;
+}
+
+@keyframes moveRight {
+  from {
+    opacity: 0;
+    transform: translateX(-1000px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

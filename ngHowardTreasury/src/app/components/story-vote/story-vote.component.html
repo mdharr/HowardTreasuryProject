@@ -1,1 +1,15 @@
-<p>story-vote works!</p>
+<div class="wrapper">
+  <div *ngFor="let story of (sortedStories$ | async); trackBy: trackByStoryId" class="story-card" [@storyAnimation]>
+    <!-- <img src="{{ story.collections[0].collectionImages[0].imageUrl }}" alt=""> -->
+    <h3 [routerLink]="['/stories', story.id]">{{ story.title }}</h3>
+    <div class="buttons-wrapper">
+      <button (click)="upvote(story)" class="vote-button">
+        <span class="material-symbols-outlined" [ngClass]="{'voted': getVoteType(story) === 'upvote'}">shift</span>
+      </button>
+      <span class="vote-count">{{ getVoteCount(story) }}</span>
+      <button (click)="downvote(story)" class="vote-button">
+        <span class="material-symbols-outlined downvoted" [ngClass]="{'voted': getVoteType(story) === 'downvote'}" style="transform: rotate(180deg);">shift</span>
+      </button>
+    </div>
+  </div>
+</div>

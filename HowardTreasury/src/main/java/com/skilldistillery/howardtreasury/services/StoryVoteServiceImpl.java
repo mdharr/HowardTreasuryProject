@@ -1,6 +1,7 @@
 package com.skilldistillery.howardtreasury.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,16 @@ public class StoryVoteServiceImpl implements StoryVoteService {
 
     @Autowired
     private StoryVoteRepository storyVoteRepo;
+    
+    @Override
+    public StoryVote find(int storyVoteId) {
+    	Optional<StoryVote> storyVoteOpt = storyVoteRepo.findById(storyVoteId);
+    	if (storyVoteOpt.isPresent()) {
+    		StoryVote storyVote = storyVoteOpt.get();
+    		return storyVote;
+    	}
+    	return null;
+    }
 
     @Override
     public List<StoryVote> getVotesByUserId(int userId) {

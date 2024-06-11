@@ -68,21 +68,21 @@ export class UpdateUserDialogComponent implements OnInit, OnDestroy {
   }
 
   update() {
-    // Validate profileDescription length
     if (this.tempUser.profileDescription.length > 300) {
       this.profileDescriptionError = true;
       this.openSnackbar('Profile Description must be no more than 300 characters.', 'Dismiss');
       return;
     }
 
-    // Clear the error if validation passes
     this.profileDescriptionError = false;
+
+    console.log('User object before update:', this.tempUser);  // Log the user object
 
     this.authSubscription = this.auth.updateUser(this.tempUser).subscribe({
       next: (data) => {
+        this.userService.updateUser(this.tempUser);
         this.dialogRef.close();
         this.openSnackbar('Update successful', 'Dismiss');
-        this.userService.updateUser(this.tempUser);
       },
       error: (err) => {
         console.error(err);

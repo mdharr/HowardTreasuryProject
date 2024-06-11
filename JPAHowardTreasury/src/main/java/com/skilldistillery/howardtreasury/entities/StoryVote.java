@@ -23,12 +23,12 @@ public class StoryVote {
 	
 	@ManyToOne
 	@JoinColumn(name = "story_id")
-	@JsonIgnoreProperties("storyVotes")
+	@JsonIgnoreProperties({"storyVotes", "collections"})
 	private Story story;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	@JsonIgnoreProperties("storyVotes")
+	@JsonIgnoreProperties({"storyVotes", "userLists"})
 	private User user;
 	
 	@Column(name = "vote_type")
