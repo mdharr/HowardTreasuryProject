@@ -824,6 +824,32 @@ CREATE TABLE IF NOT EXISTS `reset_password_token` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `story_vote`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `story_vote` ;
+
+CREATE TABLE IF NOT EXISTS `story_vote` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `story_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `vote_type` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_story_vote_story1_idx` (`story_id` ASC),
+  INDEX `fk_story_vote_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_story_vote_story1`
+    FOREIGN KEY (`story_id`)
+    REFERENCES `story` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_story_vote_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS howardtreasury@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -2785,6 +2811,19 @@ COMMIT;
 START TRANSACTION;
 USE `howardtreasurydb`;
 INSERT INTO `weird_tales_content_has_author` (`weird_tales_content_id`, `weird_tales_author_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `story_vote`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `story_vote` (`id`, `story_id`, `user_id`, `vote_type`) VALUES (1, 22, 1, 'upvote');
+INSERT INTO `story_vote` (`id`, `story_id`, `user_id`, `vote_type`) VALUES (2, 22, 2, 'upvote');
+INSERT INTO `story_vote` (`id`, `story_id`, `user_id`, `vote_type`) VALUES (3, 22, 3, 'upvote');
+INSERT INTO `story_vote` (`id`, `story_id`, `user_id`, `vote_type`) VALUES (4, 22, 4, 'downvote');
 
 COMMIT;
 

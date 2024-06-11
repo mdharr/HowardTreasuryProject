@@ -28,6 +28,48 @@ export class CommentComponent implements OnInit, OnDestroy {
   post: BlogPost = new BlogPost();
   postId: number = 0;
   loggedInUser: User = new User();
+  firstLetter: string = '';
+  userProfileColor: string = '';
+  profileColorsObject: { [key: string]: string } = {
+    '0': '#ffb503',
+    '1': '#ffdb01',
+    '2': '#d6cf05',
+    '3': '#8bc43d',
+    '4': '#00a350',
+    '5': '#01a99d',
+    '6': '#02aff0',
+    '7': '#0084ce',
+    '8': '#015fad',
+    '9': '#bcc3c7',
+    'A': '#ff6816',
+    'B': '#ff940e',
+    'C': '#ffb503',
+    'D': '#ffdb01',
+    'E': '#d6cf05',
+    'F': '#8bc43d',
+    'G': '#00a350',
+    'H': '#01a99d',
+    'I': '#02aff0',
+    'J': '#0084ce',
+    'K': '#015fad',
+    'L': '#bcc3c7',
+    'M': '#6c7b87',
+    'N': '#273f50',
+    'O': '#1e3894',
+    'P': '#663592',
+    'Q': '#983290',
+    'R': '#f93174',
+    'S': '#fb281a',
+    'T': '#ff6816',
+    'U': '#ff940e',
+    'V': '#ffb503',
+    'W': '#ffdb01',
+    'X': '#d6cf05',
+    'Y': '#8bc43d',
+    'Z': '#00a350',
+  };
+
+  profileColorsMap = new Map<string, string>();
 
   private loggedInSubscription: Subscription | undefined;
 
@@ -41,10 +83,12 @@ export class CommentComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscribeToLoggedInObservable();
+
+    this.profileColorsMap = new Map(Object.entries(this.profileColorsObject));
+
     this.authService.getLoggedInUser().subscribe({
       next: (user) => {
         this.loggedInUser = user;
-
       },
       error: (error) => {
         console.error('Error getting loggedInUser');
@@ -168,5 +212,9 @@ export class CommentComponent implements OnInit, OnDestroy {
 
   cancelDelete() {
     this.showDeleteConfirmation = false;
+  }
+
+  getColorForChar(char: string): string {
+    return this.profileColorsMap.get(char.toUpperCase()) ?? '#000';
   }
 }

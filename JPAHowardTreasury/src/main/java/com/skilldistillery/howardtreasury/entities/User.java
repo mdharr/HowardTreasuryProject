@@ -68,6 +68,9 @@ public class User {
     @JsonManagedReference
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private ResetPasswordToken resetPasswordToken;
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<StoryVote> storyVotes;
 
 	public User() {
 		super();
@@ -84,7 +87,7 @@ public class User {
 	
 	public User(int id, String username, String password, Boolean enabled, String role, String email,
 			String imageUrl, String profileDescription, List<UserList> userLists, List<BlogPost> blogPosts, List<BlogComment> comments,
-			List<ChatMessage> chatMessages, List<ChatRoom> chatRooms, VerificationToken verificationToken) {
+			List<ChatMessage> chatMessages, List<ChatRoom> chatRooms, VerificationToken verificationToken, List<StoryVote> storyVotes) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -100,6 +103,7 @@ public class User {
 		this.chatMessages = chatMessages;
 		this.chatRooms = chatRooms;
 		this.verificationToken = verificationToken;
+		this.storyVotes = storyVotes;
 	}
 
 	public int getId() {
@@ -213,6 +217,14 @@ public class User {
 	public void setVerificationToken(VerificationToken verificationToken) {
 		this.verificationToken = verificationToken;
 	}
+	
+    public List<StoryVote> getStoryVotes() {
+        return storyVotes;
+    }
+
+    public void setStoryVotes(List<StoryVote> storyVotes) {
+        this.storyVotes = storyVotes;
+    }
 
 	@Override
 	public int hashCode() {

@@ -1,7 +1,12 @@
 <div class="comment-section">
   <div class="comment" [ngClass]="{'parent-comment': replyDepth === 0}">
     <div class="user-meta">
-      <img class="user-image" src="{{ comment.user.imageUrl }}" alt="">
+      <img *ngIf="comment.user.imageUrl" class="user-image" src="{{ comment.user.imageUrl }}" alt="">
+      <ng-container *ngIf="!comment.user.imageUrl">
+        <div class="user-image" [ngStyle]="{ 'background-color': getColorForChar(comment.user.username.charAt(0)), 'display': 'flex', 'align-items': 'center', 'justify-content': 'center', 'font-size': '1rem', 'color': '#ffffff' }">
+          {{ comment.user.username.charAt(0).toUpperCase() }}
+        </div>
+      </ng-container>
       <p><ng-container *ngIf="!comment.user.enabled"><span style="text-decoration:line-through;">deleted</span></ng-container>
         <ng-container *ngIf="comment.user.enabled">{{ comment.user.username }}</ng-container><span> &#183; </span>{{ comment.createdAt | timeAgo }}
         <!-- add edit ago logic here using ng-container -->

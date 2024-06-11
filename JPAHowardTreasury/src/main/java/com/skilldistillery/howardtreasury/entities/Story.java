@@ -82,6 +82,9 @@ public class Story {
 			)
 	private List<WeirdTales> weirdTales;
 	
+    @OneToMany(mappedBy = "story", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<StoryVote> storyVotes;
+	
 //	@JsonIgnore
 //	@OneToMany(mappedBy = "story", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //	private List<CollectionHasStory> collectionHasStories;
@@ -94,7 +97,7 @@ public class Story {
 	public Story(int id, String title, String textUrl, LocalDateTime firstPublished, String alternateTitle,
 			Boolean isCopyrighted, LocalDateTime copyrightExpiresAt, String excerpt, String description, 
 			List<UserList> userLists, List<Collection> collections, List<StoryImage> storyImages, 
-			List<Person> persons, List<WeirdTales> weirdTales) {
+			List<Person> persons, List<WeirdTales> weirdTales, List<StoryVote> storyVotes) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -110,6 +113,7 @@ public class Story {
 		this.storyImages = storyImages;
 		this.persons = persons;
 		this.weirdTales = weirdTales;
+		this.storyVotes = storyVotes;
 	}
 
 	public int getId() {
@@ -231,6 +235,14 @@ public class Story {
 	public void setWeirdTales(List<WeirdTales> weirdTales) {
 		this.weirdTales = weirdTales;
 	}
+	
+    public List<StoryVote> getStoryVotes() {
+        return storyVotes;
+    }
+
+    public void setStoryVotes(List<StoryVote> storyVotes) {
+        this.storyVotes = storyVotes;
+    }
 
 	@Override
 	public int hashCode() {
