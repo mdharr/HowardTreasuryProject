@@ -10,6 +10,18 @@
   border-radius: 0 !important;
 }
 
+.login-dialog p {
+  text-decoration: none;
+  color: #ccc;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.login-dialog p:hover {
+  color: var(--white_color);
+  cursor: pointer;
+}
+
 ::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
   border: 3px solid transparent;
     border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;

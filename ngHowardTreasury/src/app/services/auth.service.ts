@@ -60,7 +60,6 @@ export class AuthService {
   }
 
   updateUser(user: User): Observable<User> {
-    console.log('User object being sent:', user);  // Log the user object
     return this.http.put<User>(`${this.url}users/update`, user, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.error(err);
@@ -146,7 +145,6 @@ export class AuthService {
   }
 
   resetPassword(token: string, password: string): Observable<any> {
-    console.log(token, password)
     return this.http.post(`${this.url}reset-password`, { token, password });
   }
 

@@ -76,8 +76,6 @@ export class UpdateUserDialogComponent implements OnInit, OnDestroy {
 
     this.profileDescriptionError = false;
 
-    console.log('User object before update:', this.tempUser);  // Log the user object
-
     this.authSubscription = this.auth.updateUser(this.tempUser).subscribe({
       next: (data) => {
         this.userService.updateUser(this.tempUser);
