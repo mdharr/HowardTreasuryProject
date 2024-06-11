@@ -67,5 +67,23 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals("My Favorite Solomon Kane Tale: “Wings in the Night” by Robert E. Howard", user.getBlogPosts().get(0).getTitle());
 	}
+	
+	@Test
+	void test_StoryVote_entity_mapping() {
+		assertNotNull(user);
+		assertEquals("upvote", user.getStoryVotes().get(0).getVoteType());
+	}
+	
+	@Test
+	void test_User_StoryVote_one_to_many_mapping() {
+		assertNotNull(user);
+		assertEquals("Conan", user.getStoryVotes().get(0).getUser().getUsername());
+	}
+	
+	@Test
+	void test_User_Story_many_to_many_mapping() {
+		assertNotNull(user);
+		assertEquals("The Tower of the Elephant", user.getStoryVotes().get(0).getStory().getTitle());
+	}
 
 }

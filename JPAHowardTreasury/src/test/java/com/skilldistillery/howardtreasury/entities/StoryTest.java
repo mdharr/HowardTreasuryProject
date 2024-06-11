@@ -18,6 +18,7 @@ class StoryTest {
 	private EntityManager em;
 	private Story story;
 	private Story story2;
+	private Story story3;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,6 +35,7 @@ class StoryTest {
 		em = emf.createEntityManager();
 		story = em.find(Story.class, 1);
 		story2 = em.find(Story.class, 119);
+		story3 = em.find(Story.class, 22);
 	}
 
 	@AfterEach
@@ -41,6 +43,7 @@ class StoryTest {
 		em.close();
 		story = null;
 		story2 = null;
+		story3 = null;
 	}
 
 	@Test
@@ -55,10 +58,22 @@ class StoryTest {
 		assertEquals("Weird Tales 1925 July", story2.getWeirdTales().get(0).getTitle());
 	}
 	
-//	@Test
-//	void test_Story_CollectionHasStory_one_to_many_mapping() {
-//		assertNotNull(story);
-//		assertEquals(133, story.getCollectionHasStories().get(0).getPageNumber());
-//	}
+	@Test
+	void test_StoryVote_entity_mapping() {
+		assertNotNull(story3);
+		assertEquals("upvote", story3.getStoryVotes().get(0).getVoteType());
+	}
+	
+	@Test
+	void test_Story_User_many_to_many_mapping() {
+		assertNotNull(story3);
+		assertEquals("Conan", story3.getStoryVotes().get(0).getUser().getUsername());
+	}
+	
+	@Test
+	void test_Story_Story_one_to_many_mapping() {
+		assertNotNull(story3);
+		assertEquals("The Tower of the Elephant", story3.getStoryVotes().get(0).getStory().getTitle());
+	}
 
 }
