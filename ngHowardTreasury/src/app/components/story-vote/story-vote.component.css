@@ -2,6 +2,21 @@
   padding: 50px;
 }
 
+.title {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--red_white);
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--red_white);
+  text-align: center;
+  margin-bottom: 25px;
+}
+
 .story-card {
   display: flex;
   justify-content: space-between;

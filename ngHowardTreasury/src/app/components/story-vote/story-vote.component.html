@@ -1,4 +1,6 @@
 <div class="wrapper">
+  <h1 class="title">Community Recommended Stories</h1>
+  <h3 class="subtitle">Vote on your favorite stories to help newcomers find their next pulp adventure!</h3>
   <div *ngFor="let story of (sortedStories$ | async); trackBy: trackByStoryId" class="story-card" [@storyAnimation]>
     <!-- <img src="{{ story.collections[0].collectionImages[0].imageUrl }}" alt=""> -->
     <h3 [routerLink]="['/stories', story.id]">{{ story.title }}</h3>
