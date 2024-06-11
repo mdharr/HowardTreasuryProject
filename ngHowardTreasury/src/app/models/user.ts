@@ -1,5 +1,6 @@
 import { ChatMessage } from "./chat-message";
 import { ChatRoom } from "./chat-room";
+import { StoryVote } from "./story-vote";
 import { UserList } from "./user-list";
 
 export class User {
@@ -15,6 +16,7 @@ export class User {
   userLists: UserList[];
   chatRooms?: ChatRoom[];
   chatMessages?: ChatMessage[];
+  storyVotes?: StoryVote[];
 
   constructor(
     id: number = 0,
@@ -26,7 +28,8 @@ export class User {
     email: string = '',
     imageUrl: string = '',
     profileDescription: string = '',
-    userLists: UserList[] = []
+    userLists: UserList[] = [],
+    storyVotes?: StoryVote[]
   ) {
     this.id = id;
     this.username = username;
@@ -38,5 +41,6 @@ export class User {
     this.imageUrl = imageUrl;
     this.profileDescription = profileDescription;
     this.userLists = userLists;
+    this.storyVotes = storyVotes || [];
   }
 }
