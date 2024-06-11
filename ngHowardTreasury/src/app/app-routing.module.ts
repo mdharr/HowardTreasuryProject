@@ -46,7 +46,7 @@ const routes: Routes = [
   { path: 'collections', component: CollectionsComponent, data: { animation: 'CollectionsPage' } },
   { path: 'collections/:collectionId', component: CollectionDetailsComponent, data: { animation: 'CollectionDetailsPage' } },
   { path: 'stories', component: StoriesComponent, data: { animation: 'StoriesPage' } },
-  { path: 'story-vote', component: StoryVoteComponent, data: { animation: 'StoryVotePage' } },
+  { path: 'story-vote', component: StoryVoteComponent, canActivate: [authGuard], data: { animation: 'StoryVotePage' } },
   { path: 'stories/:storyId', component: StoryDetailsComponent, data: { animation: 'StoryDetailsPage' } },
   { path: 'poems', component: PoemsComponent, data: { animation: 'PoemsPage' } },
   { path: 'poems/:poemId', component: PoemDetailsComponent, data: { animation: 'PoemDetailsPage' } },
@@ -67,7 +67,7 @@ const routes: Routes = [
   { path: 'posts/:postId/edit', component: BlogPostEditComponent, data: { animation: 'EditPostPage' } },
   { path: 'chat', component: ChatComponent, canActivate: [authGuard], data: { animation: 'ChatPage' } },
   { path: 'gallery', component: ImageGalleryComponent, data: { animation: 'ImageGalleryPage' } },
-  { path: 'adventure', component: AdventureComponent },
+  { path: 'adventure', component: AdventureComponent, canActivate: [authGuard] },
   { path: 'rxjs', component: RxjsPracticeComponent },
 ];
 
