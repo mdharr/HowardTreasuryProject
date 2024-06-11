@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "story_vote")
 public class StoryVote {
@@ -21,10 +23,12 @@ public class StoryVote {
 	
 	@ManyToOne
 	@JoinColumn(name = "story_id")
+	@JsonIgnoreProperties("storyVotes")
 	private Story story;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	@JsonIgnoreProperties("storyVotes")
 	private User user;
 	
 	@Column(name = "vote_type")
