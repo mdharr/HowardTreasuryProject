@@ -32,6 +32,7 @@ import { AdventureComponent } from './components/adventure/adventure.component';
 import { RxjsPracticeComponent } from './components/rxjs-practice/rxjs-practice.component';
 import { PasswordResetRequestComponent } from './components/password-reset-request/password-reset-request.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { StoryVoteComponent } from './components/story-vote/story-vote.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -45,6 +46,7 @@ const routes: Routes = [
   { path: 'collections', component: CollectionsComponent, data: { animation: 'CollectionsPage' } },
   { path: 'collections/:collectionId', component: CollectionDetailsComponent, data: { animation: 'CollectionDetailsPage' } },
   { path: 'stories', component: StoriesComponent, data: { animation: 'StoriesPage' } },
+  { path: 'story-vote', component: StoryVoteComponent, data: { animation: 'StoryVotePage' } },
   { path: 'stories/:storyId', component: StoryDetailsComponent, data: { animation: 'StoryDetailsPage' } },
   { path: 'poems', component: PoemsComponent, data: { animation: 'PoemsPage' } },
   { path: 'poems/:poemId', component: PoemDetailsComponent, data: { animation: 'PoemDetailsPage' } },
