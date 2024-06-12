@@ -11,7 +11,7 @@
   margin-bottom: 25px;
   line-height: 1.2;
   font-weight: 700;
-    font-family: var(--contentFontFamily);
+  font-family: var(--contentFontFamily);
 }
 
 .subtitle {
@@ -100,5 +100,84 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+.poll-wrapper {
+  width: 100%;
+  padding: 20px;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  background-color: var(--black_color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.poll-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.poll-item:hover {
+  cursor: pointer;
+}
+
+.poll-rank {
+  width: 30px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.poll-vote-count {
+  min-width: 50px;
+}
+
+.poll-bar {
+  flex: 1;
+  margin-left: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.poll-fill {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+.poll-title {
+  font-size: 1rem;
+  font-weight: bold;
+  white-space: nowrap; /* Prevent line breaks */
+}
+
+.title-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.title-wrapper .poll-title {
+  position: absolute;
+  animation: scroll 10s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .wrapper {
+    padding: 0;
   }
 }

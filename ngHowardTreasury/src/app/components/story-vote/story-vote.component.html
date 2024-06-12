@@ -1,17 +1,32 @@
 <div class="wrapper">
   <h1 class="title">Community Recommended Stories</h1>
   <h3 class="subtitle">Vote on your favorite stories to help newcomers find their next pulp adventure!</h3>
+  <div class="poll-wrapper">
+    <h2>Top 10 Highest Rated Stories</h2>
+    <div *ngFor="let story of topStories; let i = index" class="poll-item" [routerLink]="['/stories', story.id]">
+      <div class="poll-rank">{{ i + 1 }}</div>
+      <div class="poll-bar">
+        <div class="poll-fill" [style.width.%]="getVotePercentage(story)" [ngStyle]="{'background-color': getColor(i)}">
+          <span class="poll-vote-count">{{ getVoteCount(story) }}</span>
+          <div class="title-wrapper">
+            <span class="poll-title">{{ story.title }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div *ngFor="let story of (sortedStories$ | async); trackBy: trackByStoryId"
        class="story-card"
+       #storyCard
        [@voteAnimation]="voteState[story.id]"
        (@voteAnimation.done)="resetVoteStateAfterAnimation(story.id)">
     <h3 [routerLink]="['/stories', story.id]">{{ story.title }}</h3>
     <div class="buttons-wrapper">
-      <button (click)="upvote(story)" class="vote-button">
+      <button (click)="upvote(story, storyCard)" class="vote-button">
         <span class="material-symbols-outlined" [ngClass]="{'voted': getVoteType(story) === 'upvote'}">shift</span>
       </button>
       <span class="vote-count">{{ getVoteCount(story) }}</span>
-      <button (click)="downvote(story)" class="vote-button">
+      <button (click)="downvote(story, storyCard)" class="vote-button">
         <span class="material-symbols-outlined downvoted" [ngClass]="{'voted': getVoteType(story) === 'downvote'}" style="transform: rotate(180deg);">shift</span>
       </button>
     </div>
