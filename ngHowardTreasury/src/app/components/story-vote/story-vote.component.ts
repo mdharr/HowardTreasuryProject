@@ -13,19 +13,26 @@ import { StoryService } from 'src/app/services/story.service';
   templateUrl: './story-vote.component.html',
   styleUrls: ['./story-vote.component.css'],
   animations: [
-    trigger('storyAnimation', [
-      transition('* <=> *', [
-        query(':enter', [
-          style({ height: '0px', opacity: 0 }),
-          stagger(100, [
-            animate('300ms ease-out', style({ height: '*', opacity: 1 }))
-          ])
-        ], { optional: true }),
-        query(':leave', [
-          stagger(100, [
-            animate('300ms ease-in', style({ height: '0px', opacity: 0 }))
-          ])
-        ], { optional: true })
+    trigger('voteAnimation', [
+      state('upvoted', style({
+        transform: 'scale(1.02)',
+        backgroundColor: '#008001'
+      })),
+      state('downvoted', style({
+        transform: 'scale(1.02)',
+        backgroundColor: '#c13438'
+      })),
+      transition('* => upvoted', [
+        animate('0.5s ease')
+      ]),
+      transition('* => downvoted', [
+        animate('0.5s ease')
+      ]),
+      transition('upvoted => *', [
+        animate('0.5s ease')
+      ]),
+      transition('downvoted => *', [
+        animate('0.5s ease')
       ])
     ])
   ]
@@ -34,6 +41,7 @@ export class StoryVoteComponent implements OnInit {
   sortedStories$: Observable<Story[]>;
   userVotes: StoryVote[] = [];
   loggedInUser!: User;
+  voteState: { [storyId: number]: string } = {};
 
   storyService = inject(StoryService);
   storyVoteService = inject(StoryVoteService);
@@ -44,6 +52,7 @@ export class StoryVoteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.subscribeToLoggedInUser();
     this.storyService.loadStories();
   }
@@ -68,48 +77,104 @@ export class StoryVoteComponent implements OnInit {
     }
   }
 
-  upvote(story: Story): void {
+  // upvote(story: Story): void {
 
+  //   const existingVote = this.userVotes.find(vote => vote.story.id === story.id);
+
+  //   if (existingVote) {
+  //     if (existingVote.voteType === 'upvote') {
+  //       this.storyVoteService.deleteVote(existingVote.id).subscribe(() => {
+  //         this.loadUserVotes();
+  //       });
+  //     } else {
+  //       existingVote.voteType = 'upvote';
+  //       this.storyVoteService.updateVote(existingVote).subscribe(() => {
+  //         this.loadUserVotes();
+  //       });
+  //     }
+  //   } else {
+  //     const newVote = new StoryVote(0, story, this.loggedInUser, 'upvote');
+  //     this.storyVoteService.createVote(newVote).subscribe(() => {
+  //       this.loadUserVotes();
+  //     });
+  //   }
+  // }
+
+  // downvote(story: Story): void {
+
+  //   const existingVote = this.userVotes.find(vote => vote.story.id === story.id);
+
+  //   if (existingVote) {
+  //     if (existingVote.voteType === 'downvote') {
+  //       this.storyVoteService.deleteVote(existingVote.id).subscribe(() => {
+  //         this.loadUserVotes();
+  //       });
+  //     } else {
+  //       existingVote.voteType = 'downvote';
+  //       this.storyVoteService.updateVote(existingVote).subscribe(() => {
+  //         this.loadUserVotes();
+  //       });
+  //     }
+  //   } else {
+  //     const newVote = new StoryVote(0, story, this.loggedInUser, 'downvote');
+  //     this.storyVoteService.createVote(newVote).subscribe(() => {
+  //       this.loadUserVotes();
+  //     });
+  //   }
+  // }
+
+  upvote(story: Story): void {
     const existingVote = this.userVotes.find(vote => vote.story.id === story.id);
 
     if (existingVote) {
       if (existingVote.voteType === 'upvote') {
         this.storyVoteService.deleteVote(existingVote.id).subscribe(() => {
           this.loadUserVotes();
+          this.voteState[story.id] = 'upvoted';
+          this.resetVoteStateAfterAnimation(story.id);
         });
       } else {
         existingVote.voteType = 'upvote';
         this.storyVoteService.updateVote(existingVote).subscribe(() => {
           this.loadUserVotes();
+          this.voteState[story.id] = 'upvoted';
+          this.resetVoteStateAfterAnimation(story.id);
         });
       }
     } else {
       const newVote = new StoryVote(0, story, this.loggedInUser, 'upvote');
       this.storyVoteService.createVote(newVote).subscribe(() => {
         this.loadUserVotes();
+        this.voteState[story.id] = 'upvoted';
+        this.resetVoteStateAfterAnimation(story.id);
       });
     }
   }
 
   downvote(story: Story): void {
-
     const existingVote = this.userVotes.find(vote => vote.story.id === story.id);
 
     if (existingVote) {
       if (existingVote.voteType === 'downvote') {
         this.storyVoteService.deleteVote(existingVote.id).subscribe(() => {
           this.loadUserVotes();
+          this.voteState[story.id] = 'downvoted';
+          this.resetVoteStateAfterAnimation(story.id);
         });
       } else {
         existingVote.voteType = 'downvote';
         this.storyVoteService.updateVote(existingVote).subscribe(() => {
           this.loadUserVotes();
+          this.voteState[story.id] = 'downvoted';
+          this.resetVoteStateAfterAnimation(story.id);
         });
       }
     } else {
       const newVote = new StoryVote(0, story, this.loggedInUser, 'downvote');
       this.storyVoteService.createVote(newVote).subscribe(() => {
         this.loadUserVotes();
+        this.voteState[story.id] = 'downvoted';
+        this.resetVoteStateAfterAnimation(story.id);
       });
     }
   }
@@ -129,5 +194,11 @@ export class StoryVoteComponent implements OnInit {
 
   trackByStoryId(index: number, story: Story): number {
     return story.id;
+  }
+
+  resetVoteStateAfterAnimation(storyId: number) {
+    setTimeout(() => {
+      this.voteState[storyId] = '';
+    }, 300);
   }
 }

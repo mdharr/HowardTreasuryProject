@@ -1,6 +1,9 @@
 import { Component, HostListener, inject, OnDestroy, OnInit, ViewChild, Renderer2, ViewChildren, QueryList } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { AnimatedCardComponent } from '../animated-card/animated-card.component';
+import { User } from 'src/app/models/user';
+import { Subscription } from 'rxjs';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +18,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   // booleans
   isLoaded = false;
 
+  private loggedInSubscription: Subscription | undefined;
+
   authService = inject(AuthService);
   renderer = inject(Renderer2);
+  dialogService = inject(DialogService);
 
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -27,7 +33,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+    if (this.loggedInSubscription) {
+      this.loggedInSubscription.unsubscribe();
+    }
   }
 
   updateObjectPosition() {
@@ -74,5 +82,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
+  openLoginDialog() {
+    this.dialogService.openLoginDialog();
+  }
+
+  loggedIn(): boolean {
+    return this.authService.checkLogin();
+  }
 
 }

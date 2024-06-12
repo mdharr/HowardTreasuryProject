@@ -38,70 +38,6 @@ export class PasswordResetComponent implements OnInit, OnDestroy {
     });
   }
 
-  // onSubmit(e: Event) {
-  //   e.preventDefault();
-
-  //   if (this.password !== this.confirmPassword) {
-  //     this.statusMessage = 'Passwords do not match. Please try again.';
-  //     this.error = true;
-  //     setTimeout(() => {
-  //       this.error = false;
-  //     }, 2000);
-  //     return;
-  //   }
-
-  //   // if (!this.validatePassword(this.password)) {
-  //   //   this.statusMessage = 'Password must be a minimum of 8 characters and contain at least one uppercase letter, one number, one special character.';
-  //   //   this.error = true;
-  //   //   setTimeout(() => {
-  //   //     this.error = false;
-  //   //   }, 2000);
-  //   //   return;
-  //   // }
-
-  //   this.passwordCheckSub = this.authService.checkPassword(this.token, this.password).subscribe({
-  //     next: (passwordsMatch) => {
-  //       if (passwordsMatch) {
-  //         this.statusMessage = 'New password cannot be the same as the old password.';
-  //         this.error = true;
-  //         setTimeout(() => {
-  //           this.error = false;
-  //         }, 2000);
-  //         return;
-  //       }
-  //     },
-  //     error: (err) => {
-  //       console.error(err);
-  //       this.statusMessage = 'There was an error checking the password. Please try again or contact support.';
-  //       this.error = true;
-  //       setTimeout(() => {
-  //         this.error = false;
-  //       }, 2000);
-  //       return;
-  //     }
-  //   });
-
-  //   this.processing = true;
-
-  //   this.passwordResetSub = this.authService.resetPassword(this.token, this.password).subscribe({
-  //     next: (response) => {
-  //       this.statusMessage = 'Password successfully updated!';
-  //       this.cdr.detectChanges();
-  //       this.processing = false;
-  //       this.error = false;
-  //       this.cdr.detectChanges();
-  //       this.startCountdown();
-  //     },
-  //     error: (err) => {
-  //       console.error(err);
-  //       this.statusMessage = 'There was an error resetting the password. Please try again or contact support.';
-  //       this.cdr.detectChanges();
-  //       this.processing = false;
-  //       this.error = true;
-  //     }
-  //   });
-  // }
-
   onSubmit(e: Event) {
     e.preventDefault();
 
@@ -187,7 +123,5 @@ export class PasswordResetComponent implements OnInit, OnDestroy {
   validatePassword(password: string): boolean {
     return this.passwordPattern.test(password);
   }
-
-
 
 }

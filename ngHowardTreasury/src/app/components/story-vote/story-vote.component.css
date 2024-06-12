@@ -1,5 +1,6 @@
 .wrapper {
-  padding: 50px;
+  padding: 2%;
+  padding-top: 50px;
 }
 
 .title {
@@ -8,6 +9,9 @@
   color: var(--red_white);
   text-align: center;
   margin-bottom: 25px;
+  line-height: 1.2;
+  font-weight: 700;
+    font-family: var(--contentFontFamily);
 }
 
 .subtitle {
@@ -15,6 +19,7 @@
   color: var(--red_white);
   text-align: center;
   margin-bottom: 25px;
+  font-size: 18px;
 }
 
 .story-card {

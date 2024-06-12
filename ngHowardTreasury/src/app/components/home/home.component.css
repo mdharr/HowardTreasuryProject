@@ -294,6 +294,60 @@ app-excerpt-loop {
   padding-bottom: 30px;
 }
 
+.recommendation-header {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  text-align: justify;
+  color: var(--body_color);
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  word-break: break-word;
+  white-space: pre-line;
+  word-spacing: -0.5px;
+  font-family: var(--contentFontFamily);
+  font-weight: 700;
+}
+
+.story-vote-link {
+  font-size: var(--body_font);
+  line-height: 1.5;
+  text-align: justify;
+  color: var(--red_milk);
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  word-break: break-word;
+  white-space: pre-line;
+  word-spacing: -0.5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--contentFontFamily);
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  transition: transform 0.2s ease, color 0.2s ease;
+  animation: 1s float ease-in-out infinite;
+}
+
+.story-vote-link::before {
+  content: '➔';
+  position: absolute;
+  left: 100px;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  font-size: 1.2em;
+  color: var(--red_milk);
+  margin-top: -3px;
+}
+
+.story-vote-link:hover {
+  color: var(--black_white);
+}
+
+.story-vote-link:hover::before {
+  opacity: 1;
+  color: var(--black_white);
+  transform: translateX(15px);
+}
 
 @media screen and (max-width: 1028px) {
 

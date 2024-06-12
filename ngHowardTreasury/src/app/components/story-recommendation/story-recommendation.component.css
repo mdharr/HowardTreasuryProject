@@ -30,11 +30,10 @@
 
 .text:hover {
   color: var(--black_white);
-  transform: translateX(5px);
 }
 
 .text:hover::before {
   opacity: 1;
   color: var(--black_white);
-  transform: translateX(5px);
+  transform: translateX(15px);
 }
