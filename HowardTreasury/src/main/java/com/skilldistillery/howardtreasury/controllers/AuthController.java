@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.howardtreasury.dtos.CheckPasswordRequest;
 import com.skilldistillery.howardtreasury.entities.User;
 import com.skilldistillery.howardtreasury.entities.VerificationToken;
 import com.skilldistillery.howardtreasury.services.AuthService;
@@ -128,5 +129,21 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
     }
+    
+    @PostMapping("check-password")
+    public ResponseEntity<Boolean> checkPassword(@RequestBody CheckPasswordRequest request) {
+        try {
+            if (request.getToken() == null || request.getNewPassword() == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false);
+            }
+            
+            boolean passwordsMatch = authService.checkPassword(request.getToken(), request.getNewPassword());
+            return ResponseEntity.ok(passwordsMatch);
+        } catch (Exception e) {
+            e.printStackTrace(); // Log the error
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+        }
+    }
+
 
 }

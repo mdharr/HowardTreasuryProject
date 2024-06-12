@@ -33,6 +33,9 @@ public class AuthServiceImpl implements AuthService {
 	@Autowired
     private ResetPasswordTokenService resetPasswordTokenService;
 	
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+	
 	@Override
 	public User register(User user) {
 	    System.out.println("Starting registration process for: " + user.getEmail());
@@ -204,4 +207,17 @@ public class AuthServiceImpl implements AuthService {
         }
         return false;
     }
+    
+    @Override
+    public boolean checkPassword(String token, String newPassword) {
+        ResetPasswordToken resetToken = resetPasswordTokenService.getResetPasswordToken(token);
+        if (resetToken != null) {
+            User user = resetToken.getUser();
+            if (user != null) {
+                return passwordEncoder.matches(newPassword, user.getPassword());
+            }
+        }
+        throw new RuntimeException("Invalid token");
+    }
+    
 }

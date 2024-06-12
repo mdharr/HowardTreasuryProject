@@ -12,4 +12,5 @@ public interface AuthService {
 	public boolean disableUser(String username);
 	void requestPasswordReset(String email);
 	boolean resetPassword(String token, String newPassword);
+	public boolean checkPassword(String token, String newPassword);
 }

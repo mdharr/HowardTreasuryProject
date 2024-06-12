@@ -148,4 +148,18 @@ export class AuthService {
     return this.http.post(`${this.url}reset-password`, { token, password });
   }
 
+  checkPassword(token: string, newPassword: string): Observable<boolean> {
+    interface CheckPasswordRequest {
+      token: string;
+      newPassword: string;
+    }
+
+    const payload: CheckPasswordRequest = { token, newPassword };
+    return this.http.post<boolean>(`${this.url}check-password`, payload, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
 }
