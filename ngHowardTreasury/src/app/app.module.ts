@@ -84,7 +84,6 @@ import { StoryRecommendationComponent } from './components/story-recommendation/
 import { MarqueeComponent } from './components/marquee/marquee.component';
 import { FullscreenImageComponent } from './components/fullscreen-image/fullscreen-image.component';
 import { AdventureComponent } from './components/adventure/adventure.component';
-import { RxjsPracticeComponent } from './components/rxjs-practice/rxjs-practice.component';
 import { PasswordResetRequestComponent } from './components/password-reset-request/password-reset-request.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { StoryVoteComponent } from './components/story-vote/story-vote.component';
@@ -149,7 +148,6 @@ import { StoryVoteComponent } from './components/story-vote/story-vote.component
     MarqueeComponent,
     FullscreenImageComponent,
     AdventureComponent,
-    RxjsPracticeComponent,
     PasswordResetRequestComponent,
     PasswordResetComponent,
     StoryVoteComponent,
