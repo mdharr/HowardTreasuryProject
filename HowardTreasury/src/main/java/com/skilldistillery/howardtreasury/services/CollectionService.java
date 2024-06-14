@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
 import com.skilldistillery.howardtreasury.dtos.CollectionWithStoriesDTO;
+import com.skilldistillery.howardtreasury.dtos.SimpleCollectionDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
 import com.skilldistillery.howardtreasury.entities.CollectionHasStory;
 
@@ -35,5 +36,7 @@ public interface CollectionService {
 	public List<Collection> getByPoemId(int poemId);
 	
 	public List<Collection> getByMiscellaneaId(int miscellaneaId);
+	
+	public SimpleCollectionDTO mapToDTO(Collection collection);
 
 }

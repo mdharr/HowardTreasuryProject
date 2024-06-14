@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
 import com.skilldistillery.howardtreasury.dtos.CollectionWithStoriesDTO;
+import com.skilldistillery.howardtreasury.dtos.SimpleCollectionDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
 import com.skilldistillery.howardtreasury.entities.CollectionHasMiscellanea;
 import com.skilldistillery.howardtreasury.entities.CollectionHasPoem;
@@ -319,6 +320,17 @@ public class CollectionServiceImpl implements CollectionService {
 	@Override
 	public List<Collection> getByMiscellaneaId(int miscellaneaId) {
 		return collectionRepo.findByMiscellaneas_Id(miscellaneaId);
+	}
+	
+	@Override
+	public SimpleCollectionDTO mapToDTO(Collection collection) {
+		SimpleCollectionDTO dto = new SimpleCollectionDTO();
+		dto.setId(collection.getId());
+		dto.setTitle(collection.getTitle());
+		dto.setPublishedAt(collection.getPublishedAt());
+		dto.setSeries(collection.getSeries());
+
+		return dto;
 	}
 
 }

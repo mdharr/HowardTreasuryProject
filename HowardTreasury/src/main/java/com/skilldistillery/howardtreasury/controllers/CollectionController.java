@@ -3,6 +3,7 @@ package com.skilldistillery.howardtreasury.controllers;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.skilldistillery.howardtreasury.dtos.CollectionDetailsDTO;
 import com.skilldistillery.howardtreasury.dtos.CollectionWithStoriesDTO;
+import com.skilldistillery.howardtreasury.dtos.SimpleCollectionDTO;
 import com.skilldistillery.howardtreasury.entities.Collection;
 import com.skilldistillery.howardtreasury.entities.Miscellanea;
 import com.skilldistillery.howardtreasury.entities.Poem;
@@ -45,15 +47,29 @@ public class CollectionController {
 	@Autowired
 	private MiscellaneaRepository miscellaneaRepo;
 	
+//	@GetMapping("collections")
+//	public ResponseEntity<List<Collection>> getAllCollections() {
+//		List<Collection> collections = collectionService.findAll();
+//		if (collections.isEmpty()) {
+//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		}
+//		else {
+//			return new ResponseEntity<>(collections, HttpStatus.OK);
+//		}
+//	}
+	
 	@GetMapping("collections")
-	public ResponseEntity<List<Collection>> getAllCollections() {
-		List<Collection> collections = collectionService.findAll();
-		if (collections.isEmpty()) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		else {
-			return new ResponseEntity<>(collections, HttpStatus.OK);
-		}
+	public ResponseEntity<List<SimpleCollectionDTO>> getAllCollections() {
+	    List<Collection> collections = collectionService.findAll();
+	    if (!collections.isEmpty()) {
+	        // Map your BlogPost entities to BlogPostDTOs
+	        List<SimpleCollectionDTO> simpleCollectionDTOs = collections.stream()
+	                .map(collectionService::mapToDTO)
+	                .collect(Collectors.toList());
+	        return new ResponseEntity<>(simpleCollectionDTOs, HttpStatus.OK);
+	    } else {
+	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
 	}
 	
 //    @GetMapping("collections")
