@@ -329,6 +329,7 @@ public class CollectionServiceImpl implements CollectionService {
 		dto.setTitle(collection.getTitle());
 		dto.setPublishedAt(collection.getPublishedAt());
 		dto.setSeries(collection.getSeries());
+		dto.setCollectionImages(collection.getCollectionImages());
 
 		return dto;
 	}

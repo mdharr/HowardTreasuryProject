@@ -12,16 +12,16 @@ export class Collection {
   id: number;
   title: string;
   publishedAt: string;
-  pageCount: number;
-  description: string;
-  amazonUrl: string;
+  pageCount?: number;
+  description?: string;
+  amazonUrl?: string;
   series: Series;
-  stories: Story[];
-  poems: Poem[];
-  persons: Person[];
-  miscellaneas: Miscellanea[];
-  collectionImages: CollectionImage[];
-  illustrators: Illustrator[];
+  stories?: Story[];
+  poems?: Poem[];
+  persons?: Person[];
+  miscellaneas?: Miscellanea[];
+  collectionImages?: CollectionImage[];
+  illustrators?: Illustrator[];
 
   isLoadingImage: boolean = true;
 
@@ -29,24 +29,24 @@ export class Collection {
     id: number = 0,
     title: string = '',
     publishedAt: string = '',
-    pageCount: number = 0,
-    description: string = '',
-    amazonUrl: string = '',
     series: Series = new Series(),
-    stories: Story[] = [],
-    poems: Poem[] = [],
-    persons: Person[] = [],
-    miscellaneas: Miscellanea[] = [],
+    pageCount?: number,
+    description?: string,
+    amazonUrl?: string,
+    stories?: Story[],
+    poems?: Poem[],
+    persons?: Person[],
+    miscellaneas?: Miscellanea[],
     collectionImages: CollectionImage[] = [],
-    illustrators: Illustrator[] = []
+    illustrators?: Illustrator[]
   ) {
     this.id = id;
     this.title = title;
     this.publishedAt = publishedAt;
+    this.series = series;
     this.pageCount = pageCount;
     this.description = description;
     this.amazonUrl = amazonUrl;
-    this.series = series;
     this.stories = stories;
     this.poems = poems;
     this.persons = persons;

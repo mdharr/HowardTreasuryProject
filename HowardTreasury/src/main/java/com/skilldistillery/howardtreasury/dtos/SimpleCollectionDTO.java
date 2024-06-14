@@ -1,8 +1,10 @@
 package com.skilldistillery.howardtreasury.dtos;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
+import com.skilldistillery.howardtreasury.entities.CollectionImage;
 import com.skilldistillery.howardtreasury.entities.Series;
 
 public class SimpleCollectionDTO {
@@ -14,18 +16,22 @@ public class SimpleCollectionDTO {
 	private LocalDateTime publishedAt;
 	
 	private Series series;
+	
+	private List<CollectionImage> collectionImages;
 
 	public SimpleCollectionDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public SimpleCollectionDTO(int id, String title, LocalDateTime publishedAt, Series series) {
+	public SimpleCollectionDTO(int id, String title, LocalDateTime publishedAt, Series series,
+			List<CollectionImage> collectionImages) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.publishedAt = publishedAt;
 		this.series = series;
+		this.collectionImages = collectionImages;
 	}
 
 	public int getId() {
@@ -58,6 +64,14 @@ public class SimpleCollectionDTO {
 
 	public void setSeries(Series series) {
 		this.series = series;
+	}
+
+	public List<CollectionImage> getCollectionImages() {
+		return collectionImages;
+	}
+
+	public void setCollectionImages(List<CollectionImage> collectionImages) {
+		this.collectionImages = collectionImages;
 	}
 
 	@Override
