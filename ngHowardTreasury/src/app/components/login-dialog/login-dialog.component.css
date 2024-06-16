@@ -8,6 +8,8 @@
   font-family: var(--inter);
   font-size: var(--contentFontSize);
   border-radius: 0 !important;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
 }
 
 .login-dialog p {
@@ -23,9 +25,7 @@
 }
 
 ::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
-  border: 3px solid transparent;
-    border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
-    border-radius: 0 !important;
+  border-radius: 0 !important;
 }
 
 .title-box {
@@ -85,6 +85,7 @@
   width: 100%;
   font-family: var(--inter);
   font-size: var(--contentFontSize);
+  margin-bottom: 15px;
 }
 
 button#loginFormBtn {

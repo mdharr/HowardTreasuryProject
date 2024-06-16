@@ -3,10 +3,10 @@ import { UserService } from './../../services/user.service';
 import { UserlistService } from 'src/app/services/userlist.service';
 import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
-import { CustomSnackbarComponent } from '../custom-snackbar/custom-snackbar.component';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login-dialog',
@@ -16,6 +16,11 @@ import { CustomSnackbarComponent } from '../custom-snackbar/custom-snackbar.comp
 export class LoginDialogComponent {
   loginUser: User = new User();
 
+  loginForm = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
+  });
+
   dialogRef = inject(MatDialogRef<LoginDialogComponent>);
   auth = inject(AuthService);
   userService = inject(UserService);
@@ -24,22 +29,44 @@ export class LoginDialogComponent {
   snackbarService = inject(SnackbarService);
 
   login(loginUser: User) {
-    this.auth.login(this.loginUser.username, this.loginUser.password).subscribe({
-      next: (loggedInUser) => {
-        console.log("Login success");
-        this.loginUser = loggedInUser;
-        this.userListService.loadUserLists();
-        this.dialogRef.close();
-        this.openSnackbar('Login Success!', 'Dismiss');
-        // Notify the UserService about the successful login
-        this.userService.updateUser(loggedInUser);
-      },
-      error: (fail) => {
-        console.error('Login fail');
-        console.error(fail);
-        this.openSnackbar('Login Failed.', 'Dismiss');
-      }
-    });
+    // this.auth.login(this.loginUser.username, this.loginUser.password).subscribe({
+    //   next: (loggedInUser) => {
+    //     console.log("Login success");
+    //     this.loginUser = loggedInUser;
+    //     this.userListService.loadUserLists();
+    //     this.dialogRef.close();
+    //     this.openSnackbar('Login Success!', 'Dismiss');
+    //     // Notify the UserService about the successful login
+    //     this.userService.updateUser(loggedInUser);
+    //   },
+    //   error: (fail) => {
+    //     console.error('Login fail');
+    //     console.error(fail);
+    //     this.openSnackbar('Login Failed.', 'Dismiss');
+    //   }
+    // });
+    if (this.loginForm.valid) {
+      const formValues = this.loginForm.value;
+      const username = formValues.username!;
+      const password = formValues.password!;
+
+      this.auth.login(username, password).subscribe({
+        next: (loggedInUser) => {
+          console.log("Login success");
+          this.loginUser = loggedInUser;
+          this.userListService.loadUserLists();
+          this.dialogRef.close();
+          this.openSnackbar('Welcome back ' + this.loginUser.username + '!', 'Dismiss');
+          // Notify the UserService about the successful login
+          this.userService.updateUser(loggedInUser);
+        },
+        error: (fail) => {
+          console.error('Login fail');
+          console.error(fail);
+          this.openSnackbar('The username or password you entered is incorrect.', 'Dismiss');
+        }
+      });
+    }
   }
 
   dismissDialog() {

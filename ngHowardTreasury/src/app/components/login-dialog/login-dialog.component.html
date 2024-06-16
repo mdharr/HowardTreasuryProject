@@ -8,7 +8,7 @@
       </button>
     </div>
   </div>
-  <form class="login-form">
+  <!-- <form class="login-form">
     <div class="form-group">
       <label class="label-email" for="username">
         Username
@@ -23,5 +23,13 @@
     </div>
     <button mat-raised-button id="loginFormBtn" type="button" (click)="login(loginUser)">Log In</button>
   </form>
-  <p [routerLink]="['/password/new']" (click)="dismissDialog()">Forgot your password?</p>
+  <p [routerLink]="['/password/new']" (click)="dismissDialog()">Forgot your password?</p> -->
+  <form [formGroup]="loginForm" (submit)="login(loginUser)">
+    <label class="label-email" for="username">Username</label>
+    <input class="text" id="username" type="text" formControlName="username">
+    <label class="label-password" for="password">Password</label>
+    <input class="text" id="password" type="password" name="password" formControlName="password">
+    <button mat-raised-button id="loginFormBtn" type="submit">Log In</button>
+  </form>
+    <p style="width:fit-content" [routerLink]="['/password/new']" (click)="dismissDialog()">Forgot your password?</p>
 </div>

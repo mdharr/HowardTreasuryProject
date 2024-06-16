@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.skilldistillery.howardtreasury.entities.ResetPasswordToken;
 import com.skilldistillery.howardtreasury.entities.User;
 import com.skilldistillery.howardtreasury.entities.UserList;
+import com.skilldistillery.howardtreasury.exceptions.EmailAlreadyExistsException;
+import com.skilldistillery.howardtreasury.exceptions.UsernameAlreadyExistsException;
 import com.skilldistillery.howardtreasury.repositories.UserRepository;
 
 @Service
@@ -38,6 +40,15 @@ public class AuthServiceImpl implements AuthService {
 	
 	@Override
 	public User register(User user) {
+		
+        if (userRepo.findByUsername(user.getUsername()) != null) {
+            throw new UsernameAlreadyExistsException("Username already exists");
+        }
+
+        if (userRepo.findByEmail(user.getEmail()) != null) {
+            throw new EmailAlreadyExistsException("Email already exists");
+        }
+		
 	    System.out.println("Starting registration process for: " + user.getEmail());
 	    user.setPassword(encoder.encode(user.getPassword()));
 	    user.setEnabled(false);

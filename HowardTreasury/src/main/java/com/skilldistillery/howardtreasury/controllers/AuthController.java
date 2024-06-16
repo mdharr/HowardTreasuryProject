@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skilldistillery.howardtreasury.dtos.CheckPasswordRequest;
 import com.skilldistillery.howardtreasury.entities.User;
 import com.skilldistillery.howardtreasury.entities.VerificationToken;
+import com.skilldistillery.howardtreasury.exceptions.EmailAlreadyExistsException;
+import com.skilldistillery.howardtreasury.exceptions.UsernameAlreadyExistsException;
 import com.skilldistillery.howardtreasury.services.AuthService;
 import com.skilldistillery.howardtreasury.services.EmailService;
 import com.skilldistillery.howardtreasury.services.VerificationTokenService;
@@ -41,15 +43,31 @@ public class AuthController {
   @Autowired
   private EmailService emailService;
   
-	@PostMapping("register")
-	public User register(@RequestBody User user, HttpServletResponse res) {
-	  if (user == null) {
-	     res.setStatus(400);
-	     return null;
-	  }
-	  user = authService.register(user);
-	  return user;
-	}
+//  Previous register method
+//	@PostMapping("register")
+//	public User register(@RequestBody User user, HttpServletResponse res) {
+//	  if (user == null) {
+//	     res.setStatus(400);
+//	     return null;
+//	  }
+//	  user = authService.register(user);
+//	  return user;
+//	}
+  
+  	@PostMapping("register")
+  	public ResponseEntity<?> register(@RequestBody User user) {
+      try {
+          User registeredUser = authService.register(user);
+          return new ResponseEntity<>(registeredUser, HttpStatus.OK);
+      } catch (UsernameAlreadyExistsException e) {
+          return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+      } catch (EmailAlreadyExistsException e) {
+          return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+      } catch (Exception e) {
+          return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+      }
+  	}
+
 	 
 	@GetMapping("authenticate")
 	public User authenticate(Principal principal, HttpServletResponse res) {

@@ -32,12 +32,12 @@
         <input type="password" id="confirmPassword" class="text" name="confirmPassword" [(ngModel)]="newUser.confirmPassword" placeholder="Confirm Password" tabindex="3" required />
       </label>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label class="label-image">
         <span class="required">Profile Image</span>
         <input type="text" class="text" name="imageUrl" [(ngModel)]="newUser.imageUrl" placeholder="Image URL" tabindex="1" required />
       </label>
-    </div>
+    </div> -->
     <button mat-button-raised id="registerFormBtn" type="button" (click)="register(newUser)" [disabled]="isProcessing">
       Register
     </button>

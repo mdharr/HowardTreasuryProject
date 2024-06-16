@@ -17,6 +17,20 @@ export class RegisterDialogComponent implements OnDestroy {
   newUser: User = new User();
   isProcessing:boolean = false;
 
+
+  password: string = '';
+  confirmPassword: string = '';
+  statusMessage: string = '';
+  error: boolean = false;
+  processing: boolean = false;
+  countdown: number = 5;
+  countdownStarted: boolean = false;
+  passwordPattern: RegExp = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\-\=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+
+
+
+
+
   // subscription declarations
   private authSubscription: Subscription | undefined;
 
@@ -31,6 +45,11 @@ export class RegisterDialogComponent implements OnDestroy {
     if (newUser.password !== newUser.confirmPassword) {
       // Password and confirmPassword do not match
       this.openSnackbar('Passwords do not match', 'Dismiss');
+      return;
+    }
+
+    if (!this.validatePassword(newUser.password)) {
+      this.openSnackbar('Passwords must be a minimum of 8 characters and contain at least one uppercase letter, one number, and one special character.', 'Dismiss');
       return;
     }
     this.isProcessing = true;
@@ -62,7 +81,18 @@ export class RegisterDialogComponent implements OnDestroy {
         console.error(fail);
         this.isProcessing = false;
         this.dialogRef.close();
-        this.openSnackbar('Registration unsuccessful', 'Dismiss');
+
+        if (fail.status === 409) {
+          if (fail.error === 'Username already exists') {
+            this.openSnackbar('Username already exists', 'Dismiss');
+          } else if (fail.error === 'Email already exists') {
+            this.openSnackbar('Email already exists', 'Dismiss');
+          } else {
+            this.openSnackbar('Registration unsuccessful', 'Dismiss');
+          }
+        } else {
+          this.openSnackbar('Registration unsuccessful', 'Dismiss');
+        }
       }
     });
   }
@@ -76,4 +106,9 @@ export class RegisterDialogComponent implements OnDestroy {
   openSnackbar(message: string, action: string) {
     this.snackbarService.openSnackbar(message, action);
   }
+
+  validatePassword(password: string): boolean {
+    return this.passwordPattern.test(password);
+  }
+
 }

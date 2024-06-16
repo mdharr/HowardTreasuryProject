@@ -51,7 +51,7 @@ export class PasswordResetComponent implements OnInit, OnDestroy {
     }
 
     if (!this.validatePassword(this.password)) {
-      this.statusMessage = 'Password must be a minimum of 8 characters and contain at least one uppercase letter, one number, one special character.';
+      this.statusMessage = 'Passwords must be a minimum of 8 characters and contain at least one uppercase letter, one number, and one special character.';
       this.error = true;
       setTimeout(() => {
         this.error = false;
