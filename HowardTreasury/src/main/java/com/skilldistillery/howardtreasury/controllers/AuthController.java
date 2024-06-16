@@ -25,7 +25,9 @@ import com.skilldistillery.howardtreasury.dtos.CheckPasswordRequest;
 import com.skilldistillery.howardtreasury.entities.User;
 import com.skilldistillery.howardtreasury.entities.VerificationToken;
 import com.skilldistillery.howardtreasury.exceptions.EmailAlreadyExistsException;
+import com.skilldistillery.howardtreasury.exceptions.UserDeactivatedException;
 import com.skilldistillery.howardtreasury.exceptions.UsernameAlreadyExistsException;
+import com.skilldistillery.howardtreasury.exceptions.UsernameNotFoundException;
 import com.skilldistillery.howardtreasury.services.AuthService;
 import com.skilldistillery.howardtreasury.services.EmailService;
 import com.skilldistillery.howardtreasury.services.VerificationTokenService;
@@ -69,15 +71,34 @@ public class AuthController {
   	}
 
 	 
-	@GetMapping("authenticate")
-	public User authenticate(Principal principal, HttpServletResponse res) {
-	  if (principal == null) { // no Authorization header sent
-	     res.setStatus(401);
-	     res.setHeader("WWW-Authenticate", "Basic");
-	     return null;
-	  }
-	  return authService.getUserByUsername(principal.getName());
-	}
+//	@GetMapping("authenticate")
+//	public User authenticate(Principal principal, HttpServletResponse res) {
+//	  if (principal == null) { // no Authorization header sent
+//	     res.setStatus(401);
+//	     res.setHeader("WWW-Authenticate", "Basic");
+//	     return null;
+//	  }
+//	  return authService.getUserByUsername(principal.getName());
+//	}
+	
+    @GetMapping("authenticate")
+    public ResponseEntity<?> auth(Principal principal) {
+        if (principal == null) { // no Authorization header sent
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("WWW-Authenticate", "Basic");
+            return new ResponseEntity<>(headers, HttpStatus.UNAUTHORIZED);
+        }
+        try {
+            User user = authService.login(principal.getName());
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } catch (UsernameNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (UserDeactivatedException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 	
 	@PutMapping("users/update")
 	public ResponseEntity<User> updateUser(@RequestBody User user, Principal principal, HttpServletResponse res) {

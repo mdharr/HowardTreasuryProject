@@ -43,6 +43,8 @@ public class User {
 	@Column(name = "profile_description")
 	private String profileDescription;
 	
+	private Boolean deactivated;
+	
 	@OneToMany(mappedBy = "user")
 	private List<UserList> userLists;
 	
@@ -88,7 +90,7 @@ public class User {
     }
 	
 	public User(int id, String username, String password, Boolean enabled, String role, String email,
-			String imageUrl, String profileDescription, List<UserList> userLists, List<BlogPost> blogPosts, List<BlogComment> comments,
+			String imageUrl, String profileDescription, Boolean deactivated, List<UserList> userLists, List<BlogPost> blogPosts, List<BlogComment> comments,
 			List<ChatMessage> chatMessages, List<ChatRoom> chatRooms, VerificationToken verificationToken, List<StoryVote> storyVotes) {
 		super();
 		this.id = id;
@@ -99,6 +101,7 @@ public class User {
 		this.email = email;
 		this.imageUrl = imageUrl;
 		this.profileDescription = profileDescription;
+		this.deactivated = deactivated;
 		this.userLists = userLists;
 		this.blogPosts = blogPosts;
 		this.comments = comments;
@@ -172,6 +175,14 @@ public class User {
 		this.profileDescription = profileDescription;
 	}
 
+	public Boolean getDeactivated() {
+		return deactivated;
+	}
+
+	public void setDeactivated(Boolean deactivated) {
+		this.deactivated = deactivated;
+	}
+
 	public List<UserList> getUserLists() {
 		return userLists;
 	}
@@ -218,6 +229,14 @@ public class User {
 
 	public void setVerificationToken(VerificationToken verificationToken) {
 		this.verificationToken = verificationToken;
+	}
+
+	public ResetPasswordToken getResetPasswordToken() {
+		return resetPasswordToken;
+	}
+
+	public void setResetPasswordToken(ResetPasswordToken resetPasswordToken) {
+		this.resetPasswordToken = resetPasswordToken;
 	}
 	
     public List<StoryVote> getStoryVotes() {

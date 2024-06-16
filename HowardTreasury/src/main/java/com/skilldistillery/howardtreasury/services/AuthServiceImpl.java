@@ -11,7 +11,9 @@ import com.skilldistillery.howardtreasury.entities.ResetPasswordToken;
 import com.skilldistillery.howardtreasury.entities.User;
 import com.skilldistillery.howardtreasury.entities.UserList;
 import com.skilldistillery.howardtreasury.exceptions.EmailAlreadyExistsException;
+import com.skilldistillery.howardtreasury.exceptions.UserDeactivatedException;
 import com.skilldistillery.howardtreasury.exceptions.UsernameAlreadyExistsException;
+import com.skilldistillery.howardtreasury.exceptions.UsernameNotFoundException;
 import com.skilldistillery.howardtreasury.repositories.UserRepository;
 
 @Service
@@ -112,11 +114,23 @@ public class AuthServiceImpl implements AuthService {
 	    System.out.println("Registration process completed for: " + user.getEmail());
 	    return user;
 	}
-
+	
 	@Override
 	public User getUserByUsername(String username) {
 		return userRepo.findByUsername(username);
 	}
+	
+    @Override
+    public User login(String username) {
+        User user = userRepo.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        if (user.getDeactivated()) {
+            throw new UserDeactivatedException("User account is deactivated");
+        }
+        return user;
+    }
 
 	@Override
 	public User updateUser(User user, String username) {

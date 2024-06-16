@@ -80,7 +80,7 @@ export class RegisterDialogComponent implements OnDestroy {
         console.error('RegisterComponent.register(): Error registering account');
         console.error(fail);
         this.isProcessing = false;
-        this.dialogRef.close();
+        // this.dialogRef.close();
 
         if (fail.status === 409) {
           if (fail.error === 'Username already exists') {

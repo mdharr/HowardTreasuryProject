@@ -6,6 +6,7 @@ public interface AuthService {
 	
 	public User register(User user);
 	public User getUserByUsername(String username);
+	public User login(String username);
 	public User updateUser(User updatedUser, String username);
 	public User enable(User userToEnable);
 	public boolean disable(int id);

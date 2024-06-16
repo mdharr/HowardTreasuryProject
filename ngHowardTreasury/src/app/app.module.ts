@@ -87,6 +87,7 @@ import { AdventureComponent } from './components/adventure/adventure.component';
 import { PasswordResetRequestComponent } from './components/password-reset-request/password-reset-request.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { StoryVoteComponent } from './components/story-vote/story-vote.component';
+import { ReactivateAccountRequestComponent } from './components/reactivate-account-request/reactivate-account-request.component';
 
 
 @NgModule({
@@ -151,6 +152,7 @@ import { StoryVoteComponent } from './components/story-vote/story-vote.component
     PasswordResetRequestComponent,
     PasswordResetComponent,
     StoryVoteComponent,
+    ReactivateAccountRequestComponent,
   ],
   imports: [
     BrowserModule,

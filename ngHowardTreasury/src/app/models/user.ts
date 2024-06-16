@@ -13,6 +13,7 @@ export class User {
   email: string;
   imageUrl: string;
   profileDescription: string;
+  deactivated: boolean;
   userLists: UserList[];
   chatRooms?: ChatRoom[];
   chatMessages?: ChatMessage[];
@@ -28,6 +29,7 @@ export class User {
     email: string = '',
     imageUrl: string = '',
     profileDescription: string = '',
+    deactivated: boolean = false,
     userLists: UserList[] = [],
     storyVotes?: StoryVote[]
   ) {
@@ -40,6 +42,7 @@ export class User {
     this.email = email;
     this.imageUrl = imageUrl;
     this.profileDescription = profileDescription;
+    this.deactivated = deactivated;
     this.userLists = userLists;
     this.storyVotes = storyVotes || [];
   }

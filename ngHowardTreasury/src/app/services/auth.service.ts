@@ -87,6 +87,28 @@ export class AuthService {
     );
   }
 
+  newLogin(username: string, password: string): Observable<User> {
+    const credentials = this.generateBasicAuthCredentials(username, password);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest',
+      }),
+    };
+
+    return this.http.get<User>(`${this.url}authenticate`, httpOptions).pipe(
+      tap((user) => {
+        localStorage.setItem('credentials', credentials);
+        this.loggedIn.next(true);
+        this.loggedInUser = user;
+        this.loggedInUserSubject.next(user);
+      }),
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
   logout(): Observable<void> {
     localStorage.clear();
     this.loggedIn.next(false);

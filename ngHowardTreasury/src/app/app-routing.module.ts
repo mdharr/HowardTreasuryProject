@@ -32,6 +32,7 @@ import { AdventureComponent } from './components/adventure/adventure.component';
 import { PasswordResetRequestComponent } from './components/password-reset-request/password-reset-request.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { StoryVoteComponent } from './components/story-vote/story-vote.component';
+import { ReactivateAccountRequestComponent } from './components/reactivate-account-request/reactivate-account-request.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'verify', component: VerificationComponent, data: { animation: 'VerifyPage' } },
   { path: 'password/new', component: PasswordResetRequestComponent, data: { animation: 'PasswordResetRequestPage' } },
   { path: 'reset/:token', component: PasswordResetComponent, data: { animation: 'PasswordResetPage' } },
+  { path: 'reactivate-account-request', component: ReactivateAccountRequestComponent, data: { animation: 'ReactivateAccountRequestPage' } },
   { path: 'about', component: AboutComponent, data: { animation: 'AboutPage' } },
   { path: 'lists', component: UserListsComponent, canActivate: [authGuard], data: { animation: 'ListsPage' } },
   { path: 'profile', component: UserProfileComponent, canActivate: [authGuard], data: { animation: 'ProfilePage' } },

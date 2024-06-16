@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` VARCHAR(1000) NULL,
   `image_url` VARCHAR(255) NULL,
   `profile_description` VARCHAR(300) NULL,
+  `deactivated` TINYINT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
@@ -866,10 +867,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`, `profile_description`) VALUES (1, 'Conan', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'ADMIN', 'conan@howardtreasury.com', 'https://storage.proboards.com/6439519/avatar/rkoatbvKFjxaoISHwcbr.jpg', 'Hither came Conan, the Cimmerian, black-haired, sullen-eyed, sword in hand, a thief, a reaver, a slayer, with gigantic melancholies and gigantic mirth, to tread the jeweled thrones of the Earth under his sandalled feet.\"');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`, `profile_description`) VALUES (2, 'Kull', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'MODERATOR', 'kull@howardtreasury.com', 'https://pbs.twimg.com/media/EC_Wbe6W4AEtl65.jpg', 'A brave sight, and a sight which aroused a fierce thrill in the soul of Kull, king of Valusia. Not on the Topaz Throne at the front of the regal Tower of Splendor sat Kull, but in the saddle, mounted on a great stallion, a true warrior king.');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`, `profile_description`) VALUES (3, 'Solomon', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD', 'solomonkane@howardtreasury.com', 'https://storage.proboards.com/6439519/avatar/z9k5Dao0qaaJX9LKgT9J.jpg', 'He was a man born out of his time—a strange blending of Puritan and Cavalier, with a touch of the ancient philosopher, and more than a touch of the pagan, though the last assertion would have shocked him unspeakably.');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`, `profile_description`) VALUES (4, 'acattmh', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD', 'acatt.mh@gmail.com', 'https://storage.proboards.com/6439519/avatar/z9k5Dao0qaaJX9LKgT9J.jpg', 'Test account.');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`, `profile_description`, `deactivated`) VALUES (1, 'Conan', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'ADMIN', 'robertehowardtreasury@gmail.com', 'https://storage.proboards.com/6439519/avatar/rkoatbvKFjxaoISHwcbr.jpg', 'Hither came Conan, the Cimmerian, black-haired, sullen-eyed, sword in hand, a thief, a reaver, a slayer, with gigantic melancholies and gigantic mirth, to tread the jeweled thrones of the Earth under his sandalled feet.\"', 0);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`, `profile_description`, `deactivated`) VALUES (2, 'Kull', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'MODERATOR', 'swiftinfern0@gmail.com', 'https://pbs.twimg.com/media/EC_Wbe6W4AEtl65.jpg', 'A brave sight, and a sight which aroused a fierce thrill in the soul of Kull, king of Valusia. Not on the Topaz Throne at the front of the regal Tower of Splendor sat Kull, but in the saddle, mounted on a great stallion, a true warrior king.', 0);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`, `profile_description`, `deactivated`) VALUES (3, 'Solomon', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD', 'acatt.mh@gmail.com', 'https://storage.proboards.com/6439519/avatar/z9k5Dao0qaaJX9LKgT9J.jpg', 'He was a man born out of his time—a strange blending of Puritan and Cavalier, with a touch of the ancient philosopher, and more than a touch of the pagan, though the last assertion would have shocked him unspeakably.', 1);
 
 COMMIT;
 
@@ -1301,7 +1301,6 @@ INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (4, 'King Kull Stories'
 INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (5, 'King Kull Miscellanea', 2);
 INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (6, 'King Kull Favorites', 2);
 INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (7, 'Favorites', 3);
-INSERT INTO `user_list` (`id`, `name`, `user_id`) VALUES (8, 'Favorites', 4);
 
 COMMIT;
 
@@ -2823,7 +2822,6 @@ USE `howardtreasurydb`;
 INSERT INTO `story_vote` (`id`, `story_id`, `user_id`, `vote_type`) VALUES (1, 22, 1, 'upvote');
 INSERT INTO `story_vote` (`id`, `story_id`, `user_id`, `vote_type`) VALUES (2, 22, 2, 'upvote');
 INSERT INTO `story_vote` (`id`, `story_id`, `user_id`, `vote_type`) VALUES (3, 22, 3, 'upvote');
-INSERT INTO `story_vote` (`id`, `story_id`, `user_id`, `vote_type`) VALUES (4, 22, 4, 'downvote');
 
 COMMIT;
 
