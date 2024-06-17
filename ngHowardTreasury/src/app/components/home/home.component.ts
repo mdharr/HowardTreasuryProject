@@ -86,6 +86,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.dialogService.openLoginDialog();
   }
 
+  openRegisterDialog() {
+    this.dialogService.openRegisterDialog();
+  }
+
   loggedIn(): boolean {
     return this.authService.checkLogin();
   }

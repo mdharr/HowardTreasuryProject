@@ -81,6 +81,25 @@ public class AuthController {
 //	  return authService.getUserByUsername(principal.getName());
 //	}
 	
+//    @GetMapping("authenticate")
+//    public ResponseEntity<?> auth(Principal principal) {
+//        if (principal == null) { // no Authorization header sent
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.set("WWW-Authenticate", "Basic");
+//            return new ResponseEntity<>(headers, HttpStatus.UNAUTHORIZED);
+//        }
+//        try {
+//            User user = authService.login(principal.getName());
+//            return new ResponseEntity<>(user, HttpStatus.OK);
+//        } catch (UsernameNotFoundException e) {
+//            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+//        } catch (UserDeactivatedException e) {
+//            return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+  	
     @GetMapping("authenticate")
     public ResponseEntity<?> auth(Principal principal) {
         if (principal == null) { // no Authorization header sent
@@ -90,11 +109,12 @@ public class AuthController {
         }
         try {
             User user = authService.login(principal.getName());
+            if (authService.isAccountDeactivated(principal.getName())) {
+                return new ResponseEntity<>("User account is deactivated", HttpStatus.FORBIDDEN);
+            }
             return new ResponseEntity<>(user, HttpStatus.OK);
         } catch (UsernameNotFoundException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-        } catch (UserDeactivatedException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

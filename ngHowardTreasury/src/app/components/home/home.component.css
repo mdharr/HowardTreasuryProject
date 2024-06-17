@@ -326,10 +326,10 @@ app-excerpt-loop {
   position: relative;
   display: inline-block;
   transition: transform 0.2s ease, color 0.2s ease;
-  animation: 1s float ease-in-out infinite;
+  /* animation: 1s float ease-in-out infinite; */
 }
 
-.story-vote-link::before {
+/* .story-vote-link::before {
   content: '➔';
   position: absolute;
   left: 100px;
@@ -338,17 +338,17 @@ app-excerpt-loop {
   font-size: 1.2em;
   color: var(--red_milk);
   margin-top: -3px;
-}
+} */
 
 .story-vote-link:hover {
   color: var(--black_white);
 }
 
-.story-vote-link:hover::before {
+/* .story-vote-link:hover::before {
   opacity: 1;
   color: var(--black_white);
   transform: translateX(15px);
-}
+} */
 
 @media screen and (max-width: 1028px) {
 

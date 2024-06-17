@@ -89,6 +89,7 @@
 }
 
 button#loginFormBtn {
+  width: 100%;
   background-color: var(--red_color);
   color: #fff;
   border: none;
@@ -104,6 +105,11 @@ button#loginFormBtn {
 
 button#loginFormBtn:hover {
   background-color: var(--red_hover);
+}
+
+.forgot-password-text {
+  width: 100%;
+  text-align: center;
 }
 
 @media (max-width: 480px) {

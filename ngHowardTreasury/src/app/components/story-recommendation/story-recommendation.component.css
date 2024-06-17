@@ -17,7 +17,7 @@
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.text::before {
+/* .text::before {
   content: '➔';
   position: absolute;
   left: 100px;
@@ -26,14 +26,14 @@
   font-size: 1.2em;
   color: var(--red_milk);
   margin-top: -3px;
-}
+} */
 
 .text:hover {
   color: var(--black_white);
 }
 
-.text:hover::before {
+/* .text:hover::before {
   opacity: 1;
   color: var(--black_white);
   transform: translateX(15px);
-}
+} */

@@ -39,9 +39,10 @@
       </label>
     </div> -->
     <button mat-button-raised id="registerFormBtn" type="button" (click)="register(newUser)" [disabled]="isProcessing">
-      Register
+      Submit
     </button>
   </form>
+  <p class="login-prompt" (click)="switchToLoginDialog()">Already have an account?</p>
 </div>
 <div *ngIf="isProcessing" class="spinner-overlay">
   <mat-spinner class="spinner"></mat-spinner>

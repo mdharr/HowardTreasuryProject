@@ -57,6 +57,7 @@ public class AuthServiceImpl implements AuthService {
 	    user.setRole("STANDARD");
 	    user.setEmail(user.getEmail());
 	    user.setImageUrl(user.getImageUrl());
+	    user.setDeactivated(false);
 
 	    // Save the user first to generate a user ID
 	    try {
@@ -126,9 +127,10 @@ public class AuthServiceImpl implements AuthService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-        if (user.getDeactivated()) {
-            throw new UserDeactivatedException("User account is deactivated");
-        }
+//        if (!user.getEnabled()) {
+//            throw new UserNotEnabledException("User account is not enabled");
+//        }
+        // Allow login even if the account is deactivated
         return user;
     }
 
@@ -245,4 +247,10 @@ public class AuthServiceImpl implements AuthService {
         throw new RuntimeException("Invalid token");
     }
     
+	
+    @Override
+    public boolean isAccountDeactivated(String username) {
+        User user = userRepo.findByUsername(username);
+        return user != null && user.getDeactivated();
+    }
 }

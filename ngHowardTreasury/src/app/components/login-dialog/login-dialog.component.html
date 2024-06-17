@@ -30,7 +30,7 @@
     <input class="text" id="username" type="text" formControlName="username">
     <label class="label-password" for="password">Password</label>
     <input class="text" id="password" type="password" name="password" formControlName="password">
-    <button mat-raised-button id="loginFormBtn" type="submit">Log In</button>
+    <button mat-raised-button id="loginFormBtn" type="submit">Submit</button>
   </form>
-    <p style="width:fit-content" [routerLink]="['/password/new']" (click)="dismissDialog()">Forgot your password?</p>
+    <p class="forgot-password-text" [routerLink]="['/password/new']" (click)="dismissDialog()">Forgot your password?</p>
 </div>

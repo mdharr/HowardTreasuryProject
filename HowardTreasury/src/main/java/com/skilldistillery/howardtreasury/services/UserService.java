@@ -8,5 +8,6 @@ public interface UserService {
 	
 	public UserDTO mapUserToDTO(User user);
 
-	public User find(int userId); 
+	public User find(int userId);
+	
 }

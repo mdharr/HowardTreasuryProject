@@ -58,5 +58,16 @@ public class EmailServiceImpl implements EmailService {
             // Handle error
         }
     }
+    
+	@Override
+	public void sendActivationEmail(String to, String subject, String emailBody) {
+
+	    SimpleMailMessage message = new SimpleMailMessage();
+	    message.setFrom(fromEmail);
+	    message.setTo(to);
+	    message.setSubject(subject);
+	    message.setText(emailBody);
+	    mailSender.send(message);
+	}
 
 }

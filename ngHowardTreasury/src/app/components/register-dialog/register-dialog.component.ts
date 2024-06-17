@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-register-dialog',
@@ -40,6 +41,7 @@ export class RegisterDialogComponent implements OnDestroy {
   snackBar = inject(MatSnackBar);
   userListService = inject(UserlistService);
   snackbarService = inject(SnackbarService);
+  dialogService = inject(DialogService);
 
   register(newUser: User): void {
     if (newUser.password !== newUser.confirmPassword) {
@@ -109,6 +111,15 @@ export class RegisterDialogComponent implements OnDestroy {
 
   validatePassword(password: string): boolean {
     return this.passwordPattern.test(password);
+  }
+
+  openLoginDialog() {
+    this.dialogService.openLoginDialog();
+  }
+
+  switchToLoginDialog() {
+    this.dialogService.dialog.closeAll();
+    this.openLoginDialog();
   }
 
 }

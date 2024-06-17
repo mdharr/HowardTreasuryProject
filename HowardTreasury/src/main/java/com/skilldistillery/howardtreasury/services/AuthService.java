@@ -14,4 +14,5 @@ public interface AuthService {
 	void requestPasswordReset(String email);
 	boolean resetPassword(String token, String newPassword);
 	public boolean checkPassword(String token, String newPassword);
+	public boolean isAccountDeactivated(String username);
 }

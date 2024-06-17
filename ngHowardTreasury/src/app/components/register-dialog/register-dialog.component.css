@@ -129,3 +129,15 @@ button#registerFormBtn:hover {
   height: 100px;
 }
 
+.login-prompt {
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  color: #ccc;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.login-prompt:hover {
+  color: var(--white_color);
+}

@@ -59,13 +59,16 @@
                   So, venture forth, dear visitor, and may you find the essence of Howard's vision within these virtual pages. Embrace the adventure, savor the poetry, and become part of the ever-growing saga of The Robert E. Howard Treasury. The master's legacy awaits your discovery.
               </p>
               <hr>
-              <h3 class="recommendation-header">Need a recommendation?</h3>
+              <h3 class="recommendation-header">Not sure where to start?</h3>
               <p class="intro-text">
                 Let us pick a story for you by <app-story-recommendation></app-story-recommendation> <br>
-                or view all stories ranked from best to worst by
-                <a class="story-vote-link" *ngIf="loggedIn(); else loginLink" [routerLink]="['/story-vote']">clicking here</a>
+                or
+                <a class="story-vote-link" *ngIf="loggedIn(); else loginLink" [routerLink]="['/story-vote']">click here</a>
+                to check out all stories ranked from best to worst by the community.
                 <ng-template #loginLink>
-                  <a class="story-vote-link" (click)="openLoginDialog()">clicking here</a>
+                  <a class="story-vote-link" (click)="openLoginDialog()">login</a>
+                  or
+                  <a class="story-vote-link" (click)="openRegisterDialog()">register</a>
                 </ng-template>
               </p>
             </div>
