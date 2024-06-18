@@ -15,4 +15,6 @@ public interface AuthService {
 	boolean resetPassword(String token, String newPassword);
 	public boolean checkPassword(String token, String newPassword);
 	public boolean isAccountDeactivated(String username);
+    public void sendActivationEmail(String username);
+    public boolean verifyActivationCode(String username, String code);
 }

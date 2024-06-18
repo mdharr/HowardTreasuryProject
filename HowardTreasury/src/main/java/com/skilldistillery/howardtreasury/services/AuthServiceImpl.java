@@ -1,19 +1,22 @@
 package com.skilldistillery.howardtreasury.services;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.howardtreasury.entities.ActivationCode;
 import com.skilldistillery.howardtreasury.entities.ResetPasswordToken;
 import com.skilldistillery.howardtreasury.entities.User;
 import com.skilldistillery.howardtreasury.entities.UserList;
 import com.skilldistillery.howardtreasury.exceptions.EmailAlreadyExistsException;
-import com.skilldistillery.howardtreasury.exceptions.UserDeactivatedException;
 import com.skilldistillery.howardtreasury.exceptions.UsernameAlreadyExistsException;
 import com.skilldistillery.howardtreasury.exceptions.UsernameNotFoundException;
+import com.skilldistillery.howardtreasury.repositories.ActivationCodeRepository;
 import com.skilldistillery.howardtreasury.repositories.UserRepository;
 
 @Service
@@ -39,6 +42,11 @@ public class AuthServiceImpl implements AuthService {
 	
     @Autowired
     private PasswordEncoder passwordEncoder;
+    
+    @Autowired
+    private ActivationCodeRepository activationCodeRepo;
+    
+    private static final int CODE_LENGTH = 6;
 	
 	@Override
 	public User register(User user) {
@@ -252,5 +260,46 @@ public class AuthServiceImpl implements AuthService {
     public boolean isAccountDeactivated(String username) {
         User user = userRepo.findByUsername(username);
         return user != null && user.getDeactivated();
+    }
+    
+    @Override
+    public void sendActivationEmail(String username) {
+        User user = userRepo.findByUsername(username);
+        if (user != null && user.getDeactivated()) {
+            String code = generateActivationCode();
+            ActivationCode activationCode = new ActivationCode();
+            activationCode.setCode(code);
+            activationCode.setExpiration(LocalDateTime.now().plusMinutes(30)); // Code valid for 30 minutes
+            activationCode.setUser(user);
+            activationCodeRepo.save(activationCode);
+
+            String subject = "Account Reactivation Code";
+            String emailBody = "Your account reactivation code is: " + code;
+            emailService.sendActivationEmail(user.getEmail(), subject, emailBody);
+        }
+    }
+
+    @Override
+    public boolean verifyActivationCode(String username, String code) {
+        User user = userRepo.findByUsername(username);
+        if (user != null && user.getDeactivated()) {
+            ActivationCode activationCode = activationCodeRepo.findByUserAndCode(user, code);
+            if (activationCode != null && activationCode.getExpiration().isAfter(LocalDateTime.now())) {
+                user.setDeactivated(false);
+                activationCodeRepo.delete(activationCode); // Remove used code
+                userRepo.save(user);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private String generateActivationCode() {
+        Random random = new Random();
+        StringBuilder code = new StringBuilder();
+        for (int i = 0; i < CODE_LENGTH; i++) {
+            code.append(random.nextInt(10));
+        }
+        return code.toString();
     }
 }

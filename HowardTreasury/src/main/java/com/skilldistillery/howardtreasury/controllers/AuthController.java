@@ -109,14 +109,50 @@ public class AuthController {
         }
         try {
             User user = authService.login(principal.getName());
-            if (authService.isAccountDeactivated(principal.getName())) {
-                return new ResponseEntity<>("User account is deactivated", HttpStatus.FORBIDDEN);
-            }
+//            if (authService.isAccountDeactivated(principal.getName())) {
+//                return new ResponseEntity<>("User account is deactivated", HttpStatus.FORBIDDEN);
+//            }
             return new ResponseEntity<>(user, HttpStatus.OK);
         } catch (UsernameNotFoundException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+  	
+//    @GetMapping("authentication")
+//    public ResponseEntity<?> auth(Principal principal) {
+//        if (principal == null) { // no Authorization header sent
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.set("WWW-Authenticate", "Basic");
+//            return new ResponseEntity<>(headers, HttpStatus.UNAUTHORIZED);
+//        }
+//        try {
+//            User user = authService.login(principal.getName());
+//            Map<String, Object> response = new HashMap<>();
+//            response.put("user", user);
+//            response.put("deactivated", authService.isAccountDeactivated(principal.getName()));
+//            return new ResponseEntity<>(response, HttpStatus.OK);
+//        } catch (UsernameNotFoundException e) {
+//            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+
+    @PostMapping("send-activation-email")
+    public ResponseEntity<?> sendActivationEmail(@RequestParam String username) {
+        authService.sendActivationEmail(username);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("verify-activation-code")
+    public ResponseEntity<?> verifyActivationCode(@RequestParam String username, @RequestParam String code) {
+        boolean success = authService.verifyActivationCode(username, code);
+        if (success) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Invalid or expired activation code", HttpStatus.BAD_REQUEST);
         }
     }
 	

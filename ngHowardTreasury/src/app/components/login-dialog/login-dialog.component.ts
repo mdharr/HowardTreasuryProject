@@ -71,82 +71,78 @@ export class LoginDialogComponent {
     }
   }
 
-  // newLogin(loginUser: User) {
+  newLogin(loginUser: User) {
 
+    if (this.loginForm.valid) {
+      const formValues = this.loginForm.value;
+      const username = formValues.username!;
+      const password = formValues.password!;
+
+      this.auth.login(username, password).subscribe({
+        next: (loggedInUser) => {
+          console.log("Login success");
+          this.loginUser = loggedInUser;
+          this.userListService.loadUserLists();
+          this.dialogRef.close();
+          this.openSnackbar('Welcome back ' + this.loginUser.username + '!', 'Dismiss');
+          // Notify the UserService about the successful login
+          this.userService.updateUser(loggedInUser);
+        },
+        error: (fail) => {
+
+          if (fail.status === 404 && fail.error === 'User not found') {
+            this.openSnackbar('User not found.', 'Dismiss');
+          } else if (fail.status === 403 && fail.error === 'User account is deactivated') {
+            this.openSnackbar('User deactivated account.', 'Dismiss');
+            this.dialogRef.close();
+            this.router.navigate(['/enable-account-request']);
+          } else {
+            console.error('Login fail');
+            console.error(fail);
+            this.openSnackbar('The username or password you entered is incorrect.', 'Dismiss');
+          }
+
+        }
+      });
+    }
+  }
+
+  // newLogin(loginUser: User) {
   //   if (this.loginForm.valid) {
   //     const formValues = this.loginForm.value;
   //     const username = formValues.username!;
   //     const password = formValues.password!;
 
   //     this.auth.newLogin(username, password).subscribe({
-  //       next: (loggedInUser) => {
-  //         console.log("Login success");
-  //         this.loginUser = loggedInUser;
+  //       next: (response) => {
+  //         const { user, deactivated } = response;
+  //         this.loginUser = user;
   //         this.userListService.loadUserLists();
-  //         this.dialogRef.close();
-  //         this.openSnackbar('Welcome back ' + this.loginUser.username + '!', 'Dismiss');
-  //         // Notify the UserService about the successful login
-  //         this.userService.updateUser(loggedInUser);
+  //         if (deactivated) {
+  //           this.dialogRef.close();
+  //           this.openSnackbar('Account is deactivated. Redirecting to reactivation page.', 'Dismiss');
+  //         } else {
+  //           this.dialogRef.close();
+  //           this.openSnackbar('Welcome back ' + this.loginUser.username + '!', 'Dismiss');
+  //           this.userService.updateUser(user);
+  //         }
   //       },
   //       error: (fail) => {
+  //         console.error('Login fail');
+  //         console.error(fail);
 
   //         if (fail.status === 404 && fail.error === 'User not found') {
   //           this.openSnackbar('User not found.', 'Dismiss');
-  //         } else if (fail.status === 403 && fail.error === 'User account is deactivated') {
-  //           this.openSnackbar('User deactivated account.', 'Dismiss');
+  //         } else if (fail.status === 403 && fail.error === 'User account is not enabled') {
+  //           this.openSnackbar('User account is not enabled.', 'Dismiss');
   //           this.dialogRef.close();
-  //           this.router.navigate(['/enable-account-request']);
   //         } else {
-  //           console.error('Login fail');
-  //           console.error(fail);
   //           this.openSnackbar('The username or password you entered is incorrect.', 'Dismiss');
   //         }
-
   //       }
   //     });
   //   }
   // }
-
-  newLogin(loginUser: User) {
-    if (this.loginForm.valid) {
-      const formValues = this.loginForm.value;
-      const username = formValues.username!;
-      const password = formValues.password!;
-
-      this.auth.newLogin(username, password).subscribe({
-        next: (loggedInUser) => {
-          console.log("Login success");
-          this.loginUser = loggedInUser;
-          this.userListService.loadUserLists();
-          if (loggedInUser.deactivated) {
-            this.router.navigate(['/reactivate-account-request']);
-          } else {
-            this.dialogRef.close();
-            this.openSnackbar('Welcome back ' + this.loginUser.username + '!', 'Dismiss');
-            this.userService.updateUser(loggedInUser);
-          }
-        },
-        error: (fail) => {
-          console.error('Login fail');
-          console.error(fail);
-
-          if (fail.status === 404 && fail.error === 'User not found') {
-            this.openSnackbar('User not found.', 'Dismiss');
-          } else if (fail.status === 403 && fail.error === 'User account is not enabled') {
-            this.openSnackbar('User account is not enabled.', 'Dismiss');
-            this.dialogRef.close();
-            // this.router.navigate(['/enable-account-request']);
-          } else if (fail.status === 403 && fail.error === 'User account is deactivated') {
-            this.openSnackbar('User account is deactivated. Redirecting...', 'Dismiss');
-            this.dialogRef.close();
-            this.router.navigate(['/reactivate-account-request']);
-          } else {
-            this.openSnackbar('The username or password you entered is incorrect.', 'Dismiss');
-          }
-        }
-      });
-    }
-  }
 
   dismissDialog() {
     this.dialogRef.close();

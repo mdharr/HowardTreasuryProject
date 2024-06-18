@@ -15,12 +15,11 @@ export class ReactivateAccountRequestComponent {
   snackbarService = inject(SnackbarService);
   router = inject(Router);
 
-  canDeactivate(): Observable<boolean> | boolean {
-    // Assuming you have a method in AuthService to check the verification status
-    return this.authService.isAccountDeactivated().pipe(
-      map(isDeactivated => !isDeactivated)
-    );
-  }
+  // canDeactivate(): Observable<boolean> | boolean {
+  //   return this.authService.checkLoggedInStatus().pipe(
+  //     map(isLoggedIn => !isLoggedIn || !this.authService.isAccountDeactivated())
+  //   );
+  // }
 
   // sendVerificationEmail() {
   //   // Logic to send verification email with 6 digit code
@@ -50,6 +49,10 @@ export class ReactivateAccountRequestComponent {
   //     }
   //   });
   // }
+
+  logout() {
+    this.authService.logout();
+  }
 
   openSnackbar(message: string, action: string) {
     this.snackbarService.openSnackbar(message, action);

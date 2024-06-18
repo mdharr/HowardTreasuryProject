@@ -20,7 +20,7 @@ public class ActivationCode {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	private String code;
 	
@@ -36,7 +36,7 @@ public class ActivationCode {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ActivationCode(int id, String code, LocalDateTime expiration, User user) {
+	public ActivationCode(Long id, String code, LocalDateTime expiration, User user) {
 		super();
 		this.id = id;
 		this.code = code;
@@ -44,11 +44,11 @@ public class ActivationCode {
 		this.user = user;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

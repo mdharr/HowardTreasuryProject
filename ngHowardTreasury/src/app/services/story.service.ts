@@ -21,7 +21,7 @@ export class StoryService {
   getHttpOptions() {
     let options = {
       headers: {
-        Authorization: 'Basic ' + this.authService.getCredentials(),
+        Authorization: 'Basic ' + this.getCredentials(),
         'X-Requested-With': 'XMLHttpRequest',
       },
     };
@@ -75,4 +75,7 @@ export class StoryService {
     );
   }
 
+  private getCredentials(): string | null {
+    return localStorage.getItem('credentials');
+  }
 }

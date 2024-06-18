@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, throwError, tap, map } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, throwError, tap } from 'rxjs';
 import { Buffer } from "buffer";
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
@@ -87,28 +87,6 @@ export class AuthService {
     );
   }
 
-  newLogin(username: string, password: string): Observable<User> {
-    const credentials = this.generateBasicAuthCredentials(username, password);
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: `Basic ${credentials}`,
-        'X-Requested-With': 'XMLHttpRequest',
-      }),
-    };
-
-    return this.http.get<User>(`${this.url}authenticate`, httpOptions).pipe(
-      tap((user) => {
-        localStorage.setItem('credentials', credentials);
-        this.loggedIn.next(true);
-        this.loggedInUser = user;
-        this.loggedInUserSubject.next(user);
-      }),
-      catchError((error) => {
-        return throwError(() => error);
-      })
-    );
-  }
-
   logout(): Observable<void> {
     localStorage.clear();
     this.loggedIn.next(false);
@@ -184,9 +162,4 @@ export class AuthService {
     });
   }
 
-  isAccountDeactivated(): Observable<boolean> {
-    return this.getLoggedInUser().pipe(
-      map(user => user ? user.deactivated : false)
-    );
-  }
 }

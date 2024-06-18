@@ -17,7 +17,7 @@ export class StoryVoteService {
   getHttpOptions() {
     let options = {
       headers: {
-        Authorization: 'Basic ' + this.authService.getCredentials(),
+        Authorization: 'Basic ' + this.getCredentials(),
         'X-Requested-With': 'XMLHttpRequest',
       },
     };
@@ -62,6 +62,10 @@ export class StoryVoteService {
     return this.http.delete<void>(`${this.url}/${voteId}`, this.getHttpOptions()).pipe(
       tap(() => this.storyService.loadStories())
     );
+  }
+
+  private getCredentials(): string | null {
+    return localStorage.getItem('credentials');
   }
 
 }

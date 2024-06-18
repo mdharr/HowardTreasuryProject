@@ -21,7 +21,7 @@ export class UserlistService {
   getHttpOptions() {
     let options = {
       headers: {
-        Authorization: 'Basic ' + this.authService.getCredentials(),
+        Authorization: 'Basic ' + this.getCredentials(),
         'X-Requested-With': 'XMLHttpRequest',
       },
     };
@@ -153,5 +153,9 @@ export class UserlistService {
         );
       })
     );
+  }
+
+  private getCredentials(): string | null {
+    return localStorage.getItem('credentials');
   }
 }

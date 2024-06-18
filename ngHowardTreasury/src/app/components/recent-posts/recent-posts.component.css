@@ -12,7 +12,7 @@
   padding: 10px;
   width: 35%;
   background-color: var(--bkg_color);
-  transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, border 0.2s, filter 0.6s;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   /* border: 3px solid transparent; */
   border: 5px solid transparent;
@@ -20,10 +20,13 @@
 }
 
 .post-wrapper:hover {
-  cursor: pointer;
+  /* cursor: pointer;
   transform: scale(1.05) translateY(-10px) rotate(3deg);
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; */
   /* border: 3px solid var(--red_milk); */
+  cursor: pointer;
+  transform: translateY(-10px);
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.5));
 }
 
 .post-wrapper:hover .card .title-text {
