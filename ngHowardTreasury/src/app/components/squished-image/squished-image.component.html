@@ -1,0 +1,10 @@
+<div class="slider-container">
+  <button class="prev" (click)="distortImage('left')">&#10094;</button>
+  <div class="slider">
+    <img *ngFor="let image of images; let i = index"
+         [src]="image"
+         class="slide"
+         [class.visible]="i === currentIndex">
+  </div>
+  <button class="next" (click)="distortImage('right')">&#10095;</button>
+</div>

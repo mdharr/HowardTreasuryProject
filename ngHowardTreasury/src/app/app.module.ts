@@ -88,6 +88,7 @@ import { PasswordResetRequestComponent } from './components/password-reset-reque
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { StoryVoteComponent } from './components/story-vote/story-vote.component';
 import { ReactivateAccountRequestComponent } from './components/reactivate-account-request/reactivate-account-request.component';
+import { SquishedImageComponent } from './components/squished-image/squished-image.component';
 
 
 @NgModule({
@@ -153,6 +154,7 @@ import { ReactivateAccountRequestComponent } from './components/reactivate-accou
     PasswordResetComponent,
     StoryVoteComponent,
     ReactivateAccountRequestComponent,
+    SquishedImageComponent,
   ],
   imports: [
     BrowserModule,
