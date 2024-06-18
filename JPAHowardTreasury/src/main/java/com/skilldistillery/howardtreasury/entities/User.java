@@ -95,7 +95,7 @@ public class User {
 	
 	public User(int id, String username, String password, Boolean enabled, String role, String email,
 			String imageUrl, String profileDescription, Boolean deactivated, List<UserList> userLists, List<BlogPost> blogPosts, List<BlogComment> comments,
-			List<ChatMessage> chatMessages, List<ChatRoom> chatRooms, VerificationToken verificationToken, List<StoryVote> storyVotes) {
+			List<ChatMessage> chatMessages, List<ChatRoom> chatRooms, VerificationToken verificationToken, ActivationCode activationCode, ResetPasswordToken resetPasswordToken, List<StoryVote> storyVotes) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -112,6 +112,8 @@ public class User {
 		this.chatMessages = chatMessages;
 		this.chatRooms = chatRooms;
 		this.verificationToken = verificationToken;
+		this.activationCode = activationCode;
+		this.resetPasswordToken = resetPasswordToken;
 		this.storyVotes = storyVotes;
 	}
 
@@ -233,6 +235,14 @@ public class User {
 
 	public void setVerificationToken(VerificationToken verificationToken) {
 		this.verificationToken = verificationToken;
+	}
+
+	public ActivationCode getActivationCode() {
+		return activationCode;
+	}
+
+	public void setActivationCode(ActivationCode activationCode) {
+		this.activationCode = activationCode;
 	}
 
 	public ResetPasswordToken getResetPasswordToken() {
