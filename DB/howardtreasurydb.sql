@@ -851,6 +851,26 @@ CREATE TABLE IF NOT EXISTS `story_vote` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `activation_code`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `activation_code` ;
+
+CREATE TABLE IF NOT EXISTS `activation_code` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `code` VARCHAR(6) NOT NULL,
+  `expiration` DATETIME NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_activation_code_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_activation_code_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS howardtreasury@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';

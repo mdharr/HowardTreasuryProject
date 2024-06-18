@@ -70,6 +70,10 @@ public class User {
     
     @JsonManagedReference
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private ActivationCode activationCode;
+    
+    @JsonManagedReference
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private ResetPasswordToken resetPasswordToken;
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
