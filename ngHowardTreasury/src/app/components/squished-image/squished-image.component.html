@@ -1,4 +1,4 @@
-<div class="slider-container">
+<div class="slider-container" (mouseenter)="showArrows()" (mouseleave)="hideArrows()">
   <button class="prev" (click)="distortImage('left')">&#10094;</button>
   <div class="slider">
     <img *ngFor="let image of images; let i = index"
@@ -7,4 +7,28 @@
          [class.visible]="i === currentIndex">
   </div>
   <button class="next" (click)="distortImage('right')">&#10095;</button>
+</div>
+
+<div class="img-wrapper" style="margin-top: 50px;">
+  <div class="img-container">
+    <div class="img-area">
+      <div class="single-img">
+        <img [src]="images[0]" alt="" class="side1">
+        <img [src]="images[1]" alt="" class="side2">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="comparison-slider" #sliderContainer>
+  <div class="comparison-image comparison-image-left" #leftImage>
+    <img src="https://images5.alphacoders.com/115/thumb-1920-1151243.jpg" alt="Left Image">
+  </div>
+  <div class="comparison-image comparison-image-right" #rightImage>
+    <img src="https://images3.alphacoders.com/115/thumb-1920-1151247.jpg" alt="Right Image">
+  </div>
+  <div class="slider-bar" #sliderBar></div>
 </div>

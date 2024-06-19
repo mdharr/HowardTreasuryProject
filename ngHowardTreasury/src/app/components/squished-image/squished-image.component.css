@@ -16,7 +16,7 @@
   height: 100%;
 }
 
-.slider::before {
+/* .slider::before {
   content: "";
   position: absolute;
   top: 0;
@@ -24,9 +24,9 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-  /* box-shadow: inset 0 0 100px rgba(0, 0, 0, 1); */
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 1);
   pointer-events: none;
-}
+} */
 
 .slide {
   position: absolute;
@@ -54,6 +54,8 @@ button {
   border: none;
   padding: 10px;
   cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .next {
@@ -85,3 +87,119 @@ button {
 .fade-out {
   opacity: 0;
 }
+
+
+
+
+.img-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.img-container {
+  position: relative;
+  width: 80%;
+  aspect-ratio: 16 / 9;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+}
+
+.img-area {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+
+.single-img {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.single-img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.5s;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+.single-img:hover .side2 {
+  transform: translateX(-40%) scaleX(2);
+  opacity:0;
+  filter:blur(10px);
+}
+
+.single-img .side1 {
+  transform: translateX(-40%) scaleX(2);
+  opacity:0;
+  filter:blur(10px);
+}
+
+.single-img:hover .side1 {
+  transform: translateX(0) scaleX(1);
+  opacity:1;
+  filter:blur(0);
+}
+
+
+
+
+
+
+
+.comparison-slider {
+  position: relative;
+  width: 80%;
+  max-width: 800px;
+  height: 400px;
+  margin: auto;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.comparison-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.comparison-image-left {
+  left: 0;
+  z-index: 1; /* Ensure it is above the right image */
+  clip-path: inset(0 50% 0 0); /* Initially show only the left half */
+}
+
+.comparison-image-right {
+  right: 0;
+}
+
+.comparison-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slider-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 5px;
+  background-color: #fff;
+  cursor: ew-resize;
+  z-index: 2; /* Ensure it is above the images */
+}
+
+
+

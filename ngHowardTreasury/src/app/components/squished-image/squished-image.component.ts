@@ -1,11 +1,18 @@
-import { Component } from '@angular/core';
+import { style } from '@angular/animations';
+import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-squished-image',
   templateUrl: './squished-image.component.html',
   styleUrls: ['./squished-image.component.css']
 })
-export class SquishedImageComponent {
+export class SquishedImageComponent implements AfterViewInit {
+
+  @ViewChild('sliderContainer') sliderContainer!: ElementRef;
+  @ViewChild('sliderBar') sliderBar!: ElementRef;
+  @ViewChild('leftImage') leftImage!: ElementRef;
+
+  private isDragging = false;
 
   images = [
     'https://images6.alphacoders.com/131/thumb-1920-1311862.jpeg',
@@ -16,6 +23,10 @@ export class SquishedImageComponent {
   ];
 
   currentIndex = 0;
+
+  ngAfterViewInit() {
+    this.sliderBar.nativeElement.addEventListener('mousedown', this.onDragStart.bind(this));
+  }
 
   distortImage(direction: string) {
     const currentImage = document.querySelector(`.slide:nth-child(${this.currentIndex + 1})`);
@@ -48,5 +59,54 @@ export class SquishedImageComponent {
       nextImage.classList.add('visible', 'fade-in', direction === 'right' ? 'horizontal-distort-right' : 'horizontal-distort-left');
 
     }
+  }
+
+  showArrows() {
+    const nextBtn = document.querySelector('.next') as HTMLButtonElement;
+    const prevBtn = document.querySelector('.prev') as HTMLButtonElement;
+
+    if (nextBtn && prevBtn) {
+      nextBtn.style.opacity = '1';
+      prevBtn.style.opacity = '1';
+      console.log('show');
+    }
+  }
+
+  hideArrows() {
+    const nextBtn = document.querySelector('.next') as HTMLButtonElement;
+    const prevBtn = document.querySelector('.prev') as HTMLButtonElement;
+
+    if (nextBtn && prevBtn) {
+      nextBtn.style.opacity = '-1';
+      prevBtn.style.opacity = '-1';
+      console.log('hide');
+    }
+  }
+
+
+
+
+  @HostListener('window:mousemove', ['$event'])
+  onDrag(event: MouseEvent) {
+    if (!this.isDragging) return;
+
+    const rect = this.sliderContainer.nativeElement.getBoundingClientRect();
+    const offsetX = event.clientX - rect.left;
+
+    if (offsetX < 0 || offsetX > rect.width) return;
+
+    const sliderPosition = (offsetX / rect.width) * 100;
+    this.sliderBar.nativeElement.style.left = `${sliderPosition}%`;
+
+    this.leftImage.nativeElement.style.clipPath = `inset(0 ${100 - sliderPosition}% 0 0)`;
+  }
+
+  @HostListener('window:mouseup')
+  stopDrag() {
+    this.isDragging = false;
+  }
+
+  private onDragStart() {
+    this.isDragging = true;
   }
 }
