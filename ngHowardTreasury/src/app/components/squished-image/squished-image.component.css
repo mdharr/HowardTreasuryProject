@@ -159,11 +159,17 @@ button {
 .comparison-slider {
   position: relative;
   width: 80%;
-  max-width: 800px;
-  height: 400px;
+  /* max-width: 800px; */
+  /* height: 400px; */
+  aspect-ratio: 16 / 9;
   margin: auto;
   overflow: hidden;
   background-color: #000;
+  -webkit-user-select: none;
+  user-select: none;
+  border: 5px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  margin-top: 100px;
 }
 
 .comparison-image {
@@ -172,6 +178,7 @@ button {
   bottom: 0;
   width: 100%;
   overflow: hidden;
+  user-select: none;
 }
 
 .comparison-image-left {
@@ -188,6 +195,7 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  user-select: none;
 }
 
 .slider-bar {
@@ -199,7 +207,91 @@ button {
   background-color: #fff;
   cursor: ew-resize;
   z-index: 2; /* Ensure it is above the images */
+  user-select: none;
 }
 
 
 
+
+
+
+
+
+
+
+.twentytwenty-handle {
+  height: 38px;
+  width: 38px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -22px;
+  margin-top: -22px;
+  border: 3px solid white;
+  -webkit-border-radius: 1000px;
+  -moz-border-radius: 1000px;
+  border-radius: 1000px;
+  -webkit-box-shadow: 0px 0px 12px rgba(51, 51, 51, 0.5);
+  -moz-box-shadow: 0px 0px 12px rgba(51, 51, 51, 0.5);
+  box-shadow: 0px 0px 12px rgba(51, 51, 51, 0.5);
+  z-index: 40;
+  cursor: pointer;
+}
+
+.twentytwenty-handle::before {
+  content: "";
+  bottom: 50%;
+  margin-bottom: 22px;
+  -webkit-box-shadow: 0 3px 0 white, 0px 0px 12px rgba(51, 51, 51, 0.5);
+  -moz-box-shadow: 0 3px 0 white, 0px 0px 12px rgba(51, 51, 51, 0.5);
+  box-shadow: 0 3px 0 white, 0px 0px 12px rgba(51, 51, 51, 0.5);
+  width: 3px;
+  height: 9999px;
+  left: 50%;
+  margin-left: -1.5px;
+
+  display: block;
+  background: white;
+  position: absolute;
+  z-index: 30;
+}
+
+.twentytwenty-handle::after {
+  content: "";
+  top: 50%;
+  margin-top: 22px;
+  -webkit-box-shadow: 0 -3px 0 white, 0px 0px 12px rgba(51, 51, 51, 0.5);
+  -moz-box-shadow: 0 -3px 0 white, 0px 0px 12px rgba(51, 51, 51, 0.5);
+  box-shadow: 0 -3px 0 white, 0px 0px 12px rgba(51, 51, 51, 0.5);
+  height: 9999px;
+  left: 50%;
+  width: 3px;
+  margin-left: -1.5px;
+
+  display: block;
+  background: white;
+  position: absolute;
+  z-index: 30;
+}
+
+.twentytwenty-left-arrow,
+.twentytwenty-right-arrow {
+  top: 50%;
+    margin-top: -6px;
+    width: 0;
+    height: 0;
+    border: 6px inset transparent;
+    position: absolute;
+}
+
+.twentytwenty-left-arrow {
+  border-right: 6px solid white;
+  left: 50%;
+  margin-left: -17px;
+}
+
+.twentytwenty-right-arrow {
+  border-left: 6px solid white;
+  right: 50%;
+  margin-right: -17px;
+}

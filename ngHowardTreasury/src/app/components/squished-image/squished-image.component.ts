@@ -19,7 +19,13 @@ export class SquishedImageComponent implements AfterViewInit {
     'https://images2.alphacoders.com/116/thumb-1920-1169015.jpg',
     'https://images5.alphacoders.com/130/thumb-1920-1301226.jpg',
     'https://images5.alphacoders.com/115/thumb-1920-1151243.jpg',
-    'https://images3.alphacoders.com/115/thumb-1920-1151247.jpg'
+    'https://images3.alphacoders.com/115/thumb-1920-1151247.jpg',
+    'https://images2.alphacoders.com/121/thumb-1920-1214928.png',
+    'https://images7.alphacoders.com/116/thumb-1920-1169013.jpg',
+    'https://images3.alphacoders.com/121/thumb-1920-1216464.jpg',
+    'https://images6.alphacoders.com/121/thumb-1920-1214923.png',
+    'https://images2.alphacoders.com/135/thumb-1920-1353167.png',
+    'https://images.alphacoders.com/135/thumb-1920-1353166.png',
   ];
 
   currentIndex = 0;
@@ -68,7 +74,6 @@ export class SquishedImageComponent implements AfterViewInit {
     if (nextBtn && prevBtn) {
       nextBtn.style.opacity = '1';
       prevBtn.style.opacity = '1';
-      console.log('show');
     }
   }
 
@@ -77,9 +82,8 @@ export class SquishedImageComponent implements AfterViewInit {
     const prevBtn = document.querySelector('.prev') as HTMLButtonElement;
 
     if (nextBtn && prevBtn) {
-      nextBtn.style.opacity = '-1';
-      prevBtn.style.opacity = '-1';
-      console.log('hide');
+      nextBtn.style.opacity = '0';
+      prevBtn.style.opacity = '0';
     }
   }
 
@@ -96,7 +100,7 @@ export class SquishedImageComponent implements AfterViewInit {
     if (offsetX < 0 || offsetX > rect.width) return;
 
     const sliderPosition = (offsetX / rect.width) * 100;
-    this.sliderBar.nativeElement.style.left = `${sliderPosition}%`;
+    this.sliderBar.nativeElement.style.left = `${sliderPosition + 0.09}%`;
 
     this.leftImage.nativeElement.style.clipPath = `inset(0 ${100 - sliderPosition}% 0 0)`;
   }
@@ -109,4 +113,22 @@ export class SquishedImageComponent implements AfterViewInit {
   private onDragStart() {
     this.isDragging = true;
   }
+
+  // showDragBar() {
+  //   const containerDiv = document.querySelector('.comparison-slider') as HTMLDivElement;
+  //   const dragBarElement = document.querySelector('.slider-bar') as HTMLDivElement;
+
+  //   if (containerDiv && dragBarElement) {
+  //     dragBarElement.style.zIndex = '1';
+  //   }
+  // }
+
+  // hideDragBar() {
+  //   const containerDiv = document.querySelector('.comparison-slider') as HTMLDivElement;
+  //   const dragBarElement = document.querySelector('.slider-bar') as HTMLDivElement;
+
+  //   if (containerDiv && dragBarElement) {
+  //     dragBarElement.style.zIndex = '-1';
+  //   }
+  // }
 }

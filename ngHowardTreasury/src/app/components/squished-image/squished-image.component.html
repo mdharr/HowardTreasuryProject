@@ -9,7 +9,7 @@
   <button class="next" (click)="distortImage('right')">&#10095;</button>
 </div>
 
-<div class="img-wrapper" style="margin-top: 50px;">
+<!-- <div class="img-wrapper" style="margin-top: 50px;">
   <div class="img-container">
     <div class="img-area">
       <div class="single-img">
@@ -18,17 +18,29 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 
 
-<div class="comparison-slider" #sliderContainer>
+<div class="comparison-slider" #sliderContainer (mouseenter)="showArrows()" (mouseleave)="hideArrows()">
   <div class="comparison-image comparison-image-left" #leftImage>
-    <img src="https://images5.alphacoders.com/115/thumb-1920-1151243.jpg" alt="Left Image">
+    <!-- <img src="https://images5.alphacoders.com/115/thumb-1920-1151243.jpg" alt="Left Image"> -->
+    <img src="https://static.wikia.nocookie.net/eldenring/images/2/27/ER_loading_screen_stormveil_castle.png" alt="Left Image">
   </div>
   <div class="comparison-image comparison-image-right" #rightImage>
     <img src="https://images3.alphacoders.com/115/thumb-1920-1151247.jpg" alt="Right Image">
   </div>
-  <div class="slider-bar" #sliderBar></div>
+  <!-- <div class="slider-bar" #sliderBar></div> -->
+  <div class="twentytwenty-handle" #sliderBar>
+    <span class="twentytwenty-left-arrow"></span>
+    <span class="twentytwenty-right-arrow"></span>
+  </div>
 </div>
+
+<!-- <div class="twentytwenty-handle">
+  <span class="twentytwenty-left-arrow"></span>
+  <span class="twentytwenty-right-arrow"></span>
+  <span class="twentytwenty-left-arrow"></span>
+  <span class="twentytwenty-right-arrow"></span>
+</div> -->
