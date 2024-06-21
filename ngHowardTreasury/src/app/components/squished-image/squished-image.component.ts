@@ -114,21 +114,21 @@ export class SquishedImageComponent implements AfterViewInit {
     this.isDragging = true;
   }
 
-  // showDragBar() {
-  //   const containerDiv = document.querySelector('.comparison-slider') as HTMLDivElement;
-  //   const dragBarElement = document.querySelector('.slider-bar') as HTMLDivElement;
+  showDragBar() {
+    const containerDiv = document.querySelector('.comparison-slider') as HTMLDivElement;
+    const dragBarElement = document.querySelector('.slider-bar') as HTMLDivElement;
 
-  //   if (containerDiv && dragBarElement) {
-  //     dragBarElement.style.zIndex = '1';
-  //   }
-  // }
+    if (containerDiv && dragBarElement) {
+      dragBarElement.style.zIndex = '1';
+    }
+  }
 
-  // hideDragBar() {
-  //   const containerDiv = document.querySelector('.comparison-slider') as HTMLDivElement;
-  //   const dragBarElement = document.querySelector('.slider-bar') as HTMLDivElement;
+  hideDragBar() {
+    const containerDiv = document.querySelector('.comparison-slider') as HTMLDivElement;
+    const dragBarElement = document.querySelector('.slider-bar') as HTMLDivElement;
 
-  //   if (containerDiv && dragBarElement) {
-  //     dragBarElement.style.zIndex = '-1';
-  //   }
-  // }
+    if (containerDiv && dragBarElement) {
+      dragBarElement.style.zIndex = '-1';
+    }
+  }
 }
