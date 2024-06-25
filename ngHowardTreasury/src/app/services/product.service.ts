@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductService {
 
-  private allProductsUrl = environment.baseUrl + 'https://dummyjson.com/products';
+  private allProductsUrl = 'https://dummyjson.com/products';
 
   http = inject(HttpClient);
 

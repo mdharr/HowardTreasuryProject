@@ -35,6 +35,7 @@ import { StoryVoteComponent } from './components/story-vote/story-vote.component
 import { ReactivateAccountRequestComponent } from './components/reactivate-account-request/reactivate-account-request.component';
 import { canDeactivateGuard } from './guards/can-deactivate.guard';
 import { SquishedImageComponent } from './components/squished-image/squished-image.component';
+import { ProductComponent } from './components/product/product.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -44,6 +45,7 @@ const routes: Routes = [
   { path: 'reset/:token', component: PasswordResetComponent, data: { animation: 'PasswordResetPage' } },
   { path: 'reactivate-account-request', component: ReactivateAccountRequestComponent, canDeactivate: [canDeactivateGuard], data: { animation: 'ReactivateAccountRequestPage' } },
   { path: 'squished-image', component: SquishedImageComponent, data: { animation: 'ReactivateAccountRequestPage' } },
+  { path: 'products', component: ProductComponent, data: { animation: 'ProductPage' } },
   { path: 'about', component: AboutComponent, data: { animation: 'AboutPage' } },
   { path: 'lists', component: UserListsComponent, canActivate: [authGuard], data: { animation: 'ListsPage' } },
   { path: 'profile', component: UserProfileComponent, canActivate: [authGuard], data: { animation: 'ProfilePage' } },
