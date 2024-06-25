@@ -1,0 +1,52 @@
+#pageTitle {
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  margin: 100px;
+}
+
+#linkCardGrid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  gap: 30px;
+  justify-content: space-around;
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 300px;
+  min-height: 260px;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  padding-bottom: 10px;
+  padding-top: 15px;
+  background-color: var(--black_color);
+  filter: drop-shadow(2px 4px 6px black);
+  transition: transform 0.2s ease-out;
+}
+
+.productCard:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
+.productCard .imgWrapper {
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.productCard .imgWrapper img {
+  height: 200px;
+  filter: drop-shadow(2px 4px 6px black);
+}
+
+.productCard p {
+  color: #fff;
+}

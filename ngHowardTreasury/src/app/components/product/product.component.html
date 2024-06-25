@@ -1,1 +1,22 @@
-<p>product works!</p>
+<h1 id="pageTitle">Pagination Demo with Products</h1>
+<!-- <div id="linkCardGrid">
+  <ng-container *ngFor="let product of products">
+    <div class="productCard">
+      <p>{{ product.title }}</p>
+      <div class="imgWrapper">
+        <img src="{{ product.images[0] }}" alt="">
+      </div>
+    </div>
+  </ng-container>
+</div> -->
+
+<div id="linkCardGrid">
+  <ng-container *ngFor="let product of paginatedProducts">
+    <div class="productCard">
+      <p>{{ product.title }}</p>
+      <div class="imgWrapper">
+        <img src="{{ product.images[0] }}" alt="">
+      </div>
+    </div>
+  </ng-container>
+</div>
