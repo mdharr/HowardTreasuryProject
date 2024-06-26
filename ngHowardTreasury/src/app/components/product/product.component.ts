@@ -42,7 +42,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   subscribeToProducts() {
-    this.productSubsArr?.push(this.productService.getAllProducts().subscribe({
+    this.productSub = this.productService.getAllProducts().subscribe({
       next: (data: ApiResponse) => {
         this.products = data.products;
         console.log(this.products);
@@ -50,7 +50,7 @@ export class ProductComponent implements OnInit, OnDestroy {
       error: (err) => {
         console.error(err);
       }
-    }));
+    });
   }
 
   subscribeToPaginatedProducts() {
