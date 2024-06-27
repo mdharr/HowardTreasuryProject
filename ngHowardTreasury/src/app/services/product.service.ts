@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, take, throwError } from 'rxjs';
 
 interface ApiResponse {
   products: any[];
@@ -25,6 +25,7 @@ export class ProductService {
 
   getAllProducts(): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(this.allProductsUrl).pipe(
+      take(1),
       catchError((err: any) => {
         console.error(err);
         return throwError(
