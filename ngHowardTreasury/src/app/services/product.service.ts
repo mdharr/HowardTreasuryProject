@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, catchError, take, throwError } from 'rxjs';
+import { Observable, catchError, filter, map, take, throwError } from 'rxjs';
 
 interface ApiResponse {
   products: any[];
@@ -25,7 +25,10 @@ export class ProductService {
 
   getAllProducts(): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(this.allProductsUrl).pipe(
-      take(1),
+      map(response => {
+        const filteredProducts = response.products.filter(product => product.title.charAt(0).toLowerCase() === 'c');
+        return { ...response, products: filteredProducts };
+      }),
       catchError((err: any) => {
         console.error(err);
         return throwError(
