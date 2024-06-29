@@ -39,6 +39,18 @@ export class ProductService {
     )
   }
 
+  // getAllProducts(): Observable<ApiResponse> {
+  //   return this.http.get<ApiResponse>(this.allProductsUrl).pipe(
+  //     catchError((err: any) => {
+  //       console.error(err);
+  //       return throwError(
+  //         () =>
+  //           new Error('ProductService.getAllProducts(): error retrieving list of products ' + err)
+  //       );
+  //     })
+  //   )
+  // }
+
   getPaginatedProducts(): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(this.paginatedProductsUrl).pipe(
       catchError((err: any) => {
