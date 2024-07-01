@@ -66,10 +66,23 @@
 }
 
 .auth-menu-row .profile-button {
-  color: var(--black_color);
-  height: 40px;
   padding: 5px;
-  border-radius: 28px;
+  padding-right: 8px;
+  padding-left: 8px;
+  height: 40px;
+  line-height: 28px;
+  border: 1px solid var(--white_color);
+  background-color: var(--red_black);
+  color: var(--title_color);
+  width: 100%;
+  font-family: var(--inter);
+  font-size: var(--body_font);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  min-width: 107px;
+  border-radius: 0;
+  font-size: 1rem;
+  border: 3px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
 }
 
 .profile-text {
