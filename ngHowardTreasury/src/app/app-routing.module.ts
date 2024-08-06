@@ -44,8 +44,8 @@ const routes: Routes = [
   { path: 'password/new', component: PasswordResetRequestComponent, data: { animation: 'PasswordResetRequestPage' } },
   { path: 'reset/:token', component: PasswordResetComponent, data: { animation: 'PasswordResetPage' } },
   { path: 'reactivate-account-request', component: ReactivateAccountRequestComponent, canDeactivate: [canDeactivateGuard], data: { animation: 'ReactivateAccountRequestPage' } },
-  { path: 'squished-image', component: SquishedImageComponent, data: { animation: 'ReactivateAccountRequestPage' } },
-  { path: 'products', component: ProductComponent, data: { animation: 'ProductPage' } },
+  // { path: 'squished-image', component: SquishedImageComponent, data: { animation: 'ReactivateAccountRequestPage' } },
+  // { path: 'products', component: ProductComponent, data: { animation: 'ProductPage' } },
   { path: 'about', component: AboutComponent, data: { animation: 'AboutPage' } },
   { path: 'lists', component: UserListsComponent, canActivate: [authGuard], data: { animation: 'ListsPage' } },
   { path: 'profile', component: UserProfileComponent, canActivate: [authGuard], data: { animation: 'ProfilePage' } },
@@ -69,10 +69,10 @@ const routes: Routes = [
   { path: 'illustrators/:illustratorId', component: IllustratorDetailsComponent, data: { animation: 'IllustratorDetailsPage' } },
   { path: 'weird-tales', component: WeirdTalesComponent, data: { animation: 'WeirdTalesPage' } },
   { path: 'weird-tales/:weirdTalesId', component: WeirdTalesDetailsComponent, data: { animation: 'WeirdTalesDetailsPage' } },
-  { path: 'conan', component: AnimatedCardComponent, data: { animation: 'ConanPage' } },
+  // { path: 'conan', component: AnimatedCardComponent, data: { animation: 'ConanPage' } },
   { path: 'posts/:postId/edit', component: BlogPostEditComponent, data: { animation: 'EditPostPage' } },
   { path: 'chat', component: ChatComponent, canActivate: [authGuard], data: { animation: 'ChatPage' } },
-  { path: 'gallery', component: ImageGalleryComponent, data: { animation: 'ImageGalleryPage' } },
+  // { path: 'gallery', component: ImageGalleryComponent, data: { animation: 'ImageGalleryPage' } },
   { path: 'adventure', component: AdventureComponent, canActivate: [authGuard] },
 ];
 
