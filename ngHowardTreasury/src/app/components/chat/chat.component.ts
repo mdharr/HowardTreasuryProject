@@ -46,13 +46,11 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.subscriptions.push(
       this.webSocketService.getMessages().subscribe((newMessages: ChatMessage[]) => {
-        console.log('New messages received from WebSocket:', newMessages); // Debugging log
         const uniqueNewMessages = newMessages.filter(newMsg =>
           !this.messages.some(existingMsg => existingMsg.id === newMsg.id)
         );
 
         this.messages = [...this.messages, ...uniqueNewMessages];
-        console.log('Updated messages:', this.messages); // Debugging log
         this.groupMessagesByDate(this.messages);
         this.cdr.detectChanges(); // Ensure change detection is triggered
         setTimeout(() => this.scrollToBottom(), 0);
@@ -84,7 +82,6 @@ export class ChatComponent implements OnInit, OnDestroy {
 
       // Send the chat message
       this.webSocketService.sendChatMessage(chatMessage);
-      console.log('Message sent:', chatMessage); // Debugging log
       this.newMessage = ''; // Clear input field
       setTimeout(() => this.scrollToBottom(), 0);
     }
@@ -95,7 +92,6 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.chatService.getChatHistory(chatRoomId).subscribe({
         next: (data) => {
           this.messages = data;
-          console.log('Chat history fetched:', data); // Debugging log
           this.sortChatHistory(this.messages);
           this.groupMessagesByDate(this.messages);
           this.cdr.detectChanges();

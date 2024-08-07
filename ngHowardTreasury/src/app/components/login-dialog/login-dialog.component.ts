@@ -31,22 +31,6 @@ export class LoginDialogComponent {
   router = inject(Router);
 
   login(loginUser: User) {
-    // this.auth.login(this.loginUser.username, this.loginUser.password).subscribe({
-    //   next: (loggedInUser) => {
-    //     console.log("Login success");
-    //     this.loginUser = loggedInUser;
-    //     this.userListService.loadUserLists();
-    //     this.dialogRef.close();
-    //     this.openSnackbar('Login Success!', 'Dismiss');
-    //     // Notify the UserService about the successful login
-    //     this.userService.updateUser(loggedInUser);
-    //   },
-    //   error: (fail) => {
-    //     console.error('Login fail');
-    //     console.error(fail);
-    //     this.openSnackbar('Login Failed.', 'Dismiss');
-    //   }
-    // });
     if (this.loginForm.valid) {
       const formValues = this.loginForm.value;
       const username = formValues.username!;
@@ -54,7 +38,6 @@ export class LoginDialogComponent {
 
       this.auth.login(username, password).subscribe({
         next: (loggedInUser) => {
-          console.log("Login success");
           this.loginUser = loggedInUser;
           this.userListService.loadUserLists();
           this.dialogRef.close();
@@ -80,7 +63,6 @@ export class LoginDialogComponent {
 
       this.auth.login(username, password).subscribe({
         next: (loggedInUser) => {
-          console.log("Login success");
           this.loginUser = loggedInUser;
           this.userListService.loadUserLists();
           this.dialogRef.close();

@@ -20,7 +20,6 @@ export class LogoutComponent {
   snackbarService = inject(SnackbarService);
 
   logout() {
-    console.log("Logging out");
     this.userListService.clearUserLists();
     this.auth.logout();
     this.router.navigateByUrl('home');

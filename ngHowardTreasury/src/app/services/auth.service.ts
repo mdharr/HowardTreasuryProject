@@ -43,16 +43,61 @@ export class AuthService {
   //   }
   // }
 
+  // private checkLoggedInStatus() {
+  //   const credentials = localStorage.getItem('credentials');
+  //   if (credentials) {
+  //     this.loggedIn.next(true);
+  //     this.getLoggedInUser().subscribe((user) => {
+  //       if (user && user.username) {
+  //         this.loggedInUserSubject.next(user);
+  //       }
+  //     });
+  //   }
+  // }
+
   private checkLoggedInStatus() {
     const credentials = localStorage.getItem('credentials');
     if (credentials) {
       this.loggedIn.next(true);
-      this.getLoggedInUser().subscribe((user) => {
-        if (user && user.username) {
-          this.loggedInUserSubject.next(user);
+      this.getLoggedInUser().subscribe({
+        next: (user) => {
+          if (user && user.username) {
+            this.loggedInUserSubject.next(user);
+          } else {
+            console.error('Invalid user data received');
+            this.logout().subscribe();
+          }
+        },
+        error: (error) => {
+          console.error('Error fetching logged-in user', error);
+          this.logout().subscribe();
         }
       });
+    } else {
+      this.loggedIn.next(false);
+      this.loggedInUserSubject.next(new User());
     }
+  }
+
+  getInitialLoggedInUserState(): Observable<User> {
+    return new Observable<User>((observer) => {
+      if (this.checkLogin()) {
+        this.getLoggedInUser().subscribe({
+          next: (user) => {
+            observer.next(user);
+            observer.complete();
+          },
+          error: (error) => {
+            console.error('Error fetching initial logged-in user state', error);
+            observer.next(new User());
+            observer.complete();
+          }
+        });
+      } else {
+        observer.next(new User());
+        observer.complete();
+      }
+    });
   }
 
   register(user: User): Observable<User> {
@@ -87,11 +132,18 @@ export class AuthService {
     );
   }
 
+  // logout(): Observable<void> {
+  //   localStorage.clear();
+  //   this.loggedIn.next(false);
+  //   this.loggedInUser = new User();
+  //   this.loggedInUserSubject.next(this.loggedInUser);
+  //   return this.http.post<void>(`${this.url}logout`, {});
+  // }
+
   logout(): Observable<void> {
     localStorage.clear();
     this.loggedIn.next(false);
-    this.loggedInUser = new User();
-    this.loggedInUserSubject.next(this.loggedInUser);
+    this.loggedInUserSubject.next(new User());
     return this.http.post<void>(`${this.url}logout`, {});
   }
 
