@@ -90,7 +90,7 @@ import { StoryVoteComponent } from './components/story-vote/story-vote.component
 import { ReactivateAccountRequestComponent } from './components/reactivate-account-request/reactivate-account-request.component';
 import { SquishedImageComponent } from './components/squished-image/squished-image.component';
 import { ProductComponent } from './components/product/product.component';
-
+import { DelReyCollectionsComponent } from './components/del-rey-collections/del-rey-collections.component';
 
 @NgModule({
   declarations: [
@@ -157,6 +157,7 @@ import { ProductComponent } from './components/product/product.component';
     ReactivateAccountRequestComponent,
     SquishedImageComponent,
     ProductComponent,
+    DelReyCollectionsComponent,
   ],
   imports: [
     BrowserModule,

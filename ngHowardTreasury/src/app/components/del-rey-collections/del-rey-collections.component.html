@@ -1,0 +1,8 @@
+<p>
+  The Del Rey collections use Howard's original typescripts wherever possible and are usually accompanied by a lively appendix of unfinished drafts, alternate versions, and commentary from noted Howard scholars.
+</p>
+<ul class="collections-list">
+  <ng-container *ngFor="let collection of collections; let i = index;">
+    <li *ngIf="i <= 10" class="collection-list-items" [routerLink]="['/collections', collection.id]">{{ collection.title }}</li>
+  </ng-container>
+</ul>
