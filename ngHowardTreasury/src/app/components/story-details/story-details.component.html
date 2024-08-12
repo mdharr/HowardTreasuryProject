@@ -68,7 +68,7 @@
                   <li *ngIf="i <= 10" class="collection-list-items" [routerLink]="['/collections', collection.id]">{{ collection.title }}</li>
                 </ng-container>
               </ul> -->
-            <app-del-rey-collections [collections]="collections"></app-del-rey-collections>
+            <app-del-rey-collections [collections]="first10Collections"></app-del-rey-collections>
             </div>
           </div>
         </div>

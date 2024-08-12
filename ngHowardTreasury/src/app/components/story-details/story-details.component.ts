@@ -37,6 +37,7 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
     storyCollections: Collection[] = [];
     storyImages: StoryImage[] = [];
     collections: Collection[] = [];
+    first10Collections: Collection[] = [];
     collectionImage: CollectionImage = new CollectionImage();
 
     // lightbox properties
@@ -130,6 +131,8 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
             this.collections = data.content;
           } else {
             this.collections = data;
+            this.first10Collections = this.takeFirst10Items(data);
+            console.log('First ten collections: ', this.first10Collections);
           }
         },
         error: (fail) => {
@@ -449,6 +452,10 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
       setTimeout(() => {
         this.showAll = true;
       }, 100);
+    }
+
+    takeFirst10Items(arr: Collection[]) {
+      return arr.slice(0, 10);
     }
 }
 
