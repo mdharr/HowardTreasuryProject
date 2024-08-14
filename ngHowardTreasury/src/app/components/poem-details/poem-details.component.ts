@@ -20,6 +20,7 @@ export class PoemDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
     poem: Poem = new Poem();
     poemExcerpt: string = '';
     poemCollections: Collection[] = [];
+    first10Collections: Collection[] = [];
     collectionImage: CollectionImage = new CollectionImage();
     collections: Collection[] = [];
 
@@ -108,6 +109,8 @@ export class PoemDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
             this.collections = data.content;
           } else {
             this.collections = data;
+            this.first10Collections = this.takeFirst10Items(data);
+            console.log('First ten collections: ', this.first10Collections);
           }
         },
         error: (fail) => {
@@ -142,6 +145,10 @@ export class PoemDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
       const illuminatedInitial = `<span class="first-letter">${firstLetter}</span>`;
 
       return illuminatedInitial + restOfString;
+    }
+
+    takeFirst10Items(arr: Collection[]) {
+      return arr.slice(0, 10);
     }
 }
 
