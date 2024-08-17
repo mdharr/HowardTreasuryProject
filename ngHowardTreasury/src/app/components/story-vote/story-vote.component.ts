@@ -211,4 +211,8 @@ export class StoryVoteComponent implements OnInit {
       storyCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 500)
   }
+
+  loggedIn(): boolean {
+    return this.authService.checkLogin();
+  }
 }

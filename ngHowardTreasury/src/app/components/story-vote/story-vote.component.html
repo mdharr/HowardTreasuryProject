@@ -1,6 +1,6 @@
 <div class="wrapper">
   <h1 class="title">Community Recommended Stories</h1>
-  <h3 class="subtitle">Vote on your favorite stories to help newcomers find their next pulp adventure!</h3>
+  <h3 class="subtitle">What are your favorite pulp adventures?</h3>
   <div class="poll-wrapper">
     <h2>Top 10 Highest Rated Stories</h2>
     <div *ngFor="let story of topStories; let i = index" class="poll-item" [routerLink]="['/stories', story.id]">
@@ -21,7 +21,7 @@
        [@voteAnimation]="voteState[story.id]"
        (@voteAnimation.done)="resetVoteStateAfterAnimation(story.id)">
     <h3 [routerLink]="['/stories', story.id]">{{ story.title }}</h3>
-    <div class="buttons-wrapper">
+    <div class="buttons-wrapper" *ngIf="loggedIn()">
       <button (click)="upvote(story, storyCard)" class="vote-button">
         <span class="material-symbols-outlined" [ngClass]="{'voted': getVoteType(story) === 'upvote'}">shift</span>
       </button>
