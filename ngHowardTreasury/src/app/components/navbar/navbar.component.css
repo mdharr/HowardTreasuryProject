@@ -26,11 +26,11 @@
 }
 
 ::ng-deep .mat-mdc-menu-content .mat-mdc-menu-item:hover {
-  background-color: var(--red_color);
+  background-color: var(--black_white);
 }
 
 ::ng-deep .mat-mdc-menu-item:hover .mdc-list-item__primary-text {
-  color:var(--white_color) !important;
+  color:var(--white_black) !important;
 }
 
 ::ng-deep .mat-mdc-menu-panel.mat-mdc-menu-panel {

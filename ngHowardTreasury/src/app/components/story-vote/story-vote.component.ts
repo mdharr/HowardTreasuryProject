@@ -78,8 +78,10 @@ export class StoryVoteComponent implements OnInit {
   subscribeToLoggedInUser() {
     this.authService.getLoggedInUser().subscribe({
       next: (user) => {
-        this.loggedInUser = user;
-        this.loadUserVotes(); // Load user votes after setting the logged in user
+        if (user) {
+          this.loggedInUser = user;
+          this.loadUserVotes();
+        }
         setTimeout(() => {
           this.loadTopStories();
         }, 500)

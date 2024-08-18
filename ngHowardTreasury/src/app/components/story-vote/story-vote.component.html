@@ -27,7 +27,7 @@
       </button>
       <span class="vote-count">{{ getVoteCount(story) }}</span>
       <button (click)="downvote(story, storyCard)" class="vote-button">
-        <span class="material-symbols-outlined downvoted" [ngClass]="{'voted': getVoteType(story) === 'downvote'}" style="transform: rotate(180deg);">shift</span>
+        <span class="material-symbols-outlined downvoted" [ngClass]="{'voted': getVoteType(story) === 'downvote'}" style="transform: rotate(180deg);" *ngIf="loggedIn()">shift</span>
       </button>
     </div>
   </div>
