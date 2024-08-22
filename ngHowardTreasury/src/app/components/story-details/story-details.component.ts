@@ -411,17 +411,13 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     }
 
-    // showMore() {
-    //   this.maxImagesToShow += this.step;
-    // }
-
     getLightboxBackgroundStyle(): any {
       if (this.selectedImage) {
         const backgroundImage = `url(${this.selectedImage.imageUrl})`;
         const filterProperties = 'blur(20px) brightness(50%)';
         return {
           'background-image': backgroundImage,
-          'background-size': 'cover', // Set the background size to cover
+          'background-size': 'cover',
           filter: filterProperties,
           position: 'fixed',
           top: '-50px',
