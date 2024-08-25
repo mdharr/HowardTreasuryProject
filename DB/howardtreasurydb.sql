@@ -884,6 +884,30 @@ CREATE TABLE IF NOT EXISTS `achievement` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `user_has_achievement`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user_has_achievement` ;
+
+CREATE TABLE IF NOT EXISTS `user_has_achievement` (
+  `user_id` INT NOT NULL,
+  `achievement_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `achievement_id`),
+  INDEX `fk_user_has_achievement_achievement1_idx` (`achievement_id` ASC),
+  INDEX `fk_user_has_achievement_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_user_has_achievement_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_has_achievement_achievement1`
+    FOREIGN KEY (`achievement_id`)
+    REFERENCES `achievement` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS howardtreasury@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
