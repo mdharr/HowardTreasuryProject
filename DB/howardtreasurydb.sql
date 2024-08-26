@@ -893,7 +893,7 @@ DROP TABLE IF EXISTS `user_has_achievement` ;
 CREATE TABLE IF NOT EXISTS `user_has_achievement` (
   `user_id` INT NOT NULL,
   `achievement_id` INT NOT NULL,
-  PRIMARY KEY (`user_id`, `achievement_id`),
+  `created_at` TIMESTAMP NULL,
   INDEX `fk_user_has_achievement_achievement1_idx` (`achievement_id` ASC),
   INDEX `fk_user_has_achievement_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_user_has_achievement_user1`
@@ -2879,6 +2879,27 @@ USE `howardtreasurydb`;
 INSERT INTO `story_vote` (`id`, `story_id`, `user_id`, `vote_type`) VALUES (1, 22, 1, 'upvote');
 INSERT INTO `story_vote` (`id`, `story_id`, `user_id`, `vote_type`) VALUES (2, 22, 2, 'upvote');
 INSERT INTO `story_vote` (`id`, `story_id`, `user_id`, `vote_type`) VALUES (3, 22, 3, 'upvote');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `achievement`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `achievement` (`id`, `name`, `description`) VALUES (1, 'Scribe of Cimmeria', 'By the quill of Crom! You\'ve penned your first scroll. Like the tales of old, your journey begins with a single mark. May your lists grow as legendary as the chronicles of Conan!');
+INSERT INTO `achievement` (`id`, `name`, `description`) VALUES (2, 'Voice of the Hyborian Age', 'Your first utterance echoes through the halls of time! Like the bards of old, you\'ve added your voice to the great tapestry of tales. May your words ring true and your comments cut as sharp as a Cimmerian blade!');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_has_achievement`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `user_has_achievement` (`user_id`, `achievement_id`, `created_at`) VALUES (1, 1, '2024-08-24T12:35:22');
 
 COMMIT;
 
