@@ -57,6 +57,7 @@
 		<class>com.skilldistillery.howardtreasury.entities.ResetPasswordToken</class>
 		<class>com.skilldistillery.howardtreasury.entities.ActivationCode</class>
 		<class>com.skilldistillery.howardtreasury.entities.WeirdTales</class>
+		<class>com.skilldistillery.howardtreasury.entities.Achievement</class>
 
 		<!-- end entities -->
 
