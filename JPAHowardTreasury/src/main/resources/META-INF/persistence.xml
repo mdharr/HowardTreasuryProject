@@ -58,6 +58,8 @@
 		<class>com.skilldistillery.howardtreasury.entities.ActivationCode</class>
 		<class>com.skilldistillery.howardtreasury.entities.WeirdTales</class>
 		<class>com.skilldistillery.howardtreasury.entities.Achievement</class>
+		<class>com.skilldistillery.howardtreasury.entities.UserHasAchievement</class>
+		<class>com.skilldistillery.howardtreasury.entities.UserHasAchievementId</class>
 
 		<!-- end entities -->
 

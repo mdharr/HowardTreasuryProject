@@ -2,6 +2,7 @@ package com.skilldistillery.howardtreasury.entities;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -79,6 +80,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties({"user", "story"})
     private List<StoryVote> storyVotes;
+    
+    @OneToMany(mappedBy = "user")
+    private Set<UserHasAchievement> userAchievements;
 
 	public User() {
 		super();
