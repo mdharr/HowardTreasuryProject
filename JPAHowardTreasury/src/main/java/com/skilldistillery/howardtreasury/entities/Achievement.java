@@ -27,11 +27,12 @@ public class Achievement {
 		super();
 	}
 
-	public Achievement(int id, String name, String description) {
+	public Achievement(int id, String name, String description, Set<UserHasAchievement> userAchievements) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
+		this.userAchievements = userAchievements;
 	}
 
 	public int getId() {
@@ -56,6 +57,14 @@ public class Achievement {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Set<UserHasAchievement> getUserAchievements() {
+		return userAchievements;
+	}
+
+	public void setUserAchievements(Set<UserHasAchievement> userAchievements) {
+		this.userAchievements = userAchievements;
 	}
 
 	@Override

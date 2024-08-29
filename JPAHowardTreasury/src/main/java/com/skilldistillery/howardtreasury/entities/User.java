@@ -99,7 +99,8 @@ public class User {
 	
 	public User(int id, String username, String password, Boolean enabled, String role, String email,
 			String imageUrl, String profileDescription, Boolean deactivated, List<UserList> userLists, List<BlogPost> blogPosts, List<BlogComment> comments,
-			List<ChatMessage> chatMessages, List<ChatRoom> chatRooms, VerificationToken verificationToken, ActivationCode activationCode, ResetPasswordToken resetPasswordToken, List<StoryVote> storyVotes) {
+			List<ChatMessage> chatMessages, List<ChatRoom> chatRooms, VerificationToken verificationToken, ActivationCode activationCode, 
+			ResetPasswordToken resetPasswordToken, List<StoryVote> storyVotes, Set<UserHasAchievement> userAchievements) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -119,6 +120,7 @@ public class User {
 		this.activationCode = activationCode;
 		this.resetPasswordToken = resetPasswordToken;
 		this.storyVotes = storyVotes;
+		this.userAchievements = userAchievements;
 	}
 
 	public int getId() {
@@ -264,6 +266,14 @@ public class User {
     public void setStoryVotes(List<StoryVote> storyVotes) {
         this.storyVotes = storyVotes;
     }
+
+	public Set<UserHasAchievement> getUserAchievements() {
+		return userAchievements;
+	}
+
+	public void setUserAchievements(Set<UserHasAchievement> userAchievements) {
+		this.userAchievements = userAchievements;
+	}
 
 	@Override
 	public int hashCode() {
