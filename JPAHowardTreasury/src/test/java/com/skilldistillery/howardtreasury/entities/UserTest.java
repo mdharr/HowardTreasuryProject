@@ -2,6 +2,10 @@ package com.skilldistillery.howardtreasury.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -84,6 +88,26 @@ class UserTest {
 	void test_User_Story_many_to_many_mapping() {
 		assertNotNull(user);
 		assertEquals("The Tower of the Elephant", user.getStoryVotes().get(0).getStory().getTitle());
+	}
+	
+	@Test
+	void test_User_Achievement_many_to_many_mapping() {
+		
+	    assertNotNull(user);
+	    
+	    Optional<UserHasAchievement> firstUserAchievement = user.getUserAchievements().stream().findFirst();
+	    
+	    assertTrue(firstUserAchievement.isPresent(), "There should be at least one UserHasAchievement");
+	    
+	    firstUserAchievement.ifPresent(userAchievement -> {
+	        Achievement achievement = userAchievement.getAchievement();
+	        assertNotNull(achievement, "Achievement should not be null");
+	        assertEquals("Scribe of Cimmeria", achievement.getName(), "Achievement name should be 'Scribe of Cimmeria'");	        
+	    });
+	    
+	    if (!firstUserAchievement.isPresent()) {
+	        fail("There should be at least one UserHasAchievement");
+	    }
 	}
 
 }
