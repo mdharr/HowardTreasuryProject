@@ -45,7 +45,7 @@ class AchievementTest {
 	@Test
 	void test_Achievement_entity_mapping() {
 		assertNotNull(achievement);
-		assertEquals("Scribe of Cimmeria", achievement.getName());
+		assertEquals("Voice of the Hyborian Age", achievement.getName());
 	}
 	
 	@Test

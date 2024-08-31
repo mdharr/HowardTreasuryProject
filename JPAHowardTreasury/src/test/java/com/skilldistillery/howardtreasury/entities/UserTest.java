@@ -102,7 +102,7 @@ class UserTest {
 	    firstUserAchievement.ifPresent(userAchievement -> {
 	        Achievement achievement = userAchievement.getAchievement();
 	        assertNotNull(achievement, "Achievement should not be null");
-	        assertEquals("Scribe of Cimmeria", achievement.getName(), "Achievement name should be 'Scribe of Cimmeria'");	        
+	        assertEquals("Voice of the Hyborian Age", achievement.getName(), "Achievement name should be 'Scribe of Cimmeria'");	        
 	    });
 	    
 	    if (!firstUserAchievement.isPresent()) {

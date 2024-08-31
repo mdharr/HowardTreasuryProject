@@ -16,6 +16,21 @@ CREATE SCHEMA IF NOT EXISTS `howardtreasurydb` DEFAULT CHARACTER SET utf8 ;
 USE `howardtreasurydb` ;
 
 -- -----------------------------------------------------
+-- Table `level`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `level` ;
+
+CREATE TABLE IF NOT EXISTS `level` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `level_number` INT NOT NULL,
+  `experience_required` INT NOT NULL,
+  `title` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `level_number_UNIQUE` (`level_number` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `user` ;
@@ -30,8 +45,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `image_url` VARCHAR(255) NULL,
   `profile_description` VARCHAR(300) NULL,
   `deactivated` TINYINT NULL,
+  `level_id` INT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC),
+  INDEX `fk_user_level1_idx` (`level_id` ASC),
+  CONSTRAINT `fk_user_level1`
+    FOREIGN KEY (`level_id`)
+    REFERENCES `level` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -878,9 +900,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `achievement` ;
 
 CREATE TABLE IF NOT EXISTS `achievement` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL DEFAULT 1,
   `name` VARCHAR(100) NULL,
   `description` VARCHAR(1000) NULL,
+  `experience` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -920,13 +943,52 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `level`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (1, 1, 0, 'Novice Adventurer');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (2, 2, 1000, 'Aspiring Hero');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (3, 3, 3000, 'Seasoned Wanderer');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (4, 4, 6000, 'Cimmerian Warrior');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (5, 5, 10000, 'Bossonian Archer');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (6, 6, 15000, 'Aquilonian Noble');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (7, 7, 21000, 'Zamorian Thief');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (8, 8, 28000, 'Stygian Sorcerer');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (9, 9, 36000, 'Khitan Assassin');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (10, 10, 45000, 'Hyrkanian Horse Lord');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (11, 11, 55000, 'Pictish Shaman');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (12, 12, 66000, 'Vanir Berserker');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (13, 13, 78000, 'Kushite Witch Doctor');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (14, 14, 91000, 'Argossean Pirate');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (15, 15, 105000, 'Turanian Vizier');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (16, 16, 120000, 'Hyperborean Sage');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (17, 17, 136000, 'Atlantean Ruler');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (18, 18, 153000, 'Acheronian Necromancer');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (19, 19, 171000, 'Lemurian Survivor');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (20, 20, 190000, 'Hyborian Demigod');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (21, 21, 210000, 'Cimmerian Chieftain');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (22, 22, 231000, 'Aquilonian King');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (23, 23, 253000, 'Stygian High Priest');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (24, 24, 276000, 'Hyrkanian Khan');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (25, 25, 300000, 'Pictish War Chief');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (26, 26, 325000, 'Vanir Jarl');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (27, 27, 351000, 'Kushite Pharaoh');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (28, 28, 378000, 'Argossean Admiral');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (29, 29, 406000, 'Turanian Emperor');
+INSERT INTO `level` (`id`, `level_number`, `experience_required`, `title`) VALUES (30, 30, 435000, 'Hyperborean Archsage');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `user`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`, `profile_description`, `deactivated`) VALUES (1, 'Conan', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'ADMIN', 'robertehowardtreasury@gmail.com', 'https://storage.proboards.com/6439519/avatar/rkoatbvKFjxaoISHwcbr.jpg', 'Hither came Conan, the Cimmerian, black-haired, sullen-eyed, sword in hand, a thief, a reaver, a slayer, with gigantic melancholies and gigantic mirth, to tread the jeweled thrones of the Earth under his sandalled feet.\"', 0);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`, `profile_description`, `deactivated`) VALUES (2, 'Kull', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'MODERATOR', 'swiftinfern0@gmail.com', 'https://pbs.twimg.com/media/EC_Wbe6W4AEtl65.jpg', 'A brave sight, and a sight which aroused a fierce thrill in the soul of Kull, king of Valusia. Not on the Topaz Throne at the front of the regal Tower of Splendor sat Kull, but in the saddle, mounted on a great stallion, a true warrior king.', 0);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`, `profile_description`, `deactivated`) VALUES (3, 'Solomon', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD', 'acatt.mh@gmail.com', 'https://storage.proboards.com/6439519/avatar/z9k5Dao0qaaJX9LKgT9J.jpg', 'He was a man born out of his time—a strange blending of Puritan and Cavalier, with a touch of the ancient philosopher, and more than a touch of the pagan, though the last assertion would have shocked him unspeakably.', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`, `profile_description`, `deactivated`, `level_id`) VALUES (1, 'Conan', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'ADMIN', 'robertehowardtreasury@gmail.com', 'https://storage.proboards.com/6439519/avatar/rkoatbvKFjxaoISHwcbr.jpg', 'Hither came Conan, the Cimmerian, black-haired, sullen-eyed, sword in hand, a thief, a reaver, a slayer, with gigantic melancholies and gigantic mirth, to tread the jeweled thrones of the Earth under his sandalled feet.\"', 0, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`, `profile_description`, `deactivated`, `level_id`) VALUES (2, 'Kull', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'MODERATOR', 'swiftinfern0@gmail.com', 'https://pbs.twimg.com/media/EC_Wbe6W4AEtl65.jpg', 'A brave sight, and a sight which aroused a fierce thrill in the soul of Kull, king of Valusia. Not on the Topaz Throne at the front of the regal Tower of Splendor sat Kull, but in the saddle, mounted on a great stallion, a true warrior king.', 0, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `email`, `image_url`, `profile_description`, `deactivated`, `level_id`) VALUES (3, 'Solomon', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD', 'acatt.mh@gmail.com', 'https://storage.proboards.com/6439519/avatar/z9k5Dao0qaaJX9LKgT9J.jpg', 'He was a man born out of his time—a strange blending of Puritan and Cavalier, with a touch of the ancient philosopher, and more than a touch of the pagan, though the last assertion would have shocked him unspeakably.', 1, 1);
 
 COMMIT;
 
@@ -2888,8 +2950,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `howardtreasurydb`;
-INSERT INTO `achievement` (`id`, `name`, `description`) VALUES (1, 'Scribe of Cimmeria', 'By the quill of Crom! You\'ve penned your first scroll. Like the tales of old, your journey begins with a single mark. May your lists grow as legendary as the chronicles of Conan!');
-INSERT INTO `achievement` (`id`, `name`, `description`) VALUES (2, 'Voice of the Hyborian Age', 'Your first utterance echoes through the halls of time! Like the bards of old, you\'ve added your voice to the great tapestry of tales. May your words ring true and your comments cut as sharp as a Cimmerian blade!');
+INSERT INTO `achievement` (`id`, `name`, `description`, `experience`) VALUES (1, 'Voice of the Hyborian Age', 'Your first utterance echoes through the halls of time! Like the bards of old, you\'ve added your voice to the great tapestry of tales.', 50);
+INSERT INTO `achievement` (`id`, `name`, `description`, `experience`) VALUES (2, 'Serpent Pen of Set', 'Five comments strong! Your words wind through the threads of fate like the serpents of Set. The ancient gods take notice.', 100);
+INSERT INTO `achievement` (`id`, `name`, `description`, `experience`) VALUES (3, 'Tongue of Ten Tribes', 'A perfect ten! Your voice rings out like a chieftain addressing the Ten Tribes of Hyperborea. Your legend grows.', 200);
+INSERT INTO `achievement` (`id`, `name`, `description`, `experience`) VALUES (4, 'Pictish War Chant', 'Twenty-five battle cries! Your comments resound like the fierce war chants of the Pictish wilderness. Enemies tremble at your approach.', 500);
+INSERT INTO `achievement` (`id`, `name`, `description`, `experience`) VALUES (5, 'Saga of the Fifty Winds', 'Fifty tales told! Like the Saga of the Fifty Winds that howl through the crags of Cimmeria, your words have become legend.', 1000);
+INSERT INTO `achievement` (`id`, `name`, `description`, `experience`) VALUES (6, 'Hundred Handed Oracle', 'One hundred pronouncements! Your wisdom flows like the hundred-handed oracles of ancient Atlantis. Kings seek your counsel.', 2000);
+INSERT INTO `achievement` (`id`, `name`, `description`, `experience`) VALUES (7, 'Chronicles of Acheron', 'Two hundred and fifty scrolls filled! Your comments form a chronicle to rival the forbidden tomes of Acheron. Dark knowledge flows from your quill.', 5000);
+INSERT INTO `achievement` (`id`, `name`, `description`, `experience`) VALUES (8, 'Epics of Eikoziphoin', 'Five hundred sagas sung! Like the fabled five hundred epics of Eikoziphoin, your words have become immortal, echoing through eternity.', 10000);
+INSERT INTO `achievement` (`id`, `name`, `description`, `experience`) VALUES (9, 'Whispers of the Elder Gods', 'Seven hundred and fifty cosmic utterances! Your comments now carry the weight of prophecy, like whispers from the dread Elder Gods themselves.', 15000);
+INSERT INTO `achievement` (`id`, `name`, `description`, `experience`) VALUES (10, 'Kull\'s Thousand Year Reign', 'One thousand decrees! Your words now shape reality itself, rivaling the thousand-year reign of Kull the Conqueror. You have become the voice of an age!', 20000);
 
 COMMIT;
 

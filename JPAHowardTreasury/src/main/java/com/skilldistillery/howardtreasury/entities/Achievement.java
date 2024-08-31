@@ -20,6 +20,8 @@ public class Achievement {
 	
 	private String description;
 	
+	private int experience;
+	
     @OneToMany(mappedBy = "achievement")
     private Set<UserHasAchievement> userAchievements;
 
@@ -27,11 +29,12 @@ public class Achievement {
 		super();
 	}
 
-	public Achievement(int id, String name, String description, Set<UserHasAchievement> userAchievements) {
+	public Achievement(int id, String name, String description, int experience, Set<UserHasAchievement> userAchievements) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
+		this.experience = experience;
 		this.userAchievements = userAchievements;
 	}
 
@@ -57,6 +60,14 @@ public class Achievement {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public int getExperience() {
+		return experience;
+	}
+	
+	public void setExperience(int experience) {
+		this.experience = experience;
 	}
 
 	public Set<UserHasAchievement> getUserAchievements() {
@@ -86,7 +97,7 @@ public class Achievement {
 
 	@Override
 	public String toString() {
-		return "Achievement [id=" + id + ", name=" + name + ", description=" + description + "]";
+		return "Achievement [id=" + id + ", name=" + name + ", description=" + description + ", experience=" + experience + "]";
 	}
 	
 
