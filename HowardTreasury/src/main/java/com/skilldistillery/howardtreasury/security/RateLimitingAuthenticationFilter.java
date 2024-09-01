@@ -1,13 +1,18 @@
 package com.skilldistillery.howardtreasury.security;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -18,9 +23,11 @@ public class RateLimitingAuthenticationFilter extends OncePerRequestFilter {
 	private static final int STATUS_TOO_MANY_REQUESTS = 429;
 
     private final RateLimitService rateLimitService;
+    private final ObjectMapper objectMapper;
 
-    public RateLimitingAuthenticationFilter(RateLimitService rateLimitService) {
+    public RateLimitingAuthenticationFilter(RateLimitService rateLimitService, ObjectMapper objectMapper) {
         this.rateLimitService = rateLimitService;
+        this.objectMapper = objectMapper;
     }
 
     @Override
@@ -32,8 +39,7 @@ public class RateLimitingAuthenticationFilter extends OncePerRequestFilter {
         if (username != null) {
             RateLimitService.RateLimitResult result = rateLimitService.tryConsume(username);
             if (!result.isAllowed) {
-                response.setStatus(STATUS_TOO_MANY_REQUESTS);
-                response.getWriter().write("Rate limit exceeded. Try again in " + result.secondsUntilRefill + " seconds.");
+                sendErrorResponse(response, request, result.secondsUntilRefill);
                 return;
             }
         }
@@ -45,6 +51,20 @@ public class RateLimitingAuthenticationFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
             rateLimitService.resetOrAdjustLimit(username);
         }
+    }
+
+    private void sendErrorResponse(HttpServletResponse response, HttpServletRequest request, long secondsUntilRefill) throws IOException {
+        response.setStatus(STATUS_TOO_MANY_REQUESTS);
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+
+        Map<String, Object> errorDetails = new HashMap<>();
+        errorDetails.put("timestamp", Instant.now().toString());
+        errorDetails.put("status", STATUS_TOO_MANY_REQUESTS);
+        errorDetails.put("error", "Too Many Requests");
+        errorDetails.put("message", "Rate limit exceeded. Try again in " + secondsUntilRefill + " seconds.");
+        errorDetails.put("path", request.getRequestURI());
+
+        objectMapper.writeValue(response.getWriter(), errorDetails);
     }
 
     private String extractUsernameFromRequest(HttpServletRequest request) {

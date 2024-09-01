@@ -15,6 +15,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-dialog.component.css']
 })
 export class LoginDialogComponent {
+
+  private snackbarRef: any;
+
+  private countdownTimer: any;
+  private waitTime: number = 0;
+
   loginUser: User = new User();
 
   loginForm = new FormGroup({
@@ -78,7 +84,18 @@ export class LoginDialogComponent {
             this.openSnackbar('User deactivated account.', 'Dismiss');
             this.dialogRef.close();
             this.router.navigate(['/enable-account-request']);
-          } else {
+          } else if (fail.status === 429) {
+              // Parse the error response
+              const errorBody = fail.error;
+              console.log(errorBody);
+              // Check if the error body has a 'message' property and it contains 'Rate limit exceeded'
+              if (errorBody && errorBody.includes('Rate limit exceeded')) {
+                this.waitTime = parseInt(errorBody.replace(/[^0-9]/g, ''), 10);
+                this.showRateLimitMessage();
+              } else {
+                this.openSnackbar('Too many requests. Please try again later.', 'Dismiss');
+              }
+            } else {
             console.error('Login fail');
             console.error(fail);
             this.openSnackbar('The username or password you entered is incorrect.', 'Dismiss');
@@ -87,6 +104,39 @@ export class LoginDialogComponent {
         }
       });
     }
+  }
+
+  private showRateLimitMessage() {
+    // Clear any existing interval
+    if (this.countdownTimer) {
+      clearInterval(this.countdownTimer);
+    }
+
+    const updateMessage = () => {
+      const message = `Too many login attempts. Please try again in ${this.waitTime} seconds.`;
+      if (this.waitTime > 0) {
+        this.snackbarService.updateSnackbarMessage(message);
+      } else {
+        this.snackbarService.dismiss();
+        clearInterval(this.countdownTimer);
+      }
+    };
+
+    // Open the initial snackbar
+    this.snackbarService.openSnackbar(`Too many login attempts. Please try again in ${this.waitTime} seconds.`, 'Dismiss');
+
+    // Start the countdown
+    this.countdownTimer = setInterval(() => {
+      this.waitTime--;
+      updateMessage();
+    }, 1000);
+  }
+
+  ngOnDestroy() {
+    if (this.countdownTimer) {
+      clearInterval(this.countdownTimer);
+    }
+    this.snackbarService.dismiss();
   }
 
   // newLogin(loginUser: User) {

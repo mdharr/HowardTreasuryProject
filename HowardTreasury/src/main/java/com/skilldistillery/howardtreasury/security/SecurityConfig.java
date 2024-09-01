@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skilldistillery.howardtreasury.services.RateLimitService;
 
 @Configuration
@@ -28,11 +29,15 @@ public class SecurityConfig {
     
     @Autowired
     private RateLimitService rateLimitService;
+    
+    @Autowired
+    private ObjectMapper objectMapper;
 	
     @Bean
     public SecurityFilterChain createFilterChain(HttpSecurity http) throws Exception {
         http
-        .addFilterBefore(new RateLimitingAuthenticationFilter(rateLimitService), BasicAuthenticationFilter.class)
+//        .addFilterBefore(new RateLimitingAuthenticationFilter(rateLimitService), BasicAuthenticationFilter.class)
+        .addFilterBefore(new RateLimitingAuthenticationFilter(rateLimitService, objectMapper), BasicAuthenticationFilter.class)
         .csrf().disable()
         .authorizeRequests()
         .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll() // For CORS, the preflight request

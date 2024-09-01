@@ -28,6 +28,7 @@ import com.skilldistillery.howardtreasury.dtos.CheckPasswordRequest;
 import com.skilldistillery.howardtreasury.entities.User;
 import com.skilldistillery.howardtreasury.entities.VerificationToken;
 import com.skilldistillery.howardtreasury.exceptions.EmailAlreadyExistsException;
+import com.skilldistillery.howardtreasury.exceptions.RateLimitExceededException;
 import com.skilldistillery.howardtreasury.exceptions.UserDeactivatedException;
 import com.skilldistillery.howardtreasury.exceptions.UsernameAlreadyExistsException;
 import com.skilldistillery.howardtreasury.exceptions.UsernameNotFoundException;
@@ -129,17 +130,21 @@ public class AuthController {
 //    }
   	
   	// experimental
-    @GetMapping("authenticate")
-    public ResponseEntity<?> auth(Principal principal) {
-        try {
-            User user = authService.getUserDetails(principal.getName());
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        } catch (UsernameNotFoundException e) {
-            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+  	@GetMapping("authenticate")
+  	public ResponseEntity<?> auth(Principal principal) {
+  	    if (principal == null) {
+  	        return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+  	    }
+
+  	    try {
+  	        User user = authService.getUserDetails(principal.getName());
+  	        return new ResponseEntity<>(user, HttpStatus.OK);
+  	    } catch (UsernameNotFoundException e) {
+  	        return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+  	    } catch (Exception e) {
+  	        return new ResponseEntity<>("An error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
+  	    }
+  	}
   	
 //    @GetMapping("authentication")
 //    public ResponseEntity<?> auth(Principal principal) {
