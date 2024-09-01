@@ -7,7 +7,52 @@
     </provider>
 
 		<!-- begin entities -->
+		<class>com.skilldistillery.howardtreasury.entities.Achievement</class>
+		<class>com.skilldistillery.howardtreasury.entities.ActivationCode</class>
+		<class>com.skilldistillery.howardtreasury.entities.BlogComment</class>
+		<class>com.skilldistillery.howardtreasury.entities.BlogPost</class>
+		<class>com.skilldistillery.howardtreasury.entities.ChatMessage</class>
+		<class>com.skilldistillery.howardtreasury.entities.ChatRoom</class>
+		<class>com.skilldistillery.howardtreasury.entities.Collection</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasCollectionImage</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasCollectionImageId</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasIllustrator</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasIllustratorId</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionImage</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasMiscellanea</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasMiscellaneaId</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasPerson</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasPersonId</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasPoem</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasPoemId</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasStory</class>
+		<class>com.skilldistillery.howardtreasury.entities.CollectionHasStoryId</class>
+		<class>com.skilldistillery.howardtreasury.entities.Illustrator</class>
+		<class>com.skilldistillery.howardtreasury.entities.Miscellanea</class>
+		<class>com.skilldistillery.howardtreasury.entities.MiscellaneaHasPerson</class>
+		<class>com.skilldistillery.howardtreasury.entities.MiscellaneaHasPersonId</class>
+		<class>com.skilldistillery.howardtreasury.entities.Notification</class>
+		<class>com.skilldistillery.howardtreasury.entities.Person</class>
+		<class>com.skilldistillery.howardtreasury.entities.Poem</class>
+		<class>com.skilldistillery.howardtreasury.entities.Series</class>
+		<class>com.skilldistillery.howardtreasury.entities.Story</class>
+		<class>com.skilldistillery.howardtreasury.entities.StoryHasPerson</class>
+		<class>com.skilldistillery.howardtreasury.entities.StoryHasPersonId</class>
+		<class>com.skilldistillery.howardtreasury.entities.StoryVote</class>
+		<class>com.skilldistillery.howardtreasury.entities.StoryHasStoryImage</class>
+		<class>com.skilldistillery.howardtreasury.entities.StoryHasStoryImageId</class>
+		<class>com.skilldistillery.howardtreasury.entities.StoryImage</class>
+		<class>com.skilldistillery.howardtreasury.entities.StoryImageHasIllustrator</class>
+		<class>com.skilldistillery.howardtreasury.entities.StoryImageHasIllustratorId</class>
+		<class>com.skilldistillery.howardtreasury.entities.PoemHasPerson</class>
+		<class>com.skilldistillery.howardtreasury.entities.PoemHasPersonId</class>
+		<class>com.skilldistillery.howardtreasury.entities.VerificationToken</class>
+		<class>com.skilldistillery.howardtreasury.entities.ResetPasswordToken</class>
 		<class>com.skilldistillery.howardtreasury.entities.User</class>
+		<class>com.skilldistillery.howardtreasury.entities.UserHasAchievement</class>
+		<class>com.skilldistillery.howardtreasury.entities.UserHasAchievementId</class>
+		<class>com.skilldistillery.howardtreasury.entities.UserHasChatRoom</class>
+		<class>com.skilldistillery.howardtreasury.entities.UserHasChatRoomId</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserList</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserListHasStory</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserListHasStoryId</class>
@@ -15,52 +60,7 @@
 		<class>com.skilldistillery.howardtreasury.entities.UserListHasPoemId</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserListHasMiscellanea</class>
 		<class>com.skilldistillery.howardtreasury.entities.UserListHasMiscellaneaId</class>
-		<class>com.skilldistillery.howardtreasury.entities.Story</class>
-		<class>com.skilldistillery.howardtreasury.entities.Poem</class>
-		<class>com.skilldistillery.howardtreasury.entities.Person</class>
-		<class>com.skilldistillery.howardtreasury.entities.Miscellanea</class>
-		<class>com.skilldistillery.howardtreasury.entities.Series</class>
-		<class>com.skilldistillery.howardtreasury.entities.Illustrator</class>
-		<class>com.skilldistillery.howardtreasury.entities.CollectionHasIllustrator</class>
-		<class>com.skilldistillery.howardtreasury.entities.CollectionHasIllustratorId</class>
-		<class>com.skilldistillery.howardtreasury.entities.Collection</class>
-		<class>com.skilldistillery.howardtreasury.entities.CollectionImage</class>
-		<class>com.skilldistillery.howardtreasury.entities.CollectionHasCollectionImage</class>
-		<class>com.skilldistillery.howardtreasury.entities.CollectionHasCollectionImageId</class>
-		<class>com.skilldistillery.howardtreasury.entities.CollectionHasStory</class>
-		<class>com.skilldistillery.howardtreasury.entities.CollectionHasStoryId</class>
-		<class>com.skilldistillery.howardtreasury.entities.CollectionHasPoem</class>
-		<class>com.skilldistillery.howardtreasury.entities.CollectionHasPoemId</class>
-		<class>com.skilldistillery.howardtreasury.entities.CollectionHasPerson</class>
-		<class>com.skilldistillery.howardtreasury.entities.CollectionHasPersonId</class>
-		<class>com.skilldistillery.howardtreasury.entities.CollectionHasMiscellanea</class>
-		<class>com.skilldistillery.howardtreasury.entities.CollectionHasMiscellaneaId</class>
-		<class>com.skilldistillery.howardtreasury.entities.ChatRoom</class>
-		<class>com.skilldistillery.howardtreasury.entities.ChatMessage</class>
-		<class>com.skilldistillery.howardtreasury.entities.UserHasChatRoom</class>
-		<class>com.skilldistillery.howardtreasury.entities.UserHasChatRoomId</class>
-		<class>com.skilldistillery.howardtreasury.entities.StoryImage</class>
-		<class>com.skilldistillery.howardtreasury.entities.StoryHasStoryImage</class>
-		<class>com.skilldistillery.howardtreasury.entities.StoryHasStoryImageId</class>
-		<class>com.skilldistillery.howardtreasury.entities.StoryImageHasIllustrator</class>
-		<class>com.skilldistillery.howardtreasury.entities.StoryImageHasIllustratorId</class>
-		<class>com.skilldistillery.howardtreasury.entities.StoryHasPerson</class>
-		<class>com.skilldistillery.howardtreasury.entities.StoryHasPersonId</class>
-		<class>com.skilldistillery.howardtreasury.entities.StoryVote</class>
-		<class>com.skilldistillery.howardtreasury.entities.PoemHasPerson</class>
-		<class>com.skilldistillery.howardtreasury.entities.PoemHasPersonId</class>
-		<class>com.skilldistillery.howardtreasury.entities.MiscellaneaHasPerson</class>
-		<class>com.skilldistillery.howardtreasury.entities.MiscellaneaHasPersonId</class>
-		<class>com.skilldistillery.howardtreasury.entities.BlogPost</class>
-		<class>com.skilldistillery.howardtreasury.entities.BlogComment</class>
-		<class>com.skilldistillery.howardtreasury.entities.VerificationToken</class>
-		<class>com.skilldistillery.howardtreasury.entities.ResetPasswordToken</class>
-		<class>com.skilldistillery.howardtreasury.entities.ActivationCode</class>
 		<class>com.skilldistillery.howardtreasury.entities.WeirdTales</class>
-		<class>com.skilldistillery.howardtreasury.entities.Achievement</class>
-		<class>com.skilldistillery.howardtreasury.entities.UserHasAchievement</class>
-		<class>com.skilldistillery.howardtreasury.entities.UserHasAchievementId</class>
-
 		<!-- end entities -->
 
 		<properties>

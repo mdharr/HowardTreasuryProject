@@ -83,6 +83,9 @@ public class User {
     
     @OneToMany(mappedBy = "user")
     private Set<UserHasAchievement> userAchievements;
+    
+    @OneToMany(mappedBy = "user")
+    private List<Notification> notifications;
 
 	public User() {
 		super();
@@ -100,7 +103,7 @@ public class User {
 	public User(int id, String username, String password, Boolean enabled, String role, String email,
 			String imageUrl, String profileDescription, Boolean deactivated, List<UserList> userLists, List<BlogPost> blogPosts, List<BlogComment> comments,
 			List<ChatMessage> chatMessages, List<ChatRoom> chatRooms, VerificationToken verificationToken, ActivationCode activationCode, 
-			ResetPasswordToken resetPasswordToken, List<StoryVote> storyVotes, Set<UserHasAchievement> userAchievements) {
+			ResetPasswordToken resetPasswordToken, List<StoryVote> storyVotes, Set<UserHasAchievement> userAchievements, List<Notification> notifications) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -121,6 +124,7 @@ public class User {
 		this.resetPasswordToken = resetPasswordToken;
 		this.storyVotes = storyVotes;
 		this.userAchievements = userAchievements;
+		this.notifications = notifications;
 	}
 
 	public int getId() {
@@ -273,6 +277,14 @@ public class User {
 
 	public void setUserAchievements(Set<UserHasAchievement> userAchievements) {
 		this.userAchievements = userAchievements;
+	}
+
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
+
+	public void setNotifications(List<Notification> notifications) {
+		this.notifications = notifications;
 	}
 
 	@Override

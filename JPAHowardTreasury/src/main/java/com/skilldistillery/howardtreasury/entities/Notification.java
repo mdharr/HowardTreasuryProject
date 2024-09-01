@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -15,6 +16,7 @@ import javax.persistence.ManyToOne;
 
 import com.skilldistillery.howardtreasury.enums.NotificationType;
 
+@Entity
 public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +41,6 @@ public class Notification {
 
 	public Notification() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Notification(Long id, User user, NotificationType type, String message, boolean read,
