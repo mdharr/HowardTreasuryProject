@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -19,8 +22,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.skilldistillery.howardtreasury.services.RateLimitService;
 
 public class RateLimitingAuthenticationFilter extends OncePerRequestFilter {
-	
-	private static final int STATUS_TOO_MANY_REQUESTS = 429;
+
+    private static final int STATUS_TOO_MANY_REQUESTS = 429;
+    private static final Logger logger = LoggerFactory.getLogger(RateLimitingAuthenticationFilter.class);
 
     private final RateLimitService rateLimitService;
     private final ObjectMapper objectMapper;
@@ -33,21 +37,23 @@ public class RateLimitingAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        
+
         String username = extractUsernameFromRequest(request);
-        
+
         if (username != null) {
             RateLimitService.RateLimitResult result = rateLimitService.tryConsume(username);
             if (!result.isAllowed) {
                 sendErrorResponse(response, request, result.secondsUntilRefill);
                 return;
             }
+        } else {
+            logger.warn("Unable to extract username from request. Skipping rate limiting.");
         }
-        
+
         filterChain.doFilter(request, response);
-        
+
         // Check if authentication was successful
-        if (SecurityContextHolder.getContext().getAuthentication() != null &&
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() != null &&
             SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
             rateLimitService.resetOrAdjustLimit(username);
         }
@@ -72,7 +78,8 @@ public class RateLimitingAuthenticationFilter extends OncePerRequestFilter {
         if (authHeader != null && authHeader.startsWith("Basic")) {
             String base64Credentials = authHeader.substring("Basic".length()).trim();
             String credentials = new String(Base64.getDecoder().decode(base64Credentials));
-            return credentials.split(":", 2)[0];
+            String[] parts = credentials.split(":", 2);
+            return parts.length > 0 ? parts[0] : null;
         }
         return null;
     }

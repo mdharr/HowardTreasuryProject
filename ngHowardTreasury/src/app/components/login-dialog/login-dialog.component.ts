@@ -89,8 +89,8 @@ export class LoginDialogComponent {
               const errorBody = fail.error;
               console.log(errorBody);
               // Check if the error body has a 'message' property and it contains 'Rate limit exceeded'
-              if (errorBody && errorBody.includes('Rate limit exceeded')) {
-                this.waitTime = parseInt(errorBody.replace(/[^0-9]/g, ''), 10);
+              if (errorBody && errorBody.message.includes('Rate limit exceeded')) {
+                this.waitTime = parseInt(errorBody.message.replace(/[^0-9]/g, ''), 10);
                 this.showRateLimitMessage();
               } else {
                 this.openSnackbar('Too many requests. Please try again later.', 'Dismiss');

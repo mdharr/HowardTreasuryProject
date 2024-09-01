@@ -36,16 +36,33 @@ public class RateLimitService {
         }
     }
     
+//    public void resetOrAdjustLimit(String key) {
+//        logger.debug("Resetting/adjusting rate limit for key: {}", key);
+//        Bucket bucket = buckets.computeIfPresent(key, (k, existingBucket) -> {
+//            // Option 1: Complete reset
+////            return createNewBucket();
+//            
+//            // Option 2: Partial reset (example: refill half of the tokens)
+//             long tokensToAdd = maxAttempts / 2;
+//             existingBucket.addTokens(tokensToAdd);
+//             return existingBucket;
+//        });
+//
+//        if (bucket == null) {
+//            logger.debug("No existing bucket found for key: {}. Creating new bucket.", key);
+//            buckets.put(key, createNewBucket());
+//        }
+//    }
+    
     public void resetOrAdjustLimit(String key) {
+        if (key == null) {
+            logger.warn("Attempted to reset/adjust rate limit for null key");
+            return;
+        }
         logger.debug("Resetting/adjusting rate limit for key: {}", key);
         Bucket bucket = buckets.computeIfPresent(key, (k, existingBucket) -> {
-            // Option 1: Complete reset
-//            return createNewBucket();
-            
-            // Option 2: Partial reset (example: refill half of the tokens)
-             long tokensToAdd = maxAttempts / 2;
-             existingBucket.addTokens(tokensToAdd);
-             return existingBucket;
+            // Your existing logic here
+            return createNewBucket();
         });
 
         if (bucket == null) {
