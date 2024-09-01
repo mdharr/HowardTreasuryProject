@@ -1,6 +1,7 @@
 package com.skilldistillery.howardtreasury.services;
 
 import com.skilldistillery.howardtreasury.entities.User;
+import com.skilldistillery.howardtreasury.exceptions.UsernameNotFoundException;
 
 public interface AuthService {
 	
@@ -17,4 +18,5 @@ public interface AuthService {
 	public boolean isAccountDeactivated(String username);
     public void sendActivationEmail(String username);
     public boolean verifyActivationCode(String username, String code);
+	User getUserDetails(String username) throws UsernameNotFoundException; // experimental rate limiting
 }

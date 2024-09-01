@@ -1,10 +1,13 @@
 package com.skilldistillery.howardtreasury.controllers;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Principal;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,7 @@ import com.skilldistillery.howardtreasury.exceptions.UsernameAlreadyExistsExcept
 import com.skilldistillery.howardtreasury.exceptions.UsernameNotFoundException;
 import com.skilldistillery.howardtreasury.services.AuthService;
 import com.skilldistillery.howardtreasury.services.EmailService;
+import com.skilldistillery.howardtreasury.services.RateLimitService;
 import com.skilldistillery.howardtreasury.services.VerificationTokenService;
 
 @RestController
@@ -44,6 +48,9 @@ public class AuthController {
   
   @Autowired
   private EmailService emailService;
+  
+  @Autowired
+  private RateLimitService rateLimitService;
   
 //  Previous register method
 //	@PostMapping("register")
@@ -100,21 +107,35 @@ public class AuthController {
 //        }
 //    }
   	
+  	// working version
+//    @GetMapping("authenticate")
+//    public ResponseEntity<?> auth(Principal principal) {
+//        if (principal == null) { // no Authorization header sent
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.set("WWW-Authenticate", "Basic");
+//            return new ResponseEntity<>(headers, HttpStatus.UNAUTHORIZED);
+//        }
+//        try {
+//            User user = authService.login(principal.getName());
+////            if (authService.isAccountDeactivated(principal.getName())) {
+////                return new ResponseEntity<>("User account is deactivated", HttpStatus.FORBIDDEN);
+////            }
+//            return new ResponseEntity<>(user, HttpStatus.OK);
+//        } catch (UsernameNotFoundException e) {
+//            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+  	
+  	// experimental
     @GetMapping("authenticate")
     public ResponseEntity<?> auth(Principal principal) {
-        if (principal == null) { // no Authorization header sent
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("WWW-Authenticate", "Basic");
-            return new ResponseEntity<>(headers, HttpStatus.UNAUTHORIZED);
-        }
         try {
-            User user = authService.login(principal.getName());
-//            if (authService.isAccountDeactivated(principal.getName())) {
-//                return new ResponseEntity<>("User account is deactivated", HttpStatus.FORBIDDEN);
-//            }
+            User user = authService.getUserDetails(principal.getName());
             return new ResponseEntity<>(user, HttpStatus.OK);
         } catch (UsernameNotFoundException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

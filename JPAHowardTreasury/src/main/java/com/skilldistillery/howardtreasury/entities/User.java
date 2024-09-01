@@ -81,9 +81,11 @@ public class User {
     @JsonIgnoreProperties({"user", "story"})
     private List<StoryVote> storyVotes;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<UserHasAchievement> userAchievements;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Notification> notifications;
 

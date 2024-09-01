@@ -141,6 +141,16 @@ public class AuthServiceImpl implements AuthService {
         // Allow login even if the account is deactivated
         return user;
     }
+    
+    // experimental rate limiter
+    @Override
+    public User getUserDetails(String username) throws UsernameNotFoundException {
+        User user = userRepo.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        return user;
+    }
 
 	@Override
 	public User updateUser(User user, String username) {

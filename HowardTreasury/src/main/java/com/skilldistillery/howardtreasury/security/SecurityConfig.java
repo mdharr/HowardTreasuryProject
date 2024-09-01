@@ -11,6 +11,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+
+import com.skilldistillery.howardtreasury.services.RateLimitService;
 
 @Configuration
 public class SecurityConfig {
@@ -22,10 +25,14 @@ public class SecurityConfig {
     // this bean is created in the application starter class if you're looking for it
     @Autowired
     private PasswordEncoder encoder;
+    
+    @Autowired
+    private RateLimitService rateLimitService;
 	
     @Bean
     public SecurityFilterChain createFilterChain(HttpSecurity http) throws Exception {
         http
+        .addFilterBefore(new RateLimitingAuthenticationFilter(rateLimitService), BasicAuthenticationFilter.class)
         .csrf().disable()
         .authorizeRequests()
         .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll() // For CORS, the preflight request
