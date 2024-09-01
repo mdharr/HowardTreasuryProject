@@ -931,6 +931,28 @@ CREATE TABLE IF NOT EXISTS `user_has_achievement` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `notification`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `notification` ;
+
+CREATE TABLE IF NOT EXISTS `notification` (
+  `id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `type` VARCHAR(45) NULL,
+  `message` VARCHAR(1000) NULL,
+  `read` TINYINT NULL,
+  `created_at` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_notification_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_notification_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS howardtreasury@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -2970,6 +2992,16 @@ COMMIT;
 START TRANSACTION;
 USE `howardtreasurydb`;
 INSERT INTO `user_has_achievement` (`user_id`, `achievement_id`, `created_at`) VALUES (1, 1, '2024-08-24T12:35:22');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `notification`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `notification` (`id`, `user_id`, `type`, `message`, `read`, `created_at`) VALUES (1, 1, 'Achievement Unlocked', 'You unlocked an achievement!', 0, '2024-08-24T12:35:22');
 
 COMMIT;
 
