@@ -17,6 +17,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.skilldistillery.howardtreasury.enums.NotificationType;
+
 class UserTest {
 	
 	private static EntityManagerFactory emf;
@@ -108,6 +110,13 @@ class UserTest {
 	    if (!firstUserAchievement.isPresent()) {
 	        fail("There should be at least one UserHasAchievement");
 	    }
+	}
+	
+	@Test
+	void test_User_Notification_one_to_many_mapping() {
+		assertNotNull(user);
+		assertTrue(user.getNotifications().size() > 0);
+		assertEquals(NotificationType.ACHIEVEMENT_UNLOCKED, user.getNotifications().get(0).getType());
 	}
 
 }

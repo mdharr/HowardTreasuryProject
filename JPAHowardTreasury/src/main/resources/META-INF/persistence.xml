@@ -62,6 +62,10 @@
 		<class>com.skilldistillery.howardtreasury.entities.UserListHasMiscellaneaId</class>
 		<class>com.skilldistillery.howardtreasury.entities.WeirdTales</class>
 		<!-- end entities -->
+		
+		<!-- begin converters -->
+		<class>com.skilldistillery.howardtreasury.converters.NotificationTypeConverter</class>
+		<!-- end converters -->
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"

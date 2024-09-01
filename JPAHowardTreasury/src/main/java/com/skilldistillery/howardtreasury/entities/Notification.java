@@ -4,9 +4,8 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,20 +13,21 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.skilldistillery.howardtreasury.converters.NotificationTypeConverter;
 import com.skilldistillery.howardtreasury.enums.NotificationType;
 
 @Entity
 public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Convert(converter = NotificationTypeConverter.class)
+    @Column(name = "type")
     private NotificationType type;
 
     @Column(nullable = false)
@@ -36,14 +36,14 @@ public class Notification {
     @Column(nullable = false)
     private boolean read = false;
 
-    @Column(nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
 	public Notification() {
 		super();
 	}
 
-	public Notification(Long id, User user, NotificationType type, String message, boolean read,
+	public Notification(int id, User user, NotificationType type, String message, boolean read,
 			LocalDateTime createdAt) {
 		super();
 		this.id = id;
@@ -54,11 +54,11 @@ public class Notification {
 		this.createdAt = createdAt;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
