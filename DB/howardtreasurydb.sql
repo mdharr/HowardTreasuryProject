@@ -2467,6 +2467,11 @@ INSERT INTO `story_image` (`id`, `image_url`) VALUES (157, 'https://1.bp.blogspo
 INSERT INTO `story_image` (`id`, `image_url`) VALUES (158, 'https://1.bp.blogspot.com/-rINoVdm-Ep4/VyJPPDzIrSI/AAAAAAAAMJY/gtztTqkrNyEqhp4Vb_CKZHBLLDUPlUzUwCKgB/s1600/83.jpg');
 INSERT INTO `story_image` (`id`, `image_url`) VALUES (159, 'https://2.bp.blogspot.com/-yATeaK87-ug/VyJPZ6FALCI/AAAAAAAAMJg/FIYNchKKYz8MM2t17FqWsviWsb-u5RnUgCKgB/s1600/84.jpg');
 INSERT INTO `story_image` (`id`, `image_url`) VALUES (160, 'https://1.bp.blogspot.com/-mOl6qXMP4Yw/VyJPcd7l9HI/AAAAAAAAMJg/2ynO-9BR16QeAyYCI9gpALs6loG-xT1NgCKgB/s1600/85.jpg');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (161, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/BestOfVol1/ForTheLoveOfBarbaraAllen/001.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (162, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/BestOfVol1/LordOfTheDead/001.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (163, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/BestOfVol1/LordOfTheDead/002.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (164, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/BestOfVol1/LordOfTheDead/003.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (165, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/BestOfVol1/LordOfTheDead/004.webp');
 
 COMMIT;
 
@@ -2636,6 +2641,11 @@ INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (34, 1
 INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (34, 158);
 INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (34, 159);
 INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (34, 160);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (108, 161);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (110, 162);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (110, 163);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (110, 164);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (110, 165);
 
 COMMIT;
 
@@ -2805,6 +2815,16 @@ INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) V
 INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (158, 2);
 INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (159, 2);
 INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (160, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (161, 4);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (161, 5);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (162, 4);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (162, 5);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (163, 4);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (163, 5);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (164, 4);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (164, 5);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (165, 4);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (165, 5);
 
 COMMIT;
 
