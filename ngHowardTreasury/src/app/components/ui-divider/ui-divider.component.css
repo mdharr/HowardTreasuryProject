@@ -1,0 +1,29 @@
+section {
+  width: 100%;
+}
+
+.divider-container {
+  position: relative;
+  width: 100%;
+  background-color: var(--bkg_color);
+}
+
+.spikes {
+  position: relative;
+  background: var(--bkg_color);
+  height: 5vh;
+}
+
+.spikes::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  left: -0%;
+  top: 100%;
+  z-index: 10;
+  display: block;
+  height: 10px;
+  background-size: 10px 100%;
+  background-image: linear-gradient(135deg, var(--bkg_color) 25%, transparent 25%), linear-gradient(225deg, var(--bkg_color) 25%, transparent 25%);
+  background-position: 0 0;
+}

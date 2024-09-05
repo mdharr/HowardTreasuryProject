@@ -251,8 +251,9 @@ cursor: pointer;
   overflow: hidden;
   overflow-y: scroll;
   height: 350px;
-  border: 1px solid lightgray;
-  border-radius: 10px;
+  background: url(https://s0.wp.com/wp-content/themes/pub/connections/img/content_bg.gif) repeat;
+  border-top: 3px solid var(--red_black);
+  border-bottom: 3px solid var(--red_black);
 }
 
 .story-image {
@@ -273,8 +274,9 @@ cursor: pointer;
   cursor:pointer;
   border-radius: 0;
   filter: grayscale(0%);
-  border: 6px solid transparent;
-  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
+  /* border: 6px solid transparent; */
+  /* border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20; */
+  border: 6px solid var(--red_black);
 }
 
 /* Add CSS for lightbox and thumbnails */
@@ -755,4 +757,3 @@ cursor: pointer;
   transition: mask-position 1.5s ease;
   mask-position: 0 0;
 } */
-

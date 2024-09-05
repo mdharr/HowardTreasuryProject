@@ -91,6 +91,7 @@ import { ReactivateAccountRequestComponent } from './components/reactivate-accou
 import { SquishedImageComponent } from './components/squished-image/squished-image.component';
 import { ProductComponent } from './components/product/product.component';
 import { DelReyCollectionsComponent } from './components/del-rey-collections/del-rey-collections.component';
+import { UiDividerComponent } from './components/ui-divider/ui-divider.component';
 
 @NgModule({
   declarations: [
@@ -158,6 +159,7 @@ import { DelReyCollectionsComponent } from './components/del-rey-collections/del
     SquishedImageComponent,
     ProductComponent,
     DelReyCollectionsComponent,
+    UiDividerComponent,
   ],
   imports: [
     BrowserModule,

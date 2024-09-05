@@ -3,12 +3,28 @@
   justify-content: center;
   width:100%;
   margin-bottom:100px;
+  position: relative;
+}
+
+.image-box {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+
+.image-box::before {
+  content: ".";
+  top: 32px;
+  left: 110px;
+  position: absolute;
+  color: white;
+  font-size: 120px;
+  z-index: -1;
 }
 
 .tail-image {
-  width:30%;
-  height:auto;
-  padding-top:30px;
+  height: 300px;
+  filter: drop-shadow(1px 1px 1px white);
 }
 
 @media screen and (max-width: 1087px) {
@@ -16,8 +32,8 @@
   .tail-image-wrapper {
     margin-bottom: 20px;
   }
-  .tail-image {
+  /* .tail-image {
     width: 20%;
-  }
+  } */
 }
 
