@@ -953,6 +953,25 @@ CREATE TABLE IF NOT EXISTS `notification` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `story_quote`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `story_quote` ;
+
+CREATE TABLE IF NOT EXISTS `story_quote` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `content` VARCHAR(1000) NULL,
+  `story_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_story_quote_story1_idx` (`story_id` ASC),
+  CONSTRAINT `fk_story_quote_story1`
+    FOREIGN KEY (`story_id`)
+    REFERENCES `story` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS howardtreasury@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -2619,6 +2638,103 @@ INSERT INTO `story_image` (`id`, `image_url`) VALUES (309, 'https://howardtreasu
 INSERT INTO `story_image` (`id`, `image_url`) VALUES (310, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheBlueFlameOfVengeance/021.webp');
 INSERT INTO `story_image` (`id`, `image_url`) VALUES (311, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheBlueFlameOfVengeance/022.webp');
 INSERT INTO `story_image` (`id`, `image_url`) VALUES (312, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheBlueFlameOfVengeance/023.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (313, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheFootfallsWithin/001.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (314, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheFootfallsWithin/002.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (315, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheFootfallsWithin/003.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (316, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheFootfallsWithin/004.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (317, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheFootfallsWithin/005.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (318, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheFootfallsWithin/006.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (319, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheFootfallsWithin/007.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (320, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheFootfallsWithin/008.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (321, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheFootfallsWithin/009.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (322, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheFootfallsWithin/010.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (323, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheHillsOfTheDead/001.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (324, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheHillsOfTheDead/002.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (325, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheHillsOfTheDead/003.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (326, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheHillsOfTheDead/004.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (327, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheHillsOfTheDead/005.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (328, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheHillsOfTheDead/006.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (329, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheHillsOfTheDead/007.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (330, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheHillsOfTheDead/008.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (331, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheHillsOfTheDead/009.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (332, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheHillsOfTheDead/010.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (333, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheHillsOfTheDead/011.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (334, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheHillsOfTheDead/012.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (335, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheHillsOfTheDead/013.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (336, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheHillsOfTheDead/014.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (337, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheHillsOfTheDead/015.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (338, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/001.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (339, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/002.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (340, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/003.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (341, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/004.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (342, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/005.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (343, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/006.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (344, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/007.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (345, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/008.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (346, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/009.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (347, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/010.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (348, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/011.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (349, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/012.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (350, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/013.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (351, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/014.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (352, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/015.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (353, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/016.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (354, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/017.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (355, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/018.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (356, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/019.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (357, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/020.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (358, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/021.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (359, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/022.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (360, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/023.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (361, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/024.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (362, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/025.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (363, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/026.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (364, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/027.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (365, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/028.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (366, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/029.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (367, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/030.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (368, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/031.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (369, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/032.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (370, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/033.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (371, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/034.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (372, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/035.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (373, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/036.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (374, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/037.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (375, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/038.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (376, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/039.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (377, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/040.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (378, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheMoonOfSkulls/041.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (379, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheRightHandOfDoom/001.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (380, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheRightHandOfDoom/002.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (381, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheRightHandOfDoom/003.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (382, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheRightHandOfDoom/004.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (383, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/TheRightHandOfDoom/005.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (384, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/001.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (385, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/002.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (386, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/003.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (387, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/004.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (388, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/005.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (389, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/006.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (390, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/007.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (391, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/008.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (392, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/009.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (393, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/010.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (394, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/011.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (395, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/012.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (396, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/013.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (397, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/014.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (398, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/015.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (399, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/016.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (400, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/017.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (401, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/018.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (402, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/019.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (403, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/020.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (404, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/021.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (405, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/022.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (406, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/023.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (407, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/024.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (408, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/025.webp');
+INSERT INTO `story_image` (`id`, `image_url`) VALUES (409, 'https://howardtreasury.s3.amazonaws.com/assets/siteassets/illustrations/SavageTales/WingsInTheNight/026.webp');
 
 COMMIT;
 
@@ -2949,6 +3065,103 @@ INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (25, 3
 INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (25, 310);
 INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (25, 311);
 INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (25, 312);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (26, 313);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (26, 314);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (26, 315);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (26, 316);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (26, 317);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (26, 318);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (26, 319);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (26, 320);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (26, 321);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (26, 322);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (27, 323);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (27, 324);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (27, 325);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (27, 326);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (27, 327);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (27, 328);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (27, 329);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (27, 330);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (27, 331);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (27, 332);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (27, 333);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (27, 334);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (27, 335);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (27, 336);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (27, 337);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 338);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 339);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 340);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 341);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 342);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 343);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 344);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 345);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 346);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 347);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 348);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 349);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 350);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 351);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 352);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 353);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 354);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 355);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 356);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 357);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 358);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 359);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 360);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 361);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 362);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 363);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 364);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 365);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 366);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 367);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 368);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 369);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 370);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 371);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 372);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 373);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 374);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 375);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 376);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 377);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (28, 378);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (31, 379);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (31, 380);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (31, 381);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (31, 382);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (31, 383);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 384);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 385);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 386);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 387);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 388);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 389);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 390);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 391);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 392);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 393);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 394);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 395);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 396);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 397);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 398);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 399);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 400);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 401);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 402);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 403);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 404);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 405);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 406);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 407);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 408);
+INSERT INTO `story_has_story_image` (`story_id`, `story_image_id`) VALUES (33, 409);
 
 COMMIT;
 
@@ -3305,6 +3518,103 @@ INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) V
 INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (310, 2);
 INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (311, 2);
 INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (312, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (313, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (314, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (315, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (316, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (317, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (318, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (319, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (320, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (321, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (322, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (323, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (324, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (325, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (326, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (327, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (328, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (329, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (330, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (331, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (332, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (333, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (334, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (335, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (336, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (337, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (338, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (339, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (340, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (341, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (342, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (343, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (344, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (345, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (346, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (347, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (348, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (349, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (350, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (351, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (352, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (353, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (354, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (355, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (356, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (357, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (358, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (359, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (360, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (361, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (362, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (363, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (364, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (365, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (366, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (367, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (368, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (369, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (370, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (371, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (372, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (373, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (374, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (375, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (376, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (377, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (378, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (379, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (380, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (381, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (382, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (383, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (384, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (385, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (386, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (387, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (388, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (389, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (390, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (391, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (392, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (393, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (394, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (395, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (396, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (397, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (398, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (399, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (400, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (401, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (402, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (403, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (404, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (405, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (406, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (407, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (408, 2);
+INSERT INTO `story_image_has_illustrator` (`story_image_id`, `illustrator_id`) VALUES (409, 2);
 
 COMMIT;
 
@@ -3502,6 +3812,30 @@ COMMIT;
 START TRANSACTION;
 USE `howardtreasurydb`;
 INSERT INTO `notification` (`id`, `user_id`, `type`, `message`, `read`, `created_at`) VALUES (1, 1, 'Achievement Unlocked', 'You unlocked an achievement!', 0, '2024-08-24T12:35:22');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `story_quote`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `howardtreasurydb`;
+INSERT INTO `story_quote` (`id`, `content`, `story_id`) VALUES (1, 'He told how murderers walk the earth Beneath the curse of Cain, With crimson clouds before their eyes And flames about their brain: For blood has left upon their souls Its everlasting stain.', 32);
+INSERT INTO `story_quote` (`id`, `content`, `story_id`) VALUES (2, 'A strong man is needed to combat Satan and his might. Therefore I go, who have defied him many a time.”', 32);
+INSERT INTO `story_quote` (`id`, `content`, `story_id`) VALUES (3, 'Of one thing Kane was sure: there would be no hunting of him across the dreary moors, no screaming and fleeing to be dragged down again and again. If he must die he would die in his tracks, his wounds in front.', 32);
+INSERT INTO `story_quote` (`id`, `content`, `story_id`) VALUES (4, 'For if abstract hate may bring into material substance a ghostly thing, may not courage, equally abstract, form a concrete weapon to combat that ghost?', 32);
+INSERT INTO `story_quote` (`id`, `content`, `story_id`) VALUES (5, 'For man\'s only weapon is courage that flinches not from the gates of Hell itself, and against such not even the legions of Hell can stand.', 32);
+INSERT INTO `story_quote` (`id`, `content`, `story_id`) VALUES (6, 'Slowly he rose, mechanically wiping his hands upon his cloak. A dark scowl had settled on his somber brow. Yet he made no wild, reckless vow, swore no oath by saints or devils. “Men shall die for this,” he said coldly.', 30);
+INSERT INTO `story_quote` (`id`, `content`, `story_id`) VALUES (7, '“Somehow, I will slay the man who kills me, though my corpse climb up forty fathoms of ocean to do it.”', 29);
+INSERT INTO `story_quote` (`id`, `content`, `story_id`) VALUES (8, '“The wise men know what wicked things Are written on the sky; They trim sad lamps, they touch sad strings Hearing the heavy purple wings, Where the forgotten Seraph kings Still plot how God shall die.”', 28);
+INSERT INTO `story_quote` (`id`, `content`, `story_id`) VALUES (9, '“Their gods were sadder than the sea, Gods of a wandering will, Who cried for blood like beasts at night Sadly, from hill to hill.”', 28);
+INSERT INTO `story_quote` (`id`, `content`, `story_id`) VALUES (10, '“Lady of mystery, what is thy history?”', 28);
+INSERT INTO `story_quote` (`id`, `content`, `story_id`) VALUES (11, '“For Rome was given to rule the world And gat of it little joy – But we, we shall enjoy the world, The whole huge world a toy.”', 28);
+INSERT INTO `story_quote` (`id`, `content`, `story_id`) VALUES (12, '“The blind gods roar and rave and dream Of all cities under the sea.”', 28);
+INSERT INTO `story_quote` (`id`, `content`, `story_id`) VALUES (13, '“By thought a crawling ruin, By life a leaping mire, By a broken heart in the breast of the world, And the end of the world\'s desire.”', 28);
+INSERT INTO `story_quote` (`id`, `content`, `story_id`) VALUES (14, '“The last lost giant, even God, Is risen against the world.”', 28);
+INSERT INTO `story_quote` (`id`, `content`, `story_id`) VALUES (15, '“Death is a blue flame dancing over corpses.”', 25);
 
 COMMIT;
 

@@ -18,8 +18,8 @@
   margin-top: 25px;
   font-family: 'Lora', Helvetica, Arial, sans-serif !important;
   /* border-radius: 28px; */
-  border: 5px solid transparent;
-    border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
+  border: 2px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
   padding: 10px 10px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
@@ -152,8 +152,8 @@ mat-form-field {
   overflow-y: scroll;
   height: 60vh;
   background-color: var(--white_milk);
-  border: 3px solid transparent;
-    border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
+  border: 1px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
   /* border-radius: 4px 4px 28px 28px; */
   box-shadow: inset 0 4px 8px 3px rgba(0,0,0,.15), inset 0 1px 3px rgba(0,0,0,.3);
 }
