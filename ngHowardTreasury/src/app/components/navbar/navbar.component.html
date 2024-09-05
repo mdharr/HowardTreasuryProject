@@ -36,7 +36,6 @@
       </button>
 
       <button mat-raised-button class="navbar-btn-group" mat-button *ngIf="loggedIn()" [routerLink]="['/profile']">
-        <!-- I BELIEVE THE USERNAME BUG IS HERE -->
         <span class="profile-text">
           {{ loggedInUser.username }}
         </span>
@@ -48,7 +47,7 @@
 
     <div class="flex-menu-row">
       <div class="search-container">
-        <input class="search-input-field" [(ngModel)]="searchQuery" (keyup.enter)="performSearchNoMenu()" placeholder="Search ...">
+        <input id="searchInput" class="search-input-field" [(ngModel)]="searchQuery" (keyup.enter)="performSearchNoMenu()" placeholder="Search ...">
         <button mat-icon-button class="search-button" (click)="performSearchNoMenu()">
           <mat-icon class="search-icon">search</mat-icon>
         </button>

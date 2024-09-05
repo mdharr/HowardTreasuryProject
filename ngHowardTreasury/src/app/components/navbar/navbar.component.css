@@ -435,3 +435,28 @@
     gap:5px;
   }
 }
+
+/* search container transition when focus within */
+.search-auth-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  transition: all 0.3s ease-in-out;
+}
+
+.flex-menu-row {
+  transition: width 0.3s ease-in-out;
+}
+
+.search-container {
+  transition: width 0.3s ease-in-out;
+}
+
+/* Styles applied when #searchInput is focused */
+.search-auth-wrapper:has(#searchInput:focus) {
+  flex: 1;
+}
+
+.search-auth-wrapper:has(#searchInput:focus) .flex-menu-row,
+.search-auth-wrapper:has(#searchInput:focus) .search-container {
+  width: 100%;
+}

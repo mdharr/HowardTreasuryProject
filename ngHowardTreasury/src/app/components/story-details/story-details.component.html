@@ -26,7 +26,10 @@
 
     <div class="description-container" *ngIf="story.storyImages.length">
       <div class="illustrator-wrapper">
-        <p class="illustrator-reference">Artwork by <span class="illustrator-name" [routerLink]="['/illustrators', story.storyImages.at(0)?.illustrators?.at(0)?.id]">{{ story.storyImages.at(0)?.illustrators?.at(0)?.name }}</span></p>
+        <p class="illustrator-reference">Artwork by
+          <span class="illustrator-name" [routerLink]="['/illustrators', story.storyImages.at(0)?.illustrators?.at(0)?.id]">{{ story.storyImages.at(0)?.illustrators?.at(0)?.name }}</span>
+          <span class="illustrator-name" [routerLink]="['/illustrators', story.storyImages.at(0)?.illustrators?.at(1)?.id]">{{ story.storyImages.at(0)?.illustrators?.at(1)?.name ? ' & ' + story.storyImages.at(0)?.illustrators?.at(1)?.name : '' }}</span>
+        </p>
       </div>
       <div class="story-image-box" *ngIf="storyImages && imagesLoaded && showAll" @customEasingAnimation>
         <ng-container *ngFor="let storyImage of storyImages; let i = index">

@@ -246,6 +246,13 @@ cursor: pointer;
   align-content: start;
   margin-bottom: 50px;
   padding:2%;
+
+
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 350px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
 }
 
 .story-image {

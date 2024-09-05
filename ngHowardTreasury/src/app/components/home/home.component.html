@@ -62,13 +62,12 @@
               <h3 class="recommendation-header">Not sure where to start?</h3>
               <p class="intro-text">
                 Let us pick a story for you by <app-story-recommendation></app-story-recommendation> <br>
-                or
-                <a class="story-vote-link" *ngIf="loggedIn(); else loginLink" [routerLink]="['/story-vote']">click here</a>
-                to check out all stories ranked from best to worst by the community.
+                <a class="story-vote-link" *ngIf="loggedIn(); else loginLink" [routerLink]="['/story-vote']">Click here</a>
+                to view stories ranked by community.
                 <ng-template #loginLink>
-                  <a class="story-vote-link" (click)="openLoginDialog()">login</a>
-                  or
-                  <a class="story-vote-link" (click)="openRegisterDialog()">register</a>
+                  <a class="story-vote-link" (click)="openLoginDialog()">Login</a>
+                  |
+                  <a class="story-vote-link" (click)="openRegisterDialog()">Register</a>
                 </ng-template>
               </p>
             </div>
