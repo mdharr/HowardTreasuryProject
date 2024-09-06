@@ -85,16 +85,19 @@ public class Story {
     @OneToMany(mappedBy = "story", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties({"story", "collections"})
     private List<StoryVote> storyVotes;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "story")
+    private List<StoryQuote> storyQuotes;
 
 	public Story() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Story(int id, String title, String textUrl, LocalDateTime firstPublished, String alternateTitle,
 			Boolean isCopyrighted, LocalDateTime copyrightExpiresAt, String excerpt, String description, 
 			List<UserList> userLists, List<Collection> collections, List<StoryImage> storyImages, 
-			List<Person> persons, List<WeirdTales> weirdTales, List<StoryVote> storyVotes) {
+			List<Person> persons, List<WeirdTales> weirdTales, List<StoryVote> storyVotes, List<StoryQuote> storyQuotes) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -111,6 +114,7 @@ public class Story {
 		this.persons = persons;
 		this.weirdTales = weirdTales;
 		this.storyVotes = storyVotes;
+		this.storyQuotes = storyQuotes;
 	}
 
 	public int getId() {
@@ -240,6 +244,14 @@ public class Story {
     public void setStoryVotes(List<StoryVote> storyVotes) {
         this.storyVotes = storyVotes;
     }
+
+	public List<StoryQuote> getStoryQuotes() {
+		return storyQuotes;
+	}
+
+	public void setStoryQuotes(List<StoryQuote> storyQuotes) {
+		this.storyQuotes = storyQuotes;
+	}
 
 	@Override
 	public int hashCode() {
