@@ -48,5 +48,11 @@ class StoryQuoteTest {
 				+ "With crimson clouds before their eyes And flames about their brain: "
 				+ "For blood has left upon their souls Its everlasting stain.", storyQuote.getContent());
 	}
+	
+	@Test
+	void test_StoryQuote_Story_many_to_one_mapping() {
+		assertNotNull(storyQuote);
+		assertEquals("Skulls in the Stars", storyQuote.getStory().getTitle());
+	}
 
 }
