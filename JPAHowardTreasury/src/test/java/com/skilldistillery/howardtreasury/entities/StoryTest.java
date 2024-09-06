@@ -19,6 +19,7 @@ class StoryTest {
 	private Story story;
 	private Story story2;
 	private Story story3;
+	private Story story4;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -36,6 +37,7 @@ class StoryTest {
 		story = em.find(Story.class, 1);
 		story2 = em.find(Story.class, 119);
 		story3 = em.find(Story.class, 22);
+		story4 = em.find(Story.class, 32);
 	}
 
 	@AfterEach
@@ -44,6 +46,7 @@ class StoryTest {
 		story = null;
 		story2 = null;
 		story3 = null;
+		story4 = null;
 	}
 
 	@Test
@@ -74,6 +77,14 @@ class StoryTest {
 	void test_Story_Story_one_to_many_mapping() {
 		assertNotNull(story3);
 		assertEquals("The Tower of the Elephant", story3.getStoryVotes().get(0).getStory().getTitle());
+	}
+	
+	@Test
+	void test_Story_StoryQuote_one_to_many_mapping() {
+		assertNotNull(story4);
+		assertEquals("He told how murderers walk the earth Beneath the curse of Cain, "
+				+ "With crimson clouds before their eyes And flames about their brain: "
+				+ "For blood has left upon their souls Its everlasting stain.", story4.getStoryQuotes().get(0).getContent());
 	}
 
 }
