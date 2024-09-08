@@ -1,6 +1,6 @@
 import { trigger, transition, query, style, stagger, animate, AnimationBuilder } from '@angular/animations';
 import { DOCUMENT } from '@angular/common';
-import { Component, inject, OnInit, OnDestroy, AfterViewInit, HostListener, Renderer2, ElementRef, Inject } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy, AfterViewInit, HostListener, Renderer2, ElementRef, Inject, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Illustrator } from 'src/app/models/illustrator';
@@ -27,6 +27,9 @@ import { IllustratorService } from 'src/app/services/illustrator.service';
   ]
 })
 export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  // @ViewChild('sheenBox', { static: false }) sheenBoxRef: ElementRef | undefined;
+
   // properties
   illustrator: Illustrator = new Illustrator();
   storyImages: StoryImage[] = [];
@@ -448,4 +451,15 @@ export class IllustratorDetailsComponent implements OnInit, OnDestroy, AfterView
     }
   }
 
+  // toggleGlassEffect(): void {
+  //   if (this.sheenBoxRef && this.sheenBoxRef.nativeElement) {
+  //     const sheenBox = this.sheenBoxRef.nativeElement;
+  //     if (sheenBox.classList.contains('glass')) {
+  //       this.renderer.removeClass(sheenBox, 'glass');
+  //       setTimeout(() => this.renderer.addClass(sheenBox, 'glass'), 10);
+  //     } else {
+  //       this.renderer.addClass(sheenBox, 'glass');
+  //     }
+  //   }
+  // }
 }
