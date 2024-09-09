@@ -1,0 +1,32 @@
+<div class="collections-grid">
+  <div class="background-overlay" [class.active]="activeBook !== null"></div>
+
+  <div *ngFor="let collection of recommendedCollections; let i = index" class="collection-item">
+    <div #bookContainer class="book-container"
+         (click)="startAnimation(bookContainer, book, overlay, collection.id, $event)"
+         (mouseenter)="activeBook?.collectionId === collection.id && onBookHover(bookContainer, collection.id)"
+         (mouseleave)="activeBook?.collectionId === collection.id && onBookLeave(bookContainer)">
+      <div #book class="book">
+        <div class="cover">
+          <div class="cover-front">
+            <img [src]="collection.collectionImages?.at(0)?.imageUrl" alt="Book Cover" class="cover-image">
+          </div>
+          <div class="cover-back">
+            <img #backgroundImage [src]="collection.collectionImages?.at(0)?.coverImageUrl || sampleImage" alt="Book Cover">
+            <video #overlayVideo loop muted playsinline class="video-overlay">
+              <source src="https://www.dragonsdogma.com/2/assets/images/media/ptcl.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="page">
+          <img [src]="collection.collectionImages?.at(0)?.titleImageUrl || sampleImage"
+               alt="Overlay Image"
+               class="overlay-image"
+               [class.visible]="activeBook?.collectionId === collection.id">
+        </div>
+        <div class="spine"></div>
+      </div>
+    </div>
+    <div #overlay class="overlay"></div>
+  </div>
+</div>

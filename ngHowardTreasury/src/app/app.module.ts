@@ -93,6 +93,7 @@ import { ProductComponent } from './components/product/product.component';
 import { DelReyCollectionsComponent } from './components/del-rey-collections/del-rey-collections.component';
 import { UiDividerComponent } from './components/ui-divider/ui-divider.component';
 import { BookCoverComponent } from './components/book-cover/book-cover.component';
+import { PageFlipComponent } from './components/page-flip/page-flip.component';
 
 @NgModule({
   declarations: [
@@ -162,6 +163,7 @@ import { BookCoverComponent } from './components/book-cover/book-cover.component
     DelReyCollectionsComponent,
     UiDividerComponent,
     BookCoverComponent,
+    PageFlipComponent
   ],
   imports: [
     BrowserModule,

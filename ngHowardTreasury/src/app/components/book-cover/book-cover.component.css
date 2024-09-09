@@ -1,7 +1,13 @@
-.test-wrapper {
+.book-cover {
+  position: relative;
+  width: 200px;
+  height: 300px;
+}
+.cover-image, .overlay-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  object-fit: cover;
 }

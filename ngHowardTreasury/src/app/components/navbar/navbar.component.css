@@ -110,6 +110,7 @@
   padding: 0;
   color: #fff;
   background-color: var(--red_black);
+  z-index: 999;
 }
 
 .menu-row:hover {

@@ -36,6 +36,9 @@ import { ReactivateAccountRequestComponent } from './components/reactivate-accou
 import { canDeactivateGuard } from './guards/can-deactivate.guard';
 import { SquishedImageComponent } from './components/squished-image/squished-image.component';
 import { ProductComponent } from './components/product/product.component';
+import { BookCoverComponent } from './components/book-cover/book-cover.component';
+import { PageFlipComponent } from './components/page-flip/page-flip.component';
+// import { PageFlipComponent } from './components/page-flip/page-flip.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -74,6 +77,8 @@ const routes: Routes = [
   { path: 'chat', component: ChatComponent, canActivate: [authGuard], data: { animation: 'ChatPage' } },
   // { path: 'gallery', component: ImageGalleryComponent, data: { animation: 'ImageGalleryPage' } },
   { path: 'adventure', component: AdventureComponent, canActivate: [authGuard] },
+  { path: 'book-cover', component: BookCoverComponent},
+  { path: 'page-flip', component: PageFlipComponent},
 ];
 
 @NgModule({

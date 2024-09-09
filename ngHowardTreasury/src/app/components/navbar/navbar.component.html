@@ -7,7 +7,6 @@
       </button>
 
       <div class="logo-menu-wrapper">
-        <!-- Centered Flex Container -->
         <div class="logo-box" [routerLink]="['/home']" (click)="menuState === 'expanded' ? toggleMenu() : null">
           <div style="display:flex;">
             <h1 class="app-logo">The Robert E. Howard Treasury</h1>
@@ -15,7 +14,6 @@
           </div>
         </div>
 
-        <!-- Button to trigger the menu -->
         <button id="nav-menu-btn" mat-button [matMenuTriggerFor]="menu">Menu<span>
           <mat-icon style="vertical-align: top; padding-top: 3px;">
             arrow_drop_down
@@ -26,7 +24,6 @@
     </div>
 
   <div class="search-auth-wrapper">
-    <!-- Auth Buttons Container -->
     <div class="auth-container">
       <button mat-raised-button class="navbar-btn-group" mat-button *ngIf="!loggedIn()" (click)="openLoginDialog()">
         <span class="login-text">Login</span>

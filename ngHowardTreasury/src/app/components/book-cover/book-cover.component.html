@@ -1,19 +1,6 @@
-<div class="test-wrapper">
-  <div class="collection" *ngFor="let collection of collectionsByRecommended; let i = index" #collection>
-    <div class="book" [routerLink]="['/collections', collection.id]">
-      <a>
-        <ul>
-          <li class="page page3"></li>
-          <li class="page page2"></li>
-          <li class="page page1"></li>
-          <img class="cover image-glow" src="{{ collection.collectionImages?.[0]?.thumbnailUrl }}" alt="Book Cover" loading="lazy">
-        </ul>
-      </a>
-      <div class="collection-title">
-        <a [routerLink]="['/collections', collection.id]">
-          <h4 class="collection-title-text">{{ collection.title }}</h4>
-        </a>
-      </div>
-    </div>
-  </div>
+<div class="book-cover"
+(mouseenter)="onMouseEnter()"
+(mouseleave)="onMouseLeave()">
+<img #coverImage [src]="coverImageUrl" alt="Book Cover" class="cover-image" (load)="onImageLoad()">
+<canvas #overlayCanvas class="overlay-canvas"></canvas>
 </div>
