@@ -51,10 +51,11 @@
 }
 
 .contents-title {
-  padding-left: 10px;
+  /* padding-left: 10px; */
   font-weight: 700;
   color: var(--red_milk);
   margin:0;
+  margin-left: -16px;
   font-family: var(--headerFontFamily);
   font-size: var(--headerFontSize);
 }

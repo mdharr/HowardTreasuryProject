@@ -92,6 +92,7 @@ import { SquishedImageComponent } from './components/squished-image/squished-ima
 import { ProductComponent } from './components/product/product.component';
 import { DelReyCollectionsComponent } from './components/del-rey-collections/del-rey-collections.component';
 import { UiDividerComponent } from './components/ui-divider/ui-divider.component';
+import { BookCoverComponent } from './components/book-cover/book-cover.component';
 
 @NgModule({
   declarations: [
@@ -160,6 +161,7 @@ import { UiDividerComponent } from './components/ui-divider/ui-divider.component
     ProductComponent,
     DelReyCollectionsComponent,
     UiDividerComponent,
+    BookCoverComponent,
   ],
   imports: [
     BrowserModule,
