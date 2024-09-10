@@ -94,6 +94,7 @@ import { DelReyCollectionsComponent } from './components/del-rey-collections/del
 import { UiDividerComponent } from './components/ui-divider/ui-divider.component';
 import { BookCoverComponent } from './components/book-cover/book-cover.component';
 import { PageFlipComponent } from './components/page-flip/page-flip.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -191,7 +192,8 @@ import { PageFlipComponent } from './components/page-flip/page-flip.component';
     MatSelectModule,
     MatSliderModule,
     MatProgressBarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxChartsModule
   ],
   providers: [
     WebSocketService,

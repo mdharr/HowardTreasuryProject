@@ -1,62 +1,48 @@
-.wrapper {
-  padding: 2%;
-  padding-top: 50px;
-}
-
-.title {
-  margin: 0;
-  font-size: 2rem;
-  color: var(--red_white);
-  text-align: center;
-  margin-bottom: 25px;
-  line-height: 1.2;
-  font-weight: 700;
-  font-family: var(--contentFontFamily);
-}
-
-.subtitle {
-  margin: 0;
-  color: var(--red_white);
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 18px;
-}
-
 .story-card {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 15px;
-  border: 3px solid transparent;
-  border-image: url('https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png') 30;
-  background-color: var(--black_color);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.story-rank {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-right: 15px;
+  min-width: 30px;
+  text-align: center;
+}
+
+.story-details {
+  flex-grow: 1;
+}
+
+.story-details h3 {
+  color: var(--black_white);
+}
+
+.story-bar {
+  background-color: #f0f0f0;
+  height: 20px;
+  border-radius: 10px;
   overflow: hidden;
+  margin-top: 5px;
 }
 
-.story-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-.story-card h3 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: #fff;
-  cursor: pointer;
-}
-
-.story-card h3:hover {
-  color: var(--subheader_color);
+.story-fill {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  color: white;
+  font-weight: bold;
 }
 
 .buttons-wrapper {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  /* gap: 10px; */
 }
 
 .vote-button {
@@ -64,120 +50,97 @@
   border: none;
   cursor: pointer;
   padding: 5px;
-  transition: transform 0.2s;
-  display: flex;
-  align-items: center;
 }
 
 .vote-button:hover {
-  transform: scale(1.2);
+  background-color: #f0f0f0;
+  border-radius: 50%;
 }
 
-.vote-count {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #ccc;
+.voted {
+  color: #4CAF50;
 }
 
-.material-symbols-outlined {
-  font-size: 34px;
-  color: #ccc;
+.downvoted.voted {
+  color: #F44336;
 }
 
-.material-symbols-outlined.voted {
-  color: green;
-}
-
-.material-symbols-outlined.voted.downvoted {
-  color: red;
-}
-
-@keyframes moveRight {
-  from {
-    opacity: 0;
-    transform: translateX(-1000px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.wrapper {
+  padding: 2%;
+  padding-top: 50px;
 }
 
 .poll-wrapper {
   width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
   padding: 20px;
-  border: 3px solid transparent;
-  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
-  background-color: var(--black_color);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  color: #ffffff;
-  margin-bottom: 10px;
+  box-sizing: border-box;
 }
 
-.poll-item {
+.chart-container {
+  width: 100%;
   display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  justify-content: center;
 }
 
-.poll-item:hover {
+@media (max-width: 768px) {
+  .story-card {
+
+  }
+
+  .story-rank {
+    margin-bottom: 10px;
+  }
+
+  .buttons-wrapper {
+    margin-top: 10px;
+  }
+}
+
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-controls button {
+  padding: 5px 10px;
+  margin: 0 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-.poll-rank {
-  width: 30px;
+.pagination-controls button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.pagination-controls span {
+  font-size: 14px;
+}
+
+.title {
+  color: var(--red_milk);
   text-align: center;
-  font-size: 1.2rem;
+  font-family: var(--contentFontFamily);
 }
 
-.poll-vote-count {
-  min-width: 50px;
-}
-
-.poll-bar {
-  flex: 1;
-  margin-left: 10px;
-  border-radius: 5px;
-  overflow: hidden;
-  position: relative;
-}
-
-.poll-fill {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 10px;
-  border-radius: 5px;
-  transition: width 0.3s ease;
+.subtitle {
+  color: var(--black_white);
+  text-align: center;
 }
 
 .poll-title {
-  font-size: 1rem;
-  font-weight: bold;
-  white-space: nowrap; /* Prevent line breaks */
+  color: var(--black_white);
+  text-align: center;
 }
 
-.title-wrapper {
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-}
-
-.title-wrapper .poll-title {
-  position: absolute;
-  animation: scroll 10s linear infinite;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(200%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .wrapper {
-    padding: 0;
-  }
+text {
+  color: var(--red_milk);
 }

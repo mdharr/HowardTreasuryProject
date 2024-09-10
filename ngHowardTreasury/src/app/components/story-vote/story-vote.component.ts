@@ -1,5 +1,5 @@
-import { trigger, state, style, transition, animate, query, stagger } from '@angular/animations';
-import { Component, ElementRef, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
+import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { Observable } from 'rxjs';
 import { Story } from 'src/app/models/story';
 import { StoryVote } from 'src/app/models/story-vote';
@@ -8,57 +8,53 @@ import { AuthService } from 'src/app/services/auth.service';
 import { StoryVoteService } from 'src/app/services/story-vote.service';
 import { StoryService } from 'src/app/services/story.service';
 
+interface ChartData {
+  name: string;
+  value: number;
+}
+
 @Component({
   selector: 'app-story-vote',
   templateUrl: './story-vote.component.html',
   styleUrls: ['./story-vote.component.css'],
-  animations: [
-    trigger('voteAnimation', [
-      state('upvoted', style({
-        transform: 'scale(1.02)',
-        backgroundColor: '#008001'
-      })),
-      state('downvoted', style({
-        transform: 'scale(1.02)',
-        backgroundColor: '#c13438'
-      })),
-      transition('* => upvoted', [
-        animate('0.5s ease')
-      ]),
-      transition('* => downvoted', [
-        animate('0.5s ease')
-      ]),
-      transition('upvoted => *', [
-        animate('0.5s ease')
-      ]),
-      transition('downvoted => *', [
-        animate('0.5s ease')
-      ])
-    ])
-  ]
 })
 export class StoryVoteComponent implements OnInit {
 
+  allStories: Story[] = [];
   topStories: Story[] = [];
+  chartData: ChartData[] = [];
   maxVotes: number = 0;
-  // Extracted colors from the palette
-  // colors: string[] = [
-  //   '#3D1C1A', '#441719', '#642125', '#99261C', '#D93A24', '#E05730', '#EB7152', '#EB9380',
-  //   '#EEC2B1', '#EFCA6B', '#EBE25D', '#FFD755', '#FFCA00', '#F5B620', '#C28546', '#B2887A',
-  //   '#8D806A', '#7A7947', '#8C8A53', '#636138', '#495724', '#455E39', '#4D6655', '#007264',
-  //   '#19887C', '#2C9C8C', '#3DA5B2', '#368F95', '#4686C8', '#3B72B4', '#5A6CB2', '#393C7A',
-  //   '#372D43', '#512D3D', '#6B2845', '#B32C49', '#D13B43', '#CA3225', '#BA4C3C', '#C27964',
-  //   '#DBBBA8', '#F2E2D3', '#9DA5AB', '#6B6D70', '#4A4C4D', '#38383A'
-  // ];
-
-  colors: string[] = [
-    '#536168', '#333d42'
-  ];
+  chartMaxVotes: number = 0;
+  colors: string[] = ['#262626', '#282828'];
 
   sortedStories$: Observable<Story[]>;
   userVotes: StoryVote[] = [];
   loggedInUser!: User;
   voteState: { [storyId: number]: string } = {};
+
+  // ngx-charts properties
+  view: [number, number] = [700, 400];
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = false;
+  showXAxisLabel = true;
+  xAxisLabel = 'Stories';
+  showYAxisLabel = true;
+  yAxisLabel = 'Votes';
+
+  colorScheme: Color = {
+    name: 'custom',
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: ['#303030']
+
+  };
+  // domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+
+  currentPage: number = 1;
+  pageSize: number = 10;
+  totalPages: number = 1;
 
   storyService = inject(StoryService);
   storyVoteService = inject(StoryVoteService);
@@ -66,13 +62,21 @@ export class StoryVoteComponent implements OnInit {
 
   constructor() {
     this.sortedStories$ = this.storyService.getSortedStories();
-
   }
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.subscribeToLoggedInUser();
     this.storyService.loadStories();
+    this.onResize();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    const chartContainer = document.querySelector('.poll-wrapper') as HTMLElement;
+    if (chartContainer) {
+      this.view = [chartContainer.offsetWidth, 400];
+    }
   }
 
   subscribeToLoggedInUser() {
@@ -83,7 +87,7 @@ export class StoryVoteComponent implements OnInit {
           this.loadUserVotes();
         }
         setTimeout(() => {
-          this.loadTopStories();
+          this.loadAllStories();
         }, 500)
       },
       error: (err) => {
@@ -100,28 +104,61 @@ export class StoryVoteComponent implements OnInit {
     }
   }
 
-  loadTopStories() {
+  loadAllStories() {
     this.storyService.getSortedStories().subscribe(stories => {
       if (stories) {
-        this.topStories = stories.sort((a, b) => this.getVoteCount(b) - this.getVoteCount(a)).slice(0, 10);
-        this.maxVotes = this.getVoteCount(this.topStories[0]);
+        this.allStories = stories;
+        this.totalPages = Math.ceil(this.allStories.length / this.pageSize);
+        this.updateTopStories();
+        this.updateChartData();
       }
     });
   }
 
+  get paginatedStories(): Story[] {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    return this.allStories.slice(startIndex, startIndex + this.pageSize);
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  updateTopStories() {
+    this.topStories = this.allStories
+      .sort((a, b) => this.getVoteCount(b) - this.getVoteCount(a))
+      .slice(0, 10);
+    this.maxVotes = Math.max(...this.allStories.map(s => this.getVoteCount(s)));
+    this.updateChartMaxVotes();
+  }
+
+  updateChartMaxVotes() {
+    const baseValue = Math.pow(10, Math.floor(Math.log10(this.maxVotes)));
+    this.chartMaxVotes = Math.ceil(this.maxVotes / baseValue) * baseValue * 2;
+  }
+
+  updateChartData() {
+    this.chartData = this.topStories.map(story => ({
+      name: story.title,
+      value: this.getVoteCount(story)
+    }));
+  }
+
   getVotePercentage(story: Story): number {
-    return (this.getVoteCount(story) / this.maxVotes) * 100;
+    return (this.getVoteCount(story) / this.chartMaxVotes) * 100;
   }
 
   getColor(index: number): string {
     return index === 0 ? this.colors[0] : this.colors[1];
-    // return this.colors[index % this.colors.length];
   }
-
-  // getColor(index: number): string {
-  //   const colors = ['#ffcc00', '#66ff66', '#3399ff', '#ff6699', '#9966ff', '#ff6600', '#66ccff', '#ff9933', '#66cc99', '#ff99cc'];
-  //   return colors[index % colors.length];
-  // }
 
   upvote(story: Story, storyCard: HTMLElement): void {
     const existingVote = this.userVotes.find(vote => vote.story.id === story.id);
@@ -129,27 +166,18 @@ export class StoryVoteComponent implements OnInit {
     if (existingVote) {
       if (existingVote.voteType === 'upvote') {
         this.storyVoteService.deleteVote(existingVote.id).subscribe(() => {
-          this.loadUserVotes();
-          this.voteState[story.id] = 'upvoted';
-          this.scrollToStory(storyCard);
-          this.resetVoteStateAfterAnimation(story.id);
+          this.updateVoteAndChart(story, 'upvoted', storyCard);
         });
       } else {
         existingVote.voteType = 'upvote';
         this.storyVoteService.updateVote(existingVote).subscribe(() => {
-          this.loadUserVotes();
-          this.voteState[story.id] = 'upvoted';
-          this.scrollToStory(storyCard);
-          this.resetVoteStateAfterAnimation(story.id);
+          this.updateVoteAndChart(story, 'upvoted', storyCard);
         });
       }
     } else {
       const newVote = new StoryVote(0, story, this.loggedInUser, 'upvote');
       this.storyVoteService.createVote(newVote).subscribe(() => {
-        this.loadUserVotes();
-        this.voteState[story.id] = 'upvoted';
-        this.scrollToStory(storyCard);
-        this.resetVoteStateAfterAnimation(story.id);
+        this.updateVoteAndChart(story, 'upvoted', storyCard);
       });
     }
   }
@@ -160,28 +188,35 @@ export class StoryVoteComponent implements OnInit {
     if (existingVote) {
       if (existingVote.voteType === 'downvote') {
         this.storyVoteService.deleteVote(existingVote.id).subscribe(() => {
-          this.loadUserVotes();
-          this.voteState[story.id] = 'downvoted';
-          this.scrollToStory(storyCard);
-          this.resetVoteStateAfterAnimation(story.id);
+          this.updateVoteAndChart(story, 'downvoted', storyCard);
         });
       } else {
         existingVote.voteType = 'downvote';
         this.storyVoteService.updateVote(existingVote).subscribe(() => {
-          this.loadUserVotes();
-          this.voteState[story.id] = 'downvoted';
-          this.scrollToStory(storyCard);
-          this.resetVoteStateAfterAnimation(story.id);
+          this.updateVoteAndChart(story, 'downvoted', storyCard);
         });
       }
     } else {
       const newVote = new StoryVote(0, story, this.loggedInUser, 'downvote');
       this.storyVoteService.createVote(newVote).subscribe(() => {
-        this.loadUserVotes();
-        this.voteState[story.id] = 'downvoted';
-        this.scrollToStory(storyCard);
-        this.resetVoteStateAfterAnimation(story.id);
+        this.updateVoteAndChart(story, 'downvoted', storyCard);
       });
+    }
+  }
+
+  updateVoteAndChart(story: Story, voteState: string, storyCard: HTMLElement) {
+    this.loadUserVotes();
+    this.voteState[story.id] = voteState;
+    this.resetVoteStateAfterAnimation(story.id);
+    this.updateStoryVotes(story);
+    this.updateTopStories();
+    this.updateChartData();
+  }
+
+  updateStoryVotes(story: Story) {
+    const index = this.allStories.findIndex(s => s.id === story.id);
+    if (index !== -1) {
+      this.allStories[index] = { ...story };
     }
   }
 
@@ -193,8 +228,9 @@ export class StoryVoteComponent implements OnInit {
   }
 
   getVoteCount(story: Story): number {
-    const upvotes = story.storyVotes?.filter(vote => vote.voteType === 'upvote').length ?? 0;
-    const downvotes = story.storyVotes?.filter(vote => vote.voteType === 'downvote').length ?? 0;
+    if (!story || !story.storyVotes) return 0;
+    const upvotes = story.storyVotes.filter(vote => vote.voteType === 'upvote').length;
+    const downvotes = story.storyVotes.filter(vote => vote.voteType === 'downvote').length;
     return upvotes - downvotes;
   }
 
