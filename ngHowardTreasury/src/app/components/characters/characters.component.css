@@ -96,9 +96,8 @@
 .characters-header {
   width: 100%;
   position: relative;
-  background-image: url(https://reh.world/wp-content/uploads/2022/02/Kayanan-Howard-characters.png);
-  background-size: 100% auto;
-  background-repeat: no-repeat;
+  background-image: url(https://s0.wp.com/wp-content/themes/pub/connections/img/content_bg.gif);
+  background-repeat: repeat;
 }
 
 .characters-header::before {
@@ -281,7 +280,8 @@
   /* border: 3px solid transparent; */
   border: 5px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
-  background: #3f371f url(//www.blogblog.com/1kt/awesomeinc/body_background_dark.png) repeat scroll top left;
+  /* background: #3f371f url(//www.blogblog.com/1kt/awesomeinc/body_background_dark.png) repeat scroll top left; */
+  background: url(https://s0.wp.com/wp-content/themes/pub/connections/img/content_bg.gif) repeat;
 }
 
 .char-card:hover {

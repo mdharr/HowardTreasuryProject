@@ -23,7 +23,6 @@ public class CollectionDetailsDTO {
     private List<CollectionImage> collectionImages;
 	public CollectionDetailsDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public CollectionDetailsDTO(Collection collection, Series series, List<Story> stories, List<Poem> poems,

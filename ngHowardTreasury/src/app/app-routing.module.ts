@@ -78,7 +78,6 @@ const routes: Routes = [
   // { path: 'gallery', component: ImageGalleryComponent, data: { animation: 'ImageGalleryPage' } },
   { path: 'adventure', component: AdventureComponent, canActivate: [authGuard] },
   { path: 'book-cover', component: BookCoverComponent},
-  { path: 'page-flip', component: PageFlipComponent},
 ];
 
 @NgModule({

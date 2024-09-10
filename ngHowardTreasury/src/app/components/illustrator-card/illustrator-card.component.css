@@ -3,28 +3,13 @@ mat-card {
 }
 
 .illustrator-card {
-  width: 200px; /* Set the desired width */
-  height: 300px; /* Set the desired height */
+  width: 200px;
+  height: 300px;
   position: relative;
-  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5)) brightness(0.8);
   transition: filter 0.6s;
   position: relative;
   overflow: hidden;
-}
-
-/* HOVER EXPERIMENT */
-.illustrator-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
-  transform: skewX(-25deg);
-  animation: shining 10s infinite;
-  animation-timing-function: cubic-bezier(0.5, 0, 0, 1);
-  animation-fill-mode: forwards;
 }
 
 .illustrator-card:hover {
