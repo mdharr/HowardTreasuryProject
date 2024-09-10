@@ -134,7 +134,7 @@
 </div>
 
 <div class="collection-container" *ngIf="showByRecommended && !loading" @customEasingAnimation>
-  <div class="collection" *ngFor="let collection of collectionsByRecommended; let i = index" #collection>
+  <!-- <div class="collection" *ngFor="let collection of collectionsByRecommended; let i = index" #collection>
     <div class="book" [routerLink]="['/collections', collection.id]">
       <a>
         <ul>
@@ -150,7 +150,8 @@
         </a>
       </div>
     </div>
-  </div>
+  </div> -->
+  <app-page-flip></app-page-flip>
 </div>
 
 <!-- <div id="sentinel"></div> -->

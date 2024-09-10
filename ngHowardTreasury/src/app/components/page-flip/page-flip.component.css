@@ -19,11 +19,12 @@
   width: 200px;
   height: 300px;
   perspective: 1500px;
-  transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease;
   will-change: transform;
   position: relative;
   z-index: auto;
   transition: all 0.3s ease-out;
+  /* position: absolute; */
 }
 
 .book {
@@ -150,6 +151,7 @@
 .move-to-center {
   position: fixed !important;
   z-index: 998;
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .open-cover {
@@ -232,5 +234,37 @@
   }
   100% {
     box-shadow: 10px 0 20px -10px rgba(0, 0, 0, 0.5); /* Back to the initial state */
+  }
+}
+
+.book-container:not(.active) {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.book-container:not(.active):hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.collections-grid.overlay-active .book-container:not(.active) {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.collections-grid:not(.overlay-active) .book-container:not(.active):hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+@media screen and (max-width: 768px) {
+  .collection-item {
+    width: 120px;
+    height: 180px;
+  }
+  .book-container {
+    width: 120px;
+    height: 180px;
   }
 }

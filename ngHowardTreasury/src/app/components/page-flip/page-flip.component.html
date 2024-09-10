@@ -1,4 +1,4 @@
-<div class="collections-grid">
+<div class="collections-grid" #collectionsGrid>
   <div class="background-overlay" [class.active]="activeBook !== null"></div>
 
   <div *ngFor="let collection of recommendedCollections; let i = index" class="collection-item">

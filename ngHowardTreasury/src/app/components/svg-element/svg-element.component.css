@@ -10,6 +10,9 @@
   position: relative;
   width: fit-content;
   height: fit-content;
+  /* background-color: var(--red_black);
+  border: 3px solid var(--black_white);
+  padding: 20px; */
 }
 
 .image-box::before {

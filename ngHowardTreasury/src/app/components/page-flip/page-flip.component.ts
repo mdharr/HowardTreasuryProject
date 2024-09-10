@@ -35,9 +35,8 @@ export class PageFlipComponent implements OnInit, OnDestroy {
   @ViewChild('overlayVideo') videoRef!: ElementRef<HTMLVideoElement>;
 
   // @ViewChild('backgroundOverlay') backgroundOverlayRef!: ElementRef;
+  @ViewChild('collectionsGrid') collectionsGridRef!: ElementRef;
   private backgroundOverlay: HTMLElement | null = null;
-
-
 
   private isAnimating: boolean = false;
 
@@ -58,7 +57,7 @@ export class PageFlipComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.collectionSub = this.collectionService.indexAll().subscribe({
       next: (data: Collection[]) => {
-        this.recommendedCollections = data;
+        this.recommendedCollections = this.sortByRecommended(data);
       },
       error: (err) => {
         console.error(err);
@@ -71,6 +70,10 @@ export class PageFlipComponent implements OnInit, OnDestroy {
     if (this.collectionSub) {
       this.collectionSub.unsubscribe();
     }
+  }
+
+  sortByRecommended(collections: Collection[]) {
+    return [...collections].filter(collection => collection.series);
   }
 
   private createBackgroundOverlay() {
@@ -115,21 +118,43 @@ export class PageFlipComponent implements OnInit, OnDestroy {
 
     this.isAnimating = true;
 
+    // Remove 'active' class from all book containers
+    this.bookContainers.forEach(container => {
+      this.renderer.removeClass(container.nativeElement, 'active');
+    });
+
+    // Add 'active' class to the clicked book container
+    this.renderer.addClass(bookContainer, 'active');
+
+    // Add 'overlay-active' class to the collections grid
+    this.renderer.addClass(this.collectionsGridRef.nativeElement, 'overlay-active');
+
     const rect = bookContainer.getBoundingClientRect();
-    const scrollX = window.scrollX;
-    const scrollY = window.scrollY;
 
-    const bookX = rect.left + scrollX - 100;
-    const bookY = rect.top + scrollY;
+    // Book's position relative to the viewport
+    const bookX = rect.left;
+    const bookY = rect.top;
 
+    // Viewport center
     const viewportCenterX = window.innerWidth / 2;
     const viewportCenterY = window.innerHeight / 2;
 
-    const translateX = viewportCenterX - (bookX + rect.width / 2);
-    const translateY = viewportCenterY - (bookY + rect.height / 2);
+    // Calculate the translation needed to center the book
+    const translateX = (viewportCenterX - (bookX + rect.width / 2)) + (rect.width * 0.8);
+    const translateY = (viewportCenterY - (bookY + rect.height / 2));
 
     this.setActiveBookZIndex(bookContainer);
     this.renderer.addClass(book, 'pickup');
+
+    // Set initial position
+    this.renderer.setStyle(bookContainer, 'position', 'fixed');
+    this.renderer.setStyle(bookContainer, 'left', `${bookX}px`);
+    this.renderer.setStyle(bookContainer, 'top', `${bookY}px`);
+    this.renderer.setStyle(bookContainer, 'width', `${rect.width}px`);
+    this.renderer.setStyle(bookContainer, 'height', `${rect.height}px`);
+
+    // Force a reflow
+    bookContainer.offsetHeight;
 
     setTimeout(() => {
       this.renderer.addClass(bookContainer, 'move-to-center');
@@ -151,7 +176,7 @@ export class PageFlipComponent implements OnInit, OnDestroy {
           }
         }, 300);
       }, 300);
-    }, 300);
+    }, 50);
   }
 
   private completeAnimation() {
@@ -166,7 +191,7 @@ export class PageFlipComponent implements OnInit, OnDestroy {
       this.router.navigate(['/collections', collectionId]);
       this.isAnimating = false;
       this.resetActiveBook();
-    }, 300);
+    }, 500);
   }
 
   private resetActiveBook() {
@@ -175,6 +200,8 @@ export class PageFlipComponent implements OnInit, OnDestroy {
 
     this.isAnimating = true;
     this.renderer.removeClass(book.querySelector('.cover'), 'open-cover');
+    this.renderer.removeClass(bookContainer, 'active');
+    this.renderer.removeClass(this.collectionsGridRef.nativeElement, 'overlay-active');
     if (this.backgroundOverlay) {
       this.renderer.removeClass(this.backgroundOverlay, 'active');
     }
@@ -187,15 +214,18 @@ export class PageFlipComponent implements OnInit, OnDestroy {
       this.renderer.removeClass(bookContainer, 'move-to-center');
       this.renderer.removeClass(book, 'pickup');
       this.renderer.removeStyle(bookContainer, 'transform');
-      this.renderer.setStyle(bookContainer, 'transition', 'all 0.3s ease-out, z-index 0s 0.3s');
+      this.renderer.removeStyle(bookContainer, 'position');
+      this.renderer.removeStyle(bookContainer, 'left');
+      this.renderer.removeStyle(bookContainer, 'top');
+      this.renderer.removeStyle(bookContainer, 'width');
+      this.renderer.removeStyle(bookContainer, 'height');
 
       setTimeout(() => {
         this.resetBookZIndex(bookContainer);
         this.isAnimating = false;
         this.activeBook = null;
-        this.renderer.removeStyle(bookContainer, 'transition');
       }, 300);
-    }, 300);
+    }, 100);
 
     this.sampleImage = '';
   }

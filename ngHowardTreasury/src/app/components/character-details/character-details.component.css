@@ -11,13 +11,17 @@
   justify-content: space-between;
   gap: 30px;
   align-items: center;
+  padding: 10px;
+  background: url(https://s0.wp.com/wp-content/themes/pub/connections/img/content_bg.gif) repeat;
+  border-top: 3px solid var(--red_black);
+  border-bottom: 3px solid var(--red_black);
 }
 
 /* Profile image styles */
 .profile-image {
   display: flex;
   justify-content: center;
-  padding-top: 30px;
+  /* padding-top: 30px; */
 }
 
 .person-image {
@@ -48,21 +52,21 @@
 
 .profile-details {
   text-align: center;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .name-text {
   font-family: 'Libre Baskerville', Helvetica, Arial, sans-serif;
   font-weight: 700;
   font-size: 24px;
-  color: var(--red_milk);
+  color: var(--red_color);
 }
 
 .details-text {
   font-size: 18px;
   line-height: 1.4;
   font-family: 'Arial', sans-serif;
-  color: var(--black_white);
+  color: var(--black_color);
   text-align: justify;
 }
 
