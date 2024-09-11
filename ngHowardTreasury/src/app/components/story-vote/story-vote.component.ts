@@ -33,15 +33,15 @@ export class StoryVoteComponent implements OnInit {
   voteState: { [storyId: number]: string } = {};
 
   // ngx-charts properties
-  view: [number, number] = [700, 400];
+  view: [number, number] = [700, 600];
   showXAxis = true;
   showYAxis = true;
   gradient = false;
   showLegend = false;
   showXAxisLabel = true;
-  xAxisLabel = 'Stories';
+  xAxisLabel = 'Votes';
   showYAxisLabel = true;
-  yAxisLabel = 'Votes';
+  yAxisLabel = 'Stories';
 
   colorScheme: Color = {
     name: 'custom',
@@ -75,7 +75,11 @@ export class StoryVoteComponent implements OnInit {
   onResize() {
     const chartContainer = document.querySelector('.poll-wrapper') as HTMLElement;
     if (chartContainer) {
-      this.view = [chartContainer.offsetWidth, 400];
+      const barPadding = 16; // This should match the [barPadding] value
+      const barHeight = 25; // Adjust this value for the desired bar height
+      const xAxisHeight = 50; // Add extra height for x-axis labels
+      const height = Math.max(400, this.topStories.length * (barHeight + barPadding) + xAxisHeight);
+      this.view = [chartContainer.offsetWidth, height];
     }
   }
 

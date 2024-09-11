@@ -5,20 +5,22 @@
   <div class="poll-wrapper">
     <h2 class="poll-title">Top 10 Highest Rated Stories</h2>
     <div class="chart-container">
-      <ngx-charts-bar-vertical
-        [view]="view"
-        [scheme]="colorScheme"
-        [results]="chartData"
-        [gradient]="gradient"
-        [xAxis]="showXAxis"
-        [yAxis]="showYAxis"
-        [legend]="showLegend"
-        [showXAxisLabel]="showXAxisLabel"
-        [showYAxisLabel]="showYAxisLabel"
-        [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel"
-        [yAxisTicks]="[0, chartMaxVotes / 2, chartMaxVotes / 2, 2 * chartMaxVotes / 2, chartMaxVotes]">
-      </ngx-charts-bar-vertical>
+      <ngx-charts-bar-horizontal
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="chartData"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [xAxisTicks]="[0, chartMaxVotes / 2, chartMaxVotes / 2, 2 * chartMaxVotes / 2, chartMaxVotes]"
+      [barPadding]="20"
+      >
+    </ngx-charts-bar-horizontal>
     </div>
   </div>
   <!-- [yAxisTicks]="[0, chartMaxVotes / 4, chartMaxVotes / 2, 3 * chartMaxVotes / 4, chartMaxVotes]"> -->
@@ -46,8 +48,8 @@
   </div>
 
   <div class="pagination-controls">
-    <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
-    <span>Page {{ currentPage }} of {{ totalPages }}</span>
-    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+    <button mat-raised-button class="pagination-btn" mat-button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span class="pagination-text">Page {{ currentPage }} of {{ totalPages }}</span>
+    <button mat-raised-button class="pagination-btn" mat-button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
   </div>
 </div>
