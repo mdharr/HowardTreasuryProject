@@ -12,14 +12,14 @@
             <img [src]="collection.collectionImages?.at(0)?.imageUrl" alt="Book Cover" class="cover-image">
           </div>
           <div class="cover-back">
-            <img #backgroundImage [src]="collection.collectionImages?.at(0)?.coverImageUrl || sampleImage" alt="Book Cover">
+            <img #backgroundImage [src]="collection.collectionImages?.at(0)?.coverImageUrl" alt="Book Cover">
             <video #overlayVideo loop muted playsinline class="video-overlay">
               <source src="https://www.dragonsdogma.com/2/assets/images/media/ptcl.mp4" type="video/mp4">
             </video>
           </div>
         </div>
         <div class="page">
-          <img [src]="collection.collectionImages?.at(0)?.titleImageUrl || sampleImage"
+          <img [src]="collection.collectionImages?.at(0)?.titleImageUrl"
                alt="Overlay Image"
                class="overlay-image"
                [class.visible]="activeBook?.collectionId === collection.id">

@@ -481,7 +481,6 @@ cursor: pointer;
   transform: translateY(-5px);
   cursor:pointer;
   opacity:1;
-  /* border: 3px solid var(--red_milk); */
   border: 6px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;

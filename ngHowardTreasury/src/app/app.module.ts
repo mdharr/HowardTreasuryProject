@@ -95,6 +95,7 @@ import { UiDividerComponent } from './components/ui-divider/ui-divider.component
 import { BookCoverComponent } from './components/book-cover/book-cover.component';
 import { PageFlipComponent } from './components/page-flip/page-flip.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ImageZoomComponent } from './components/image-zoom/image-zoom.component';
 
 @NgModule({
   declarations: [
@@ -164,7 +165,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     DelReyCollectionsComponent,
     UiDividerComponent,
     BookCoverComponent,
-    PageFlipComponent
+    PageFlipComponent,
+    ImageZoomComponent
   ],
   imports: [
     BrowserModule,

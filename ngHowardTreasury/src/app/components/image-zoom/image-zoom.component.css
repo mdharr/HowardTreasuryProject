@@ -1,0 +1,20 @@
+.image-zoom-container {
+  position: relative;
+  overflow: visible;
+}
+.original-image {
+  width: auto;
+  height: 700px;
+}
+.zoom-lens {
+  position: absolute;
+  border: 2px solid #ffffff;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  pointer-events: none;
+}
+.zoomed-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

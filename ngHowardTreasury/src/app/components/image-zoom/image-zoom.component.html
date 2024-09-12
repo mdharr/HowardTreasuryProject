@@ -1,0 +1,18 @@
+<div class="image-zoom-container"
+(mousemove)="onMouseMove($event)"
+(mouseleave)="onMouseLeave()"
+(mouseenter)="onMouseEnter()">
+<img #image [src]="imageSrc" [alt]="imageAlt" class="original-image">
+<div class="zoom-lens"
+[style.backgroundColor]="'black'"
+  [style.width.px]="lensWidth"
+  [style.height.px]="lensHeight"
+  [style.top.px]="lensTop"
+  [style.left.px]="lensLeft"
+  [style.display]="isZoomed ? 'block' : 'none'">
+<img [src]="imageSrc" [alt]="imageAlt" class="zoomed-image"
+    [style.width.px]="imageWidth * zoomLevel"
+    [style.height.px]="imageHeight * zoomLevel"
+    [style.transform]="'translate(' + translateX + 'px, ' + translateY + 'px)'">
+</div>
+</div>

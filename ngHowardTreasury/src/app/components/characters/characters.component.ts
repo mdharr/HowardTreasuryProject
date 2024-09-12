@@ -26,6 +26,7 @@ import { AnimatedCardComponent } from '../animated-card/animated-card.component'
 })
 export class CharactersComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChildren(AnimatedCardComponent) animatedCards!: QueryList<AnimatedCardComponent>;
+  @ViewChild('charContainer') charContainer!: ElementRef;
 
   // properties initialization
   persons: Person[] = [];
@@ -35,12 +36,18 @@ export class CharactersComponent implements OnInit, OnDestroy, AfterViewInit {
   isLoaded: boolean = false;
   loading: boolean = false;
   showAll: boolean = false;
+  fadeComplete: boolean = false;
+
+  hoveredIndex: number | null = null;
+  private hoverTimeout: any;
+  private leaveTimeout: any;
 
   // subscriptions declarations
   private personSubscription: Subscription | undefined;
 
   // view child
   @ViewChild('bgImage') bgImage!: ElementRef;
+  @ViewChild('overlayVideo') overlayVideo!: ElementRef;
 
   backgroundImageUrl = 'https://reh.world/wp-content/uploads/2022/02/Kayanan-Howard-characters.png';
 
@@ -52,10 +59,6 @@ export class CharactersComponent implements OnInit, OnDestroy, AfterViewInit {
     window.scrollTo(0, 0);
     this.subscribeToSubscriptions();
     this.triggerCustomEasingAnimation();
-  }
-
-  ngOnDestroy(): void {
-    this.destroySubscriptions();
   }
 
   subscribeToSubscriptions = () => {
@@ -108,5 +111,49 @@ export class CharactersComponent implements OnInit, OnDestroy, AfterViewInit {
     setTimeout(() => {
       this.showAll = true;
     }, 100);
+  }
+
+  onCardEnter(index: number) {
+    clearTimeout(this.leaveTimeout);
+    clearTimeout(this.hoverTimeout);
+
+    if (this.hoveredIndex !== index) {
+      this.hoveredIndex = index;
+
+      this.hoverTimeout = setTimeout(() => {
+        const cards = this.charContainer.nativeElement.querySelectorAll('.char-card');
+        cards.forEach((card: Element, i: number) => {
+          if (i !== index) {
+            card.classList.add('dimmed');
+          } else {
+            card.classList.remove('dimmed');
+          }
+        });
+      }, 50);
+    }
+  }
+
+  onCardLeave(index: number) {
+    clearTimeout(this.hoverTimeout);
+
+    this.leaveTimeout = setTimeout(() => {
+      if (this.hoveredIndex === index) {
+        this.hoveredIndex = null;
+        const cards = this.charContainer.nativeElement.querySelectorAll('.char-card');
+        cards.forEach((card: Element) => card.classList.remove('dimmed'));
+      }
+    }, 50);
+  }
+
+  playVideo(video: HTMLVideoElement) {
+    video.style.opacity = '1';
+    video.playbackRate = 0.5;
+    video.play();
+  }
+
+  ngOnDestroy() {
+    this.destroySubscriptions();
+    clearTimeout(this.hoverTimeout);
+    clearTimeout(this.leaveTimeout);
   }
 }

@@ -1,3 +1,12 @@
 <div class="overlay" [ngClass]="{ 'active': isVisible }" (click)="close()">
-  <img class="full-screen-image" *ngIf="isVisible" [src]="imageUrl" alt="Full Screen Image">
+  <app-image-zoom
+    class="full-screen-image"
+    style="overflow: visible;"
+    *ngIf="isVisible"
+    [imageSrc]="imageUrl"
+    [imageAlt]="'Description'"
+    [zoomLevel]="2"
+    [lensWidth]="200"
+    [lensHeight]="150">
+  </app-image-zoom>
 </div>

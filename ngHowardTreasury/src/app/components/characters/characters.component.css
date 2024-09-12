@@ -274,21 +274,21 @@
 }
 
 .char-card {
+  transition: filter 0.2s ease 0.15s;
+  position: relative;
   width: 325px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   transition: transform 0.3s, box-shadow 0.6s, border 0.2s;
-  /* border: 3px solid transparent; */
-  border: 5px solid transparent;
+  border: 6px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
-  /* background: #3f371f url(//www.blogblog.com/1kt/awesomeinc/body_background_dark.png) repeat scroll top left; */
   background: url(https://s0.wp.com/wp-content/themes/pub/connections/img/content_bg.gif) repeat;
 }
 
 .char-card:hover {
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   transform: translateY(-5px);
-  border: 5px solid transparent;
-  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  border: 6px solid transparent;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 15;
   cursor: pointer;
 }
 
@@ -305,6 +305,8 @@
   height: 200px;
   background-size: cover;
   background-position: center 20%;
+  position: relative;
+  overflow: hidden;
 }
 
 .char-content {
@@ -323,13 +325,6 @@
   font-family: var(--contentFontFamily);
   margin-bottom: 0;
 }
-
-
-/* .excerpt-text:first-child::first-letter {
-  margin-right: 5px;
-  color: var(--red_milk);
-  initial-letter: 2;
-} */
 
 .excerpt-text {
   text-align: justify;
@@ -506,4 +501,19 @@
   }
 }
 
+.video-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  mix-blend-mode: screen;
+  opacity: 1;
+  filter: brightness(1.5);
+}
 
+.char-card.dimmed {
+  filter: brightness(0.7);
+}

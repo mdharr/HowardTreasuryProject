@@ -12,7 +12,7 @@ import { CollectionService } from 'src/app/services/collection.service';
 export class PageFlipComponent implements OnInit, OnDestroy {
 
   overlayImageUrl: string = '';
-  recommendedCollections: Collection[] = [];
+  @Input() recommendedCollections: Collection[] = [];
 
   sampleImageUrls: string[] = [
     'https://www.jimzub.com/wp-content/uploads/2024/09/PhoenixOnTheSwordTitlePage-WeirdTales-1337x1536.jpg',
@@ -48,32 +48,13 @@ export class PageFlipComponent implements OnInit, OnDestroy {
     videoEffect?: VideoOverlayEffect
   } | null = null;
 
-  private collectionSub: Subscription | undefined;
-
-  private collectionService = inject(CollectionService);
-
   constructor(private renderer: Renderer2, private router: Router) {}
 
   ngOnInit() {
-    this.collectionSub = this.collectionService.indexAll().subscribe({
-      next: (data: Collection[]) => {
-        this.recommendedCollections = this.sortByRecommended(data);
-      },
-      error: (err) => {
-        console.error(err);
-      }
-    });
     this.createBackgroundOverlay();
   }
 
   ngOnDestroy() {
-    if (this.collectionSub) {
-      this.collectionSub.unsubscribe();
-    }
-  }
-
-  sortByRecommended(collections: Collection[]) {
-    return [...collections].filter(collection => collection.series);
   }
 
   private createBackgroundOverlay() {
@@ -285,6 +266,7 @@ export class PageFlipComponent implements OnInit, OnDestroy {
 
 class VideoOverlayEffect {
   constructor(private video: HTMLVideoElement) {
+    this.video.playbackRate = 0.5;
     this.video.play();
   }
 
