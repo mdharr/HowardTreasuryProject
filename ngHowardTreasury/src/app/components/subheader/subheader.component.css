@@ -1,0 +1,14 @@
+.subheader {
+  font-size: 16pt;
+  margin: 0;
+  line-height: 1.2;
+  color: var(--black_white);
+  font-family: var(--contentFontFamily);
+  font-weight: 600;
+}
+
+@media screen and (max-width: 528px) {
+  .subheader {
+    font-size: 13pt;
+  }
+}

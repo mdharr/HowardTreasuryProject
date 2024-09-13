@@ -96,6 +96,11 @@ import { BookCoverComponent } from './components/book-cover/book-cover.component
 import { PageFlipComponent } from './components/page-flip/page-flip.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ImageZoomComponent } from './components/image-zoom/image-zoom.component';
+import { ImageBounceComponent } from './components/image-bounce/image-bounce.component';
+import { ImageFloatComponent } from './components/image-float/image-float.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SubheaderComponent } from './components/subheader/subheader.component';
+import { ImageToribotComponent } from './components/image-toribot/image-toribot.component';
 
 @NgModule({
   declarations: [
@@ -166,7 +171,12 @@ import { ImageZoomComponent } from './components/image-zoom/image-zoom.component
     UiDividerComponent,
     BookCoverComponent,
     PageFlipComponent,
-    ImageZoomComponent
+    ImageZoomComponent,
+    ImageBounceComponent,
+    ImageFloatComponent,
+    HeaderComponent,
+    SubheaderComponent,
+    ImageToribotComponent
   ],
   imports: [
     BrowserModule,

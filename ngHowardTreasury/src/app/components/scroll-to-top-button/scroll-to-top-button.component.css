@@ -13,6 +13,10 @@
   background-color: var(--white_red);
   border: 2px solid var(--red_white);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  -webkit-transform-origin: bottom;
+  transform-origin: center;
+  -webkit-animation: pendulum ease-in-out 2s infinite alternate;
+  animation: pendulum ease-in-out 2s infinite alternate;
 }
 
 .scroll-to-top-button:hover {
@@ -20,4 +24,37 @@
   background-color: var(--red_white);
   border: 2px solid var(--white_red);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+
+  -webkit-animation: bounce 3.5s ease-in-out infinite;
+  animation: bounce 3.5s ease-in-out infinite;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: cubic-bezier(.4,.245,.58,1.42);
+  animation-timing-function: cubic-bezier(.4,.245,.58,1.42);
+  cursor: pointer;
+}
+
+@keyframes bounce {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  5% {
+    -webkit-transform: scale(1.05, 1);
+    transform: scale(1.05, 1);
+  }
+  100%, 15% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes pendulum {
+  0% {
+    -webkit-transform: translateY(5px);
+    transform: translateY(5px);
+  }
+  100% {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
 }

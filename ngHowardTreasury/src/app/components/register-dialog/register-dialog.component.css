@@ -92,6 +92,30 @@ button#registerFormBtn:hover {
   background-color: #a12d32;
 }
 
+#registerFormBtn:hover {
+  -webkit-animation: bounce 3.5s ease-in-out infinite;
+  animation: bounce 3.5s ease-in-out infinite;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: cubic-bezier(.4,.245,.58,1.42);
+  animation-timing-function: cubic-bezier(.4,.245,.58,1.42);
+  cursor: pointer;
+}
+
+@keyframes bounce {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  5% {
+    -webkit-transform: scale(1.05, 1);
+    transform: scale(1.05, 1);
+  }
+  100%, 15% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
 @media (max-width: 480px) {
   .register-dialog {
     max-width: 100%;

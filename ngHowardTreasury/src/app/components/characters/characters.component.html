@@ -11,10 +11,8 @@
 <div class="main-wrapper" *ngIf="isLoaded">
   <div class="header-wrapper">
     <div class="header">
-      <h1 class="main-title">Characters</h1>
-      <p class="subheader">
-        As fierce as a raging storm, each a legend in their own right
-      </p>
+      <app-header [title]="'Characters'"></app-header>
+      <app-subheader [text]="'As fierce as a raging storm, each a legend in their own right'"></app-subheader>
     </div>
   </div>
 

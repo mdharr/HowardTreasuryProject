@@ -38,6 +38,8 @@ import { SquishedImageComponent } from './components/squished-image/squished-ima
 import { ProductComponent } from './components/product/product.component';
 import { BookCoverComponent } from './components/book-cover/book-cover.component';
 import { PageFlipComponent } from './components/page-flip/page-flip.component';
+import { ImageBounceComponent } from './components/image-bounce/image-bounce.component';
+import { ImageToribotComponent } from './components/image-toribot/image-toribot.component';
 // import { PageFlipComponent } from './components/page-flip/page-flip.component';
 
 const routes: Routes = [
@@ -78,6 +80,8 @@ const routes: Routes = [
   // { path: 'gallery', component: ImageGalleryComponent, data: { animation: 'ImageGalleryPage' } },
   { path: 'adventure', component: AdventureComponent, canActivate: [authGuard] },
   { path: 'book-cover', component: BookCoverComponent},
+  { path: 'image-bounce', component: ImageBounceComponent},
+  { path: 'image-toribot', component: ImageToribotComponent},
 ];
 
 @NgModule({

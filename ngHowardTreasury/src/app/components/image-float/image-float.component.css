@@ -1,0 +1,44 @@
+@keyframes bounce {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  5% {
+    -webkit-transform: scale(1.05, 1);
+    transform: scale(1.05, 1);
+  }
+  100%, 15% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.wrap {
+  display: inline-block;
+  -webkit-animation: bounce 3.5s ease-in-out infinite;
+  animation: bounce 3.5s ease-in-out infinite;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: cubic-bezier(.4,.245,.58,1.42);
+  animation-timing-function: cubic-bezier(.4,.245,.58,1.42);
+}
+
+.wrap img {
+  height: 300px;
+  width: auto;
+}
+
+/*
+animation-name: about-main-bounce-y;
+animation-duration: 3.5s;
+animation-timing-function: ease-in-out;
+animation-delay: 0s;
+animation-iteration-count: infinite;
+animation-direction: normal;
+animation-fill-mode: none;
+animation-play-state: running;
+*/
+
+/*
+
+animation: clouds-over 8s ease infinite alternate;
+*/

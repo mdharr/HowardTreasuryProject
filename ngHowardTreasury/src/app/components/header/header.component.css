@@ -1,0 +1,19 @@
+.main-title {
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+  padding-bottom: 0;
+  font-size: 30pt;
+  font-weight: bold;
+  font-family: var(--amarante);
+  color: var(--red_milk);
+  margin: 0;
+  letter-spacing: 0.1rem;
+}
+
+@media screen and (max-width: 520px) {
+  .main-title {
+    font-size: 20pt;
+    padding: 0;
+  }
+}

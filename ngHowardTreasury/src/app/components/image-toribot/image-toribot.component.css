@@ -1,0 +1,25 @@
+.wrap {
+  position: relative;
+  width: 300px;
+  max-height: 300px;
+  overflow: hidden;
+}
+.toribot-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: none;
+  max-height: 300px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  animation: toribot 0.4s linear infinite alternate;
+}
+@keyframes toribot {
+  0% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(-2%);
+  }
+}

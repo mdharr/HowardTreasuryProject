@@ -10,8 +10,8 @@
 
 <div class="header-wrapper" *ngIf="!loading">
   <div class="header">
-    <h1 class="main-title">Collections</h1>
-    <p class="subheader">Various collections of Robert E. Howard's work.</p>
+    <app-header [title]="'Collections'"></app-header>
+    <app-subheader [text]="'Various collections of Robert E. Howard\'s work'"></app-subheader>
   </div>
   <div class="buttons-wrapper">
     <div class="toggle-container">
@@ -134,29 +134,5 @@
 </div>
 
 <div class="collection-container" *ngIf="showByRecommended && !loading" @customEasingAnimation>
-  <!-- <div class="collection" *ngFor="let collection of collectionsByRecommended; let i = index" #collection>
-    <div class="book" [routerLink]="['/collections', collection.id]">
-      <a>
-        <ul>
-          <li class="page page3"></li>
-          <li class="page page2"></li>
-          <li class="page page1"></li>
-          <img class="cover image-glow" src="{{ collection.collectionImages?.[0]?.thumbnailUrl }}" alt="Book Cover" loading="lazy">
-        </ul>
-      </a>
-      <div class="collection-title">
-        <a [routerLink]="['/collections', collection.id]">
-          <h4 class="collection-title-text">{{ collection.title }}</h4>
-        </a>
-      </div>
-    </div>
-  </div> -->
   <app-page-flip [recommendedCollections]="collectionsByRecommended"></app-page-flip>
 </div>
-
-<!-- <div id="sentinel"></div> -->
-
-<app-svg-element *ngIf="!loading"></app-svg-element>
-
-
-

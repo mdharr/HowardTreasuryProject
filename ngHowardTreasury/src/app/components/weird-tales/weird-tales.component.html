@@ -1,5 +1,9 @@
 <app-image-carousel [images]="weirdTalesImages"></app-image-carousel>
 <div class="main">
+  <div class="header">
+    <app-header [title]="'Weird Tales'"></app-header>
+    <app-subheader [text]="'The magazine which catapulted Howard\'s career'"></app-subheader>
+  </div>
   <div class="wrapper">
     <div class="magazine" *ngFor="let weirdTale of weirdTales; let i = index" #magazine [routerLink]="['/weird-tales', weirdTale.id]">
       <div class="magazine-thumbnail">

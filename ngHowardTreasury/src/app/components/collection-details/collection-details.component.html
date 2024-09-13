@@ -13,9 +13,10 @@
   </div> -->
   <div class="title-box">
     <div class="story-title">
-      <h2 class="story-header-text">{{ collection.title }}</h2>
+      <!-- <h2 class="story-header-text">{{ collection.title }}</h2> -->
+      <app-header [title]="collection.title"></app-header>
     </div>
-    <div class="collection-subheader" *ngIf="collection.illustrators.length">
+    <div style="margin-top: 10px;" class="collection-subheader" *ngIf="collection.illustrators.length">
       <p>Del Rey, {{ collection.publishedAt | date:'yyyy' }}. Illustrated by
         <ng-container *ngFor="let illustrator of collection.illustrators; let lastIndex = last; let firstIndex = first;">
           <span class="illustrator-link" [routerLink]="['/illustrators', illustrator.id]">

@@ -277,6 +277,13 @@ cursor: pointer;
   /* border: 6px solid transparent; */
   /* border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20; */
   border: 6px solid var(--red_black);
+
+  display: inline-block;
+  -webkit-animation: bounce 3.5s ease-in-out infinite;
+  animation: bounce 3.5s ease-in-out infinite;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: cubic-bezier(.4,.245,.58,1.42);
+  animation-timing-function: cubic-bezier(.4,.245,.58,1.42);
 }
 
 /* Add CSS for lightbox and thumbnails */
@@ -369,6 +376,7 @@ cursor: pointer;
   background: rgba(0, 0, 0, 0.5);
   padding: 10px;
   overflow: hidden;
+
 }
 
 .thumbnails-container {
@@ -485,6 +493,15 @@ cursor: pointer;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   border-radius: 0;
+
+
+
+  display: inline-block;
+  -webkit-animation: bounce 3.5s ease-in-out infinite;
+  animation: bounce 3.5s ease-in-out infinite;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: cubic-bezier(.4,.245,.58,1.42);
+  animation-timing-function: cubic-bezier(.4,.245,.58,1.42);
 }
 
 .illustrator-wrapper {
@@ -743,6 +760,30 @@ cursor: pointer;
     flex-wrap:wrap;
   }
 }
+
+@keyframes bounce {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  5% {
+    -webkit-transform: scale(1.05, 1);
+    transform: scale(1.05, 1);
+  }
+  100%, 15% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+/* .wrap {
+  display: inline-block;
+  -webkit-animation: bounce 3.5s ease-in-out infinite;
+  animation: bounce 3.5s ease-in-out infinite;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: cubic-bezier(.4,.245,.58,1.42);
+  animation-timing-function: cubic-bezier(.4,.245,.58,1.42);
+} */
 
 /* Add this CSS to your stylesheet */
 /* .shine {

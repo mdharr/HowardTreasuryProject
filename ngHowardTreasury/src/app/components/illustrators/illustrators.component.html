@@ -4,10 +4,9 @@
 
 <div class="header-wrapper">
   <div class="header">
-    <h1 class="main-title">Illustrators</h1>
-    <p class="subheader">
-      Meet the wonderful artists behind the illustrations
-    </p>
+    <!-- <h1 class="main-title">Illustrators</h1> -->
+    <app-header [title]="'Illustrators'"></app-header>
+    <app-subheader [text]="'Meet the wonderful artists behind the illustrations'"></app-subheader>
   </div>
 </div>
 <div class="card-wrapper" *ngIf="showAll" @customEasingAnimation>

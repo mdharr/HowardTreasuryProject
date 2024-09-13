@@ -27,7 +27,8 @@
 
 .tail-image {
   height: 300px;
-  filter: drop-shadow(1px 1px 1px white);
+  /* filter: drop-shadow(1px 1px 1px white); */
+  filter: drop-shadow(5px 3px 3px black);
 }
 
 @media screen and (max-width: 1087px) {
@@ -35,8 +36,5 @@
   .tail-image-wrapper {
     margin-bottom: 20px;
   }
-  /* .tail-image {
-    width: 20%;
-  } */
 }
 

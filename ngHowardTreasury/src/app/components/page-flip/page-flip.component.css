@@ -4,7 +4,7 @@
   justify-content: center;
   gap: 20px;
   padding: 20px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   /* height: 100vh;
   overflow-y: scroll; */
 }
@@ -202,11 +202,11 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
-  z-index: 997;  /* Just below the active book */
+  z-index: 997;
 }
 
 .background-overlay.active {

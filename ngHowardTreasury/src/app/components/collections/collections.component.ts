@@ -65,21 +65,6 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    // this.observer = new IntersectionObserver((entries) => {
-    //   entries.forEach(entry => {
-    //     if (entry.isIntersecting) {
-    //       setTimeout(() => {
-    //         this.renderer.addClass(entry.target, 'visible');
-    //       }, 1000);
-    //     }
-    //   });
-    // }, { threshold: 0.1 });
-
-    // this.collectionElements.changes.subscribe((comps: QueryList<ElementRef>) => {
-    //   comps.forEach(el => {
-    //     this.observer.observe(el.nativeElement);
-    //   });
-    // });
   }
 
   delay(ms: number): Promise<void> {
