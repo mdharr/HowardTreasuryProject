@@ -101,6 +101,7 @@ import { ImageFloatComponent } from './components/image-float/image-float.compon
 import { HeaderComponent } from './components/header/header.component';
 import { SubheaderComponent } from './components/subheader/subheader.component';
 import { ImageToribotComponent } from './components/image-toribot/image-toribot.component';
+import { ImagePulseGlowComponent } from './components/image-pulse-glow/image-pulse-glow.component';
 
 @NgModule({
   declarations: [
@@ -176,7 +177,8 @@ import { ImageToribotComponent } from './components/image-toribot/image-toribot.
     ImageFloatComponent,
     HeaderComponent,
     SubheaderComponent,
-    ImageToribotComponent
+    ImageToribotComponent,
+    ImagePulseGlowComponent
   ],
   imports: [
     BrowserModule,

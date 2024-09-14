@@ -40,6 +40,7 @@ import { BookCoverComponent } from './components/book-cover/book-cover.component
 import { PageFlipComponent } from './components/page-flip/page-flip.component';
 import { ImageBounceComponent } from './components/image-bounce/image-bounce.component';
 import { ImageToribotComponent } from './components/image-toribot/image-toribot.component';
+import { ImagePulseGlowComponent } from './components/image-pulse-glow/image-pulse-glow.component';
 // import { PageFlipComponent } from './components/page-flip/page-flip.component';
 
 const routes: Routes = [
@@ -82,6 +83,7 @@ const routes: Routes = [
   { path: 'book-cover', component: BookCoverComponent},
   { path: 'image-bounce', component: ImageBounceComponent},
   { path: 'image-toribot', component: ImageToribotComponent},
+  { path: 'image-pulse-glow', component: ImagePulseGlowComponent},
 ];
 
 @NgModule({
