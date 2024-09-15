@@ -117,3 +117,12 @@ button {
     height: calc(100% - 176px);
     overflow-y: auto;
 }
+
+.custom-subheader {
+  font-size: 16pt;
+    margin: 0;
+    line-height: 1.2;
+    color: var(--white_color);
+    font-family: var(--contentFontFamily);
+    font-weight: 600;
+}
