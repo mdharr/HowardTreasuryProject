@@ -190,9 +190,11 @@ details .body {
   max-width: 100%;
   height: auto;
   max-height: 160.06px;
+  min-height: 160.06px;
   overflow: hidden;
   border: 2px solid transparent;
-    border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 30;
+  background-color: #4a4a4a;
 }
 
 .title-text {

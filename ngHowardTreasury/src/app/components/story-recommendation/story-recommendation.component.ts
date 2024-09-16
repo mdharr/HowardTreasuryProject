@@ -44,8 +44,6 @@ export class StoryRecommendationComponent implements OnInit, OnDestroy {
   chooseYourOwnStory() {
     const random = this.findRandomNumber(this.stories);
     const story = this.stories[random];
-    console.log(random);
-    console.log(story);
     return story;
   }
 

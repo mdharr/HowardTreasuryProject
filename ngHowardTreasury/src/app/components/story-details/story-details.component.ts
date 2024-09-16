@@ -132,7 +132,6 @@ export class StoryDetailsComponent implements OnInit, OnDestroy, AfterViewInit {
           } else {
             this.collections = data;
             this.first10Collections = this.takeFirst10Items(data);
-            console.log('First ten collections: ', this.first10Collections);
           }
         },
         error: (fail) => {

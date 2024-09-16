@@ -385,6 +385,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-weight: 600;
 }
 
 .recommended-title-wrapper h3 {

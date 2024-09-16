@@ -95,12 +95,11 @@ export class LoginDialogComponent {
               } else {
                 this.openSnackbar('Too many requests. Please try again later.', 'Dismiss');
               }
-            } else {
+          } else {
             console.error('Login fail');
             console.error(fail);
             this.openSnackbar('The username or password you entered is incorrect.', 'Dismiss');
           }
-
         }
       });
     }
