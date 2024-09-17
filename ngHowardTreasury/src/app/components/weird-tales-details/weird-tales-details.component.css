@@ -92,7 +92,7 @@
 }
 
 .description-text {
-  color: var(--white_color);
+  color: var(--black_white);
   margin: 0;
   font-family: var(--contentFontFamily);
   font-size: 20px;
