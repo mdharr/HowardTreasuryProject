@@ -91,16 +91,15 @@
 
 .post-image-wrapper {
   max-height: 300px;
-  /* height: 300px; */
+  height: 300px;
   height: fit-content;
-  /* width: fit-content; */
   overflow: hidden;
   display:flex;
   align-items: center;
   justify-content: center;
-  /* border: 3px solid var(--red_milk); */
   border: 6px solid transparent;
   border-image: url(https://wa-cdn.nyc3.cdn.digitaloceanspaces.com/assets/themes/steampunk/images/border.png) 20;
+  background-color: #4a4a4a;
 }
 
 .post-image {
@@ -477,6 +476,13 @@ div p * {
 
 }
 
+@media screen and (max-width: 520px) {
+  .post-image-wrapper {
+    height: 171px;
+  }
+
+}
+
 @media screen and (max-width: 500px) {
   .post {
     box-shadow: none;
@@ -495,5 +501,3 @@ div p * {
   }
 
 }
-
-
