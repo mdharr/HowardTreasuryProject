@@ -102,6 +102,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SubheaderComponent } from './components/subheader/subheader.component';
 import { ImageToribotComponent } from './components/image-toribot/image-toribot.component';
 import { ImagePulseGlowComponent } from './components/image-pulse-glow/image-pulse-glow.component';
+import { StoryQuoteComponent } from './components/story-quote/story-quote.component';
 
 @NgModule({
   declarations: [
@@ -178,7 +179,8 @@ import { ImagePulseGlowComponent } from './components/image-pulse-glow/image-pul
     HeaderComponent,
     SubheaderComponent,
     ImageToribotComponent,
-    ImagePulseGlowComponent
+    ImagePulseGlowComponent,
+    StoryQuoteComponent
   ],
   imports: [
     BrowserModule,
