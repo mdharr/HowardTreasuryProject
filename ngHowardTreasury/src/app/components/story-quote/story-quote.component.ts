@@ -3,6 +3,7 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { StoryQuote } from 'src/app/models/story-quote';
 import { StoryQuoteService } from 'src/app/services/story-quote.service';
+import { fisherYatesShuffle } from 'src/app/utils/shuffle';
 
 @Component({
   selector: 'app-story-quote',
@@ -11,8 +12,9 @@ import { StoryQuoteService } from 'src/app/services/story-quote.service';
 })
 export class StoryQuoteComponent implements OnInit, OnDestroy {
 
-  quote: StoryQuote = new StoryQuote();
+  quote: StoryQuote | null = null;
   quotes: StoryQuote[] = [];
+  shuffledQuotes: StoryQuote[] = [];
 
   storyQuoteSubscription: Subscription | undefined;
 
@@ -28,15 +30,27 @@ export class StoryQuoteComponent implements OnInit, OnDestroy {
     }
   }
 
-  subscribeToStoryQuotes() {
+  private subscribeToStoryQuotes() {
     this.storyQuoteSubscription = this.storyQuoteService.indexAll().subscribe({
       next: (data) => {
         this.quotes = data;
+        this.shuffledQuotes = fisherYatesShuffle(this.quotes);
+        this.updateQuote();
       },
       error: (err) => {
-        console.error("Error subscribing to story quote service" + err);
+        console.error("Error subscribing to story quote service", err);
       }
     });
+  }
+
+  private updateQuote() {
+    const poppedQuote = this.shuffledQuotes.pop();
+    if (poppedQuote) {
+      this.quote = poppedQuote;
+    } else {
+      this.quote = null;
+      console.log('No more quotes available');
+    }
   }
 
 }
