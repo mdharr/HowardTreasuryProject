@@ -1,11 +1,8 @@
-<div class="quote-card" *ngIf="quote">
+<div class="quote-card" *ngIf="quote" (click)="updateQuote()">
   <blockquote class="quote-content">
     {{ quote.content }}
   </blockquote>
   <footer class="quote-footer">
     <cite class="quote-source">{{ quote.story.title }}</cite>
   </footer>
-</div>
-<div class="no-quote" *ngIf="!quote">
-  No quotes available.
 </div>

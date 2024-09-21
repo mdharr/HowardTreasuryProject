@@ -43,13 +43,12 @@ export class StoryQuoteComponent implements OnInit, OnDestroy {
     });
   }
 
-  private updateQuote() {
+  protected updateQuote() {
     const poppedQuote = this.shuffledQuotes.pop();
     if (poppedQuote) {
       this.quote = poppedQuote;
     } else {
-      this.quote = null;
-      console.log('No more quotes available');
+      this.shuffledQuotes = fisherYatesShuffle(this.quotes);
     }
   }
 
