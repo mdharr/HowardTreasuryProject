@@ -1,6 +1,5 @@
 .quote-card {
   background-color: var(--white_color);
-  background-image: url(https://m2stg.com/en/battle-garegga/ps4/manual/assets/img/bg_paper.jpg);
   border-left: 5px solid var(--red_black);
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -14,6 +13,8 @@
   flex-direction: column;
   justify-content: space-between;
   transition: box-shadow 0.3s ease;
+  min-width: 600px;
+  overflow: hidden;
 }
 
 .quote-card:hover {
@@ -21,32 +22,41 @@
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
-.corner-fold {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 50px 50px 0;
-  border-color: transparent #fff transparent transparent;
-  box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.quote-card:hover .corner-fold {
-  border-width: 0 70px 70px 0;
-  box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.2);
-}
-
 .quote-content {
-  color: var(--black_color);
   font-size: 1.1em;
   font-style: italic;
   font-weight: 500;
   line-height: 1.6;
   margin: 0 0 10px 0;
   font-family: Inter, serif;
+  color: transparent;
+  background: #000;
+  background-size: cover;
+  -webkit-background-clip: text;
+  background-clip: text;
+  position: relative;
+}
+
+.reveal-text::before {
+  content: "";
+  position: absolute;
+  left: -100%;
+  top: -100%;
+  width: 300%;
+  height: 300%;
+  background-color: #fff;
+  background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 50%, rgba(255,255,255,0) 100%);
+  z-index: 1;
+  animation: 2s moveDiagonal linear forwards;
+}
+
+@keyframes moveDiagonal {
+  0% {
+    transform: translate(-100%, -100%) rotate(0deg);
+  }
+  100% {
+    transform: translate(100%, 100%) rotate(0deg);
+  }
 }
 
 .quote-footer {
@@ -55,11 +65,20 @@
   text-align: right;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .quote-source {
   font-style: normal;
   font-weight: 600;
   font-size: 1rem;
   font-family: amarante, serif;
+}
+
+.fade-in-animation {
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .quote-source::before {

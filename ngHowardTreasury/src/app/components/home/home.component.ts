@@ -60,21 +60,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   checkImagesLoaded() {
-    // Initialize total and loaded counts
     let totalImages = 0;
     let loadedImages = 0;
 
-    // Iterate through each AnimatedCardComponent
     this.animatedCards.forEach((card) => {
-      // Update the totalImages count
-      totalImages += 2; // You have 3 images in each card
+      totalImages += 2;
 
-      // Listen for the imagesLoaded event in each AnimatedCardComponent
       card.imagesLoaded.subscribe(() => {
-        // Increment the loadedImages count
         loadedImages++;
 
-        // Check if all images are loaded
         if (loadedImages === totalImages) {
           this.isLoaded = true;
         }

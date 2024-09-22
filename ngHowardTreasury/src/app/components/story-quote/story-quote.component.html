@@ -1,8 +1,8 @@
 <div class="quote-card" *ngIf="quote" (click)="updateQuote()">
-  <blockquote class="quote-content">
-    {{ quote.content }}
+  <blockquote #quoteContent class="quote-content">
+
   </blockquote>
   <footer class="quote-footer">
-    <cite class="quote-source">{{ quote.story.title }}</cite>
+    <cite #quoteSource class="quote-source">{{ quote.story.title }}</cite>
   </footer>
 </div>
