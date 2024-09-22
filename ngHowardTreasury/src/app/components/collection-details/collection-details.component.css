@@ -632,3 +632,8 @@ ul li {
     transform: translateY(0);
   }
 }
+
+app-story-quote {
+  display: flex;
+  justify-content: center;
+}
