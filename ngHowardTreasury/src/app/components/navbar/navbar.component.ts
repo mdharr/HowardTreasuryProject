@@ -16,6 +16,8 @@ import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { SearchService } from 'src/app/services/search.service';
 import { SearchResultsService } from 'src/app/services/search-results.service';
+import { KeywordsTrie } from 'src/app/utils/trie/keywords-trie';
+import { KEYWORDS } from 'src/app/utils/trie/keywords.data';
 
 @Component({
   selector: 'app-navbar',
@@ -27,7 +29,6 @@ import { SearchResultsService } from 'src/app/services/search-results.service';
         'collapsed',
         style({
           height: '0',
-          // overflow: 'hidden',
           opacity: '0',
         })
       ),
@@ -35,7 +36,6 @@ import { SearchResultsService } from 'src/app/services/search-results.service';
         'expanded',
         style({
           height: '*',
-          // overflow: 'visible',
           opacity: '1',
         })
       ),
@@ -45,9 +45,16 @@ import { SearchResultsService } from 'src/app/services/search-results.service';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
 
+  @ViewChild('searchInput') searchInput!: ElementRef;
+  @ViewChild('ghostInput') ghostInput!: ElementRef;
+  @ViewChild('dropdownSearchInput') dropdownSearchInput!: ElementRef;
+  @ViewChild('dropdownGhostInput') dropdownGhostInput!: ElementRef;
+
+  searchQuery: string = '';
+  keywordsTrie: KeywordsTrie;
+
   menuState: 'collapsed' | 'expanded' = 'collapsed';
   isMenuOpen: boolean = false;
-  searchQuery: string = '';
 
   loggedInUser: User = new User();
 
@@ -64,6 +71,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   userService = inject(UserService);
   searchService = inject(SearchService);
   searchResultsService = inject(SearchResultsService);
+
+  constructor() {
+    this.keywordsTrie = new KeywordsTrie();
+    // Initialize trie with titles
+    KEYWORDS.forEach(title => this.keywordsTrie.insert(title));
+  }
 
   ngOnInit(): void {
     if (this.loggedIn()) {
@@ -86,6 +99,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.userUpdateSubscription = this.userService.userUpdated$.subscribe(user => {
       this.loggedInUser = user;
     });
+
   }
 
   ngOnDestroy(): void {
@@ -139,11 +153,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   performSearchNoMenu() {
     if (this.searchQuery) {
       this.searchService.search(this.searchQuery).subscribe((results) => {
-        // Update the search results in the shared service
         this.searchResultsService.updateSearchResults(results);
         this.router.navigate(['/search-results']);
 
         this.searchQuery = '';
+        this.ghostInput.nativeElement.value = '';
       });
     }
   }
@@ -161,4 +175,34 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
+  onSearchInput(event: Event, isDropdown: boolean = false) {
+    const userInput = (event.target as HTMLInputElement).value;
+    const suggestion = this.keywordsTrie.findMatch(userInput);
+
+    const ghostInput = isDropdown ? this.dropdownGhostInput : this.ghostInput;
+
+    if (suggestion && userInput) {
+      // Get the matching part that should use user's capitalization
+      const matchingPart = userInput;
+      // Get the suggested part that comes after the user's input
+      const suggestedPart = suggestion.slice(userInput.length);
+      // Combine them, keeping the user's capitalization for the matching part
+      ghostInput.nativeElement.value = matchingPart + suggestedPart;
+    } else {
+      ghostInput.nativeElement.value = '';
+    }
+  }
+
+  onKeyDown(event: KeyboardEvent, isDropdown: boolean = false) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+
+      const ghostInput = isDropdown ? this.dropdownGhostInput : this.ghostInput;
+
+      if (ghostInput.nativeElement.value) {
+        this.searchQuery = ghostInput.nativeElement.value;
+        ghostInput.nativeElement.value = '';
+      }
+    }
+  }
 }

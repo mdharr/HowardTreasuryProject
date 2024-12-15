@@ -50,7 +50,21 @@
 
     <div class="flex-menu-row">
       <div class="search-container">
-        <input id="searchInput" class="search-input-field" [(ngModel)]="searchQuery" (keyup.enter)="performSearchNoMenu()" placeholder="Search ...">
+        <input
+        #ghostInput
+        class="ghost-input"
+        disabled>
+        <input
+        #searchInput
+        id="searchInput"
+        class="search-input-field"
+        [(ngModel)]="searchQuery"
+        (input)="onSearchInput($event)"
+        (keydown)="onKeyDown($event)"
+        (keyup.enter)="performSearchNoMenu()"
+        placeholder="Search ..."
+        autocomplete="off">
+        <!-- <input id="searchInput" class="search-input-field" [(ngModel)]="searchQuery" (keyup.enter)="performSearchNoMenu()" placeholder="Search ..."> -->
         <button mat-icon-button class="search-button" (click)="performSearchNoMenu()">
           <mat-icon class="search-icon">search</mat-icon>
         </button>
@@ -90,7 +104,21 @@
   <div class="menu-row new-item" (click)="toggleMenu()" [routerLink]="['/adventure']" *ngIf="loggedIn()">Adventure</div>
   <div class="menu-row">
     <div class="search-container">
-      <input class="search-input-field" [(ngModel)]="searchQuery" (keyup.enter)="performSearch()" placeholder="Search ...">
+      <input
+      #dropdownGhostInput
+      class="ghost-input"
+      disabled>
+    <input
+      #dropdownSearchInput
+      id="dropdownSearchInput"
+      class="search-input-field"
+      [(ngModel)]="searchQuery"
+      (input)="onSearchInput($event, true)"
+      (keydown)="onKeyDown($event, true)"
+      (keyup.enter)="performSearch()"
+      placeholder="Search ..."
+      autocomplete="off">
+      <!-- <input class="search-input-field" [(ngModel)]="searchQuery" (keyup.enter)="performSearch()" placeholder="Search ..."> -->
       <button mat-raised-button class="search-button" (click)="performSearch()"><mat-icon class="search-icon">search</mat-icon></button>
     </div>
   </div>
