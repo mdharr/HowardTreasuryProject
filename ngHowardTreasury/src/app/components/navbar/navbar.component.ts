@@ -145,6 +145,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.router.navigate(['/search-results']);
 
         this.searchQuery = '';
+        this.ghostInput.nativeElement.value = '';
       });
       this.toggleMenu();
     }
