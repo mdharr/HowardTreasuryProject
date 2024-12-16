@@ -25,7 +25,6 @@ export class SearchService {
   }
 
   search(query: string): Observable<any[]> {
-    // Make HTTP GET request to your search endpoint
     return this.http.get<any[]>(`${this.url}?query=${query}`);
   }
 

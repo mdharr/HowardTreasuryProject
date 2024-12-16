@@ -140,7 +140,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   performSearch() {
     if (this.searchQuery) {
       this.searchService.search(this.searchQuery).subscribe((results) => {
-        // Update the search results in the shared service
         this.searchResultsService.updateSearchResults(results);
         this.router.navigate(['/search-results']);
 

@@ -81,7 +81,7 @@ img.alignleft, .wp-caption.alignleft {
     transform: translateX(-100px);
   }
   to {
-    transform: translateX(1000px);
+    transform: translateX(2000px);
   }
 }
 

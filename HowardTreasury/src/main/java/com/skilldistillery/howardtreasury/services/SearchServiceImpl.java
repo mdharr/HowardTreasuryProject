@@ -75,52 +75,12 @@ public class SearchServiceImpl implements SearchService {
                 .collect(Collectors.toList());
     }
     
-//    private List<Map<String, Object>> searchStories(String query, String type) {
-//        return storyRepo.findByTitleContaining(query).stream()
-//                .map(story -> createResultMap(story, type))
-//                .collect(Collectors.toList());
-//    }
-    
     private List<Map<String, Object>> searchStories(String query, String type) {
     	return storyRepo.findByTitleContainingOrAlternateTitleContaining(query, query).stream()
     			.map(story -> createResultMap(story, type))
     			.collect(Collectors.toList());
     }
-    
-//    private List<Map<String, Object>> searchStories(String query, String type) {
-//        List<Map<String, Object>> results = new ArrayList<>();
-//
-//        // Search in story titles
-//        List<Story> storiesWithMatchingTitle = storyRepo.findByTitleContaining(query);
-//        results.addAll(storiesWithMatchingTitle.stream()
-//                .map(story -> createResultMap(story, type))
-//                .collect(Collectors.toList()));
-//
-//        // Fetch and parse HTML content asynchronously
-//        List<CompletableFuture<Void>> asyncTasks = storiesWithMatchingTitle.stream()
-//                .map(story -> CompletableFuture.runAsync(() -> {
-//                    String textUrl = story.getTextUrl();
-//                    if (textUrl != null) {
-//                        String htmlContent = fetchHtmlContent(textUrl); // Implement this method to fetch HTML content
-//
-//                        if (htmlContent != null) {
-//                            String extractedText = parseHtmlAndExtractText(htmlContent); // Implement this method to parse HTML and extract text
-//
-//                            if (extractedText.toLowerCase().contains(query.toLowerCase())) {
-//                                results.add(createResultMap(story, type));
-//                            }
-//                        }
-//                    }
-//                }))
-//                .collect(Collectors.toList());
-//
-//        // Wait for all async tasks to complete
-//        CompletableFuture<Void> allOf = CompletableFuture.allOf(asyncTasks.toArray(new CompletableFuture[0]));
-//        allOf.join();
-//
-//        return results;
-//    }
-    
+        
     private List<Map<String, Object>> searchPoems(String query, String type) {
         return poemRepo.findByTitleContaining(query).stream()
                 .map(poem -> createResultMap(poem, type))
@@ -166,7 +126,7 @@ public class SearchServiceImpl implements SearchService {
     private String parseHtmlAndExtractText(String htmlContent) {
         // Parse the HTML content and extract text
         Document doc = Jsoup.parse(htmlContent);
-        Elements elements = doc.select("p"); // You can adjust this selector based on your HTML structure
+        Elements elements = doc.select("p");
 
         StringBuilder extractedText = new StringBuilder();
         for (Element element : elements) {
