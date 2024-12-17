@@ -180,7 +180,7 @@ import { StoryQuoteComponent } from './components/story-quote/story-quote.compon
     SubheaderComponent,
     ImageToribotComponent,
     ImagePulseGlowComponent,
-    StoryQuoteComponent
+    StoryQuoteComponent,
   ],
   imports: [
     BrowserModule,
