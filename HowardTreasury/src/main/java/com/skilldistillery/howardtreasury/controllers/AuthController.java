@@ -53,17 +53,6 @@ public class AuthController {
   @Autowired
   private RateLimitService rateLimitService;
   
-//  Previous register method
-//	@PostMapping("register")
-//	public User register(@RequestBody User user, HttpServletResponse res) {
-//	  if (user == null) {
-//	     res.setStatus(400);
-//	     return null;
-//	  }
-//	  user = authService.register(user);
-//	  return user;
-//	}
-  
   	@PostMapping("register")
   	public ResponseEntity<?> register(@RequestBody User user) {
       try {
@@ -78,58 +67,6 @@ public class AuthController {
       }
   	}
 
-	 
-//	@GetMapping("authenticate")
-//	public User authenticate(Principal principal, HttpServletResponse res) {
-//	  if (principal == null) { // no Authorization header sent
-//	     res.setStatus(401);
-//	     res.setHeader("WWW-Authenticate", "Basic");
-//	     return null;
-//	  }
-//	  return authService.getUserByUsername(principal.getName());
-//	}
-	
-//    @GetMapping("authenticate")
-//    public ResponseEntity<?> auth(Principal principal) {
-//        if (principal == null) { // no Authorization header sent
-//            HttpHeaders headers = new HttpHeaders();
-//            headers.set("WWW-Authenticate", "Basic");
-//            return new ResponseEntity<>(headers, HttpStatus.UNAUTHORIZED);
-//        }
-//        try {
-//            User user = authService.login(principal.getName());
-//            return new ResponseEntity<>(user, HttpStatus.OK);
-//        } catch (UsernameNotFoundException e) {
-//            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-//        } catch (UserDeactivatedException e) {
-//            return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-  	
-  	// working version
-//    @GetMapping("authenticate")
-//    public ResponseEntity<?> auth(Principal principal) {
-//        if (principal == null) { // no Authorization header sent
-//            HttpHeaders headers = new HttpHeaders();
-//            headers.set("WWW-Authenticate", "Basic");
-//            return new ResponseEntity<>(headers, HttpStatus.UNAUTHORIZED);
-//        }
-//        try {
-//            User user = authService.login(principal.getName());
-////            if (authService.isAccountDeactivated(principal.getName())) {
-////                return new ResponseEntity<>("User account is deactivated", HttpStatus.FORBIDDEN);
-////            }
-//            return new ResponseEntity<>(user, HttpStatus.OK);
-//        } catch (UsernameNotFoundException e) {
-//            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-  	
-  	// experimental
   	@GetMapping("authenticate")
   	public ResponseEntity<?> auth(Principal principal) {
   	    if (principal == null) {
@@ -145,26 +82,6 @@ public class AuthController {
   	        return new ResponseEntity<>("An error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
   	    }
   	}
-  	
-//    @GetMapping("authentication")
-//    public ResponseEntity<?> auth(Principal principal) {
-//        if (principal == null) { // no Authorization header sent
-//            HttpHeaders headers = new HttpHeaders();
-//            headers.set("WWW-Authenticate", "Basic");
-//            return new ResponseEntity<>(headers, HttpStatus.UNAUTHORIZED);
-//        }
-//        try {
-//            User user = authService.login(principal.getName());
-//            Map<String, Object> response = new HashMap<>();
-//            response.put("user", user);
-//            response.put("deactivated", authService.isAccountDeactivated(principal.getName()));
-//            return new ResponseEntity<>(response, HttpStatus.OK);
-//        } catch (UsernameNotFoundException e) {
-//            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
 
     @PostMapping("send-activation-email")
     public ResponseEntity<?> sendActivationEmail(@RequestParam String username) {
@@ -196,7 +113,6 @@ public class AuthController {
 	    }
 	}
 	
-	// Add the following endpoint to handle email verification
 	@GetMapping("verify")
 	public ResponseEntity<String> verifyAccount(@RequestParam("token") String token) {
 	    VerificationToken verificationToken = verificationTokenService.getVerificationToken(token);

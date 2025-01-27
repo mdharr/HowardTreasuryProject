@@ -141,7 +141,6 @@ public class BlogPostServiceImpl implements BlogPostService {
 		List<BlogCommentDTO> commentDTOs = new ArrayList<>();
 
 		for (BlogComment comment : blogPost.getComments()) {
-			// Recursive function to map comments and their replies
 			BlogCommentDTO commentDTO = mapCommentWithRepliesRecursive(comment);
 			commentDTOs.add(commentDTO);
 		}
@@ -167,7 +166,6 @@ public class BlogPostServiceImpl implements BlogPostService {
 		int maxDepth = 100;
 
 		for (BlogComment reply : comment.getReplies()) {
-			// Recursive function to map replies and nested replies
 			BlogCommentDTO replyDTO = mapCommentWithRepliesRecursive(reply);
 			replyDTO.setId(reply.getId());
 			replyDTO.setContent(reply.getContent());

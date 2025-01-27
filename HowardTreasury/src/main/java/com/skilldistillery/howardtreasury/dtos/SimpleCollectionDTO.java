@@ -21,7 +21,6 @@ public class SimpleCollectionDTO {
 
 	public SimpleCollectionDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public SimpleCollectionDTO(int id, String title, LocalDateTime publishedAt, Series series,

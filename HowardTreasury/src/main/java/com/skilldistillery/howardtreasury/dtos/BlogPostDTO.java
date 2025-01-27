@@ -15,7 +15,6 @@ public class BlogPostDTO {
     private String imageUrl;
 
     public BlogPostDTO() {
-        // Default constructor
     }
 
     public BlogPostDTO(int id, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt, UserDTO user, List<BlogCommentDTO> comments, Boolean hidden, String imageUrl) {
@@ -29,8 +28,6 @@ public class BlogPostDTO {
         this.hidden = hidden;
         this.imageUrl = imageUrl;
     }
-
-    // Getters and setters
 
     public int getId() {
         return id;

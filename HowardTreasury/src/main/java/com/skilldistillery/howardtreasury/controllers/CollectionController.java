@@ -47,22 +47,10 @@ public class CollectionController {
 	@Autowired
 	private MiscellaneaRepository miscellaneaRepo;
 	
-//	@GetMapping("collections")
-//	public ResponseEntity<List<Collection>> getAllCollections() {
-//		List<Collection> collections = collectionService.findAll();
-//		if (collections.isEmpty()) {
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		}
-//		else {
-//			return new ResponseEntity<>(collections, HttpStatus.OK);
-//		}
-//	}
-	
 	@GetMapping("collections")
 	public ResponseEntity<List<SimpleCollectionDTO>> getAllCollections() {
 	    List<Collection> collections = collectionService.findAll();
 	    if (!collections.isEmpty()) {
-	        // Map your BlogPost entities to BlogPostDTOs
 	        List<SimpleCollectionDTO> simpleCollectionDTOs = collections.stream()
 	                .map(collectionService::mapToDTO)
 	                .collect(Collectors.toList());
@@ -71,29 +59,6 @@ public class CollectionController {
 	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	    }
 	}
-	
-//    @GetMapping("collections")
-//    public ResponseEntity<?> getAllCollections(
-//            @RequestParam(defaultValue = "false") boolean paged,
-//            @RequestParam(defaultValue = "0") int page,
-//            @RequestParam(defaultValue = "10") int size) {
-//        if (paged) {
-//            Pageable pageable = PageRequest.of(page, size);
-//            Page<Collection> collections = collectionService.findAll(pageable);
-//            if (collections.isEmpty()) {
-//                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//            } else {
-//                return new ResponseEntity<>(collections, HttpStatus.OK);
-//            }
-//        } else {
-//            List<Collection> collections = collectionService.findAll();
-//            if (collections.isEmpty()) {
-//                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//            } else {
-//                return new ResponseEntity<>(collections, HttpStatus.OK);
-//            }
-//        }
-//    }
 	
 	@GetMapping("collections/{cid}")
 	public ResponseEntity<Collection> getCollectionById(@PathVariable("cid") int collectionId) {
@@ -122,16 +87,6 @@ public class CollectionController {
 	    }
 	}
 	
-//	@PostMapping("collections")
-//	public ResponseEntity<Collection> create(@RequestBody Collection collection) {
-//		Collection createdCollection = collectionService.create(collection);
-//	    if (createdCollection != null) {
-//	        return new ResponseEntity<>(createdCollection, HttpStatus.CREATED);
-//	    } else {
-//	        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//	    }
-//	}
-	
 	@PutMapping("collections/{cid}")
 	public ResponseEntity<Collection> updateCollection(@RequestBody Collection collection, @PathVariable("cid") int collectionId) {
 		
@@ -144,24 +99,6 @@ public class CollectionController {
 	    }
 	    
 	}
-	
-//	@PostMapping("collections")
-//	public Collection createCollection(HttpServletRequest req, HttpServletResponse res, @RequestBody Collection collection) {
-//		
-//		try {
-//			collectionService.create(collection);
-//			res.setStatus(201);
-//			StringBuffer url = req.getRequestURL();
-//			url.append("/").append(collection.getId());
-//			res.setHeader("Location", url.toString());		
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			res.setStatus(400);
-//			collection = null;
-//		}
-//		
-//		return collection;
-//	}
 	
 	@DeleteMapping("collections/{cid}")
 	public ResponseEntity<String> deleteCollection(@PathVariable("cid") int collectionId) {
@@ -185,16 +122,6 @@ public class CollectionController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-	
-	// collection by title
-//	@GetMapping("collections/{ct}")
-//	public Collection getCollectionByTitle(@PathVariable("ct") String collectionTitle, HttpServletResponse res) {
-//		String originalTitle = collectionTitle.replace("-", " ");
-//		if(collectionService.getByTitle(collectionTitle) == null) {
-//			res.setStatus(404);
-//		}
-//		return collectionService.getByTitle(originalTitle);
-//	}
     
     @GetMapping("collections/{cid}/pages")
     public ResponseEntity<CollectionWithStoriesDTO> getCollectionWithStoriesById(@PathVariable("cid") int collectionId) {

@@ -81,14 +81,4 @@ public class MiscellaneaController {
 	    }
 	}
 	
-//	@PostMapping("miscellaneas")
-//	public ResponseEntity<Miscellanea> create(@RequestBody Miscellanea miscellanea) {
-//		Miscellanea createdMiscellanea = miscellaneaService.create(miscellanea);
-//	    if (createdMiscellanea != null) {
-//	        return new ResponseEntity<>(createdMiscellanea, HttpStatus.CREATED);
-//	    } else {
-//	        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//	    }
-//	}
-	
 }

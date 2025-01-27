@@ -10,11 +10,10 @@ public class BlogCommentDTO {
     private LocalDateTime updatedAt;
     private UserDTO user;
     private Boolean hidden;
-    private BlogCommentDTO parentComment;  // Include parent comment in the DTO
-    private List<BlogCommentDTO> replies;    // Include replies in the DTO
+    private BlogCommentDTO parentComment;
+    private List<BlogCommentDTO> replies;
 
     public BlogCommentDTO() {
-        // Default constructor
     }
 
     public BlogCommentDTO(int id, String content, LocalDateTime createdAt, LocalDateTime updatedAt, UserDTO user, Boolean hidden, BlogCommentDTO parentComment, List<BlogCommentDTO> replies) {
@@ -27,8 +26,6 @@ public class BlogCommentDTO {
         this.parentComment = parentComment;
         this.replies = replies;
     }
-
-    // Getters and setters
 
     public int getId() {
         return id;

@@ -1,5 +1,6 @@
 package com.skilldistillery.howardtreasury.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -52,6 +53,13 @@ public class Poem {
 	public Poem() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Poem(int id, String title) {
+	    super();
+	    this.id = id;
+	    this.title = title;
+	    this.collections = new ArrayList<>();
 	}
 
 	public Poem(int id, String title, String textUrl, String excerpt,

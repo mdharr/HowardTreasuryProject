@@ -27,10 +27,8 @@ public class ChatWebSocketController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/publicChatRoom")
     public ChatMessageDTO sendMessage(@Payload ChatMessage chatMessage) {
-        // Save the message
         ChatMessage savedMessage = chatMessageService.save(chatMessage);
 
-        // Convert saved entity to DTO
         return chatMessageService.convertToDTO(savedMessage);
     }
     

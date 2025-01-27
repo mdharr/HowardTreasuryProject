@@ -10,8 +10,6 @@ public class ChatMessageDTO {
     private int chatRoomId;
     private SimpleUserDTO user;
 
-    // Constructors, getters, and setters
-
     public ChatMessageDTO() {}
 
     public ChatMessageDTO(int id, String messageContent, LocalDateTime createdAt, int chatRoomId, SimpleUserDTO user) {

@@ -29,7 +29,6 @@ public class CollectionWithStoriesDTO {
     
     public CollectionWithStoriesDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public CollectionWithStoriesDTO(int id, String title, LocalDateTime publishedAt, Integer pageCount,
@@ -170,7 +169,6 @@ public class CollectionWithStoriesDTO {
         private Integer pageNumber;
 		public StoryWithPageNumberDTO() {
 			super();
-			// TODO Auto-generated constructor stub
 		}
 		public StoryWithPageNumberDTO(int id,  String title, String textUrl,
 				LocalDateTime firstPublished, String alternateTitle, Boolean isCopyrighted,
@@ -267,7 +265,6 @@ public class CollectionWithStoriesDTO {
         private Integer pageNumber;
 		public PoemWithPageNumberDTO() {
 			super();
-			// TODO Auto-generated constructor stub
 		}
 		public PoemWithPageNumberDTO(int id,  String title, String textUrl, String excerpt, Integer pageNumber) {
 			super();
@@ -317,7 +314,6 @@ public class CollectionWithStoriesDTO {
         private Integer pageNumber;
 		public MiscellaneaWithPageNumberDTO() {
 			super();
-			// TODO Auto-generated constructor stub
 		}
 		public MiscellaneaWithPageNumberDTO(int id,  String title, String textUrl, String excerpt, Integer pageNumber) {
 			super();

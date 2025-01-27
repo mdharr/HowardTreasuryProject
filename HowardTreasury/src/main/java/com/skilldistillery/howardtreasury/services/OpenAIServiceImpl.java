@@ -29,7 +29,6 @@ public class OpenAIServiceImpl implements OpenAIService {
         double temperature = 0.7;
         String[] stopSequences = {"What would you like to do?"};
 
-        // Include the system message only once at the beginning of the conversation
         if (messages.isEmpty() || !messages.get(0).get("role").equals("system")) {
             Map<String, String> systemMessage = new HashMap<>();
             systemMessage.put("role", "system");

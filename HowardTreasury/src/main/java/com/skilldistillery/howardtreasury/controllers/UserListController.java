@@ -69,16 +69,13 @@ public class UserListController {
             Principal principal) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        // Ensure the user is authenticated.
         if (authentication != null && authentication.isAuthenticated()) {
-            // Retrieve the username from the authentication object.
             String username = authentication.getName();
 
-            // Fetch the User entity based on the username (or ID) from your user repository.
             User user = authService.getUserByUsername(username);
 
             if (user != null) {
-                userList.setUser(user); // Set the associated user.
+                userList.setUser(user);
                 UserList createdUserList = userListService.create(username, userList);
                 if (createdUserList != null) {
                     return new ResponseEntity<>(createdUserList, HttpStatus.CREATED);
@@ -108,14 +105,13 @@ public class UserListController {
         ResponseEntity<Void> response = userListService.delete(principal.getName(), listId);
         
         if (response.getStatusCode() == HttpStatus.NO_CONTENT) {
-            return response; // Successfully deleted
+            return response;
         } else if (response.getStatusCode() == HttpStatus.FORBIDDEN) {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN); // Unauthorized access
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         } else if (response.getStatusCode() == HttpStatus.NOT_FOUND) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // List not found
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         
-        // Handle any other status codes if needed.
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

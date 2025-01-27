@@ -9,7 +9,6 @@ public class StoryVoteDTO {
 
 	public StoryVoteDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public StoryVoteDTO(Integer storyId, Integer userId, String voteType) {

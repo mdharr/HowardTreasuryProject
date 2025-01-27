@@ -31,12 +31,10 @@ public class BlogCommentController {
 	@Autowired
 	private BlogCommentService blogCommentService;
 	
-	// BlogCommentController.java
 	@GetMapping("comments")
 	public ResponseEntity<List<BlogCommentDTO>> getAllComments() {
 	    List<BlogComment> comments = blogCommentService.findAll();
 	    if (!comments.isEmpty()) {
-	        // Map your BlogComment entities to BlogCommentDTOs
 	        List<BlogCommentDTO> commentDTOs = comments.stream()
 	                .map(blogCommentService::mapToDTO)
 	                .collect(Collectors.toList());
@@ -50,7 +48,6 @@ public class BlogCommentController {
 	public ResponseEntity<BlogCommentDTO> getCommentById(@PathVariable("cid") int blogCommentId) {
 	    BlogComment comment = blogCommentService.findById(blogCommentId);
 	    if (comment != null) {
-	        // Map the BlogComment entity to a BlogCommentDTO
 	        BlogCommentDTO commentDTO = blogCommentService.mapToDTO(comment);
 	        return new ResponseEntity<>(commentDTO, HttpStatus.OK);
 	    } else {
@@ -62,9 +59,8 @@ public class BlogCommentController {
 	public ResponseEntity<List<BlogCommentDTO>> getCommentsForBlogPost(@PathVariable("bpid") int blogPostId) {
 	    List<BlogComment> comments = blogCommentService.findByBlogPost(blogPostId);
 	    if (!comments.isEmpty()) {
-	        // Map your BlogComment entities to BlogCommentDTOs
 	        List<BlogCommentDTO> commentDTOs = comments.stream()
-	                .map(blogCommentService::mapToDTO) // You need to create a mapping method in your service
+	                .map(blogCommentService::mapToDTO)
 	                .collect(Collectors.toList());
 	        return new ResponseEntity<>(commentDTOs, HttpStatus.OK);
 	    } else {

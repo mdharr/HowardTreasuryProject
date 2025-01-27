@@ -10,7 +10,6 @@ public class CheckPasswordRequest {
 
 	public CheckPasswordRequest() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public CheckPasswordRequest(String token, String newPassword) {

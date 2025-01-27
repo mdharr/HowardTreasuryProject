@@ -48,22 +48,16 @@ public class SearchServiceImpl implements SearchService {
     public List<Map<String, Object>> search(String query) {
         List<Map<String, Object>> results = new ArrayList<>();
         
-        // Search for collections and add to results
         results.addAll(searchCollections(query, "Collection"));
         
-        // Search for stories and add to results
         results.addAll(searchStories(query, "Story"));
         
-        // Search for poems and add to results
         results.addAll(searchPoems(query, "Poem"));
         
-        // Search for persons and add to results
         results.addAll(searchPersons(query, "Person"));
         
-        // Search for miscellanea and add to results
         results.addAll(searchMiscellanea(query, "Miscellanea"));
         
-        // Search for blog posts and add to results
         results.addAll(searchBlogPosts(query, "Post"));
         
         return results;
@@ -114,7 +108,6 @@ public class SearchServiceImpl implements SearchService {
     
     private String fetchHtmlContent(String url) {
         try {
-            // Fetch the HTML content from the URL
             Document doc = Jsoup.connect(url).get();
             return doc.toString();
         } catch (IOException e) {
@@ -124,7 +117,6 @@ public class SearchServiceImpl implements SearchService {
     }
 
     private String parseHtmlAndExtractText(String htmlContent) {
-        // Parse the HTML content and extract text
         Document doc = Jsoup.parse(htmlContent);
         Elements elements = doc.select("p");
 

@@ -40,7 +40,6 @@ public class StoryServiceImpl implements StoryService {
 		return null;
 	}
 
-	// TODO: Update create method with new setters
 	@Override
 	public Story create(Story story) {
 		Story newStory = new Story();

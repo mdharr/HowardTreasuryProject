@@ -67,7 +67,6 @@ public class AuthServiceImpl implements AuthService {
 	    user.setImageUrl(user.getImageUrl());
 	    user.setDeactivated(false);
 
-	    // Save the user first to generate a user ID
 	    try {
 	        user = userRepo.saveAndFlush(user);
 	        System.out.println("User saved with ID: " + user.getId());
@@ -77,12 +76,10 @@ public class AuthServiceImpl implements AuthService {
 	        throw e;
 	    }
 
-	    // Create a new user list for the registered user
 	    UserList userList = new UserList();
 	    userList.setUser(user); // Set the user for the list
 	    userList.setName("Favorites"); // Set a default name for the list
 
-	    // Save the user list
 	    try {
 	        userListService.create(user.getUsername(), userList);
 	        System.out.println("User list created for user: " + user.getUsername());
@@ -92,7 +89,6 @@ public class AuthServiceImpl implements AuthService {
 	        throw e;
 	    }
 
-	    // Generate verification token after saving the user
 	    String token;
 	    try {
 	        token = tokenService.createVerificationToken(user);
@@ -103,14 +99,12 @@ public class AuthServiceImpl implements AuthService {
 	        throw e;
 	    }
 
-	    // Construct the verification email
 	    String recipientAddress = user.getEmail();
 	    String subject = "Registration Confirmation";
 //	    String confirmationUrl = "http://localhost:4304/#/verify?token=" + token;
 	    String confirmationUrl = "http://34.193.101.27:8080/HowardTreasury/#/verify?token=" + token;
 	    String message = "To verify your e-mail address, please click the link below:\n" + confirmationUrl;
 
-	    // Send the verification email
 	    try {
 	        emailService.sendVerificationEmail(recipientAddress, subject, message);
 	        System.out.println("Verification email sent to: " + recipientAddress);
@@ -135,14 +129,9 @@ public class AuthServiceImpl implements AuthService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-//        if (!user.getEnabled()) {
-//            throw new UserNotEnabledException("User account is not enabled");
-//        }
-        // Allow login even if the account is deactivated
         return user;
     }
     
-    // experimental rate limiter
     @Override
     public User getUserDetails(String username) throws UsernameNotFoundException {
         User user = userRepo.findByUsername(username);
@@ -157,7 +146,7 @@ public class AuthServiceImpl implements AuthService {
 	    User userUpdate = userRepo.findByUsername(username);
 
 	    if (userUpdate != null) {
-	        userUpdate.setUsername(user.getUsername()); // Always set username
+	        userUpdate.setUsername(user.getUsername());
 	        userUpdate.setPassword(user.getPassword());
 	        userUpdate.setEnabled(user.getEnabled());
 	        userUpdate.setRole(user.getRole());
@@ -197,7 +186,7 @@ public class AuthServiceImpl implements AuthService {
     public boolean disableUser(String username) {
         User user = userRepo.findByUsername(username);
         if (user != null) {
-            user.setEnabled(false); // Disable the user account
+            user.setEnabled(false);
             userRepo.save(user);
             return true;
         }
@@ -224,11 +213,8 @@ public class AuthServiceImpl implements AuthService {
                     + "<p>Your password won't change until you access the link above and create a new one.</p>"
                     + "</body></html>";
             
-    	    // Send the verification email
     	    try {
-//                emailService.sendResetPasswordEmail(recipientAddress, subject, message);
                 emailService.sendHtmlEmail(recipientAddress, subject, message);
-//    	        System.out.println("Password reset email sent to: " + recipientAddress);
     	    } catch (Exception e) {
     	        System.err.println("Error sending password reset email: " + e.getMessage());
     	        e.printStackTrace();
@@ -241,13 +227,13 @@ public class AuthServiceImpl implements AuthService {
     public boolean resetPassword(String token, String newPassword) {
         ResetPasswordToken resetToken = resetPasswordTokenService.getResetPasswordToken(token);
         if (resetToken == null || resetToken.getExpiryDate().before(new Date())) {
-            return false; // Token is invalid or expired
+            return false;
         }
         User user = resetToken.getUser();
         if (user != null) {
             user.setPassword(encoder.encode(newPassword));
             userRepo.save(user);
-            resetPasswordTokenService.deleteResetPasswordToken(token); // Delete the token after resetting the password
+            resetPasswordTokenService.deleteResetPasswordToken(token);
             return true;
         }
         return false;
@@ -279,7 +265,7 @@ public class AuthServiceImpl implements AuthService {
             String code = generateActivationCode();
             ActivationCode activationCode = new ActivationCode();
             activationCode.setCode(code);
-            activationCode.setExpiration(LocalDateTime.now().plusMinutes(30)); // Code valid for 30 minutes
+            activationCode.setExpiration(LocalDateTime.now().plusMinutes(30));
             activationCode.setUser(user);
             activationCodeRepo.save(activationCode);
 
@@ -296,7 +282,7 @@ public class AuthServiceImpl implements AuthService {
             ActivationCode activationCode = activationCodeRepo.findByUserAndCode(user, code);
             if (activationCode != null && activationCode.getExpiration().isAfter(LocalDateTime.now())) {
                 user.setDeactivated(false);
-                activationCodeRepo.delete(activationCode); // Remove used code
+                activationCodeRepo.delete(activationCode);
                 userRepo.save(user);
                 return true;
             }

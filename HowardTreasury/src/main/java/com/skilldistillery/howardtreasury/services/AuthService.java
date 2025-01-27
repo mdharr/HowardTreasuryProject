@@ -18,5 +18,5 @@ public interface AuthService {
 	public boolean isAccountDeactivated(String username);
     public void sendActivationEmail(String username);
     public boolean verifyActivationCode(String username, String code);
-	User getUserDetails(String username) throws UsernameNotFoundException; // experimental rate limiting
+	User getUserDetails(String username) throws UsernameNotFoundException;
 }

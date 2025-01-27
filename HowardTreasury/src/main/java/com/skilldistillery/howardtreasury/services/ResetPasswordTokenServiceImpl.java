@@ -14,17 +14,9 @@ public class ResetPasswordTokenServiceImpl implements ResetPasswordTokenService 
 	
 	@Autowired
 	private ResetPasswordTokenRepository tokenRepo;
-
-//	@Override
-//	public String createPasswordResetToken(User user) {
-//		ResetPasswordToken token = new ResetPasswordToken(user, UUID.randomUUID().toString());
-//		tokenRepo.save(token);
-//		return token.getToken();
-//	}
 	
     @Override
     public String createPasswordResetToken(User user) {
-        // Before creating a new token, delete any existing tokens for the user
         ResetPasswordToken existingToken = tokenRepo.findByUser(user);
         if (existingToken != null) {
             tokenRepo.deleteByToken(existingToken.getToken());

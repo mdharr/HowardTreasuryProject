@@ -86,7 +86,7 @@ public class BlogCommentServiceImpl implements BlogCommentService {
             
             if (existingBlogComment.getUser().getUsername().equals(username)) {
             	existingBlogComment.setContent(updatedComment.getContent());
-                return blogCommentRepo.save(existingBlogComment); // Save the existing comment with updated content.
+                return blogCommentRepo.save(existingBlogComment);
             } else {
                 return null;
             }
@@ -120,18 +120,16 @@ public class BlogCommentServiceImpl implements BlogCommentService {
         if (parentComment != null) {
             User user = userRepo.findByUsername(username);
             if (user == null) {
-                return null; // User not found, can't create a reply.
+                return null;
             }
 
             BlogPost parentBlogPost = parentComment.getBlogPost();
 
-            // Set the user, blog post, and parent comment for the reply.
             blogComment.setUser(user);
             blogComment.setBlogPost(parentBlogPost);
             blogComment.setParentComment(parentComment);
             blogComment.setHidden(false);
 
-            // Save the reply.
             blogComment = blogCommentRepo.save(blogComment);
             return blogComment;
         }
@@ -157,7 +155,6 @@ public class BlogCommentServiceImpl implements BlogCommentService {
         int maxDepth = 100;
 
         for (BlogComment reply : blogComment.getReplies()) {
-            // Recursive function to map replies and nested replies
             BlogCommentDTO replyDTO = mapCommentWithRepliesRecursive(reply);
             replyDTOs.add(replyDTO);
         }
@@ -180,7 +177,6 @@ public class BlogCommentServiceImpl implements BlogCommentService {
         int maxDepth = 100;
 
         for (BlogComment reply : comment.getReplies()) {
-            // Recursive function to map replies and nested replies
             BlogCommentDTO replyDTO = mapCommentWithRepliesRecursive(reply);
             replyDTOs.add(replyDTO);
         }

@@ -33,7 +33,6 @@ public class BlogPostController {
 	public ResponseEntity<List<BlogPostDTO>> getAllBlogPosts() {
 	    List<BlogPost> blogPosts = blogPostService.findAll();
 	    if (!blogPosts.isEmpty()) {
-	        // Map your BlogPost entities to BlogPostDTOs
 	        List<BlogPostDTO> blogPostDTOs = blogPosts.stream()
 	                .map(blogPostService::mapToDTO)
 	                .collect(Collectors.toList());
@@ -47,7 +46,6 @@ public class BlogPostController {
 	public ResponseEntity<BlogPostDTO> getById(@PathVariable("bpid") int blogPostId) {
 	    BlogPost blogPost = blogPostService.find(blogPostId);
 	    if (blogPost != null) {
-	        // Map the BlogPost entity to a BlogPostDTO
 	        BlogPostDTO blogPostDTO = blogPostService.mapToDTO(blogPost);
 	        return new ResponseEntity<>(blogPostDTO, HttpStatus.OK);
 	    } else {

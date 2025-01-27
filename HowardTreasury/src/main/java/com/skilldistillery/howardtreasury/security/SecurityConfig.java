@@ -19,11 +19,9 @@ import com.skilldistillery.howardtreasury.services.RateLimitService;
 @Configuration
 public class SecurityConfig {
 
-    // this you get for free when you configure the db connection in application.properties file
     @Autowired
     private DataSource dataSource;
 
-    // this bean is created in the application starter class if you're looking for it
     @Autowired
     private PasswordEncoder encoder;
     
@@ -36,7 +34,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain createFilterChain(HttpSecurity http) throws Exception {
         http
-//        .addFilterBefore(new RateLimitingAuthenticationFilter(rateLimitService), BasicAuthenticationFilter.class)
         .addFilterBefore(new RateLimitingAuthenticationFilter(rateLimitService, objectMapper), BasicAuthenticationFilter.class)
         .csrf().disable()
         .authorizeRequests()
@@ -94,9 +91,7 @@ public class SecurityConfig {
     
     @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // Check if username/password are valid, and user currently allowed to authenticate
         String userQuery = "SELECT username, password, enabled FROM user WHERE username=?";
-        // Check what authorities the user has
         String authQuery = "SELECT username, role FROM user WHERE username=?";
         auth
         .jdbcAuthentication()
