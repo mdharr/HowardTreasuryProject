@@ -27,17 +27,17 @@ public class PoemController {
 	private PoemService poemService;
 	
 	@GetMapping("collections/{cid}/poems")
-  public ResponseEntity<List<Poem>> getAllPoemsByCollection(@PathVariable("cid") int collectionId) {
-      List<Poem> poems = poemService.findByCollectionId(collectionId);
+	public ResponseEntity<List<Poem>> getAllPoemsByCollection(@PathVariable("cid") int collectionId) {
+    	List<Poem> poems = poemService.findByCollectionId(collectionId);
       
-      if (poems.isEmpty()) {
-      	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-      }
-      else {
-      	return new ResponseEntity<>(poems, HttpStatus.OK);
-      }
+    	if (poems.isEmpty()) {
+    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    	}
+    	else {
+    		return new ResponseEntity<>(poems, HttpStatus.OK);
+    	}
 		
-  }
+	}
 	
 	@GetMapping("poems")
 	public ResponseEntity<List<Poem>> getAllPoems() {

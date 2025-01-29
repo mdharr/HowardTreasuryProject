@@ -50,7 +50,7 @@ class PoemRepositoryTest {
         // Assert
         assertThat(actualPoems)
             .extracting("id", "title")
-            .contains(tuple(poem1.getId(), "Am-ra the Ta-an"));
+            .contains(tuple(poem1.getId(), poem1.getTitle()));
     }
     
     
