@@ -29,6 +29,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy, AfterViewInit 
   // booleans
   isLoaded: boolean = false;
   hasResults: boolean = true;
+  imageLoaded = false;
 
   // subscription declarations
   private searchSubscription: Subscription | undefined;
@@ -132,18 +133,14 @@ export class SearchResultsComponent implements OnInit, OnDestroy, AfterViewInit 
 
       this.pages = pageNumbers;
     }
-    // this.isLoading = false;
   }
 
   // Modify the goToPage method
   async goToPage(page: number): Promise<void> {
     if (page >= 1 && page <= this.totalPages) {
-      // this.isLoading = true;
       this.currentPage = page;
       this.generatePageArray();
-      // Call a method to retrieve the posts for the current page
       await this.loadResultsForPage(page);
-      // this.isLoading = false;
       this.scrollToTop();
     }
   }
@@ -217,4 +214,11 @@ export class SearchResultsComponent implements OnInit, OnDestroy, AfterViewInit 
     window.scrollTo(0, 0);
   }
 
+  onImageLoaded(success: boolean) {
+    this.imageLoaded = success;
+    if (!success) {
+      // Handle failed image load - maybe show a placeholder
+      console.error('Image failed to load');
+    }
+  }
 }

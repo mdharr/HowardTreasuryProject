@@ -103,6 +103,7 @@ import { SubheaderComponent } from './components/subheader/subheader.component';
 import { ImageToribotComponent } from './components/image-toribot/image-toribot.component';
 import { ImagePulseGlowComponent } from './components/image-pulse-glow/image-pulse-glow.component';
 import { StoryQuoteComponent } from './components/story-quote/story-quote.component';
+import { ImageLoadDirective } from './directives/image-load.directive';
 
 @NgModule({
   declarations: [
@@ -181,6 +182,7 @@ import { StoryQuoteComponent } from './components/story-quote/story-quote.compon
     ImageToribotComponent,
     ImagePulseGlowComponent,
     StoryQuoteComponent,
+    ImageLoadDirective,
   ],
   imports: [
     BrowserModule,

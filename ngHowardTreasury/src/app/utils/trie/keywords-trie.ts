@@ -1,5 +1,5 @@
 // keywords-trie.ts
-export class TrieNode {
+class TrieNode {
   children: Map<string, TrieNode>;
   isEndOfWord: boolean;
   title: string;

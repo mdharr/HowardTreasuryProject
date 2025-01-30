@@ -81,21 +81,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     if (this.loggedIn()) {
       this.subscribeToLoggedInObservable();
-
-      // this.loggedInUserSubscription = this.authService.getLoggedInUser().pipe(
-      //   tap(user => {
-      //     this.loggedInUser = user;
-      //     console.log('NavbarComponent ngOnInit loggedInUser:', this.loggedInUser);
-      //   })
-      // ).subscribe({
-      //   error: (error) => {
-      //     console.log('Error getting loggedInUser Profile Component');
-      //     console.log(error);
-      //   },
-      // });
     }
 
-    // Subscribe to userUpdated$ from the UserService to update the user in the NavbarComponent
     this.userUpdateSubscription = this.userService.userUpdated$.subscribe(user => {
       this.loggedInUser = user;
     });
