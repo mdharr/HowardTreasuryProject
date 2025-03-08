@@ -10,3 +10,7 @@ default
 .env
 *.war
 *.bak
+
+### Logs ###
+**/logs/
+**/*.log
